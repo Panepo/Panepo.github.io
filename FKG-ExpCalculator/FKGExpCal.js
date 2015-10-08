@@ -81,13 +81,13 @@ function ExpCal()
 	
 	if ( InpLevel > LevelMax)
 	{
-		document.getElementById("output").innerHTML = "Wrong level input!";
+		document.getElementById("output").innerHTML = "Lv数値が正しくありません";
 	}
 	else
 	{
 		if ( InpExp > ExpTable[TableInd][InpLevel])
 		{
-			document.getElementById("output").innerHTML = "Wrong exp input!";
+			document.getElementById("output").innerHTML = "経験値数値が正しくありません";
 		}
 		else
 		{
@@ -133,7 +133,7 @@ function FeedCal(ExpLeft)
 	RepTimes = ExpLeft / 7200;
 	i = 0;
 	
-	while (i <= RepTimes && i < 5 )
+	while (i <= RepTimes && i < 8 )
 	{
 		cnt100 = Math.floor(ExpLeft / 7200);
 		cnt100 = cnt100 - i;
