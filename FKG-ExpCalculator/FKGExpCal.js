@@ -12,9 +12,10 @@ function ExpCal()
 	ExpTable[5] = [0, 34, 41, 65, 101, 141, 186, 233, 285, 341, 400, 463, 527, 596, 668, 741, 818, 897, 976, 1061, 1149, 1233, 1327, 1418, 1512, 1610, 1709, 1808, 1910, 2017, 2121, 2230, 2339, 2452, 2564, 2679, 2796, 2913, 3036, 3156, 3278, 3404, 3529, 3658, 3788, 3917, 4051, 4184, 4320, 4454, 4594, 4735, 4873, 5017, 5160, 5305, 5451, 5599, 5748, 5897, 6049, 6201, 6357, 6513, 6667, 6825, 6984, 7145, 7307, 7469];
 	ExpTable[6] = [0, 34, 41, 69, 105, 146, 191, 242, 296, 353, 417, 479, 548, 622, 691, 771, 851, 929, 1018, 1102, 1192, 1284, 1379, 1475, 1572, 1673, 1777, 1880, 1986, 2096, 2205, 2319, 2433, 2549, 2667, 2785, 2907, 3030, 3155, 3282, 3409, 3540, 3671, 3804, 3937, 4074, 4211, 4351, 4491, 4634, 4776, 4992, 5069, 5217, 5365, 5518, 5668, 5822, 5977, 6133, 6290, 6450, 6608, 6772, 6935, 7098, 7263, 7429, 7559, 7767];
 	
+	var CalEnable = true;
+	
 	InpLevel = document.getElementById("InpLevel").value;
 	InpExp = document.getElementById("InpExp").value;
-	
 	InpFeed5 = document.getElementById("InpFeed5").value;
 	InpFeed20 = document.getElementById("InpFeed20").value;
 	InpFeed100 = document.getElementById("InpFeed100").value;
@@ -51,8 +52,7 @@ function ExpCal()
 	{
   	InpPrompt = document.getElementById("InpPro1").value;
 	}
-
-
+	
 	if ( InpPrompt == 0)
 		LevelMax = 0;
 	else if ( InpPrompt == 1 )
@@ -82,28 +82,44 @@ function ExpCal()
 	if ( InpLevel > LevelMax)
 	{
 		document.getElementById("output").innerHTML = "Lv数値が正しくありません";
+		CalEnable = false;
 	}
-	else
+	if ( InpExp > ExpTable[TableInd][InpLevel])
 	{
-		if ( InpExp > ExpTable[TableInd][InpLevel])
+		document.getElementById("output").innerHTML = "経験値数値が正しくありません";
+		CalEnable = false;
+	}
+	if ( isNaN(InpLevel) == true || isNaN(InpExp) == true )
+	{
+		CalEnable = false;
+		document.getElementById("output").innerHTML = "数値が正しくありません";
+	}
+	if ( isNaN(InpFeed5) == true || isNaN(InpFeed20) == true || isNaN(InpFeed100) == true )
+	{
+		CalEnable = false;
+		document.getElementById("output").innerHTML = "数値が正しくありません";
+	}
+	if ( isNaN(InpFeed5x) == true || isNaN(InpFeed20x) == true || isNaN(InpFeed100x) == true )
+	{
+		CalEnable = false;
+		document.getElementById("output").innerHTML = "数値が正しくありません";
+	}
+	
+	
+	if ( CalEnable == true )
+	{
+		var i = InpLevel;
+		ExpLeft = 0;
+		while (i < LevelMax)
 		{
-			document.getElementById("output").innerHTML = "経験値数値が正しくありません";
+			ExpLeft = ExpLeft + ExpTable[TableInd][i];
+			i++;
 		}
-		else
-		{
-			var i = InpLevel;
-			ExpLeft = 0;
-			while (i < LevelMax)
-			{
-				ExpLeft = ExpLeft + ExpTable[TableInd][i];
-				i++;
-			}
 			
-			ExpLeft += InpExp - ExpTable[TableInd][InpLevel];
-			ExpLeft -= InpFeed5*1080 + InpFeed20*2700 + InpFeed100*7200;
-			ExpLeft -= InpFeed5x*720 + InpFeed20x*1800 + InpFeed100x*4800;
-			FeedCal(ExpLeft);
-		}
+		ExpLeft += InpExp - ExpTable[TableInd][InpLevel];
+		ExpLeft -= InpFeed5*1080 + InpFeed20*2700 + InpFeed100*7200;
+		ExpLeft -= InpFeed5x*720 + InpFeed20x*1800 + InpFeed100x*4800;
+		FeedCal(ExpLeft);
 	}
 }
 
