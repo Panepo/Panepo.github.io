@@ -1,6 +1,8 @@
+var ExpLeft;
+var FeedTable = [];
+
 function ExpCal()
 {
-	var ExpLeft;
 	var LevelMax;
 	var InpLevel, InpExp, InpPrompt, InpRarity;
 	var InpFeed5, InpFeed20, InpFeed100;
@@ -119,33 +121,17 @@ function ExpCal()
 		ExpLeft += InpExp - ExpTable[TableInd][InpLevel];
 		ExpLeft -= InpFeed5*1080 + InpFeed20*2700 + InpFeed100*7200;
 		ExpLeft -= InpFeed5x*720 + InpFeed20x*1800 + InpFeed100x*4800;
-		FeedCal(ExpLeft);
+		FeedCal();
+		HtmlLayout();
 	}
 }
 
-function FeedCal(ExpLeft)
+function FeedCal()
 {
 	var RepTimes, i;
 	var cnt5, cnt20, cnt100;
 	var ExpT, cnt, overflow;
-	var OutputText = "";
-	
-	OutputText = "<p>最大Lvまでの経験値：";
-	OutputText += parseInt(ExpLeft);
 		
-	OutputText += "</p><p>最大Lvまでにあと必要な同属性素材の目安</p>" +
-	"<table class=\"mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp\">" +
-  "<thead>" +
-  "  <tr>" +
-  "    <th>100才</th>" +
-  "    <th>20才</th>" +
-  "    <th>5才</th>" +
-  "    <th>總數</th>" +
-  "    <th>溢出経験値</th>" +
-  "  </tr>" +
-  "</thead>" +
-  "<tbody>";
-	
 	RepTimes = ExpLeft / 7200;
 	i = 0;
 	
@@ -175,18 +161,67 @@ function FeedCal(ExpLeft)
 		}
 			
 		cnt = ( cnt100 + cnt20 + cnt5 );
-
-		OutputText += "<tr>" +
-		"<td>" + parseInt(cnt100) + "</td>" +
-		"<td>" + parseInt(cnt20) + "</td>" +
-		"<td>" + parseInt(cnt5) + "</td>" +
-		"<td>" + parseInt(cnt) + "</td>" +
-		"<td>" + parseInt(overflow) + "</td>" +
-		"</tr>";
+		
+		FeedTable[i] = [];
+		FeedTable[i] = [cnt100, cnt20, cnt5, cnt, overflow];
 		
 		i++;
 	}
-	OutputText += "</tbody></table></p>";
+}
+
+function FeedSort(command)
+{
+	FeedTable.sort(function(a, b){return b[command]-a[command]});
+	HtmlLayout();
+}
+
+function HtmlLayout()
+{
+	var OutputText = "";
+	
+	OutputText = "<p>最大Lvまでの経験値：";
+	OutputText += parseInt(ExpLeft);
+
+	OutputText += "</p><p>最大Lvまでにあと必要な同属性素材の目安</p>" +
+	"<table class=\"mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp\">" +
+  "<thead>" +
+  "  <tr>" +
+  "    <th class='table-content'>" +
+  "				100才" +
+  "    </th>" +
+  "    <th class='table-content'>" +
+  "				20才" +
+  "    </th>" +
+  "    <th class='table-content'>" +
+  "				5才" +
+  "    </th>" +
+  "    <th class='table-content'>" +
+  "				總數" +
+  "    </th>" +
+  "    <th class='table-content'>" +
+  "				溢出経験値" +
+  "    </th>" +
+  "  </tr>" +
+  "</thead>" +
+  "<tbody>";
+    
+  var i = 0;
+  while ( i < FeedTable.length )
+  {
+  	OutputText += "<tr>" +
+		"<td>" + FeedTable[i][0] + "</td>" +
+		"<td>" + FeedTable[i][1] + "</td>" +
+		"<td>" + FeedTable[i][2] + "</td>" +
+		"<td>" + FeedTable[i][3] + "</td>" +
+		"<td>" + FeedTable[i][4] + "</td>" +
+		"</tr>";
+		
+		i++;
+  }
+  
+  OutputText += "</tbody></table></p>";
+
+
 	
 	document.getElementById("output").innerHTML = OutputText;
 	componentHandler.upgradeDom();
