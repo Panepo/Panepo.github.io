@@ -2,30 +2,13 @@
 <html>  
 	<head>
 		<meta charset="UTF-8">
-		<title>Flower Knight Girl Exp Calculator</title>
+		<title>フラワーナイトガール経験値計算機</title>
 		<script src="FKGExpCal.js"></script>
 		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.teal-purple.min.css" /> 
 		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.min.js"></script>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="stylesheet" href="styles.css">
-		<style>
-    #view-source {
-      position: fixed;
-      display: block;
-      right: 0;
-      bottom: 0;
-      margin-right: 40px;
-      margin-bottom: 40px;
-      z-index: 900;
-    }
-    .mdl-textfield {
-    	width: 200px;
-    }
-    .table-content {
-    	width: 80px;
-    }
-    </style>
 	</head>  
   <body>
     <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
@@ -46,34 +29,34 @@
             <h5>對象騎士</h5>
               <p>
                 レアリティ：
-              	<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="InpRar2">
+              	<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
   								<input type="radio" id="InpRar2" class="mdl-radio__button" name="InpRar" onclick="ExpCal()" value="2" checked />
   								<span class="mdl-radio__label">★★</span>
 								</label>
-								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="InpRar3">
+								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
 			  					<input type="radio" id="InpRar3" class="mdl-radio__button" name="InpRar" onclick="ExpCal()" value="3" />
 			  					<span class="mdl-radio__label">★★★</span>
 								</label>
-								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="InpRar4">
+								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
 			  					<input type="radio" id="InpRar4" class="mdl-radio__button" name="InpRar" onclick="ExpCal()" value="4" />
 			  					<span class="mdl-radio__label">★★★★</span>
 								</label>
-								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="InpRar5">
+								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
 			  					<input type="radio" id="InpRar5" class="mdl-radio__button" name="InpRar" onclick="ExpCal()" value="5" />
 			  					<span class="mdl-radio__label">★★★★★</span>
 								</label>
-								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="InpRar6">
+								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
 			  					<input type="radio" id="InpRar6" class="mdl-radio__button" name="InpRar" onclick="ExpCal()" value="6" />
 			  					<span class="mdl-radio__label">★★★★★★</span>
 								</label>
               </p>
               <p>
             		進化：
-								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="InpPro0">
+								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
 			  					<input type="radio" id="InpPro0" class="mdl-radio__button" name="InpPro" onclick="ExpCal()" value="0" checked />
 			  					<span class="mdl-radio__label">未進化</span>
 								</label>
-								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="InpPro1">
+								<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
 			  					<input type="radio" id="InpPro1" class="mdl-radio__button" name="InpPro" onclick="ExpCal()" value="1" />
 			  					<span class="mdl-radio__label">進化済</span>
 								</label>
@@ -136,14 +119,14 @@
             	<p id="output"></p>    
           </div>
         </div>
-        <footer class="demo-footer mdl-mini-footer">
-          <div class="mdl-mini-footer--left-section">
-            <small> 『<a href="http://www.dmm.com/netgame_s/flower/">フラワーナイトガール</a>』(C) DMMゲームズ</small><br>
-						<small>「フラワーナイトガール」から転載された全てのコンテンツの著作権につきましては、権利者様へ帰属します。</small><br>
-						<small> Copyright &copy; Panepo@Github 2015 All Rights Reserved.</small>
-          </div>
-        </footer>
       </main>
+      <footer class="demo-footer mdl-mini-footer">
+        <div class="mdl-mini-footer--left-section">
+          <small> 『<a href="http://www.dmm.com/netgame_s/flower/">フラワーナイトガール</a>』(C) DMMゲームズ</small><br>
+					<small>「フラワーナイトガール」から転載された全てのコンテンツの著作権につきましては、権利者様へ帰属します。</small><br>
+					<small> Copyright &copy; Panepo@Github 2015 All Rights Reserved.</small>
+        </div>
+      </footer>
     </div>
   </body>  
 </html>  
