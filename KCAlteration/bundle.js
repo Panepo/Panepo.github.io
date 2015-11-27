@@ -66,7 +66,7 @@ var ContentOut = React.createClass({
 		var PanelClassActive = "mdl-tabs__panel is-active";
 		var TabClass = "mdl-tabs__tab";
 		var TabClassActive = "mdl-tabs__tab is-active";
-		var TableClass = "mdl-data-table mdl-js-data-table mdl-shadow--2dp";
+		var TableClass = "mdl-data-table mdl-shadow--2dp";
 
 		var DayList = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 		var DayDisp = ["日 (Sun)", "月 (Mon)", "火 (Tue)", "水 (Wed)", "木 (Thu)", "金 (Fri)", "土 (Sat)"];
@@ -101,19 +101,20 @@ var ContentOut = React.createClass({
 				"tr",
 				{ className: "mdl-data-table__cell--non-numeric" },
 				React.createElement("th", { className: "th0" }),
+				React.createElement("th", { className: "th1" }),
 				React.createElement(
 					"th",
-					{ className: "th1" },
+					{ className: "th2" },
 					"分類"
 				),
 				React.createElement(
 					"th",
-					{ className: "th2" },
+					{ className: "th3" },
 					"装備名"
 				),
 				React.createElement(
 					"th",
-					{ className: "th3" },
+					{ className: "th4" },
 					"二番艦"
 				)
 			)
@@ -140,9 +141,20 @@ var ContentOut = React.createClass({
 					}
 				}
 
+				var CheckString = "row" + i.toString() + j.toString();
+
 				TableCont = React.createElement(
 					"tr",
 					{ className: "mdl-data-table__cell--non-numeric", key: i * 100 + j },
+					React.createElement(
+						"td",
+						null,
+						React.createElement(
+							"label",
+							{ className: "mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select", htmlFor: CheckString },
+							React.createElement("input", { type: "checkbox", id: CheckString, className: "mdl-checkbox__input" })
+						)
+					),
 					React.createElement(
 						"td",
 						null,
@@ -4488,6 +4500,7 @@ var HTMLDOMPropertyConfig = {
     multiple: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     muted: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     name: null,
+    nonce: MUST_USE_ATTRIBUTE,
     noValidate: HAS_BOOLEAN_VALUE,
     open: HAS_BOOLEAN_VALUE,
     optimum: null,
@@ -4499,6 +4512,7 @@ var HTMLDOMPropertyConfig = {
     readOnly: MUST_USE_PROPERTY | HAS_BOOLEAN_VALUE,
     rel: null,
     required: HAS_BOOLEAN_VALUE,
+    reversed: HAS_BOOLEAN_VALUE,
     role: MUST_USE_ATTRIBUTE,
     rows: MUST_USE_ATTRIBUTE | HAS_POSITIVE_NUMERIC_VALUE,
     rowSpan: null,
@@ -4944,6 +4958,7 @@ assign(React, {
 });
 
 React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOM;
+React.__SECRET_DOM_SERVER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOMServer;
 
 module.exports = React;
 },{"./Object.assign":40,"./ReactDOM":53,"./ReactDOMServer":63,"./ReactIsomorphic":81,"./deprecated":124}],43:[function(require,module,exports){
@@ -15152,7 +15167,7 @@ module.exports = ReactUpdates;
 
 'use strict';
 
-module.exports = '0.14.2';
+module.exports = '0.14.3';
 },{}],103:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
