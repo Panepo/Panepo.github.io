@@ -71,9 +71,9 @@ var ContentOut = React.createClass({
 		var DayList = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 		var DayDisp = ["日 (Sun)", "月 (Mon)", "火 (Tue)", "水 (Wed)", "木 (Thu)", "金 (Fri)", "土 (Sat)"];
 
-		var Tab = new Array();
-		var Panel = new Array();
-		var TabData = new Array();
+		var Tab = [];
+		var Panel = [];
+		var TabData = [];
 		for (var i = 0; i < DayList.length; i++) {
 			var TabString = "#" + DayList[i] + "-panel";
 			if (DateDay == i) {
@@ -99,7 +99,7 @@ var ContentOut = React.createClass({
 			null,
 			React.createElement(
 				"tr",
-				{ className: "mdl-data-table__cell--non-numeric" },
+				null,
 				React.createElement("th", { className: "th0" }),
 				React.createElement("th", { className: "th1" }),
 				React.createElement(
@@ -114,16 +114,16 @@ var ContentOut = React.createClass({
 				),
 				React.createElement(
 					"th",
-					{ className: "th4" },
+					{ className: "th4 mdl-data-table__cell--non-numeric" },
 					"二番艦"
 				)
 			)
 		);
 
 		var Output = this.props.value.Output;
-		var TableData = new Array();
+		var TableData = [];
 		var TableCont;
-		var ImgString = new String();
+		var ImgString = "";
 		var checkboxlist = ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "探照灯"];
 		var AAlist = ["10cm高角砲＋高射装置", "90mm単装高角砲"];
 
@@ -145,7 +145,7 @@ var ContentOut = React.createClass({
 
 				TableCont = React.createElement(
 					"tr",
-					{ className: "mdl-data-table__cell--non-numeric", key: i * 100 + j },
+					{ key: i * 100 + j },
 					React.createElement(
 						"td",
 						null,
@@ -172,7 +172,7 @@ var ContentOut = React.createClass({
 					),
 					React.createElement(
 						"td",
-						null,
+						{ className: "mdl-data-table__cell--non-numeric" },
 						Output[i][j][2]
 					)
 				);
@@ -180,7 +180,7 @@ var ContentOut = React.createClass({
 			}
 		}
 
-		var PanelData = new Array();
+		var PanelData = [];
 		var PanelCont;
 
 		for (var i = 0; i < DayList.length; i++) {
@@ -308,9 +308,10 @@ var Header = React.createClass({
 	render: function () {
 		var checkboxlist = ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "探照灯"];
 		var checkboxoutput = [];
-		var checkboxtemp, IDstringtemp, cbtoggle;
-		var i;
-		for (i = 0; i < this.props.value.CBtoggle.length; i++) {
+		var checkboxtemp;
+		var IDstringtemp = "";
+		var cbtoggle;
+		for (var i = 0; i < this.props.value.CBtoggle.length; i++) {
 			IDstringtemp = "checkbox" + i.toString();
 			if (this.props.value.CBtoggle[i] == 1) {
 				cbtoggle = React.createElement("input", { type: "checkbox", id: IDstringtemp, className: "mdl-checkbox__input", onClick: this.handleToggle, defaultChecked: true });
