@@ -1,0 +1,13 @@
+.Nav {
+	padding-left: 20px;
+}
+
+.Content {
+	max-width: 9600px;
+	width: calc(100% - 16px);
+  padding: 25px 25px;
+}
+
+.mdl-data-table {
+	display: flex;
+}
