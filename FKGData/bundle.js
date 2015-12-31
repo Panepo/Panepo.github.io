@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4aeca20615dc9901ca70"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2e4cfa30162e6ee4d63c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3687,6 +3687,7 @@
 				output[i] = new Object();
 
 				output[i]["id"] = target[i]["id"];
+				output[i]["img"] = "image" + output[i]["id"];
 				output[i]["elem"] = target[i]["elem"];
 				output[i]["name"] = target[i]["name"];
 				output[i]["nation"] = target[i]["nation"];
@@ -3762,7 +3763,7 @@
 				output[i]["Dscore"] = Math.round(output[i]["hp"] + output[i]["def"] * (100 + target[i]["PavDpow"]) / 100 * 300) / 100;
 
 				tableOutput[i] = [];
-				var toggleList = ["id", "elem", "name", "nation", "star", "fav", "hp", "atk", "def", "agi", "total", "skill", "skillCha", "skillDam", "skillTar", "PavSkill", "PavSkillAtk", "PavSkillDef", "AScoreA", "AScoreB", "Dscore"];
+				var toggleList = ["id", "elem", "img", "name", "nation", "star", "fav", "hp", "atk", "def", "agi", "total", "skill", "skillCha", "skillTar", "skillDam", "PavSkill", "PavSkillAtk", "PavSkillDef", "AScoreA", "AScoreB", "Dscore"];
 
 				var k = 0;
 				for (var j = 0; j < checkBoxToggle.length; j++) {
@@ -12078,7 +12079,7 @@
 		render: function render() {
 			var TableClass = "mdl-data-table mdl-shadow--2dp";
 
-			var tableHeadList = ["No", "屬性", "名前", "國", "★", "好きな物", "HP", "攻撃力", "防御力", "移動力", "総合力", "戦闘スキル", "機率", "傷害倍率", "對象", "アビリティ", "團隊攻增", "團隊防增", "攻撃評價(單)", "攻撃評價(多)", "防御評價"];
+			var tableHeadList = ["No", "屬性", "畫像", "名前", "國", "★", "好きな物", "HP", "攻撃力", "防御力", "移動力", "総合力", "戦闘スキル", "機率", "對象", "傷害倍率", "アビリティ", "團隊攻增", "團隊防增", "攻撃評價(單)", "攻撃評價(多)", "防御評價"];
 			var tableHeadOutput = [];
 			var tableHeadTemp;
 			var idStringTemp = "";
@@ -12125,16 +12126,34 @@
 			var tableTemp;
 			var tdOutput = [];
 			var tdTemp;
+			var imgString = "";
 
 			for (var i = 0; i < data.length; i++) {
 				tdOutput = [];
 				for (var j = 0; j < data[i].length; j++) {
 					idStringTemp = "5td" + i.toString() + j.toString();
-					tdTemp = React.createElement(
-						"td",
-						{ key: idStringTemp },
-						data[i][j]
-					);
+					if (typeof data[i][j] === 'string' || data[i][j] instanceof String) {
+						if (data[i][j].slice(0, 5) == "image") {
+							imgString = "./img/" + data[i][j].slice(5) + ".jpg";
+							tdTemp = React.createElement(
+								"td",
+								{ key: idStringTemp },
+								React.createElement("img", { src: imgString, height: "40", width: "40" })
+							);
+						} else {
+							tdTemp = React.createElement(
+								"td",
+								{ key: idStringTemp },
+								data[i][j]
+							);
+						}
+					} else {
+						tdTemp = React.createElement(
+							"td",
+							{ key: idStringTemp },
+							data[i][j]
+						);
+					}
 					tdOutput.push(tdTemp);
 				}
 				idStringTemp = "5tr" + i.toString();
@@ -12224,7 +12243,7 @@
 		render: function render() {
 			var TableClass = "mdl-data-table mdl-shadow--2dp";
 
-			var tableHeadList = ["No", "屬性", "名前", "國", "★", "好きな物", "HP", "攻撃力", "防御力", "移動力", "総合力", "戦闘スキル", "機率", "傷害倍率", "對象", "アビリティ", "團隊攻增", "團隊防增", "攻撃評價(單)", "攻撃評價(多)", "防御評價"];
+			var tableHeadList = ["No", "屬性", "畫像", "名前", "國", "★", "好きな物", "HP", "攻撃力", "防御力", "移動力", "総合力", "戦闘スキル", "機率", "對象", "傷害倍率", "アビリティ", "團隊攻增", "團隊防增", "攻撃評價(單)", "攻撃評價(多)", "防御評價"];
 			var tableHeadOutput = [];
 			var tableHeadTemp;
 			var idStringTemp = "";
@@ -12271,16 +12290,34 @@
 			var tableTemp;
 			var tdOutput = [];
 			var tdTemp;
+			var imgString = "";
 
 			for (var i = 0; i < data.length; i++) {
 				tdOutput = [];
 				for (var j = 0; j < data[i].length; j++) {
 					idStringTemp = "4td" + i.toString() + j.toString();
-					tdTemp = React.createElement(
-						"td",
-						{ key: idStringTemp },
-						data[i][j]
-					);
+					if (typeof data[i][j] === 'string' || data[i][j] instanceof String) {
+						if (data[i][j].slice(0, 5) == "image") {
+							imgString = "./img/" + data[i][j].slice(5) + ".jpg";
+							tdTemp = React.createElement(
+								"td",
+								{ key: idStringTemp },
+								React.createElement("img", { src: imgString, height: "40", width: "40" })
+							);
+						} else {
+							tdTemp = React.createElement(
+								"td",
+								{ key: idStringTemp },
+								data[i][j]
+							);
+						}
+					} else {
+						tdTemp = React.createElement(
+							"td",
+							{ key: idStringTemp },
+							data[i][j]
+						);
+					}
 					tdOutput.push(tdTemp);
 				}
 				idStringTemp = "4tr" + i.toString();
@@ -12370,7 +12407,7 @@
 		render: function render() {
 			var TableClass = "mdl-data-table mdl-shadow--2dp";
 
-			var tableHeadList = ["No", "屬性", "名前", "國", "★", "好きな物", "HP", "攻撃力", "防御力", "移動力", "総合力", "戦闘スキル", "機率", "傷害倍率", "對象", "アビリティ", "團隊攻增", "團隊防增", "攻撃評價(單)", "攻撃評價(多)", "防御評價"];
+			var tableHeadList = ["No", "屬性", "畫像", "名前", "國", "★", "好きな物", "HP", "攻撃力", "防御力", "移動力", "総合力", "戦闘スキル", "機率", "對象", "傷害倍率", "アビリティ", "團隊攻增", "團隊防增", "攻撃評價(單)", "攻撃評價(多)", "防御評價"];
 			var tableHeadOutput = [];
 			var tableHeadTemp;
 			var idStringTemp = "";
@@ -12417,16 +12454,34 @@
 			var tableTemp;
 			var tdOutput = [];
 			var tdTemp;
+			var imgString = "";
 
 			for (var i = 0; i < data.length; i++) {
 				tdOutput = [];
 				for (var j = 0; j < data[i].length; j++) {
 					idStringTemp = "6td" + i.toString() + j.toString();
-					tdTemp = React.createElement(
-						"td",
-						{ key: idStringTemp },
-						data[i][j]
-					);
+					if (typeof data[i][j] === 'string' || data[i][j] instanceof String) {
+						if (data[i][j].slice(0, 5) == "image") {
+							imgString = "./img/" + data[i][j].slice(5) + ".jpg";
+							tdTemp = React.createElement(
+								"td",
+								{ key: idStringTemp },
+								React.createElement("img", { src: imgString, height: "40", width: "40" })
+							);
+						} else {
+							tdTemp = React.createElement(
+								"td",
+								{ key: idStringTemp },
+								data[i][j]
+							);
+						}
+					} else {
+						tdTemp = React.createElement(
+							"td",
+							{ key: idStringTemp },
+							data[i][j]
+						);
+					}
 					tdOutput.push(tdTemp);
 				}
 				idStringTemp = "6tr" + i.toString();
@@ -12516,7 +12571,7 @@
 		render: function render() {
 			var TableClass = "mdl-data-table mdl-shadow--2dp";
 
-			var tableHeadList = ["No", "屬性", "名前", "國", "★", "好きな物", "HP", "攻撃力", "防御力", "移動力", "総合力", "戦闘スキル", "機率", "傷害倍率", "對象", "アビリティ", "團隊攻增", "團隊防增", "攻撃評價(單)", "攻撃評價(多)", "防御評價"];
+			var tableHeadList = ["No", "屬性", "畫像", "名前", "國", "★", "好きな物", "HP", "攻撃力", "防御力", "移動力", "総合力", "戦闘スキル", "機率", "對象", "傷害倍率", "アビリティ", "團隊攻增", "團隊防增", "攻撃評價(單)", "攻撃評價(多)", "防御評價"];
 			var tableHeadOutput = [];
 			var tableHeadTemp;
 			var idStringTemp = "";
@@ -12563,16 +12618,34 @@
 			var tableTemp;
 			var tdOutput = [];
 			var tdTemp;
+			var imgString = "";
 
 			for (var i = 0; i < data.length; i++) {
 				tdOutput = [];
 				for (var j = 0; j < data[i].length; j++) {
 					idStringTemp = "3td" + i.toString() + j.toString();
-					tdTemp = React.createElement(
-						"td",
-						{ key: idStringTemp },
-						data[i][j]
-					);
+					if (typeof data[i][j] === 'string' || data[i][j] instanceof String) {
+						if (data[i][j].slice(0, 5) == "image") {
+							imgString = "./img/" + data[i][j].slice(5) + ".jpg";
+							tdTemp = React.createElement(
+								"td",
+								{ key: idStringTemp },
+								React.createElement("img", { src: imgString, height: "40", width: "40" })
+							);
+						} else {
+							tdTemp = React.createElement(
+								"td",
+								{ key: idStringTemp },
+								data[i][j]
+							);
+						}
+					} else {
+						tdTemp = React.createElement(
+							"td",
+							{ key: idStringTemp },
+							data[i][j]
+						);
+					}
 					tdOutput.push(tdTemp);
 				}
 				idStringTemp = "3tr" + i.toString();
@@ -12662,7 +12735,7 @@
 		render: function render() {
 			var TableClass = "mdl-data-table mdl-shadow--2dp";
 
-			var tableHeadList = ["No", "屬性", "名前", "國", "★", "好きな物", "HP", "攻撃力", "防御力", "移動力", "総合力", "戦闘スキル", "機率", "傷害倍率", "對象", "アビリティ", "團隊攻增", "團隊防增", "攻撃評價(單)", "攻撃評價(多)", "防御評價"];
+			var tableHeadList = ["No", "屬性", "畫像", "名前", "國", "★", "好きな物", "HP", "攻撃力", "防御力", "移動力", "総合力", "戦闘スキル", "機率", "對象", "傷害倍率", "アビリティ", "團隊攻增", "團隊防增", "攻撃評價(單)", "攻撃評價(多)", "防御評價"];
 			var tableHeadOutput = [];
 			var tableHeadTemp;
 			var idStringTemp = "";
@@ -12709,16 +12782,34 @@
 			var tableTemp;
 			var tdOutput = [];
 			var tdTemp;
+			var imgString = "";
 
 			for (var i = 0; i < data.length; i++) {
 				tdOutput = [];
 				for (var j = 0; j < data[i].length; j++) {
 					idStringTemp = "2td" + i.toString() + j.toString();
-					tdTemp = React.createElement(
-						"td",
-						{ key: idStringTemp },
-						data[i][j]
-					);
+					if (typeof data[i][j] === 'string' || data[i][j] instanceof String) {
+						if (data[i][j].slice(0, 5) == "image") {
+							imgString = "./img/" + data[i][j].slice(5) + ".jpg";
+							tdTemp = React.createElement(
+								"td",
+								{ key: idStringTemp },
+								React.createElement("img", { src: imgString, height: "40", width: "40" })
+							);
+						} else {
+							tdTemp = React.createElement(
+								"td",
+								{ key: idStringTemp },
+								data[i][j]
+							);
+						}
+					} else {
+						tdTemp = React.createElement(
+							"td",
+							{ key: idStringTemp },
+							data[i][j]
+						);
+					}
 					tdOutput.push(tdTemp);
 				}
 				idStringTemp = "2tr" + i.toString();
@@ -13080,7 +13171,7 @@
 
 	var CHANGE_EVENT = 'change';
 	var _value = {
-		checkBoxToggle: [1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0],
+		checkBoxToggle: [1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0],
 		eqValue: [1507, 0, 1957, 1140, 3000, 500],
 		sortKey: [0, 0]
 	};
@@ -15060,8 +15151,8 @@
 			"skillTar": 3,
 			"skillDam": 1.9,
 			"PavSkill": "討伐開始時にノーマルパネルをランダムで2個～3個チョコレート回復パネルに変更する。(重複不可)(進化後+)戦闘中、自身を含む3人の攻撃力が15%上昇",
-			"PavAnum": 0,
-			"PavApow": 0,
+			"PavAnum": 3,
+			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"fav": "宝石",
@@ -15367,7 +15458,7 @@
 			"skillTar": 1,
 			"skillDam": 2.3,
 			"PavSkill": "パーティメンバー２人のクリティカル攻撃発生率を中上昇させる(進化後+)戦闘中、自身を含む３人の攻撃力が10%上昇",
-			"PavAnum": null,
+			"PavAnum": 3,
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
@@ -15961,8 +16052,8 @@
 			"skillTar": 2,
 			"skillDam": 2.1,
 			"PavSkill": "討伐開始時にノーマルパネルを2個～3個チョコレート回復パネルに変化する(重複不可)(進化後+)戦闘中、自身を含む3人の攻撃力が10％上昇",
-			"PavAnum": 0,
-			"PavApow": 0,
+			"PavAnum": 3,
+			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"fav": "宝石",
@@ -16476,9 +16567,9 @@
 			"skillTar": 1,
 			"skillDam": 3.6,
 			"PavSkill": "戦闘中、自身を含む２人の攻撃力が35%上昇(進化後+)戦闘中、自身を含む３人の防御力が25%上昇",
-			"PavAnum": null,
+			"PavAnum": 2,
 			"PavApow": 35,
-			"PavDnum": null,
+			"PavDnum": 3,
 			"PavDpow": 25,
 			"fav": "宝石",
 			"kacha": 1
