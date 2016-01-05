@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5544c7640438055c68a6"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3a75502daa09d333f41e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -15652,7 +15652,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { src: imgString })
+								React.createElement("img", { className: "image", src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -15816,7 +15816,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { src: imgString })
+								React.createElement("img", { className: "image", src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -15980,7 +15980,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { src: imgString })
+								React.createElement("img", { className: "image", src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -16144,7 +16144,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { src: imgString })
+								React.createElement("img", { className: "image", src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -16308,7 +16308,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { src: imgString })
+								React.createElement("img", { className: "image", src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
