@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "28f062df272baee3a4ea"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "5544c7640438055c68a6"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3341,11 +3341,11 @@
 			var output = [];
 			var tableOutput = [];
 
-			for (var i = 0; i < target.length - 1; i++) {
+			for (var i = 0; i < target.length; i++) {
 				output[i] = new Object();
 
-				output[i]["id"] = target[i]["id"];
-				output[i]["img"] = "image" + output[i]["id"];
+				output[i]["id"] = parseInt(target[i]["id"]);
+				output[i]["img"] = "image" + target[i]["id"];
 				output[i]["elem"] = target[i]["elem"];
 				output[i]["name"] = target[i]["name"];
 				output[i]["nation"] = target[i]["nation"];
@@ -3403,18 +3403,18 @@
 					output[i]["PavSkillDef"] = 0;
 				}
 
-				var baseAtk = output[i]["atk"] * (100 + target[i]["PavApow"]) / 100;
-				var norDam = baseAtk * (1 - output[i]["skillCha"] / 100) - eqValue[5];
-				var skiDam = baseAtk * (output[i]["skillCha"] * output[i]["skillTargetA"] * output[i]["skillDam"] / 100) - eqValue[5] * output[i]["skillTargetA"];
+				var baseAtk = output[i]["atk"] * (100 + target[i]["PavApow"] + eqValue[4]) / 100;
+				var norDam = baseAtk * (1 - output[i]["skillCha"] / 100) - eqValue[7];
+				var skiDam = baseAtk * (output[i]["skillCha"] * output[i]["skillTargetA"] * output[i]["skillDam"] / 100) - eqValue[7] * output[i]["skillTargetA"];
 
 				output[i]["AScoreA"] = Math.round((norDam + skiDam) * 100) / 100;
 
-				norDam = baseAtk * (1 - output[i]["skillCha"] / 100) - eqValue[5];
-				skiDam = baseAtk * (output[i]["skillCha"] * output[i]["skillTargetB"] * output[i]["skillDam"] / 100) - eqValue[5] * output[i]["skillTargetB"];
+				norDam = baseAtk * (1 - output[i]["skillCha"] / 100) - eqValue[7];
+				skiDam = baseAtk * (output[i]["skillCha"] * output[i]["skillTargetB"] * output[i]["skillDam"] / 100) - eqValue[7] * output[i]["skillTargetB"];
 				var scoreB = Math.round((norDam + skiDam) * 100) / 100;
 
-				norDam = baseAtk * (1 - output[i]["skillCha"] / 100) - eqValue[5];
-				skiDam = baseAtk * (output[i]["skillCha"] * output[i]["skillTargetC"] * output[i]["skillDam"] / 100) - eqValue[5] * output[i]["skillTargetC"];
+				norDam = baseAtk * (1 - output[i]["skillCha"] / 100) - eqValue[7];
+				skiDam = baseAtk * (output[i]["skillCha"] * output[i]["skillTargetC"] * output[i]["skillDam"] / 100) - eqValue[7] * output[i]["skillTargetC"];
 				var scoreC = Math.round((norDam + skiDam) * 100) / 100;
 
 				output[i]["AScoreB"] = Math.round((scoreB + scoreC) * 50) / 100;
@@ -7724,7 +7724,7 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -7790,7 +7790,7 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -7878,7 +7878,7 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		}
 	];
@@ -8017,7 +8017,7 @@
 			"PavApow": 3,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -8034,7 +8034,7 @@
 			"skillCha": 25,
 			"skillTar": 1,
 			"skillDam": 1.4,
-			"PavSkill": "(進化後+)戦闘中、自身を含む2人の防御力が3%上昇なし",
+			"PavSkill": "(進化後+)戦闘中、自身を含む2人の防禦力が3%上昇なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 2,
@@ -8056,12 +8056,12 @@
 			"skillCha": 23,
 			"skillTar": 1,
 			"skillDam": 1.5,
-			"PavSkill": "(進化後+)光GAUGEが2%溜まった状態から討伐開始なし",
+			"PavSkill": "(進化後+)光GAUGEが2%溜まった狀態から討伐開始なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -8078,7 +8078,7 @@
 			"skillCha": 23,
 			"skillTar": 2,
 			"skillDam": 1.1,
-			"PavSkill": "(進化後+)戦闘中、自身を含む2人の防御力が3%上昇なし",
+			"PavSkill": "(進化後+)戦闘中、自身を含む2人の防禦力が3%上昇なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 2,
@@ -8122,7 +8122,7 @@
 			"skillCha": 21,
 			"skillTar": 2,
 			"skillDam": 1.2,
-			"PavSkill": "(進化後+)光GAUGEが2%溜まった状態から討伐開始なし",
+			"PavSkill": "(進化後+)光GAUGEが2%溜まった狀態から討伐開始なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -8188,7 +8188,7 @@
 			"skillCha": 25,
 			"skillTar": 1,
 			"skillDam": 1.8,
-			"PavSkill": "(進化後+)戦闘中、自身を含む2人の防御力が3%上昇なし",
+			"PavSkill": "(進化後+)戦闘中、自身を含む2人の防禦力が3%上昇なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 2,
@@ -8210,12 +8210,12 @@
 			"skillCha": 23,
 			"skillTar": 0.3,
 			"skillDam": 0.5,
-			"PavSkill": "(進化後+)戦闘中、自身を含む2人の防御力が3%上昇なし",
+			"PavSkill": "(進化後+)戦闘中、自身を含む2人の防禦力が3%上昇なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 2,
 			"PavDpow": 3,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -8276,12 +8276,12 @@
 			"skillCha": 21,
 			"skillTar": 2,
 			"skillDam": 1.2,
-			"PavSkill": "(進化後+)戦闘中、自身を含む2人の防御力が3%上昇なし",
+			"PavSkill": "(進化後+)戦闘中、自身を含む2人の防禦力が3%上昇なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 2,
 			"PavDpow": 3,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -8298,7 +8298,7 @@
 			"skillCha": 21,
 			"skillTar": 1,
 			"skillDam": 1.9,
-			"PavSkill": "(進化後+)戦闘中、自身を含む2人の防御力が3%上昇なし",
+			"PavSkill": "(進化後+)戦闘中、自身を含む2人の防禦力が3%上昇なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 2,
@@ -8325,7 +8325,7 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -8398,7 +8398,7 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -8459,7 +8459,7 @@
 			"skillCha": 23,
 			"skillTar": 2,
 			"skillDam": 1.4,
-			"PavSkill": "戦闘中、自身を含む2(3)人の防御力が3(5)%上昇なし",
+			"PavSkill": "戦闘中、自身を含む2(3)人の防禦力が3(5)%上昇なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 3,
@@ -8481,7 +8481,7 @@
 			"skillCha": 21,
 			"skillTar": 5,
 			"skillDam": 1.4,
-			"PavSkill": "戦闘中、自身を含む2(3)人の防御力が3(5)%上昇なし",
+			"PavSkill": "戦闘中、自身を含む2(3)人の防禦力が3(5)%上昇なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 3,
@@ -8503,7 +8503,7 @@
 			"skillCha": 21,
 			"skillTar": 2,
 			"skillDam": 1.4,
-			"PavSkill": "戦闘中、自身を含む2(3)人の防御力が3(5)%上昇なし",
+			"PavSkill": "戦闘中、自身を含む2(3)人の防禦力が3(5)%上昇なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 3,
@@ -8569,12 +8569,12 @@
 			"skillCha": 21,
 			"skillTar": 1,
 			"skillDam": 1.8,
-			"PavSkill": "戦闘中、自身を含む2(3)人の防御力が3(5)%上昇なし",
+			"PavSkill": "戦闘中、自身を含む2(3)人の防禦力が3(5)%上昇なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 3,
 			"PavDpow": 5,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -8591,7 +8591,7 @@
 			"skillCha": 18,
 			"skillTar": 2,
 			"skillDam": 1.4,
-			"PavSkill": "光GAUGEが2(5)%溜まった状態から討伐開始なし",
+			"PavSkill": "光GAUGEが2(5)%溜まった狀態から討伐開始なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -8635,7 +8635,7 @@
 			"skillCha": 18,
 			"skillTar": 2,
 			"skillDam": 1.2,
-			"PavSkill": "戦闘中、自身を含む2(3)人の防御力が3(5)%上昇なし",
+			"PavSkill": "戦闘中、自身を含む2(3)人の防禦力が3(5)%上昇なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 3,
@@ -8657,7 +8657,7 @@
 			"skillCha": 23,
 			"skillTar": 2,
 			"skillDam": 1.2,
-			"PavSkill": "光GAUGEが2(5)%溜まった状態から討伐開始なし",
+			"PavSkill": "光GAUGEが2(5)%溜まった狀態から討伐開始なし",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -8706,7 +8706,7 @@
 			"PavApow": 5,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		}
 	];
@@ -8726,11 +8726,11 @@
 			"atk": 5780,
 			"def": 1700,
 			"agi": 675,
-			"skill": "二刀流・雲龍双爪",
+			"skill": "二刀流・雲龍雙爪",
 			"skillCha": 30,
 			"skillTar": 5,
 			"skillDam": 1.7,
-			"PavSkill": "戦闘中、自身を含む2人の攻撃力が20%上昇(進化後+)戦闘中、パーティメンバーの防御力が10%上昇",
+			"PavSkill": "戦闘中、自身を含む2人の攻撃力が20%上昇(進化後+)戦闘中、パーティメンバーの防禦力が10%上昇",
 			"PavAnum": 2,
 			"PavApow": 20,
 			"PavDnum": 5,
@@ -8774,7 +8774,7 @@
 			"skillCha": 30,
 			"skillTar": 3,
 			"skillDam": 1.9,
-			"PavSkill": "戦闘中、1ターン目のパーティメンバー全員の戦闘スキル発動率が2倍になる(進化後+)戦闘中、自身を含む3人の防御力が15%上昇",
+			"PavSkill": "戦闘中、1ターン目のパーティメンバー全員の戦闘スキル発動率が2倍になる(進化後+)戦闘中、自身を含む3人の防禦力が15%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 3,
@@ -8796,7 +8796,7 @@
 			"skillCha": 37,
 			"skillTar": 1,
 			"skillDam": 2.4,
-			"PavSkill": "戦闘中、一定確率で敵の攻撃を回避する。(進化後+)戦闘中、パーティメンバーの防御力が10%上昇",
+			"PavSkill": "戦闘中、一定確率で敵の攻撃を迴避する。(進化後+)戦闘中、パーティメンバーの防禦力が10%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 5,
@@ -8823,7 +8823,7 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -8840,7 +8840,7 @@
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.3,
-			"PavSkill": "戦闘中、1ターン目のパーティメンバー全員の攻撃力が20%上昇(進化後+)戦闘中、自身を含む2人の防御力が20%上昇",
+			"PavSkill": "戦闘中、1ターン目のパーティメンバー全員の攻撃力が20%上昇(進化後+)戦闘中、自身を含む2人の防禦力が20%上昇",
 			"PavAnum": 5,
 			"PavApow": 20,
 			"PavDnum": 2,
@@ -8862,7 +8862,7 @@
 			"skillCha": 30,
 			"skillTar": 0.3,
 			"skillDam": 0.8,
-			"PavSkill": "戦闘中3ターン目以降パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、パーティメンバーの防御力が10%上昇",
+			"PavSkill": "戦闘中3ターン目以降パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、パーティメンバーの防禦力が10%上昇",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 5,
@@ -8884,7 +8884,7 @@
 			"skillCha": 30,
 			"skillTar": 3,
 			"skillDam": 1.9,
-			"PavSkill": "光GAUGEが20%溜まった状態から討伐開始(進化後+)戦闘中、ソーラードライブの効果が20%上昇",
+			"PavSkill": "光GAUGEが20%溜まった狀態から討伐開始(進化後+)戦闘中、ソーラードライブの効果が20%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -8928,12 +8928,12 @@
 			"skillCha": 36,
 			"skillTar": 1,
 			"skillDam": 2.5,
-			"PavSkill": "攻撃を受けた時、80%の確率で防御力の2倍を攻撃力に転換し反撃する(進化後+)光GAUGEが20%溜まった状態から討伐開始",
+			"PavSkill": "攻撃を受けた時、80%の確率で防禦力の2倍を攻撃力に転換し反撃する(進化後+)光GAUGEが20%溜まった狀態から討伐開始",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 1
 		},
 		{
@@ -8950,7 +8950,7 @@
 			"skillCha": 35,
 			"skillTar": 5,
 			"skillDam": 1.5,
-			"PavSkill": "戦闘中、パーティメンバーのシャインクリスタルのドロップ率が15%上昇(進化後+)戦闘中、自身を含む4人の防御力が12%上昇",
+			"PavSkill": "戦闘中、パーティメンバーのシャインクリスタルのドロップ率が15%上昇(進化後+)戦闘中、自身を含む4人の防禦力が12%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 4,
@@ -8968,16 +8968,16 @@
 			"atk": 5280,
 			"def": 1770,
 			"agi": 235,
-			"skill": "静寂の氷結牢",
+			"skill": "靜寂の氷結牢",
 			"skillCha": 23,
 			"skillTar": 4,
 			"skillDam": 1.8,
-			"PavSkill": "パーティの受ける回復パネルの効果が3倍になる(進化後+)戦闘中、ソーラードライブの効果が20%上昇",
+			"PavSkill": "パーティの受ける回覆パネルの効果が3倍になる(進化後+)戦闘中、ソーラードライブの効果が20%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -8994,7 +8994,7 @@
 			"skillCha": 28,
 			"skillTar": 5,
 			"skillDam": 1.7,
-			"PavSkill": "移動中にチビ害虫から受けるダメージを50%軽減(進化後+)戦闘中、自身を含む4人の攻撃力が12%上昇",
+			"PavSkill": "移動中にチビ害蟲から受けるダメージを50%軽減(進化後+)戦闘中、自身を含む4人の攻撃力が12%上昇",
 			"PavAnum": 4,
 			"PavApow": 12,
 			"PavDnum": 0,
@@ -9016,7 +9016,7 @@
 			"skillCha": 23,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "害虫の巣を通過するとパーティメンバー全員のHPが10%回復する(進化後+)パーティの移動力が50増加",
+			"PavSkill": "害蟲の巣を通過するとパーティメンバー全員のHPが10%回覆する(進化後+)パーティの移動力が50増加",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -9043,7 +9043,7 @@
 			"PavApow": 20,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 1
 		},
 		{
@@ -9060,12 +9060,12 @@
 			"skillCha": 22,
 			"skillTar": 2,
 			"skillDam": 1.8,
-			"PavSkill": "戦闘中、自身を含む2人の攻撃力が15%上昇(進化後+)戦闘中、自身を含む4人の防御力が10%上昇",
+			"PavSkill": "戦闘中、自身を含む2人の攻撃力が15%上昇(進化後+)戦闘中、自身を含む4人の防禦力が10%上昇",
 			"PavAnum": 2,
 			"PavApow": 15,
 			"PavDnum": 4,
 			"PavDpow": 10,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -9082,7 +9082,7 @@
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.2,
-			"PavSkill": "3ターン目以降自身を含む2人の攻撃力が15%上昇(進化後+)戦闘中、パーティメンバーの防御力が7%上昇",
+			"PavSkill": "3ターン目以降自身を含む2人の攻撃力が15%上昇(進化後+)戦闘中、パーティメンバーの防禦力が7%上昇",
 			"PavAnum": 2,
 			"PavApow": 15,
 			"PavDnum": 5,
@@ -9100,7 +9100,7 @@
 			"atk": 5240,
 			"def": 2050,
 			"agi": 545,
-			"skill": "魔声弾・タチバナイザー",
+			"skill": "魔聲弾・タチバナイザー",
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.3,
@@ -9131,7 +9131,7 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 1
 		},
 		{
@@ -9192,12 +9192,12 @@
 			"skillCha": 34,
 			"skillTar": 3,
 			"skillDam": 1.9,
-			"PavSkill": "討伐開始時にノーマルパネルをランダムで2個～3個チョコレート回復パネルに変更する。(重複不可)(進化後+)戦闘中、自身を含む3人の攻撃力が15%上昇",
+			"PavSkill": "討伐開始時にノーマルパネルをランダムで2個～3個チョコレート回覆パネルに変更する。(重複不可)(進化後+)戦闘中、自身を含む3人の攻撃力が15%上昇",
 			"PavAnum": 3,
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 1
 		},
 		{
@@ -9232,11 +9232,11 @@
 			"atk": 4977,
 			"def": 2600,
 			"agi": 530,
-			"skill": "超自然学術・大地の牙",
+			"skill": "超自然學術・大地の牙",
 			"skillCha": 34,
 			"skillTar": 1,
 			"skillDam": 2.3,
-			"PavSkill": "討伐中のソーラードライブ発動回数に応じて、自身の攻撃力が10％ずつ上昇（上限30％）(進化後+)害虫の巣パネルを通過するとパーティメンバー全員のHPが10%回復する",
+			"PavSkill": "討伐中のソーラードライブ発動回數に応じて、自身の攻撃力が10％ずつ上昇（上限30％）(進化後+)害蟲の巣パネルを通過するとパーティメンバー全員のHPが10%回覆する",
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
@@ -9257,7 +9257,7 @@
 			"skillCha": 30,
 			"skillTar": 5,
 			"skillDam": 1.4,
-			"PavSkill": "キャノンパネルを通過した際、キャノンパネルが砲撃する害虫パネルが一つ増える(進化後+)戦闘中、パーティメンバーの攻撃力が10%上昇",
+			"PavSkill": "キャノンパネルを通過した際、キャノンパネルが砲撃する害蟲パネルが一つ増える(進化後+)戦闘中、パーティメンバーの攻撃力が10%上昇",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -9301,7 +9301,7 @@
 			"skillCha": 30,
 			"skillTar": 5,
 			"skillDam": 1.6,
-			"PavSkill": "戦闘中、一定確率で敵の攻撃を回避する。(進化後+)戦闘中、自身を含む3人の攻撃力が14%上昇",
+			"PavSkill": "戦闘中、一定確率で敵の攻撃を迴避する。(進化後+)戦闘中、自身を含む3人の攻撃力が14%上昇",
 			"PavAnum": 3,
 			"PavApow": 14,
 			"PavDnum": 0,
@@ -9323,7 +9323,7 @@
 			"skillCha": 34,
 			"skillTar": 1,
 			"skillDam": 2.5,
-			"PavSkill": "戦闘中、ソーラードライブの効果が25%上昇(進化後+)光GAUGEが30%溜まった状態から討伐開始",
+			"PavSkill": "戦闘中、ソーラードライブの効果が25%上昇(進化後+)光GAUGEが30%溜まった狀態から討伐開始",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -9345,7 +9345,7 @@
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、パーティメンバーのスキル発動率がそれぞれの好感度に応じて最大1.2倍に上昇(進化後+)戦闘中、自身を含む3人の防御力が10%上昇",
+			"PavSkill": "戦闘中、パーティメンバーのスキル発動率がそれぞれの好感度に応じて最大1.2倍に上昇(進化後+)戦闘中、自身を含む3人の防禦力が10%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 3,
@@ -9367,12 +9367,12 @@
 			"skillCha": 34,
 			"skillTar": 3,
 			"skillDam": 2,
-			"PavSkill": "攻撃を受けた時、80%の確率で防御力の1.5倍を攻撃力に転換し反撃する(進化後+)レイドボス戦において、自身を含む2人の攻撃力を25％上昇",
+			"PavSkill": "攻撃を受けた時、80%の確率で防禦力の1.5倍を攻撃力に転換し反撃する(進化後+)レイドボス戦において、自身を含む2人の攻撃力を25％上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -9411,7 +9411,7 @@
 			"skillCha": 34,
 			"skillTar": 1,
 			"skillDam": 2.2,
-			"PavSkill": "スキルを使用する敵2体のスキル発動率を10%低下させる(進化後+)戦闘中、自身を含む4人の防御力が10%上昇",
+			"PavSkill": "スキルを使用する敵2體のスキル発動率を10%低下させる(進化後+)戦闘中、自身を含む4人の防禦力が10%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 4,
@@ -9429,11 +9429,11 @@
 			"atk": 5560,
 			"def": 2340,
 			"agi": 430,
-			"skill": "双円乱舞斬",
+			"skill": "雙円亂舞斬",
 			"skillCha": 32,
 			"skillTar": 1,
 			"skillDam": 2.5,
-			"PavSkill": "敵3体の攻撃力を10%低下させる(進化後+)レイドボス戦において、自身を含む３人の攻撃力が30％上昇",
+			"PavSkill": "敵3體の攻撃力を10%低下させる(進化後+)レイドボス戦において、自身を含む３人の攻撃力が30％上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -9451,11 +9451,11 @@
 			"atk": 5186,
 			"def": 2320,
 			"agi": 530,
-			"skill": "愛染幻想流奥義・叢雲ノ扇",
+			"skill": "愛染幻想流奧義・叢雲ノ扇",
 			"skillCha": 30,
 			"skillTar": 3,
 			"skillDam": 2,
-			"PavSkill": "パーティの受ける回復パネルの効果が2倍になる(進化後+)戦闘中、パーティメンバーの攻撃力が10%上昇",
+			"PavSkill": "パーティの受ける回覆パネルの効果が2倍になる(進化後+)戦闘中、パーティメンバーの攻撃力が10%上昇",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -9473,11 +9473,11 @@
 			"atk": 5048,
 			"def": 2820,
 			"agi": 700,
-			"skill": "愛染槍雷流奥義・飛雷召陣",
+			"skill": "愛染槍雷流奧義・飛雷召陣",
 			"skillCha": 30,
 			"skillTar": 3,
 			"skillDam": 2,
-			"PavSkill": "移動中にチビ害虫から受けるダメージを50%軽減(進化後+)戦闘中、自身を含む3人の攻撃力が15%上昇",
+			"PavSkill": "移動中にチビ害蟲から受けるダメージを50%軽減(進化後+)戦闘中、自身を含む3人の攻撃力が15%上昇",
 			"PavAnum": 3,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -9504,7 +9504,7 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -9517,11 +9517,11 @@
 			"atk": 6180,
 			"def": 2210,
 			"agi": 580,
-			"skill": "剛嵐掌・満点星",
+			"skill": "剛嵐掌・満點星",
 			"skillCha": 32,
 			"skillTar": 1,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が15%上昇(進化後+)戦闘中、自身を含む3人の防御力が15%上昇",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が15%上昇(進化後+)戦闘中、自身を含む3人の防禦力が15%上昇",
 			"PavAnum": 3,
 			"PavApow": 15,
 			"PavDnum": 3,
@@ -9539,11 +9539,11 @@
 			"atk": 5728,
 			"def": 1638,
 			"agi": 550,
-			"skill": "万死ヲ刻ム大鎌",
+			"skill": "萬死ヲ刻ム大鎌",
 			"skillCha": 30,
 			"skillTar": 2,
 			"skillDam": 2.1,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が10%上昇(進化後+)敵２体の攻撃力を15%低下させる",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が10%上昇(進化後+)敵２體の攻撃力を15%低下させる",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -9561,7 +9561,7 @@
 			"atk": 5580,
 			"def": 2100,
 			"agi": 600,
-			"skill": "煌双剣・リープカーニバル",
+			"skill": "煌雙剣・リープカーニバル",
 			"skillCha": 30,
 			"skillTar": 3,
 			"skillDam": 1.8,
@@ -9587,12 +9587,12 @@
 			"skillCha": 30,
 			"skillTar": 2,
 			"skillDam": 1.9,
-			"PavSkill": "キャノンパネルを通過した際、キャノンパネルが砲撃する害虫パネルが1つ増える(進化後+)戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大10%上昇",
+			"PavSkill": "キャノンパネルを通過した際、キャノンパネルが砲撃する害蟲パネルが1つ増える(進化後+)戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大10%上昇",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 1
 		},
 		{
@@ -9653,7 +9653,7 @@
 			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が10%上昇(進化後+)害虫の巣パネルを通過するとパーティメンバーのHPが10%回復する",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が10%上昇(進化後+)害蟲の巣パネルを通過するとパーティメンバーのHPが10%回覆する",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -9697,7 +9697,7 @@
 			"skillCha": 28,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "戦闘中、自身を含む2人の攻撃力が15%上昇(進化後+)攻撃を受けた時、80%の確率で防御力の1.5倍を攻撃力に転換し反撃する",
+			"PavSkill": "戦闘中、自身を含む2人の攻撃力が15%上昇(進化後+)攻撃を受けた時、80%の確率で防禦力の1.5倍を攻撃力に転換し反撃する",
 			"PavAnum": 2,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -9719,7 +9719,7 @@
 			"skillCha": 33,
 			"skillTar": 1,
 			"skillDam": 2.3,
-			"PavSkill": "戦闘中、1ターン目の自身の戦闘スキル発動率が1.5倍になる(進化後+)戦闘中、一定確率で敵の攻撃を回避する",
+			"PavSkill": "戦闘中、1ターン目の自身の戦闘スキル発動率が1.5倍になる(進化後+)戦闘中、一定確率で敵の攻撃を迴避する",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -9741,12 +9741,12 @@
 			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が15%上昇(進化後+)攻撃を受けた時、80%の確率で防御力の2倍を攻撃力に転換し反撃する",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が15%上昇(進化後+)攻撃を受けた時、80%の確率で防禦力の2倍を攻撃力に転換し反撃する",
 			"PavAnum": 3,
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 1
 		},
 		{
@@ -9763,7 +9763,7 @@
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.1,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が10%上昇(進化後+)戦闘中、一定確率で敵の攻撃を回避する",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が10%上昇(進化後+)戦闘中、一定確率で敵の攻撃を迴避する",
 			"PavAnum": 3,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -9781,11 +9781,11 @@
 			"atk": 5930,
 			"def": 2100,
 			"agi": 675,
-			"skill": "二刀流奥義・紅花舞イ散ル",
+			"skill": "二刀流奧義・紅花舞イ散ル",
 			"skillCha": 37,
 			"skillTar": 1,
 			"skillDam": 2.4,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が15%上昇(進化後+)パーティメンバーがボスに対して与えるダメージが10％増加する",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が15%上昇(進化後+)パーティメンバーがボスに対して與えるダメージが10％増加する",
 			"PavAnum": 3,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -9803,11 +9803,11 @@
 			"atk": 5580,
 			"def": 2400,
 			"agi": 695,
-			"skill": "夢幻乱華掌・剛布",
+			"skill": "夢幻亂華掌・剛布",
 			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2.1,
-			"PavSkill": "戦闘中、1ターン目の自身の戦闘スキル発動率が1.5倍になる(進化後+)パーティメンバーがボスに対して与えるダメージが10％増加する",
+			"PavSkill": "戦闘中、1ターン目の自身の戦闘スキル発動率が1.5倍になる(進化後+)パーティメンバーがボスに対して與えるダメージが10％増加する",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -9829,12 +9829,12 @@
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.1,
-			"PavSkill": "戦闘中、自身を含む2人の攻撃力が15%上昇(進化後+)害虫パネルの巣を通過するとパーティメンバー全員のHPが10%回復する",
+			"PavSkill": "戦闘中、自身を含む2人の攻撃力が15%上昇(進化後+)害蟲パネルの巣を通過するとパーティメンバー全員のHPが10%回覆する",
 			"PavAnum": 2,
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -9851,7 +9851,7 @@
 			"skillCha": 36,
 			"skillTar": 0.3,
 			"skillDam": 0.8,
-			"PavSkill": "敵2体の攻撃力を15％低下させる(進化後+)戦闘中、パーティメンバーの攻撃力が10％上昇",
+			"PavSkill": "敵2體の攻撃力を15％低下させる(進化後+)戦闘中、パーティメンバーの攻撃力が10％上昇",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -9873,7 +9873,7 @@
 			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が10%上昇(進化後+)害虫パネルの巣を通過するとパーティメンバー全員のHPが10%回復する",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が10%上昇(進化後+)害蟲パネルの巣を通過するとパーティメンバー全員のHPが10%回覆する",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -9900,7 +9900,7 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -9922,7 +9922,7 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 1
 		},
 		{
@@ -10005,7 +10005,7 @@
 			"skillCha": 34,
 			"skillTar": 1,
 			"skillDam": 2.3,
-			"PavSkill": "パーティの受ける回復パネルの効果が2倍になる(進化後+)討伐中のソーラードライブ発動回数に応じて、自身の攻撃力が10％ずつ上昇（上限30％）",
+			"PavSkill": "パーティの受ける回覆パネルの効果が2倍になる(進化後+)討伐中のソーラードライブ発動回數に応じて、自身の攻撃力が10％ずつ上昇（上限30％）",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -10027,7 +10027,7 @@
 			"skillCha": 28,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "害虫の巣パネルを通過するとパーティメンバーのHP10％回復(進化後+)戦闘中、パーティメンバーのスキル発動率がそれぞれ好感度に応じて最大1.2倍上昇",
+			"PavSkill": "害蟲の巣パネルを通過するとパーティメンバーのHP10％回覆(進化後+)戦闘中、パーティメンバーのスキル発動率がそれぞれ好感度に応じて最大1.2倍上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -10071,7 +10071,7 @@
 			"skillCha": 30,
 			"skillTar": 5,
 			"skillDam": 1.9,
-			"PavSkill": "移動中にチビ害虫から受けるダメージを50％軽減(進化後+)戦闘中、自身を含む3人の攻撃力が15％上昇",
+			"PavSkill": "移動中にチビ害蟲から受けるダメージを50％軽減(進化後+)戦闘中、自身を含む3人の攻撃力が15％上昇",
 			"PavAnum": 3,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -10093,12 +10093,12 @@
 			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2.1,
-			"PavSkill": "討伐開始時にノーマルパネルを2個～3個チョコレート回復パネルに変化する(重複不可)(進化後+)戦闘中、自身を含む3人の攻撃力が10％上昇",
+			"PavSkill": "討伐開始時にノーマルパネルを2個～3個チョコレート回覆パネルに変化する(重複不可)(進化後+)戦闘中、自身を含む3人の攻撃力が10％上昇",
 			"PavAnum": 3,
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 1
 		},
 		{
@@ -10115,7 +10115,7 @@
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.2,
-			"PavSkill": "害虫の巣パネルを通過するとパーティメンバーの攻撃力が3%アップ。(最大12%まで)(進化後+)スキルを使用する敵2体のスキル発動率を10%低下させる",
+			"PavSkill": "害蟲の巣パネルを通過するとパーティメンバーの攻撃力が3%アップ。(最大12%まで)(進化後+)スキルを使用する敵2體のスキル発動率を10%低下させる",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -10137,7 +10137,7 @@
 			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大10％上昇(進化後+)戦闘中、一定確率で敵の攻撃を回避",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大10％上昇(進化後+)戦闘中、一定確率で敵の攻撃を迴避",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -10181,7 +10181,7 @@
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が10%上昇(進化後+)戦闘中、自身を含む4人の防御力が10%上昇",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が10%上昇(進化後+)戦闘中、自身を含む4人の防禦力が10%上昇",
 			"PavAnum": 3,
 			"PavApow": 10,
 			"PavDnum": 4,
@@ -10222,7 +10222,7 @@
 			"def": 2250,
 			"agi": 700,
 			"skill": "グングニール・ヴァイス",
-			"skillCha": 0,
+			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2.1,
 			"PavSkill": "戦闘中、パーティメンバーの攻撃力が10%上昇(進化後+)戦闘中、ソーラードライブの効果が20%上昇",
@@ -10247,12 +10247,12 @@
 			"skillCha": 28,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "戦闘中、一定確率で敵の攻撃を回避する(進化後+)戦闘中、自身を含む3人の攻撃力が10%上昇",
+			"PavSkill": "戦闘中、一定確率で敵の攻撃を迴避する(進化後+)戦闘中、自身を含む3人の攻撃力が10%上昇",
 			"PavAnum": 3,
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 0
 		},
 		{
@@ -10288,7 +10288,7 @@
 			"def": 2290,
 			"agi": 530,
 			"skill": "アクセルリース",
-			"skillCha": 0,
+			"skillCha": 37,
 			"skillTar": 1,
 			"skillDam": 2.4,
 			"PavSkill": "戦闘中、ソーラードライブの効果が20%上昇(進化後+)戦闘中、パーティメンバーの攻撃力が10%上昇",
@@ -10313,12 +10313,100 @@
 			"skillCha": 28,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が10%上昇(進化後+)パーティの受ける回復パネルの効果が3倍になる",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が10%上昇(進化後+)パーティの受ける回覆パネルの効果が3倍になる",
 			"PavAnum": 3,
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
+			"kacha": 0
+		},
+		{
+			"star": 5,
+			"id": "174",
+			"elem": "魔",
+			"name": "センリョウ",
+			"nation": "バナナオーシャン",
+			"hp": 12220,
+			"atk": 5740,
+			"def": 2500,
+			"agi": 620,
+			"skill": "歌留多旋風",
+			"skillCha": 0,
+			"skillTar": 5,
+			"skillDam": 1.7,
+			"PavSkill": "戦闘中、一定確率で敵の攻撃を迴避する(進化後+)戦闘中、パーティメンバーの攻撃力が10%上昇",
+			"PavAnum": 5,
+			"PavApow": 10,
+			"PavDnum": 0,
+			"PavDpow": 0,
+			"fav": "寶石",
+			"kacha": 1
+		},
+		{
+			"star": 5,
+			"id": "175",
+			"elem": "魔",
+			"name": "ナンテン",
+			"nation": "リリィウッド",
+			"hp": 11900,
+			"atk": 5710,
+			"def": 2446,
+			"agi": 560,
+			"skill": "難転流・黑槌閃",
+			"skillCha": 0,
+			"skillTar": 2,
+			"skillDam": 2,
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が10%上昇(進化後+)戦闘中、パーティメンバーのシャインクリスタルのドロップ率が10%上昇",
+			"PavAnum": 5,
+			"PavApow": 10,
+			"PavDnum": 0,
+			"PavDpow": 0,
+			"fav": "本",
+			"kacha": 1
+		},
+		{
+			"star": 5,
+			"id": "176",
+			"elem": "突",
+			"name": "ハボタン",
+			"nation": "リリィウッド",
+			"hp": 12380,
+			"atk": 5690,
+			"def": 2468,
+			"agi": 600,
+			"skill": "虛言の裡には銃三丁",
+			"skillCha": 36,
+			"skillTar": 0.3,
+			"skillDam": 0.8,
+			"PavSkill": "戦闘中、パーティメンバーのスキル発動率が好感度に応じて最大1.2倍上昇(進化後+)戦闘中、パーティメンバーの攻撃力が10%上昇",
+			"PavAnum": 5,
+			"PavApow": 10,
+			"PavDnum": 0,
+			"PavDpow": 0,
+			"fav": "ケーキ",
+			"kacha": 1
+		},
+		{
+			"star": 5,
+			"id": "178",
+			"elem": "突",
+			"name": "マツ",
+			"nation": "リリィウッド",
+			"hp": 12520,
+			"atk": 4200,
+			"def": 2072,
+			"agi": 400,
+			"skill": "破魔の鶴羽",
+			"skillCha": 28,
+			"skillTar": 2,
+			"skillDam": 2,
+			"PavSkill": "戦闘中、ソーラードライブの効果が15%上昇(進化後+)戦闘中、自身を含む二人の攻撃力が15%上昇",
+			"PavAnum": null,
+			"PavApow": 15,
+			"PavDnum": 0,
+			"PavDpow": 0,
+			"fav": "ぬいぐるみ",
 			"kacha": 0
 		}
 	];
@@ -10342,12 +10430,12 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、自身を含む2人の攻撃力が35%上昇(進化後+)戦闘中、パーティメンバーの防御力が15%上昇",
+			"PavSkill": "戦闘中、自身を含む2人の攻撃力が35%上昇(進化後+)戦闘中、パーティメンバーの防禦力が15%上昇",
 			"PavAnum": 2,
 			"PavApow": 35,
 			"PavDnum": 5,
 			"PavDpow": 15,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 1
 		},
 		{
@@ -10386,12 +10474,12 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が27%上昇(進化後+)光GAUGEが50%溜まった状態から討伐開始",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が27%上昇(進化後+)光GAUGEが50%溜まった狀態から討伐開始",
 			"PavAnum": 3,
 			"PavApow": 27,
 			"PavDnum": 0,
 			"PavDpow": 0,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 1
 		},
 		{
@@ -10452,7 +10540,7 @@
 			"skillCha": 36,
 			"skillTar": 1,
 			"skillDam": 3.8,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)光GAUGEが50%溜まった状態から討伐開始",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)光GAUGEが50%溜まった狀態から討伐開始",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -10492,7 +10580,7 @@
 			"atk": 6528,
 			"def": 2370,
 			"agi": 475,
-			"skill": "黒剣・乱れ黒華",
+			"skill": "黒剣・亂れ黒華",
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.4,
@@ -10518,7 +10606,7 @@
 			"skillCha": 36,
 			"skillTar": 1,
 			"skillDam": 3.6,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大20%上昇(進化後+)戦闘中、パーティメンバーの防御力が15％上昇",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大20%上昇(進化後+)戦闘中、パーティメンバーの防禦力が15％上昇",
 			"PavAnum": 5,
 			"PavApow": 20,
 			"PavDnum": 5,
@@ -10540,7 +10628,7 @@
 			"skillCha": 34,
 			"skillTar": 0.3,
 			"skillDam": 1.8,
-			"PavSkill": "攻撃を受けた時、100%の確率で防御力の2倍を攻撃力に転換し反撃する(進化後+)戦闘中、パーティメンバーの防御力が15%上昇",
+			"PavSkill": "攻撃を受けた時、100%の確率で防禦力の2倍を攻撃力に転換し反撃する(進化後+)戦闘中、パーティメンバーの防禦力が15%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 5,
@@ -10562,7 +10650,7 @@
 			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2.2,
-			"PavSkill": "討伐中のソーラードライブ発動回数に応じて、自身の攻撃力が14％ずつ上昇（上限42％）(進化後+)戦闘中、ソーラードライブの効果が40%上昇",
+			"PavSkill": "討伐中のソーラードライブ発動回數に応じて、自身の攻撃力が14％ずつ上昇（上限42％）(進化後+)戦闘中、ソーラードライブの効果が40%上昇",
 			"PavApow": 14,
 			"PavDnum": 0,
 			"PavDpow": 0,
@@ -10583,7 +10671,7 @@
 			"skillCha": 40,
 			"skillTar": 2,
 			"skillDam": 2.1,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が30%上昇(進化後+)戦闘中、パーティメンバー全員の防御力が14%上昇",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が30%上昇(進化後+)戦闘中、パーティメンバー全員の防禦力が14%上昇",
 			"PavAnum": 3,
 			"PavApow": 30,
 			"PavDnum": 5,
@@ -10605,12 +10693,12 @@
 			"skillCha": 36,
 			"skillTar": 1,
 			"skillDam": 3.6,
-			"PavSkill": "戦闘中、自身を含む２人の攻撃力が35%上昇(進化後+)戦闘中、自身を含む３人の防御力が25%上昇",
+			"PavSkill": "戦闘中、自身を含む２人の攻撃力が35%上昇(進化後+)戦闘中、自身を含む３人の防禦力が25%上昇",
 			"PavAnum": 2,
 			"PavApow": 35,
 			"PavDnum": 3,
 			"PavDpow": 25,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 1
 		},
 		{
@@ -10627,7 +10715,7 @@
 			"skillCha": 30,
 			"skillTar": 2,
 			"skillDam": 2.5,
-			"PavSkill": "敵全体の攻撃力を15%低下させる(進化後+)レイドボス戦において、自身を含む3人の攻撃力が40%上昇",
+			"PavSkill": "敵全體の攻撃力を15%低下させる(進化後+)レイドボス戦において、自身を含む3人の攻撃力が40%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -10645,11 +10733,11 @@
 			"atk": 6800,
 			"def": 2440,
 			"agi": 550,
-			"skill": "愛染一刀流奥義・輝目五閃",
+			"skill": "愛染一刀流奧義・輝目五閃",
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大20%上昇(進化後+)害虫の巣パネルを通過するとパーティメンバーのHPが10%回復する",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大20%上昇(進化後+)害蟲の巣パネルを通過するとパーティメンバーのHPが10%回覆する",
 			"PavAnum": 5,
 			"PavApow": 20,
 			"PavDnum": 0,
@@ -10671,7 +10759,7 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、一定確率で敵の攻撃を回避する",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、一定確率で敵の攻撃を迴避する",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -10711,16 +10799,16 @@
 			"atk": 6300,
 			"def": 2340,
 			"agi": 650,
-			"skill": "絶斧・断刀赤脚",
+			"skill": "絶斧・斷刀赤腳",
 			"skillCha": 32,
 			"skillTar": 5,
 			"skillDam": 2.3,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、パーティメンバーの防御力が15%上昇",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、パーティメンバーの防禦力が15%上昇",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 5,
 			"PavDpow": 15,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 1
 		},
 		{
@@ -10737,7 +10825,7 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、自身を含む4人の攻撃力が18%上昇(進化後+)戦闘中、一定確率で敵の攻撃を回避する",
+			"PavSkill": "戦闘中、自身を含む4人の攻撃力が18%上昇(進化後+)戦闘中、一定確率で敵の攻撃を迴避する",
 			"PavAnum": 4,
 			"PavApow": 18,
 			"PavDnum": 0,
@@ -10759,7 +10847,7 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)敵全体の攻撃力を15%低下させる",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)敵全體の攻撃力を15%低下させる",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -10803,7 +10891,7 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が30％上昇(進化後+)攻撃を受けた時、100％の確率で防御力の2倍を攻撃力に転換し反撃する",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が30％上昇(進化後+)攻撃を受けた時、100％の確率で防禦力の2倍を攻撃力に転換し反撃する",
 			"PavAnum": 3,
 			"PavApow": 30,
 			"PavDnum": 0,
@@ -10847,7 +10935,7 @@
 			"skillCha": 0,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、一定確率で敵の攻撃を回避する",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、一定確率で敵の攻撃を迴避する",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -10869,12 +10957,12 @@
 			"skillCha": 0,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、自身を含む三人の防御力が25%上昇",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、自身を含む三人の防禦力が25%上昇",
 			"PavAnum": 5,
 			"PavApow": 15,
-			"PavDnum": null,
+			"PavDnum": 3,
 			"PavDpow": 25,
-			"fav": "宝石",
+			"fav": "寶石",
 			"kacha": 1
 		},
 		{
@@ -10891,7 +10979,7 @@
 			"skillCha": 0,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)攻撃を受けた時、100%の確率で反撃し、防御力を攻撃力に変換し２倍のダメージを与える",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)攻撃を受けた時、100%の確率で反撃し、防禦力を攻撃力に変換し２倍のダメージを與える",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -10919,6 +11007,28 @@
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"fav": "ケーキ",
+			"kacha": 1
+		},
+		{
+			"star": 6,
+			"id": "177",
+			"elem": "魔",
+			"name": "マンリョウ",
+			"nation": "バナナオーシャン",
+			"hp": 16520,
+			"atk": 6152,
+			"def": 2570,
+			"agi": 550,
+			"skill": "壽ぎ追い羽子",
+			"skillCha": 34,
+			"skillTar": 5,
+			"skillDam": 2.2,
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、ソーラードライブの効果が40%上昇",
+			"PavAnum": 5,
+			"PavApow": 15,
+			"PavDnum": 0,
+			"PavDpow": 0,
+			"fav": "ぬいぐるみ",
 			"kacha": 1
 		}
 	];
@@ -15378,7 +15488,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { src: imgString, height: "40", width: "40" })
+								React.createElement("img", { className: "image", src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -15542,7 +15652,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { src: imgString, height: "40", width: "40" })
+								React.createElement("img", { src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -15706,7 +15816,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { src: imgString, height: "40", width: "40" })
+								React.createElement("img", { src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -15870,7 +15980,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { src: imgString, height: "40", width: "40" })
+								React.createElement("img", { src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -16034,7 +16144,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { src: imgString, height: "40", width: "40" })
+								React.createElement("img", { src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -16198,7 +16308,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { src: imgString, height: "40", width: "40" })
+								React.createElement("img", { src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -16522,7 +16632,7 @@
 				checkBoxOutput.push(checkBoxTemp);
 			}
 
-			var textList = ["装備攻擊(ホロ)", "装備防禦(ホロ)", "装備攻擊(レア)", "装備防禦(レア)", "敵攻擊", "敵防禦"];
+			var textList = ["装備攻擊(ホロ)", "装備防禦(ホロ)", "装備攻擊(レア)", "装備防禦(レア)", "團隊攻增(%)", "團隊防增(%)", "敵攻擊", "敵防禦"];
 			var textOutput = [];
 			var textTemp;
 			for (var i = 0; i < textList.length; i++) {
@@ -16547,14 +16657,18 @@
 
 			return React.createElement(
 				"div",
-				{ className: "Nav mdl-layout__drawer mdl-navigation" },
+				{ className: "mdl-layout__drawer mdl-navigation" },
 				React.createElement(
 					"span",
 					{ className: "mdl-layout-title" },
-					"Config"
+					"設定"
 				),
-				checkBoxOutput,
-				textOutput,
+				React.createElement(
+					"div",
+					{ className: "Nav" },
+					checkBoxOutput,
+					textOutput
+				),
 				React.createElement(Footer, null)
 			);
 		}
@@ -16576,8 +16690,8 @@
 	var CHANGE_EVENT = 'change';
 	var _value = {
 		checkBoxToggle: [1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0],
-		eqValue: [1507, 0, 1957, 1140, 3000, 500],
-		sortKey: [0, 0]
+		eqValue: [1507, 0, 1957, 1140, 0, 0, 3000, 500],
+		sortKey: [0, 1]
 	};
 
 	// ===============================================================================
