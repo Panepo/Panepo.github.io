@@ -128,7 +128,7 @@ var ContentOut = React.createClass({
 		var AAlist = ["10cm高角砲＋高射装置", "90mm単装高角砲"];
 
 		for (var i = 0; i < Output.length; i++) {
-			TableData[i] = new Array();
+			TableData[i] = [];
 			for (var j = 0; j < Output[i].length; j++) {
 				for (var k = 0; k < checkboxlist.length; k++) {
 					if (Output[i][j][0] == checkboxlist[k]) {
@@ -484,11 +484,11 @@ var data = require("./data.json");
 var DataArr = {
 
 	toggle: function (CBtoggle) {
-		var output = new Array();
+		var output = [];
 		var checkboxlist = ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "探照灯"];
 
 		for (var k = 0; k < data.length; k++) {
-			output[k] = new Array();
+			output[k] = [];
 			for (var i = 0; i < CBtoggle.length; i++) {
 				if (CBtoggle[i]) {
 					for (var j = 0; j < data[k].length; j++) {
