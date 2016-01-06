@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "3a75502daa09d333f41e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f00708880fc8d56460a6"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3360,11 +3360,13 @@
 					output[i]["atk"] = target[i]["atk"] + eqValue[2];
 					output[i]["def"] = target[i]["def"] + eqValue[3];
 				}
+				output[i]["atk"] = Math.round(output[i]["atk"] * (100 + target[i]["PavApow"] + eqValue[4]) / 100);
+				output[i]["def"] = Math.round(output[i]["def"] * (100 + target[i]["PavDpow"] + eqValue[5]) / 100);
 
 				output[i]["agi"] = target[i]["agi"];
 				output[i]["total"] = output[i]["hp"] + output[i]["atk"] + output[i]["def"];
 				output[i]["skill"] = target[i]["skill"];
-				output[i]["skillCha"] = target[i]["skillCha"];
+				output[i]["skillCha"] = Math.round(target[i]["skillCha"] * (target[i]["PavSpow"] + eqValue[6] / 100));
 				output[i]["skillDam"] = target[i]["skillDam"];
 
 				if (target[i]["skillTar"] >= 4) {
@@ -3403,22 +3405,30 @@
 					output[i]["PavSkillDef"] = 0;
 				}
 
-				var baseAtk = output[i]["atk"] * (100 + target[i]["PavApow"] + eqValue[4]) / 100;
-				var norDam = baseAtk * (1 - output[i]["skillCha"] / 100) - eqValue[7];
-				var skiDam = baseAtk * (output[i]["skillCha"] * output[i]["skillTargetA"] * output[i]["skillDam"] / 100) - eqValue[7] * output[i]["skillTargetA"];
+				var baseAtk = output[i]["atk"];
+				var norDam = baseAtk * (1 - output[i]["skillCha"] / 100) - eqValue[8];
+				var skiDam = baseAtk * (output[i]["skillCha"] * output[i]["skillTargetA"] * output[i]["skillDam"] / 100) - eqValue[8] * output[i]["skillTargetA"];
 
 				output[i]["AScoreA"] = Math.round((norDam + skiDam) * 100) / 100;
 
-				norDam = baseAtk * (1 - output[i]["skillCha"] / 100) - eqValue[7];
-				skiDam = baseAtk * (output[i]["skillCha"] * output[i]["skillTargetB"] * output[i]["skillDam"] / 100) - eqValue[7] * output[i]["skillTargetB"];
+				norDam = baseAtk * (1 - output[i]["skillCha"] / 100) - eqValue[8];
+				skiDam = baseAtk * (output[i]["skillCha"] * output[i]["skillTargetB"] * output[i]["skillDam"] / 100) - eqValue[8] * output[i]["skillTargetB"];
 				var scoreB = Math.round((norDam + skiDam) * 100) / 100;
 
-				norDam = baseAtk * (1 - output[i]["skillCha"] / 100) - eqValue[7];
-				skiDam = baseAtk * (output[i]["skillCha"] * output[i]["skillTargetC"] * output[i]["skillDam"] / 100) - eqValue[7] * output[i]["skillTargetC"];
+				norDam = baseAtk * (1 - output[i]["skillCha"] / 100) - eqValue[8];
+				skiDam = baseAtk * (output[i]["skillCha"] * output[i]["skillTargetC"] * output[i]["skillDam"] / 100) - eqValue[8] * output[i]["skillTargetC"];
 				var scoreC = Math.round((norDam + skiDam) * 100) / 100;
 
 				output[i]["AScoreB"] = Math.round((scoreB + scoreC) * 50) / 100;
-				output[i]["Dscore"] = Math.round(output[i]["hp"] + output[i]["def"] * (100 + target[i]["PavDpow"]) / 100 * 300) / 100;
+
+				var scoreD = 0;
+				if (eqValue[7] > output[i]["def"]) {
+					scoreD = Math.round(output[i]["hp"] / (eqValue[7] - output[i]["def"]));
+				} else {
+					scoreD = output[i]["hp"];
+				}
+
+				output[i]["Dscore"] = scoreD;
 
 				if (isNaN(output[i]["id"]) == true) {
 					continue;
@@ -7636,6 +7646,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -7658,6 +7670,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -7680,6 +7694,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -7702,6 +7718,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -7724,6 +7742,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -7746,6 +7766,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -7768,6 +7790,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -7790,6 +7814,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -7812,6 +7838,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -7834,6 +7862,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -7856,6 +7886,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -7878,6 +7910,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		}
@@ -7907,6 +7941,8 @@
 			"PavApow": 3,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -7929,6 +7965,8 @@
 			"PavApow": 3,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -7951,6 +7989,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -7973,6 +8013,8 @@
 			"PavApow": 3,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -7995,6 +8037,8 @@
 			"PavApow": 3,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -8017,6 +8061,8 @@
 			"PavApow": 3,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -8039,6 +8085,8 @@
 			"PavApow": 0,
 			"PavDnum": 2,
 			"PavDpow": 3,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -8061,6 +8109,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -8083,6 +8133,8 @@
 			"PavApow": 0,
 			"PavDnum": 2,
 			"PavDpow": 3,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -8105,6 +8157,8 @@
 			"PavApow": 3,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -8127,6 +8181,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -8149,6 +8205,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -8171,6 +8229,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -8193,6 +8253,8 @@
 			"PavApow": 0,
 			"PavDnum": 2,
 			"PavDpow": 3,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -8215,6 +8277,8 @@
 			"PavApow": 0,
 			"PavDnum": 2,
 			"PavDpow": 3,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -8237,6 +8301,8 @@
 			"PavApow": 3,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -8259,6 +8325,8 @@
 			"PavApow": 3,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -8281,6 +8349,8 @@
 			"PavApow": 0,
 			"PavDnum": 2,
 			"PavDpow": 3,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -8303,6 +8373,8 @@
 			"PavApow": 0,
 			"PavDnum": 2,
 			"PavDpow": 3,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -8325,6 +8397,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -8347,6 +8421,8 @@
 			"PavApow": 3,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		}
@@ -8376,6 +8452,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -8398,6 +8476,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -8420,6 +8500,8 @@
 			"PavApow": 5,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -8442,6 +8524,8 @@
 			"PavApow": 5,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -8464,6 +8548,8 @@
 			"PavApow": 0,
 			"PavDnum": 3,
 			"PavDpow": 5,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -8486,6 +8572,8 @@
 			"PavApow": 0,
 			"PavDnum": 3,
 			"PavDpow": 5,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -8508,6 +8596,8 @@
 			"PavApow": 0,
 			"PavDnum": 3,
 			"PavDpow": 5,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -8530,6 +8620,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -8552,6 +8644,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -8574,6 +8668,8 @@
 			"PavApow": 0,
 			"PavDnum": 3,
 			"PavDpow": 5,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -8596,6 +8692,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -8618,6 +8716,8 @@
 			"PavApow": 5,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -8640,6 +8740,8 @@
 			"PavApow": 0,
 			"PavDnum": 3,
 			"PavDpow": 5,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -8662,6 +8764,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -8684,6 +8788,8 @@
 			"PavApow": 5,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -8706,6 +8812,8 @@
 			"PavApow": 5,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		}
@@ -8735,6 +8843,8 @@
 			"PavApow": 20,
 			"PavDnum": 5,
 			"PavDpow": 10,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -8757,6 +8867,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -8779,6 +8891,8 @@
 			"PavApow": 0,
 			"PavDnum": 3,
 			"PavDpow": 15,
+			"PavSnum": 5,
+			"PavSpow": 2,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -8801,6 +8915,8 @@
 			"PavApow": 0,
 			"PavDnum": 5,
 			"PavDpow": 10,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -8823,6 +8939,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 5,
+			"PavSpow": 1.2,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -8845,6 +8963,8 @@
 			"PavApow": 20,
 			"PavDnum": 2,
 			"PavDpow": 20,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -8867,6 +8987,8 @@
 			"PavApow": 15,
 			"PavDnum": 5,
 			"PavDpow": 10,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -8889,6 +9011,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -8911,6 +9035,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -8933,6 +9059,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 1
 		},
@@ -8955,6 +9083,8 @@
 			"PavApow": 0,
 			"PavDnum": 4,
 			"PavDpow": 12,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -8977,6 +9107,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -8999,6 +9131,8 @@
 			"PavApow": 12,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -9021,6 +9155,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -9043,6 +9179,8 @@
 			"PavApow": 20,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 1
 		},
@@ -9065,6 +9203,8 @@
 			"PavApow": 15,
 			"PavDnum": 4,
 			"PavDpow": 10,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -9087,6 +9227,8 @@
 			"PavApow": 15,
 			"PavDnum": 5,
 			"PavDpow": 7,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -9109,6 +9251,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 5,
+			"PavSpow": 1.2,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -9131,6 +9275,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 1
 		},
@@ -9153,6 +9299,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 5,
+			"PavSpow": 1.2,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -9171,10 +9319,12 @@
 			"skillTar": 1,
 			"skillDam": 2.2,
 			"PavSkill": "戦闘中、パーティメンバーの戦闘スキルが発動する度に、自身の攻撃力が1%ずつ上昇(上限30%)(進化後+)戦闘中、ソーラードライブの効果が20％上昇",
-			"PavAnum": 5,
+			"PavAnum": 1,
 			"PavApow": 1,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -9197,6 +9347,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 1
 		},
@@ -9219,6 +9371,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -9237,9 +9391,12 @@
 			"skillTar": 1,
 			"skillDam": 2.3,
 			"PavSkill": "討伐中のソーラードライブ発動回數に応じて、自身の攻撃力が10％ずつ上昇（上限30％）(進化後+)害蟲の巣パネルを通過するとパーティメンバー全員のHPが10%回覆する",
+			"PavAnum": 1,
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -9262,6 +9419,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -9284,6 +9443,8 @@
 			"PavApow": 22,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -9306,6 +9467,8 @@
 			"PavApow": 14,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -9328,6 +9491,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -9350,6 +9515,8 @@
 			"PavApow": 0,
 			"PavDnum": 3,
 			"PavDpow": 10,
+			"PavSnum": 5,
+			"PavSpow": 1.2,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -9372,6 +9539,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -9394,6 +9563,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -9416,6 +9587,8 @@
 			"PavApow": 0,
 			"PavDnum": 4,
 			"PavDpow": 10,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -9438,6 +9611,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -9460,6 +9635,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -9482,6 +9659,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -9504,6 +9683,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -9526,6 +9707,8 @@
 			"PavApow": 15,
 			"PavDnum": 3,
 			"PavDpow": 15,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -9548,6 +9731,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -9570,6 +9755,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 5,
+			"PavSpow": 1.2,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -9592,6 +9779,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 1
 		},
@@ -9614,6 +9803,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -9636,6 +9827,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -9658,6 +9851,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -9680,6 +9875,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -9702,6 +9899,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -9724,6 +9923,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 1,
+			"PavSpow": 1.5,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -9746,6 +9947,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 1
 		},
@@ -9768,6 +9971,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -9790,6 +9995,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -9812,6 +10019,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 1,
+			"PavSpow": 1.5,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -9834,6 +10043,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -9856,6 +10067,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -9878,6 +10091,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -9900,6 +10115,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -9922,6 +10139,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 1
 		},
@@ -9944,6 +10163,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 5,
+			"PavSpow": 1.2,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -9966,6 +10187,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -9988,6 +10211,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -10006,10 +10231,12 @@
 			"skillTar": 1,
 			"skillDam": 2.3,
 			"PavSkill": "パーティの受ける回覆パネルの効果が2倍になる(進化後+)討伐中のソーラードライブ発動回數に応じて、自身の攻撃力が10％ずつ上昇（上限30％）",
-			"PavAnum": 5,
+			"PavAnum": 1,
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -10032,6 +10259,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 5,
+			"PavSpow": 1.2,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -10054,6 +10283,8 @@
 			"PavApow": 5,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 5,
+			"PavSpow": 1.2,
 			"fav": "ケーキ",
 			"kacha": 0
 		},
@@ -10076,6 +10307,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -10098,6 +10331,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 1
 		},
@@ -10120,6 +10355,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		},
@@ -10142,6 +10379,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -10164,6 +10403,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 1,
+			"PavSpow": 1.5,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -10186,6 +10427,8 @@
 			"PavApow": 10,
 			"PavDnum": 4,
 			"PavDpow": 10,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 0
 		},
@@ -10208,6 +10451,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 5,
+			"PavSpow": 1.2,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -10230,6 +10475,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -10252,6 +10499,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -10274,6 +10523,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -10296,6 +10547,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -10318,6 +10571,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 0
 		},
@@ -10340,6 +10595,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 1
 		},
@@ -10362,6 +10619,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -10384,6 +10643,8 @@
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 5,
+			"PavSpow": 1.2,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -10406,6 +10667,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
 		}
@@ -10435,6 +10698,8 @@
 			"PavApow": 35,
 			"PavDnum": 5,
 			"PavDpow": 15,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 1
 		},
@@ -10457,6 +10722,8 @@
 			"PavApow": 18,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 1,
+			"PavSpow": 2,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -10479,6 +10746,8 @@
 			"PavApow": 27,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 1
 		},
@@ -10501,6 +10770,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -10523,6 +10794,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -10545,6 +10818,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -10567,6 +10842,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -10589,6 +10866,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -10611,6 +10890,8 @@
 			"PavApow": 20,
 			"PavDnum": 5,
 			"PavDpow": 15,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -10633,6 +10914,8 @@
 			"PavApow": 0,
 			"PavDnum": 5,
 			"PavDpow": 15,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -10651,9 +10934,12 @@
 			"skillTar": 2,
 			"skillDam": 2.2,
 			"PavSkill": "討伐中のソーラードライブ発動回數に応じて、自身の攻撃力が14％ずつ上昇（上限42％）(進化後+)戦闘中、ソーラードライブの効果が40%上昇",
+			"PavAnum": 1,
 			"PavApow": 14,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -10676,6 +10962,8 @@
 			"PavApow": 30,
 			"PavDnum": 5,
 			"PavDpow": 14,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -10698,6 +10986,8 @@
 			"PavApow": 35,
 			"PavDnum": 3,
 			"PavDpow": 25,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 1
 		},
@@ -10720,6 +11010,8 @@
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -10742,6 +11034,8 @@
 			"PavApow": 20,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -10764,6 +11058,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -10786,6 +11082,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "本",
 			"kacha": 1
 		},
@@ -10808,6 +11106,8 @@
 			"PavApow": 15,
 			"PavDnum": 5,
 			"PavDpow": 15,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 1
 		},
@@ -10830,6 +11130,8 @@
 			"PavApow": 18,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -10852,6 +11154,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -10874,6 +11178,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -10896,6 +11202,8 @@
 			"PavApow": 30,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		},
@@ -10918,6 +11226,8 @@
 			"PavApow": 35,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 5,
+			"PavSpow": 1.2,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -10940,6 +11250,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -10962,6 +11274,8 @@
 			"PavApow": 15,
 			"PavDnum": 3,
 			"PavDpow": 25,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "寶石",
 			"kacha": 1
 		},
@@ -10984,6 +11298,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -11006,6 +11322,8 @@
 			"PavApow": 20,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ケーキ",
 			"kacha": 1
 		},
@@ -11028,6 +11346,8 @@
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 1
 		}
@@ -15488,7 +15808,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { className: "image", src: imgString })
+								React.createElement("img", { className: "image thumbnail", src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -15652,7 +15972,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { className: "image", src: imgString })
+								React.createElement("img", { className: "image thumbnail", src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -15816,7 +16136,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { className: "image", src: imgString })
+								React.createElement("img", { className: "image thumbnail", src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -15980,7 +16300,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { className: "image", src: imgString })
+								React.createElement("img", { className: "image thumbnail", src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -16144,7 +16464,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { className: "image", src: imgString })
+								React.createElement("img", { className: "image thumbnail", src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -16308,7 +16628,7 @@
 							tdTemp = React.createElement(
 								"td",
 								{ key: idStringTemp },
-								React.createElement("img", { className: "image", src: imgString })
+								React.createElement("img", { className: "image thumbnail", src: imgString })
 							);
 						} else {
 							tdTemp = React.createElement(
@@ -16632,7 +16952,7 @@
 				checkBoxOutput.push(checkBoxTemp);
 			}
 
-			var textList = ["装備攻擊(ホロ)", "装備防禦(ホロ)", "装備攻擊(レア)", "装備防禦(レア)", "團隊攻增(%)", "團隊防增(%)", "敵攻擊", "敵防禦"];
+			var textList = ["装備攻擊(ホロ)", "装備防禦(ホロ)", "装備攻擊(レア)", "装備防禦(レア)", "團隊攻增(%)", "團隊防增(%)", "團隊技增(%)", "敵攻擊", "敵防禦"];
 			var textOutput = [];
 			var textTemp;
 			for (var i = 0; i < textList.length; i++) {
@@ -16690,7 +17010,7 @@
 	var CHANGE_EVENT = 'change';
 	var _value = {
 		checkBoxToggle: [1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0],
-		eqValue: [1507, 0, 1957, 1140, 0, 0, 3000, 500],
+		eqValue: [1507, 0, 1957, 1140, 0, 0, 0, 4500, 500],
 		sortKey: [0, 1]
 	};
 
@@ -16721,6 +17041,7 @@
 			}
 		} else {
 			_value.sortKey[0] = j;
+			_value.sortKey[1] = 0;
 		}
 	}
 

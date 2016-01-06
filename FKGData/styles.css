@@ -17,3 +17,11 @@
 	width: 30px;
 }
 
+.thumbnail:hover {
+  position:relative;
+  width:70px;
+  height:auto;
+  display:block;
+  z-index:999;
+}
+
