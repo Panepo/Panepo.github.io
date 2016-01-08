@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ee60995830460433afe3"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3013eac9bf395556ddbe"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -12408,7 +12408,7 @@
 
 	var CHANGE_EVENT = 'change';
 	var _value = {
-		checkBoxToggle: [1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0],
+		checkBoxToggle: [1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
 		eqValue: [1507, 0, 1957, 1140, 0, 0, 0, 4581, 76],
 		sortKey: [0, 1]
 	};
@@ -12590,7 +12590,7 @@
 
 				var scoreD = 0;
 				if (eqValue[7] * 2 > output[i]["def"]) {
-					scoreD = Math.round(output[i]["hp"] / (eqValue[7] * 2 - output[i]["def"]));
+					scoreD = Math.round(output[i]["hp"] / (eqValue[7] * 2 - output[i]["def"]) * eqValue[7]);
 				} else {
 					scoreD = output[i]["hp"];
 				}
