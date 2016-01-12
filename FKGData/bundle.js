@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "3013eac9bf395556ddbe"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e3e3e16a7f52d91f92e1"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -11813,6 +11813,8 @@
 			var JsonPunch = [];
 			var JsonPierce = [];
 			var JsonMagic = [];
+			var JsonCommon = [];
+			var JsonRare = [];
 
 			for (var i = 0; i < JsonAll.length; i++) {
 				if (JsonAll[i]["elem"] == "斬") {
@@ -11823,6 +11825,12 @@
 					JsonPierce.push(JsonAll[i]);
 				} else if (JsonAll[i]["elem"] == "魔") {
 					JsonMagic.push(JsonAll[i]);
+				}
+
+				if (JsonAll[i]["kacha"] == 1) {
+					JsonRare.push(JsonAll[i]);
+				} else {
+					JsonCommon.push(JsonAll[i]);
 				}
 			}
 
@@ -11878,6 +11886,16 @@
 					"section",
 					{ className: "mdl-layout__tab-panel", id: "scroll-tab-10" },
 					React.createElement(ContentTwo, { title: "magic", inputJson: JsonMagic, value: this.props.value })
+				),
+				React.createElement(
+					"section",
+					{ className: "mdl-layout__tab-panel", id: "scroll-tab-11" },
+					React.createElement(ContentTwo, { title: "common", inputJson: JsonCommon, value: this.props.value })
+				),
+				React.createElement(
+					"section",
+					{ className: "mdl-layout__tab-panel", id: "scroll-tab-12" },
+					React.createElement(ContentTwo, { title: "rare", inputJson: JsonRare, value: this.props.value })
 				)
 			);
 		}
@@ -12247,6 +12265,16 @@
 						"a",
 						{ href: "#scroll-tab-10", className: "mdl-layout__tab" },
 						"魔"
+					),
+					React.createElement(
+						"a",
+						{ href: "#scroll-tab-11", className: "mdl-layout__tab" },
+						"コモン"
+					),
+					React.createElement(
+						"a",
+						{ href: "#scroll-tab-12", className: "mdl-layout__tab" },
+						"レア"
 					)
 				)
 			);
@@ -12351,7 +12379,7 @@
 				checkBoxOutput.push(checkBoxTemp);
 			}
 
-			var textList = ["装備攻擊(ホロ)", "装備防禦(ホロ)", "装備攻擊(レア)", "装備防禦(レア)", "團隊攻增(%)", "團隊防增(%)", "團隊技增(%)", "敵攻擊", "敵防禦"];
+			var textList = ["装備攻擊(レア)", "装備防禦(レア)", "装備攻擊(コモン)", "装備防禦(コモン)", "團隊攻增(%)", "團隊防增(%)", "團隊技增(%)", "敵攻擊", "敵防禦"];
 			var textOutput = [];
 			var textTemp;
 			for (var i = 0; i < textList.length; i++) {
