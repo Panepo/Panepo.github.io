@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e3e3e16a7f52d91f92e1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "12dbc787316384d07346"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -11961,21 +11961,27 @@
 			var TableClass = "mdl-data-table mdl-shadow--2dp";
 
 			var tableHeadList = ["No", "屬性", "畫像", "名前", "國", "★", "好きな物", "HP", "攻撃力", "防御力", "移動力", "総合力", "戦闘スキル", "機率", "對象", "傷害倍率", "アビリティ", "團隊攻增", "團隊防增", "攻撃評價(單)", "攻撃評價(多)", "防御評價"];
-			var tableHeadOutput = [];
-			var tableHeadTemp;
+			var thOutput = [];
+			var thTemp;
 			var idStringTemp = "";
+			var theadOutput;
 
 			for (var i = 0; i < tableHeadList.length; i++) {
 				idStringTemp = this.props.title + "th" + i.toString();
 				if (this.props.value.checkBoxToggle[i] == 1) {
-					tableHeadTemp = React.createElement(
+					thTemp = React.createElement(
 						"th",
 						{ className: idStringTemp, onClick: this.handleSort, id: i.toString(), key: idStringTemp },
 						tableHeadList[i]
 					);
-					tableHeadOutput.push(tableHeadTemp);
+					thOutput.push(thTemp);
 				}
 			}
+			theadOutput = React.createElement(
+				"tr",
+				null,
+				thOutput
+			);
 
 			var data = JsonArr.dataArrange(this.props.inputJson, this.props.value.checkBoxToggle, this.props.value.eqValue);
 			var sortKey = this.props.value.sortKey[0];
@@ -12057,11 +12063,7 @@
 					React.createElement(
 						"thead",
 						null,
-						React.createElement(
-							"tr",
-							null,
-							tableHeadOutput
-						)
+						theadOutput
 					),
 					React.createElement(
 						"tbody",
@@ -12554,7 +12556,7 @@
 				}
 
 				output[i]["agi"] = target[i]["agi"];
-				output[i]["total"] = output[i]["hp"] + output[i]["atk"] + output[i]["def"];
+				output[i]["total"] = target[i]["hp"] + target[i]["atk"] + target[i]["def"];
 				output[i]["skill"] = target[i]["skill"];
 				output[i]["skillCha"] = Math.round(target[i]["skillCha"] * (target[i]["PavSpow"] + eqValue[6] / 100));
 
