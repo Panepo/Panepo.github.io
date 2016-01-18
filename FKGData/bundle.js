@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "12dbc787316384d07346"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "fd149b5d8d30e9cf679b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -11990,7 +11990,15 @@
 			if (sortDir == 0) {
 				if (typeof data[0][sortKey] === 'string' || data[0][sortKey] instanceof String) {
 					data.sort(function (a, b) {
-						return b[sortKey].charCodeAt(0) - a[sortKey].charCodeAt(0);
+						if (b[sortKey].charCodeAt(0) === a[sortKey].charCodeAt(0)) {
+							if (b[sortKey].charCodeAt(1) === a[sortKey].charCodeAt(1)) {
+								return b[sortKey].charCodeAt(2) - a[sortKey].charCodeAt(2);
+							} else {
+								return b[sortKey].charCodeAt(1) - a[sortKey].charCodeAt(1);
+							}
+						} else {
+							return b[sortKey].charCodeAt(0) - a[sortKey].charCodeAt(0);
+						}
 					});
 				} else {
 					data.sort(function (a, b) {
@@ -12000,7 +12008,15 @@
 			} else {
 				if (typeof data[0][sortKey] === 'string' || data[0][sortKey] instanceof String) {
 					data.sort(function (a, b) {
-						return a[sortKey].charCodeAt(0) - b[sortKey].charCodeAt(0);
+						if (b[sortKey].charCodeAt(0) === a[sortKey].charCodeAt(0)) {
+							if (b[sortKey].charCodeAt(1) === a[sortKey].charCodeAt(1)) {
+								return a[sortKey].charCodeAt(2) - b[sortKey].charCodeAt(2);
+							} else {
+								return a[sortKey].charCodeAt(1) - b[sortKey].charCodeAt(1);
+							}
+						} else {
+							return a[sortKey].charCodeAt(0) - b[sortKey].charCodeAt(0);
+						}
 					});
 				} else {
 					data.sort(function (a, b) {
