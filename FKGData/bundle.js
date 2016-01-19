@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "fd149b5d8d30e9cf679b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "cb0c14a1ca6003738b2d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -548,7 +548,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(102);
+	module.exports = __webpack_require__(101);
 
 
 /***/ },
@@ -879,12 +879,12 @@
 	var DOMProperty = __webpack_require__(16);
 	var ReactBrowserEventEmitter = __webpack_require__(32);
 	var ReactCurrentOwner = __webpack_require__(13);
-	var ReactDOMFeatureFlags = __webpack_require__(75);
+	var ReactDOMFeatureFlags = __webpack_require__(74);
 	var ReactElement = __webpack_require__(7);
-	var ReactEmptyComponentRegistry = __webpack_require__(82);
+	var ReactEmptyComponentRegistry = __webpack_require__(81);
 	var ReactInstanceHandles = __webpack_require__(21);
 	var ReactInstanceMap = __webpack_require__(27);
-	var ReactMarkupChecksum = __webpack_require__(85);
+	var ReactMarkupChecksum = __webpack_require__(84);
 	var ReactPerf = __webpack_require__(9);
 	var ReactReconciler = __webpack_require__(17);
 	var ReactUpdateQueue = __webpack_require__(50);
@@ -892,7 +892,7 @@
 
 	var assign = __webpack_require__(3);
 	var emptyObject = __webpack_require__(29);
-	var containsNode = __webpack_require__(97);
+	var containsNode = __webpack_require__(96);
 	var instantiateReactComponent = __webpack_require__(57);
 	var invariant = __webpack_require__(2);
 	var setInnerHTML = __webpack_require__(39);
@@ -3335,7 +3335,7 @@
 
 	'use strict';
 
-	var ReactRootIndex = __webpack_require__(90);
+	var ReactRootIndex = __webpack_require__(89);
 
 	var invariant = __webpack_require__(2);
 
@@ -3697,12 +3697,12 @@
 
 	'use strict';
 
-	var EventPluginRegistry = __webpack_require__(70);
+	var EventPluginRegistry = __webpack_require__(69);
 	var EventPluginUtils = __webpack_require__(160);
-	var ReactErrorUtils = __webpack_require__(83);
+	var ReactErrorUtils = __webpack_require__(82);
 
-	var accumulateInto = __webpack_require__(92);
-	var forEachAccumulated = __webpack_require__(93);
+	var accumulateInto = __webpack_require__(91);
+	var forEachAccumulated = __webpack_require__(92);
 	var invariant = __webpack_require__(2);
 	var warning = __webpack_require__(4);
 
@@ -3987,8 +3987,8 @@
 
 	var warning = __webpack_require__(4);
 
-	var accumulateInto = __webpack_require__(92);
-	var forEachAccumulated = __webpack_require__(93);
+	var accumulateInto = __webpack_require__(91);
+	var forEachAccumulated = __webpack_require__(92);
 
 	var PropagationPhases = EventConstants.PropagationPhases;
 	var getListener = EventPluginHub.getListener;
@@ -4317,10 +4317,10 @@
 
 	var EventConstants = __webpack_require__(12);
 	var EventPluginHub = __webpack_require__(25);
-	var EventPluginRegistry = __webpack_require__(70);
+	var EventPluginRegistry = __webpack_require__(69);
 	var ReactEventEmitterMixin = __webpack_require__(177);
 	var ReactPerf = __webpack_require__(9);
-	var ViewportMetrics = __webpack_require__(91);
+	var ViewportMetrics = __webpack_require__(90);
 
 	var assign = __webpack_require__(3);
 	var isEventSupported = __webpack_require__(58);
@@ -4702,7 +4702,7 @@
 	'use strict';
 
 	var SyntheticUIEvent = __webpack_require__(28);
-	var ViewportMetrics = __webpack_require__(91);
+	var ViewportMetrics = __webpack_require__(90);
 
 	var getEventModifierState = __webpack_require__(54);
 
@@ -5684,7 +5684,7 @@
 
 	'use strict';
 
-	var ReactPropTypes = __webpack_require__(89);
+	var ReactPropTypes = __webpack_require__(88);
 	var ReactPropTypeLocations = __webpack_require__(34);
 
 	var invariant = __webpack_require__(2);
@@ -5927,7 +5927,7 @@
 
 	'use strict';
 
-	var DOMChildrenOperations = __webpack_require__(69);
+	var DOMChildrenOperations = __webpack_require__(68);
 	var DOMPropertyOperations = __webpack_require__(45);
 	var ReactMount = __webpack_require__(6);
 	var ReactPerf = __webpack_require__(9);
@@ -6548,8 +6548,8 @@
 	'use strict';
 
 	var ReactCompositeComponent = __webpack_require__(166);
-	var ReactEmptyComponent = __webpack_require__(81);
-	var ReactNativeComponent = __webpack_require__(87);
+	var ReactEmptyComponent = __webpack_require__(80);
+	var ReactNativeComponent = __webpack_require__(86);
 
 	var assign = __webpack_require__(3);
 	var invariant = __webpack_require__(2);
@@ -7375,7 +7375,7 @@
 
 	"use strict";
 
-	var AppDispatcher = __webpack_require__(65);
+	var AppDispatcher = __webpack_require__(64);
 	var AppAction = {
 		checkBoxToggle: function checkBoxToggle(_checkBoxToggle) {
 			AppDispatcher.dispatch({
@@ -7388,110 +7388,13 @@
 				actionType: "eqValueChange",
 				eqValue: eqValue
 			});
-		},
-		sortTable: function sortTable(sortKey) {
-			AppDispatcher.dispatch({
-				actionType: "sortTable",
-				sortKey: sortKey
-			});
 		}
-
 	};
 
 	module.exports = AppAction;
 
 /***/ },
 /* 64 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {"use strict";
-
-	var _reactTransformHmr2 = __webpack_require__(19);
-
-	var _reactTransformHmr3 = _interopRequireDefault(_reactTransformHmr2);
-
-	var _react = __webpack_require__(8);
-
-	var _components = {
-		_$Footer: {
-			displayName: "Footer"
-		}
-	};
-
-	var _reactComponentWrapper = (0, _reactTransformHmr3["default"])({
-		filename: "D:/Code/GitHub/FKGData/flux/components/Footer.react.js",
-		components: _components,
-		locals: [module],
-		imports: [_react]
-	});
-
-	function _wrapComponent(uniqueId) {
-		return function (ReactClass) {
-			return _reactComponentWrapper(ReactClass, uniqueId);
-		};
-	}
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-	var React = __webpack_require__(8);
-
-	var Footer = _wrapComponent("_$Footer")(React.createClass({
-		displayName: "Footer",
-
-		render: function render() {
-			return React.createElement(
-				"div",
-				{ className: "Footer" },
-				React.createElement(
-					"footer",
-					{ className: "mdl-mini-footer" },
-					React.createElement(
-						"div",
-						{ className: "mdl-mini-footer--left-section" },
-						React.createElement(
-							"div",
-							null,
-							React.createElement(
-								"small",
-								null,
-								" 『",
-								React.createElement(
-									"a",
-									{ href: "http://www.dmm.com/netgame_s/flower/" },
-									"フラワーナイトガール"
-								),
-								"』(C) DMMゲームズ"
-							)
-						),
-						React.createElement(
-							"div",
-							null,
-							React.createElement(
-								"small",
-								null,
-								"「フラワーナイトガール」から転載された全てのコンテンツの著作権につきましては、権利者様へ帰属します。"
-							)
-						),
-						React.createElement(
-							"div",
-							null,
-							React.createElement(
-								"small",
-								null,
-								" Copyright © Panepo@Github 2015 All Rights Reserved."
-							)
-						)
-					)
-				)
-			);
-		}
-	}));
-
-	module.exports = Footer;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)(module)))
-
-/***/ },
-/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7501,7 +7404,7 @@
 	module.exports = new Dispatcher();
 
 /***/ },
-/* 66 */
+/* 65 */
 /***/ function(module, exports) {
 
 	/** Used as the `TypeError` message for "Functions" methods. */
@@ -7565,7 +7468,7 @@
 
 
 /***/ },
-/* 67 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var getNative = __webpack_require__(30),
@@ -7616,7 +7519,7 @@
 
 
 /***/ },
-/* 68 */
+/* 67 */
 /***/ function(module, exports) {
 
 	/**
@@ -7760,7 +7663,7 @@
 	module.exports = CSSProperty;
 
 /***/ },
-/* 69 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7778,7 +7681,7 @@
 	'use strict';
 
 	var Danger = __webpack_require__(157);
-	var ReactMultiChildUpdateTypes = __webpack_require__(86);
+	var ReactMultiChildUpdateTypes = __webpack_require__(85);
 	var ReactPerf = __webpack_require__(9);
 
 	var setInnerHTML = __webpack_require__(39);
@@ -7895,7 +7798,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 70 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -8121,7 +8024,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 71 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -8308,7 +8211,7 @@
 	module.exports = ReactChildren;
 
 /***/ },
-/* 72 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -8324,11 +8227,11 @@
 
 	'use strict';
 
-	var ReactComponent = __webpack_require__(73);
+	var ReactComponent = __webpack_require__(72);
 	var ReactElement = __webpack_require__(7);
 	var ReactPropTypeLocations = __webpack_require__(34);
 	var ReactPropTypeLocationNames = __webpack_require__(33);
-	var ReactNoopUpdateQueue = __webpack_require__(88);
+	var ReactNoopUpdateQueue = __webpack_require__(87);
 
 	var assign = __webpack_require__(3);
 	var emptyObject = __webpack_require__(29);
@@ -9085,7 +8988,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 73 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9101,7 +9004,7 @@
 
 	'use strict';
 
-	var ReactNoopUpdateQueue = __webpack_require__(88);
+	var ReactNoopUpdateQueue = __webpack_require__(87);
 
 	var canDefineProperty = __webpack_require__(37);
 	var emptyObject = __webpack_require__(29);
@@ -9213,7 +9116,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 74 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9232,8 +9135,8 @@
 	'use strict';
 
 	var ReactCurrentOwner = __webpack_require__(13);
-	var ReactDOMTextComponent = __webpack_require__(77);
-	var ReactDefaultInjection = __webpack_require__(79);
+	var ReactDOMTextComponent = __webpack_require__(76);
+	var ReactDefaultInjection = __webpack_require__(78);
 	var ReactInstanceHandles = __webpack_require__(21);
 	var ReactMount = __webpack_require__(6);
 	var ReactPerf = __webpack_require__(9);
@@ -9311,7 +9214,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 75 */
+/* 74 */
 /***/ function(module, exports) {
 
 	/**
@@ -9334,7 +9237,7 @@
 	module.exports = ReactDOMFeatureFlags;
 
 /***/ },
-/* 76 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9528,7 +9431,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 77 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9545,7 +9448,7 @@
 
 	'use strict';
 
-	var DOMChildrenOperations = __webpack_require__(69);
+	var DOMChildrenOperations = __webpack_require__(68);
 	var DOMPropertyOperations = __webpack_require__(45);
 	var ReactComponentBrowserEnvironment = __webpack_require__(47);
 	var ReactMount = __webpack_require__(6);
@@ -9661,7 +9564,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 78 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -9733,7 +9636,7 @@
 	module.exports = ReactDefaultBatchingStrategy;
 
 /***/ },
-/* 79 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9758,9 +9661,9 @@
 	var HTMLDOMPropertyConfig = __webpack_require__(162);
 	var ReactBrowserComponentMixin = __webpack_require__(164);
 	var ReactComponentBrowserEnvironment = __webpack_require__(47);
-	var ReactDefaultBatchingStrategy = __webpack_require__(78);
+	var ReactDefaultBatchingStrategy = __webpack_require__(77);
 	var ReactDOMComponent = __webpack_require__(168);
-	var ReactDOMTextComponent = __webpack_require__(77);
+	var ReactDOMTextComponent = __webpack_require__(76);
 	var ReactEventListener = __webpack_require__(178);
 	var ReactInjection = __webpack_require__(179);
 	var ReactInstanceHandles = __webpack_require__(21);
@@ -9836,7 +9739,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 80 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -10123,7 +10026,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 81 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10140,7 +10043,7 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(7);
-	var ReactEmptyComponentRegistry = __webpack_require__(82);
+	var ReactEmptyComponentRegistry = __webpack_require__(81);
 	var ReactReconciler = __webpack_require__(17);
 
 	var assign = __webpack_require__(3);
@@ -10179,7 +10082,7 @@
 	module.exports = ReactEmptyComponent;
 
 /***/ },
-/* 82 */
+/* 81 */
 /***/ function(module, exports) {
 
 	/**
@@ -10232,7 +10135,7 @@
 	module.exports = ReactEmptyComponentRegistry;
 
 /***/ },
-/* 83 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -10315,7 +10218,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 84 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10333,9 +10236,9 @@
 
 	var ReactDOMSelection = __webpack_require__(172);
 
-	var containsNode = __webpack_require__(97);
-	var focusNode = __webpack_require__(98);
-	var getActiveElement = __webpack_require__(99);
+	var containsNode = __webpack_require__(96);
+	var focusNode = __webpack_require__(97);
+	var getActiveElement = __webpack_require__(98);
 
 	function isInDocument(node) {
 	  return containsNode(document.documentElement, node);
@@ -10444,7 +10347,7 @@
 	module.exports = ReactInputSelection;
 
 /***/ },
-/* 85 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10494,7 +10397,7 @@
 	module.exports = ReactMarkupChecksum;
 
 /***/ },
-/* 86 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10531,7 +10434,7 @@
 	module.exports = ReactMultiChildUpdateTypes;
 
 /***/ },
-/* 87 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -10631,7 +10534,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 88 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -10755,7 +10658,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 89 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11116,7 +11019,7 @@
 	module.exports = ReactPropTypes;
 
 /***/ },
-/* 90 */
+/* 89 */
 /***/ function(module, exports) {
 
 	/**
@@ -11150,7 +11053,7 @@
 	module.exports = ReactRootIndex;
 
 /***/ },
-/* 91 */
+/* 90 */
 /***/ function(module, exports) {
 
 	/**
@@ -11182,7 +11085,7 @@
 	module.exports = ViewportMetrics;
 
 /***/ },
-/* 92 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -11247,7 +11150,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 93 */
+/* 92 */
 /***/ function(module, exports) {
 
 	/**
@@ -11281,7 +11184,7 @@
 	module.exports = forEachAccumulated;
 
 /***/ },
-/* 94 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11319,7 +11222,7 @@
 	module.exports = getTextContentAccessor;
 
 /***/ },
-/* 95 */
+/* 94 */
 /***/ function(module, exports) {
 
 	/**
@@ -11364,7 +11267,7 @@
 	module.exports = isTextInputElement;
 
 /***/ },
-/* 96 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -11454,7 +11357,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 97 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11514,7 +11417,7 @@
 	module.exports = containsNode;
 
 /***/ },
-/* 98 */
+/* 97 */
 /***/ function(module, exports) {
 
 	/**
@@ -11545,7 +11448,7 @@
 	module.exports = focusNode;
 
 /***/ },
-/* 99 */
+/* 98 */
 /***/ function(module, exports) {
 
 	/**
@@ -11583,7 +11486,7 @@
 	module.exports = getActiveElement;
 
 /***/ },
-/* 100 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -11684,7 +11587,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 101 */
+/* 100 */
 /***/ function(module, exports) {
 
 	/**
@@ -11739,7 +11642,7 @@
 	module.exports = shallowEqual;
 
 /***/ },
-/* 102 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// require("./require");
@@ -11748,12 +11651,12 @@
 
 	var React = __webpack_require__(8);
 	var ReactDOM = __webpack_require__(120);
-	var FKGDataApp = __webpack_require__(105);
+	var FKGDataApp = __webpack_require__(104);
 
 	ReactDOM.render(React.createElement(FKGDataApp, null), document.getElementById("FKGDataApp"));
 
 /***/ },
-/* 103 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {"use strict";
@@ -11787,7 +11690,7 @@
 
 	var React = __webpack_require__(8);
 	var ReactPropTypes = React.PropTypes;
-	var ContentTwo = __webpack_require__(104);
+	var ContentSec = __webpack_require__(103);
 
 	var JsonStar2 = __webpack_require__(113);
 	var JsonStar3 = __webpack_require__(114);
@@ -11803,7 +11706,9 @@
 		},
 
 		render: function render() {
-
+			// ===============================================================================
+			// Json arrange
+			// ===============================================================================
 			var JsonAll = JsonStar2.concat(JsonStar3);
 			JsonAll = JsonAll.concat(JsonStar4);
 			JsonAll = JsonAll.concat(JsonStar5);
@@ -11834,68 +11739,71 @@
 				}
 			}
 
+			// ===============================================================================
+			// return
+			// ===============================================================================
 			return React.createElement(
 				"div",
 				{ className: "Content mdl-layout__content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col" },
 				React.createElement(
 					"section",
 					{ className: "mdl-layout__tab-panel is-active", id: "scroll-tab-1" },
-					React.createElement(ContentTwo, { title: "all", inputJson: JsonAll, value: this.props.value })
+					React.createElement(ContentSec, { title: "all", inputJson: JsonAll, value: this.props.value })
 				),
 				React.createElement(
 					"section",
 					{ className: "mdl-layout__tab-panel", id: "scroll-tab-2" },
-					React.createElement(ContentTwo, { title: "2star", inputJson: JsonStar2, value: this.props.value })
+					React.createElement(ContentSec, { title: "2star", inputJson: JsonStar2, value: this.props.value })
 				),
 				React.createElement(
 					"section",
 					{ className: "mdl-layout__tab-panel", id: "scroll-tab-3" },
-					React.createElement(ContentTwo, { title: "3star", inputJson: JsonStar3, value: this.props.value })
+					React.createElement(ContentSec, { title: "3star", inputJson: JsonStar3, value: this.props.value })
 				),
 				React.createElement(
 					"section",
 					{ className: "mdl-layout__tab-panel", id: "scroll-tab-4" },
-					React.createElement(ContentTwo, { title: "4star", inputJson: JsonStar4, value: this.props.value })
+					React.createElement(ContentSec, { title: "4star", inputJson: JsonStar4, value: this.props.value })
 				),
 				React.createElement(
 					"section",
 					{ className: "mdl-layout__tab-panel", id: "scroll-tab-5" },
-					React.createElement(ContentTwo, { title: "5star", inputJson: JsonStar5, value: this.props.value })
+					React.createElement(ContentSec, { title: "5star", inputJson: JsonStar5, value: this.props.value })
 				),
 				React.createElement(
 					"section",
 					{ className: "mdl-layout__tab-panel", id: "scroll-tab-6" },
-					React.createElement(ContentTwo, { title: "6star", inputJson: JsonStar6, value: this.props.value })
+					React.createElement(ContentSec, { title: "6star", inputJson: JsonStar6, value: this.props.value })
 				),
 				React.createElement(
 					"section",
 					{ className: "mdl-layout__tab-panel", id: "scroll-tab-7" },
-					React.createElement(ContentTwo, { title: "slash", inputJson: JsonSlash, value: this.props.value })
+					React.createElement(ContentSec, { title: "slash", inputJson: JsonSlash, value: this.props.value })
 				),
 				React.createElement(
 					"section",
 					{ className: "mdl-layout__tab-panel", id: "scroll-tab-8" },
-					React.createElement(ContentTwo, { title: "punch", inputJson: JsonPunch, value: this.props.value })
+					React.createElement(ContentSec, { title: "punch", inputJson: JsonPunch, value: this.props.value })
 				),
 				React.createElement(
 					"section",
 					{ className: "mdl-layout__tab-panel", id: "scroll-tab-9" },
-					React.createElement(ContentTwo, { title: "pierce", inputJson: JsonPierce, value: this.props.value })
+					React.createElement(ContentSec, { title: "pierce", inputJson: JsonPierce, value: this.props.value })
 				),
 				React.createElement(
 					"section",
 					{ className: "mdl-layout__tab-panel", id: "scroll-tab-10" },
-					React.createElement(ContentTwo, { title: "magic", inputJson: JsonMagic, value: this.props.value })
+					React.createElement(ContentSec, { title: "magic", inputJson: JsonMagic, value: this.props.value })
 				),
 				React.createElement(
 					"section",
 					{ className: "mdl-layout__tab-panel", id: "scroll-tab-11" },
-					React.createElement(ContentTwo, { title: "common", inputJson: JsonCommon, value: this.props.value })
+					React.createElement(ContentSec, { title: "common", inputJson: JsonCommon, value: this.props.value })
 				),
 				React.createElement(
 					"section",
 					{ className: "mdl-layout__tab-panel", id: "scroll-tab-12" },
-					React.createElement(ContentTwo, { title: "rare", inputJson: JsonRare, value: this.props.value })
+					React.createElement(ContentSec, { title: "rare", inputJson: JsonRare, value: this.props.value })
 				)
 			);
 		}
@@ -11906,7 +11814,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)(module)))
 
 /***/ },
-/* 104 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {"use strict";
@@ -11924,7 +11832,7 @@
 	};
 
 	var _reactComponentWrapper = (0, _reactTransformHmr3["default"])({
-		filename: "D:/Code/GitHub/FKGData/flux/components/ContentTwo.react.js",
+		filename: "D:/Code/GitHub/FKGData/flux/components/ContentSec.react.js",
 		components: _components,
 		locals: [module],
 		imports: [_react]
@@ -11952,40 +11860,50 @@
 			inputJson: ReactPropTypes.array.isRequired
 		},
 
+		getInitialState: function getInitialState() {
+			return {
+				sortKey: 0,
+				sortDir: 1
+			};
+		},
+
 		handleSort: function handleSort(event) {
-			//this.props.value.sortKey[0] = parseInt(event.target.id);
-			AppAction.sortTable(parseInt(event.target.id));
+			var key = parseInt(event.target.id);
+			var j = 0;
+			for (var i = 0; i < key; i++) {
+				if (this.props.value.checkBoxToggle[i] == 1) {
+					j++;
+				}
+			}
+
+			if (this.state.sortKey == j) {
+				if (this.state.sortDir == 0) {
+					this.setState({
+						sortDir: 1
+					});
+				} else {
+					this.setState({
+						sortDir: 0
+					});
+				}
+			} else {
+				this.setState({
+					sortKey: j,
+					sortDir: 0
+				});
+			}
 		},
 
 		render: function render() {
-			var TableClass = "mdl-data-table mdl-shadow--2dp";
-
-			var tableHeadList = ["No", "屬性", "畫像", "名前", "國", "★", "好きな物", "HP", "攻撃力", "防御力", "移動力", "総合力", "戦闘スキル", "機率", "對象", "傷害倍率", "アビリティ", "團隊攻增", "團隊防增", "攻撃評價(單)", "攻撃評價(多)", "防御評價"];
-			var thOutput = [];
-			var thTemp;
-			var idStringTemp = "";
-			var theadOutput;
-
-			for (var i = 0; i < tableHeadList.length; i++) {
-				idStringTemp = this.props.title + "th" + i.toString();
-				if (this.props.value.checkBoxToggle[i] == 1) {
-					thTemp = React.createElement(
-						"th",
-						{ className: idStringTemp, onClick: this.handleSort, id: i.toString(), key: idStringTemp },
-						tableHeadList[i]
-					);
-					thOutput.push(thTemp);
-				}
-			}
-			theadOutput = React.createElement(
-				"tr",
-				null,
-				thOutput
-			);
-
+			var classDiv = this.props.title + " ContentSec page-content";
+			var classTable = this.props.title + " mdl-data-table mdl-shadow--2dp";
 			var data = JsonArr.dataArrange(this.props.inputJson, this.props.value.checkBoxToggle, this.props.value.eqValue);
-			var sortKey = this.props.value.sortKey[0];
-			var sortDir = this.props.value.sortKey[1];
+
+			// ===============================================================================
+			// table data sorting
+			// ===============================================================================
+			var sortKey = this.state.sortKey;
+			var sortDir = this.state.sortDir;
 
 			if (sortDir == 0) {
 				if (typeof data[0][sortKey] === 'string' || data[0][sortKey] instanceof String) {
@@ -12025,6 +11943,38 @@
 				}
 			}
 
+			// ===============================================================================
+			// generate table head
+			// ===============================================================================
+			var tableHeadList = ["No", "屬性", "畫像", "名前", "國", "★", "好きな物", "HP", "攻撃力", "防御力", "移動力", "総合力", "戦闘スキル", "機率", "對象", "傷害倍率", "アビリティ", "團隊攻增", "團隊防增", "攻撃評價(單)", "攻撃評價(多)", "防御評價"];
+			var theadOutput = [];
+			var theadTemp;
+			var idStringTemp = "";
+
+			for (var i = 0; i < tableHeadList.length; i++) {
+				idStringTemp = this.props.title + "th" + i.toString();
+				if (this.props.value.checkBoxToggle[i] == 1) {
+					theadTemp = React.createElement(
+						"th",
+						{ className: idStringTemp, onClick: this.handleSort, id: i.toString(), key: idStringTemp },
+						tableHeadList[i]
+					);
+					theadOutput.push(theadTemp);
+				}
+			}
+			theadOutput = React.createElement(
+				"thead",
+				null,
+				React.createElement(
+					"tr",
+					null,
+					theadOutput
+				)
+			);
+
+			// ===============================================================================
+			// generate table content
+			// ===============================================================================
 			var tableOutput = [];
 			var tableTemp;
 			var tdOutput = [];
@@ -12067,25 +12017,23 @@
 				);
 				tableOutput.push(tableTemp);
 			}
+			tableOutput = React.createElement(
+				"tbody",
+				null,
+				tableOutput
+			);
 
-			var divClass = this.props.title + "ContentSec page-content";
-
+			// ===============================================================================
+			// return
+			// ===============================================================================
 			return React.createElement(
 				"div",
-				{ className: divClass },
+				{ className: classDiv },
 				React.createElement(
 					"table",
-					{ className: TableClass },
-					React.createElement(
-						"thead",
-						null,
-						theadOutput
-					),
-					React.createElement(
-						"tbody",
-						null,
-						tableOutput
-					)
+					{ className: classTable },
+					theadOutput,
+					tableOutput
 				)
 			);
 		}
@@ -12096,7 +12044,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)(module)))
 
 /***/ },
-/* 105 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {"use strict";
@@ -12130,9 +12078,8 @@
 
 	var React = __webpack_require__(8);
 	var Header = __webpack_require__(106);
-	var Content = __webpack_require__(103);
+	var Content = __webpack_require__(102);
 	var Nav = __webpack_require__(107);
-	var Footer = __webpack_require__(64);
 	var AppStore = __webpack_require__(108);
 
 	var FKGDataApp = _wrapComponent("_$FKGDataApp")(React.createClass({
@@ -12159,7 +12106,7 @@
 					"div",
 					{ className: "mdl-layout mdl-js-layout mdl-layout--fixed-header" },
 					React.createElement(Header, null),
-					React.createElement(Nav, { value: this.state.value }),
+					React.createElement(Nav, { checkBoxToggle: this.state.value.checkBoxToggle, eqValue: this.state.value.eqValue }),
 					React.createElement(Content, { value: this.state.value })
 				)
 			);
@@ -12178,6 +12125,96 @@
 	}));
 
 	module.exports = FKGDataApp;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)(module)))
+
+/***/ },
+/* 105 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {"use strict";
+
+	var _reactTransformHmr2 = __webpack_require__(19);
+
+	var _reactTransformHmr3 = _interopRequireDefault(_reactTransformHmr2);
+
+	var _react = __webpack_require__(8);
+
+	var _components = {
+		_$Footer: {
+			displayName: "Footer"
+		}
+	};
+
+	var _reactComponentWrapper = (0, _reactTransformHmr3["default"])({
+		filename: "D:/Code/GitHub/FKGData/flux/components/Footer.react.js",
+		components: _components,
+		locals: [module],
+		imports: [_react]
+	});
+
+	function _wrapComponent(uniqueId) {
+		return function (ReactClass) {
+			return _reactComponentWrapper(ReactClass, uniqueId);
+		};
+	}
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	var React = __webpack_require__(8);
+
+	var Footer = _wrapComponent("_$Footer")(React.createClass({
+		displayName: "Footer",
+
+		render: function render() {
+			return React.createElement(
+				"div",
+				{ className: "Footer" },
+				React.createElement(
+					"footer",
+					{ className: "mdl-mini-footer" },
+					React.createElement(
+						"div",
+						{ className: "mdl-mini-footer--left-section" },
+						React.createElement(
+							"div",
+							null,
+							React.createElement(
+								"small",
+								null,
+								" 『",
+								React.createElement(
+									"a",
+									{ href: "http://www.dmm.com/netgame_s/flower/" },
+									"フラワーナイトガール"
+								),
+								"』(C) DMMゲームズ"
+							)
+						),
+						React.createElement(
+							"div",
+							null,
+							React.createElement(
+								"small",
+								null,
+								"「フラワーナイトガール」から転載された全てのコンテンツの著作権につきましては、権利者様へ帰属します。"
+							)
+						),
+						React.createElement(
+							"div",
+							null,
+							React.createElement(
+								"small",
+								null,
+								" Copyright © Panepo@Github 2015 All Rights Reserved."
+							)
+						)
+					)
+				)
+			);
+		}
+	}));
+
+	module.exports = Footer;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)(module)))
 
 /***/ },
@@ -12337,18 +12374,19 @@
 
 	var React = __webpack_require__(8);
 	var ReactPropTypes = React.PropTypes;
-	var Footer = __webpack_require__(64);
+	var Footer = __webpack_require__(105);
 	var AppAction = __webpack_require__(63);
 
 	var Nav = _wrapComponent("_$Nav")(React.createClass({
 		displayName: "Nav",
 
 		propTypes: {
-			value: ReactPropTypes.object.isRequired
+			checkBoxToggle: ReactPropTypes.array.isRequired,
+			eqValue: ReactPropTypes.array.isRequired
 		},
 
 		handleToggle: function handleToggle(event) {
-			var checkBoxToggle = this.props.value.checkBoxToggle;
+			var checkBoxToggle = this.props.checkBoxToggle;
 			var checkBoxNumber = parseInt(event.target.id.slice(8));
 
 			if (checkBoxToggle[checkBoxNumber] == 1) {
@@ -12357,21 +12395,22 @@
 				checkBoxToggle[checkBoxNumber] = 1;
 			}
 
-			this.props.value.checkBoxToggle = checkBoxToggle;
 			AppAction.checkBoxToggle(checkBoxToggle);
 		},
 
 		handleInput: function handleInput(event) {
-			var eqValue = this.props.value.eqValue;
+			var eqValue = this.props.eqValue;
 			var inputValue = parseInt(document.getElementById(event.target.id).value);
 			var inputNumber = parseInt(event.target.id.slice(4));
 
 			eqValue[inputNumber] = inputValue;
-			this.props.value.eqValue = eqValue;
 			AppAction.eqValueChange(eqValue);
 		},
 
 		render: function render() {
+			// ===============================================================================
+			// generate checkbox list
+			// ===============================================================================
 			var checkBoxList = ["No", "屬性", "畫像", "名前", "國", "★", "好きな物", "HP", "攻撃力", "防御力", "移動力", "総合力", "戦闘スキル", "機率", "傷害倍率", "對象", "アビリティ", "攻撃補正", "防御補正", "攻撃評價(單)", "攻撃評價(多)", "防御評價"];
 			var checkBoxOutput = [];
 			var checkBoxTemp;
@@ -12379,7 +12418,7 @@
 			var checkBoxToggle;
 			for (var i = 0; i < checkBoxList.length; i++) {
 				idStringTemp = "checkbox" + i.toString();
-				if (this.props.value.checkBoxToggle[i] == 1) {
+				if (this.props.checkBoxToggle[i] == 1) {
 					checkBoxToggle = React.createElement("input", { type: "checkbox", id: idStringTemp, className: "mdl-checkbox__input", onClick: this.handleToggle, defaultChecked: true });
 				} else {
 					checkBoxToggle = React.createElement("input", { type: "checkbox", id: idStringTemp, className: "mdl-checkbox__input", onClick: this.handleToggle });
@@ -12397,6 +12436,9 @@
 				checkBoxOutput.push(checkBoxTemp);
 			}
 
+			// ===============================================================================
+			// generate text input list
+			// ===============================================================================
 			var textList = ["装備攻擊(レア)", "装備防禦(レア)", "装備攻擊(コモン)", "装備防禦(コモン)", "團隊攻增(%)", "團隊防增(%)", "團隊技增(%)", "敵攻擊", "敵防禦"];
 			var textOutput = [];
 			var textTemp;
@@ -12405,7 +12447,7 @@
 				textTemp = React.createElement(
 					"div",
 					{ className: "mdl-textfield mdl-js-textfield mdl-textfield--floating-label", key: idStringTemp },
-					React.createElement("input", { className: "mdl-textfield__input", type: "text", pattern: "-?[0-9]*(\\.[0-9]+)?", id: idStringTemp, onInput: this.handleInput, defaultValue: this.props.value.eqValue[i] }),
+					React.createElement("input", { className: "mdl-textfield__input", type: "text", pattern: "-?[0-9]*(\\.[0-9]+)?", id: idStringTemp, onInput: this.handleInput, defaultValue: this.props.eqValue[i] }),
 					React.createElement(
 						"label",
 						{ className: "mdl-textfield__label", htmlFor: idStringTemp },
@@ -12420,6 +12462,9 @@
 				textOutput.push(textTemp);
 			}
 
+			// ===============================================================================
+			// return
+			// ===============================================================================
 			return React.createElement(
 				"div",
 				{ className: "mdl-layout__drawer mdl-navigation" },
@@ -12448,15 +12493,14 @@
 
 	'use strict';
 
-	var AppDispatcher = __webpack_require__(65);
+	var AppDispatcher = __webpack_require__(64);
 	var EventEmitter = __webpack_require__(118).EventEmitter;
 	var assign = __webpack_require__(119);
 
 	var CHANGE_EVENT = 'change';
 	var _value = {
 		checkBoxToggle: [1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
-		eqValue: [1507, 0, 1957, 1140, 0, 0, 0, 4581, 76],
-		sortKey: [0, 1]
+		eqValue: [1507, 0, 1957, 1140, 0, 0, 0, 4581, 76]
 	};
 
 	// ===============================================================================
@@ -12468,26 +12512,6 @@
 
 	function _eqValueChange(eqValue) {
 		_value.eqValue = eqValue;
-	}
-
-	function _sortTable(sortKey) {
-		var j = 0;
-		for (var i = 0; i < sortKey; i++) {
-			if (_value.checkBoxToggle[i] == 1) {
-				j++;
-			}
-		}
-
-		if (_value.sortKey[0] == j) {
-			if (_value.sortKey[1] == 0) {
-				_value.sortKey[1] = 1;
-			} else {
-				_value.sortKey[1] = 0;
-			}
-		} else {
-			_value.sortKey[0] = j;
-			_value.sortKey[1] = 0;
-		}
 	}
 
 	// ===============================================================================
@@ -12523,11 +12547,6 @@
 
 			case "eqValueChange":
 				_eqValueChange(action.eqValue);
-				AppStore.emitChange();
-				break;
-
-			case "sortTable":
-				_sortTable(action.sortKey);
 				AppStore.emitChange();
 				break;
 
@@ -14185,11 +14204,11 @@
 			"atk": 5780,
 			"def": 1700,
 			"agi": 675,
-			"skill": "二刀流・雲龍雙爪",
+			"skill": "二刀流・雲龍双爪",
 			"skillCha": 30,
 			"skillTar": 5,
 			"skillDam": 1.7,
-			"PavSkill": "戦闘中、自身を含む2人の攻撃力が20%上昇(進化後+)戦闘中、パーティメンバーの防禦力が10%上昇",
+			"PavSkill": "戦闘中、自身を含む2人の攻撃力が20%上昇(進化後+)戦闘中、パーティメンバーの防御力が10%上昇",
 			"PavAnum": 2,
 			"PavApow": 20,
 			"PavDnum": 5,
@@ -14237,7 +14256,7 @@
 			"skillCha": 30,
 			"skillTar": 3,
 			"skillDam": 1.9,
-			"PavSkill": "戦闘中、1ターン目のパーティメンバー全員の戦闘スキル発動率が2倍になる(進化後+)戦闘中、自身を含む3人の防禦力が15%上昇",
+			"PavSkill": "戦闘中、1ターン目のパーティメンバー全員の戦闘スキル発動率が2倍になる(進化後+)戦闘中、自身を含む3人の防御力が15%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 3,
@@ -14261,7 +14280,7 @@
 			"skillCha": 37,
 			"skillTar": 1,
 			"skillDam": 2.4,
-			"PavSkill": "戦闘中、一定確率で敵の攻撃を迴避する。(進化後+)戦闘中、パーティメンバーの防禦力が10%上昇",
+			"PavSkill": "戦闘中、一定確率で敵の攻撃を回避する。(進化後+)戦闘中、パーティメンバーの防御力が10%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 5,
@@ -14292,7 +14311,7 @@
 			"PavDpow": 0,
 			"PavSnum": 5,
 			"PavSpow": 1.2,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 0
 		},
 		{
@@ -14309,7 +14328,7 @@
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.3,
-			"PavSkill": "戦闘中、1ターン目のパーティメンバー全員の攻撃力が20%上昇(進化後+)戦闘中、自身を含む2人の防禦力が20%上昇",
+			"PavSkill": "戦闘中、1ターン目のパーティメンバー全員の攻撃力が20%上昇(進化後+)戦闘中、自身を含む2人の防御力が20%上昇",
 			"PavAnum": 5,
 			"PavApow": 20,
 			"PavDnum": 2,
@@ -14333,7 +14352,7 @@
 			"skillCha": 30,
 			"skillTar": 0.3,
 			"skillDam": 0.8,
-			"PavSkill": "戦闘中3ターン目以降パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、パーティメンバーの防禦力が10%上昇",
+			"PavSkill": "戦闘中3ターン目以降パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、パーティメンバーの防御力が10%上昇",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 5,
@@ -14357,7 +14376,7 @@
 			"skillCha": 30,
 			"skillTar": 3,
 			"skillDam": 1.9,
-			"PavSkill": "光GAUGEが20%溜まった狀態から討伐開始(進化後+)戦闘中、ソーラードライブの効果が20%上昇",
+			"PavSkill": "光GAUGEが20%溜まった状態から討伐開始(進化後+)戦闘中、ソーラードライブの効果が20%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -14405,14 +14424,14 @@
 			"skillCha": 36,
 			"skillTar": 1,
 			"skillDam": 2.5,
-			"PavSkill": "攻撃を受けた時、80%の確率で防禦力の2倍を攻撃力に転換し反撃する(進化後+)光GAUGEが20%溜まった狀態から討伐開始",
+			"PavSkill": "攻撃を受けた時、80%の確率で防御力の2倍を攻撃力に転換し反撃する(進化後+)光GAUGEが20%溜まった状態から討伐開始",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 1
 		},
 		{
@@ -14429,7 +14448,7 @@
 			"skillCha": 35,
 			"skillTar": 5,
 			"skillDam": 1.5,
-			"PavSkill": "戦闘中、パーティメンバーのシャインクリスタルのドロップ率が15%上昇(進化後+)戦闘中、自身を含む4人の防禦力が12%上昇",
+			"PavSkill": "戦闘中、パーティメンバーのシャインクリスタルのドロップ率が15%上昇(進化後+)戦闘中、自身を含む4人の防御力が12%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 4,
@@ -14449,18 +14468,18 @@
 			"atk": 5280,
 			"def": 1770,
 			"agi": 235,
-			"skill": "靜寂の氷結牢",
+			"skill": "静寂の氷結牢",
 			"skillCha": 23,
 			"skillTar": 4,
 			"skillDam": 1.8,
-			"PavSkill": "パーティの受ける回覆パネルの効果が3倍になる(進化後+)戦闘中、ソーラードライブの効果が20%上昇",
+			"PavSkill": "パーティの受ける回復パネルの効果が3倍になる(進化後+)戦闘中、ソーラードライブの効果が20%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 0
 		},
 		{
@@ -14477,7 +14496,7 @@
 			"skillCha": 28,
 			"skillTar": 5,
 			"skillDam": 1.7,
-			"PavSkill": "移動中にチビ害蟲から受けるダメージを50%軽減(進化後+)戦闘中、自身を含む4人の攻撃力が12%上昇",
+			"PavSkill": "移動中にチビ害虫から受けるダメージを50%軽減(進化後+)戦闘中、自身を含む4人の攻撃力が12%上昇",
 			"PavAnum": 4,
 			"PavApow": 12,
 			"PavDnum": 0,
@@ -14501,7 +14520,7 @@
 			"skillCha": 23,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "害蟲の巣を通過するとパーティメンバー全員のHPが10%回覆する(進化後+)パーティの移動力が50増加",
+			"PavSkill": "害虫の巣を通過するとパーティメンバー全員のHPが10%回復する(進化後+)パーティの移動力が50増加",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -14532,7 +14551,7 @@
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 1
 		},
 		{
@@ -14549,14 +14568,14 @@
 			"skillCha": 22,
 			"skillTar": 2,
 			"skillDam": 1.8,
-			"PavSkill": "戦闘中、自身を含む2人の攻撃力が15%上昇(進化後+)戦闘中、自身を含む4人の防禦力が10%上昇",
+			"PavSkill": "戦闘中、自身を含む2人の攻撃力が15%上昇(進化後+)戦闘中、自身を含む4人の防御力が10%上昇",
 			"PavAnum": 2,
 			"PavApow": 15,
 			"PavDnum": 4,
 			"PavDpow": 10,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 0
 		},
 		{
@@ -14573,7 +14592,7 @@
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.2,
-			"PavSkill": "3ターン目以降自身を含む2人の攻撃力が15%上昇(進化後+)戦闘中、パーティメンバーの防禦力が7%上昇",
+			"PavSkill": "3ターン目以降自身を含む2人の攻撃力が15%上昇(進化後+)戦闘中、パーティメンバーの防御力が7%上昇",
 			"PavAnum": 2,
 			"PavApow": 15,
 			"PavDnum": 5,
@@ -14593,7 +14612,7 @@
 			"atk": 5240,
 			"def": 2050,
 			"agi": 545,
-			"skill": "魔聲弾・タチバナイザー",
+			"skill": "魔声弾・タチバナイザー",
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.3,
@@ -14628,7 +14647,7 @@
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 1
 		},
 		{
@@ -14666,7 +14685,7 @@
 			"def": 2600,
 			"agi": 550,
 			"skill": "希望剣・善武ノ旋",
-			"skillCha": 30,
+			"skillCha": 32,
 			"skillTar": 1,
 			"skillDam": 2.2,
 			"PavSkill": "戦闘中、パーティメンバーの戦闘スキルが発動する度に、自身の攻撃力が1%ずつ上昇(上限30%)(進化後+)戦闘中、ソーラードライブの効果が20％上昇",
@@ -14693,14 +14712,14 @@
 			"skillCha": 34,
 			"skillTar": 3,
 			"skillDam": 1.9,
-			"PavSkill": "討伐開始時にノーマルパネルをランダムで2個～3個チョコレート回覆パネルに変更する。(重複不可)(進化後+)戦闘中、自身を含む3人の攻撃力が15%上昇",
+			"PavSkill": "討伐開始時にノーマルパネルをランダムで2個～3個チョコレート回復パネルに変更する。(重複不可)(進化後+)戦闘中、自身を含む3人の攻撃力が15%上昇",
 			"PavAnum": 3,
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 1
 		},
 		{
@@ -14737,11 +14756,11 @@
 			"atk": 4977,
 			"def": 2600,
 			"agi": 530,
-			"skill": "超自然學術・大地の牙",
+			"skill": "超自然学術・大地の牙",
 			"skillCha": 34,
 			"skillTar": 1,
 			"skillDam": 2.3,
-			"PavSkill": "討伐中のソーラードライブ発動回數に応じて、自身の攻撃力が10％ずつ上昇（上限30％）(進化後+)害蟲の巣パネルを通過するとパーティメンバー全員のHPが10%回覆する",
+			"PavSkill": "討伐中のソーラードライブ発動回数に応じて、自身の攻撃力が10％ずつ上昇（上限30％）(進化後+)害虫の巣パネルを通過するとパーティメンバー全員のHPが10%回復する",
 			"PavAnum": 1,
 			"PavApow": 30,
 			"PavDnum": 0,
@@ -14765,7 +14784,7 @@
 			"skillCha": 30,
 			"skillTar": 5,
 			"skillDam": 1.4,
-			"PavSkill": "キャノンパネルを通過した際、キャノンパネルが砲撃する害蟲パネルが一つ増える(進化後+)戦闘中、パーティメンバーの攻撃力が10%上昇",
+			"PavSkill": "キャノンパネルを通過した際、キャノンパネルが砲撃する害虫パネルが一つ増える(進化後+)戦闘中、パーティメンバーの攻撃力が10%上昇",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -14813,7 +14832,7 @@
 			"skillCha": 30,
 			"skillTar": 5,
 			"skillDam": 1.6,
-			"PavSkill": "戦闘中、一定確率で敵の攻撃を迴避する。(進化後+)戦闘中、自身を含む3人の攻撃力が14%上昇",
+			"PavSkill": "戦闘中、一定確率で敵の攻撃を回避する。(進化後+)戦闘中、自身を含む3人の攻撃力が14%上昇",
 			"PavAnum": 3,
 			"PavApow": 14,
 			"PavDnum": 0,
@@ -14837,7 +14856,7 @@
 			"skillCha": 34,
 			"skillTar": 1,
 			"skillDam": 2.5,
-			"PavSkill": "戦闘中、ソーラードライブの効果が25%上昇(進化後+)光GAUGEが30%溜まった狀態から討伐開始",
+			"PavSkill": "戦闘中、ソーラードライブの効果が25%上昇(進化後+)光GAUGEが30%溜まった状態から討伐開始",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -14861,7 +14880,7 @@
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、パーティメンバーのスキル発動率がそれぞれの好感度に応じて最大1.2倍に上昇(進化後+)戦闘中、自身を含む3人の防禦力が10%上昇",
+			"PavSkill": "戦闘中、パーティメンバーのスキル発動率がそれぞれの好感度に応じて最大1.2倍に上昇(進化後+)戦闘中、自身を含む3人の防御力が10%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 3,
@@ -14885,14 +14904,14 @@
 			"skillCha": 34,
 			"skillTar": 3,
 			"skillDam": 2,
-			"PavSkill": "攻撃を受けた時、80%の確率で防禦力の1.5倍を攻撃力に転換し反撃する(進化後+)レイドボス戦において、自身を含む2人の攻撃力を25％上昇",
+			"PavSkill": "攻撃を受けた時、80%の確率で防御力の1.5倍を攻撃力に転換し反撃する(進化後+)レイドボス戦において、自身を含む2人の攻撃力を25％上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 0
 		},
 		{
@@ -14933,7 +14952,7 @@
 			"skillCha": 34,
 			"skillTar": 1,
 			"skillDam": 2.2,
-			"PavSkill": "スキルを使用する敵2體のスキル発動率を10%低下させる(進化後+)戦闘中、自身を含む4人の防禦力が10%上昇",
+			"PavSkill": "スキルを使用する敵2体のスキル発動率を10%低下させる(進化後+)戦闘中、自身を含む4人の防御力が10%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 4,
@@ -14953,11 +14972,11 @@
 			"atk": 5560,
 			"def": 2340,
 			"agi": 430,
-			"skill": "雙円亂舞斬",
+			"skill": "双円乱舞斬",
 			"skillCha": 32,
 			"skillTar": 1,
 			"skillDam": 2.5,
-			"PavSkill": "敵3體の攻撃力を10%低下させる(進化後+)レイドボス戦において、自身を含む３人の攻撃力が30％上昇",
+			"PavSkill": "敵3体の攻撃力を10%低下させる(進化後+)レイドボス戦において、自身を含む３人の攻撃力が30％上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -14977,11 +14996,11 @@
 			"atk": 5186,
 			"def": 2320,
 			"agi": 530,
-			"skill": "愛染幻想流奧義・叢雲ノ扇",
+			"skill": "愛染幻想流奥義・叢雲ノ扇",
 			"skillCha": 30,
 			"skillTar": 3,
 			"skillDam": 2,
-			"PavSkill": "パーティの受ける回覆パネルの効果が2倍になる(進化後+)戦闘中、パーティメンバーの攻撃力が10%上昇",
+			"PavSkill": "パーティの受ける回復パネルの効果が2倍になる(進化後+)戦闘中、パーティメンバーの攻撃力が10%上昇",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -15001,11 +15020,11 @@
 			"atk": 5048,
 			"def": 2820,
 			"agi": 700,
-			"skill": "愛染槍雷流奧義・飛雷召陣",
+			"skill": "愛染槍雷流奥義・飛雷召陣",
 			"skillCha": 30,
 			"skillTar": 3,
 			"skillDam": 2,
-			"PavSkill": "移動中にチビ害蟲から受けるダメージを50%軽減(進化後+)戦闘中、自身を含む3人の攻撃力が15%上昇",
+			"PavSkill": "移動中にチビ害虫から受けるダメージを50%軽減(進化後+)戦闘中、自身を含む3人の攻撃力が15%上昇",
 			"PavAnum": 3,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -15036,7 +15055,7 @@
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 0
 		},
 		{
@@ -15049,11 +15068,11 @@
 			"atk": 6180,
 			"def": 2210,
 			"agi": 580,
-			"skill": "剛嵐掌・満點星",
+			"skill": "剛嵐掌・満点星",
 			"skillCha": 32,
 			"skillTar": 1,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が15%上昇(進化後+)戦闘中、自身を含む3人の防禦力が15%上昇",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が15%上昇(進化後+)戦闘中、自身を含む3人の防御力が15%上昇",
 			"PavAnum": 3,
 			"PavApow": 15,
 			"PavDnum": 3,
@@ -15073,11 +15092,11 @@
 			"atk": 5728,
 			"def": 1638,
 			"agi": 550,
-			"skill": "萬死ヲ刻ム大鎌",
+			"skill": "万死ヲ刻ム大鎌",
 			"skillCha": 30,
 			"skillTar": 2,
 			"skillDam": 2.1,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が10%上昇(進化後+)敵２體の攻撃力を15%低下させる",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が10%上昇(進化後+)敵２体の攻撃力を15%低下させる",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -15097,7 +15116,7 @@
 			"atk": 5580,
 			"def": 2100,
 			"agi": 600,
-			"skill": "煌雙剣・リープカーニバル",
+			"skill": "煌双剣・リープカーニバル",
 			"skillCha": 30,
 			"skillTar": 3,
 			"skillDam": 1.8,
@@ -15125,14 +15144,14 @@
 			"skillCha": 30,
 			"skillTar": 2,
 			"skillDam": 1.9,
-			"PavSkill": "キャノンパネルを通過した際、キャノンパネルが砲撃する害蟲パネルが1つ増える(進化後+)戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大10%上昇",
+			"PavSkill": "キャノンパネルを通過した際、キャノンパネルが砲撃する害虫パネルが1つ増える(進化後+)戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大10%上昇",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 1
 		},
 		{
@@ -15197,7 +15216,7 @@
 			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が10%上昇(進化後+)害蟲の巣パネルを通過するとパーティメンバーのHPが10%回覆する",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が10%上昇(進化後+)害虫の巣パネルを通過するとパーティメンバーのHPが10%回復する",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -15245,7 +15264,7 @@
 			"skillCha": 28,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "戦闘中、自身を含む2人の攻撃力が15%上昇(進化後+)攻撃を受けた時、80%の確率で防禦力の1.5倍を攻撃力に転換し反撃する",
+			"PavSkill": "戦闘中、自身を含む2人の攻撃力が15%上昇(進化後+)攻撃を受けた時、80%の確率で防御力の1.5倍を攻撃力に転換し反撃する",
 			"PavAnum": 2,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -15269,7 +15288,7 @@
 			"skillCha": 33,
 			"skillTar": 1,
 			"skillDam": 2.3,
-			"PavSkill": "戦闘中、1ターン目の自身の戦闘スキル発動率が1.5倍になる(進化後+)戦闘中、一定確率で敵の攻撃を迴避する",
+			"PavSkill": "戦闘中、1ターン目の自身の戦闘スキル発動率が1.5倍になる(進化後+)戦闘中、一定確率で敵の攻撃を回避する",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -15293,14 +15312,14 @@
 			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が15%上昇(進化後+)攻撃を受けた時、80%の確率で防禦力の2倍を攻撃力に転換し反撃する",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が15%上昇(進化後+)攻撃を受けた時、80%の確率で防御力の2倍を攻撃力に転換し反撃する",
 			"PavAnum": 3,
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 1
 		},
 		{
@@ -15317,7 +15336,7 @@
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.1,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が10%上昇(進化後+)戦闘中、一定確率で敵の攻撃を迴避する",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が10%上昇(進化後+)戦闘中、一定確率で敵の攻撃を回避する",
 			"PavAnum": 3,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -15337,11 +15356,11 @@
 			"atk": 5930,
 			"def": 2100,
 			"agi": 675,
-			"skill": "二刀流奧義・紅花舞イ散ル",
+			"skill": "二刀流奥義・紅花舞イ散ル",
 			"skillCha": 37,
 			"skillTar": 1,
 			"skillDam": 2.4,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が15%上昇(進化後+)パーティメンバーがボスに対して與えるダメージが10％増加する",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が15%上昇(進化後+)パーティメンバーがボスに対して与えるダメージが10％増加する",
 			"PavAnum": 3,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -15361,11 +15380,11 @@
 			"atk": 5580,
 			"def": 2400,
 			"agi": 695,
-			"skill": "夢幻亂華掌・剛布",
+			"skill": "夢幻乱華掌・剛布",
 			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2.1,
-			"PavSkill": "戦闘中、1ターン目の自身の戦闘スキル発動率が1.5倍になる(進化後+)パーティメンバーがボスに対して與えるダメージが10％増加する",
+			"PavSkill": "戦闘中、1ターン目の自身の戦闘スキル発動率が1.5倍になる(進化後+)パーティメンバーがボスに対して与えるダメージが10％増加する",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -15389,14 +15408,14 @@
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.1,
-			"PavSkill": "戦闘中、自身を含む2人の攻撃力が15%上昇(進化後+)害蟲パネルの巣を通過するとパーティメンバー全員のHPが10%回覆する",
+			"PavSkill": "戦闘中、自身を含む2人の攻撃力が15%上昇(進化後+)害虫パネルの巣を通過するとパーティメンバー全員のHPが10%回復する",
 			"PavAnum": 2,
 			"PavApow": 15,
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 0
 		},
 		{
@@ -15413,7 +15432,7 @@
 			"skillCha": 36,
 			"skillTar": 0.3,
 			"skillDam": 0.8,
-			"PavSkill": "敵2體の攻撃力を15％低下させる(進化後+)戦闘中、パーティメンバーの攻撃力が10％上昇",
+			"PavSkill": "敵2体の攻撃力を15％低下させる(進化後+)戦闘中、パーティメンバーの攻撃力が10％上昇",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -15437,7 +15456,7 @@
 			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が10%上昇(進化後+)害蟲パネルの巣を通過するとパーティメンバー全員のHPが10%回覆する",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が10%上昇(進化後+)害虫パネルの巣を通過するとパーティメンバー全員のHPが10%回復する",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -15468,7 +15487,7 @@
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 0
 		},
 		{
@@ -15492,7 +15511,7 @@
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 1
 		},
 		{
@@ -15581,7 +15600,7 @@
 			"skillCha": 34,
 			"skillTar": 1,
 			"skillDam": 2.3,
-			"PavSkill": "パーティの受ける回覆パネルの効果が2倍になる(進化後+)討伐中のソーラードライブ発動回數に応じて、自身の攻撃力が10％ずつ上昇（上限30％）",
+			"PavSkill": "パーティの受ける回復パネルの効果が2倍になる(進化後+)討伐中のソーラードライブ発動回数に応じて、自身の攻撃力が10％ずつ上昇（上限30％）",
 			"PavAnum": 1,
 			"PavApow": 30,
 			"PavDnum": 0,
@@ -15605,7 +15624,7 @@
 			"skillCha": 28,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "害蟲の巣パネルを通過するとパーティメンバーのHP10％回覆(進化後+)戦闘中、パーティメンバーのスキル発動率がそれぞれ好感度に応じて最大1.2倍上昇",
+			"PavSkill": "害虫の巣パネルを通過するとパーティメンバーのHP10％回復(進化後+)戦闘中、パーティメンバーのスキル発動率がそれぞれ好感度に応じて最大1.2倍上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -15653,7 +15672,7 @@
 			"skillCha": 30,
 			"skillTar": 5,
 			"skillDam": 1.9,
-			"PavSkill": "移動中にチビ害蟲から受けるダメージを50％軽減(進化後+)戦闘中、自身を含む3人の攻撃力が15％上昇",
+			"PavSkill": "移動中にチビ害虫から受けるダメージを50％軽減(進化後+)戦闘中、自身を含む3人の攻撃力が15％上昇",
 			"PavAnum": 3,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -15677,14 +15696,14 @@
 			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2.1,
-			"PavSkill": "討伐開始時にノーマルパネルを2個～3個チョコレート回覆パネルに変化する(重複不可)(進化後+)戦闘中、自身を含む3人の攻撃力が10％上昇",
+			"PavSkill": "討伐開始時にノーマルパネルを2個～3個チョコレート回復パネルに変化する(重複不可)(進化後+)戦闘中、自身を含む3人の攻撃力が10％上昇",
 			"PavAnum": 3,
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 1
 		},
 		{
@@ -15701,7 +15720,7 @@
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.2,
-			"PavSkill": "害蟲の巣パネルを通過するとパーティメンバーの攻撃力が3%アップ。(最大12%まで)(進化後+)スキルを使用する敵2體のスキル発動率を10%低下させる",
+			"PavSkill": "害虫の巣パネルを通過するとパーティメンバーの攻撃力が3%アップ。(最大12%まで)(進化後+)スキルを使用する敵2体のスキル発動率を10%低下させる",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -15725,7 +15744,7 @@
 			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大10％上昇(進化後+)戦闘中、一定確率で敵の攻撃を迴避",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大10％上昇(進化後+)戦闘中、一定確率で敵の攻撃を回避",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
@@ -15773,7 +15792,7 @@
 			"skillCha": 30,
 			"skillTar": 1,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が10%上昇(進化後+)戦闘中、自身を含む4人の防禦力が10%上昇",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が10%上昇(進化後+)戦闘中、自身を含む4人の防御力が10%上昇",
 			"PavAnum": 3,
 			"PavApow": 10,
 			"PavDnum": 4,
@@ -15845,14 +15864,14 @@
 			"skillCha": 28,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "戦闘中、一定確率で敵の攻撃を迴避する(進化後+)戦闘中、自身を含む3人の攻撃力が10%上昇",
+			"PavSkill": "戦闘中、一定確率で敵の攻撃を回避する(進化後+)戦闘中、自身を含む3人の攻撃力が10%上昇",
 			"PavAnum": 3,
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 0
 		},
 		{
@@ -15917,14 +15936,14 @@
 			"skillCha": 28,
 			"skillTar": 2,
 			"skillDam": 2,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が10%上昇(進化後+)パーティの受ける回覆パネルの効果が3倍になる",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が10%上昇(進化後+)パーティの受ける回復パネルの効果が3倍になる",
 			"PavAnum": 3,
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 0
 		},
 		{
@@ -15938,17 +15957,17 @@
 			"def": 2500,
 			"agi": 620,
 			"skill": "歌留多旋風",
-			"skillCha": 34,
+			"skillCha": 32,
 			"skillTar": 5,
 			"skillDam": 1.7,
-			"PavSkill": "戦闘中、一定確率で敵の攻撃を迴避する(進化後+)戦闘中、パーティメンバーの攻撃力が10%上昇",
+			"PavSkill": "戦闘中、一定確率で敵の攻撃を回避する(進化後+)戦闘中、パーティメンバーの攻撃力が10%上昇",
 			"PavAnum": 5,
 			"PavApow": 10,
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 1
 		},
 		{
@@ -15985,7 +16004,7 @@
 			"atk": 5690,
 			"def": 2468,
 			"agi": 600,
-			"skill": "虛言の裡には銃三丁",
+			"skill": "虚言の裏には銃三丁",
 			"skillCha": 36,
 			"skillTar": 0.3,
 			"skillDam": 0.8,
@@ -16022,6 +16041,78 @@
 			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
 			"kacha": 0
+		},
+		{
+			"star": 5,
+			"id": "179",
+			"elem": "魔",
+			"name": "ボタン",
+			"nation": "ブロッサムヒル",
+			"hp": 12680,
+			"atk": 5488,
+			"def": 2406,
+			"agi": 400,
+			"skill": "閻玉大皇輪",
+			"skillCha": 34,
+			"skillTar": 2,
+			"skillDam": 2,
+			"PavSkill": "光GAUGEが20％溜まった状態から討伐開始(進化後+)戦闘中、パーティメンバーの攻撃力が10%上昇",
+			"PavAnum": 5,
+			"PavApow": 10,
+			"PavDnum": 0,
+			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
+			"fav": "ケーキ",
+			"kacha": 1
+		},
+		{
+			"star": 5,
+			"id": "180",
+			"elem": "突",
+			"name": "ユリ",
+			"nation": "バナナオーシャン",
+			"hp": 12400,
+			"atk": 5520,
+			"def": 2398,
+			"agi": 700,
+			"skill": "煌きのテルツェット",
+			"skillCha": 36,
+			"skillTar": 0.3,
+			"skillDam": 0.8,
+			"PavSkill": "討伐中のソーラードライブ発動回数に応じて、自身の攻撃力が10%ずつ上昇（上限30%）(進化後+)戦闘中、パーティメンバーのスキル発動率がそれぞれの好感度に応じて最大1.2倍上昇",
+			"PavAnum": 1,
+			"PavApow": 30,
+			"PavDnum": 0,
+			"PavDpow": 0,
+			"PavSnum": 5,
+			"PavSpow": 1.2,
+			"fav": "宝石",
+			"kacha": 1
+		},
+		{
+			"star": 5,
+			"id": "182",
+			"elem": "打",
+			"name": "フクジュソウ",
+			"nation": "ブロッサムヒル",
+			"hp": 12100,
+			"atk": 4650,
+			"def": 2108,
+			"agi": 550,
+			"skill": "回転妙技・翅渡り",
+			"skillCha": 30,
+			"skillTar": 1,
+			"skillDam": 2.4,
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が10%上昇(進化後+)パーティが移動力増減パネルの効果を受けなくなる",
+			"PavAnum": 3,
+			"PavApow": 10,
+			"PavDnum": 0,
+			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
+			"fav": "ぬいぐるみ",
+			"kacha": 0
 		}
 	];
 
@@ -16044,14 +16135,14 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、自身を含む2人の攻撃力が35%上昇(進化後+)戦闘中、パーティメンバーの防禦力が15%上昇",
+			"PavSkill": "戦闘中、自身を含む2人の攻撃力が35%上昇(進化後+)戦闘中、パーティメンバーの防御力が15%上昇",
 			"PavAnum": 2,
 			"PavApow": 35,
 			"PavDnum": 5,
 			"PavDpow": 15,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 1
 		},
 		{
@@ -16092,14 +16183,14 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が27%上昇(進化後+)光GAUGEが50%溜まった狀態から討伐開始",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が27%上昇(進化後+)光GAUGEが50%溜まった状態から討伐開始",
 			"PavAnum": 3,
 			"PavApow": 27,
 			"PavDnum": 0,
 			"PavDpow": 0,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 1
 		},
 		{
@@ -16164,7 +16255,7 @@
 			"skillCha": 36,
 			"skillTar": 1,
 			"skillDam": 3.8,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)光GAUGEが50%溜まった狀態から討伐開始",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)光GAUGEが50%溜まった状態から討伐開始",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -16208,7 +16299,7 @@
 			"atk": 6528,
 			"def": 2370,
 			"agi": 475,
-			"skill": "黒剣・亂れ黒華",
+			"skill": "黒剣・乱れ黒華",
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.4,
@@ -16236,7 +16327,7 @@
 			"skillCha": 36,
 			"skillTar": 1,
 			"skillDam": 3.6,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大20%上昇(進化後+)戦闘中、パーティメンバーの防禦力が15％上昇",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大20%上昇(進化後+)戦闘中、パーティメンバーの防御力が15％上昇",
 			"PavAnum": 5,
 			"PavApow": 20,
 			"PavDnum": 5,
@@ -16260,7 +16351,7 @@
 			"skillCha": 34,
 			"skillTar": 0.3,
 			"skillDam": 1.8,
-			"PavSkill": "攻撃を受けた時、100%の確率で防禦力の2倍を攻撃力に転換し反撃する(進化後+)戦闘中、パーティメンバーの防禦力が15%上昇",
+			"PavSkill": "攻撃を受けた時、100%の確率で防御力の2倍を攻撃力に転換し反撃する(進化後+)戦闘中、パーティメンバーの防御力が15%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 5,
@@ -16284,7 +16375,7 @@
 			"skillCha": 34,
 			"skillTar": 2,
 			"skillDam": 2.2,
-			"PavSkill": "討伐中のソーラードライブ発動回數に応じて、自身の攻撃力が14％ずつ上昇（上限42％）(進化後+)戦闘中、ソーラードライブの効果が40%上昇",
+			"PavSkill": "討伐中のソーラードライブ発動回数に応じて、自身の攻撃力が14％ずつ上昇（上限42％）(進化後+)戦闘中、ソーラードライブの効果が40%上昇",
 			"PavAnum": 1,
 			"PavApow": 42,
 			"PavDnum": 0,
@@ -16308,7 +16399,7 @@
 			"skillCha": 40,
 			"skillTar": 2,
 			"skillDam": 2.1,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が30%上昇(進化後+)戦闘中、パーティメンバー全員の防禦力が14%上昇",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が30%上昇(進化後+)戦闘中、パーティメンバー全員の防御力が14%上昇",
 			"PavAnum": 3,
 			"PavApow": 30,
 			"PavDnum": 5,
@@ -16332,14 +16423,14 @@
 			"skillCha": 36,
 			"skillTar": 1,
 			"skillDam": 3.6,
-			"PavSkill": "戦闘中、自身を含む２人の攻撃力が35%上昇(進化後+)戦闘中、自身を含む３人の防禦力が25%上昇",
+			"PavSkill": "戦闘中、自身を含む２人の攻撃力が35%上昇(進化後+)戦闘中、自身を含む３人の防御力が25%上昇",
 			"PavAnum": 2,
 			"PavApow": 35,
 			"PavDnum": 3,
 			"PavDpow": 25,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 1
 		},
 		{
@@ -16356,7 +16447,7 @@
 			"skillCha": 30,
 			"skillTar": 2,
 			"skillDam": 2.5,
-			"PavSkill": "敵全體の攻撃力を15%低下させる(進化後+)レイドボス戦において、自身を含む3人の攻撃力が40%上昇",
+			"PavSkill": "敵全体の攻撃力を15%低下させる(進化後+)レイドボス戦において、自身を含む3人の攻撃力が40%上昇",
 			"PavAnum": 0,
 			"PavApow": 0,
 			"PavDnum": 0,
@@ -16376,11 +16467,11 @@
 			"atk": 6800,
 			"def": 2440,
 			"agi": 550,
-			"skill": "愛染一刀流奧義・輝目五閃",
+			"skill": "愛染一刀流奥義・輝目五閃",
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大20%上昇(進化後+)害蟲の巣パネルを通過するとパーティメンバーのHPが10%回覆する",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力がそれぞれの好感度に応じて最大20%上昇(進化後+)害虫の巣パネルを通過するとパーティメンバーのHPが10%回復する",
 			"PavAnum": 5,
 			"PavApow": 20,
 			"PavDnum": 0,
@@ -16404,7 +16495,7 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、一定確率で敵の攻撃を迴避する",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、一定確率で敵の攻撃を回避する",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -16448,18 +16539,18 @@
 			"atk": 6300,
 			"def": 2340,
 			"agi": 650,
-			"skill": "絶斧・斷刀赤腳",
+			"skill": "絶斧・断刀赤脚",
 			"skillCha": 32,
 			"skillTar": 5,
 			"skillDam": 2.3,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、パーティメンバーの防禦力が15%上昇",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、パーティメンバーの防御力が15%上昇",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 5,
 			"PavDpow": 15,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 1
 		},
 		{
@@ -16476,7 +16567,7 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、自身を含む4人の攻撃力が18%上昇(進化後+)戦闘中、一定確率で敵の攻撃を迴避する",
+			"PavSkill": "戦闘中、自身を含む4人の攻撃力が18%上昇(進化後+)戦闘中、一定確率で敵の攻撃を回避する",
 			"PavAnum": 4,
 			"PavApow": 18,
 			"PavDnum": 0,
@@ -16500,7 +16591,7 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)敵全體の攻撃力を15%低下させる",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)敵全体の攻撃力を15%低下させる",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -16548,7 +16639,7 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、自身を含む3人の攻撃力が30％上昇(進化後+)攻撃を受けた時、100％の確率で防禦力の2倍を攻撃力に転換し反撃する",
+			"PavSkill": "戦闘中、自身を含む3人の攻撃力が30％上昇(進化後+)攻撃を受けた時、100％の確率で防御力の2倍を攻撃力に転換し反撃する",
 			"PavAnum": 3,
 			"PavApow": 30,
 			"PavDnum": 0,
@@ -16596,7 +16687,7 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、一定確率で敵の攻撃を迴避する",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、一定確率で敵の攻撃を回避する",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -16620,14 +16711,14 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、自身を含む三人の防禦力が25%上昇",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)戦闘中、自身を含む三人の防御力が25%上昇",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 3,
 			"PavDpow": 25,
 			"PavSnum": 0,
 			"PavSpow": 1,
-			"fav": "寶石",
+			"fav": "宝石",
 			"kacha": 1
 		},
 		{
@@ -16644,7 +16735,7 @@
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
-			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)攻撃を受けた時、100%の確率で反撃し、防禦力を攻撃力に変換し２倍のダメージを與える",
+			"PavSkill": "戦闘中、パーティメンバーの攻撃力が15%上昇(進化後+)攻撃を受けた時、100%の確率で反撃し、防御力を攻撃力に変換し２倍のダメージを与える",
 			"PavAnum": 5,
 			"PavApow": 15,
 			"PavDnum": 0,
@@ -16688,7 +16779,7 @@
 			"atk": 6152,
 			"def": 2570,
 			"agi": 550,
-			"skill": "壽ぎ追い羽子",
+			"skill": "寿ぎ追い羽子",
 			"skillCha": 34,
 			"skillTar": 5,
 			"skillDam": 2.2,
@@ -16700,6 +16791,30 @@
 			"PavSnum": 0,
 			"PavSpow": 1,
 			"fav": "ぬいぐるみ",
+			"kacha": 1
+		},
+		{
+			"star": 6,
+			"id": "181",
+			"elem": "斬",
+			"name": "シャクヤク",
+			"nation": "リリィウッド",
+			"hp": 15580,
+			"atk": 6390,
+			"def": 2120,
+			"agi": 680,
+			"skill": "天薙術・白芍旋",
+			"skillCha": 34,
+			"skillTar": 5,
+			"skillDam": 2.2,
+			"PavSkill": "戦闘中、自身を含む4人の攻撃力が18%上昇(進化後+)戦闘中、一定確率で敵の攻撃を回避する",
+			"PavAnum": 4,
+			"PavApow": 18,
+			"PavDnum": 0,
+			"PavDpow": 0,
+			"PavSnum": 0,
+			"PavSpow": 1,
+			"fav": "本",
 			"kacha": 1
 		}
 	];
@@ -17059,7 +17174,7 @@
 
 	'use strict';
 
-	module.exports = __webpack_require__(74);
+	module.exports = __webpack_require__(73);
 
 
 /***/ },
@@ -17648,7 +17763,7 @@
 	    baseFlatten = __webpack_require__(134),
 	    isArrayLike = __webpack_require__(23),
 	    isObjectLike = __webpack_require__(24),
-	    restParam = __webpack_require__(66);
+	    restParam = __webpack_require__(65);
 
 	/**
 	 * Creates an array of unique `array` values not included in the other
@@ -17741,7 +17856,7 @@
 /* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var keys = __webpack_require__(67);
+	var keys = __webpack_require__(66);
 
 	/**
 	 * A specialized version of `_.assign` for customizing assigned values without
@@ -17780,7 +17895,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseCopy = __webpack_require__(132),
-	    keys = __webpack_require__(67);
+	    keys = __webpack_require__(66);
 
 	/**
 	 * The base implementation of `_.assign` without support for argument juggling,
@@ -18092,7 +18207,7 @@
 
 	var bindCallback = __webpack_require__(137),
 	    isIterateeCall = __webpack_require__(144),
-	    restParam = __webpack_require__(66);
+	    restParam = __webpack_require__(65);
 
 	/**
 	 * Creates a `_.assign`, `_.defaults`, or `_.merge` function.
@@ -18601,7 +18716,7 @@
 	var ReactMount = __webpack_require__(6);
 
 	var findDOMNode = __webpack_require__(52);
-	var focusNode = __webpack_require__(98);
+	var focusNode = __webpack_require__(97);
 
 	var Mixin = {
 	  componentDidMount: function () {
@@ -19049,7 +19164,7 @@
 
 	'use strict';
 
-	var CSSProperty = __webpack_require__(68);
+	var CSSProperty = __webpack_require__(67);
 	var ExecutionEnvironment = __webpack_require__(5);
 	var ReactPerf = __webpack_require__(9);
 
@@ -19238,7 +19353,7 @@
 
 	var getEventTarget = __webpack_require__(55);
 	var isEventSupported = __webpack_require__(58);
-	var isTextInputElement = __webpack_require__(95);
+	var isTextInputElement = __webpack_require__(94);
 	var keyOf = __webpack_require__(15);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
@@ -19588,7 +19703,7 @@
 
 	var createNodesFromMarkup = __webpack_require__(212);
 	var emptyFunction = __webpack_require__(11);
-	var getMarkupWrap = __webpack_require__(100);
+	var getMarkupWrap = __webpack_require__(99);
 	var invariant = __webpack_require__(2);
 
 	var OPEN_TAG_NAME_EXP = /^(<[^ \/>]+)/;
@@ -19896,7 +20011,7 @@
 	'use strict';
 
 	var EventConstants = __webpack_require__(12);
-	var ReactErrorUtils = __webpack_require__(83);
+	var ReactErrorUtils = __webpack_require__(82);
 
 	var invariant = __webpack_require__(2);
 	var warning = __webpack_require__(4);
@@ -20107,7 +20222,7 @@
 	var PooledClass = __webpack_require__(14);
 
 	var assign = __webpack_require__(3);
-	var getTextContentAccessor = __webpack_require__(94);
+	var getTextContentAccessor = __webpack_require__(93);
 
 	/**
 	 * This helper class stores information about text content of a target node,
@@ -20440,7 +20555,7 @@
 
 	'use strict';
 
-	var ReactDOM = __webpack_require__(74);
+	var ReactDOM = __webpack_require__(73);
 	var ReactDOMServer = __webpack_require__(173);
 	var ReactIsomorphic = __webpack_require__(180);
 
@@ -21423,7 +21538,7 @@
 	var ReactDOMButton = __webpack_require__(167);
 	var ReactDOMInput = __webpack_require__(170);
 	var ReactDOMOption = __webpack_require__(171);
-	var ReactDOMSelect = __webpack_require__(76);
+	var ReactDOMSelect = __webpack_require__(75);
 	var ReactDOMTextarea = __webpack_require__(174);
 	var ReactMount = __webpack_require__(6);
 	var ReactMultiChild = __webpack_require__(181);
@@ -21438,7 +21553,7 @@
 	var keyOf = __webpack_require__(15);
 	var setInnerHTML = __webpack_require__(39);
 	var setTextContent = __webpack_require__(59);
-	var shallowEqual = __webpack_require__(101);
+	var shallowEqual = __webpack_require__(100);
 	var validateDOMNesting = __webpack_require__(62);
 	var warning = __webpack_require__(4);
 
@@ -22380,7 +22495,7 @@
 	'use strict';
 
 	var ReactElement = __webpack_require__(7);
-	var ReactElementValidator = __webpack_require__(80);
+	var ReactElementValidator = __webpack_require__(79);
 
 	var mapObject = __webpack_require__(218);
 
@@ -22720,8 +22835,8 @@
 
 	'use strict';
 
-	var ReactChildren = __webpack_require__(71);
-	var ReactDOMSelect = __webpack_require__(76);
+	var ReactChildren = __webpack_require__(70);
+	var ReactDOMSelect = __webpack_require__(75);
 
 	var assign = __webpack_require__(3);
 	var warning = __webpack_require__(4);
@@ -22815,7 +22930,7 @@
 	var ExecutionEnvironment = __webpack_require__(5);
 
 	var getNodeForCharacterOffset = __webpack_require__(205);
-	var getTextContentAccessor = __webpack_require__(94);
+	var getTextContentAccessor = __webpack_require__(93);
 
 	/**
 	 * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -23029,7 +23144,7 @@
 
 	'use strict';
 
-	var ReactDefaultInjection = __webpack_require__(79);
+	var ReactDefaultInjection = __webpack_require__(78);
 	var ReactServerRendering = __webpack_require__(186);
 	var ReactVersion = __webpack_require__(51);
 
@@ -23669,7 +23784,7 @@
 
 	'use strict';
 
-	var EventListener = __webpack_require__(96);
+	var EventListener = __webpack_require__(95);
 	var ExecutionEnvironment = __webpack_require__(5);
 	var PooledClass = __webpack_require__(14);
 	var ReactInstanceHandles = __webpack_require__(21);
@@ -23887,12 +24002,12 @@
 	var DOMProperty = __webpack_require__(16);
 	var EventPluginHub = __webpack_require__(25);
 	var ReactComponentEnvironment = __webpack_require__(48);
-	var ReactClass = __webpack_require__(72);
-	var ReactEmptyComponent = __webpack_require__(81);
+	var ReactClass = __webpack_require__(71);
+	var ReactEmptyComponent = __webpack_require__(80);
 	var ReactBrowserEventEmitter = __webpack_require__(32);
-	var ReactNativeComponent = __webpack_require__(87);
+	var ReactNativeComponent = __webpack_require__(86);
 	var ReactPerf = __webpack_require__(9);
-	var ReactRootIndex = __webpack_require__(90);
+	var ReactRootIndex = __webpack_require__(89);
 	var ReactUpdates = __webpack_require__(10);
 
 	var ReactInjection = {
@@ -23927,13 +24042,13 @@
 
 	'use strict';
 
-	var ReactChildren = __webpack_require__(71);
-	var ReactComponent = __webpack_require__(73);
-	var ReactClass = __webpack_require__(72);
+	var ReactChildren = __webpack_require__(70);
+	var ReactComponent = __webpack_require__(72);
+	var ReactClass = __webpack_require__(71);
 	var ReactDOMFactories = __webpack_require__(169);
 	var ReactElement = __webpack_require__(7);
-	var ReactElementValidator = __webpack_require__(80);
-	var ReactPropTypes = __webpack_require__(89);
+	var ReactElementValidator = __webpack_require__(79);
+	var ReactPropTypes = __webpack_require__(88);
 	var ReactVersion = __webpack_require__(51);
 
 	var assign = __webpack_require__(3);
@@ -24009,7 +24124,7 @@
 	'use strict';
 
 	var ReactComponentEnvironment = __webpack_require__(48);
-	var ReactMultiChildUpdateTypes = __webpack_require__(86);
+	var ReactMultiChildUpdateTypes = __webpack_require__(85);
 
 	var ReactCurrentOwner = __webpack_require__(13);
 	var ReactReconciler = __webpack_require__(17);
@@ -24610,8 +24725,8 @@
 	var CallbackQueue = __webpack_require__(44);
 	var PooledClass = __webpack_require__(14);
 	var ReactBrowserEventEmitter = __webpack_require__(32);
-	var ReactDOMFeatureFlags = __webpack_require__(75);
-	var ReactInputSelection = __webpack_require__(84);
+	var ReactDOMFeatureFlags = __webpack_require__(74);
+	var ReactInputSelection = __webpack_require__(83);
 	var Transaction = __webpack_require__(36);
 
 	var assign = __webpack_require__(3);
@@ -24873,10 +24988,10 @@
 	 */
 	'use strict';
 
-	var ReactDefaultBatchingStrategy = __webpack_require__(78);
+	var ReactDefaultBatchingStrategy = __webpack_require__(77);
 	var ReactElement = __webpack_require__(7);
 	var ReactInstanceHandles = __webpack_require__(21);
-	var ReactMarkupChecksum = __webpack_require__(85);
+	var ReactMarkupChecksum = __webpack_require__(84);
 	var ReactServerBatchingStrategy = __webpack_require__(185);
 	var ReactServerRenderingTransaction = __webpack_require__(187);
 	var ReactUpdates = __webpack_require__(10);
@@ -25189,13 +25304,13 @@
 	var EventConstants = __webpack_require__(12);
 	var EventPropagators = __webpack_require__(26);
 	var ExecutionEnvironment = __webpack_require__(5);
-	var ReactInputSelection = __webpack_require__(84);
+	var ReactInputSelection = __webpack_require__(83);
 	var SyntheticEvent = __webpack_require__(18);
 
-	var getActiveElement = __webpack_require__(99);
-	var isTextInputElement = __webpack_require__(95);
+	var getActiveElement = __webpack_require__(98);
+	var isTextInputElement = __webpack_require__(94);
 	var keyOf = __webpack_require__(15);
-	var shallowEqual = __webpack_require__(101);
+	var shallowEqual = __webpack_require__(100);
 
 	var topLevelTypes = EventConstants.topLevelTypes;
 
@@ -25427,7 +25542,7 @@
 	'use strict';
 
 	var EventConstants = __webpack_require__(12);
-	var EventListener = __webpack_require__(96);
+	var EventListener = __webpack_require__(95);
 	var EventPropagators = __webpack_require__(26);
 	var ReactMount = __webpack_require__(6);
 	var SyntheticClipboardEvent = __webpack_require__(192);
@@ -26481,7 +26596,7 @@
 
 	'use strict';
 
-	var CSSProperty = __webpack_require__(68);
+	var CSSProperty = __webpack_require__(67);
 
 	var isUnitlessNumber = CSSProperty.isUnitlessNumber;
 
@@ -27103,7 +27218,7 @@
 	var ExecutionEnvironment = __webpack_require__(5);
 
 	var createArrayFromMixed = __webpack_require__(211);
-	var getMarkupWrap = __webpack_require__(100);
+	var getMarkupWrap = __webpack_require__(99);
 	var invariant = __webpack_require__(2);
 
 	/**
