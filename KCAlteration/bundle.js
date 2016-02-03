@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "987fcbb067d56c4e91e2"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "161523c6608c49663678"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -13776,11 +13776,11 @@
 		},
 	
 		handleChange: function handleChange(event) {
-			var trid = this.props.tableId + event.target.id.slice(-2);
+			var trId = this.props.tableId + event.target.id.slice(-2);
 			if (event.target.checked) {
-				document.getElementById(trid).style.backgroundColor = "#ccccff";
+				document.getElementById(trId).style.backgroundColor = "#ccccff";
 			} else {
-				document.getElementById(trid).style.backgroundColor = "white";
+				document.getElementById(trId).style.backgroundColor = "white";
 			}
 		},
 	
@@ -14206,6 +14206,12 @@
 			CBtoggle: ReactPropTypes.array.isRequired
 		},
 	
+		getInitialState: function getInitialState() {
+			return {
+				toggleAll: true
+			};
+		},
+	
 		handleToggle: function handleToggle(event) {
 			var CBtoggle = this.props.CBtoggle;
 			var CBnumber = parseInt(event.target.id.slice(8));
@@ -14219,6 +14225,27 @@
 			AppAction.CBtoggleC(CBtoggle);
 		},
 	
+		handleToggleAll: function handleToggleAll() {
+			var CBtoggle = this.props.CBtoggle;
+	
+			if (this.state.toggleAll == true) {
+				this.setState({
+					toggleAll: false
+				});
+				for (var i = 0; i < CBtoggle.length; i++) {
+					CBtoggle[i] = 0;
+				}
+			} else {
+				this.setState({
+					toggleAll: true
+				});
+				for (var i = 0; i < CBtoggle.length; i++) {
+					CBtoggle[i] = 1;
+				}
+			}
+			AppAction.CBtoggleC(CBtoggle);
+		},
+	
 		render: function render() {
 			// ===============================================================================
 			// Generate checkbox list
@@ -14229,6 +14256,23 @@
 			var classTemp = "";
 			var checkTemp;
 			var checkOutput = [];
+	
+			if (this.state.toggleAll == true) {
+				classTemp = buttonClassActive;
+			} else {
+				classTemp = buttonClassInactive;
+			}
+	
+			checkTemp = React.createElement(
+				"div",
+				null,
+				React.createElement(
+					"button",
+					{ className: classTemp, onClick: this.handleToggleAll },
+					"全選"
+				)
+			);
+			checkOutput.push(checkTemp);
 	
 			for (var i = 0; i < Constants.checkboxlist.length; i++) {
 				idStringTemp = "checkbox" + i.toString();
