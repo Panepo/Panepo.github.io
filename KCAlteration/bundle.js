@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b8ce3865a08eab6972e2"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4b6365a1861d77296f80"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -13791,60 +13791,60 @@
 			var CheckString = "";
 			var KeyString = "";
 	
-			for (var i = 0; i < this.props.list.length; i++) {
-				TableData[i] = [];
-				for (var j = 0; j < this.props.list[i].length; j++) {
-					for (var k = 0; k < Constants.checkboxlist.length; k++) {
-						if (this.props.list[i][j][0] == Constants.checkboxlist[k]) {
-							ImgString = "./img/sit" + (k + 1) + ".png";
-						}
+			//for ( var i = 0; i < this.props.list.length; i++) {
+			TableData[this.props.day] = [];
+			for (var j = 0; j < this.props.list[this.props.day].length; j++) {
+				for (var k = 0; k < Constants.checkboxlist.length; k++) {
+					if (this.props.list[this.props.day][j][0] == Constants.checkboxlist[k]) {
+						ImgString = "./img/sit" + (k + 1) + ".png";
 					}
-	
-					for (var k = 0; k < Constants.AAlist.length; k++) {
-						if (this.props.list[i][j][1] == Constants.AAlist[k]) {
-							ImgString = "./img/sit0.png";
-						}
-					}
-	
-					CheckString = this.props.tableId + " row" + i.toString() + j.toString();
-					KeyString = this.props.tableId + i.toString() + j.toString();
-	
-					TableCont = React.createElement(
-						"tr",
-						{ key: KeyString, id: KeyString },
-						React.createElement(
-							"td",
-							{ className: "th0" },
-							React.createElement(
-								"label",
-								{ className: "mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select", htmlFor: CheckString },
-								React.createElement("input", { type: "checkbox", id: CheckString, className: "mdl-checkbox__input", onChange: this.handleChange })
-							)
-						),
-						React.createElement(
-							"td",
-							{ className: "th1" },
-							React.createElement("img", { src: ImgString, height: "30", width: "30" })
-						),
-						React.createElement(
-							"td",
-							{ id: KeyString, className: "th2" },
-							this.props.list[i][j][0]
-						),
-						React.createElement(
-							"td",
-							{ id: KeyString, className: "th3" },
-							this.props.list[i][j][1]
-						),
-						React.createElement(
-							"td",
-							{ id: KeyString, className: "th4 mdl-data-table__cell--non-numeric" },
-							this.props.list[i][j][2]
-						)
-					);
-					TableData[i].push(TableCont);
 				}
+	
+				for (var k = 0; k < Constants.AAlist.length; k++) {
+					if (this.props.list[this.props.day][j][1] == Constants.AAlist[k]) {
+						ImgString = "./img/sit0.png";
+					}
+				}
+	
+				CheckString = this.props.tableId + " row" + this.props.day.toString() + j.toString();
+				KeyString = this.props.tableId + this.props.day.toString() + j.toString();
+	
+				TableCont = React.createElement(
+					"tr",
+					{ key: KeyString, id: KeyString },
+					React.createElement(
+						"td",
+						{ className: "th0" },
+						React.createElement(
+							"label",
+							{ className: "mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select", htmlFor: CheckString },
+							React.createElement("input", { type: "checkbox", id: CheckString, className: "mdl-checkbox__input", onChange: this.handleChange })
+						)
+					),
+					React.createElement(
+						"td",
+						{ className: "th1" },
+						React.createElement("img", { src: ImgString, height: "30", width: "30" })
+					),
+					React.createElement(
+						"td",
+						{ id: KeyString, className: "th2" },
+						this.props.list[this.props.day][j][0]
+					),
+					React.createElement(
+						"td",
+						{ id: KeyString, className: "th3" },
+						this.props.list[this.props.day][j][1]
+					),
+					React.createElement(
+						"td",
+						{ id: KeyString, className: "th4 mdl-data-table__cell--non-numeric" },
+						this.props.list[this.props.day][j][2]
+					)
+				);
+				TableData[this.props.day].push(TableCont);
 			}
+			//}
 	
 			if (this.props.display === 0 || this.props.list[this.props.day].length === 0) {
 				return null;
