@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ad9a4420a74aaf8b1f9f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b8ce3865a08eab6972e2"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -13778,9 +13778,9 @@
 		handleChange: function handleChange(event) {
 			var trId = this.props.tableId + event.target.id.slice(-2);
 			if (event.target.checked) {
-				document.getElementById(trId).style.backgroundColor = "#ccccff";
+				document.getElementById(trId).style.color = "blue";
 			} else {
-				document.getElementById(trId).style.backgroundColor = "white";
+				document.getElementById(trId).style.color = "black";
 			}
 		},
 	
@@ -13828,17 +13828,17 @@
 						),
 						React.createElement(
 							"td",
-							{ className: "th2" },
+							{ id: KeyString, className: "th2" },
 							this.props.list[i][j][0]
 						),
 						React.createElement(
 							"td",
-							{ className: "th3" },
+							{ id: KeyString, className: "th3" },
 							this.props.list[i][j][1]
 						),
 						React.createElement(
 							"td",
-							{ className: "th4 mdl-data-table__cell--non-numeric" },
+							{ id: KeyString, className: "th4 mdl-data-table__cell--non-numeric" },
 							this.props.list[i][j][2]
 						)
 					);
@@ -13846,7 +13846,9 @@
 				}
 			}
 	
-			if (this.props.display === 1) {
+			if (this.props.display === 0 || this.props.list[this.props.day].length === 0) {
+				return null;
+			} else {
 				return React.createElement(
 					"div",
 					{ className: "AltList" },
@@ -13860,8 +13862,6 @@
 						)
 					)
 				);
-			} else {
-				return null;
 			}
 		}
 	}));
