@@ -20,11 +20,11 @@ circle {
 var w = 1280,
     h = 800;
 
-var nodes = d3.range(300).map(function() { return {radius: Math.random() * 12 + 4}; }),
+var nodes = d3.range(600).map(function() { return {radius: Math.random() * 12 + 4}; }),
     color = d3.scale.category10();
 
 var force = d3.layout.force()
-    .gravity(0.05)
+    .gravity(0.03)
     .charge(function(d, i) { return i ? 0 : -2000; })
     .nodes(nodes)
     .size([w, h]);
@@ -43,8 +43,7 @@ svg.selectAll("circle")
     .data(nodes.slice(1))
   .enter().append("svg:circle")
     .attr("r", function(d) { return d.radius - 2; })
-		.style("fill", "url(#grad1)" );
-    //.style("fill", function(d, i) { return color(i % 3); });
+    .style("fill", function(d, i) { return "url(#grad" + (i % 3) + ")" ; });
 
 force.on("tick", function(e) {
   var q = d3.geom.quadtree(nodes),
@@ -101,6 +100,16 @@ function collide(node) {
 					<stop offset="0%" style="stop-color:rgb(255,255,255);
 					stop-opacity:0" />
 					<stop offset="100%" style="stop-color:rgb(102,204,255);stop-opacity:1" />
+				</radialGradient>
+				<radialGradient id="grad2" cx="30%" cy="30%" r="50%" fx="50%" fy="50%">
+					<stop offset="0%" style="stop-color:rgb(255,255,255);
+					stop-opacity:0" />
+					<stop offset="100%" style="stop-color:rgb(0,255,0);stop-opacity:1" />
+				</radialGradient>
+				<radialGradient id="grad0" cx="30%" cy="30%" r="50%" fx="50%" fy="50%">
+					<stop offset="0%" style="stop-color:rgb(255,255,255);
+					stop-opacity:0" />
+					<stop offset="100%" style="stop-color:rgb(255,255,0);stop-opacity:1" />
 				</radialGradient>
 			</defs>
 		</svg>
