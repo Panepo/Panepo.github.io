@@ -19,6 +19,7 @@
 
 .thumbnail:hover {
   position:relative;
+	left:20px;
   width:70px;
   height:auto;
   display:block;
