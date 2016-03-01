@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4b6365a1861d77296f80"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "16cb2a41312d4ae465d4"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -13217,11 +13217,6 @@
 				],
 				[
 					"ソナー",
-					"三式水中探信儀",
-					"夕張"
-				],
-				[
-					"ソナー",
 					"四式水中聴音機",
 					"香取改"
 				]
@@ -13242,7 +13237,7 @@
 				[
 					"ソナー",
 					"三式水中探信儀",
-					"五十鈴改二"
+					"夕張,五十鈴改二"
 				],
 				[
 					"ソナー",
@@ -13791,17 +13786,15 @@
 			var CheckString = "";
 			var KeyString = "";
 	
-			//for ( var i = 0; i < this.props.list.length; i++) {
-			TableData[this.props.day] = [];
-			for (var j = 0; j < this.props.list[this.props.day].length; j++) {
+			for (var j = 0; j < this.props.list.length; j++) {
 				for (var k = 0; k < Constants.checkboxlist.length; k++) {
-					if (this.props.list[this.props.day][j][0] == Constants.checkboxlist[k]) {
+					if (this.props.list[j][0] == Constants.checkboxlist[k]) {
 						ImgString = "./img/sit" + (k + 1) + ".png";
 					}
 				}
 	
 				for (var k = 0; k < Constants.AAlist.length; k++) {
-					if (this.props.list[this.props.day][j][1] == Constants.AAlist[k]) {
+					if (this.props.list[j][1] == Constants.AAlist[k]) {
 						ImgString = "./img/sit0.png";
 					}
 				}
@@ -13829,24 +13822,23 @@
 					React.createElement(
 						"td",
 						{ id: KeyString, className: "th2" },
-						this.props.list[this.props.day][j][0]
+						this.props.list[j][0]
 					),
 					React.createElement(
 						"td",
 						{ id: KeyString, className: "th3" },
-						this.props.list[this.props.day][j][1]
+						this.props.list[j][1]
 					),
 					React.createElement(
 						"td",
 						{ id: KeyString, className: "th4 mdl-data-table__cell--non-numeric" },
-						this.props.list[this.props.day][j][2]
+						this.props.list[j][2]
 					)
 				);
-				TableData[this.props.day].push(TableCont);
+				TableData.push(TableCont);
 			}
-			//}
 	
-			if (this.props.display === 0 || this.props.list[this.props.day].length === 0) {
+			if (this.props.display === 0 || this.props.list.length === 0) {
 				return null;
 			} else {
 				return React.createElement(
@@ -13858,7 +13850,7 @@
 						React.createElement(
 							"tbody",
 							null,
-							TableData[this.props.day]
+							TableData
 						)
 					)
 				);
@@ -14013,18 +14005,18 @@
 						{ className: TableClass },
 						TableHead
 					),
-					React.createElement(AltList, { day: i, list: data[0], display: this.props.CBtoggle[0], tableId: "0", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[1], display: this.props.CBtoggle[1], tableId: "1", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[2], display: this.props.CBtoggle[2], tableId: "2", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[3], display: this.props.CBtoggle[3], tableId: "3", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[4], display: this.props.CBtoggle[4], tableId: "4", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[5], display: this.props.CBtoggle[5], tableId: "5", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[6], display: this.props.CBtoggle[6], tableId: "6", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[7], display: this.props.CBtoggle[7], tableId: "7", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[8], display: this.props.CBtoggle[8], tableId: "8", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[9], display: this.props.CBtoggle[9], tableId: "9", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[10], display: this.props.CBtoggle[10], tableId: "10", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[11], display: this.props.CBtoggle[11], tableId: "11", tableClass: TableClass })
+					React.createElement(AltList, { day: i, list: data[0][i], display: this.props.CBtoggle[0], tableId: "0", tableClass: TableClass }),
+					React.createElement(AltList, { day: i, list: data[1][i], display: this.props.CBtoggle[1], tableId: "1", tableClass: TableClass }),
+					React.createElement(AltList, { day: i, list: data[2][i], display: this.props.CBtoggle[2], tableId: "2", tableClass: TableClass }),
+					React.createElement(AltList, { day: i, list: data[3][i], display: this.props.CBtoggle[3], tableId: "3", tableClass: TableClass }),
+					React.createElement(AltList, { day: i, list: data[4][i], display: this.props.CBtoggle[4], tableId: "4", tableClass: TableClass }),
+					React.createElement(AltList, { day: i, list: data[5][i], display: this.props.CBtoggle[5], tableId: "5", tableClass: TableClass }),
+					React.createElement(AltList, { day: i, list: data[6][i], display: this.props.CBtoggle[6], tableId: "6", tableClass: TableClass }),
+					React.createElement(AltList, { day: i, list: data[7][i], display: this.props.CBtoggle[7], tableId: "7", tableClass: TableClass }),
+					React.createElement(AltList, { day: i, list: data[8][i], display: this.props.CBtoggle[8], tableId: "8", tableClass: TableClass }),
+					React.createElement(AltList, { day: i, list: data[9][i], display: this.props.CBtoggle[9], tableId: "9", tableClass: TableClass }),
+					React.createElement(AltList, { day: i, list: data[10][i], display: this.props.CBtoggle[10], tableId: "10", tableClass: TableClass }),
+					React.createElement(AltList, { day: i, list: data[11][i], display: this.props.CBtoggle[11], tableId: "11", tableClass: TableClass })
 				);
 				PanelData.push(PanelCont);
 			}
@@ -14368,11 +14360,13 @@
 	
 	var KCFactoryApp = _wrapComponent("_$KCFactoryApp")(React.createClass({
 		displayName: "KCFactoryApp",
+	
 		getInitialState: function getInitialState() {
 			return {
 				value: AppStore.getValue()
 			};
 		},
+	
 		componentDidMount: function componentDidMount() {
 			AppStore.addChangeListener(this._onChange);
 		},
