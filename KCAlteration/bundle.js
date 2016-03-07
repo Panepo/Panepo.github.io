@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "16cb2a41312d4ae465d4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d06261c7becef091d998"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -7499,7 +7499,7 @@
 	
 		AAlist: ["10cm高角砲＋高射装置", "90mm単装高角砲"],
 	
-		checkboxlist: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "探照灯"]
+		checkboxlist: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "探照灯", "水上偵察機"]
 	};
 	
 	module.exports = Constants;
@@ -12466,6 +12466,11 @@
 				],
 				[
 					"大口径主砲",
+					"試製35.6cm三連装砲",
+					"山城改二"
+				],
+				[
+					"大口径主砲",
 					"38cm連装砲改",
 					"Bismarck"
 				],
@@ -12483,6 +12488,11 @@
 					"大口径主砲",
 					"41cm連装砲",
 					"陸奥"
+				],
+				[
+					"大口径主砲",
+					"試製41cm三連装砲",
+					"長門改"
 				],
 				[
 					"大口径主砲",
@@ -12515,6 +12525,11 @@
 					"大口径主砲",
 					"41cm連装砲",
 					"陸奥"
+				],
+				[
+					"大口径主砲",
+					"試製41cm三連装砲",
+					"長門改"
 				],
 				[
 					"大口径主砲",
@@ -12555,6 +12570,11 @@
 				],
 				[
 					"大口径主砲",
+					"試製41cm三連装砲",
+					"陸奥改"
+				],
+				[
+					"大口径主砲",
 					"試製46cm連装砲",
 					"武蔵"
 				],
@@ -12567,6 +12587,11 @@
 			[
 				[
 					"大口径主砲",
+					"試製35.6cm三連装砲",
+					"金剛改二,扶桑改二"
+				],
+				[
+					"大口径主砲",
 					"381mm／50 三連装砲",
 					"Littorio"
 				],
@@ -12574,6 +12599,11 @@
 					"大口径主砲",
 					"381mm／50 三連装砲改",
 					"Roma"
+				],
+				[
+					"大口径主砲",
+					"試製41cm三連装砲",
+					"長門改,陸奥改"
 				],
 				[
 					"大口径主砲",
@@ -12587,6 +12617,11 @@
 				]
 			],
 			[
+				[
+					"大口径主砲",
+					"試製35.6cm三連装砲",
+					"金剛改二,榛名改二,扶桑改二,山城改二"
+				],
 				[
 					"大口径主砲",
 					"38cm連装砲",
@@ -12606,6 +12641,11 @@
 					"大口径主砲",
 					"41cm連装砲",
 					"陸奥"
+				],
+				[
+					"大口径主砲",
+					"試製41cm三連装砲",
+					"長門改"
 				]
 			],
 			[
@@ -12613,6 +12653,11 @@
 					"大口径主砲",
 					"35.6cm連装砲",
 					"扶桑"
+				],
+				[
+					"大口径主砲",
+					"試製35.6cm三連装砲",
+					"榛名改二,扶桑改二,山城改二"
 				],
 				[
 					"大口径主砲",
@@ -12633,6 +12678,11 @@
 					"大口径主砲",
 					"41cm連装砲",
 					"長門"
+				],
+				[
+					"大口径主砲",
+					"試製41cm三連装砲",
+					"陸奥改"
 				],
 				[
 					"大口径主砲",
@@ -12648,6 +12698,11 @@
 				],
 				[
 					"大口径主砲",
+					"試製35.6cm三連装砲",
+					"扶桑改二,山城改二"
+				],
+				[
+					"大口径主砲",
 					"38cm連装砲",
 					"Bismarck"
 				],
@@ -12665,6 +12720,11 @@
 					"大口径主砲",
 					"41cm連装砲",
 					"長門"
+				],
+				[
+					"大口径主砲",
+					"試製41cm三連装砲",
+					"陸奥改"
 				],
 				[
 					"大口径主砲",
@@ -13611,6 +13671,92 @@
 					"比叡"
 				]
 			]
+		],
+		[
+			[
+				[
+					"水上偵察機",
+					"零式水上観測機",
+					"瑞穂"
+				],
+				[
+					"水上偵察機",
+					"Ro.43水偵",
+					"Italia"
+				]
+			],
+			[
+				[
+					"水上偵察機",
+					"零式水上観測機",
+					"瑞穂"
+				],
+				[
+					"水上偵察機",
+					"Ro.43水偵",
+					"Zara改"
+				]
+			],
+			[
+				[
+					"水上偵察機",
+					"零式水上観測機",
+					"瑞穂"
+				],
+				[
+					"水上偵察機",
+					"Ro.43水偵",
+					"Zara改,Roma改"
+				]
+			],
+			[
+				[
+					"水上偵察機",
+					"零式水上観測機",
+					"瑞穂"
+				],
+				[
+					"水上偵察機",
+					"Ro.43水偵",
+					"Zara改,Roma改"
+				]
+			],
+			[
+				[
+					"水上偵察機",
+					"零式水上観測機",
+					"武蔵"
+				],
+				[
+					"水上偵察機",
+					"Ro.43水偵",
+					"Zara改"
+				]
+			],
+			[
+				[
+					"水上偵察機",
+					"零式水上観測機",
+					"武蔵"
+				],
+				[
+					"水上偵察機",
+					"Ro.43水偵",
+					"Zara改"
+				]
+			],
+			[
+				[
+					"水上偵察機",
+					"零式水上観測機",
+					"瑞穂,武蔵"
+				],
+				[
+					"水上偵察機",
+					"Ro.43水偵",
+					"Italia"
+				]
+			]
 		]
 	];
 
@@ -14016,7 +14162,8 @@
 					React.createElement(AltList, { day: i, list: data[8][i], display: this.props.CBtoggle[8], tableId: "8", tableClass: TableClass }),
 					React.createElement(AltList, { day: i, list: data[9][i], display: this.props.CBtoggle[9], tableId: "9", tableClass: TableClass }),
 					React.createElement(AltList, { day: i, list: data[10][i], display: this.props.CBtoggle[10], tableId: "10", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[11][i], display: this.props.CBtoggle[11], tableId: "11", tableClass: TableClass })
+					React.createElement(AltList, { day: i, list: data[11][i], display: this.props.CBtoggle[11], tableId: "11", tableClass: TableClass }),
+					React.createElement(AltList, { day: i, list: data[12][i], display: this.props.CBtoggle[12], tableId: "12", tableClass: TableClass })
 				);
 				PanelData.push(PanelCont);
 			}
@@ -14032,7 +14179,7 @@
 					null,
 					"艦これ装備改修表曜日別逆引き"
 				),
-				"更新: 2015/11/23",
+				"更新: 2016/03/07",
 				React.createElement(
 					"div",
 					{ className: "mdl-tabs mdl-js-tabs mdl-js-ripple-effect" },
@@ -14428,7 +14575,7 @@
 	
 	var CHANGE_EVENT = 'change';
 	var _value = {
-		CBtoggle: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		CBtoggle: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 	};
 	
 	// ===============================================================================
