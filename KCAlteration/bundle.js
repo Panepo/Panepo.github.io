@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d06261c7becef091d998"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0dea74a6756ddf71faf0"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -548,7 +548,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(114);
+	module.exports = __webpack_require__(106);
 
 
 /***/ },
@@ -710,7 +710,7 @@
 
 	'use strict';
 	
-	module.exports = __webpack_require__(171);
+	module.exports = __webpack_require__(132);
 
 
 /***/ },
@@ -782,7 +782,7 @@
 	
 	'use strict';
 	
-	var emptyFunction = __webpack_require__(14);
+	var emptyFunction = __webpack_require__(15);
 	
 	/**
 	 * Similar to invariant but only logs a warning if the condition is not met.
@@ -846,27 +846,27 @@
 	'use strict';
 	
 	var DOMProperty = __webpack_require__(20);
-	var ReactBrowserEventEmitter = __webpack_require__(35);
+	var ReactBrowserEventEmitter = __webpack_require__(30);
 	var ReactCurrentOwner = __webpack_require__(17);
-	var ReactDOMFeatureFlags = __webpack_require__(79);
+	var ReactDOMFeatureFlags = __webpack_require__(69);
 	var ReactElement = __webpack_require__(8);
-	var ReactEmptyComponentRegistry = __webpack_require__(86);
-	var ReactInstanceHandles = __webpack_require__(24);
-	var ReactInstanceMap = __webpack_require__(30);
-	var ReactMarkupChecksum = __webpack_require__(89);
+	var ReactEmptyComponentRegistry = __webpack_require__(76);
+	var ReactInstanceHandles = __webpack_require__(23);
+	var ReactInstanceMap = __webpack_require__(26);
+	var ReactMarkupChecksum = __webpack_require__(79);
 	var ReactPerf = __webpack_require__(9);
 	var ReactReconciler = __webpack_require__(21);
-	var ReactUpdateQueue = __webpack_require__(53);
-	var ReactUpdates = __webpack_require__(10);
+	var ReactUpdateQueue = __webpack_require__(46);
+	var ReactUpdates = __webpack_require__(13);
 	
 	var assign = __webpack_require__(4);
-	var emptyObject = __webpack_require__(32);
-	var containsNode = __webpack_require__(101);
-	var instantiateReactComponent = __webpack_require__(60);
+	var emptyObject = __webpack_require__(28);
+	var containsNode = __webpack_require__(91);
+	var instantiateReactComponent = __webpack_require__(53);
 	var invariant = __webpack_require__(2);
-	var setInnerHTML = __webpack_require__(42);
-	var shouldUpdateReactComponent = __webpack_require__(63);
-	var validateDOMNesting = __webpack_require__(65);
+	var setInnerHTML = __webpack_require__(37);
+	var shouldUpdateReactComponent = __webpack_require__(56);
+	var validateDOMNesting = __webpack_require__(58);
 	var warning = __webpack_require__(5);
 	
 	var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
@@ -1745,7 +1745,7 @@
 	var ReactCurrentOwner = __webpack_require__(17);
 	
 	var assign = __webpack_require__(4);
-	var canDefineProperty = __webpack_require__(40);
+	var canDefineProperty = __webpack_require__(35);
 	
 	// The Symbol used to tag the ReactElement type. If there is no native Symbol
 	// nor polyfill, then a plain number is used for performance.
@@ -2084,6 +2084,120 @@
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
+	var getRootInstancesFromReactMount = __webpack_require__(105);
+	
+	var injectedProvider = null,
+	    didWarn = false;
+	
+	function warnOnce() {
+	  if (!didWarn) {
+	    console.warn(
+	      'It appears that React Hot Loader isn\'t configured correctly. ' +
+	      'If you\'re using NPM, make sure your dependencies don\'t drag duplicate React distributions into their node_modules and that require("react") corresponds to the React instance you render your app with.',
+	      'If you\'re using a precompiled version of React, see https://github.com/gaearon/react-hot-loader/tree/master/docs#usage-with-external-react for integration instructions.'
+	    );
+	  }
+	
+	  didWarn = true;
+	}
+	
+	var RootInstanceProvider = {
+	  injection: {
+	    injectProvider: function (provider) {
+	      injectedProvider = provider;
+	    }
+	  },
+	
+	  getRootInstances: function (ReactMount) {
+	    if (injectedProvider) {
+	      return injectedProvider.getRootInstances();
+	    }
+	
+	    var instances = ReactMount && getRootInstancesFromReactMount(ReactMount) || [];
+	    if (!Object.keys(instances).length) {
+	      warnOnce();
+	    }
+	
+	    return instances;
+	  }
+	};
+	
+	module.exports = RootInstanceProvider;
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var isReactClassish = __webpack_require__(61),
+	    isReactElementish = __webpack_require__(113);
+	
+	function makeExportsHot(m, React) {
+	  if (isReactElementish(m.exports, React)) {
+	    // React elements are never valid React classes
+	    return false;
+	  }
+	
+	  var freshExports = m.exports,
+	      exportsReactClass = isReactClassish(m.exports, React),
+	      foundReactClasses = false;
+	
+	  if (exportsReactClass) {
+	    m.exports = m.makeHot(m.exports, '__MODULE_EXPORTS');
+	    foundReactClasses = true;
+	  }
+	
+	  for (var key in m.exports) {
+	    if (!Object.prototype.hasOwnProperty.call(freshExports, key)) {
+	      continue;
+	    }
+	
+	    if (exportsReactClass && key === 'type') {
+	      // React 0.12 also puts classes under `type` property for compat.
+	      // Skip to avoid updating twice.
+	      continue;
+	    }
+	
+	    var value;
+	    try {
+	      value = freshExports[key];
+	    } catch (err) {
+	      continue;
+	    }
+	
+	    if (!isReactClassish(value, React)) {
+	      continue;
+	    }
+	
+	    if (Object.getOwnPropertyDescriptor(m.exports, key).writable) {
+	      m.exports[key] = m.makeHot(value, '__MODULE_EXPORTS_' + key);
+	      foundReactClasses = true;
+	    } else {
+	      console.warn("Can't make class " + key + " hot reloadable due to being read-only. To fix this you can try two solutions. First, you can exclude files or directories (for example, /node_modules/) using 'exclude' option in loader configuration. Second, if you are using Babel, you can enable loose mode for `es6.modules` using the 'loose' option. See: http://babeljs.io/docs/advanced/loose/ and http://babeljs.io/docs/usage/options/");
+	    }
+	  }
+	
+	  return foundReactClasses;
+	}
+	
+	module.exports = makeExportsHot;
+
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = __webpack_require__(117);
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright 2013-2015, Facebook, Inc.
 	 * All rights reserved.
@@ -2097,11 +2211,11 @@
 	
 	'use strict';
 	
-	var CallbackQueue = __webpack_require__(47);
+	var CallbackQueue = __webpack_require__(40);
 	var PooledClass = __webpack_require__(18);
 	var ReactPerf = __webpack_require__(9);
 	var ReactReconciler = __webpack_require__(21);
-	var Transaction = __webpack_require__(39);
+	var Transaction = __webpack_require__(34);
 	
 	var assign = __webpack_require__(4);
 	var invariant = __webpack_require__(2);
@@ -2310,121 +2424,23 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var getRootInstancesFromReactMount = __webpack_require__(112);
-	
-	var injectedProvider = null,
-	    didWarn = false;
-	
-	function warnOnce() {
-	  if (!didWarn) {
-	    console.warn(
-	      'It appears that React Hot Loader isn\'t configured correctly. ' +
-	      'If you\'re using NPM, make sure your dependencies don\'t drag duplicate React distributions into their node_modules and that require("react") corresponds to the React instance you render your app with.',
-	      'If you\'re using a precompiled version of React, see https://github.com/gaearon/react-hot-loader/tree/master/docs#usage-with-external-react for integration instructions.'
-	    );
-	  }
-	
-	  didWarn = true;
-	}
-	
-	var RootInstanceProvider = {
-	  injection: {
-	    injectProvider: function (provider) {
-	      injectedProvider = provider;
-	    }
-	  },
-	
-	  getRootInstances: function (ReactMount) {
-	    if (injectedProvider) {
-	      return injectedProvider.getRootInstances();
-	    }
-	
-	    var instances = ReactMount && getRootInstancesFromReactMount(ReactMount) || [];
-	    if (!Object.keys(instances).length) {
-	      warnOnce();
-	    }
-	
-	    return instances;
-	  }
-	};
-	
-	module.exports = RootInstanceProvider;
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var isReactClassish = __webpack_require__(68),
-	    isReactElementish = __webpack_require__(121);
-	
-	function makeExportsHot(m, React) {
-	  if (isReactElementish(m.exports, React)) {
-	    // React elements are never valid React classes
-	    return false;
-	  }
-	
-	  var freshExports = m.exports,
-	      exportsReactClass = isReactClassish(m.exports, React),
-	      foundReactClasses = false;
-	
-	  if (exportsReactClass) {
-	    m.exports = m.makeHot(m.exports, '__MODULE_EXPORTS');
-	    foundReactClasses = true;
-	  }
-	
-	  for (var key in m.exports) {
-	    if (!Object.prototype.hasOwnProperty.call(freshExports, key)) {
-	      continue;
-	    }
-	
-	    if (exportsReactClass && key === 'type') {
-	      // React 0.12 also puts classes under `type` property for compat.
-	      // Skip to avoid updating twice.
-	      continue;
-	    }
-	
-	    var value;
-	    try {
-	      value = freshExports[key];
-	    } catch (err) {
-	      continue;
-	    }
-	
-	    if (!isReactClassish(value, React)) {
-	      continue;
-	    }
-	
-	    if (Object.getOwnPropertyDescriptor(m.exports, key).writable) {
-	      m.exports[key] = m.makeHot(value, '__MODULE_EXPORTS_' + key);
-	      foundReactClasses = true;
-	    } else {
-	      console.warn("Can't make class " + key + " hot reloadable due to being read-only. To fix this you can try two solutions. First, you can exclude files or directories (for example, /node_modules/) using 'exclude' option in loader configuration. Second, if you are using Babel, you can enable loose mode for `es6.modules` using the 'loose' option. See: http://babeljs.io/docs/advanced/loose/ and http://babeljs.io/docs/usage/options/");
-	    }
-	  }
-	
-	  return foundReactClasses;
-	}
-	
-	module.exports = makeExportsHot;
-
-
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	module.exports = __webpack_require__(125);
-
-/***/ },
 /* 14 */
+/***/ function(module, exports) {
+
+	module.exports = function(module) {
+		if(!module.webpackPolyfill) {
+			module.deprecate = function() {};
+			module.paths = [];
+			// module.parent = undefined by default
+			module.children = [];
+			module.webpackPolyfill = 1;
+		}
+		return module;
+	}
+
+
+/***/ },
+/* 15 */
 /***/ function(module, exports) {
 
 	/**
@@ -2467,22 +2483,6 @@
 	module.exports = emptyFunction;
 
 /***/ },
-/* 15 */
-/***/ function(module, exports) {
-
-	module.exports = function(module) {
-		if(!module.webpackPolyfill) {
-			module.deprecate = function() {};
-			module.paths = [];
-			// module.parent = undefined by default
-			module.children = [];
-			module.webpackPolyfill = 1;
-		}
-		return module;
-	}
-
-
-/***/ },
 /* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2499,7 +2499,7 @@
 	
 	'use strict';
 	
-	var keyMirror = __webpack_require__(43);
+	var keyMirror = __webpack_require__(38);
 	
 	var PropagationPhases = keyMirror({ bubbled: null, captured: null });
 	
@@ -3036,7 +3036,7 @@
 	
 	'use strict';
 	
-	var ReactRef = __webpack_require__(192);
+	var ReactRef = __webpack_require__(153);
 	
 	/**
 	 * Helper to call ReactRef.attachRefs with this composite component, split out
@@ -3152,7 +3152,7 @@
 	var PooledClass = __webpack_require__(18);
 	
 	var assign = __webpack_require__(4);
-	var emptyFunction = __webpack_require__(14);
+	var emptyFunction = __webpack_require__(15);
 	var warning = __webpack_require__(5);
 	
 	/**
@@ -3319,40 +3319,6 @@
 
 /***/ },
 /* 23 */
-/***/ function(module, exports) {
-
-	/**
-	 * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
-	 * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
-	 *
-	 * @static
-	 * @memberOf _
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is an object, else `false`.
-	 * @example
-	 *
-	 * _.isObject({});
-	 * // => true
-	 *
-	 * _.isObject([1, 2, 3]);
-	 * // => true
-	 *
-	 * _.isObject(1);
-	 * // => false
-	 */
-	function isObject(value) {
-	  // Avoid a V8 JIT bug in Chrome 19-20.
-	  // See https://code.google.com/p/v8/issues/detail?id=2291 for more details.
-	  var type = typeof value;
-	  return !!value && (type == 'object' || type == 'function');
-	}
-	
-	module.exports = isObject;
-
-
-/***/ },
-/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -3369,7 +3335,7 @@
 	
 	'use strict';
 	
-	var ReactRootIndex = __webpack_require__(94);
+	var ReactRootIndex = __webpack_require__(84);
 	
 	var invariant = __webpack_require__(2);
 	
@@ -3660,146 +3626,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 25 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	
-	var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i['return']) _i['return'](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError('Invalid attempt to destructure non-iterable instance'); } }; })();
-	
-	exports['default'] = proxyReactComponents;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _reactProxy = __webpack_require__(134);
-	
-	var _globalWindow = __webpack_require__(129);
-	
-	var _globalWindow2 = _interopRequireDefault(_globalWindow);
-	
-	var componentProxies = undefined;
-	if (_globalWindow2['default'].__reactComponentProxies) {
-	  componentProxies = _globalWindow2['default'].__reactComponentProxies;
-	} else {
-	  componentProxies = {};
-	  Object.defineProperty(_globalWindow2['default'], '__reactComponentProxies', {
-	    configurable: true,
-	    enumerable: false,
-	    writable: false,
-	    value: componentProxies
-	  });
-	}
-	
-	function proxyReactComponents(_ref) {
-	  var filename = _ref.filename;
-	  var components = _ref.components;
-	  var imports = _ref.imports;
-	  var locals = _ref.locals;
-	
-	  var _imports = _slicedToArray(imports, 1);
-	
-	  var React = _imports[0];
-	
-	  var _locals = _slicedToArray(locals, 1);
-	
-	  var hot = _locals[0].hot;
-	
-	  if (!React.Component) {
-	    throw new Error('imports[0] for react-transform-hmr does not look like React.');
-	  }
-	
-	  if (!hot || typeof hot.accept !== 'function') {
-	    throw new Error('locals[0] does not appear to be a `module` object with Hot Module ' + 'replacement API enabled. You should disable react-transform-hmr in ' + 'production by using `env` section in Babel configuration. See the ' + 'example in README: https://github.com/gaearon/react-transform-hmr');
-	  }
-	
-	  if (Object.keys(components).some(function (key) {
-	    return !components[key].isInFunction;
-	  })) {
-	    hot.accept(function (err) {
-	      if (err) {
-	        console.warn('[React Transform HMR] There was an error updating ' + filename + ':');
-	        console.error(err);
-	      }
-	    });
-	  }
-	
-	  var forceUpdate = (0, _reactProxy.getForceUpdate)(React);
-	
-	  return function wrapWithProxy(ReactClass, uniqueId) {
-	    var _components$uniqueId = components[uniqueId];
-	    var _components$uniqueId$isInFunction = _components$uniqueId.isInFunction;
-	    var isInFunction = _components$uniqueId$isInFunction === undefined ? false : _components$uniqueId$isInFunction;
-	    var _components$uniqueId$displayName = _components$uniqueId.displayName;
-	    var displayName = _components$uniqueId$displayName === undefined ? uniqueId : _components$uniqueId$displayName;
-	
-	    if (isInFunction) {
-	      return ReactClass;
-	    }
-	
-	    var globalUniqueId = filename + '$' + uniqueId;
-	    if (componentProxies[globalUniqueId]) {
-	      (function () {
-	        console.info('[React Transform HMR] Patching ' + displayName);
-	        var instances = componentProxies[globalUniqueId].update(ReactClass);
-	        setTimeout(function () {
-	          return instances.forEach(forceUpdate);
-	        });
-	      })();
-	    } else {
-	      componentProxies[globalUniqueId] = (0, _reactProxy.createProxy)(ReactClass);
-	    }
-	
-	    return componentProxies[globalUniqueId].get();
-	  };
-	}
-	
-	module.exports = exports['default'];
-
-/***/ },
-/* 26 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var getLength = __webpack_require__(150),
-	    isLength = __webpack_require__(34);
-	
-	/**
-	 * Checks if `value` is array-like.
-	 *
-	 * @private
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
-	 */
-	function isArrayLike(value) {
-	  return value != null && isLength(getLength(value));
-	}
-	
-	module.exports = isArrayLike;
-
-
-/***/ },
-/* 27 */
-/***/ function(module, exports) {
-
-	/**
-	 * Checks if `value` is object-like.
-	 *
-	 * @private
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
-	 */
-	function isObjectLike(value) {
-	  return !!value && typeof value == 'object';
-	}
-	
-	module.exports = isObjectLike;
-
-
-/***/ },
-/* 28 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -3815,12 +3642,12 @@
 	
 	'use strict';
 	
-	var EventPluginRegistry = __webpack_require__(74);
-	var EventPluginUtils = __webpack_require__(168);
-	var ReactErrorUtils = __webpack_require__(87);
+	var EventPluginRegistry = __webpack_require__(64);
+	var EventPluginUtils = __webpack_require__(129);
+	var ReactErrorUtils = __webpack_require__(77);
 	
-	var accumulateInto = __webpack_require__(96);
-	var forEachAccumulated = __webpack_require__(97);
+	var accumulateInto = __webpack_require__(86);
+	var forEachAccumulated = __webpack_require__(87);
 	var invariant = __webpack_require__(2);
 	var warning = __webpack_require__(5);
 	
@@ -4084,7 +3911,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 29 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -4101,12 +3928,12 @@
 	'use strict';
 	
 	var EventConstants = __webpack_require__(16);
-	var EventPluginHub = __webpack_require__(28);
+	var EventPluginHub = __webpack_require__(24);
 	
 	var warning = __webpack_require__(5);
 	
-	var accumulateInto = __webpack_require__(96);
-	var forEachAccumulated = __webpack_require__(97);
+	var accumulateInto = __webpack_require__(86);
+	var forEachAccumulated = __webpack_require__(87);
 	
 	var PropagationPhases = EventConstants.PropagationPhases;
 	var getListener = EventPluginHub.getListener;
@@ -4225,7 +4052,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 30 */
+/* 26 */
 /***/ function(module, exports) {
 
 	/**
@@ -4277,7 +4104,7 @@
 	module.exports = ReactInstanceMap;
 
 /***/ },
-/* 31 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -4296,7 +4123,7 @@
 	
 	var SyntheticEvent = __webpack_require__(22);
 	
-	var getEventTarget = __webpack_require__(58);
+	var getEventTarget = __webpack_require__(51);
 	
 	/**
 	 * @interface UIEvent
@@ -4342,7 +4169,7 @@
 	module.exports = SyntheticUIEvent;
 
 /***/ },
-/* 32 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -4368,55 +4195,31 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 33 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isNative = __webpack_require__(155);
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	/**
-	 * Gets the native function at `key` of `object`.
-	 *
-	 * @private
-	 * @param {Object} object The object to query.
-	 * @param {string} key The key of the method to get.
-	 * @returns {*} Returns the function if it's native, else `undefined`.
-	 */
-	function getNative(object, key) {
-	  var value = object == null ? undefined : object[key];
-	  return isNative(value) ? value : undefined;
-	}
-	
-	module.exports = getNative;
+	var Constants;
+	Constants = {
+	  listAA: ["10cm高角砲＋高射装置", "90mm単装高角砲"],
+	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "水上偵察機", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "探照灯"],
+	  listTypeNumber: ["1", "2", "3", "4", "5", "6", "10", "11", "12", "15", "16", "17", "18"],
+	  buttonClassActive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
+	  buttonClassInactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent",
+	  TableClass: "mdl-data-table mdl-shadow--2dp",
+	  TabClass: "mdl-tabs__tab",
+	  TabClassActive: "mdl-tabs__tab is-active"
+	};
+	module.exports = Constants;
+	//# sourceMappingURL=D:\Code\GitHub\KCAltTable\node_modules\livescript-loader\index.js!D:\Code\GitHub\KCAltTable\src\constants\constants.ls.map
 
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "constants.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
 
 /***/ },
-/* 34 */
-/***/ function(module, exports) {
-
-	/**
-	 * Used as the [maximum length](http://ecma-international.org/ecma-262/6.0/#sec-number.max_safe_integer)
-	 * of an array-like value.
-	 */
-	var MAX_SAFE_INTEGER = 9007199254740991;
-	
-	/**
-	 * Checks if `value` is a valid array-like length.
-	 *
-	 * **Note:** This function is based on [`ToLength`](http://ecma-international.org/ecma-262/6.0/#sec-tolength).
-	 *
-	 * @private
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
-	 */
-	function isLength(value) {
-	  return typeof value == 'number' && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-	}
-	
-	module.exports = isLength;
-
-
-/***/ },
-/* 35 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -4434,14 +4237,14 @@
 	'use strict';
 	
 	var EventConstants = __webpack_require__(16);
-	var EventPluginHub = __webpack_require__(28);
-	var EventPluginRegistry = __webpack_require__(74);
-	var ReactEventEmitterMixin = __webpack_require__(185);
+	var EventPluginHub = __webpack_require__(24);
+	var EventPluginRegistry = __webpack_require__(64);
+	var ReactEventEmitterMixin = __webpack_require__(146);
 	var ReactPerf = __webpack_require__(9);
-	var ViewportMetrics = __webpack_require__(95);
+	var ViewportMetrics = __webpack_require__(85);
 	
 	var assign = __webpack_require__(4);
-	var isEventSupported = __webpack_require__(61);
+	var isEventSupported = __webpack_require__(54);
 	
 	/**
 	 * Summary of `ReactBrowserEventEmitter` event handling:
@@ -4745,7 +4548,7 @@
 	module.exports = ReactBrowserEventEmitter;
 
 /***/ },
-/* 36 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -4775,7 +4578,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 37 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -4791,7 +4594,7 @@
 	
 	'use strict';
 	
-	var keyMirror = __webpack_require__(43);
+	var keyMirror = __webpack_require__(38);
 	
 	var ReactPropTypeLocations = keyMirror({
 	  prop: null,
@@ -4802,7 +4605,7 @@
 	module.exports = ReactPropTypeLocations;
 
 /***/ },
-/* 38 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -4819,10 +4622,10 @@
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(31);
-	var ViewportMetrics = __webpack_require__(95);
+	var SyntheticUIEvent = __webpack_require__(27);
+	var ViewportMetrics = __webpack_require__(85);
 	
-	var getEventModifierState = __webpack_require__(57);
+	var getEventModifierState = __webpack_require__(50);
 	
 	/**
 	 * @interface MouseEvent
@@ -4880,7 +4683,7 @@
 	module.exports = SyntheticMouseEvent;
 
 /***/ },
-/* 39 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -5117,7 +4920,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 40 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -5147,7 +4950,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 41 */
+/* 36 */
 /***/ function(module, exports) {
 
 	/**
@@ -5190,7 +4993,7 @@
 	module.exports = escapeTextContentForBrowser;
 
 /***/ },
-/* 42 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -5285,7 +5088,7 @@
 	module.exports = setInnerHTML;
 
 /***/ },
-/* 43 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -5339,123 +5142,37 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 44 */
-/***/ function(module, exports) {
-
-	/** Used to detect unsigned integer values. */
-	var reIsUint = /^\d+$/;
-	
-	/**
-	 * Used as the [maximum length](http://ecma-international.org/ecma-262/6.0/#sec-number.max_safe_integer)
-	 * of an array-like value.
-	 */
-	var MAX_SAFE_INTEGER = 9007199254740991;
-	
-	/**
-	 * Checks if `value` is a valid array-like index.
-	 *
-	 * @private
-	 * @param {*} value The value to check.
-	 * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
-	 * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
-	 */
-	function isIndex(value, length) {
-	  value = (typeof value == 'number' || reIsUint.test(value)) ? +value : -1;
-	  length = length == null ? MAX_SAFE_INTEGER : length;
-	  return value > -1 && value % 1 == 0 && value < length;
-	}
-	
-	module.exports = isIndex;
-
-
-/***/ },
-/* 45 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArrayLike = __webpack_require__(26),
-	    isObjectLike = __webpack_require__(27);
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	/** Used for native method references. */
-	var objectProto = Object.prototype;
-	
-	/** Used to check objects for own properties. */
-	var hasOwnProperty = objectProto.hasOwnProperty;
-	
-	/** Native method references. */
-	var propertyIsEnumerable = objectProto.propertyIsEnumerable;
-	
-	/**
-	 * Checks if `value` is classified as an `arguments` object.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
-	 * @example
-	 *
-	 * _.isArguments(function() { return arguments; }());
-	 * // => true
-	 *
-	 * _.isArguments([1, 2, 3]);
-	 * // => false
-	 */
-	function isArguments(value) {
-	  return isObjectLike(value) && isArrayLike(value) &&
-	    hasOwnProperty.call(value, 'callee') && !propertyIsEnumerable.call(value, 'callee');
-	}
-	
-	module.exports = isArguments;
-
-
-/***/ },
-/* 46 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var getNative = __webpack_require__(33),
-	    isLength = __webpack_require__(34),
-	    isObjectLike = __webpack_require__(27);
-	
-	/** `Object#toString` result references. */
-	var arrayTag = '[object Array]';
-	
-	/** Used for native method references. */
-	var objectProto = Object.prototype;
-	
-	/**
-	 * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
-	 * of values.
-	 */
-	var objToString = objectProto.toString;
-	
-	/* Native method references for those with the same name as other `lodash` methods. */
-	var nativeIsArray = getNative(Array, 'isArray');
-	
-	/**
-	 * Checks if `value` is classified as an `Array` object.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
-	 * @example
-	 *
-	 * _.isArray([1, 2, 3]);
-	 * // => true
-	 *
-	 * _.isArray(function() { return arguments; }());
-	 * // => false
-	 */
-	var isArray = nativeIsArray || function(value) {
-	  return isObjectLike(value) && isLength(value.length) && objToString.call(value) == arrayTag;
+	var AppDispatcher, ConstActions, AppAction;
+	AppDispatcher = __webpack_require__(60);
+	ConstActions = __webpack_require__(59);
+	AppAction = {
+	  toggleChange: function(toggle){
+	    AppDispatcher.dispatch({
+	      actionType: ConstActions.toggleChange,
+	      toggle: toggle
+	    });
+	  },
+	  dayChange: function(day){
+	    AppDispatcher.dispatch({
+	      actionType: ConstActions.dayChange,
+	      day: day
+	    });
+	  }
 	};
-	
-	module.exports = isArray;
+	module.exports = AppAction;
+	//# sourceMappingURL=D:\Code\GitHub\KCAltTable\node_modules\livescript-loader\index.js!D:\Code\GitHub\KCAltTable\src\actions\AppAction.ls.map
 
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppAction.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
 
 /***/ },
-/* 47 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -5554,7 +5271,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 48 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -5574,7 +5291,7 @@
 	var DOMProperty = __webpack_require__(20);
 	var ReactPerf = __webpack_require__(9);
 	
-	var quoteAttributeValueForBrowser = __webpack_require__(215);
+	var quoteAttributeValueForBrowser = __webpack_require__(176);
 	var warning = __webpack_require__(5);
 	
 	// Simplified subset
@@ -5785,7 +5502,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 49 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -5802,8 +5519,8 @@
 	
 	'use strict';
 	
-	var ReactPropTypes = __webpack_require__(93);
-	var ReactPropTypeLocations = __webpack_require__(37);
+	var ReactPropTypes = __webpack_require__(83);
+	var ReactPropTypeLocations = __webpack_require__(32);
 	
 	var invariant = __webpack_require__(2);
 	var warning = __webpack_require__(5);
@@ -5925,7 +5642,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 50 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -5941,7 +5658,7 @@
 	
 	'use strict';
 	
-	var ReactDOMIDOperations = __webpack_require__(52);
+	var ReactDOMIDOperations = __webpack_require__(45);
 	var ReactMount = __webpack_require__(6);
 	
 	/**
@@ -5971,7 +5688,7 @@
 	module.exports = ReactComponentBrowserEnvironment;
 
 /***/ },
-/* 51 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6028,7 +5745,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 52 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6045,8 +5762,8 @@
 	
 	'use strict';
 	
-	var DOMChildrenOperations = __webpack_require__(73);
-	var DOMPropertyOperations = __webpack_require__(48);
+	var DOMChildrenOperations = __webpack_require__(63);
+	var DOMPropertyOperations = __webpack_require__(41);
 	var ReactMount = __webpack_require__(6);
 	var ReactPerf = __webpack_require__(9);
 	
@@ -6128,7 +5845,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 53 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6146,8 +5863,8 @@
 	
 	var ReactCurrentOwner = __webpack_require__(17);
 	var ReactElement = __webpack_require__(8);
-	var ReactInstanceMap = __webpack_require__(30);
-	var ReactUpdates = __webpack_require__(10);
+	var ReactInstanceMap = __webpack_require__(26);
+	var ReactUpdates = __webpack_require__(13);
 	
 	var assign = __webpack_require__(4);
 	var invariant = __webpack_require__(2);
@@ -6391,7 +6108,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 54 */
+/* 47 */
 /***/ function(module, exports) {
 
 	/**
@@ -6410,7 +6127,7 @@
 	module.exports = '0.14.7';
 
 /***/ },
-/* 55 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6428,7 +6145,7 @@
 	'use strict';
 	
 	var ReactCurrentOwner = __webpack_require__(17);
-	var ReactInstanceMap = __webpack_require__(30);
+	var ReactInstanceMap = __webpack_require__(26);
 	var ReactMount = __webpack_require__(6);
 	
 	var invariant = __webpack_require__(2);
@@ -6465,7 +6182,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 56 */
+/* 49 */
 /***/ function(module, exports) {
 
 	/**
@@ -6520,7 +6237,7 @@
 	module.exports = getEventCharCode;
 
 /***/ },
-/* 57 */
+/* 50 */
 /***/ function(module, exports) {
 
 	/**
@@ -6569,7 +6286,7 @@
 	module.exports = getEventModifierState;
 
 /***/ },
-/* 58 */
+/* 51 */
 /***/ function(module, exports) {
 
 	/**
@@ -6603,7 +6320,7 @@
 	module.exports = getEventTarget;
 
 /***/ },
-/* 59 */
+/* 52 */
 /***/ function(module, exports) {
 
 	/**
@@ -6648,7 +6365,7 @@
 	module.exports = getIteratorFn;
 
 /***/ },
-/* 60 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6665,9 +6382,9 @@
 	
 	'use strict';
 	
-	var ReactCompositeComponent = __webpack_require__(174);
-	var ReactEmptyComponent = __webpack_require__(85);
-	var ReactNativeComponent = __webpack_require__(91);
+	var ReactCompositeComponent = __webpack_require__(135);
+	var ReactEmptyComponent = __webpack_require__(75);
+	var ReactNativeComponent = __webpack_require__(81);
 	
 	var assign = __webpack_require__(4);
 	var invariant = __webpack_require__(2);
@@ -6766,7 +6483,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 61 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6831,7 +6548,7 @@
 	module.exports = isEventSupported;
 
 /***/ },
-/* 62 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6848,8 +6565,8 @@
 	'use strict';
 	
 	var ExecutionEnvironment = __webpack_require__(7);
-	var escapeTextContentForBrowser = __webpack_require__(41);
-	var setInnerHTML = __webpack_require__(42);
+	var escapeTextContentForBrowser = __webpack_require__(36);
+	var setInnerHTML = __webpack_require__(37);
 	
 	/**
 	 * Set the textContent property of a node, ensuring that whitespace is preserved
@@ -6876,7 +6593,7 @@
 	module.exports = setTextContent;
 
 /***/ },
-/* 63 */
+/* 56 */
 /***/ function(module, exports) {
 
 	/**
@@ -6924,7 +6641,7 @@
 	module.exports = shouldUpdateReactComponent;
 
 /***/ },
-/* 64 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6942,9 +6659,9 @@
 	
 	var ReactCurrentOwner = __webpack_require__(17);
 	var ReactElement = __webpack_require__(8);
-	var ReactInstanceHandles = __webpack_require__(24);
+	var ReactInstanceHandles = __webpack_require__(23);
 	
-	var getIteratorFn = __webpack_require__(59);
+	var getIteratorFn = __webpack_require__(52);
 	var invariant = __webpack_require__(2);
 	var warning = __webpack_require__(5);
 	
@@ -7119,7 +6836,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 65 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7136,7 +6853,7 @@
 	'use strict';
 	
 	var assign = __webpack_require__(4);
-	var emptyFunction = __webpack_require__(14);
+	var emptyFunction = __webpack_require__(15);
 	var warning = __webpack_require__(5);
 	
 	var validateDOMNesting = emptyFunction;
@@ -7488,42 +7205,40 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 66 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(13), RootInstanceProvider = __webpack_require__(11), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	"use strict";
-	
-	var Constants = {
-	
-		AAlist: ["10cm高角砲＋高射装置", "90mm単装高角砲"],
-	
-		checkboxlist: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "探照灯", "水上偵察機"]
-	};
-	
-	module.exports = Constants;
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(12); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "const.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
+	var keyMirror;
+	keyMirror = __webpack_require__(100);
+	module.exports = keyMirror({
+	  toggleChange: null,
+	  dayChange: null
+	});
+	//# sourceMappingURL=D:\Code\GitHub\KCAltTable\node_modules\livescript-loader\index.js!D:\Code\GitHub\KCAltTable\src\constants\ConstActions.ls.map
+
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConstActions.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
 
 /***/ },
-/* 67 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(13), RootInstanceProvider = __webpack_require__(11), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	'use strict';
-	
-	var Dispatcher = __webpack_require__(106).Dispatcher;
-	
+	var Dispatcher;
+	Dispatcher = __webpack_require__(96).Dispatcher;
 	module.exports = new Dispatcher();
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(12); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppDispatcher.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
+	//# sourceMappingURL=D:\Code\GitHub\KCAltTable\node_modules\livescript-loader\index.js!D:\Code\GitHub\KCAltTable\src\dispatcher\AppDispatcher.ls.map
+
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppDispatcher.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
 
 /***/ },
-/* 68 */
+/* 61 */
 /***/ function(module, exports) {
 
 	function hasRender(Class) {
@@ -7573,142 +7288,7 @@
 	module.exports = isReactClassish;
 
 /***/ },
-/* 69 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = supportsProtoAssignment;
-	var x = {};
-	var y = { supports: true };
-	try {
-	  x.__proto__ = y;
-	} catch (err) {}
-	
-	function supportsProtoAssignment() {
-	  return x.supports || false;
-	};
-
-/***/ },
-/* 70 */
-/***/ function(module, exports) {
-
-	/** Used as the `TypeError` message for "Functions" methods. */
-	var FUNC_ERROR_TEXT = 'Expected a function';
-	
-	/* Native method references for those with the same name as other `lodash` methods. */
-	var nativeMax = Math.max;
-	
-	/**
-	 * Creates a function that invokes `func` with the `this` binding of the
-	 * created function and arguments from `start` and beyond provided as an array.
-	 *
-	 * **Note:** This method is based on the [rest parameter](https://developer.mozilla.org/Web/JavaScript/Reference/Functions/rest_parameters).
-	 *
-	 * @static
-	 * @memberOf _
-	 * @category Function
-	 * @param {Function} func The function to apply a rest parameter to.
-	 * @param {number} [start=func.length-1] The start position of the rest parameter.
-	 * @returns {Function} Returns the new function.
-	 * @example
-	 *
-	 * var say = _.restParam(function(what, names) {
-	 *   return what + ' ' + _.initial(names).join(', ') +
-	 *     (_.size(names) > 1 ? ', & ' : '') + _.last(names);
-	 * });
-	 *
-	 * say('hello', 'fred', 'barney', 'pebbles');
-	 * // => 'hello fred, barney, & pebbles'
-	 */
-	function restParam(func, start) {
-	  if (typeof func != 'function') {
-	    throw new TypeError(FUNC_ERROR_TEXT);
-	  }
-	  start = nativeMax(start === undefined ? (func.length - 1) : (+start || 0), 0);
-	  return function() {
-	    var args = arguments,
-	        index = -1,
-	        length = nativeMax(args.length - start, 0),
-	        rest = Array(length);
-	
-	    while (++index < length) {
-	      rest[index] = args[start + index];
-	    }
-	    switch (start) {
-	      case 0: return func.call(this, rest);
-	      case 1: return func.call(this, args[0], rest);
-	      case 2: return func.call(this, args[0], args[1], rest);
-	    }
-	    var otherArgs = Array(start + 1);
-	    index = -1;
-	    while (++index < start) {
-	      otherArgs[index] = args[index];
-	    }
-	    otherArgs[start] = rest;
-	    return func.apply(this, otherArgs);
-	  };
-	}
-	
-	module.exports = restParam;
-
-
-/***/ },
-/* 71 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var getNative = __webpack_require__(33),
-	    isArrayLike = __webpack_require__(26),
-	    isObject = __webpack_require__(23),
-	    shimKeys = __webpack_require__(153);
-	
-	/* Native method references for those with the same name as other `lodash` methods. */
-	var nativeKeys = getNative(Object, 'keys');
-	
-	/**
-	 * Creates an array of the own enumerable property names of `object`.
-	 *
-	 * **Note:** Non-object values are coerced to objects. See the
-	 * [ES spec](http://ecma-international.org/ecma-262/6.0/#sec-object.keys)
-	 * for more details.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @category Object
-	 * @param {Object} object The object to query.
-	 * @returns {Array} Returns the array of property names.
-	 * @example
-	 *
-	 * function Foo() {
-	 *   this.a = 1;
-	 *   this.b = 2;
-	 * }
-	 *
-	 * Foo.prototype.c = 3;
-	 *
-	 * _.keys(new Foo);
-	 * // => ['a', 'b'] (iteration order is not guaranteed)
-	 *
-	 * _.keys('hi');
-	 * // => ['0', '1']
-	 */
-	var keys = !nativeKeys ? shimKeys : function(object) {
-	  var Ctor = object == null ? undefined : object.constructor;
-	  if ((typeof Ctor == 'function' && Ctor.prototype === object) ||
-	      (typeof object != 'function' && isArrayLike(object))) {
-	    return shimKeys(object);
-	  }
-	  return isObject(object) ? nativeKeys(object) : [];
-	};
-	
-	module.exports = keys;
-
-
-/***/ },
-/* 72 */
+/* 62 */
 /***/ function(module, exports) {
 
 	/**
@@ -7852,7 +7432,7 @@
 	module.exports = CSSProperty;
 
 /***/ },
-/* 73 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7869,12 +7449,12 @@
 	
 	'use strict';
 	
-	var Danger = __webpack_require__(165);
-	var ReactMultiChildUpdateTypes = __webpack_require__(90);
+	var Danger = __webpack_require__(126);
+	var ReactMultiChildUpdateTypes = __webpack_require__(80);
 	var ReactPerf = __webpack_require__(9);
 	
-	var setInnerHTML = __webpack_require__(42);
-	var setTextContent = __webpack_require__(62);
+	var setInnerHTML = __webpack_require__(37);
+	var setTextContent = __webpack_require__(55);
 	var invariant = __webpack_require__(2);
 	
 	/**
@@ -7987,7 +7567,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 74 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -8213,7 +7793,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 75 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -8232,8 +7812,8 @@
 	var PooledClass = __webpack_require__(18);
 	var ReactElement = __webpack_require__(8);
 	
-	var emptyFunction = __webpack_require__(14);
-	var traverseAllChildren = __webpack_require__(64);
+	var emptyFunction = __webpack_require__(15);
+	var traverseAllChildren = __webpack_require__(57);
 	
 	var twoArgumentPooler = PooledClass.twoArgumentPooler;
 	var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -8400,7 +7980,7 @@
 	module.exports = ReactChildren;
 
 /***/ },
-/* 76 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -8416,16 +7996,16 @@
 	
 	'use strict';
 	
-	var ReactComponent = __webpack_require__(77);
+	var ReactComponent = __webpack_require__(67);
 	var ReactElement = __webpack_require__(8);
-	var ReactPropTypeLocations = __webpack_require__(37);
-	var ReactPropTypeLocationNames = __webpack_require__(36);
-	var ReactNoopUpdateQueue = __webpack_require__(92);
+	var ReactPropTypeLocations = __webpack_require__(32);
+	var ReactPropTypeLocationNames = __webpack_require__(31);
+	var ReactNoopUpdateQueue = __webpack_require__(82);
 	
 	var assign = __webpack_require__(4);
-	var emptyObject = __webpack_require__(32);
+	var emptyObject = __webpack_require__(28);
 	var invariant = __webpack_require__(2);
-	var keyMirror = __webpack_require__(43);
+	var keyMirror = __webpack_require__(38);
 	var keyOf = __webpack_require__(19);
 	var warning = __webpack_require__(5);
 	
@@ -9177,7 +8757,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 77 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9193,10 +8773,10 @@
 	
 	'use strict';
 	
-	var ReactNoopUpdateQueue = __webpack_require__(92);
+	var ReactNoopUpdateQueue = __webpack_require__(82);
 	
-	var canDefineProperty = __webpack_require__(40);
-	var emptyObject = __webpack_require__(32);
+	var canDefineProperty = __webpack_require__(35);
+	var emptyObject = __webpack_require__(28);
 	var invariant = __webpack_require__(2);
 	var warning = __webpack_require__(5);
 	
@@ -9305,7 +8885,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 78 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9324,17 +8904,17 @@
 	'use strict';
 	
 	var ReactCurrentOwner = __webpack_require__(17);
-	var ReactDOMTextComponent = __webpack_require__(81);
-	var ReactDefaultInjection = __webpack_require__(83);
-	var ReactInstanceHandles = __webpack_require__(24);
+	var ReactDOMTextComponent = __webpack_require__(71);
+	var ReactDefaultInjection = __webpack_require__(73);
+	var ReactInstanceHandles = __webpack_require__(23);
 	var ReactMount = __webpack_require__(6);
 	var ReactPerf = __webpack_require__(9);
 	var ReactReconciler = __webpack_require__(21);
-	var ReactUpdates = __webpack_require__(10);
-	var ReactVersion = __webpack_require__(54);
+	var ReactUpdates = __webpack_require__(13);
+	var ReactVersion = __webpack_require__(47);
 	
-	var findDOMNode = __webpack_require__(55);
-	var renderSubtreeIntoContainer = __webpack_require__(216);
+	var findDOMNode = __webpack_require__(48);
+	var renderSubtreeIntoContainer = __webpack_require__(177);
 	var warning = __webpack_require__(5);
 	
 	ReactDefaultInjection.inject();
@@ -9403,7 +8983,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 79 */
+/* 69 */
 /***/ function(module, exports) {
 
 	/**
@@ -9426,7 +9006,7 @@
 	module.exports = ReactDOMFeatureFlags;
 
 /***/ },
-/* 80 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9442,9 +9022,9 @@
 	
 	'use strict';
 	
-	var LinkedValueUtils = __webpack_require__(49);
+	var LinkedValueUtils = __webpack_require__(42);
 	var ReactMount = __webpack_require__(6);
-	var ReactUpdates = __webpack_require__(10);
+	var ReactUpdates = __webpack_require__(13);
 	
 	var assign = __webpack_require__(4);
 	var warning = __webpack_require__(5);
@@ -9620,7 +9200,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 81 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9637,15 +9217,15 @@
 	
 	'use strict';
 	
-	var DOMChildrenOperations = __webpack_require__(73);
-	var DOMPropertyOperations = __webpack_require__(48);
-	var ReactComponentBrowserEnvironment = __webpack_require__(50);
+	var DOMChildrenOperations = __webpack_require__(63);
+	var DOMPropertyOperations = __webpack_require__(41);
+	var ReactComponentBrowserEnvironment = __webpack_require__(43);
 	var ReactMount = __webpack_require__(6);
 	
 	var assign = __webpack_require__(4);
-	var escapeTextContentForBrowser = __webpack_require__(41);
-	var setTextContent = __webpack_require__(62);
-	var validateDOMNesting = __webpack_require__(65);
+	var escapeTextContentForBrowser = __webpack_require__(36);
+	var setTextContent = __webpack_require__(55);
+	var validateDOMNesting = __webpack_require__(58);
 	
 	/**
 	 * Text nodes violate a couple assumptions that React makes about components:
@@ -9753,7 +9333,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 82 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -9769,11 +9349,11 @@
 	
 	'use strict';
 	
-	var ReactUpdates = __webpack_require__(10);
-	var Transaction = __webpack_require__(39);
+	var ReactUpdates = __webpack_require__(13);
+	var Transaction = __webpack_require__(34);
 	
 	var assign = __webpack_require__(4);
-	var emptyFunction = __webpack_require__(14);
+	var emptyFunction = __webpack_require__(15);
 	
 	var RESET_BATCHED_UPDATES = {
 	  initialize: emptyFunction,
@@ -9825,7 +9405,7 @@
 	module.exports = ReactDefaultBatchingStrategy;
 
 /***/ },
-/* 83 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9841,27 +9421,27 @@
 	
 	'use strict';
 	
-	var BeforeInputEventPlugin = __webpack_require__(161);
-	var ChangeEventPlugin = __webpack_require__(163);
-	var ClientReactRootIndex = __webpack_require__(164);
-	var DefaultEventPluginOrder = __webpack_require__(166);
-	var EnterLeaveEventPlugin = __webpack_require__(167);
+	var BeforeInputEventPlugin = __webpack_require__(122);
+	var ChangeEventPlugin = __webpack_require__(124);
+	var ClientReactRootIndex = __webpack_require__(125);
+	var DefaultEventPluginOrder = __webpack_require__(127);
+	var EnterLeaveEventPlugin = __webpack_require__(128);
 	var ExecutionEnvironment = __webpack_require__(7);
-	var HTMLDOMPropertyConfig = __webpack_require__(170);
-	var ReactBrowserComponentMixin = __webpack_require__(172);
-	var ReactComponentBrowserEnvironment = __webpack_require__(50);
-	var ReactDefaultBatchingStrategy = __webpack_require__(82);
-	var ReactDOMComponent = __webpack_require__(176);
-	var ReactDOMTextComponent = __webpack_require__(81);
-	var ReactEventListener = __webpack_require__(186);
-	var ReactInjection = __webpack_require__(187);
-	var ReactInstanceHandles = __webpack_require__(24);
+	var HTMLDOMPropertyConfig = __webpack_require__(131);
+	var ReactBrowserComponentMixin = __webpack_require__(133);
+	var ReactComponentBrowserEnvironment = __webpack_require__(43);
+	var ReactDefaultBatchingStrategy = __webpack_require__(72);
+	var ReactDOMComponent = __webpack_require__(137);
+	var ReactDOMTextComponent = __webpack_require__(71);
+	var ReactEventListener = __webpack_require__(147);
+	var ReactInjection = __webpack_require__(148);
+	var ReactInstanceHandles = __webpack_require__(23);
 	var ReactMount = __webpack_require__(6);
-	var ReactReconcileTransaction = __webpack_require__(191);
-	var SelectEventPlugin = __webpack_require__(197);
-	var ServerReactRootIndex = __webpack_require__(198);
-	var SimpleEventPlugin = __webpack_require__(199);
-	var SVGDOMPropertyConfig = __webpack_require__(196);
+	var ReactReconcileTransaction = __webpack_require__(152);
+	var SelectEventPlugin = __webpack_require__(158);
+	var ServerReactRootIndex = __webpack_require__(159);
+	var SimpleEventPlugin = __webpack_require__(160);
+	var SVGDOMPropertyConfig = __webpack_require__(157);
 	
 	var alreadyInjected = false;
 	
@@ -9916,7 +9496,7 @@
 	  if (process.env.NODE_ENV !== 'production') {
 	    var url = ExecutionEnvironment.canUseDOM && window.location.href || '';
 	    if (/[?&]react_perf\b/.test(url)) {
-	      var ReactDefaultPerf = __webpack_require__(183);
+	      var ReactDefaultPerf = __webpack_require__(144);
 	      ReactDefaultPerf.start();
 	    }
 	  }
@@ -9928,7 +9508,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 84 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9952,12 +9532,12 @@
 	'use strict';
 	
 	var ReactElement = __webpack_require__(8);
-	var ReactPropTypeLocations = __webpack_require__(37);
-	var ReactPropTypeLocationNames = __webpack_require__(36);
+	var ReactPropTypeLocations = __webpack_require__(32);
+	var ReactPropTypeLocationNames = __webpack_require__(31);
 	var ReactCurrentOwner = __webpack_require__(17);
 	
-	var canDefineProperty = __webpack_require__(40);
-	var getIteratorFn = __webpack_require__(59);
+	var canDefineProperty = __webpack_require__(35);
+	var getIteratorFn = __webpack_require__(52);
 	var invariant = __webpack_require__(2);
 	var warning = __webpack_require__(5);
 	
@@ -10215,7 +9795,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 85 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10232,7 +9812,7 @@
 	'use strict';
 	
 	var ReactElement = __webpack_require__(8);
-	var ReactEmptyComponentRegistry = __webpack_require__(86);
+	var ReactEmptyComponentRegistry = __webpack_require__(76);
 	var ReactReconciler = __webpack_require__(21);
 	
 	var assign = __webpack_require__(4);
@@ -10271,7 +9851,7 @@
 	module.exports = ReactEmptyComponent;
 
 /***/ },
-/* 86 */
+/* 76 */
 /***/ function(module, exports) {
 
 	/**
@@ -10324,7 +9904,7 @@
 	module.exports = ReactEmptyComponentRegistry;
 
 /***/ },
-/* 87 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -10407,7 +9987,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 88 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10423,11 +10003,11 @@
 	
 	'use strict';
 	
-	var ReactDOMSelection = __webpack_require__(180);
+	var ReactDOMSelection = __webpack_require__(141);
 	
-	var containsNode = __webpack_require__(101);
-	var focusNode = __webpack_require__(102);
-	var getActiveElement = __webpack_require__(103);
+	var containsNode = __webpack_require__(91);
+	var focusNode = __webpack_require__(92);
+	var getActiveElement = __webpack_require__(93);
 	
 	function isInDocument(node) {
 	  return containsNode(document.documentElement, node);
@@ -10536,7 +10116,7 @@
 	module.exports = ReactInputSelection;
 
 /***/ },
-/* 89 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10552,7 +10132,7 @@
 	
 	'use strict';
 	
-	var adler32 = __webpack_require__(208);
+	var adler32 = __webpack_require__(169);
 	
 	var TAG_END = /\/?>/;
 	
@@ -10586,7 +10166,7 @@
 	module.exports = ReactMarkupChecksum;
 
 /***/ },
-/* 90 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10602,7 +10182,7 @@
 	
 	'use strict';
 	
-	var keyMirror = __webpack_require__(43);
+	var keyMirror = __webpack_require__(38);
 	
 	/**
 	 * When a component's children are updated, a series of update configuration
@@ -10623,7 +10203,7 @@
 	module.exports = ReactMultiChildUpdateTypes;
 
 /***/ },
-/* 91 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -10723,7 +10303,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 92 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -10847,7 +10427,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 93 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10864,10 +10444,10 @@
 	'use strict';
 	
 	var ReactElement = __webpack_require__(8);
-	var ReactPropTypeLocationNames = __webpack_require__(36);
+	var ReactPropTypeLocationNames = __webpack_require__(31);
 	
-	var emptyFunction = __webpack_require__(14);
-	var getIteratorFn = __webpack_require__(59);
+	var emptyFunction = __webpack_require__(15);
+	var getIteratorFn = __webpack_require__(52);
 	
 	/**
 	 * Collection of methods that allow declaration and validation of props that are
@@ -11208,7 +10788,7 @@
 	module.exports = ReactPropTypes;
 
 /***/ },
-/* 94 */
+/* 84 */
 /***/ function(module, exports) {
 
 	/**
@@ -11242,7 +10822,7 @@
 	module.exports = ReactRootIndex;
 
 /***/ },
-/* 95 */
+/* 85 */
 /***/ function(module, exports) {
 
 	/**
@@ -11274,7 +10854,7 @@
 	module.exports = ViewportMetrics;
 
 /***/ },
-/* 96 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -11339,7 +10919,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 97 */
+/* 87 */
 /***/ function(module, exports) {
 
 	/**
@@ -11373,7 +10953,7 @@
 	module.exports = forEachAccumulated;
 
 /***/ },
-/* 98 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11411,7 +10991,7 @@
 	module.exports = getTextContentAccessor;
 
 /***/ },
-/* 99 */
+/* 89 */
 /***/ function(module, exports) {
 
 	/**
@@ -11456,7 +11036,7 @@
 	module.exports = isTextInputElement;
 
 /***/ },
-/* 100 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -11480,7 +11060,7 @@
 	
 	'use strict';
 	
-	var emptyFunction = __webpack_require__(14);
+	var emptyFunction = __webpack_require__(15);
 	
 	/**
 	 * Upstream version of event listener. Does not take into account specific
@@ -11546,7 +11126,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 101 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11563,7 +11143,7 @@
 	
 	'use strict';
 	
-	var isTextNode = __webpack_require__(225);
+	var isTextNode = __webpack_require__(186);
 	
 	/*eslint-disable no-bitwise */
 	
@@ -11606,7 +11186,7 @@
 	module.exports = containsNode;
 
 /***/ },
-/* 102 */
+/* 92 */
 /***/ function(module, exports) {
 
 	/**
@@ -11637,7 +11217,7 @@
 	module.exports = focusNode;
 
 /***/ },
-/* 103 */
+/* 93 */
 /***/ function(module, exports) {
 
 	/**
@@ -11677,7 +11257,7 @@
 	module.exports = getActiveElement;
 
 /***/ },
-/* 104 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -11778,7 +11358,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 105 */
+/* 95 */
 /***/ function(module, exports) {
 
 	/**
@@ -11833,7 +11413,7 @@
 	module.exports = shallowEqual;
 
 /***/ },
-/* 106 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -11845,11 +11425,11 @@
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 	
-	module.exports.Dispatcher = __webpack_require__(107);
+	module.exports.Dispatcher = __webpack_require__(97);
 
 
 /***/ },
-/* 107 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -11871,7 +11451,7 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var invariant = __webpack_require__(108);
+	var invariant = __webpack_require__(98);
 	
 	var _prefix = 'ID_';
 	
@@ -12086,7 +11666,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 108 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -12141,1627 +11721,6860 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 109 */
+/* 99 */
 /***/ function(module, exports) {
 
 	module.exports = [
-		[
-			[
-				[
-					"小口径主砲",
-					"12.7cm連装砲",
-					""
-				],
-				[
-					"小口径主砲",
-					"10cm高角砲＋高射装置",
-					"照月"
-				]
-			],
-			[
-				[
-					"小口径主砲",
-					"12.7cm連装砲",
-					""
-				],
-				[
-					"小口径主砲",
-					"12.7cm連装砲B型改二",
-					"夕立改二,綾波改二"
-				],
-				[
-					"小口径主砲",
-					"10cm高角砲＋高射装置",
-					"秋月"
-				]
-			],
-			[
-				[
-					"小口径主砲",
-					"12.7cm連装砲",
-					""
-				],
-				[
-					"小口径主砲",
-					"12.7cm連装砲B型改二",
-					"夕立改二,綾波改二"
-				],
-				[
-					"小口径主砲",
-					"10cm高角砲＋高射装置",
-					"秋月"
-				]
-			],
-			[
-				[
-					"小口径主砲",
-					"12.7cm連装砲",
-					""
-				],
-				[
-					"小口径主砲",
-					"12.7cm連装砲B型改二",
-					"夕立改二,綾波改二"
-				],
-				[
-					"小口径主砲",
-					"10cm高角砲＋高射装置",
-					"秋月"
-				]
-			],
-			[
-				[
-					"小口径主砲",
-					"12.7cm連装砲",
-					""
-				],
-				[
-					"小口径主砲",
-					"10cm高角砲＋高射装置",
-					"秋月,照月"
-				]
-			],
-			[
-				[
-					"小口径主砲",
-					"12.7cm連装砲",
-					""
-				],
-				[
-					"小口径主砲",
-					"10cm高角砲＋高射装置",
-					"照月"
-				]
-			],
-			[
-				[
-					"小口径主砲",
-					"12.7cm連装砲",
-					""
-				],
-				[
-					"小口径主砲",
-					"10cm高角砲＋高射装置",
-					"照月"
-				]
-			]
-		],
-		[
-			[
-				[
-					"中口径主砲",
-					"14cm単装砲",
-					""
-				],
-				[
-					"中口径主砲",
-					"15.2cm連装砲",
-					"能代"
-				],
-				[
-					"中口径主砲",
-					"15.2cm連装砲改",
-					"酒匂"
-				],
-				[
-					"中口径主砲",
-					"15.5cm三連装砲",
-					"大淀"
-				],
-				[
-					"中口径主砲",
-					"20.3cm連装砲",
-					"青葉,衣笠"
-				],
-				[
-					"中口径主砲",
-					"20.3cm(2号)連装砲",
-					"妙高"
-				]
-			],
-			[
-				[
-					"中口径主砲",
-					"14cm単装砲",
-					""
-				],
-				[
-					"中口径主砲",
-					"14cm連装砲",
-					"夕張"
-				],
-				[
-					"中口径主砲",
-					"15.2cm連装砲",
-					"能代,矢矧"
-				],
-				[
-					"中口径主砲",
-					"15.2cm連装砲改",
-					"酒匂"
-				],
-				[
-					"中口径主砲",
-					"15.5cm三連装砲",
-					"大淀"
-				],
-				[
-					"中口径主砲",
-					"20.3cm連装砲",
-					"衣笠"
-				],
-				[
-					"中口径主砲",
-					"20.3cm(2号)連装砲",
-					"妙高"
-				]
-			],
-			[
-				[
-					"中口径主砲",
-					"14cm単装砲",
-					""
-				],
-				[
-					"中口径主砲",
-					"15.2cm連装砲",
-					"矢矧"
-				],
-				[
-					"中口径主砲",
-					"15.2cm連装砲改",
-					"酒匂"
-				],
-				[
-					"中口径主砲",
-					"20.3cm連装砲",
-					"衣笠"
-				],
-				[
-					"中口径主砲",
-					"20.3cm(2号)連装砲",
-					"妙高"
-				],
-				[
-					"中口径主砲",
-					"20.3cm(3号)連装砲",
-					"三隈"
-				]
-			],
-			[
-				[
-					"中口径主砲",
-					"14cm単装砲",
-					""
-				],
-				[
-					"中口径主砲",
-					"15.2cm連装砲",
-					"矢矧"
-				],
-				[
-					"中口径主砲",
-					"15.2cm連装砲改",
-					"矢矧"
-				],
-				[
-					"中口径主砲",
-					"20.3cm連装砲",
-					"衣笠"
-				],
-				[
-					"中口径主砲",
-					"20.3cm(3号)連装砲",
-					"三隈"
-				]
-			],
-			[
-				[
-					"中口径主砲",
-					"14cm単装砲",
-					""
-				],
-				[
-					"中口径主砲",
-					"14cm連装砲",
-					"夕張"
-				],
-				[
-					"中口径主砲",
-					"15.2cm連装砲",
-					"阿賀野,矢矧"
-				],
-				[
-					"中口径主砲",
-					"15.2cm連装砲改",
-					"矢矧"
-				],
-				[
-					"中口径主砲",
-					"20.3cm連装砲",
-					"青葉,衣笠"
-				]
-			],
-			[
-				[
-					"中口径主砲",
-					"14cm単装砲",
-					""
-				],
-				[
-					"中口径主砲",
-					"15.2cm連装砲",
-					"阿賀野,能代"
-				],
-				[
-					"中口径主砲",
-					"15.2cm連装砲改",
-					"矢矧"
-				],
-				[
-					"中口径主砲",
-					"15.5cm三連装砲",
-					"最上"
-				],
-				[
-					"中口径主砲",
-					"20.3cm連装砲",
-					"青葉,衣笠"
-				]
-			],
-			[
-				[
-					"中口径主砲",
-					"14cm単装砲",
-					""
-				],
-				[
-					"中口径主砲",
-					"15.2cm連装砲",
-					"阿賀野,能代"
-				],
-				[
-					"中口径主砲",
-					"15.2cm連装砲改",
-					"矢矧,酒匂"
-				],
-				[
-					"中口径主砲",
-					"15.5cm三連装砲",
-					"最上"
-				],
-				[
-					"中口径主砲",
-					"20.3cm連装砲",
-					"青葉,衣笠"
-				]
-			]
-		],
-		[
-			[
-				[
-					"大口径主砲",
-					"35.6cm連装砲",
-					"扶桑"
-				],
-				[
-					"大口径主砲",
-					"試製35.6cm三連装砲",
-					"山城改二"
-				],
-				[
-					"大口径主砲",
-					"38cm連装砲改",
-					"Bismarck"
-				],
-				[
-					"大口径主砲",
-					"381mm／50 三連装砲",
-					"Roma"
-				],
-				[
-					"大口径主砲",
-					"381mm／50 三連装砲改",
-					"Littorio"
-				],
-				[
-					"大口径主砲",
-					"41cm連装砲",
-					"陸奥"
-				],
-				[
-					"大口径主砲",
-					"試製41cm三連装砲",
-					"長門改"
-				],
-				[
-					"大口径主砲",
-					"試製46cm連装砲",
-					"大和"
-				],
-				[
-					"大口径主砲",
-					"46cm三連装砲",
-					"武蔵"
-				]
-			],
-			[
-				[
-					"大口径主砲",
-					"38cm連装砲改",
-					"Bismarck"
-				],
-				[
-					"大口径主砲",
-					"381mm／50 三連装砲",
-					"Roma"
-				],
-				[
-					"大口径主砲",
-					"381mm／50 三連装砲改",
-					"Littorio"
-				],
-				[
-					"大口径主砲",
-					"41cm連装砲",
-					"陸奥"
-				],
-				[
-					"大口径主砲",
-					"試製41cm三連装砲",
-					"長門改"
-				],
-				[
-					"大口径主砲",
-					"試製46cm連装砲",
-					"大和"
-				],
-				[
-					"大口径主砲",
-					"46cm三連装砲",
-					"武蔵"
-				],
-				[
-					"大口径主砲",
-					"試製51cm連装砲",
-					"大和改,武蔵改"
-				]
-			],
-			[
-				[
-					"大口径主砲",
-					"38cm連装砲改",
-					"Bismarck"
-				],
-				[
-					"大口径主砲",
-					"381mm／50 三連装砲",
-					"Littorio"
-				],
-				[
-					"大口径主砲",
-					"381mm／50 三連装砲改",
-					"Roma"
-				],
-				[
-					"大口径主砲",
-					"41cm連装砲",
-					"長門"
-				],
-				[
-					"大口径主砲",
-					"試製41cm三連装砲",
-					"陸奥改"
-				],
-				[
-					"大口径主砲",
-					"試製46cm連装砲",
-					"武蔵"
-				],
-				[
-					"大口径主砲",
-					"試製51cm連装砲",
-					"大和改"
-				]
-			],
-			[
-				[
-					"大口径主砲",
-					"試製35.6cm三連装砲",
-					"金剛改二,扶桑改二"
-				],
-				[
-					"大口径主砲",
-					"381mm／50 三連装砲",
-					"Littorio"
-				],
-				[
-					"大口径主砲",
-					"381mm／50 三連装砲改",
-					"Roma"
-				],
-				[
-					"大口径主砲",
-					"試製41cm三連装砲",
-					"長門改,陸奥改"
-				],
-				[
-					"大口径主砲",
-					"試製46cm連装砲",
-					"武蔵"
-				],
-				[
-					"大口径主砲",
-					"試製51cm連装砲",
-					"武蔵改"
-				]
-			],
-			[
-				[
-					"大口径主砲",
-					"試製35.6cm三連装砲",
-					"金剛改二,榛名改二,扶桑改二,山城改二"
-				],
-				[
-					"大口径主砲",
-					"38cm連装砲",
-					"Bismarck"
-				],
-				[
-					"大口径主砲",
-					"381mm／50 三連装砲",
-					"Littorio"
-				],
-				[
-					"大口径主砲",
-					"381mm／50 三連装砲改",
-					"Roma"
-				],
-				[
-					"大口径主砲",
-					"41cm連装砲",
-					"陸奥"
-				],
-				[
-					"大口径主砲",
-					"試製41cm三連装砲",
-					"長門改"
-				]
-			],
-			[
-				[
-					"大口径主砲",
-					"35.6cm連装砲",
-					"扶桑"
-				],
-				[
-					"大口径主砲",
-					"試製35.6cm三連装砲",
-					"榛名改二,扶桑改二,山城改二"
-				],
-				[
-					"大口径主砲",
-					"38cm連装砲",
-					"Bismarck"
-				],
-				[
-					"大口径主砲",
-					"381mm／50 三連装砲",
-					"Littorio"
-				],
-				[
-					"大口径主砲",
-					"381mm／50 三連装砲改",
-					"Roma"
-				],
-				[
-					"大口径主砲",
-					"41cm連装砲",
-					"長門"
-				],
-				[
-					"大口径主砲",
-					"試製41cm三連装砲",
-					"陸奥改"
-				],
-				[
-					"大口径主砲",
-					"46cm三連装砲",
-					"大和"
-				]
-			],
-			[
-				[
-					"大口径主砲",
-					"35.6cm連装砲",
-					"扶桑"
-				],
-				[
-					"大口径主砲",
-					"試製35.6cm三連装砲",
-					"扶桑改二,山城改二"
-				],
-				[
-					"大口径主砲",
-					"38cm連装砲",
-					"Bismarck"
-				],
-				[
-					"大口径主砲",
-					"381mm／50 三連装砲",
-					"Roma"
-				],
-				[
-					"大口径主砲",
-					"381mm／50 三連装砲改",
-					"Littorio"
-				],
-				[
-					"大口径主砲",
-					"41cm連装砲",
-					"長門"
-				],
-				[
-					"大口径主砲",
-					"試製41cm三連装砲",
-					"陸奥改"
-				],
-				[
-					"大口径主砲",
-					"46cm三連装砲",
-					"大和"
-				]
-			]
-		],
-		[
-			[
-				[
-					"副砲",
-					"90mm単装高角砲",
-					"Roma"
-				],
-				[
-					"副砲",
-					"15.2cm単装砲",
-					"阿賀野,金剛"
-				],
-				[
-					"副砲",
-					"OTO 152mm三連装速射砲",
-					"Littorio,Roma"
-				]
-			],
-			[
-				[
-					"副砲",
-					"90mm単装高角砲",
-					"Littorio"
-				],
-				[
-					"副砲",
-					"15.2cm単装砲",
-					"阿賀野,金剛,山城"
-				],
-				[
-					"副砲",
-					"OTO 152mm三連装速射砲",
-					"Roma"
-				]
-			],
-			[
-				[
-					"副砲",
-					"90mm単装高角砲",
-					"Littorio"
-				],
-				[
-					"副砲",
-					"15.2cm単装砲",
-					"阿賀野,山城"
-				],
-				[
-					"副砲",
-					"OTO 152mm三連装速射砲",
-					"Littorio"
-				]
-			],
-			[
-				[
-					"副砲",
-					"90mm単装高角砲",
-					"Littorio"
-				],
-				[
-					"副砲",
-					"15.2cm単装砲",
-					"山城"
-				],
-				[
-					"副砲",
-					"OTO 152mm三連装速射砲",
-					"Littorio"
-				]
-			],
-			[
-				[
-					"副砲",
-					"90mm単装高角砲",
-					"Littorio,Roma"
-				],
-				[
-					"副砲",
-					"OTO 152mm三連装速射砲",
-					"Roma"
-				]
-			],
-			[
-				[
-					"副砲",
-					"OTO 152mm三連装速射砲",
-					"Roma"
-				]
-			],
-			[
-				[
-					"副砲",
-					"15.2cm単装砲",
-					"金剛"
-				],
-				[
-					"副砲",
-					"OTO 152mm三連装速射砲",
-					"Littorio"
-				]
-			]
-		],
-		[
-			[
-				[
-					"魚雷",
-					"61cm三連装魚雷",
-					"叢雲"
-				],
-				[
-					"魚雷",
-					"61cm四連装魚雷",
-					""
-				],
-				[
-					"魚雷",
-					"61cm四連装(酸素)魚雷",
-					"大井,北上"
-				]
-			],
-			[
-				[
-					"魚雷",
-					"61cm三連装魚雷",
-					"叢雲"
-				],
-				[
-					"魚雷",
-					"61cm四連装魚雷",
-					""
-				],
-				[
-					"魚雷",
-					"61cm四連装(酸素)魚雷",
-					"大井,北上"
-				]
-			],
-			[
-				[
-					"魚雷",
-					"61cm三連装魚雷",
-					"叢雲"
-				],
-				[
-					"魚雷",
-					"61cm四連装魚雷",
-					""
-				],
-				[
-					"魚雷",
-					"61cm四連装(酸素)魚雷",
-					"大井,北上"
-				]
-			],
-			[
-				[
-					"魚雷",
-					"61cm四連装(酸素)魚雷",
-					"大井,北上"
-				],
-				[
-					"魚雷",
-					"61cm五連装(酸素)魚雷",
-					"島風"
-				]
-			],
-			[
-				[
-					"魚雷",
-					"61cm三連装魚雷",
-					"吹雪,吹雪改"
-				],
-				[
-					"魚雷",
-					"61cm三連装(酸素)魚雷",
-					"吹雪改二"
-				],
-				[
-					"魚雷",
-					"61cm四連装(酸素)魚雷",
-					"大井,北上"
-				],
-				[
-					"魚雷",
-					"61cm五連装(酸素)魚雷",
-					"島風"
-				]
-			],
-			[
-				[
-					"魚雷",
-					"61cm三連装魚雷",
-					"吹雪,吹雪改"
-				],
-				[
-					"魚雷",
-					"61cm三連装(酸素)魚雷",
-					"吹雪改二"
-				],
-				[
-					"魚雷",
-					"61cm四連装魚雷",
-					""
-				],
-				[
-					"魚雷",
-					"61cm四連装(酸素)魚雷",
-					"大井,北上"
-				]
-			],
-			[
-				[
-					"魚雷",
-					"61cm三連装魚雷",
-					"吹雪,吹雪改"
-				],
-				[
-					"魚雷",
-					"61cm三連装(酸素)魚雷",
-					"吹雪改二"
-				],
-				[
-					"魚雷",
-					"61cm四連装魚雷",
-					""
-				],
-				[
-					"魚雷",
-					"61cm四連装(酸素)魚雷",
-					"大井,北上"
-				]
-			]
-		],
-		[
-			[
-				[
-					"電探",
-					"13号対空電探",
-					"時雨改二,五十鈴改二"
-				],
-				[
-					"電探",
-					"13号対空電探改",
-					"初霜改二,雪風"
-				],
-				[
-					"電探",
-					"22号対水上電探",
-					"日向"
-				],
-				[
-					"電探",
-					"22号対水上電探改四",
-					"妙高改二,羽黒改二"
-				],
-				[
-					"電探",
-					"21号対空電探",
-					"伊勢"
-				],
-				[
-					"電探",
-					"21号対空電探改",
-					"大和"
-				],
-				[
-					"電探",
-					"32号対水上電探",
-					"日向"
-				],
-				[
-					"電探",
-					"32号対水上電探改",
-					"伊勢"
-				]
-			],
-			[
-				[
-					"電探",
-					"13号対空電探",
-					"五十鈴改二,照月"
-				],
-				[
-					"電探",
-					"13号対空電探改",
-					"雪風"
-				],
-				[
-					"電探",
-					"22号対水上電探",
-					"日向,夕雲"
-				],
-				[
-					"電探",
-					"22号対水上電探改四",
-					"羽黒改二"
-				],
-				[
-					"電探",
-					"21号対空電探",
-					"伊勢"
-				],
-				[
-					"電探",
-					"32号対水上電探",
-					"日向"
-				],
-				[
-					"電探",
-					"32号対水上電探改",
-					"伊勢"
-				]
-			],
-			[
-				[
-					"電探",
-					"13号対空電探",
-					"秋月,照月"
-				],
-				[
-					"電探",
-					"13号対空電探改",
-					"雪風"
-				],
-				[
-					"電探",
-					"22号対水上電探",
-					"夕雲"
-				],
-				[
-					"電探",
-					"22号対水上電探改四",
-					"金剛改二"
-				],
-				[
-					"電探",
-					"21号対空電探改",
-					"武蔵"
-				],
-				[
-					"電探",
-					"32号対水上電探",
-					"日向"
-				],
-				[
-					"電探",
-					"32号対水上電探改",
-					"伊勢"
-				]
-			],
-			[
-				[
-					"電探",
-					"13号対空電探",
-					"秋月,照月"
-				],
-				[
-					"電探",
-					"13号対空電探改",
-					"雪風"
-				],
-				[
-					"電探",
-					"22号対水上電探",
-					"島風"
-				],
-				[
-					"電探",
-					"22号対水上電探改四",
-					"金剛改二"
-				],
-				[
-					"電探",
-					"21号対空電探",
-					"日向"
-				],
-				[
-					"電探",
-					"21号対空電探改",
-					"武蔵"
-				],
-				[
-					"電探",
-					"32号対水上電探",
-					"伊勢"
-				],
-				[
-					"電探",
-					"32号対水上電探改",
-					"日向"
-				]
-			],
-			[
-				[
-					"電探",
-					"13号対空電探",
-					"時雨改二,秋月"
-				],
-				[
-					"電探",
-					"13号対空電探改",
-					"磯風改"
-				],
-				[
-					"電探",
-					"22号対水上電探",
-					"島風"
-				],
-				[
-					"電探",
-					"22号対水上電探改四",
-					"妙高改二,金剛改二"
-				],
-				[
-					"電探",
-					"21号対空電探",
-					"日向"
-				],
-				[
-					"電探",
-					"21号対空電探改",
-					"大和,武蔵"
-				],
-				[
-					"電探",
-					"32号対水上電探",
-					"伊勢"
-				],
-				[
-					"電探",
-					"32号対水上電探改",
-					"日向"
-				]
-			],
-			[
-				[
-					"電探",
-					"13号対空電探",
-					"時雨改二,五十鈴改二"
-				],
-				[
-					"電探",
-					"13号対空電探改",
-					"磯風改,初霜改二"
-				],
-				[
-					"電探",
-					"22号対水上電探",
-					"日向,夕雲,島風"
-				],
-				[
-					"電探",
-					"22号対水上電探改四",
-					"妙高改二,羽黒改二,金剛改二"
-				],
-				[
-					"電探",
-					"21号対空電探",
-					"伊勢,日向"
-				],
-				[
-					"電探",
-					"21号対空電探改",
-					"大和,武蔵"
-				],
-				[
-					"電探",
-					"32号対水上電探",
-					"伊勢"
-				],
-				[
-					"電探",
-					"32号対水上電探改",
-					"日向"
-				]
-			],
-			[
-				[
-					"電探",
-					"13号対空電探",
-					"時雨改二,五十鈴改二"
-				],
-				[
-					"電探",
-					"13号対空電探改",
-					"磯風改,初霜改二"
-				],
-				[
-					"電探",
-					"22号対水上電探",
-					"日向,夕雲,島風"
-				],
-				[
-					"電探",
-					"22号対水上電探改四",
-					"妙高改二,羽黒改二"
-				],
-				[
-					"電探",
-					"21号対空電探",
-					"伊勢,日向"
-				],
-				[
-					"電探",
-					"21号対空電探改",
-					"大和"
-				],
-				[
-					"電探",
-					"32号対水上電探",
-					"伊勢"
-				],
-				[
-					"電探",
-					"32号対水上電探改",
-					"日向"
-				]
-			]
-		],
-		[
-			[
-				[
-					"ソナー",
-					"九三式水中聴音機",
-					"夕張,時雨改二,香取改"
-				],
-				[
-					"ソナー",
-					"三式水中探信儀",
-					"五十鈴改二"
-				],
-				[
-					"ソナー",
-					"四式水中聴音機",
-					"秋月"
-				]
-			],
-			[
-				[
-					"ソナー",
-					"九三式水中聴音機",
-					"五十鈴改二"
-				],
-				[
-					"ソナー",
-					"四式水中聴音機",
-					"香取改"
-				]
-			],
-			[
-				[
-					"ソナー",
-					"三式水中探信儀",
-					"夕張,五十鈴改二"
-				],
-				[
-					"ソナー",
-					"四式水中聴音機",
-					"香取改"
-				]
-			],
-			[
-				[
-					"ソナー",
-					"三式水中探信儀",
-					"夕張,五十鈴改二"
-				],
-				[
-					"ソナー",
-					"四式水中聴音機",
-					"照月"
-				]
-			],
-			[
-				[
-					"ソナー",
-					"九三式水中聴音機",
-					"五十鈴改二,時雨改二"
-				],
-				[
-					"ソナー",
-					"四式水中聴音機",
-					"五十鈴改二"
-				]
-			],
-			[
-				[
-					"ソナー",
-					"九三式水中聴音機",
-					"夕張,五十鈴改二,時雨改二,香取改"
-				],
-				[
-					"ソナー",
-					"四式水中聴音機",
-					"五十鈴改二"
-				]
-			],
-			[
-				[
-					"ソナー",
-					"九三式水中聴音機",
-					"夕張,時雨改二,香取改"
-				],
-				[
-					"ソナー",
-					"四式水中聴音機",
-					"五十鈴改二"
-				]
-			]
-		],
-		[
-			[],
-			[],
-			[],
-			[
-				[
-					"爆雷",
-					"九四式爆雷投射機",
-					""
-				],
-				[
-					"爆雷",
-					"三式爆雷投射機",
-					"五十鈴改二"
-				]
-			],
-			[
-				[
-					"爆雷",
-					"九四式爆雷投射機",
-					""
-				],
-				[
-					"爆雷",
-					"三式爆雷投射機",
-					"五十鈴改二"
-				]
-			],
-			[],
-			[]
-		],
-		[
-			[
-				[
-					"対艦強化弾",
-					"九一式徹甲弾",
-					"霧島"
-				],
-				[
-					"対艦強化弾",
-					"一式徹甲弾",
-					"金剛"
-				]
-			],
-			[
-				[
-					"対艦強化弾",
-					"九一式徹甲弾",
-					"霧島"
-				],
-				[
-					"対艦強化弾",
-					"一式徹甲弾",
-					"榛名"
-				]
-			],
-			[
-				[
-					"対艦強化弾",
-					"一式徹甲弾",
-					"榛名"
-				]
-			],
-			[
-				[
-					"対艦強化弾",
-					"九一式徹甲弾",
-					"比叡"
-				],
-				[
-					"対艦強化弾",
-					"一式徹甲弾",
-					"榛名"
-				]
-			],
-			[
-				[
-					"対艦強化弾",
-					"九一式徹甲弾",
-					"比叡"
-				]
-			],
-			[
-				[
-					"対艦強化弾",
-					"九一式徹甲弾",
-					"比叡,霧島"
-				],
-				[
-					"対艦強化弾",
-					"一式徹甲弾",
-					"金剛"
-				]
-			],
-			[
-				[
-					"対艦強化弾",
-					"九一式徹甲弾",
-					"比叡,霧島"
-				],
-				[
-					"対艦強化弾",
-					"一式徹甲弾",
-					"金剛"
-				]
-			]
-		],
-		[
-			[
-				[
-					"対空機銃",
-					"25mm連装機銃",
-					"五十鈴改二"
-				],
-				[
-					"対空機銃",
-					"25mm三連装機銃",
-					"摩耶改二"
-				]
-			],
-			[
-				[
-					"対空機銃",
-					"25mm三連装機銃",
-					"五十鈴改二,摩耶改二"
-				]
-			],
-			[
-				[
-					"対空機銃",
-					"25mm三連装機銃",
-					"五十鈴改二,摩耶,摩耶改"
-				]
-			],
-			[
-				[
-					"対空機銃",
-					"25mm三連装機銃",
-					"五十鈴改二,摩耶,摩耶改"
-				]
-			],
-			[
-				[
-					"対空機銃",
-					"25mm三連装機銃",
-					"摩耶,摩耶改"
-				]
-			],
-			[
-				[
-					"対空機銃",
-					"25mm三連装機銃",
-					"摩耶改二"
-				]
-			],
-			[
-				[
-					"対空機銃",
-					"25mm連装機銃",
-					"五十鈴改二"
-				],
-				[
-					"対空機銃",
-					"25mm三連装機銃",
-					"摩耶改二"
-				]
-			]
-		],
-		[
-			[
-				[
-					"高射装置",
-					"91式高射装置",
-					"摩耶,秋月,照月"
-				],
-				[
-					"高射装置",
-					"94式高射装置",
-					"秋月,照月,吹雪改二,摩耶改二"
-				]
-			],
-			[
-				[
-					"高射装置",
-					"91式高射装置",
-					"摩耶,秋月"
-				],
-				[
-					"高射装置",
-					"94式高射装置",
-					"秋月,照月"
-				]
-			],
-			[
-				[
-					"高射装置",
-					"94式高射装置",
-					"秋月,照月"
-				]
-			],
-			[
-				[
-					"高射装置",
-					"94式高射装置",
-					"秋月,照月"
-				]
-			],
-			[
-				[
-					"高射装置",
-					"91式高射装置",
-					"照月"
-				],
-				[
-					"高射装置",
-					"94式高射装置",
-					"秋月,照月,吹雪改二,摩耶改二"
-				]
-			],
-			[
-				[
-					"高射装置",
-					"91式高射装置",
-					"摩耶,秋月,照月"
-				],
-				[
-					"高射装置",
-					"94式高射装置",
-					"秋月,照月,吹雪改二,摩耶改二"
-				]
-			],
-			[
-				[
-					"高射装置",
-					"91式高射装置",
-					"摩耶,秋月,照月"
-				],
-				[
-					"高射装置",
-					"94式高射装置",
-					"秋月,照月,吹雪改二,摩耶改二"
-				]
-			]
-		],
-		[
-			[
-				[
-					"探照灯",
-					"探照灯",
-					"神通"
-				],
-				[
-					"探照灯",
-					"96式150cm探照灯",
-					"比叡"
-				]
-			],
-			[
-				[
-					"探照灯",
-					"探照灯",
-					"青葉,綾波"
-				],
-				[
-					"探照灯",
-					"96式150cm探照灯",
-					"比叡"
-				]
-			],
-			[
-				[
-					"探照灯",
-					"探照灯",
-					"青葉,綾波"
-				],
-				[
-					"探照灯",
-					"96式150cm探照灯",
-					"霧島"
-				]
-			],
-			[
-				[
-					"探照灯",
-					"探照灯",
-					"青葉,綾波"
-				],
-				[
-					"探照灯",
-					"96式150cm探照灯",
-					"霧島"
-				]
-			],
-			[
-				[
-					"探照灯",
-					"探照灯",
-					"暁"
-				],
-				[
-					"探照灯",
-					"96式150cm探照灯",
-					"霧島"
-				]
-			],
-			[
-				[
-					"探照灯",
-					"探照灯",
-					"暁,神通"
-				],
-				[
-					"探照灯",
-					"96式150cm探照灯",
-					"比叡,霧島"
-				]
-			],
-			[
-				[
-					"探照灯",
-					"探照灯",
-					"暁,神通"
-				],
-				[
-					"探照灯",
-					"96式150cm探照灯",
-					"比叡"
-				]
-			]
-		],
-		[
-			[
-				[
-					"水上偵察機",
-					"零式水上観測機",
-					"瑞穂"
-				],
-				[
-					"水上偵察機",
-					"Ro.43水偵",
-					"Italia"
-				]
-			],
-			[
-				[
-					"水上偵察機",
-					"零式水上観測機",
-					"瑞穂"
-				],
-				[
-					"水上偵察機",
-					"Ro.43水偵",
-					"Zara改"
-				]
-			],
-			[
-				[
-					"水上偵察機",
-					"零式水上観測機",
-					"瑞穂"
-				],
-				[
-					"水上偵察機",
-					"Ro.43水偵",
-					"Zara改,Roma改"
-				]
-			],
-			[
-				[
-					"水上偵察機",
-					"零式水上観測機",
-					"瑞穂"
-				],
-				[
-					"水上偵察機",
-					"Ro.43水偵",
-					"Zara改,Roma改"
-				]
-			],
-			[
-				[
-					"水上偵察機",
-					"零式水上観測機",
-					"武蔵"
-				],
-				[
-					"水上偵察機",
-					"Ro.43水偵",
-					"Zara改"
-				]
-			],
-			[
-				[
-					"水上偵察機",
-					"零式水上観測機",
-					"武蔵"
-				],
-				[
-					"水上偵察機",
-					"Ro.43水偵",
-					"Zara改"
-				]
-			],
-			[
-				[
-					"水上偵察機",
-					"零式水上観測機",
-					"瑞穂,武蔵"
-				],
-				[
-					"水上偵察機",
-					"Ro.43水偵",
-					"Italia"
-				]
-			]
-		]
+		{
+			"type": "小口径主砲",
+			"name": "12.7cm連装砲",
+			"owner": "",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit1.png"
+		},
+		{
+			"type": "小口径主砲",
+			"name": "12.7cm連装砲B型改二",
+			"owner": "夕立改二",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit1.png"
+		},
+		{
+			"type": "小口径主砲",
+			"name": "12.7cm連装砲B型改二",
+			"owner": "綾波改二",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit1.png"
+		},
+		{
+			"type": "小口径主砲",
+			"name": "10cm高角砲＋高射装置",
+			"owner": "秋月",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit0.png"
+		},
+		{
+			"type": "小口径主砲",
+			"name": "10cm高角砲＋高射装置",
+			"owner": "照月",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit0.png"
+		},
+		{
+			"type": "中口径主砲",
+			"name": "14cm単装砲",
+			"owner": "",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit2.png"
+		},
+		{
+			"type": "中口径主砲",
+			"name": "14cm連装砲",
+			"owner": "夕張",
+			"sun": 0,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit2.png"
+		},
+		{
+			"type": "中口径主砲",
+			"name": "15.2cm連装砲",
+			"owner": "阿賀野",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit2.png"
+		},
+		{
+			"type": "中口径主砲",
+			"name": "15.2cm連装砲",
+			"owner": "能代",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit2.png"
+		},
+		{
+			"type": "中口径主砲",
+			"name": "15.2cm連装砲",
+			"owner": "矢矧",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit2.png"
+		},
+		{
+			"type": "中口径主砲",
+			"name": "15.2cm連装砲改",
+			"owner": "矢矧",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit2.png"
+		},
+		{
+			"type": "中口径主砲",
+			"name": "15.2cm連装砲改",
+			"owner": "酒匂",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 1,
+			"img": "./img/sit2.png"
+		},
+		{
+			"type": "中口径主砲",
+			"name": "15.5cm三連装砲",
+			"owner": "最上",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit2.png"
+		},
+		{
+			"type": "中口径主砲",
+			"name": "15.5cm三連装砲",
+			"owner": "大淀",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit2.png"
+		},
+		{
+			"type": "中口径主砲",
+			"name": "20.3cm連装砲",
+			"owner": "青葉",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit2.png"
+		},
+		{
+			"type": "中口径主砲",
+			"name": "20.3cm連装砲",
+			"owner": "衣笠",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit2.png"
+		},
+		{
+			"type": "中口径主砲",
+			"name": "20.3cm(2号)連装砲",
+			"owner": "妙高",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit2.png"
+		},
+		{
+			"type": "中口径主砲",
+			"name": "20.3cm(3号)連装砲",
+			"owner": "三隈",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit2.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "35.6cm連装砲",
+			"owner": "扶桑",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "試製35.6cm三連装砲",
+			"owner": "金剛改二",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "試製35.6cm三連装砲",
+			"owner": "榛名改二",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 0,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "試製35.6cm三連装砲",
+			"owner": "扶桑改二",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "試製35.6cm三連装砲",
+			"owner": "山城改二",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "38cm連装砲",
+			"owner": "Bismarck",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "38cm連装砲改",
+			"owner": "Bismarck",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "381mm／50 三連装砲",
+			"owner": "Littorio",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 0,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "381mm／50 三連装砲",
+			"owner": "Roma",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 1,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "381mm／50 三連装砲改",
+			"owner": "Littorio",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 1,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "381mm／50 三連装砲改",
+			"owner": "Roma",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 0,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "41cm連装砲",
+			"owner": "長門",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "41cm連装砲",
+			"owner": "陸奥",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "試製41cm三連装砲",
+			"owner": "長門改",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "試製41cm三連装砲",
+			"owner": "陸奥改",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "試製46cm連装砲",
+			"owner": "大和",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "試製46cm連装砲",
+			"owner": "武蔵",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "46cm三連装砲",
+			"owner": "大和",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "46cm三連装砲",
+			"owner": "武蔵",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "試製51cm連装砲",
+			"owner": "大和改",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "試製51cm連装砲",
+			"owner": "武蔵改",
+			"sun": 0,
+			"mon": 1,
+			"tue": 0,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "副砲",
+			"name": "90mm単装高角砲",
+			"owner": "Littorio",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit0.png"
+		},
+		{
+			"type": "副砲",
+			"name": "90mm単装高角砲",
+			"owner": "Roma",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit0.png"
+		},
+		{
+			"type": "副砲",
+			"name": "15.2cm単装砲",
+			"owner": "阿賀野",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit4.png"
+		},
+		{
+			"type": "副砲",
+			"name": "15.2cm単装砲",
+			"owner": "金剛",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 1,
+			"img": "./img/sit4.png"
+		},
+		{
+			"type": "副砲",
+			"name": "15.2cm単装砲",
+			"owner": "山城",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit4.png"
+		},
+		{
+			"type": "副砲",
+			"name": "OTO 152mm三連装速射砲",
+			"owner": "Littorio",
+			"sun": 1,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 1,
+			"img": "./img/sit4.png"
+		},
+		{
+			"type": "副砲",
+			"name": "OTO 152mm三連装速射砲",
+			"owner": "Roma",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 0,
+			"img": "./img/sit4.png"
+		},
+		{
+			"type": "魚雷",
+			"name": "61cm三連装魚雷",
+			"owner": "吹雪",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit5.png"
+		},
+		{
+			"type": "魚雷",
+			"name": "61cm三連装魚雷",
+			"owner": "吹雪改",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit5.png"
+		},
+		{
+			"type": "魚雷",
+			"name": "61cm三連装魚雷",
+			"owner": "叢雲",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit5.png"
+		},
+		{
+			"type": "魚雷",
+			"name": "61cm三連装(酸素)魚雷",
+			"owner": "吹雪改二",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit5.png"
+		},
+		{
+			"type": "魚雷",
+			"name": "61cm四連装魚雷",
+			"owner": "",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit5.png"
+		},
+		{
+			"type": "魚雷",
+			"name": "61cm四連装(酸素)魚雷",
+			"owner": "大井",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit5.png"
+		},
+		{
+			"type": "魚雷",
+			"name": "61cm四連装(酸素)魚雷",
+			"owner": "北上",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit5.png"
+		},
+		{
+			"type": "魚雷",
+			"name": "61cm五連装(酸素)魚雷",
+			"owner": "島風",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit5.png"
+		},
+		{
+			"type": "水上偵察機",
+			"name": "零式水上偵察機",
+			"owner": "千歳甲",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit6.png"
+		},
+		{
+			"type": "水上偵察機",
+			"name": "零式水上偵察機",
+			"owner": "千代田甲",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit6.png"
+		},
+		{
+			"type": "水上偵察機",
+			"name": "零式水上偵察機",
+			"owner": "秋津洲改",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit6.png"
+		},
+		{
+			"type": "水上偵察機",
+			"name": "零式水上偵察機",
+			"owner": "瑞穂",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit6.png"
+		},
+		{
+			"type": "水上偵察機",
+			"name": "零式水上観測機",
+			"owner": "瑞穂",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 1,
+			"img": "./img/sit6.png"
+		},
+		{
+			"type": "水上偵察機",
+			"name": "零式水上観測機",
+			"owner": "武蔵",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit6.png"
+		},
+		{
+			"type": "水上偵察機",
+			"name": "Ro.43水偵",
+			"owner": "Zara改",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 0,
+			"img": "./img/sit6.png"
+		},
+		{
+			"type": "水上偵察機",
+			"name": "Ro.43水偵",
+			"owner": "Italia",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 1,
+			"img": "./img/sit6.png"
+		},
+		{
+			"type": "水上偵察機",
+			"name": "Ro.43水偵",
+			"owner": "Roma改",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit6.png"
+		},
+		{
+			"type": "電探",
+			"name": "13号対空電探",
+			"owner": "時雨改二",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "13号対空電探",
+			"owner": "五十鈴改二",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "13号対空電探",
+			"owner": "秋月",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "13号対空電探",
+			"owner": "照月",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "13号対空電探改",
+			"owner": "磯風改",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "13号対空電探改",
+			"owner": "初霜改二",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "13号対空電探改",
+			"owner": "雪風",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "22号対水上電探",
+			"owner": "日向",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "22号対水上電探",
+			"owner": "夕雲",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "22号対水上電探",
+			"owner": "島風",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "22号対水上電探改四",
+			"owner": "妙高改二",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "22号対水上電探改四",
+			"owner": "羽黒改二",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "22号対水上電探改四",
+			"owner": "金剛改二",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 0,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "21号対空電探",
+			"owner": "伊勢",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "21号対空電探",
+			"owner": "日向",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "21号対空電探改",
+			"owner": "大和",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "21号対空電探改",
+			"owner": "武蔵",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 0,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "32号対水上電探",
+			"owner": "伊勢",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "32号対水上電探",
+			"owner": "日向",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "32号対水上電探改",
+			"owner": "伊勢",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "電探",
+			"name": "32号対水上電探改",
+			"owner": "日向",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit10.png"
+		},
+		{
+			"type": "ソナー",
+			"name": "九三式水中聴音機",
+			"owner": "夕張",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit11.png"
+		},
+		{
+			"type": "ソナー",
+			"name": "九三式水中聴音機",
+			"owner": "五十鈴改二",
+			"sun": 0,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 0,
+			"img": "./img/sit11.png"
+		},
+		{
+			"type": "ソナー",
+			"name": "九三式水中聴音機",
+			"owner": "時雨改二",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit11.png"
+		},
+		{
+			"type": "ソナー",
+			"name": "九三式水中聴音機",
+			"owner": "香取改",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit11.png"
+		},
+		{
+			"type": "ソナー",
+			"name": "三式水中探信儀",
+			"owner": "夕張",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit11.png"
+		},
+		{
+			"type": "ソナー",
+			"name": "三式水中探信儀",
+			"owner": "五十鈴改二",
+			"sun": 1,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit11.png"
+		},
+		{
+			"type": "ソナー",
+			"name": "四式水中聴音機",
+			"owner": "五十鈴改二",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit11.png"
+		},
+		{
+			"type": "ソナー",
+			"name": "四式水中聴音機",
+			"owner": "秋月",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit11.png"
+		},
+		{
+			"type": "ソナー",
+			"name": "四式水中聴音機",
+			"owner": "照月",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit11.png"
+		},
+		{
+			"type": "ソナー",
+			"name": "四式水中聴音機",
+			"owner": "香取改",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit11.png"
+		},
+		{
+			"type": "爆雷",
+			"name": "九四式爆雷投射機",
+			"owner": "",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit12.png"
+		},
+		{
+			"type": "爆雷",
+			"name": "三式爆雷投射機",
+			"owner": "五十鈴改二",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit12.png"
+		},
+		{
+			"type": "対艦強化弾",
+			"name": "九一式徹甲弾",
+			"owner": "比叡",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit15.png"
+		},
+		{
+			"type": "対艦強化弾",
+			"name": "九一式徹甲弾",
+			"owner": "霧島",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit15.png"
+		},
+		{
+			"type": "対艦強化弾",
+			"name": "一式徹甲弾",
+			"owner": "金剛",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit15.png"
+		},
+		{
+			"type": "対艦強化弾",
+			"name": "一式徹甲弾",
+			"owner": "榛名",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit15.png"
+		},
+		{
+			"type": "対空機銃",
+			"name": "25mm単装機銃",
+			"owner": "皐月",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit16.png"
+		},
+		{
+			"type": "対空機銃",
+			"name": "25mm単装機銃",
+			"owner": "文月",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit16.png"
+		},
+		{
+			"type": "対空機銃",
+			"name": "25mm連装機銃",
+			"owner": "五十鈴改二",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 1,
+			"img": "./img/sit16.png"
+		},
+		{
+			"type": "対空機銃",
+			"name": "25mm連装機銃",
+			"owner": "皐月",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit16.png"
+		},
+		{
+			"type": "対空機銃",
+			"name": "25mm連装機銃",
+			"owner": "文月",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit16.png"
+		},
+		{
+			"type": "対空機銃",
+			"name": "25mm三連装機銃",
+			"owner": "五十鈴改二",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit16.png"
+		},
+		{
+			"type": "対空機銃",
+			"name": "25mm三連装機銃",
+			"owner": "摩耶",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit16.png"
+		},
+		{
+			"type": "対空機銃",
+			"name": "25mm三連装機銃",
+			"owner": "摩耶改",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit16.png"
+		},
+		{
+			"type": "対空機銃",
+			"name": "25mm三連装機銃",
+			"owner": "摩耶改二",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit16.png"
+		},
+		{
+			"type": "高射装置",
+			"name": "91式高射装置",
+			"owner": "摩耶",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit17.png"
+		},
+		{
+			"type": "高射装置",
+			"name": "91式高射装置",
+			"owner": "秋月",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit17.png"
+		},
+		{
+			"type": "高射装置",
+			"name": "91式高射装置",
+			"owner": "照月",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit17.png"
+		},
+		{
+			"type": "高射装置",
+			"name": "94式高射装置",
+			"owner": "秋月",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit17.png"
+		},
+		{
+			"type": "高射装置",
+			"name": "94式高射装置",
+			"owner": "照月",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit17.png"
+		},
+		{
+			"type": "高射装置",
+			"name": "94式高射装置",
+			"owner": "吹雪改二",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit17.png"
+		},
+		{
+			"type": "高射装置",
+			"name": "94式高射装置",
+			"owner": "摩耶改二",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit17.png"
+		},
+		{
+			"type": "探照灯",
+			"name": "探照灯",
+			"owner": "暁",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit18.png"
+		},
+		{
+			"type": "探照灯",
+			"name": "探照灯",
+			"owner": "神通",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit18.png"
+		},
+		{
+			"type": "探照灯",
+			"name": "探照灯",
+			"owner": "青葉",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit18.png"
+		},
+		{
+			"type": "探照灯",
+			"name": "探照灯",
+			"owner": "綾波",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit18.png"
+		},
+		{
+			"type": "探照灯",
+			"name": "96式150cm探照灯",
+			"owner": "比叡",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit18.png"
+		},
+		{
+			"type": "探照灯",
+			"name": "96式150cm探照灯",
+			"owner": "霧島",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 0,
+			"img": "./img/sit18.png"
+		}
 	];
 
 /***/ },
-/* 110 */
+/* 100 */
+/***/ function(module, exports) {
+
+	/**
+	 * Copyright 2013-2014 Facebook, Inc.
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 * http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 *
+	 */
+	
+	"use strict";
+	
+	/**
+	 * Constructs an enumeration with keys equal to their value.
+	 *
+	 * For example:
+	 *
+	 *   var COLORS = keyMirror({blue: null, red: null});
+	 *   var myColor = COLORS.blue;
+	 *   var isColorValid = !!COLORS[myColor];
+	 *
+	 * The last line could not be performed if the values of the generated enum were
+	 * not equal to their keys.
+	 *
+	 *   Input:  {key1: val1, key2: val2}
+	 *   Output: {key1: key1, key2: key2}
+	 *
+	 * @param {object} obj
+	 * @return {object}
+	 */
+	var keyMirror = function(obj) {
+	  var ret = {};
+	  var key;
+	  if (!(obj instanceof Object && !Array.isArray(obj))) {
+	    throw new Error('keyMirror(...): Argument must be an object.');
+	  }
+	  for (key in obj) {
+	    if (!obj.hasOwnProperty(key)) {
+	      continue;
+	    }
+	    ret[key] = key;
+	  }
+	  return ret;
+	};
+	
+	module.exports = keyMirror;
+
+
+/***/ },
+/* 101 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
+	  Loki IndexedDb Adapter (need to include this script to use it)
+	
+	  Indexeddb is highly async, but this adapter has been made 'console-friendly' as well.
+	  Anywhere a callback is omitted, it should return results (if applicable) to console.
+	
+	  IndexedDb storage is provided per-domain, so we implement app/key/value database to allow separate contexts
+	  for separate apps within a domain.
+	
+	  Examples :
+	
+	  // SAVE : will save App/Key/Val as 'finance'/'test'/{serializedDb}
+	  // if appContect ('finance' in this example) is omitted, 'loki' will be used
+	  var idbAdapter = new LokiIndexedAdapter('finance');
+	  var db = new loki('test', { adapter: idbAdapter });
+	  var coll = db.addCollection('testColl');
+	  coll.insert({test: 'val'});
+	  db.saveDatabase();  // could pass callback if needed for async complete
+	
+	  // LOAD
+	  var db = new loki('test', { adapter: idbAdapter });
+	  db.loadDatabase(function(result) {
+	    console.log('done');
+	  });
+	
+	  // GET DATABASE LIST
+	  idbAdapter.getDatabaseList(function(result) {
+	    // result is array of string names for that appcontext ('finance')
+	    result.forEach(function(str) {
+	      console.log(str);
+	    });
+	  });
+	
+	  // DELETE DATABASE
+	  idbAdapter.deleteDatabase('test'); // delete 'finance'/'test' value from catalog
+	
+	  // CONSOLE USAGE : if using from console for management/diagnostic, here are a few examples :
+	  adapter.getDatabaseList(); // with no callback passed, this method will log results to console
+	  adapter.saveDatabase('UserDatabase', JSON.stringify(myDb));
+	  adapter.loadDatabase('UserDatabase'); // will log the serialized db to console
+	  adapter.deleteDatabase('UserDatabase');
+	*/
+	
+	(function (root, factory) {
+	    if (true) {
+	        // AMD
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	    } else if (typeof exports === 'object') {
+	        // Node, CommonJS-like
+	        module.exports = factory();
+	    } else {
+	        // Browser globals (root is window)
+	        root.LokiIndexedAdapter = factory();
+	    }
+	}(this, function () {
+	  return (function() {
+	
+	    /**
+	     * IndexedAdapter - Loki persistence adapter class for indexedDb.
+	     *     This class fulfills abstract adapter interface which can be applied to other storage methods
+	     *     Utilizes the included LokiCatalog app/key/value database for actual database persistence.
+	     *
+	     * @param {string} appname - Application name context can be used to distinguish subdomains or just 'loki'
+	     */
+	    function IndexedAdapter(appname)
+	    {
+	      this.app = 'loki';
+	
+	      if (typeof (appname) !== 'undefined')
+	      {
+	        this.app = appname;
+	      }
+	
+	      // keep reference to catalog class for base AKV operations
+	      this.catalog = null;
+	
+	      if (!this.checkAvailability()) {
+	        throw new Error('indexedDB does not seem to be supported for your environment');
+	      }
+	    }
+	
+	    /**
+	     * checkAvailability - used to check if adapter is available
+	     *
+	     * @returns {boolean} true if indexeddb is available, false if not.
+	     */
+	    IndexedAdapter.prototype.checkAvailability = function()
+	    {
+	      if (typeof window !== 'undefined' && window.indexedDB) return true;
+	
+	      return false;
+	    };
+	
+	    /**
+	     * loadDatabase() - Retrieves a serialized db string from the catalog.
+	     *
+	     * @param {string} dbname - the name of the database to retrieve.
+	     * @param {function} callback - callback should accept string param containing serialized db string.
+	     */
+	    IndexedAdapter.prototype.loadDatabase = function(dbname, callback)
+	    {
+	      var appName = this.app;
+	      var adapter = this;
+	
+	      // lazy open/create db reference so dont -need- callback in constructor
+	      if (this.catalog === null || this.catalog.db === null) {
+	        this.catalog = new LokiCatalog(function(cat) {
+	          adapter.catalog = cat;
+	
+	          adapter.loadDatabase(dbname, callback);
+	        });
+	
+	        return;
+	      }
+	
+	      // lookup up db string in AKV db
+	      this.catalog.getAppKey(appName, dbname, function(result) {
+	        if (typeof (callback) === 'function') {
+	          if (result.id === 0) {
+	            callback(null);
+	            return;
+	          }
+	          callback(result.val);
+	        }
+	        else {
+	          // support console use of api
+	          console.log(result.val);
+	        }
+	      });
+	    };
+	
+	    // alias
+	    IndexedAdapter.prototype.loadKey = IndexedAdapter.prototype.loadDatabase;
+	
+	    /**
+	     * saveDatabase() - Saves a serialized db to the catalog.
+	     *
+	     * @param {string} dbname - the name to give the serialized database within the catalog.
+	     * @param {string} dbstring - the serialized db string to save.
+	     * @param {function} callback - (Optional) callback passed obj.success with true or false
+	     */
+	    IndexedAdapter.prototype.saveDatabase = function(dbname, dbstring, callback)
+	    {
+	      var appName = this.app;
+	      var adapter = this;
+	
+	      function saveCallback(result) {
+	        if (result && result.success === true) {
+	          callback(null);
+	        }
+	        else {
+	          callback(new Error("Error saving database"));
+	        }
+	      }
+	
+	      // lazy open/create db reference so dont -need- callback in constructor
+	      if (this.catalog === null || this.catalog.db === null) {
+	        this.catalog = new LokiCatalog(function(cat) {
+	          adapter.catalog = cat;
+	
+	          // now that catalog has been initialized, set (add/update) the AKV entry
+	          cat.setAppKey(appName, dbname, dbstring, saveCallback);
+	        });
+	
+	        return;
+	      }
+	
+	      // set (add/update) entry to AKV database
+	      this.catalog.setAppKey(appName, dbname, dbstring, saveCallback);
+	    };
+	
+	    // alias
+	    IndexedAdapter.prototype.saveKey = IndexedAdapter.prototype.saveDatabase;
+	
+	    /**
+	     * deleteDatabase() - Deletes a serialized db from the catalog.
+	     *
+	     * @param {string} dbname - the name of the database to delete from the catalog.
+	     */
+	    IndexedAdapter.prototype.deleteDatabase = function(dbname)
+	    {
+	      var appName = this.app;
+	      var adapter = this;
+	
+	      // lazy open/create db reference so dont -need- callback in constructor
+	      if (this.catalog === null || this.catalog.db === null) {
+	        this.catalog = new LokiCatalog(function(cat) {
+	          adapter.catalog = cat;
+	
+	          adapter.deleteDatabase(dbname);
+	        });
+	
+	        return;
+	      }
+	
+	      // catalog was already initialized, so just lookup object and delete by id
+	      this.catalog.getAppKey(appName, dbname, function(result) {
+	        var id = result.id;
+	
+	        if (id !== 0) {
+	          adapter.catalog.deleteAppKey(id);
+	        }
+	      });
+	    };
+	
+	    // alias
+	    IndexedAdapter.prototype.deleteKey = IndexedAdapter.prototype.deleteDatabase;
+	
+	    /**
+	     * getDatabaseList() - Retrieves object array of catalog entries for current app.
+	     *
+	     * @param {function} callback - should accept array of database names in the catalog for current app.
+	     */
+	    IndexedAdapter.prototype.getDatabaseList = function(callback)
+	    {
+	      var appName = this.app;
+	      var adapter = this;
+	
+	      // lazy open/create db reference so dont -need- callback in constructor
+	      if (this.catalog === null || this.catalog.db === null) {
+	        this.catalog = new LokiCatalog(function(cat) {
+	          adapter.catalog = cat;
+	
+	          adapter.getDatabaseList(callback);
+	        });
+	
+	        return;
+	      }
+	
+	      // catalog already initialized
+	      // get all keys for current appName, and transpose results so just string array
+	      this.catalog.getAppKeys(appName, function(results) {
+	        var names = [];
+	
+	        for(var idx = 0; idx < results.length; idx++) {
+	          names.push(results[idx].key);
+	        }
+	
+	        if (typeof (callback) === 'function') {
+	          callback(names);
+	        }
+	        else {
+	          names.forEach(function(obj) {
+	            console.log(obj);
+	          });
+	        }
+	      });
+	    };
+	
+	    // alias
+	    IndexedAdapter.prototype.getKeyList = IndexedAdapter.prototype.getDatabaseList;
+	
+	    /**
+	     * getCatalogSummary - allows retrieval of list of all keys in catalog along with size
+	     *
+	     * @param {function} callback - (Optional) callback to accept result array.
+	     */
+	    IndexedAdapter.prototype.getCatalogSummary = function(callback)
+	    {
+	      var appName = this.app;
+	      var adapter = this;
+	
+	      // lazy open/create db reference
+	      if (this.catalog === null || this.catalog.db === null) {
+	        this.catalog = new LokiCatalog(function(cat) {
+	          adapter.catalog = cat;
+	
+	          adapter.getCatalogSummary(callback);
+	        });
+	
+	        return;
+	      }
+	
+	      // catalog already initialized
+	      // get all keys for current appName, and transpose results so just string array
+	      this.catalog.getAllKeys(function(results) {
+	        var entries = [];
+	        var obj,
+	          size,
+	          oapp,
+	          okey,
+	          oval;
+	
+	        for(var idx = 0; idx < results.length; idx++) {
+	          obj = results[idx];
+	          oapp = obj.app || '';
+	          okey = obj.key || '';
+	          oval = obj.val || '';
+	
+	          // app and key are composited into an appkey column so we will mult by 2
+	          size = oapp.length * 2 + okey.length * 2 + oval.length + 1;
+	
+	          entries.push({ "app": obj.app, "key": obj.key, "size": size });
+	        }
+	
+	        if (typeof (callback) === 'function') {
+	          callback(entries);
+	        }
+	        else {
+	          entries.forEach(function(obj) {
+	            console.log(obj);
+	          });
+	        }
+	      });
+	    };
+	
+	    /**
+	     * LokiCatalog - underlying App/Key/Value catalog persistence
+	     *    This non-interface class implements the actual persistence.
+	     *    Used by the IndexedAdapter class.
+	     */
+	    function LokiCatalog(callback)
+	    {
+	      this.db = null;
+	      this.initializeLokiCatalog(callback);
+	    }
+	
+	    LokiCatalog.prototype.initializeLokiCatalog = function(callback) {
+	      var openRequest = indexedDB.open('LokiCatalog', 1);
+	      var cat = this;
+	
+	      // If database doesn't exist yet or its version is lower than our version specified above (2nd param in line above)
+	      openRequest.onupgradeneeded = function(e) {
+	        var thisDB = e.target.result;
+	        if (thisDB.objectStoreNames.contains('LokiAKV')) {
+	          thisDB.deleteObjectStore('LokiAKV');
+	        }
+	
+	        if(!thisDB.objectStoreNames.contains('LokiAKV')) {
+	          var objectStore = thisDB.createObjectStore('LokiAKV', { keyPath: 'id', autoIncrement:true });
+	          objectStore.createIndex('app', 'app', {unique:false});
+	          objectStore.createIndex('key', 'key', {unique:false});
+	          // hack to simulate composite key since overhead is low (main size should be in val field)
+	          // user (me) required to duplicate the app and key into comma delimited appkey field off object
+	          // This will allow retrieving single record with that composite key as well as
+	          // still supporting opening cursors on app or key alone
+	          objectStore.createIndex('appkey', 'appkey', {unique:true});
+	        }
+	      };
+	
+	      openRequest.onsuccess = function(e) {
+	        cat.db = e.target.result;
+	
+	        if (typeof (callback) === 'function') callback(cat);
+	      };
+	
+	      openRequest.onerror = function(e) {
+	        throw e;
+	      };
+	    };
+	
+	    LokiCatalog.prototype.getAppKey = function(app, key, callback) {
+	      var transaction = this.db.transaction(['LokiAKV'], 'readonly');
+	      var store = transaction.objectStore('LokiAKV');
+	      var index = store.index('appkey');
+	      var appkey = app + "," + key;
+	      var request = index.get(appkey);
+	
+	      request.onsuccess = (function(usercallback) {
+	        return function(e) {
+	          var lres = e.target.result;
+	
+	          if (lres === null || typeof(lres) === 'undefined') {
+	            lres = {
+	              id: 0,
+	              success: false
+	            };
+	          }
+	
+	          if (typeof(usercallback) === 'function') {
+	            usercallback(lres);
+	          }
+	          else {
+	            console.log(lres);
+	          }
+	        };
+	      })(callback);
+	
+	      request.onerror = (function(usercallback) {
+	        return function(e) {
+	          if (typeof(usercallback) === 'function') {
+	            usercallback({ id: 0, success: false });
+	          }
+	          else {
+	            throw e;
+	          }
+	        };
+	      })(callback);
+	    };
+	
+	    LokiCatalog.prototype.getAppKeyById = function (id, callback, data) {
+	      var transaction = this.db.transaction(['LokiAKV'], 'readonly');
+	      var store = transaction.objectStore('LokiAKV');
+	      var request = store.get(id);
+	
+	      request.onsuccess = (function(data, usercallback){
+	        return function(e) {
+	          if (typeof(usercallback) === 'function') {
+	            usercallback(e.target.result, data);
+	          }
+	          else {
+	            console.log(e.target.result);
+	          }
+	        };
+	      })(data, callback);
+	    };
+	
+	    LokiCatalog.prototype.setAppKey = function (app, key, val, callback) {
+	      var transaction = this.db.transaction(['LokiAKV'], 'readwrite');
+	      var store = transaction.objectStore('LokiAKV');
+	      var index = store.index('appkey');
+	      var appkey = app + "," + key;
+	      var request = index.get(appkey);
+	
+	      // first try to retrieve an existing object by that key
+	      // need to do this because to update an object you need to have id in object, otherwise it will append id with new autocounter and clash the unique index appkey
+	      request.onsuccess = function(e) {
+	        var res = e.target.result;
+	
+	        if (res === null || res === undefined) {
+	          res = {
+	            app:app,
+	            key:key,
+	            appkey: app + ',' + key,
+	            val:val
+	          };
+	        }
+	        else {
+	          res.val = val;
+	        }
+	
+	        var requestPut = store.put(res);
+	
+	        requestPut.onerror = (function(usercallback) {
+	          return function(e) {
+	            if (typeof(usercallback) === 'function') {
+	              usercallback({ success: false });
+	            }
+	            else {
+	              console.error('LokiCatalog.setAppKey (set) onerror');
+	              console.error(request.error);
+	            }
+	          };
+	
+	        })(callback);
+	
+	        requestPut.onsuccess = (function(usercallback) {
+	          return function(e) {
+	            if (typeof(usercallback) === 'function') {
+	              usercallback({ success: true });
+	            }
+	          };
+	        })(callback);
+	      };
+	
+	      request.onerror = (function(usercallback) {
+	        return function(e) {
+	          if (typeof(usercallback) === 'function') {
+	            usercallback({ success: false });
+	          }
+	          else {
+	            console.error('LokiCatalog.setAppKey (get) onerror');
+	            console.error(request.error);
+	          }
+	        };
+	      })(callback);
+	    };
+	
+	    LokiCatalog.prototype.deleteAppKey = function (id, callback) {
+	      var transaction = this.db.transaction(['LokiAKV'], 'readwrite');
+	      var store = transaction.objectStore('LokiAKV');
+	      var request = store.delete(id);
+	
+	      request.onsuccess = (function(usercallback) {
+	        return function(evt) {
+	          if (typeof(usercallback) === 'function') usercallback({ success: true });
+	        };
+	      })(callback);
+	
+	      request.onerror = (function(usercallback) {
+	        return function(evt) {
+	          if (typeof(usercallback) === 'function') {
+	            usercallback(false);
+	          }
+	          else {
+	            console.error('LokiCatalog.deleteAppKey raised onerror');
+	            console.error(request.error);
+	          }
+	        };
+	      })(callback);
+	    };
+	
+	    LokiCatalog.prototype.getAppKeys = function(app, callback) {
+	      var transaction = this.db.transaction(['LokiAKV'], 'readonly');
+	      var store = transaction.objectStore('LokiAKV');
+	      var index = store.index('app');
+	
+	      // We want cursor to all values matching our (single) app param
+	      var singleKeyRange = IDBKeyRange.only(app);
+	
+	      // To use one of the key ranges, pass it in as the first argument of openCursor()/openKeyCursor()
+	      var cursor = index.openCursor(singleKeyRange);
+	
+	      // cursor internally, pushing results into this.data[] and return
+	      // this.data[] when done (similar to service)
+	      var localdata = [];
+	
+	      cursor.onsuccess = (function(data, callback) {
+	        return function(e) {
+	          var cursor = e.target.result;
+	          if (cursor) {
+	            var currObject = cursor.value;
+	
+	            data.push(currObject);
+	
+	            cursor.continue();
+	          }
+	          else {
+	            if (typeof(callback) === 'function') {
+	              callback(data);
+	            }
+	            else {
+	              console.log(data);
+	            }
+	          }
+	        };
+	      })(localdata, callback);
+	
+	      cursor.onerror = (function(usercallback) {
+	        return function(e) {
+	          if (typeof(usercallback) === 'function') {
+	            usercallback(null);
+	          }
+	          else {
+	            console.error('LokiCatalog.getAppKeys raised onerror');
+	            console.error(e);
+	          }
+	        };
+	      })(callback);
+	
+	    };
+	
+	    // Hide 'cursoring' and return array of { id: id, key: key }
+	    LokiCatalog.prototype.getAllKeys = function (callback) {
+	      var transaction = this.db.transaction(['LokiAKV'], 'readonly');
+	      var store = transaction.objectStore('LokiAKV');
+	      var cursor = store.openCursor();
+	
+	      var localdata = [];
+	
+	      cursor.onsuccess = (function(data, callback) {
+	        return function(e) {
+	          var cursor = e.target.result;
+	          if (cursor) {
+	            var currObject = cursor.value;
+	
+	            data.push(currObject);
+	
+	            cursor.continue();
+	          }
+	          else {
+	            if (typeof(callback) === 'function') {
+	              callback(data);
+	            }
+	            else {
+	              console.log(data);
+	            }
+	          }
+	        };
+	      })(localdata, callback);
+	
+	      cursor.onerror = (function(usercallback) {
+	        return function(e) {
+	          if (typeof(usercallback) === 'function') usercallback(null);
+	        };
+	      })(callback);
+	
+	    };
+	
+	    return IndexedAdapter;
+	
+	  }());
+	}));
+
+
+/***/ },
+/* 102 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/**
+	 * LokiJS
+	 * @author Joe Minichino <joe.minichino@gmail.com>
+	 *
+	 * A lightweight document oriented javascript database
+	 */
+	(function (root, factory) {
+	  if (true) {
+	    // AMD
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports === 'object') {
+	    // CommonJS
+	    module.exports = factory();
+	  } else {
+	    // Browser globals
+	    root.loki = factory();
+	  }
+	}(this, function () {
+	
+	  return (function () {
+	    'use strict';
+	
+	    var hasOwnProperty = Object.prototype.hasOwnProperty;
+	
+	    var Utils = {
+	      copyProperties: function (src, dest) {
+	        var prop;
+	        for (prop in src) {
+	          dest[prop] = src[prop];
+	        }
+	      },
+	      // used to recursively scan hierarchical transform step object for param substitution
+	      resolveTransformObject: function (subObj, params, depth) {
+	        var prop,
+	          pname;
+	
+	        if (typeof depth !== 'number') {
+	          depth = 0;
+	        }
+	
+	        if (++depth >= 10) return subObj;
+	
+	        for (prop in subObj) {
+	          if (typeof subObj[prop] === 'string' && subObj[prop].indexOf("[%lktxp]") === 0) {
+	            pname = subObj[prop].substring(8);
+	            if (params.hasOwnProperty(pname)) {
+	              subObj[prop] = params[pname];
+	            }
+	          } else if (typeof subObj[prop] === "object") {
+	            subObj[prop] = Utils.resolveTransformObject(subObj[prop], params, depth);
+	          }
+	        }
+	
+	        return subObj;
+	      },
+	      // top level utility to resolve an entire (single) transform (array of steps) for parameter substitution
+	      resolveTransformParams: function (transform, params) {
+	        var idx,
+	          clonedStep,
+	          resolvedTransform = [];
+	
+	        if (typeof params === 'undefined') return transform;
+	
+	        // iterate all steps in the transform array
+	        for (idx = 0; idx < transform.length; idx++) {
+	          // clone transform so our scan and replace can operate directly on cloned transform
+	          clonedStep = JSON.parse(JSON.stringify(transform[idx]));
+	          resolvedTransform.push(Utils.resolveTransformObject(clonedStep, params));
+	        }
+	
+	        return resolvedTransform;
+	      }
+	    };
+	
+	    // Sort helper that support null and undefined
+	    function ltHelper(prop1, prop2, equal) {
+	
+	      // 'falsy' and Boolean handling
+	      if (!prop1 || !prop2 || prop1 === true || prop2 === true) {
+	        if ((prop1 === true || prop1 === false) && (prop2 === true || prop2 === false)) {
+	          if (equal) {
+	            return prop1 === prop2;
+	          } else {
+	            if (prop1) {
+	              return false;
+	            } else {
+	              return prop2;
+	            }
+	          }
+	        }
+	
+	        if (prop2 === undefined || prop2 === null || prop1 === true || prop2 === false) {
+	            return equal;
+	        }
+	        if (prop1 === undefined || prop1 === null || prop1 === false || prop2 === true) {
+	          return true;
+	        }
+	
+	        if (prop1 < prop2) {
+	          return true;
+	        }
+	
+	        if (prop1 > prop2) {
+	          return false;
+	        }
+	
+	        // not lt and and not gt so equality assumed-- this ordering of tests is date compatible
+	        return equal;
+	      }
+	
+	      if (prop1 < prop2) {
+	        return true;
+	      }
+	
+	      if (prop1 > prop2) {
+	        return false;
+	      }
+	
+	      // not lt and and not gt so equality assumed-- this ordering of tests is date compatible
+	      return equal;
+	    }
+	
+	    function gtHelper(prop1, prop2, equal) {
+	
+	      // 'falsy' and Boolean handling
+	      if (!prop1 || !prop2 || prop1 === true || prop2 === true) {
+	        if ((prop1 === true || prop1 === false) && (prop2 === true || prop2 === false)) {
+	          if (equal) {
+	            return prop1 === prop2;
+	          } else {
+	            if (prop1) {
+	              return !prop2;
+	            } else {
+	              return false;
+	            }
+	          }
+	        }
+	
+	        if (prop1 === undefined || prop1 === null || prop1 === false || prop2 === true) {
+	          return equal;
+	        }
+	        if (prop2 === undefined || prop2 === null || prop1 === true || prop2 === false) {
+	          return true;
+	        }
+	
+	        if (prop1 > prop2) {
+	          return true;
+	        }
+	
+	        if (prop1 < prop2) {
+	          return false;
+	        }
+	
+	        // not lt and and not gt so equality assumed-- this ordering of tests is date compatible
+	        return equal;
+	      }
+	
+	      if (prop1 > prop2) {
+	        return true;
+	      }
+	
+	      if (prop1 < prop2) {
+	        return false;
+	      }
+	
+	      // not lt and and not gt so equality assumed-- this ordering of tests is date compatible
+	      return equal;
+	    }
+	
+	    function sortHelper(prop1, prop2, desc) {
+	      if (prop1 === prop2) {
+	        return 0;
+	      }
+	
+	      if (ltHelper(prop1, prop2, false)) {
+	        return (desc) ? (1) : (-1);
+	      }
+	
+	      if (gtHelper(prop1, prop2, false)) {
+	        return (desc) ? (-1) : (1);
+	      }
+	
+	      // not lt, not gt so implied equality-- date compatible
+	      return 0;
+	    }
+	
+	    /**
+	     * compoundeval() - helper function for compoundsort(), performing individual object comparisons
+	     *
+	     * @param {array} properties - array of property names, in order, by which to evaluate sort order
+	     * @param {object} obj1 - first object to compare
+	     * @param {object} obj2 - second object to compare
+	     * @returns {integer} 0, -1, or 1 to designate if identical (sortwise) or which should be first
+	     */
+	    function compoundeval(properties, obj1, obj2) {
+	      var res = 0;
+	      var prop, field;
+	      for (var i = 0, len = properties.length; i < len; i++) {
+	        prop = properties[i];
+	        field = prop[0];
+	        res = sortHelper(obj1[field], obj2[field], prop[1]);
+	        if (res !== 0) {
+	          return res;
+	        }
+	      }
+	      return 0;
+	    }
+	
+	    /**
+	     * dotSubScan - helper function used for dot notation queries.
+	     */
+	    function dotSubScan(root, propPath, fun, value) {
+	      var pathSegment = null;
+	      var subIndex = 0, subLen = 0, subPath = null;
+	
+	      for (var segmIndex = 0, segmCount = propPath.length; segmIndex < segmCount; segmIndex++) {
+	        pathSegment = propPath[segmIndex];
+	
+	        // if the dot notation is invalid for the current document, then ignore this document
+	        if (root === undefined || root === null || !hasOwnProperty.call(root, pathSegment)) {
+	          return false;
+	        }
+	
+	        if (Array.isArray(root)) {
+	          subLen = root.length;
+	          // iterate all sub-array items to see if any yield hits
+	          if ((segmIndex + 1) < segmCount) {
+	            subPath = propPath.slice(segmIndex + 1);
+	            for (subIndex = 0; subIndex < subLen; subIndex++) {
+	              if (dotSubScan(root[subIndex], subPath, fun, value)) {
+	                return true;
+	              }
+	            }
+	          } else {
+	            for (subIndex = 0; subIndex < subLen; subIndex++) {
+	              if (fun(root[subIndex][pathSegment], value)) {
+	                return true;
+	              }
+	            }
+	          }
+	          return false;
+	        }
+	
+	        root = root[pathSegment];
+	      }
+	
+	      // made it this far so must be dot notation on non-array property
+	      return fun(root, value);
+	    }
+	
+	    function containsCheckFn(a) {
+	      if (typeof a === 'string' || Array.isArray(a)) {
+	        return function (b) {
+	          return a.indexOf(b) !== -1;
+	        };
+	      } else if (typeof a === 'object') {
+	        return function (b) {
+	          return hasOwnProperty.call(a, b);
+	        };
+	      }
+	    }
+	
+	    function doQueryOp(val, op) {
+	      for (var p in op) {
+	        if (hasOwnProperty.call(op, p)) {
+	          return LokiOps[p](val, op[p]);
+	        }
+	      }
+	      return false;
+	    }
+	
+	    var LokiOps = {
+	      // comparison operators
+	      // a is the value in the collection
+	      // b is the query value
+	      $eq: function (a, b) {
+	        return a === b;
+	      },
+	
+	      $ne: function (a, b) {
+	        return a !== b;
+	      },
+	
+	      $dteq: function(a, b) {
+	        if (ltHelper(a, b, false)) {
+	          return false;
+	        }
+	        return !gtHelper(a, b, false);
+	      },
+	
+	      $gt: function (a, b) {
+	        return gtHelper(a, b, false);
+	      },
+	
+	      $gte: function (a, b) {
+	        return gtHelper(a, b, true);
+	      },
+	
+	      $lt: function (a, b) {
+	        return ltHelper(a, b, false);
+	      },
+	
+	      $lte: function (a, b) {
+	        return ltHelper(a, b, true);
+	      },
+	
+	      $in: function (a, b) {
+	        return b.indexOf(a) !== -1;
+	      },
+	
+	      $nin: function (a, b) {
+	        return b.indexOf(a) === -1;
+	      },
+	
+	      $keyin: function (a, b) {
+	        return a in b;
+	      },
+	
+	      $nkeyin: function (a, b) {
+	        return !(a in b);
+	      },
+	
+	      $definedin: function (a, b) {
+	        return b[a] !== undefined;
+	      },
+	
+	      $undefinedin: function (a, b) {
+	        return b[a] === undefined;
+	      },
+	
+	      $regex: function (a, b) {
+	        return b.test(a);
+	      },
+	
+	      $containsString: function (a, b) {
+	        return (typeof a === 'string') && (a.indexOf(b) !== -1);
+	      },
+	
+	      $containsNone: function (a, b) {
+	        return !LokiOps.$containsAny(a, b);
+	      },
+	
+	      $containsAny: function (a, b) {
+	        var checkFn;
+	
+	        if (!Array.isArray(b)) {
+	          b = [b];
+	        }
+	
+	        checkFn = containsCheckFn(a) || function () {
+	          return false;
+	        };
+	
+	        return b.reduce(function (prev, curr) {
+	          if (prev) {
+	            return prev;
+	          }
+	
+	          return checkFn(curr);
+	        }, false);
+	      },
+	
+	      $contains: function (a, b) {
+	        var checkFn;
+	
+	        if (!Array.isArray(b)) {
+	          b = [b];
+	        }
+	
+	        // return false on check if no check fn is found
+	        checkFn = containsCheckFn(a) || function () {
+	          return false;
+	        };
+	
+	        return b.reduce(function (prev, curr) {
+	          if (!prev) {
+	            return prev;
+	          }
+	
+	          return checkFn(curr);
+	        }, true);
+	      },
+	
+	      $type: function (a, b) {
+	        var type = typeof a;
+	        if (type === 'object') {
+	          if (Array.isArray(a)) {
+	            type = 'array';
+	          } else if (a instanceof Date) {
+	            type = 'date';
+	          }
+	        }
+	        return (typeof b !== 'object') ? (type === b) : doQueryOp(type, b);
+	      },
+	
+	      $size: function (a, b) {
+	        if (Array.isArray(a)) {
+	          return (typeof b !== 'object') ? (a.length === b) : doQueryOp(a.length, b);
+	        }
+	        return false;
+	      },
+	
+	      $len: function (a, b) {
+	        if (typeof a === 'string') {
+	          return (typeof b !== 'object') ? (a.length === b) : doQueryOp(a.length, b);
+	        }
+	        return false;
+	      },
+	
+	      // field-level logical operators
+	      // a is the value in the collection
+	      // b is the nested query operation (for '$not')
+	      //   or an array of nested query operations (for '$and' and '$or')
+	      $not: function (a, b) {
+	        return !doQueryOp(a, b);
+	      },
+	
+	      $and: function (a, b) {
+	        for (var idx = 0, len = b.length; idx < len; idx += 1) {
+	          if (!doQueryOp(a, b[idx])) {
+	            return false;
+	          }
+	        }
+	        return true;
+	      },
+	
+	      $or: function (a, b) {
+	        for (var idx = 0, len = b.length; idx < len; idx += 1) {
+	          if (doQueryOp(a, b[idx])) {
+	            return true;
+	          }
+	        }
+	        return false;
+	      }
+	    };
+	
+	    // making indexing opt-in... our range function knows how to deal with these ops :
+	    var indexedOpsList = ['$eq', '$dteq', '$gt', '$gte', '$lt', '$lte'];
+	
+	    function clone(data, method) {
+	      var cloneMethod = method || 'parse-stringify',
+	        cloned;
+	
+	      switch (cloneMethod) {
+	        case "parse-stringify":
+	          cloned = JSON.parse(JSON.stringify(data));
+	          break;
+	        case "jquery-extend-deep":
+	          cloned = jQuery.extend(true, {}, data);
+	          break;
+	        case "shallow":
+	          cloned = Object.create(data.prototype || null);
+	          Object.keys(data).map(function (i) {
+	            cloned[i] = data[i];
+	          });
+	          break;
+	        default:
+	          break;
+	      }
+	
+	      //if (cloneMethod === 'parse-stringify') {
+	      //  cloned = JSON.parse(JSON.stringify(data));
+	      //}
+	      return cloned;
+	    }
+	
+	    function cloneObjectArray(objarray, method) {
+	      var i,
+	        result = [];
+	
+	      if (method == "parse-stringify") {
+	        return clone(objarray, method);
+	      }
+	
+	      i = objarray.length-1;
+	
+	      for(;i<=0;i--) {
+	        result.push(clone(objarray[i], method));
+	      }
+	
+	      return result;
+	    }
+	
+	    function localStorageAvailable() {
+	      try {
+	        return (window && window.localStorage !== undefined && window.localStorage !== null);
+	      } catch (e) {
+	        return false;
+	      }
+	    }
+	
+	
+	    /**
+	     * LokiEventEmitter is a minimalist version of EventEmitter. It enables any
+	     * constructor that inherits EventEmitter to emit events and trigger
+	     * listeners that have been added to the event through the on(event, callback) method
+	     *
+	     * @constructor
+	     */
+	    function LokiEventEmitter() {}
+	
+	    /**
+	     * @prop Events property is a hashmap, with each property being an array of callbacks
+	     */
+	    LokiEventEmitter.prototype.events = {};
+	
+	    /**
+	     * @prop asyncListeners - boolean determines whether or not the callbacks associated with each event
+	     * should happen in an async fashion or not
+	     * Default is false, which means events are synchronous
+	     */
+	    LokiEventEmitter.prototype.asyncListeners = false;
+	
+	    /**
+	     * @prop on(eventName, listener) - adds a listener to the queue of callbacks associated to an event
+	     * @returns {int} the index of the callback in the array of listeners for a particular event
+	     */
+	    LokiEventEmitter.prototype.on = function (eventName, listener) {
+	      var event = this.events[eventName];
+	      if (!event) {
+	        event = this.events[eventName] = [];
+	      }
+	      event.push(listener);
+	      return listener;
+	    };
+	
+	    /**
+	     * @propt emit(eventName, data) - emits a particular event
+	     * with the option of passing optional parameters which are going to be processed by the callback
+	     * provided signatures match (i.e. if passing emit(event, arg0, arg1) the listener should take two parameters)
+	     * @param {string} eventName - the name of the event
+	     * @param {object} data - optional object passed with the event
+	     */
+	    LokiEventEmitter.prototype.emit = function (eventName, data) {
+	      var self = this;
+	      if (eventName && this.events[eventName]) {
+	        this.events[eventName].forEach(function (listener) {
+	          if (self.asyncListeners) {
+	            setTimeout(function () {
+	              listener(data);
+	            }, 1);
+	          } else {
+	            listener(data);
+	          }
+	
+	        });
+	      } else {
+	        throw new Error('No event ' + eventName + ' defined');
+	      }
+	    };
+	
+	    /**
+	     * @prop remove() - removes the listener at position 'index' from the event 'eventName'
+	     */
+	    LokiEventEmitter.prototype.removeListener = function (eventName, listener) {
+	      if (this.events[eventName]) {
+	        var listeners = this.events[eventName];
+	        listeners.splice(listeners.indexOf(listener), 1);
+	      }
+	    };
+	
+	    /**
+	     * Loki: The main database class
+	     * @constructor
+	     * @param {string} filename - name of the file to be saved to
+	     * @param {object} options - config object
+	     */
+	    function Loki(filename, options) {
+	      this.filename = filename || 'loki.db';
+	      this.collections = [];
+	
+	      // persist version of code which created the database to the database.
+	      // could use for upgrade scenarios
+	      this.databaseVersion = 1.1;
+	      this.engineVersion = 1.1;
+	
+	      // autosave support (disabled by default)
+	      // pass autosave: true, autosaveInterval: 6000 in options to set 6 second autosave
+	      this.autosave = false;
+	      this.autosaveInterval = 5000;
+	      this.autosaveHandle = null;
+	
+	      this.options = {};
+	
+	      // currently keeping persistenceMethod and persistenceAdapter as loki level properties that
+	      // will not or cannot be deserialized.  You are required to configure persistence every time
+	      // you instantiate a loki object (or use default environment detection) in order to load the database anyways.
+	
+	      // persistenceMethod could be 'fs', 'localStorage', or 'adapter'
+	      // this is optional option param, otherwise environment detection will be used
+	      // if user passes their own adapter we will force this method to 'adapter' later, so no need to pass method option.
+	      this.persistenceMethod = null;
+	
+	      // retain reference to optional (non-serializable) persistenceAdapter 'instance'
+	      this.persistenceAdapter = null;
+	
+	      // enable console output if verbose flag is set (disabled by default)
+	      this.verbose = options && options.hasOwnProperty('verbose') ? options.verbose : false;
+	
+	      this.events = {
+	        'init': [],
+	        'loaded': [],
+	        'flushChanges': [],
+	        'close': [],
+	        'changes': [],
+	        'warning': []
+	      };
+	
+	      var getENV = function () {
+	        if (typeof window === 'undefined') {
+	          return 'NODEJS';
+	        }
+	
+	        if (typeof global !== 'undefined' && global.window) {
+	          return 'NODEJS'; //node-webkit
+	        }
+	
+	        if (typeof document !== 'undefined') {
+	          if (document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) {
+	            return 'CORDOVA';
+	          }
+	          return 'BROWSER';
+	        }
+	        return 'CORDOVA';
+	      };
+	
+	      // refactored environment detection due to invalid detection for browser environments.
+	      // if they do not specify an options.env we want to detect env rather than default to nodejs.
+	      // currently keeping two properties for similar thing (options.env and options.persistenceMethod)
+	      //   might want to review whether we can consolidate.
+	      if (options && options.hasOwnProperty('env')) {
+	        this.ENV = options.env;
+	      } else {
+	        this.ENV = getENV();
+	      }
+	
+	      // not sure if this is necessary now that i have refactored the line above
+	      if (this.ENV === 'undefined') {
+	        this.ENV = 'NODEJS';
+	      }
+	
+	      //if (typeof (options) !== 'undefined') {
+	      this.configureOptions(options, true);
+	      //}
+	
+	      this.on('init', this.clearChanges);
+	
+	    }
+	
+	    // db class is an EventEmitter
+	    Loki.prototype = new LokiEventEmitter();
+	
+	    // experimental support for browserify's abstract syntax scan to pick up dependency of indexed adapter.
+	    // Hopefully, once this hits npm a browserify require of lokijs should scan the main file and detect this indexed adapter reference.
+	    Loki.prototype.getIndexedAdapter = function () {
+	      var adapter;
+	
+	      if (true) {
+	        adapter = __webpack_require__(101);
+	      }
+	
+	      return adapter;
+	    };
+	
+	
+	    /**
+	     * configureOptions - allows reconfiguring database options
+	     *
+	     * @param {object} options - configuration options to apply to loki db object
+	     * @param {boolean} initialConfig - (optional) if this is a reconfig, don't pass this
+	     */
+	    Loki.prototype.configureOptions = function (options, initialConfig) {
+	      var defaultPersistence = {
+	          'NODEJS': 'fs',
+	          'BROWSER': 'localStorage',
+	          'CORDOVA': 'localStorage'
+	        },
+	        persistenceMethods = {
+	          'fs': LokiFsAdapter,
+	          'localStorage': LokiLocalStorageAdapter
+	        };
+	
+	      this.options = {};
+	
+	      this.persistenceMethod = null;
+	      // retain reference to optional persistence adapter 'instance'
+	      // currently keeping outside options because it can't be serialized
+	      this.persistenceAdapter = null;
+	
+	      // process the options
+	      if (typeof (options) !== 'undefined') {
+	        this.options = options;
+	
+	
+	        if (this.options.hasOwnProperty('persistenceMethod')) {
+	          // check if the specified persistence method is known
+	          if (typeof (persistenceMethods[options.persistenceMethod]) == 'function') {
+	            this.persistenceMethod = options.persistenceMethod;
+	            this.persistenceAdapter = new persistenceMethods[options.persistenceMethod]();
+	          }
+	          // should be throw an error here, or just fall back to defaults ??
+	        }
+	
+	        // if user passes adapter, set persistence mode to adapter and retain persistence adapter instance
+	        if (this.options.hasOwnProperty('adapter')) {
+	          this.persistenceMethod = 'adapter';
+	          this.persistenceAdapter = options.adapter;
+	          this.options.adapter = null;
+	        }
+	
+	
+	        // if they want to load database on loki instantiation, now is a good time to load... after adapter set and before possible autosave initiation
+	        if (options.autoload && initialConfig) {
+	          // for autoload, let the constructor complete before firing callback
+	          var self = this;
+	          setTimeout(function () {
+	            self.loadDatabase(options, options.autoloadCallback);
+	          }, 1);
+	        }
+	
+	        if (this.options.hasOwnProperty('autosaveInterval')) {
+	          this.autosaveDisable();
+	          this.autosaveInterval = parseInt(this.options.autosaveInterval, 10);
+	        }
+	
+	        if (this.options.hasOwnProperty('autosave') && this.options.autosave) {
+	          this.autosaveDisable();
+	          this.autosave = true;
+	
+	          if (this.options.hasOwnProperty('autosaveCallback')) {
+	            this.autosaveEnable(options, options.autosaveCallback);
+	          } else {
+	            this.autosaveEnable();
+	          }
+	        }
+	      } // end of options processing
+	
+	      // if by now there is no adapter specified by user nor derived from persistenceMethod: use sensible defaults
+	      if (this.persistenceAdapter === null) {
+	        this.persistenceMethod = defaultPersistence[this.ENV];
+	        if (this.persistenceMethod) {
+	          this.persistenceAdapter = new persistenceMethods[this.persistenceMethod]();
+	        }
+	      }
+	
+	    };
+	
+	    /**
+	     * anonym() - shorthand method for quickly creating and populating an anonymous collection.
+	     *    This collection is not referenced internally so upon losing scope it will be garbage collected.
+	     *
+	     *    Example : var results = new loki().anonym(myDocArray).find({'age': {'$gt': 30} });
+	     *
+	     * @param {Array} docs - document array to initialize the anonymous collection with
+	     * @param {Array} indexesArray - (Optional) array of property names to index
+	     * @returns {Collection} New collection which you can query or chain
+	     */
+	    Loki.prototype.anonym = function (docs, indexesArray) {
+	      var collection = new Collection('anonym', indexesArray);
+	      collection.insert(docs);
+	
+	      if(this.verbose)
+	        collection.console = console;
+	
+	      return collection;
+	    };
+	
+	    Loki.prototype.addCollection = function (name, options) {
+	      var collection = new Collection(name, options);
+	      this.collections.push(collection);
+	
+	      if(this.verbose)
+	        collection.console = console;
+	
+	      return collection;
+	    };
+	
+	    Loki.prototype.loadCollection = function (collection) {
+	      if (!collection.name) {
+	        throw new Error('Collection must have a name property to be loaded');
+	      }
+	      this.collections.push(collection);
+	    };
+	
+	    Loki.prototype.getCollection = function (collectionName) {
+	      var i,
+	        len = this.collections.length;
+	
+	      for (i = 0; i < len; i += 1) {
+	        if (this.collections[i].name === collectionName) {
+	          return this.collections[i];
+	        }
+	      }
+	
+	      // no such collection
+	      this.emit('warning', 'collection ' + collectionName + ' not found');
+	      return null;
+	    };
+	
+	    Loki.prototype.listCollections = function () {
+	
+	      var i = this.collections.length,
+	        colls = [];
+	
+	      while (i--) {
+	        colls.push({
+	          name: this.collections[i].name,
+	          type: this.collections[i].objType,
+	          count: this.collections[i].data.length
+	        });
+	      }
+	      return colls;
+	    };
+	
+	    Loki.prototype.removeCollection = function (collectionName) {
+	      var i,
+	        len = this.collections.length;
+	
+	      for (i = 0; i < len; i += 1) {
+	        if (this.collections[i].name === collectionName) {
+	          var tmpcol = new Collection(collectionName, {});
+	          var curcol = this.collections[i];
+	          for (var prop in curcol) {
+	            if (curcol.hasOwnProperty(prop) && tmpcol.hasOwnProperty(prop)) {
+	                curcol[prop] = tmpcol[prop];
+	            }
+	          }
+	          this.collections.splice(i, 1);
+	          return;
+	        }
+	      }
+	    };
+	
+	    Loki.prototype.getName = function () {
+	      return this.name;
+	    };
+	
+	    /**
+	     * serializeReplacer - used to prevent certain properties from being serialized
+	     *
+	     */
+	    Loki.prototype.serializeReplacer = function (key, value) {
+	      switch (key) {
+	      case 'autosaveHandle':
+	      case 'persistenceAdapter':
+	      case 'constraints':
+	        return null;
+	      default:
+	        return value;
+	      }
+	    };
+	
+	    // toJson
+	    Loki.prototype.serialize = function () {
+	      return JSON.stringify(this, this.serializeReplacer);
+	    };
+	    // alias of serialize
+	    Loki.prototype.toJson = Loki.prototype.serialize;
+	
+	    /**
+	     * loadJSON - inflates a loki database from a serialized JSON string
+	     *
+	     * @param {string} serializedDb - a serialized loki database string
+	     * @param {object} options - apply or override collection level settings
+	     */
+	    Loki.prototype.loadJSON = function (serializedDb, options) {
+	      var dbObject;
+	      if (serializedDb.length === 0) {
+	        dbObject = {};
+	      } else {
+	        dbObject = JSON.parse(serializedDb);
+	      }
+	
+	      this.loadJSONObject(dbObject, options);
+	    };
+	
+	    /**
+	     * loadJSONObject - inflates a loki database from a JS object
+	     *
+	     * @param {object} dbObject - a serialized loki database string
+	     * @param {object} options - apply or override collection level settings
+	     */
+	    Loki.prototype.loadJSONObject = function (dbObject, options) {
+	      var i = 0,
+	        len = dbObject.collections ? dbObject.collections.length : 0,
+	        coll,
+	        copyColl,
+	        clen,
+	        j;
+	
+	      this.name = dbObject.name;
+	
+	      // restore database version
+	      this.databaseVersion = 1.0;
+	      if (dbObject.hasOwnProperty('databaseVersion')) {
+	        this.databaseVersion = dbObject.databaseVersion;
+	      }
+	
+	      this.collections = [];
+	
+	      for (i; i < len; i += 1) {
+	        coll = dbObject.collections[i];
+	        copyColl = this.addCollection(coll.name);
+	
+	        copyColl.transactional = coll.transactional;
+	        copyColl.asyncListeners = coll.asyncListeners;
+	        copyColl.disableChangesApi = coll.disableChangesApi;
+	        copyColl.cloneObjects = coll.cloneObjects;
+	        copyColl.cloneMethod = coll.cloneMethod || "parse-stringify";
+	        copyColl.autoupdate = coll.autoupdate;
+	
+	        // load each element individually
+	        clen = coll.data.length;
+	        j = 0;
+	        if (options && options.hasOwnProperty(coll.name)) {
+	
+	          var loader = options[coll.name].inflate ? options[coll.name].inflate : Utils.copyProperties;
+	
+	          for (j; j < clen; j++) {
+	            var collObj = new(options[coll.name].proto)();
+	            loader(coll.data[j], collObj);
+	            copyColl.data[j] = collObj;
+	            copyColl.addAutoUpdateObserver(collObj);
+	          }
+	        } else {
+	
+	          for (j; j < clen; j++) {
+	            copyColl.data[j] = coll.data[j];
+	            copyColl.addAutoUpdateObserver(copyColl.data[j]);
+	          }
+	        }
+	
+	        copyColl.maxId = (coll.data.length === 0) ? 0 : coll.maxId;
+	        copyColl.idIndex = coll.idIndex;
+	        if (typeof (coll.binaryIndices) !== 'undefined') {
+	          copyColl.binaryIndices = coll.binaryIndices;
+	        }
+	        if (typeof coll.transforms !== 'undefined') {
+	          copyColl.transforms = coll.transforms;
+	        }
+	
+	        copyColl.ensureId();
+	
+	        // regenerate unique indexes
+	        copyColl.uniqueNames = [];
+	        if (coll.hasOwnProperty("uniqueNames")) {
+	          copyColl.uniqueNames = coll.uniqueNames;
+	          for (j = 0; j < copyColl.uniqueNames.length; j++) {
+	            copyColl.ensureUniqueIndex(copyColl.uniqueNames[j]);
+	          }
+	        }
+	
+	        // in case they are loading a database created before we added dynamic views, handle undefined
+	        if (typeof (coll.DynamicViews) === 'undefined') continue;
+	
+	        // reinflate DynamicViews and attached Resultsets
+	        for (var idx = 0; idx < coll.DynamicViews.length; idx++) {
+	          var colldv = coll.DynamicViews[idx];
+	
+	          var dv = copyColl.addDynamicView(colldv.name, colldv.options);
+	          dv.resultdata = colldv.resultdata;
+	          dv.resultsdirty = colldv.resultsdirty;
+	          dv.filterPipeline = colldv.filterPipeline;
+	
+	          dv.sortCriteria = colldv.sortCriteria;
+	          dv.sortFunction = null;
+	
+	          dv.sortDirty = colldv.sortDirty;
+	          dv.resultset.filteredrows = colldv.resultset.filteredrows;
+	          dv.resultset.searchIsChained = colldv.resultset.searchIsChained;
+	          dv.resultset.filterInitialized = colldv.resultset.filterInitialized;
+	
+	          dv.rematerialize({
+	            removeWhereFilters: true
+	          });
+	        }
+	      }
+	    };
+	
+	    /**
+	     * close(callback) - emits the close event with an optional callback. Does not actually destroy the db
+	     * but useful from an API perspective
+	     */
+	    Loki.prototype.close = function (callback) {
+	      // for autosave scenarios, we will let close perform final save (if dirty)
+	      // For web use, you might call from window.onbeforeunload to shutdown database, saving pending changes
+	      if (this.autosave) {
+	        this.autosaveDisable();
+	        if (this.autosaveDirty()) {
+	          this.saveDatabase(callback);
+	          callback = undefined;
+	        }
+	      }
+	
+	      if (callback) {
+	        this.on('close', callback);
+	      }
+	      this.emit('close');
+	    };
+	
+	    /**-------------------------+
+	    | Changes API               |
+	    +--------------------------*/
+	
+	    /**
+	     * The Changes API enables the tracking the changes occurred in the collections since the beginning of the session,
+	     * so it's possible to create a differential dataset for synchronization purposes (possibly to a remote db)
+	     */
+	
+	    /**
+	     * generateChangesNotification() - takes all the changes stored in each
+	     * collection and creates a single array for the entire database. If an array of names
+	     * of collections is passed then only the included collections will be tracked.
+	     *
+	     * @param {array} optional array of collection names. No arg means all collections are processed.
+	     * @returns {array} array of changes
+	     * @see private method createChange() in Collection
+	     */
+	    Loki.prototype.generateChangesNotification = function (arrayOfCollectionNames) {
+	      function getCollName(coll) {
+	        return coll.name;
+	      }
+	      var changes = [],
+	        selectedCollections = arrayOfCollectionNames || this.collections.map(getCollName);
+	
+	      this.collections.forEach(function (coll) {
+	        if (selectedCollections.indexOf(getCollName(coll)) !== -1) {
+	          changes = changes.concat(coll.getChanges());
+	        }
+	      });
+	      return changes;
+	    };
+	
+	    /**
+	     * serializeChanges() - stringify changes for network transmission
+	     * @returns {string} string representation of the changes
+	     */
+	    Loki.prototype.serializeChanges = function (collectionNamesArray) {
+	      return JSON.stringify(this.generateChangesNotification(collectionNamesArray));
+	    };
+	
+	    /**
+	     * clearChanges() - clears all the changes in all collections.
+	     */
+	    Loki.prototype.clearChanges = function () {
+	      this.collections.forEach(function (coll) {
+	        if (coll.flushChanges) {
+	          coll.flushChanges();
+	        }
+	      });
+	    };
+	
+	    /*------------------+
+	    | PERSISTENCE       |
+	    -------------------*/
+	
+	
+	    /** there are two build in persistence adapters for internal use
+	     * fs             for use in Nodejs type environments
+	     * localStorage   for use in browser environment
+	     * defined as helper classes here so its easy and clean to use
+	     */
+	
+	    /**
+	     * constructor for fs
+	     */
+	    function LokiFsAdapter() {
+	      this.fs = __webpack_require__(192);
+	    }
+	
+	    /**
+	     * loadDatabase() - Load data from file, will throw an error if the file does not exist
+	     * @param {string} dbname - the filename of the database to load
+	     * @param {function} callback - the callback to handle the result
+	     */
+	    LokiFsAdapter.prototype.loadDatabase = function loadDatabase(dbname, callback) {
+	      this.fs.readFile(dbname, {
+	        encoding: 'utf8'
+	      }, function readFileCallback(err, data) {
+	        if (err) {
+	          callback(new Error(err));
+	        } else {
+	          callback(data);
+	        }
+	      });
+	    };
+	
+	    /**
+	     * saveDatabase() - save data to file, will throw an error if the file can't be saved
+	     * might want to expand this to avoid dataloss on partial save
+	     * @param {string} dbname - the filename of the database to load
+	     * @param {function} callback - the callback to handle the result
+	     */
+	    LokiFsAdapter.prototype.saveDatabase = function saveDatabase(dbname, dbstring, callback) {
+	      this.fs.writeFile(dbname, dbstring, callback);
+	    };
+	
+	    /**
+	     * deleteDatabase() - delete the database file, will throw an error if the
+	     * file can't be deleted
+	     * @param {string} dbname - the filename of the database to delete
+	     * @param {function} callback - the callback to handle the result
+	     */
+	    LokiFsAdapter.prototype.deleteDatabase = function deleteDatabase(dbname, callback) {
+	      this.fs.unlink(dbname, function deleteDatabaseCallback(err) {
+	        if (err) {
+	          callback(new Error(err));
+	        } else {
+	          callback();
+	        }
+	      });
+	    };
+	
+	
+	    /**
+	     * constructor for local storage
+	     */
+	    function LokiLocalStorageAdapter() {}
+	
+	    /**
+	     * loadDatabase() - Load data from localstorage
+	     * @param {string} dbname - the name of the database to load
+	     * @param {function} callback - the callback to handle the result
+	     */
+	    LokiLocalStorageAdapter.prototype.loadDatabase = function loadDatabase(dbname, callback) {
+	      if (localStorageAvailable()) {
+	        callback(localStorage.getItem(dbname));
+	      } else {
+	        callback(new Error('localStorage is not available'));
+	      }
+	    };
+	
+	    /**
+	     * saveDatabase() - save data to localstorage, will throw an error if the file can't be saved
+	     * might want to expand this to avoid dataloss on partial save
+	     * @param {string} dbname - the filename of the database to load
+	     * @param {function} callback - the callback to handle the result
+	     */
+	    LokiLocalStorageAdapter.prototype.saveDatabase = function saveDatabase(dbname, dbstring, callback) {
+	      if (localStorageAvailable()) {
+	        localStorage.setItem(dbname, dbstring);
+	        callback(null);
+	      } else {
+	        callback(new Error('localStorage is not available'));
+	      }
+	    };
+	
+	    /**
+	     * deleteDatabase() - delete the database from localstorage, will throw an error if it
+	     * can't be deleted
+	     * @param {string} dbname - the filename of the database to delete
+	     * @param {function} callback - the callback to handle the result
+	     */
+	    LokiLocalStorageAdapter.prototype.deleteDatabase = function deleteDatabase(dbname, callback) {
+	      if (localStorageAvailable()) {
+	        localStorage.removeItem(dbname);
+	        callback(null);
+	      } else {
+	        callback(new Error('localStorage is not available'));
+	      }
+	    };
+	
+	    /**
+	     * loadDatabase - Handles loading from file system, local storage, or adapter (indexeddb)
+	     *    This method utilizes loki configuration options (if provided) to determine which
+	     *    persistence method to use, or environment detection (if configuration was not provided).
+	     *
+	     * @param {object} options - not currently used (remove or allow overrides?)
+	     * @param {function} callback - (Optional) user supplied async callback / error handler
+	     */
+	    Loki.prototype.loadDatabase = function (options, callback) {
+	      var cFun = callback || function (err, data) {
+	          if (err) {
+	            throw err;
+	          }
+	        },
+	        self = this;
+	
+	      // the persistenceAdapter should be present if all is ok, but check to be sure.
+	      if (this.persistenceAdapter !== null) {
+	
+	        this.persistenceAdapter.loadDatabase(this.filename, function loadDatabaseCallback(dbString) {
+	          if (typeof (dbString) === 'string') {
+	            var parseSuccess = false;
+	            try {
+	              self.loadJSON(dbString, options || {});
+	              parseSuccess = true;
+	            } catch (err) {
+	              cFun(err);
+	            }
+	            if (parseSuccess) {
+	              cFun(null);
+	              self.emit('loaded', 'database ' + self.filename + ' loaded');
+	            }
+	          } else {
+	            // if adapter has returned an js object (other than null or error) attempt to load from JSON object
+	            if (typeof (dbString) === "object" && dbString !== null && !(dbString instanceof Error)) {
+	              self.loadJSONObject(dbString, options || {});
+	              cFun(null); // return null on success
+	              self.emit('loaded', 'database ' + self.filename + ' loaded');
+	            } else {
+	              // error from adapter (either null or instance of error), pass on to 'user' callback
+	              cFun(dbString);
+	            }
+	          }
+	        });
+	
+	      } else {
+	        cFun(new Error('persistenceAdapter not configured'));
+	      }
+	    };
+	
+	    /**
+	     * saveDatabase - Handles saving to file system, local storage, or adapter (indexeddb)
+	     *    This method utilizes loki configuration options (if provided) to determine which
+	     *    persistence method to use, or environment detection (if configuration was not provided).
+	     *
+	     * @param {object} options - not currently used (remove or allow overrides?)
+	     * @param {function} callback - (Optional) user supplied async callback / error handler
+	     */
+	    Loki.prototype.saveDatabase = function (callback) {
+	      var cFun = callback || function (err) {
+	          if (err) {
+	            throw err;
+	          }
+	          return;
+	        },
+	        self = this;
+	
+	      // the persistenceAdapter should be present if all is ok, but check to be sure.
+	      if (this.persistenceAdapter !== null) {
+	        // check if the adapter is requesting (and supports) a 'reference' mode export
+	        if (this.persistenceAdapter.mode === "reference" && typeof this.persistenceAdapter.exportDatabase === "function") {
+	          // filename may seem redundant but loadDatabase will need to expect this same filename
+	          this.persistenceAdapter.exportDatabase(this.filename, this, function exportDatabaseCallback(err) {
+	            self.autosaveClearFlags();
+	            cFun(err);
+	          });
+	        }
+	        // otherwise just pass the serialized database to adapter
+	        else {
+	          this.persistenceAdapter.saveDatabase(this.filename, self.serialize(), function saveDatabasecallback(err) {
+	            self.autosaveClearFlags();
+	            cFun(err);
+	          });
+	        }
+	      } else {
+	        cFun(new Error('persistenceAdapter not configured'));
+	      }
+	    };
+	
+	    // alias
+	    Loki.prototype.save = Loki.prototype.saveDatabase;
+	
+	    /**
+	     * deleteDatabase - Handles deleting a database from file system, local
+	     *    storage, or adapter (indexeddb)
+	     *    This method utilizes loki configuration options (if provided) to determine which
+	     *    persistence method to use, or environment detection (if configuration was not provided).
+	     *
+	     * @param {object} options - not currently used (remove or allow overrides?)
+	     * @param {function} callback - (Optional) user supplied async callback / error handler
+	     */
+	    Loki.prototype.deleteDatabase = function (options, callback) {
+	      var cFun = callback || function (err, data) {
+	          if (err) {
+	            throw err;
+	          }
+	        };
+	
+	      // the persistenceAdapter should be present if all is ok, but check to be sure.
+	      if (this.persistenceAdapter !== null) {
+	        this.persistenceAdapter.deleteDatabase(this.filename, function deleteDatabaseCallback(err) {
+	          cFun(err);
+	        });
+	      } else {
+	        cFun(new Error('persistenceAdapter not configured'));
+	      }
+	    };
+	
+	    /**
+	     * autosaveDirty - check whether any collections are 'dirty' meaning we need to save (entire) database
+	     *
+	     * @returns {boolean} - true if database has changed since last autosave, false if not.
+	     */
+	    Loki.prototype.autosaveDirty = function () {
+	      for (var idx = 0; idx < this.collections.length; idx++) {
+	        if (this.collections[idx].dirty) {
+	          return true;
+	        }
+	      }
+	
+	      return false;
+	    };
+	
+	    /**
+	     * autosaveClearFlags - resets dirty flags on all collections.
+	     *    Called from saveDatabase() after db is saved.
+	     *
+	     */
+	    Loki.prototype.autosaveClearFlags = function () {
+	      for (var idx = 0; idx < this.collections.length; idx++) {
+	        this.collections[idx].dirty = false;
+	      }
+	    };
+	
+	    /**
+	     * autosaveEnable - begin a javascript interval to periodically save the database.
+	     *
+	     * @param {object} options - not currently used (remove or allow overrides?)
+	     * @param {function} callback - (Optional) user supplied async callback
+	     */
+	    Loki.prototype.autosaveEnable = function (options, callback) {
+	      this.autosave = true;
+	
+	      var delay = 5000,
+	        self = this;
+	
+	      if (typeof (this.autosaveInterval) !== 'undefined' && this.autosaveInterval !== null) {
+	        delay = this.autosaveInterval;
+	      }
+	
+	      this.autosaveHandle = setInterval(function autosaveHandleInterval() {
+	        // use of dirty flag will need to be hierarchical since mods are done at collection level with no visibility of 'db'
+	        // so next step will be to implement collection level dirty flags set on insert/update/remove
+	        // along with loki level isdirty() function which iterates all collections to see if any are dirty
+	
+	        if (self.autosaveDirty()) {
+	          self.saveDatabase(callback);
+	        }
+	      }, delay);
+	    };
+	
+	    /**
+	     * autosaveDisable - stop the autosave interval timer.
+	     *
+	     */
+	    Loki.prototype.autosaveDisable = function () {
+	      if (typeof (this.autosaveHandle) !== 'undefined' && this.autosaveHandle !== null) {
+	        clearInterval(this.autosaveHandle);
+	        this.autosaveHandle = null;
+	      }
+	    };
+	
+	
+	    /**
+	     * Resultset class allowing chainable queries.  Intended to be instanced internally.
+	     *    Collection.find(), Collection.where(), and Collection.chain() instantiate this.
+	     *
+	     *    Example:
+	     *    mycollection.chain()
+	     *      .find({ 'doors' : 4 })
+	     *      .where(function(obj) { return obj.name === 'Toyota' })
+	     *      .data();
+	     *
+	     * @constructor
+	     * @param {Collection} collection - The collection which this Resultset will query against.
+	     * @param {Object} options - Object containing one or more options.
+	     * @param {string} options.queryObj - Optional mongo-style query object to initialize resultset with.
+	     * @param {function} options.queryFunc - Optional javascript filter function to initialize resultset with.
+	     * @param {bool} options.firstOnly - Optional boolean used by collection.findOne().
+	     */
+	    function Resultset(collection, options) {
+	      options = options || {};
+	
+	      options.queryObj = options.queryObj || null;
+	      options.queryFunc = options.queryFunc || null;
+	      options.firstOnly = options.firstOnly || false;
+	
+	      // retain reference to collection we are querying against
+	      this.collection = collection;
+	
+	      // if chain() instantiates with null queryObj and queryFunc, so we will keep flag for later
+	      this.searchIsChained = (!options.queryObj && !options.queryFunc);
+	      this.filteredrows = [];
+	      this.filterInitialized = false;
+	
+	      // if user supplied initial queryObj or queryFunc, apply it
+	      if (typeof (options.queryObj) !== "undefined" && options.queryObj !== null) {
+	        return this.find(options.queryObj, options.firstOnly);
+	      }
+	      if (typeof (options.queryFunc) !== "undefined" && options.queryFunc !== null) {
+	        return this.where(options.queryFunc);
+	      }
+	
+	      // otherwise return unfiltered Resultset for future filtering
+	      return this;
+	    }
+	
+	    /**
+	     * reset() - Reset the resultset to its initial state.
+	     *
+	     * @returns {Resultset} Reference to this resultset, for future chain operations.
+	     */
+	    Resultset.prototype.reset = function () {
+	      if (this.filteredrows.length > 0) {
+	        this.filteredrows = [];
+	      }
+	      this.filterInitialized = false;
+	      return this;
+	    };
+	
+	    /**
+	     * toJSON() - Override of toJSON to avoid circular references
+	     *
+	     */
+	    Resultset.prototype.toJSON = function () {
+	      var copy = this.copy();
+	      copy.collection = null;
+	      return copy;
+	    };
+	
+	    /**
+	     * limit() - Allows you to limit the number of documents passed to next chain operation.
+	     *    A resultset copy() is made to avoid altering original resultset.
+	     *
+	     * @param {int} qty - The number of documents to return.
+	     * @returns {Resultset} Returns a copy of the resultset, limited by qty, for subsequent chain ops.
+	     */
+	    Resultset.prototype.limit = function (qty) {
+	      // if this is chained resultset with no filters applied, we need to populate filteredrows first
+	      if (this.searchIsChained && !this.filterInitialized && this.filteredrows.length === 0) {
+	        this.filteredrows = this.collection.prepareFullDocIndex();
+	      }
+	
+	      var rscopy = new Resultset(this.collection);
+	      rscopy.filteredrows = this.filteredrows.slice(0, qty);
+	      rscopy.filterInitialized = true;
+	      return rscopy;
+	    };
+	
+	    /**
+	     * offset() - Used for skipping 'pos' number of documents in the resultset.
+	     *
+	     * @param {int} pos - Number of documents to skip; all preceding documents are filtered out.
+	     * @returns {Resultset} Returns a copy of the resultset, containing docs starting at 'pos' for subsequent chain ops.
+	     */
+	    Resultset.prototype.offset = function (pos) {
+	      // if this is chained resultset with no filters applied, we need to populate filteredrows first
+	      if (this.searchIsChained && !this.filterInitialized && this.filteredrows.length === 0) {
+	        this.filteredrows = this.collection.prepareFullDocIndex();
+	      }
+	
+	      var rscopy = new Resultset(this.collection);
+	      rscopy.filteredrows = this.filteredrows.slice(pos);
+	      rscopy.filterInitialized = true;
+	      return rscopy;
+	    };
+	
+	    /**
+	     * copy() - To support reuse of resultset in branched query situations.
+	     *
+	     * @returns {Resultset} Returns a copy of the resultset (set) but the underlying document references will be the same.
+	     */
+	    Resultset.prototype.copy = function () {
+	      var result = new Resultset(this.collection);
+	
+	      if (this.filteredrows.length > 0) {
+	        result.filteredrows = this.filteredrows.slice();
+	      }
+	      result.filterInitialized = this.filterInitialized;
+	
+	      return result;
+	    };
+	
+	    // add branch() as alias of copy()
+	    Resultset.prototype.branch = Resultset.prototype.copy;
+	
+	    /**
+	     * transform() - executes a named collection transform or raw array of transform steps against the resultset.
+	     *
+	     * @param transform {string|array} : (Optional) name of collection transform or raw transform array
+	     * @param parameters {object} : (Optional) object property hash of parameters, if the transform requires them.
+	     * @returns {Resultset} : either (this) resultset or a clone of of this resultset (depending on steps)
+	     */
+	    Resultset.prototype.transform = function (transform, parameters) {
+	      var idx,
+	        step,
+	        rs = this;
+	
+	      // if transform is name, then do lookup first
+	      if (typeof transform === 'string') {
+	        if (this.collection.transforms.hasOwnProperty(transform)) {
+	          transform = this.collection.transforms[transform];
+	        }
+	      }
+	
+	      // either they passed in raw transform array or we looked it up, so process
+	      if (typeof transform !== 'object' || !Array.isArray(transform)) {
+	          throw new Error("Invalid transform");
+	      }
+	
+	      if (typeof parameters !== 'undefined') {
+	        transform = Utils.resolveTransformParams(transform, parameters);
+	      }
+	
+	      for (idx = 0; idx < transform.length; idx++) {
+	        step = transform[idx];
+	
+	        switch (step.type) {
+	        case "find":
+	          rs.find(step.value);
+	          break;
+	        case "where":
+	          rs.where(step.value);
+	          break;
+	        case "simplesort":
+	          rs.simplesort(step.property, step.desc);
+	          break;
+	        case "compoundsort":
+	          rs.compoundsort(step.value);
+	          break;
+	        case "sort":
+	          rs.sort(step.value);
+	          break;
+	        case "limit":
+	          rs = rs.limit(step.value);
+	          break; // limit makes copy so update reference
+	        case "offset":
+	          rs = rs.offset(step.value);
+	          break; // offset makes copy so update reference
+	        case "map":
+	          rs = rs.map(step.value);
+	          break;
+	        case "eqJoin":
+	          rs = rs.eqJoin(step.joinData, step.leftJoinKey, step.rightJoinKey, step.mapFun);
+	          break;
+	          // following cases break chain by returning array data so make any of these last in transform steps
+	        case "mapReduce":
+	          rs = rs.mapReduce(step.mapFunction, step.reduceFunction);
+	          break;
+	          // following cases update documents in current filtered resultset (use carefully)
+	        case "update":
+	          rs.update(step.value);
+	          break;
+	        case "remove":
+	          rs.remove();
+	          break;
+	        default:
+	          break;
+	        }
+	      }
+	
+	      return rs;
+	    };
+	
+	    /**
+	     * sort() - User supplied compare function is provided two documents to compare. (chainable)
+	     *    Example:
+	     *    rslt.sort(function(obj1, obj2) {
+	     *      if (obj1.name === obj2.name) return 0;
+	     *      if (obj1.name > obj2.name) return 1;
+	     *      if (obj1.name < obj2.name) return -1;
+	     *    });
+	     *
+	     * @param {function} comparefun - A javascript compare function used for sorting.
+	     * @returns {Resultset} Reference to this resultset, sorted, for future chain operations.
+	     */
+	    Resultset.prototype.sort = function (comparefun) {
+	      // if this is chained resultset with no filters applied, just we need to populate filteredrows first
+	      if (this.searchIsChained && !this.filterInitialized && this.filteredrows.length === 0) {
+	        this.filteredrows = this.collection.prepareFullDocIndex();
+	      }
+	
+	      var wrappedComparer =
+	        (function (userComparer, data) {
+	          return function (a, b) {
+	            return userComparer(data[a], data[b]);
+	          };
+	        })(comparefun, this.collection.data);
+	
+	      this.filteredrows.sort(wrappedComparer);
+	
+	      return this;
+	    };
+	
+	    /**
+	     * simplesort() - Simpler, loose evaluation for user to sort based on a property name. (chainable)
+	     *
+	     * @param {string} propname - name of property to sort by.
+	     * @param {bool} isdesc - (Optional) If true, the property will be sorted in descending order
+	     * @returns {Resultset} Reference to this resultset, sorted, for future chain operations.
+	     */
+	    Resultset.prototype.simplesort = function (propname, isdesc) {
+	      // if this is chained resultset with no filters applied, just we need to populate filteredrows first
+	      if (this.searchIsChained && !this.filterInitialized && this.filteredrows.length === 0) {
+	        this.filteredrows = this.collection.prepareFullDocIndex();
+	      }
+	
+	      if (typeof (isdesc) === 'undefined') {
+	        isdesc = false;
+	      }
+	
+	      var wrappedComparer =
+	        (function (prop, desc, data) {
+	          return function (a, b) {
+	            return sortHelper(data[a][prop], data[b][prop], desc);
+	          };
+	        })(propname, isdesc, this.collection.data);
+	
+	      this.filteredrows.sort(wrappedComparer);
+	
+	      return this;
+	    };
+	
+	    /**
+	     * compoundsort() - Allows sorting a resultset based on multiple columns.
+	     *    Example : rs.compoundsort(['age', 'name']); to sort by age and then name (both ascending)
+	     *    Example : rs.compoundsort(['age', ['name', true]); to sort by age (ascending) and then by name (descending)
+	     *
+	     * @param {array} properties - array of property names or subarray of [propertyname, isdesc] used evaluate sort order
+	     * @returns {Resultset} Reference to this resultset, sorted, for future chain operations.
+	     */
+	    Resultset.prototype.compoundsort = function (properties) {
+	      if (properties.length === 0) {
+	        throw new Error("Invalid call to compoundsort, need at least one property");
+	      }
+	
+	      var prop;
+	      if (properties.length === 1) {
+	        prop = properties[0];
+	        if (Array.isArray(prop)) {
+	          return this.simplesort(prop[0], prop[1]);
+	        }
+	        return this.simplesort(prop, false);
+	      }
+	
+	      // unify the structure of 'properties' to avoid checking it repeatedly while sorting
+	      for (var i = 0, len = properties.length; i < len; i += 1) {
+	        prop = properties[i];
+	        if (!Array.isArray(prop)) {
+	          properties[i] = [prop, false];
+	        }
+	      }
+	
+	      // if this is chained resultset with no filters applied, just we need to populate filteredrows first
+	      if (this.searchIsChained && !this.filterInitialized && this.filteredrows.length === 0) {
+	        this.filteredrows = this.collection.prepareFullDocIndex();
+	      }
+	
+	      var wrappedComparer =
+	        (function (props, data) {
+	          return function (a, b) {
+	            return compoundeval(props, data[a], data[b]);
+	          };
+	        })(properties, this.collection.data);
+	
+	      this.filteredrows.sort(wrappedComparer);
+	
+	      return this;
+	    };
+	
+	    /**
+	     * calculateRange() - Binary Search utility method to find range/segment of values matching criteria.
+	     *    this is used for collection.find() and first find filter of resultset/dynview
+	     *    slightly different than get() binary search in that get() hones in on 1 value,
+	     *    but we have to hone in on many (range)
+	     * @param {string} op - operation, such as $eq
+	     * @param {string} prop - name of property to calculate range for
+	     * @param {object} val - value to use for range calculation.
+	     * @returns {array} [start, end] index array positions
+	     */
+	    Resultset.prototype.calculateRange = function (op, prop, val) {
+	      var rcd = this.collection.data;
+	      var index = this.collection.binaryIndices[prop].values;
+	      var min = 0;
+	      var max = index.length - 1;
+	      var mid = 0;
+	
+	      // when no documents are in collection, return empty range condition
+	      if (rcd.length === 0) {
+	        return [0, -1];
+	      }
+	
+	      var minVal = rcd[index[min]][prop];
+	      var maxVal = rcd[index[max]][prop];
+	
+	      // if value falls outside of our range return [0, -1] to designate no results
+	      switch (op) {
+	      case '$eq':
+	        if (ltHelper(val, minVal, false) || gtHelper(val, maxVal, false)) {
+	          return [0, -1];
+	        }
+	        break;
+	      case '$dteq':
+	        if (ltHelper(val, minVal, false) || gtHelper(val, maxVal, false)) {
+	          return [0, -1];
+	        }
+	        break;
+	      case '$gt':
+	        if (gtHelper(val, maxVal, true)) {
+	          return [0, -1];
+	        }
+	        break;
+	      case '$gte':
+	        if (gtHelper(val, maxVal, false)) {
+	          return [0, -1];
+	        }
+	        break;
+	      case '$lt':
+	        if (ltHelper(val, minVal, true)) {
+	          return [0, -1];
+	        }
+	        if (ltHelper(maxVal, val, false)) {
+	          return [0, rcd.length - 1];
+	        }
+	        break;
+	      case '$lte':
+	        if (ltHelper(val, minVal, false)) {
+	          return [0, -1];
+	        }
+	        if (ltHelper(maxVal, val, true)) {
+	          return [0, rcd.length - 1];
+	        }
+	        break;
+	      }
+	
+	      // hone in on start position of value
+	      while (min < max) {
+	        mid = (min + max) >> 1;
+	
+	        if (ltHelper(rcd[index[mid]][prop], val, false)) {
+	          min = mid + 1;
+	        } else {
+	          max = mid;
+	        }
+	      }
+	
+	      var lbound = min;
+	
+	      // do not reset min, as the upper bound cannot be prior to the found low bound
+	      max = index.length - 1;
+	
+	      // hone in on end position of value
+	      while (min < max) {
+	        mid = (min + max) >> 1;
+	
+	        if (ltHelper(val, rcd[index[mid]][prop], false)) {
+	          max = mid;
+	        } else {
+	          min = mid + 1;
+	        }
+	      }
+	
+	      var ubound = max;
+	
+	      var lval = rcd[index[lbound]][prop];
+	      var uval = rcd[index[ubound]][prop];
+	
+	      switch (op) {
+	      case '$eq':
+	        if (lval !== val) {
+	          return [0, -1];
+	        }
+	        if (uval !== val) {
+	          ubound--;
+	        }
+	
+	        return [lbound, ubound];
+	      case '$dteq':
+	        if (lval > val || lval < val) {
+	          return [0, -1];
+	        }
+	        if (uval > val || uval < val) {
+	          ubound--;
+	        }
+	
+	        return [lbound, ubound];
+	
+	
+	      case '$gt':
+	        if (ltHelper(uval, val, true)) {
+	          return [0, -1];
+	        }
+	
+	        return [ubound, rcd.length - 1];
+	
+	      case '$gte':
+	        if (ltHelper(lval, val, false)) {
+	          return [0, -1];
+	        }
+	
+	        return [lbound, rcd.length - 1];
+	
+	      case '$lt':
+	        if (lbound === 0 && ltHelper(lval, val, false)) {
+	          return [0, 0];
+	        }
+	        return [0, lbound - 1];
+	
+	      case '$lte':
+	        if (uval !== val) {
+	          ubound--;
+	        }
+	
+	        if (ubound === 0 && ltHelper(uval, val, false)) {
+	          return [0, 0];
+	        }
+	        return [0, ubound];
+	
+	      default:
+	        return [0, rcd.length - 1];
+	      }
+	    };
+	
+	    /**
+	     * findOr() - oversee the operation of OR'ed query expressions.
+	     *    OR'ed expression evaluation runs each expression individually against the full collection,
+	     *    and finally does a set OR on each expression's results.
+	     *    Each evaluation can utilize a binary index to prevent multiple linear array scans.
+	     *
+	     * @param {array} expressionArray - array of expressions
+	     * @returns {Resultset} this resultset for further chain ops.
+	     */
+	    Resultset.prototype.findOr = function (expressionArray) {
+	      var fr = null,
+	          fri = 0, frlen = 0,
+	          docset = [], idxset = [], idx = 0,
+	          origCount = this.count();
+	
+	      // If filter is already initialized, then we query against only those items already in filter.
+	      // This means no index utilization for fields, so hopefully its filtered to a smallish filteredrows.
+	      for (var ei = 0, elen = expressionArray.length; ei < elen; ei++) {
+	        // we need to branch existing query to run each filter separately and combine results
+	        fr = this.branch().find(expressionArray[ei]).filteredrows;
+	        frlen = fr.length;
+	        // if the find operation did not reduce the initial set, then the initial set is the actual result
+	        if (frlen === origCount) {
+	          return this;
+	        }
+	
+	        // add any document 'hits'
+	        for (fri = 0; fri < frlen; fri++) {
+	          idx = fr[fri];
+	          if (idxset[idx] === undefined) {
+	            idxset[idx] = true;
+	            docset.push(idx);
+	          }
+	        }
+	      }
+	
+	      this.filteredrows = docset;
+	      this.filterInitialized = true;
+	
+	      return this;
+	    };
+	    Resultset.prototype.$or = Resultset.prototype.findOr;
+	
+	    /**
+	     * findAnd() - oversee the operation of AND'ed query expressions.
+	     *    AND'ed expression evaluation runs each expression progressively against the full collection,
+	     *    internally utilizing existing chained resultset functionality.
+	     *    Only the first filter can utilize a binary index.
+	     *
+	     * @param {array} expressionArray - array of expressions
+	     * @returns {Resultset} this resultset for further chain ops.
+	     */
+	    Resultset.prototype.findAnd = function (expressionArray) {
+	      // we have already implementing method chaining in this (our Resultset class)
+	      // so lets just progressively apply user supplied and filters
+	      for (var i = 0, len = expressionArray.length; i < len; i++) {
+	        if (this.count() === 0) {
+	          return this;
+	        }
+	        this.find(expressionArray[i]);
+	      }
+	      return this;
+	    };
+	    Resultset.prototype.$and = Resultset.prototype.findAnd;
+	
+	    /**
+	     * find() - Used for querying via a mongo-style query object.
+	     *
+	     * @param {object} query - A mongo-style query object used for filtering current results.
+	     * @param {boolean} firstOnly - (Optional) Used by collection.findOne()
+	     * @returns {Resultset} this resultset for further chain ops.
+	     */
+	    Resultset.prototype.find = function (query, firstOnly) {
+	      if (this.collection.data.length === 0) {
+	        if (this.searchIsChained) {
+	          this.filteredrows = [];
+	          this.filterInitialized = true;
+	          return this;
+	        }
+	        return [];
+	      }
+	
+	      var queryObject = query || 'getAll',
+	          p,
+	          property,
+	          queryObjectOp,
+	          operator,
+	          value,
+	          key,
+	          searchByIndex = false,
+	          result = [],
+	          index = null;
+	
+	      // if this was note invoked via findOne()
+	      firstOnly = firstOnly || false;
+	
+	      if (typeof queryObject === 'object') {
+	        for (p in queryObject) {
+	          if (hasOwnProperty.call(queryObject, p)) {
+	            property = p;
+	            queryObjectOp = queryObject[p];
+	            break;
+	          }
+	        }
+	      }
+	
+	      // apply no filters if they want all
+	      if (!property || queryObject === 'getAll') {
+	        // Chained queries can just do coll.chain().data() but let's
+	        // be versatile and allow this also coll.chain().find().data()
+	
+	        // If a chained search, simply leave everything as-is.
+	        // Note: If no filter at this point, it will be properly
+	        // created by the follow-up queries or sorts that need it.
+	        // If not chained, then return the collection data array copy.
+	        return (this.searchIsChained) ? (this) : (this.collection.data.slice());
+	      }
+	
+	      // injecting $and and $or expression tree evaluation here.
+	      if (property === '$and' || property === '$or') {
+	        if (this.searchIsChained) {
+	          this[property](queryObjectOp);
+	
+	          // for chained find with firstonly,
+	          if (firstOnly && this.filteredrows.length > 1) {
+	            this.filteredrows = this.filteredrows.slice(0, 1);
+	          }
+	
+	          return this;
+	        } else {
+	          // our $and operation internally chains filters
+	          result = this.collection.chain()[property](queryObjectOp).data();
+	
+	          // if this was coll.findOne() return first object or empty array if null
+	          // since this is invoked from a constructor we can't return null, so we will
+	          // make null in coll.findOne();
+	          if (firstOnly) {
+	            return (result.length === 0) ? ([]) : (result[0]);
+	          }
+	
+	          // not first only return all results
+	          return result;
+	        }
+	      }
+	
+	      // see if query object is in shorthand mode (assuming eq operator)
+	      if (queryObjectOp === null || (typeof queryObjectOp !== 'object' || queryObjectOp instanceof Date)) {
+	        operator = '$eq';
+	        value = queryObjectOp;
+	      } else if (typeof queryObjectOp === 'object') {
+	        for (key in queryObjectOp) {
+	          if (hasOwnProperty.call(queryObjectOp, key)) {
+	            operator = key;
+	            value = queryObjectOp[key];
+	            break;
+	          }
+	        }
+	      } else {
+	        throw new Error('Do not know what you want to do.');
+	      }
+	
+	      // for regex ops, precompile
+	      if (operator === '$regex') {
+	        if (Array.isArray(value)) {
+	          value = new RegExp(value[0], value[1]);
+	        }
+	        else if (!(value instanceof RegExp)) {
+	          value = new RegExp(value);
+	        }
+	      }
+	
+	      // if user is deep querying the object such as find('name.first': 'odin')
+	      var usingDotNotation = (property.indexOf('.') !== -1);
+	
+	      // if an index exists for the property being queried against, use it
+	      // for now only enabling for non-chained query (who's set of docs matches index)
+	      // or chained queries where it is the first filter applied and prop is indexed
+	      var doIndexCheck = !usingDotNotation &&
+	          (!this.searchIsChained || !this.filterInitialized);
+	
+	      if (doIndexCheck && this.collection.binaryIndices[property] &&
+	          indexedOpsList.indexOf(operator) !== -1) {
+	        // this is where our lazy index rebuilding will take place
+	        // basically we will leave all indexes dirty until we need them
+	        // so here we will rebuild only the index tied to this property
+	        // ensureIndex() will only rebuild if flagged as dirty since we are not passing force=true param
+	        this.collection.ensureIndex(property);
+	
+	        searchByIndex = true;
+	        index = this.collection.binaryIndices[property];
+	      }
+	
+	      // the comparison function
+	      var fun = LokiOps[operator];
+	
+	      // "shortcut" for collection data
+	      var t = this.collection.data;
+	      // filter data length
+	      var i = 0;
+	
+	      // Query executed differently depending on :
+	      //    - whether it is chained or not
+	      //    - whether the property being queried has an index defined
+	      //    - if chained, we handle first pass differently for initial filteredrows[] population
+	      //
+	      // For performance reasons, each case has its own if block to minimize in-loop calculations
+	
+	      // If not a chained query, bypass filteredrows and work directly against data
+	      if (!this.searchIsChained) {
+	        if (!searchByIndex) {
+	          i = t.length;
+	
+	          if (firstOnly) {
+	            if (usingDotNotation) {
+	              property = property.split('.');
+	              while (i--) {
+	                if (dotSubScan(t[i], property, fun, value)) {
+	                  return (t[i]);
+	                }
+	              }
+	            } else {
+	              while (i--) {
+	                if (fun(t[i][property], value)) {
+	                  return (t[i]);
+	                }
+	              }
+	            }
+	
+	            return [];
+	          }
+	
+	          // if using dot notation then treat property as keypath such as 'name.first'.
+	          // currently supporting dot notation for non-indexed conditions only
+	          if (usingDotNotation) {
+	            property = property.split('.');
+	            while (i--) {
+	              if (dotSubScan(t[i], property, fun, value)) {
+	                result.push(t[i]);
+	              }
+	            }
+	          } else {
+	            while (i--) {
+	              if (fun(t[i][property], value)) {
+	                result.push(t[i]);
+	              }
+	            }
+	          }
+	        } else {
+	          // searching by binary index via calculateRange() utility method
+	          var seg = this.calculateRange(operator, property, value);
+	
+	          // not chained so this 'find' was designated in Resultset constructor
+	          // so return object itself
+	          if (firstOnly) {
+	            if (seg[1] !== -1) {
+	              return t[index.values[seg[0]]];
+	            }
+	            return [];
+	          }
+	
+	          for (i = seg[0]; i <= seg[1]; i++) {
+	            result.push(t[index.values[i]]);
+	          }
+	        }
+	
+	        // not a chained query so return result as data[]
+	        return result;
+	      }
+	
+	
+	      // Otherwise this is a chained query
+	
+	      var filter, rowIdx = 0;
+	
+	      // If the filteredrows[] is already initialized, use it
+	      if (this.filterInitialized) {
+	        filter = this.filteredrows;
+	        i = filter.length;
+	
+	        // currently supporting dot notation for non-indexed conditions only
+	        if (usingDotNotation) {
+	          property = property.split('.');
+	          while (i--) {
+	            rowIdx = filter[i];
+	            if (dotSubScan(t[rowIdx], property, fun, value)) {
+	              result.push(rowIdx);
+	            }
+	          }
+	        } else {
+	          while (i--) {
+	            rowIdx = filter[i];
+	            if (fun(t[rowIdx][property], value)) {
+	              result.push(rowIdx);
+	            }
+	          }
+	        }
+	      }
+	      // first chained query so work against data[] but put results in filteredrows
+	      else {
+	        // if not searching by index
+	        if (!searchByIndex) {
+	          i = t.length;
+	
+	          if (usingDotNotation) {
+	            property = property.split('.');
+	            while (i--) {
+	              if (dotSubScan(t[i], property, fun, value)) {
+	                result.push(i);
+	              }
+	            }
+	          } else {
+	            while (i--) {
+	              if (fun(t[i][property], value)) {
+	                result.push(i);
+	              }
+	            }
+	          }
+	        } else {
+	          // search by index
+	          var segm = this.calculateRange(operator, property, value);
+	
+	          for (i = segm[0]; i <= segm[1]; i++) {
+	            result.push(index.values[i]);
+	          }
+	        }
+	
+	        this.filterInitialized = true; // next time work against filteredrows[]
+	      }
+	
+	      this.filteredrows = result;
+	      return this;
+	    };
+	
+	
+	    /**
+	     * where() - Used for filtering via a javascript filter function.
+	     *
+	     * @param {function} fun - A javascript function used for filtering current results by.
+	     * @returns {Resultset} this resultset for further chain ops.
+	     */
+	    Resultset.prototype.where = function (fun) {
+	      var viewFunction,
+	        result = [];
+	
+	      if ('function' === typeof fun) {
+	        viewFunction = fun;
+	      } else {
+	        throw new TypeError('Argument is not a stored view or a function');
+	      }
+	      try {
+	        // if not a chained query then run directly against data[] and return object []
+	        if (!this.searchIsChained) {
+	          var i = this.collection.data.length;
+	
+	          while (i--) {
+	            if (viewFunction(this.collection.data[i]) === true) {
+	              result.push(this.collection.data[i]);
+	            }
+	          }
+	
+	          // not a chained query so returning result as data[]
+	          return result;
+	        }
+	        // else chained query, so run against filteredrows
+	        else {
+	          // If the filteredrows[] is already initialized, use it
+	          if (this.filterInitialized) {
+	            var j = this.filteredrows.length;
+	
+	            while (j--) {
+	              if (viewFunction(this.collection.data[this.filteredrows[j]]) === true) {
+	                result.push(this.filteredrows[j]);
+	              }
+	            }
+	
+	            this.filteredrows = result;
+	
+	            return this;
+	          }
+	          // otherwise this is initial chained op, work against data, push into filteredrows[]
+	          else {
+	            var k = this.collection.data.length;
+	
+	            while (k--) {
+	              if (viewFunction(this.collection.data[k]) === true) {
+	                result.push(k);
+	              }
+	            }
+	
+	            this.filteredrows = result;
+	            this.filterInitialized = true;
+	
+	            return this;
+	          }
+	        }
+	      } catch (err) {
+	        throw err;
+	      }
+	    };
+	
+	    /**
+	     * count() - returns the number of documents in the resultset.
+	     *
+	     * @returns {number} The number of documents in the resultset.
+	     */
+	    Resultset.prototype.count = function () {
+	      if (this.searchIsChained && this.filterInitialized) {
+	        return this.filteredrows.length;
+	      }
+	      return this.collection.count();
+	    };
+	
+	    /**
+	     * data() - Terminates the chain and returns array of filtered documents
+	     *
+	     * @param options {object} : allows specifying 'forceClones' and 'forceCloneMethod' options.
+	     *    options :
+	     *      forceClones {boolean} : Allows forcing the return of cloned objects even when
+	     *        the collection is not configured for clone object.
+	     *      forceCloneMethod {string} : Allows overriding the default or collection specified cloning method.
+	     *        Possible values include 'parse-stringify', 'jquery-extend-deep', and 'shallow'
+	     *
+	     * @returns {array} Array of documents in the resultset
+	     */
+	    Resultset.prototype.data = function (options) {
+	      var result = [],
+	        data = this.collection.data,
+	        len,
+	        i,
+	        method;
+	
+	      options = options || {};
+	
+	      // if this is chained resultset with no filters applied, just return collection.data
+	      if (this.searchIsChained && !this.filterInitialized) {
+	        if (this.filteredrows.length === 0) {
+	          // determine whether we need to clone objects or not
+	          if (this.collection.cloneObjects || options.forceClones) {
+	            len = data.length;
+	            method = options.forceCloneMethod || this.collection.cloneMethod;
+	
+	            for (i = 0; i < len; i++) {
+	              result.push(clone(data[i], method));
+	            }
+	            return result;
+	          }
+	          // otherwise we are not cloning so return sliced array with same object references
+	          else {
+	            return data.slice();
+	          }
+	        } else {
+	          // filteredrows must have been set manually, so use it
+	          this.filterInitialized = true;
+	        }
+	      }
+	
+	      var fr = this.filteredrows;
+	      len = fr.length;
+	
+	      if (this.collection.cloneObjects || options.forceClones) {
+	        method = options.forceCloneMethod || this.collection.cloneMethod;
+	        for (i = 0; i < len; i++) {
+	          result.push(clone(data[fr[i]], method));
+	        }
+	      }
+	      else {
+	        for (i = 0; i < len; i++) {
+	          result.push(data[fr[i]]);
+	        }
+	      }
+	      return result;
+	    };
+	
+	    /**
+	     * update() - used to run an update operation on all documents currently in the resultset.
+	     *
+	     * @param {function} updateFunction - User supplied updateFunction(obj) will be executed for each document object.
+	     * @returns {Resultset} this resultset for further chain ops.
+	     */
+	    Resultset.prototype.update = function (updateFunction) {
+	
+	      if (typeof (updateFunction) !== "function") {
+	        throw new TypeError('Argument is not a function');
+	      }
+	
+	      // if this is chained resultset with no filters applied, we need to populate filteredrows first
+	      if (this.searchIsChained && !this.filterInitialized && this.filteredrows.length === 0) {
+	        this.filteredrows = this.collection.prepareFullDocIndex();
+	      }
+	
+	      var len = this.filteredrows.length,
+	        rcd = this.collection.data;
+	
+	      for (var idx = 0; idx < len; idx++) {
+	        // pass in each document object currently in resultset to user supplied updateFunction
+	        updateFunction(rcd[this.filteredrows[idx]]);
+	
+	        // notify collection we have changed this object so it can update meta and allow DynamicViews to re-evaluate
+	        this.collection.update(rcd[this.filteredrows[idx]]);
+	      }
+	
+	      return this;
+	    };
+	
+	    /**
+	     * remove() - removes all document objects which are currently in resultset from collection (as well as resultset)
+	     *
+	     * @returns {Resultset} this (empty) resultset for further chain ops.
+	     */
+	    Resultset.prototype.remove = function () {
+	
+	      // if this is chained resultset with no filters applied, we need to populate filteredrows first
+	      if (this.searchIsChained && !this.filterInitialized && this.filteredrows.length === 0) {
+	        this.filteredrows = this.collection.prepareFullDocIndex();
+	      }
+	
+	      this.collection.remove(this.data());
+	
+	      this.filteredrows = [];
+	
+	      return this;
+	    };
+	
+	    /**
+	     * mapReduce() - data transformation via user supplied functions
+	     *
+	     * @param {function} mapFunction - this function accepts a single document for you to transform and return
+	     * @param {function} reduceFunction - this function accepts many (array of map outputs) and returns single value
+	     * @returns The output of your reduceFunction
+	     */
+	    Resultset.prototype.mapReduce = function (mapFunction, reduceFunction) {
+	      try {
+	        return reduceFunction(this.data().map(mapFunction));
+	      } catch (err) {
+	        throw err;
+	      }
+	    };
+	
+	    /**
+	     * eqJoin() - Left joining two sets of data. Join keys can be defined or calculated properties
+	     * eqJoin expects the right join key values to be unique.  Otherwise left data will be joined on the last joinData object with that key
+	     * @param {Array} joinData - Data array to join to.
+	     * @param {String,function} leftJoinKey - Property name in this result set to join on or a function to produce a value to join on
+	     * @param {String,function} rightJoinKey - Property name in the joinData to join on or a function to produce a value to join on
+	     * @param {function} (optional) mapFun - A function that receives each matching pair and maps them into output objects - function(left,right){return joinedObject}
+	     * @returns {Resultset} A resultset with data in the format [{left: leftObj, right: rightObj}]
+	     */
+	    Resultset.prototype.eqJoin = function (joinData, leftJoinKey, rightJoinKey, mapFun) {
+	
+	      var leftData = [],
+	        leftDataLength,
+	        rightData = [],
+	        rightDataLength,
+	        key,
+	        result = [],
+	        leftKeyisFunction = typeof leftJoinKey === 'function',
+	        rightKeyisFunction = typeof rightJoinKey === 'function',
+	        joinMap = {};
+	
+	      //get the left data
+	      leftData = this.data();
+	      leftDataLength = leftData.length;
+	
+	      //get the right data
+	      if (joinData instanceof Resultset) {
+	        rightData = joinData.data();
+	      } else if (Array.isArray(joinData)) {
+	        rightData = joinData;
+	      } else {
+	        throw new TypeError('joinData needs to be an array or result set');
+	      }
+	      rightDataLength = rightData.length;
+	
+	      //construct a lookup table
+	
+	      for (var i = 0; i < rightDataLength; i++) {
+	        key = rightKeyisFunction ? rightJoinKey(rightData[i]) : rightData[i][rightJoinKey];
+	        joinMap[key] = rightData[i];
+	      }
+	
+	      if (!mapFun) {
+	        mapFun = function (left, right) {
+	          return {
+	            left: left,
+	            right: right
+	          };
+	        };
+	      }
+	
+	      //Run map function over each object in the resultset
+	      for (var j = 0; j < leftDataLength; j++) {
+	        key = leftKeyisFunction ? leftJoinKey(leftData[j]) : leftData[j][leftJoinKey];
+	        result.push(mapFun(leftData[j], joinMap[key] || {}));
+	      }
+	
+	      //return return a new resultset with no filters
+	      this.collection = new Collection('joinData');
+	      this.collection.insert(result);
+	      this.filteredrows = [];
+	      this.filterInitialized = false;
+	
+	      return this;
+	    };
+	
+	    Resultset.prototype.map = function (mapFun) {
+	      var data = this.data().map(mapFun);
+	      //return return a new resultset with no filters
+	      this.collection = new Collection('mappedData');
+	      this.collection.insert(data);
+	      this.filteredrows = [];
+	      this.filterInitialized = false;
+	
+	      return this;
+	    };
+	
+	    /**
+	     * DynamicView class is a versatile 'live' view class which can have filters and sorts applied.
+	     *    Collection.addDynamicView(name) instantiates this DynamicView object and notifies it
+	     *    whenever documents are add/updated/removed so it can remain up-to-date. (chainable)
+	     *
+	     *    Examples:
+	     *    var mydv = mycollection.addDynamicView('test');  // default is non-persistent
+	     *    mydv.applyWhere(function(obj) { return obj.name === 'Toyota'; });
+	     *    mydv.applyFind({ 'doors' : 4 });
+	     *    var results = mydv.data();
+	     *
+	     * @constructor
+	     * @param {Collection} collection - A reference to the collection to work against
+	     * @param {string} name - The name of this dynamic view
+	     * @param {object} options - (Optional) Pass in object with 'persistent' and/or 'sortPriority' options.
+	     */
+	    function DynamicView(collection, name, options) {
+	      this.collection = collection;
+	      this.name = name;
+	      this.rebuildPending = false;
+	      this.options = options || {};
+	
+	      if (!this.options.hasOwnProperty('persistent')) {
+	        this.options.persistent = false;
+	      }
+	
+	      // 'persistentSortPriority':
+	      // 'passive' will defer the sort phase until they call data(). (most efficient overall)
+	      // 'active' will sort async whenever next idle. (prioritizes read speeds)
+	      if (!this.options.hasOwnProperty('sortPriority')) {
+	        this.options.sortPriority = 'passive';
+	      }
+	
+	      if (!this.options.hasOwnProperty('minRebuildInterval')) {
+	        this.options.minRebuildInterval = 1;
+	      }
+	
+	      this.resultset = new Resultset(collection);
+	      this.resultdata = [];
+	      this.resultsdirty = false;
+	
+	      this.cachedresultset = null;
+	
+	      // keep ordered filter pipeline
+	      this.filterPipeline = [];
+	
+	      // sorting member variables
+	      // we only support one active search, applied using applySort() or applySimpleSort()
+	      this.sortFunction = null;
+	      this.sortCriteria = null;
+	      this.sortDirty = false;
+	
+	      // for now just have 1 event for when we finally rebuilt lazy view
+	      // once we refactor transactions, i will tie in certain transactional events
+	
+	      this.events = {
+	        'rebuild': []
+	      };
+	    }
+	
+	    DynamicView.prototype = new LokiEventEmitter();
+	
+	
+	    /**
+	     * rematerialize() - intended for use immediately after deserialization (loading)
+	     *    This will clear out and reapply filterPipeline ops, recreating the view.
+	     *    Since where filters do not persist correctly, this method allows
+	     *    restoring the view to state where user can re-apply those where filters.
+	     *
+	     * @param {Object} options - (Optional) allows specification of 'removeWhereFilters' option
+	     * @returns {DynamicView} This dynamic view for further chained ops.
+	     */
+	    DynamicView.prototype.rematerialize = function (options) {
+	      var fpl,
+	        fpi,
+	        idx;
+	
+	      options = options || {};
+	
+	      this.resultdata = [];
+	      this.resultsdirty = true;
+	      this.resultset = new Resultset(this.collection);
+	
+	      if (this.sortFunction || this.sortCriteria) {
+	        this.sortDirty = true;
+	      }
+	
+	      if (options.hasOwnProperty('removeWhereFilters')) {
+	        // for each view see if it had any where filters applied... since they don't
+	        // serialize those functions lets remove those invalid filters
+	        fpl = this.filterPipeline.length;
+	        fpi = fpl;
+	        while (fpi--) {
+	          if (this.filterPipeline[fpi].type === 'where') {
+	            if (fpi !== this.filterPipeline.length - 1) {
+	              this.filterPipeline[fpi] = this.filterPipeline[this.filterPipeline.length - 1];
+	            }
+	
+	            this.filterPipeline.length--;
+	          }
+	        }
+	      }
+	
+	      // back up old filter pipeline, clear filter pipeline, and reapply pipeline ops
+	      var ofp = this.filterPipeline;
+	      this.filterPipeline = [];
+	
+	      // now re-apply 'find' filterPipeline ops
+	      fpl = ofp.length;
+	      for (idx = 0; idx < fpl; idx++) {
+	        this.applyFind(ofp[idx].val);
+	      }
+	
+	      // during creation of unit tests, i will remove this forced refresh and leave lazy
+	      this.data();
+	
+	      // emit rebuild event in case user wants to be notified
+	      this.emit('rebuild', this);
+	
+	      return this;
+	    };
+	
+	    /**
+	     * branchResultset() - Makes a copy of the internal resultset for branched queries.
+	     *    Unlike this dynamic view, the branched resultset will not be 'live' updated,
+	     *    so your branched query should be immediately resolved and not held for future evaluation.
+	     *
+	     * @param {string, array} : Optional name of collection transform, or an array of transform steps
+	     * @param {object} : optional parameters (if optional transform requires them)
+	     * @returns {Resultset} A copy of the internal resultset for branched queries.
+	     */
+	    DynamicView.prototype.branchResultset = function (transform, parameters) {
+	      var rs = this.resultset.branch();
+	
+	      if (typeof transform === 'undefined') {
+	        return rs;
+	      }
+	
+	      return rs.transform(transform, parameters);
+	    };
+	
+	    /**
+	     * toJSON() - Override of toJSON to avoid circular references
+	     *
+	     */
+	    DynamicView.prototype.toJSON = function () {
+	      var copy = new DynamicView(this.collection, this.name, this.options);
+	
+	      copy.resultset = this.resultset;
+	      copy.resultdata = []; // let's not save data (copy) to minimize size
+	      copy.resultsdirty = true;
+	      copy.filterPipeline = this.filterPipeline;
+	      copy.sortFunction = this.sortFunction;
+	      copy.sortCriteria = this.sortCriteria;
+	      copy.sortDirty = this.sortDirty;
+	
+	      // avoid circular reference, reapply in db.loadJSON()
+	      copy.collection = null;
+	
+	      return copy;
+	    };
+	
+	    /**
+	     * removeFilters() - Used to clear pipeline and reset dynamic view to initial state.
+	     *     Existing options should be retained.
+	     */
+	    DynamicView.prototype.removeFilters = function () {
+	      this.rebuildPending = false;
+	      this.resultset.reset();
+	      this.resultdata = [];
+	      this.resultsdirty = false;
+	
+	      this.cachedresultset = null;
+	
+	      // keep ordered filter pipeline
+	      this.filterPipeline = [];
+	
+	      // sorting member variables
+	      // we only support one active search, applied using applySort() or applySimpleSort()
+	      this.sortFunction = null;
+	      this.sortCriteria = null;
+	      this.sortDirty = false;
+	    };
+	
+	    /**
+	     * applySort() - Used to apply a sort to the dynamic view
+	     *
+	     * @param {function} comparefun - a javascript compare function used for sorting
+	     * @returns {DynamicView} this DynamicView object, for further chain ops.
+	     */
+	    DynamicView.prototype.applySort = function (comparefun) {
+	      this.sortFunction = comparefun;
+	      this.sortCriteria = null;
+	
+	      this.queueSortPhase();
+	
+	      return this;
+	    };
+	
+	    /**
+	     * applySimpleSort() - Used to specify a property used for view translation.
+	     *
+	     * @param {string} propname - Name of property by which to sort.
+	     * @param {boolean} isdesc - (Optional) If true, the sort will be in descending order.
+	     * @returns {DynamicView} this DynamicView object, for further chain ops.
+	     */
+	    DynamicView.prototype.applySimpleSort = function (propname, isdesc) {
+	      this.sortCriteria = [
+	        [propname, isdesc || false]
+	      ];
+	      this.sortFunction = null;
+	
+	      this.queueSortPhase();
+	
+	      return this;
+	    };
+	
+	    /**
+	     * applySortCriteria() - Allows sorting a resultset based on multiple columns.
+	     *    Example : dv.applySortCriteria(['age', 'name']); to sort by age and then name (both ascending)
+	     *    Example : dv.applySortCriteria(['age', ['name', true]); to sort by age (ascending) and then by name (descending)
+	     *    Example : dv.applySortCriteria(['age', true], ['name', true]); to sort by age (descending) and then by name (descending)
+	     *
+	     * @param {array} properties - array of property names or subarray of [propertyname, isdesc] used evaluate sort order
+	     * @returns {DynamicView} Reference to this DynamicView, sorted, for future chain operations.
+	     */
+	    DynamicView.prototype.applySortCriteria = function (criteria) {
+	      this.sortCriteria = criteria;
+	      this.sortFunction = null;
+	
+	      this.queueSortPhase();
+	
+	      return this;
+	    };
+	
+	    /**
+	     * startTransaction() - marks the beginning of a transaction.
+	     *
+	     * @returns {DynamicView} this DynamicView object, for further chain ops.
+	     */
+	    DynamicView.prototype.startTransaction = function () {
+	      this.cachedresultset = this.resultset.copy();
+	
+	      return this;
+	    };
+	
+	    /**
+	     * commit() - commits a transaction.
+	     *
+	     * @returns {DynamicView} this DynamicView object, for further chain ops.
+	     */
+	    DynamicView.prototype.commit = function () {
+	      this.cachedresultset = null;
+	
+	      return this;
+	    };
+	
+	    /**
+	     * rollback() - rolls back a transaction.
+	     *
+	     * @returns {DynamicView} this DynamicView object, for further chain ops.
+	     */
+	    DynamicView.prototype.rollback = function () {
+	      this.resultset = this.cachedresultset;
+	
+	      if (this.options.persistent) {
+	        // for now just rebuild the persistent dynamic view data in this worst case scenario
+	        // (a persistent view utilizing transactions which get rolled back), we already know the filter so not too bad.
+	        this.resultdata = this.resultset.data();
+	
+	        this.emit('rebuild', this);
+	      }
+	
+	      return this;
+	    };
+	
+	
+	    /**
+	     * Implementation detail.
+	     * _indexOfFilterWithId() - Find the index of a filter in the pipeline, by that filter's ID.
+	     *
+	     * @param {string|number} uid - The unique ID of the filter.
+	     * @returns {number}: index of the referenced filter in the pipeline; -1 if not found.
+	     */
+	    DynamicView.prototype._indexOfFilterWithId = function (uid) {
+	      if (typeof uid === 'string' || typeof uid === 'number') {
+	        for (var idx = 0, len = this.filterPipeline.length; idx < len; idx += 1) {
+	          if (uid === this.filterPipeline[idx].uid) {
+	            return idx;
+	          }
+	        }
+	      }
+	      return -1;
+	    };
+	
+	    /**
+	     * Implementation detail.
+	     * _addFilter() - Add the filter object to the end of view's filter pipeline and apply the filter to the resultset.
+	     *
+	     * @param {object} filter - The filter object. Refer to applyFilter() for extra details.
+	     */
+	    DynamicView.prototype._addFilter = function (filter) {
+	      this.filterPipeline.push(filter);
+	      this.resultset[filter.type](filter.val);
+	    };
+	
+	    /**
+	     * reapplyFilters() - Reapply all the filters in the current pipeline.
+	     *
+	     * @returns {DynamicView} this DynamicView object, for further chain ops.
+	     */
+	    DynamicView.prototype.reapplyFilters = function () {
+	      this.resultset.reset();
+	
+	      this.cachedresultset = null;
+	      if (this.options.persistent) {
+	        this.resultdata = [];
+	        this.resultsdirty = true;
+	      }
+	
+	      var filters = this.filterPipeline;
+	      this.filterPipeline = [];
+	
+	      for (var idx = 0, len = filters.length; idx < len; idx += 1) {
+	        this._addFilter(filters[idx]);
+	      }
+	
+	      if (this.sortFunction || this.sortCriteria) {
+	        this.queueSortPhase();
+	      } else {
+	        this.queueRebuildEvent();
+	      }
+	
+	      return this;
+	    };
+	
+	    /**
+	     * applyFilter() - Adds or updates a filter in the DynamicView filter pipeline
+	     *
+	     * @param {object} filter - A filter object to add to the pipeline.
+	     *    The object is in the format { 'type': filter_type, 'val', filter_param, 'uid', optional_filter_id }
+	     * @returns {DynamicView} this DynamicView object, for further chain ops.
+	     */
+	    DynamicView.prototype.applyFilter = function (filter) {
+	      var idx = this._indexOfFilterWithId(filter.uid);
+	      if (idx >= 0) {
+	        this.filterPipeline[idx] = filter;
+	        return this.reapplyFilters();
+	      }
+	
+	      this.cachedresultset = null;
+	      if (this.options.persistent) {
+	        this.resultdata = [];
+	        this.resultsdirty = true;
+	      }
+	
+	      this._addFilter(filter);
+	
+	      if (this.sortFunction || this.sortCriteria) {
+	        this.queueSortPhase();
+	      } else {
+	        this.queueRebuildEvent();
+	      }
+	
+	      return this;
+	    };
+	
+	    /**
+	     * applyFind() - Adds or updates a mongo-style query option in the DynamicView filter pipeline
+	     *
+	     * @param {object} query - A mongo-style query object to apply to pipeline
+	     * @param {string|number} uid - Optional: The unique ID of this filter, to reference it in the future.
+	     * @returns {DynamicView} this DynamicView object, for further chain ops.
+	     */
+	    DynamicView.prototype.applyFind = function (query, uid) {
+	      this.applyFilter({
+	        type: 'find',
+	        val: query,
+	        uid: uid
+	      });
+	      return this;
+	    };
+	
+	    /**
+	     * applyWhere() - Adds or updates a javascript filter function in the DynamicView filter pipeline
+	     *
+	     * @param {function} fun - A javascript filter function to apply to pipeline
+	     * @param {string|number} uid - Optional: The unique ID of this filter, to reference it in the future.
+	     * @returns {DynamicView} this DynamicView object, for further chain ops.
+	     */
+	    DynamicView.prototype.applyWhere = function (fun, uid) {
+	      this.applyFilter({
+	        type: 'where',
+	        val: fun,
+	        uid: uid
+	      });
+	      return this;
+	    };
+	
+	    /**
+	     * removeFilter() - Remove the specified filter from the DynamicView filter pipeline
+	     *
+	     * @param {string|number} uid - The unique ID of the filter to be removed.
+	     * @returns {DynamicView} this DynamicView object, for further chain ops.
+	     */
+	    DynamicView.prototype.removeFilter = function (uid) {
+	      var idx = this._indexOfFilterWithId(uid);
+	      if (idx < 0) {
+	        throw new Error("Dynamic view does not contain a filter with ID: " + uid);
+	      }
+	
+	      this.filterPipeline.splice(idx, 1);
+	      this.reapplyFilters();
+	      return this;
+	    };
+	
+	    /**
+	     * count() - returns the number of documents representing the current DynamicView contents.
+	     *
+	     * @returns {number} The number of documents representing the current DynamicView contents.
+	     */
+	    DynamicView.prototype.count = function () {
+	      if (this.options.persistent) {
+	        return this.resultdata.length;
+	      }
+	      return this.resultset.count();
+	    };
+	
+	    /**
+	     * data() - resolves and pending filtering and sorting, then returns document array as result.
+	     *
+	     * @returns {array} An array of documents representing the current DynamicView contents.
+	     */
+	    DynamicView.prototype.data = function () {
+	      // using final sort phase as 'catch all' for a few use cases which require full rebuild
+	      if (this.sortDirty || this.resultsdirty) {
+	        this.performSortPhase({suppressRebuildEvent: true});
+	      }
+	      return (this.options.persistent) ? (this.resultdata) : (this.resultset.data());
+	    };
+	
+	    /**
+	     * queueRebuildEvent() - When the view is not sorted we may still wish to be notified of rebuild events.
+	     *     This event will throttle and queue a single rebuild event when batches of updates affect the view.
+	     */
+	    DynamicView.prototype.queueRebuildEvent = function () {
+	      if (this.rebuildPending) {
+	        return;
+	      }
+	      this.rebuildPending = true;
+	
+	      var self = this;
+	      setTimeout(function () {
+	        if (self.rebuildPending) {
+	          self.rebuildPending = false;
+	          self.emit('rebuild', self);
+	        }
+	      }, this.options.minRebuildInterval);
+	    };
+	
+	    /**
+	     * queueSortPhase : If the view is sorted we will throttle sorting to either :
+	     *    (1) passive - when the user calls data(), or
+	     *    (2) active - once they stop updating and yield js thread control
+	     */
+	    DynamicView.prototype.queueSortPhase = function () {
+	      // already queued? exit without queuing again
+	      if (this.sortDirty) {
+	        return;
+	      }
+	      this.sortDirty = true;
+	
+	      var self = this;
+	      if (this.options.sortPriority === "active") {
+	        // active sorting... once they are done and yield js thread, run async performSortPhase()
+	        setTimeout(function () {
+	          self.performSortPhase();
+	        }, this.options.minRebuildInterval);
+	      } else {
+	        // must be passive sorting... since not calling performSortPhase (until data call), lets use queueRebuildEvent to
+	        // potentially notify user that data has changed.
+	        this.queueRebuildEvent();
+	      }
+	    };
+	
+	    /**
+	     * performSortPhase() - invoked synchronously or asynchronously to perform final sort phase (if needed)
+	     *
+	     */
+	    DynamicView.prototype.performSortPhase = function (options) {
+	      // async call to this may have been pre-empted by synchronous call to data before async could fire
+	      if (!this.sortDirty && !this.resultsdirty) {
+	        return;
+	      }
+	
+	      options = options || {};
+	
+	      if (this.sortDirty) {
+	        if (this.sortFunction) {
+	          this.resultset.sort(this.sortFunction);
+	        } else if (this.sortCriteria) {
+	          this.resultset.compoundsort(this.sortCriteria);
+	        }
+	
+	        this.sortDirty = false;
+	      }
+	
+	      if (this.options.persistent) {
+	        // persistent view, rebuild local resultdata array
+	        this.resultdata = this.resultset.data();
+	        this.resultsdirty = false;
+	      }
+	
+	      if (!options.suppressRebuildEvent) {
+	        this.emit('rebuild', this);
+	      }
+	    };
+	
+	    /**
+	     * evaluateDocument() - internal method for (re)evaluating document inclusion.
+	     *    Called by : collection.insert() and collection.update().
+	     *
+	     * @param {int} objIndex - index of document to (re)run through filter pipeline.
+	     * @param {bool} isNew - true if the document was just added to the collection.
+	     */
+	    DynamicView.prototype.evaluateDocument = function (objIndex, isNew) {
+	      var ofr = this.resultset.filteredrows;
+	      var oldPos = (isNew) ? (-1) : (ofr.indexOf(+objIndex));
+	      var oldlen = ofr.length;
+	
+	      // creating a 1-element resultset to run filter chain ops on to see if that doc passes filters;
+	      // mostly efficient algorithm, slight stack overhead price (this function is called on inserts and updates)
+	      var evalResultset = new Resultset(this.collection);
+	      evalResultset.filteredrows = [objIndex];
+	      evalResultset.filterInitialized = true;
+	      var filter;
+	      for (var idx = 0, len = this.filterPipeline.length; idx < len; idx++) {
+	        filter = this.filterPipeline[idx];
+	        evalResultset[filter.type](filter.val);
+	      }
+	
+	      // not a true position, but -1 if not pass our filter(s), 0 if passed filter(s)
+	      var newPos = (evalResultset.filteredrows.length === 0) ? -1 : 0;
+	
+	      // wasn't in old, shouldn't be now... do nothing
+	      if (oldPos === -1 && newPos === -1) return;
+	
+	      // wasn't in resultset, should be now... add
+	      if (oldPos === -1 && newPos !== -1) {
+	        ofr.push(objIndex);
+	
+	        if (this.options.persistent) {
+	          this.resultdata.push(this.collection.data[objIndex]);
+	        }
+	
+	        // need to re-sort to sort new document
+	        if (this.sortFunction || this.sortCriteria) {
+	          this.queueSortPhase();
+	        } else {
+	          this.queueRebuildEvent();
+	        }
+	
+	        return;
+	      }
+	
+	      // was in resultset, shouldn't be now... delete
+	      if (oldPos !== -1 && newPos === -1) {
+	        if (oldPos < oldlen - 1) {
+	          // http://dvolvr.davidwaterston.com/2013/06/09/restating-the-obvious-the-fastest-way-to-truncate-an-array-in-javascript/comment-page-1/
+	          ofr[oldPos] = ofr[oldlen - 1];
+	          ofr.length = oldlen - 1;
+	
+	          if (this.options.persistent) {
+	            this.resultdata[oldPos] = this.resultdata[oldlen - 1];
+	            this.resultdata.length = oldlen - 1;
+	          }
+	        } else {
+	          ofr.length = oldlen - 1;
+	
+	          if (this.options.persistent) {
+	            this.resultdata.length = oldlen - 1;
+	          }
+	        }
+	
+	        // in case changes to data altered a sort column
+	        if (this.sortFunction || this.sortCriteria) {
+	          this.queueSortPhase();
+	        } else {
+	          this.queueRebuildEvent();
+	        }
+	
+	        return;
+	      }
+	
+	      // was in resultset, should still be now... (update persistent only?)
+	      if (oldPos !== -1 && newPos !== -1) {
+	        if (this.options.persistent) {
+	          // in case document changed, replace persistent view data with the latest collection.data document
+	          this.resultdata[oldPos] = this.collection.data[objIndex];
+	        }
+	
+	        // in case changes to data altered a sort column
+	        if (this.sortFunction || this.sortCriteria) {
+	          this.queueSortPhase();
+	        } else {
+	          this.queueRebuildEvent();
+	        }
+	
+	        return;
+	      }
+	    };
+	
+	    /**
+	     * removeDocument() - internal function called on collection.delete()
+	     */
+	    DynamicView.prototype.removeDocument = function (objIndex) {
+	      var ofr = this.resultset.filteredrows;
+	      var oldPos = ofr.indexOf(+objIndex);
+	      var oldlen = ofr.length;
+	      var idx;
+	
+	      if (oldPos !== -1) {
+	        // if not last row in resultdata, swap last to hole and truncate last row
+	        if (oldPos < oldlen - 1) {
+	          ofr[oldPos] = ofr[oldlen - 1];
+	          ofr.length = oldlen - 1;
+	
+	          if (this.options.persistent) {
+	            this.resultdata[oldPos] = this.resultdata[oldlen - 1];
+	            this.resultdata.length = oldlen - 1;
+	          }
+	        }
+	        // last row, so just truncate last row
+	        else {
+	          ofr.length = oldlen - 1;
+	
+	          if (this.options.persistent) {
+	            this.resultdata.length = oldlen - 1;
+	          }
+	        }
+	
+	        // in case changes to data altered a sort column
+	        if (this.sortFunction || this.sortCriteria) {
+	          this.queueSortPhase();
+	        } else {
+	          this.queueRebuildEvent();
+	        }
+	      }
+	
+	      // since we are using filteredrows to store data array positions
+	      // if they remove a document (whether in our view or not),
+	      // we need to adjust array positions -1 for all document array references after that position
+	      oldlen = ofr.length;
+	      for (idx = 0; idx < oldlen; idx++) {
+	        if (ofr[idx] > objIndex) {
+	          ofr[idx]--;
+	        }
+	      }
+	    };
+	
+	    /**
+	     * mapReduce() - data transformation via user supplied functions
+	     *
+	     * @param {function} mapFunction - this function accepts a single document for you to transform and return
+	     * @param {function} reduceFunction - this function accepts many (array of map outputs) and returns single value
+	     * @returns The output of your reduceFunction
+	     */
+	    DynamicView.prototype.mapReduce = function (mapFunction, reduceFunction) {
+	      try {
+	        return reduceFunction(this.data().map(mapFunction));
+	      } catch (err) {
+	        throw err;
+	      }
+	    };
+	
+	
+	    /**
+	     * @constructor
+	     * Collection class that handles documents of same type
+	     * @param {string} collection name
+	     * @param {array} array of property names to be indicized
+	     * @param {object} configuration object
+	     */
+	    function Collection(name, options) {
+	      // the name of the collection
+	
+	      this.name = name;
+	      // the data held by the collection
+	      this.data = [];
+	      this.idIndex = []; // index of id
+	      this.binaryIndices = {}; // user defined indexes
+	      this.constraints = {
+	        unique: {},
+	        exact: {}
+	      };
+	
+	      // unique contraints contain duplicate object references, so they are not persisted.
+	      // we will keep track of properties which have unique contraint applied here, and regenerate on load
+	      this.uniqueNames = [];
+	
+	      // transforms will be used to store frequently used query chains as a series of steps
+	      // which itself can be stored along with the database.
+	      this.transforms = {};
+	
+	      // the object type of the collection
+	      this.objType = name;
+	
+	      // in autosave scenarios we will use collection level dirty flags to determine whether save is needed.
+	      // currently, if any collection is dirty we will autosave the whole database if autosave is configured.
+	      // defaulting to true since this is called from addCollection and adding a collection should trigger save
+	      this.dirty = true;
+	
+	      // private holders for cached data
+	      this.cachedIndex = null;
+	      this.cachedBinaryIndex = null;
+	      this.cachedData = null;
+	      var self = this;
+	
+	      /* OPTIONS */
+	      options = options || {};
+	
+	      // exact match and unique constraints
+	      if (options.hasOwnProperty('unique')) {
+	        if (!Array.isArray(options.unique)) {
+	          options.unique = [options.unique];
+	        }
+	        options.unique.forEach(function (prop) {
+	          self.uniqueNames.push(prop); // used to regenerate on subsequent database loads
+	          self.constraints.unique[prop] = new UniqueIndex(prop);
+	        });
+	      }
+	
+	      if (options.hasOwnProperty('exact')) {
+	        options.exact.forEach(function (prop) {
+	          self.constraints.exact[prop] = new ExactIndex(prop);
+	        });
+	      }
+	
+	      // is collection transactional
+	      this.transactional = options.hasOwnProperty('transactional') ? options.transactional : false;
+	
+	      // options to clone objects when inserting them
+	      this.cloneObjects = options.hasOwnProperty('clone') ? options.clone : false;
+	
+	      // default clone method (if enabled) is parse-stringify
+	      this.cloneMethod = options.hasOwnProperty('clonemethod') ? options.cloneMethod : "parse-stringify";
+	
+	      // option to make event listeners async, default is sync
+	      this.asyncListeners = options.hasOwnProperty('asyncListeners') ? options.asyncListeners : false;
+	
+	      // disable track changes
+	      this.disableChangesApi = options.hasOwnProperty('disableChangesApi') ? options.disableChangesApi : true;
+	
+	      // option to observe objects and update them automatically, ignored if Object.observe is not supported
+	      this.autoupdate = options.hasOwnProperty('autoupdate') ? options.autoupdate : false;
+	
+	      //option to activate a cleaner daemon - clears "aged" documents at set intervals.
+	      this.ttl = {
+	        age: null,
+	        ttlInterval: null,
+	        daemon: null
+	      };
+	      this.setTTL(options.ttl || -1, options.ttlInterval);
+	
+	      // currentMaxId - change manually at your own peril!
+	      this.maxId = 0;
+	
+	      this.DynamicViews = [];
+	
+	      // events
+	      this.events = {
+	        'insert': [],
+	        'update': [],
+	        'pre-insert': [],
+	        'pre-update': [],
+	        'close': [],
+	        'flushbuffer': [],
+	        'error': [],
+	        'delete': [],
+	        'warning': []
+	      };
+	
+	      // changes are tracked by collection and aggregated by the db
+	      this.changes = [];
+	
+	      // initialize the id index
+	      this.ensureId();
+	      var indices = [];
+	      // initialize optional user-supplied indices array ['age', 'lname', 'zip']
+	      if (options && options.indices) {
+	        if (Object.prototype.toString.call(options.indices) === '[object Array]') {
+	          indices = options.indices;
+	        } else if (typeof options.indices === 'string') {
+	          indices = [options.indices];
+	        } else {
+	          throw new TypeError('Indices needs to be a string or an array of strings');
+	        }
+	      }
+	
+	      for (var idx = 0; idx < indices.length; idx++) {
+	        this.ensureIndex(indices[idx]);
+	      }
+	
+	      function observerCallback(changes) {
+	
+	        var changedObjects = typeof Set === 'function' ? new Set() : [];
+	
+	        if(!changedObjects.add)
+	          changedObjects.add = function(object) {
+	            if(this.indexOf(object) === -1)
+	              this.push(object);
+	            return this;
+	          };
+	
+	        changes.forEach(function (change) {
+	          changedObjects.add(change.object);
+	        });
+	
+	        changedObjects.forEach(function (object) {
+	          if(!hasOwnProperty.call(object, '$loki'))
+	            return self.removeAutoUpdateObserver(object);
+	          try {
+	            self.update(object);
+	          } catch(err) {}
+	        });
+	      }
+	
+	      this.observerCallback = observerCallback;
+	
+	      /**
+	       * This method creates a clone of the current status of an object and associates operation and collection name,
+	       * so the parent db can aggregate and generate a changes object for the entire db
+	       */
+	      function createChange(name, op, obj) {
+	        self.changes.push({
+	          name: name,
+	          operation: op,
+	          obj: JSON.parse(JSON.stringify(obj))
+	        });
+	      }
+	
+	      // clear all the changes
+	      function flushChanges() {
+	        self.changes = [];
+	      }
+	
+	      this.getChanges = function () {
+	        return self.changes;
+	      };
+	
+	      this.flushChanges = flushChanges;
+	
+	      /**
+	       * If the changes API is disabled make sure only metadata is added without re-evaluating everytime if the changesApi is enabled
+	       */
+	      function insertMeta(obj) {
+	        if (!obj) {
+	          return;
+	        }
+	        if (!obj.meta) {
+	          obj.meta = {};
+	        }
+	
+	        obj.meta.created = (new Date()).getTime();
+	        obj.meta.revision = 0;
+	      }
+	
+	      function updateMeta(obj) {
+	        if (!obj) {
+	          return;
+	        }
+	        obj.meta.updated = (new Date()).getTime();
+	        obj.meta.revision += 1;
+	      }
+	
+	      function createInsertChange(obj) {
+	        createChange(self.name, 'I', obj);
+	      }
+	
+	      function createUpdateChange(obj) {
+	        createChange(self.name, 'U', obj);
+	      }
+	
+	      function insertMetaWithChange(obj) {
+	        insertMeta(obj);
+	        createInsertChange(obj);
+	      }
+	
+	      function updateMetaWithChange(obj) {
+	        updateMeta(obj);
+	        createUpdateChange(obj);
+	      }
+	
+	
+	      /* assign correct handler based on ChangesAPI flag */
+	      var insertHandler, updateHandler;
+	
+	      function setHandlers() {
+	        insertHandler = self.disableChangesApi ? insertMeta : insertMetaWithChange;
+	        updateHandler = self.disableChangesApi ? updateMeta : updateMetaWithChange;
+	      }
+	
+	      setHandlers();
+	
+	      this.setChangesApi = function (enabled) {
+	        self.disableChangesApi = !enabled;
+	        setHandlers();
+	      };
+	      /**
+	       * built-in events
+	       */
+	      this.on('insert', function insertCallback(obj) {
+	        insertHandler(obj);
+	      });
+	
+	      this.on('update', function updateCallback(obj) {
+	        updateHandler(obj);
+	      });
+	
+	      this.on('delete', function deleteCallback(obj) {
+	        if (!self.disableChangesApi) {
+	          createChange(self.name, 'R', obj);
+	        }
+	      });
+	
+	      this.on('warning', function (warning) {
+	        self.console.warn(warning);
+	      });
+	      // for de-serialization purposes
+	      flushChanges();
+	    }
+	
+	    Collection.prototype = new LokiEventEmitter();
+	
+	    Collection.prototype.console = {
+	      log: function () {},
+	      warn: function () {},
+	      error: function () {},
+	    };
+	
+	    Collection.prototype.addAutoUpdateObserver = function (object) {
+	      if(!this.autoupdate || typeof Object.observe !== 'function')
+	        return;
+	
+	      Object.observe(object, this.observerCallback, ['add', 'update', 'delete', 'reconfigure', 'setPrototype']);
+	    };
+	
+	    Collection.prototype.removeAutoUpdateObserver = function (object) {
+	      if(!this.autoupdate || typeof Object.observe !== 'function')
+	        return;
+	
+	      Object.unobserve(object, this.observerCallback);
+	    };
+	
+	    Collection.prototype.addTransform = function (name, transform) {
+	      if (this.transforms.hasOwnProperty(name)) {
+	        throw new Error("a transform by that name already exists");
+	      }
+	
+	      this.transforms[name] = transform;
+	    };
+	
+	    Collection.prototype.setTransform = function (name, transform) {
+	      this.transforms[name] = transform;
+	    };
+	
+	    Collection.prototype.removeTransform = function (name) {
+	      delete this.transforms[name];
+	    };
+	
+	    Collection.prototype.byExample = function (template) {
+	      var k, obj, query;
+	      query = [];
+	      for (k in template) {
+	        if (!template.hasOwnProperty(k)) continue;
+	        query.push((
+	          obj = {},
+	          obj[k] = template[k],
+	          obj
+	        ));
+	      }
+	      return {
+	        '$and': query
+	      };
+	    };
+	
+	    Collection.prototype.findObject = function (template) {
+	      return this.findOne(this.byExample(template));
+	    };
+	
+	    Collection.prototype.findObjects = function (template) {
+	      return this.find(this.byExample(template));
+	    };
+	
+	    /*----------------------------+
+	    | TTL daemon                  |
+	    +----------------------------*/
+	    Collection.prototype.ttlDaemonFuncGen = function () {
+	      var collection = this;
+	      var age = this.ttl.age;
+	      return function ttlDaemon() {
+	        var now = Date.now();
+	        var toRemove = collection.chain().where(function daemonFilter(member) {
+	          var timestamp = member.meta.updated || member.meta.created;
+	          var diff = now - timestamp;
+	          return age < diff;
+	        });
+	        toRemove.remove();
+	      };
+	    };
+	
+	    Collection.prototype.setTTL = function (age, interval) {
+	      if (age < 0) {
+	        clearInterval(this.ttl.daemon);
+	      }
+	      else {
+	        this.ttl.age = age;
+	        this.ttl.ttlInterval = interval;
+	        this.ttl.daemon = setInterval(this.ttlDaemonFuncGen(), interval);
+	      }
+	    };
+	
+	    /*----------------------------+
+	    | INDEXING                    |
+	    +----------------------------*/
+	
+	    /**
+	     * create a row filter that covers all documents in the collection
+	     */
+	    Collection.prototype.prepareFullDocIndex = function () {
+	      var len = this.data.length;
+	      var indexes = new Array(len);
+	      for (var i = 0; i < len; i += 1) {
+	        indexes[i] = i;
+	      }
+	      return indexes;
+	    };
+	
+	    /**
+	     * Ensure binary index on a certain field
+	     */
+	    Collection.prototype.ensureIndex = function (property, force) {
+	      // optional parameter to force rebuild whether flagged as dirty or not
+	      if (typeof (force) === 'undefined') {
+	        force = false;
+	      }
+	
+	      if (property === null || property === undefined) {
+	        throw new Error('Attempting to set index without an associated property');
+	      }
+	
+	      if (this.binaryIndices[property] && !force) {
+	        if (!this.binaryIndices[property].dirty) return;
+	      }
+	
+	      var index = {
+	        'name': property,
+	        'dirty': true,
+	        'values': this.prepareFullDocIndex()
+	      };
+	      this.binaryIndices[property] = index;
+	
+	      var wrappedComparer =
+	        (function (p, data) {
+	          return function (a, b) {
+	            var objAp = data[a][p],
+	                objBp = data[b][p];
+	            if (objAp !== objBp) {
+	              if (ltHelper(objAp, objBp, false)) return -1;
+	              if (gtHelper(objAp, objBp, false)) return 1;
+	            }
+	            return 0;
+	          };
+	        })(property, this.data);
+	
+	      index.values.sort(wrappedComparer);
+	      index.dirty = false;
+	
+	      this.dirty = true; // for autosave scenarios
+	    };
+	
+	    Collection.prototype.ensureUniqueIndex = function (field) {
+	      var index = this.constraints.unique[field];
+	      if (!index) {
+	        // keep track of new unique index for regenerate after database (re)load.
+	        if (this.uniqueNames.indexOf(field) == -1) {
+	          this.uniqueNames.push(field);
+	        }
+	        this.constraints.unique[field] = index = new UniqueIndex(field);
+	      }
+	      this.data.forEach(function (obj) {
+	        index.set(obj);
+	      });
+	      return index;
+	    };
+	
+	    /**
+	     * Ensure all binary indices
+	     */
+	    Collection.prototype.ensureAllIndexes = function (force) {
+	      var key, bIndices = this.binaryIndices;
+	      for (key in bIndices) {
+	        if (hasOwnProperty.call(bIndices, key)) {
+	          this.ensureIndex(key, force);
+	        }
+	      }
+	    };
+	
+	    Collection.prototype.flagBinaryIndexesDirty = function () {
+	      var key, bIndices = this.binaryIndices;
+	      for (key in bIndices) {
+	        if (hasOwnProperty.call(bIndices, key)) {
+	          bIndices[key].dirty = true;
+	        }
+	      }
+	    };
+	
+	    Collection.prototype.flagBinaryIndexDirty = function (index) {
+	      if(this.binaryIndices[index])
+	        this.binaryIndices[index].dirty = true;
+	    };
+	
+	    Collection.prototype.count = function (query) {
+	      if (!query) {
+	        return this.data.length;
+	      }
+	
+	      return this.chain().find(query).filteredrows.length;
+	    };
+	
+	    /**
+	     * Rebuild idIndex
+	     */
+	    Collection.prototype.ensureId = function () {
+	      var len = this.data.length,
+	        i = 0;
+	
+	      this.idIndex = [];
+	      for (i; i < len; i += 1) {
+	        this.idIndex.push(this.data[i].$loki);
+	      }
+	    };
+	
+	    /**
+	     * Rebuild idIndex async with callback - useful for background syncing with a remote server
+	     */
+	    Collection.prototype.ensureIdAsync = function (callback) {
+	      this.async(function () {
+	        this.ensureId();
+	      }, callback);
+	    };
+	
+	    /**
+	     * Each collection maintains a list of DynamicViews associated with it
+	     **/
+	
+	    Collection.prototype.addDynamicView = function (name, options) {
+	      var dv = new DynamicView(this, name, options);
+	      this.DynamicViews.push(dv);
+	
+	      return dv;
+	    };
+	
+	    Collection.prototype.removeDynamicView = function (name) {
+	      for (var idx = 0; idx < this.DynamicViews.length; idx++) {
+	        if (this.DynamicViews[idx].name === name) {
+	          this.DynamicViews.splice(idx, 1);
+	        }
+	      }
+	    };
+	
+	    Collection.prototype.getDynamicView = function (name) {
+	      for (var idx = 0; idx < this.DynamicViews.length; idx++) {
+	        if (this.DynamicViews[idx].name === name) {
+	          return this.DynamicViews[idx];
+	        }
+	      }
+	
+	      return null;
+	    };
+	
+	    /**
+	     * find and update: pass a filtering function to select elements to be updated
+	     * and apply the updatefunctino to those elements iteratively
+	     */
+	    Collection.prototype.findAndUpdate = function (filterFunction, updateFunction) {
+	      var results = this.where(filterFunction),
+	        i = 0,
+	        obj;
+	      try {
+	        for (i; i < results.length; i++) {
+	          obj = updateFunction(results[i]);
+	          this.update(obj);
+	        }
+	
+	      } catch (err) {
+	        this.rollback();
+	        this.console.error(err.message);
+	      }
+	    };
+	
+	    /**
+	     * generate document method - ensure object(s) have meta properties, clone it if necessary, etc.
+	     * @param {object} doc: the document to be inserted (or an array of objects)
+	     * @returns document or documents (if passed an array of objects)
+	     */
+	    Collection.prototype.insert = function (doc) {
+	      if (!Array.isArray(doc)) {
+	        return this.insertOne(doc);
+	      }
+	
+	      // holder to the clone of the object inserted if collections is set to clone objects
+	      var obj;
+	      var results = [];
+	      for (var i = 0, len = doc.length; i < len; i++) {
+	        obj = this.insertOne(doc[i]);
+	        if (!obj) {
+	          return undefined;
+	        }
+	        results.push(obj);
+	      }
+	      return results.length === 1 ? results[0] : results;
+	    };
+	
+	    /**
+	     * generate document method - ensure object has meta properties, clone it if necessary, etc.
+	     * @param {object} the document to be inserted
+	     * @returns document or 'undefined' if there was a problem inserting it
+	     */
+	    Collection.prototype.insertOne = function (doc) {
+	      var err = null;
+	      if (typeof doc !== 'object') {
+	        err = new TypeError('Document needs to be an object');
+	      } else if (doc === null) {
+	        err = new TypeError('Object cannot be null');
+	      }
+	
+	      if (err !== null) {
+	        this.emit('error', err);
+	        throw err;
+	      }
+	
+	      // if configured to clone, do so now... otherwise just use same obj reference
+	      var obj = this.cloneObjects ? clone(doc, this.cloneMethod) : doc;
+	
+	      if (typeof obj.meta === 'undefined') {
+	        obj.meta = {
+	          revision: 0,
+	          created: 0
+	        };
+	      }
+	
+	      this.emit('pre-insert', obj);
+	      if (!this.add(obj)) {
+	        return undefined;
+	      }
+	
+	      this.addAutoUpdateObserver(obj);
+	      this.emit('insert', obj);
+	      return obj;
+	    };
+	
+	    Collection.prototype.clear = function () {
+	      this.data = [];
+	      this.idIndex = [];
+	      this.binaryIndices = {};
+	      this.cachedIndex = null;
+	      this.cachedBinaryIndex = null;
+	      this.cachedData = null;
+	      this.maxId = 0;
+	      this.DynamicViews = [];
+	      this.dirty = true;
+	    };
+	
+	    /**
+	     * Update method
+	     */
+	    Collection.prototype.update = function (doc) {
+	      this.flagBinaryIndexesDirty();
+	
+	      if (Array.isArray(doc)) {
+	        var k = 0,
+	          len = doc.length;
+	        for (k; k < len; k += 1) {
+	          this.update(doc[k]);
+	        }
+	        return;
+	      }
+	
+	      // verify object is a properly formed document
+	      if (!hasOwnProperty.call(doc, '$loki')) {
+	        throw new Error('Trying to update unsynced document. Please save the document first by using insert() or addMany()');
+	      }
+	      try {
+	        this.startTransaction();
+	        var arr = this.get(doc.$loki, true),
+	          obj,
+	          position,
+	          self = this;
+	
+	        if (!arr) {
+	          throw new Error('Trying to update a document not in collection.');
+	        }
+	        this.emit('pre-update', doc);
+	
+	        obj = arr[0];
+	
+	        Object.keys(this.constraints.unique).forEach(function (key) {
+	          self.constraints.unique[key].update(obj);
+	        });
+	
+	        // get current position in data array
+	        position = arr[1];
+	
+	        // operate the update
+	        this.data[position] = doc;
+	
+	        if(obj !== doc) {
+	          this.addAutoUpdateObserver(doc);
+	        }
+	
+	        // now that we can efficiently determine the data[] position of newly added document,
+	        // submit it for all registered DynamicViews to evaluate for inclusion/exclusion
+	        for (var idx = 0; idx < this.DynamicViews.length; idx++) {
+	          this.DynamicViews[idx].evaluateDocument(position, false);
+	        }
+	
+	        this.idIndex[position] = obj.$loki;
+	
+	        this.commit();
+	        this.dirty = true; // for autosave scenarios
+	        this.emit('update', doc);
+	        return doc;
+	      } catch (err) {
+	        this.rollback();
+	        this.console.error(err.message);
+	        this.emit('error', err);
+	        throw (err); // re-throw error so user does not think it succeeded
+	      }
+	    };
+	
+	    /**
+	     * Add object to collection
+	     */
+	    Collection.prototype.add = function (obj) {
+	      // if parameter isn't object exit with throw
+	      if ('object' !== typeof obj) {
+	        throw new TypeError('Object being added needs to be an object');
+	      }
+	      // if object you are adding already has id column it is either already in the collection
+	      // or the object is carrying its own 'id' property.  If it also has a meta property,
+	      // then this is already in collection so throw error, otherwise rename to originalId and continue adding.
+	      if (typeof(obj.$loki) !== 'undefined') {
+	        throw new Error('Document is already in collection, please use update()');
+	      }
+	
+	      this.flagBinaryIndexesDirty();
+	
+	      /*
+	       * try adding object to collection
+	       */
+	      try {
+	        this.startTransaction();
+	        this.maxId++;
+	
+	        if (isNaN(this.maxId)) {
+	          this.maxId = (this.data[this.data.length - 1].$loki + 1);
+	        }
+	
+	        obj.$loki = this.maxId;
+	        obj.meta.version = 0;
+	
+	        var key, constrUnique = this.constraints.unique;
+	        for (key in constrUnique) {
+	          if (hasOwnProperty.call(constrUnique, key)) {
+	            constrUnique[key].set(obj);
+	          }
+	        }
+	
+	        // add new obj id to idIndex
+	        this.idIndex.push(obj.$loki);
+	
+	        // add the object
+	        this.data.push(obj);
+	
+	        // now that we can efficiently determine the data[] position of newly added document,
+	        // submit it for all registered DynamicViews to evaluate for inclusion/exclusion
+	        var addedPos = this.data.length - 1;
+	        var dvlen = this.DynamicViews.length;
+	        for (var i = 0; i < dvlen; i++) {
+	          this.DynamicViews[i].evaluateDocument(addedPos, true);
+	        }
+	
+	        this.commit();
+	        this.dirty = true; // for autosave scenarios
+	
+	        return (this.cloneObjects) ? (clone(obj, this.cloneMethod)) : (obj);
+	      } catch (err) {
+	        this.rollback();
+	        this.console.error(err.message);
+	      }
+	    };
+	
+	
+	    Collection.prototype.removeWhere = function (query) {
+	      var list;
+	      if (typeof query === 'function') {
+	        list = this.data.filter(query);
+	      } else {
+	        list = new Resultset(this, {
+	          queryObj: query
+	        });
+	      }
+	      this.remove(list);
+	    };
+	
+	    Collection.prototype.removeDataOnly = function () {
+	      this.remove(this.data.slice());
+	    };
+	
+	    /**
+	     * delete wrapped
+	     */
+	    Collection.prototype.remove = function (doc) {
+	      if (typeof doc === 'number') {
+	        doc = this.get(doc);
+	      }
+	
+	      if ('object' !== typeof doc) {
+	        throw new Error('Parameter is not an object');
+	      }
+	      if (Array.isArray(doc)) {
+	        var k = 0,
+	          len = doc.length;
+	        for (k; k < len; k += 1) {
+	          this.remove(doc[k]);
+	        }
+	        return;
+	      }
+	
+	      if (!hasOwnProperty.call(doc, '$loki')) {
+	        throw new Error('Object is not a document stored in the collection');
+	      }
+	
+	      this.flagBinaryIndexesDirty();
+	
+	      try {
+	        this.startTransaction();
+	        var arr = this.get(doc.$loki, true),
+	          // obj = arr[0],
+	          position = arr[1];
+	        var self = this;
+	        Object.keys(this.constraints.unique).forEach(function (key) {
+	          if (doc[key] !== null && typeof doc[key] !== 'undefined') {
+	            self.constraints.unique[key].remove(doc[key]);
+	          }
+	        });
+	        // now that we can efficiently determine the data[] position of newly added document,
+	        // submit it for all registered DynamicViews to remove
+	        for (var idx = 0; idx < this.DynamicViews.length; idx++) {
+	          this.DynamicViews[idx].removeDocument(position);
+	        }
+	
+	        this.data.splice(position, 1);
+	        this.removeAutoUpdateObserver(doc);
+	
+	        // remove id from idIndex
+	        this.idIndex.splice(position, 1);
+	
+	        this.commit();
+	        this.dirty = true; // for autosave scenarios
+	        this.emit('delete', arr[0]);
+	        delete doc.$loki;
+	        delete doc.meta;
+	        return doc;
+	
+	      } catch (err) {
+	        this.rollback();
+	        this.console.error(err.message);
+	        this.emit('error', err);
+	        return null;
+	      }
+	    };
+	
+	    /*---------------------+
+	    | Finding methods     |
+	    +----------------------*/
+	
+	    /**
+	     * Get by Id - faster than other methods because of the searching algorithm
+	     */
+	    Collection.prototype.get = function (id, returnPosition) {
+	      var retpos = returnPosition || false,
+	          data = this.idIndex,
+	          max = data.length - 1,
+	          min = 0,
+	          mid = (min + max) >> 1;
+	
+	      id = typeof id === 'number' ? id : parseInt(id, 10);
+	
+	      if (isNaN(id)) {
+	        throw new TypeError('Passed id is not an integer');
+	      }
+	
+	      while (data[min] < data[max]) {
+	        mid = (min + max) >> 1;
+	
+	        if (data[mid] < id) {
+	          min = mid + 1;
+	        } else {
+	          max = mid;
+	        }
+	      }
+	
+	      if (max === min && data[min] === id) {
+	        if (retpos) {
+	          return [this.data[min], min];
+	        }
+	        return this.data[min];
+	      }
+	      return null;
+	
+	    };
+	
+	    Collection.prototype.by = function (field, value) {
+	      var self;
+	      if (!value) {
+	        self = this;
+	        return function (value) {
+	          return self.by(field, value);
+	        };
+	      }
+	
+	      var result = this.constraints.unique[field].get(value);
+	      if (!this.cloneObjects) {
+	        return result;
+	      }
+	      else {
+	        return clone(result, this.cloneMethod);
+	      }
+	    };
+	
+	    /**
+	     * Find one object by index property, by property equal to value
+	     */
+	    Collection.prototype.findOne = function (query) {
+	      // Instantiate Resultset and exec find op passing firstOnly = true param
+	      var result = new Resultset(this, {
+	        queryObj: query,
+	        firstOnly: true
+	      });
+	      if (Array.isArray(result) && result.length === 0) {
+	        return null;
+	      } else {
+	        if (!this.cloneObjects) {
+	          return result;
+	        }
+	        else {
+	          return clone(result, this.cloneMethod);
+	        }
+	      }
+	    };
+	
+	    /**
+	     * Chain method, used for beginning a series of chained find() and/or view() operations
+	     * on a collection.
+	     *
+	     * @param {array} transform : Ordered array of transform step objects similar to chain
+	     * @param {object} parameters: Object containing properties representing parameters to substitute
+	     * @returns {Resultset} : (or data array if any map or join functions where called)
+	     */
+	    Collection.prototype.chain = function (transform, parameters) {
+	      var rs = new Resultset(this);
+	
+	      if (typeof transform === 'undefined') {
+	        return rs;
+	      }
+	
+	      return rs.transform(transform, parameters);
+	    };
+	
+	    /**
+	     * Find method, api is similar to mongodb except for now it only supports one search parameter.
+	     * for more complex queries use view() and storeView()
+	     */
+	    Collection.prototype.find = function (query) {
+	      if (typeof (query) === 'undefined') {
+	        query = 'getAll';
+	      }
+	
+	      var results = new Resultset(this, {
+	        queryObj: query
+	      });
+	      if (!this.cloneObjects) {
+	        return results;
+	      }
+	      else {
+	        return cloneObjectArray(results, this.cloneMethod);
+	      }
+	    };
+	
+	    /**
+	     * Find object by unindexed field by property equal to value,
+	     * simply iterates and returns the first element matching the query
+	     */
+	    Collection.prototype.findOneUnindexed = function (prop, value) {
+	      var i = this.data.length,
+	        doc;
+	      while (i--) {
+	        if (this.data[i][prop] === value) {
+	          doc = this.data[i];
+	          return doc;
+	        }
+	      }
+	      return null;
+	    };
+	
+	    /**
+	     * Transaction methods
+	     */
+	
+	    /** start the transation */
+	    Collection.prototype.startTransaction = function () {
+	      if (this.transactional) {
+	        this.cachedData = clone(this.data, this.cloneMethod);
+	        this.cachedIndex = this.idIndex;
+	        this.cachedBinaryIndex = this.binaryIndices;
+	
+	        // propagate startTransaction to dynamic views
+	        for (var idx = 0; idx < this.DynamicViews.length; idx++) {
+	          this.DynamicViews[idx].startTransaction();
+	        }
+	      }
+	    };
+	
+	    /** commit the transation */
+	    Collection.prototype.commit = function () {
+	      if (this.transactional) {
+	        this.cachedData = null;
+	        this.cachedIndex = null;
+	        this.cachedBinaryIndex = null;
+	
+	        // propagate commit to dynamic views
+	        for (var idx = 0; idx < this.DynamicViews.length; idx++) {
+	          this.DynamicViews[idx].commit();
+	        }
+	      }
+	    };
+	
+	    /** roll back the transation */
+	    Collection.prototype.rollback = function () {
+	      if (this.transactional) {
+	        if (this.cachedData !== null && this.cachedIndex !== null) {
+	          this.data = this.cachedData;
+	          this.idIndex = this.cachedIndex;
+	          this.binaryIndices = this.cachedBinaryIndex;
+	        }
+	
+	        // propagate rollback to dynamic views
+	        for (var idx = 0; idx < this.DynamicViews.length; idx++) {
+	          this.DynamicViews[idx].rollback();
+	        }
+	      }
+	    };
+	
+	    // async executor. This is only to enable callbacks at the end of the execution.
+	    Collection.prototype.async = function (fun, callback) {
+	      setTimeout(function () {
+	        if (typeof fun === 'function') {
+	          fun();
+	          callback();
+	        } else {
+	          throw new TypeError('Argument passed for async execution is not a function');
+	        }
+	      }, 0);
+	    };
+	
+	    /**
+	     * Create view function - filter
+	     */
+	    Collection.prototype.where = function (fun) {
+	      var results = new Resultset(this, {
+	        queryFunc: fun
+	      });
+	      if (!this.cloneObjects) {
+	        return results;
+	      }
+	      else {
+	        return cloneObjectArray(results, this.cloneMethod);
+	      }
+	    };
+	
+	    /**
+	     * Map Reduce
+	     */
+	    Collection.prototype.mapReduce = function (mapFunction, reduceFunction) {
+	      try {
+	        return reduceFunction(this.data.map(mapFunction));
+	      } catch (err) {
+	        throw err;
+	      }
+	    };
+	
+	    /**
+	     * eqJoin - Join two collections on specified properties
+	     */
+	    Collection.prototype.eqJoin = function (joinData, leftJoinProp, rightJoinProp, mapFun) {
+	      // logic in Resultset class
+	      return new Resultset(this).eqJoin(joinData, leftJoinProp, rightJoinProp, mapFun);
+	    };
+	
+	    /* ------ STAGING API -------- */
+	    /**
+	     * stages: a map of uniquely identified 'stages', which hold copies of objects to be
+	     * manipulated without affecting the data in the original collection
+	     */
+	    Collection.prototype.stages = {};
+	
+	    /**
+	     * create a stage and/or retrieve it
+	     */
+	    Collection.prototype.getStage = function (name) {
+	      if (!this.stages[name]) {
+	        this.stages[name] = {};
+	      }
+	      return this.stages[name];
+	    };
+	    /**
+	     * a collection of objects recording the changes applied through a commmitStage
+	     */
+	    Collection.prototype.commitLog = [];
+	
+	    /**
+	     * create a copy of an object and insert it into a stage
+	     */
+	    Collection.prototype.stage = function (stageName, obj) {
+	      var copy = JSON.parse(JSON.stringify(obj));
+	      this.getStage(stageName)[obj.$loki] = copy;
+	      return copy;
+	    };
+	
+	    /**
+	     * re-attach all objects to the original collection, so indexes and views can be rebuilt
+	     * then create a message to be inserted in the commitlog
+	     */
+	    Collection.prototype.commitStage = function (stageName, message) {
+	      var stage = this.getStage(stageName),
+	        prop,
+	        timestamp = new Date().getTime();
+	
+	      for (prop in stage) {
+	
+	        this.update(stage[prop]);
+	        this.commitLog.push({
+	          timestamp: timestamp,
+	          message: message,
+	          data: JSON.parse(JSON.stringify(stage[prop]))
+	        });
+	      }
+	      this.stages[stageName] = {};
+	    };
+	
+	    Collection.prototype.no_op = function () {
+	      return;
+	    };
+	
+	    Collection.prototype.extract = function (field) {
+	      var i = 0,
+	        len = this.data.length,
+	        isDotNotation = isDeepProperty(field),
+	        result = [];
+	      for (i; i < len; i += 1) {
+	        result.push(deepProperty(this.data[i], field, isDotNotation));
+	      }
+	      return result;
+	    };
+	
+	    Collection.prototype.max = function (field) {
+	      return Math.max.apply(null, this.extract(field));
+	    };
+	
+	    Collection.prototype.min = function (field) {
+	      return Math.min.apply(null, this.extract(field));
+	    };
+	
+	    Collection.prototype.maxRecord = function (field) {
+	      var i = 0,
+	        len = this.data.length,
+	        deep = isDeepProperty(field),
+	        result = {
+	          index: 0,
+	          value: undefined
+	        },
+	        max;
+	
+	      for (i; i < len; i += 1) {
+	        if (max !== undefined) {
+	          if (max < deepProperty(this.data[i], field, deep)) {
+	            max = deepProperty(this.data[i], field, deep);
+	            result.index = this.data[i].$loki;
+	          }
+	        } else {
+	          max = deepProperty(this.data[i], field, deep);
+	          result.index = this.data[i].$loki;
+	        }
+	      }
+	      result.value = max;
+	      return result;
+	    };
+	
+	    Collection.prototype.minRecord = function (field) {
+	      var i = 0,
+	        len = this.data.length,
+	        deep = isDeepProperty(field),
+	        result = {
+	          index: 0,
+	          value: undefined
+	        },
+	        min;
+	
+	      for (i; i < len; i += 1) {
+	        if (min !== undefined) {
+	          if (min > deepProperty(this.data[i], field, deep)) {
+	            min = deepProperty(this.data[i], field, deep);
+	            result.index = this.data[i].$loki;
+	          }
+	        } else {
+	          min = deepProperty(this.data[i], field, deep);
+	          result.index = this.data[i].$loki;
+	        }
+	      }
+	      result.value = min;
+	      return result;
+	    };
+	
+	    Collection.prototype.extractNumerical = function (field) {
+	      return this.extract(field).map(parseBase10).filter(Number).filter(function (n) {
+	        return !(isNaN(n));
+	      });
+	    };
+	
+	    Collection.prototype.avg = function (field) {
+	      return average(this.extractNumerical(field));
+	    };
+	
+	    Collection.prototype.stdDev = function (field) {
+	      return standardDeviation(this.extractNumerical(field));
+	    };
+	
+	    Collection.prototype.mode = function (field) {
+	      var dict = {},
+	        data = this.extract(field);
+	      data.forEach(function (obj) {
+	        if (dict[obj]) {
+	          dict[obj] += 1;
+	        } else {
+	          dict[obj] = 1;
+	        }
+	      });
+	      var max,
+	        prop, mode;
+	      for (prop in dict) {
+	        if (max) {
+	          if (max < dict[prop]) {
+	            mode = prop;
+	          }
+	        } else {
+	          mode = prop;
+	          max = dict[prop];
+	        }
+	      }
+	      return mode;
+	    };
+	
+	    Collection.prototype.median = function (field) {
+	      var values = this.extractNumerical(field);
+	      values.sort(sub);
+	
+	      var half = Math.floor(values.length / 2);
+	
+	      if (values.length % 2) {
+	        return values[half];
+	      } else {
+	        return (values[half - 1] + values[half]) / 2.0;
+	      }
+	    };
+	
+	    /**
+	     * General utils, including statistical functions
+	     */
+	    function isDeepProperty(field) {
+	      return field.indexOf('.') !== -1;
+	    }
+	
+	    function parseBase10(num) {
+	      return parseFloat(num, 10);
+	    }
+	
+	    function isNotUndefined(obj) {
+	      return obj !== undefined;
+	    }
+	
+	    function add(a, b) {
+	      return a + b;
+	    }
+	
+	    function sub(a, b) {
+	      return a - b;
+	    }
+	
+	    function median(values) {
+	      values.sort(sub);
+	      var half = Math.floor(values.length / 2);
+	      return (values.length % 2) ? values[half] : ((values[half - 1] + values[half]) / 2.0);
+	    }
+	
+	    function average(array) {
+	      return (array.reduce(add, 0)) / array.length;
+	    }
+	
+	    function standardDeviation(values) {
+	      var avg = average(values);
+	      var squareDiffs = values.map(function (value) {
+	        var diff = value - avg;
+	        var sqrDiff = diff * diff;
+	        return sqrDiff;
+	      });
+	
+	      var avgSquareDiff = average(squareDiffs);
+	
+	      var stdDev = Math.sqrt(avgSquareDiff);
+	      return stdDev;
+	    }
+	
+	    function deepProperty(obj, property, isDeep) {
+	      if (isDeep === false) {
+	        // pass without processing
+	        return obj[property];
+	      }
+	      var pieces = property.split('.'),
+	        root = obj;
+	      while (pieces.length > 0) {
+	        root = root[pieces.shift()];
+	      }
+	      return root;
+	    }
+	
+	    function binarySearch(array, item, fun) {
+	      var lo = 0,
+	        hi = array.length,
+	        compared,
+	        mid;
+	      while (lo < hi) {
+	        mid = (lo + hi) >> 1;
+	        compared = fun.apply(null, [item, array[mid]]);
+	        if (compared === 0) {
+	          return {
+	            found: true,
+	            index: mid
+	          };
+	        } else if (compared < 0) {
+	          hi = mid;
+	        } else {
+	          lo = mid + 1;
+	        }
+	      }
+	      return {
+	        found: false,
+	        index: hi
+	      };
+	    }
+	
+	    function BSonSort(fun) {
+	      return function (array, item) {
+	        return binarySearch(array, item, fun);
+	      };
+	    }
+	
+	    function KeyValueStore() {}
+	
+	    KeyValueStore.prototype = {
+	      keys: [],
+	      values: [],
+	      sort: function (a, b) {
+	        return (a < b) ? -1 : ((a > b) ? 1 : 0);
+	      },
+	      setSort: function (fun) {
+	        this.bs = new BSonSort(fun);
+	      },
+	      bs: function () {
+	        return new BSonSort(this.sort);
+	      },
+	      set: function (key, value) {
+	        var pos = this.bs(this.keys, key);
+	        if (pos.found) {
+	          this.values[pos.index] = value;
+	        } else {
+	          this.keys.splice(pos.index, 0, key);
+	          this.values.splice(pos.index, 0, value);
+	        }
+	      },
+	      get: function (key) {
+	        return this.values[binarySearch(this.keys, key, this.sort).index];
+	      }
+	    };
+	
+	    function UniqueIndex(uniqueField) {
+	      this.field = uniqueField;
+	      this.keyMap = {};
+	      this.lokiMap = {};
+	    }
+	    UniqueIndex.prototype.keyMap = {};
+	    UniqueIndex.prototype.lokiMap = {};
+	    UniqueIndex.prototype.set = function (obj) {
+	      var fieldValue = obj[this.field];
+	      if (fieldValue !== null && typeof (fieldValue) !== 'undefined') {
+	        if (this.keyMap[fieldValue]) {
+	          throw new Error('Duplicate key for property ' + this.field + ': ' + fieldValue);
+	        } else {
+	          this.keyMap[fieldValue] = obj;
+	          this.lokiMap[obj.$loki] = fieldValue;
+	        }
+	      }
+	    };
+	    UniqueIndex.prototype.get = function (key) {
+	      return this.keyMap[key];
+	    };
+	
+	    UniqueIndex.prototype.byId = function (id) {
+	      return this.keyMap[this.lokiMap[id]];
+	    };
+	    UniqueIndex.prototype.update = function (obj) {
+	      if (this.lokiMap[obj.$loki] !== obj[this.field]) {
+	        var old = this.lokiMap[obj.$loki];
+	        this.set(obj);
+	        // make the old key fail bool test, while avoiding the use of delete (mem-leak prone)
+	        this.keyMap[old] = undefined;
+	      } else {
+	        this.keyMap[obj[this.field]] = obj;
+	      }
+	    };
+	    UniqueIndex.prototype.remove = function (key) {
+	      var obj = this.keyMap[key];
+	      if (obj !== null && typeof obj !== 'undefined') {
+	        this.keyMap[key] = undefined;
+	        this.lokiMap[obj.$loki] = undefined;
+	      } else {
+	        throw new Error('Key is not in unique index: ' + this.field);
+	      }
+	    };
+	    UniqueIndex.prototype.clear = function () {
+	      this.keyMap = {};
+	      this.lokiMap = {};
+	    };
+	
+	    function ExactIndex(exactField) {
+	      this.index = {};
+	      this.field = exactField;
+	    }
+	
+	    // add the value you want returned to the key in the index
+	    ExactIndex.prototype = {
+	      set: function add(key, val) {
+	        if (this.index[key]) {
+	          this.index[key].push(val);
+	        } else {
+	          this.index[key] = [val];
+	        }
+	      },
+	
+	      // remove the value from the index, if the value was the last one, remove the key
+	      remove: function remove(key, val) {
+	        var idxSet = this.index[key];
+	        for (var i in idxSet) {
+	          if (idxSet[i] == val) {
+	            idxSet.splice(i, 1);
+	          }
+	        }
+	        if (idxSet.length < 1) {
+	          this.index[key] = undefined;
+	        }
+	      },
+	
+	      // get the values related to the key, could be more than one
+	      get: function get(key) {
+	        return this.index[key];
+	      },
+	
+	      // clear will zap the index
+	      clear: function clear(key) {
+	        this.index = {};
+	      }
+	    };
+	
+	    function SortedIndex(sortedField) {
+	      this.field = sortedField;
+	    }
+	
+	    SortedIndex.prototype = {
+	      keys: [],
+	      values: [],
+	      // set the default sort
+	      sort: function (a, b) {
+	        return (a < b) ? -1 : ((a > b) ? 1 : 0);
+	      },
+	      bs: function () {
+	        return new BSonSort(this.sort);
+	      },
+	      // and allow override of the default sort
+	      setSort: function (fun) {
+	        this.bs = new BSonSort(fun);
+	      },
+	      // add the value you want returned  to the key in the index
+	      set: function (key, value) {
+	        var pos = binarySearch(this.keys, key, this.sort);
+	        if (pos.found) {
+	          this.values[pos.index].push(value);
+	        } else {
+	          this.keys.splice(pos.index, 0, key);
+	          this.values.splice(pos.index, 0, [value]);
+	        }
+	      },
+	      // get all values which have a key == the given key
+	      get: function (key) {
+	        var bsr = binarySearch(this.keys, key, this.sort);
+	        if (bsr.found) {
+	          return this.values[bsr.index];
+	        } else {
+	          return [];
+	        }
+	      },
+	      // get all values which have a key < the given key
+	      getLt: function (key) {
+	        var bsr = binarySearch(this.keys, key, this.sort);
+	        var pos = bsr.index;
+	        if (bsr.found) pos--;
+	        return this.getAll(key, 0, pos);
+	      },
+	      // get all values which have a key > the given key
+	      getGt: function (key) {
+	        var bsr = binarySearch(this.keys, key, this.sort);
+	        var pos = bsr.index;
+	        if (bsr.found) pos++;
+	        return this.getAll(key, pos, this.keys.length);
+	      },
+	
+	      // get all vals from start to end
+	      getAll: function (key, start, end) {
+	        var results = [];
+	        for (var i = start; i < end; i++) {
+	          results = results.concat(this.values[i]);
+	        }
+	        return results;
+	      },
+	      // just in case someone wants to do something smart with ranges
+	      getPos: function (key) {
+	        return binarySearch(this.keys, key, this.sort);
+	      },
+	      // remove the value from the index, if the value was the last one, remove the key
+	      remove: function (key, value) {
+	        var pos = binarySearch(this.keys, key, this.sort).index;
+	        var idxSet = this.values[pos];
+	        for (var i in idxSet) {
+	          if (idxSet[i] == value) idxSet.splice(i, 1);
+	        }
+	        if (idxSet.length < 1) {
+	          this.keys.splice(pos, 1);
+	          this.values.splice(pos, 1);
+	        }
+	      },
+	      // clear will zap the index
+	      clear: function () {
+	        this.keys = [];
+	        this.values = [];
+	      }
+	    };
+	
+	
+	    Loki.LokiOps = LokiOps;
+	    Loki.Collection = Collection;
+	    Loki.KeyValueStore = KeyValueStore;
+	    return Loki;
+	  }());
+	
+	}));
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 103 */
 /***/ function(module, exports) {
 
 	/* eslint-disable no-unused-vars */
@@ -13806,16 +18619,16 @@
 
 
 /***/ },
-/* 111 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports = __webpack_require__(78);
+	module.exports = __webpack_require__(68);
 
 
 /***/ },
-/* 112 */
+/* 105 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -13827,809 +18640,635 @@
 	module.exports = getRootInstancesFromReactMount;
 
 /***/ },
+/* 106 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	var ReactDOM, React, KCFactoryApp;
+	ReactDOM = __webpack_require__(104);
+	React = __webpack_require__(3);
+	KCFactoryApp = __webpack_require__(111);
+	ReactDOM.render(React.createElement(KCFactoryApp, null), document.getElementById("KCFactoryApp"));
+	//# sourceMappingURL=D:\Code\GitHub\KCAltTable\node_modules\livescript-loader\index.js!D:\Code\GitHub\KCAltTable\src\app.ls.map
+
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "app.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
+
+/***/ },
+/* 107 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	var React, ReactPropTypes, Constants, ref$, div, button, table, tbody, tr, td, label, input, img, AltList;
+	React = __webpack_require__(3);
+	ReactPropTypes = __webpack_require__(3).PropTypes;
+	Constants = __webpack_require__(29);
+	ref$ = React.DOM, div = ref$.div, button = ref$.button, table = ref$.table, tbody = ref$.tbody, tr = ref$.tr, td = ref$.td, label = ref$.label, input = ref$.input, img = ref$.img;
+	AltList = React.createClass({
+	  displayName: "AltList",
+	  propTypes: {
+	    output: ReactPropTypes.array.isRequired,
+	    display: ReactPropTypes.bool.isRequired,
+	    tableId: ReactPropTypes.string.isRequired
+	  },
+	  componentDidUpdate: function(){
+	    componentHandler.upgradeDom();
+	  },
+	  handleChange: function(event){
+	    var trId;
+	    trId = event.target.id + "tr";
+	    if (event.target.checked) {
+	      document.getElementById(trId).style.color = "blue";
+	    } else {
+	      document.getElementById(trId).style.color = "black";
+	    }
+	  },
+	  render: function(){
+	    var i, data;
+	    return div(null, this.props.display === true && !deepEq$(this.props.output.length, 0, '===') ? table({
+	      className: Constants.TableClass
+	    }, tbody(null, (function(){
+	      var i$, ref$, len$, results$ = [];
+	      for (i$ = 0, len$ = (ref$ = this.props.output).length; i$ < len$; ++i$) {
+	        i = i$;
+	        data = ref$[i$];
+	        results$.push(tr({
+	          key: i,
+	          id: this.props.tableId + i.toString() + "tr"
+	        }, td({
+	          className: "th0"
+	        }, label({
+	          className: "mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select",
+	          htmlFor: this.props.tableId + i.toString()
+	        }, input({
+	          type: "checkbox",
+	          id: this.props.tableId + i.toString(),
+	          className: "mdl-checkbox__input",
+	          onChange: this.handleChange
+	        }, null))), td({
+	          className: "th1"
+	        }, img({
+	          src: data.img,
+	          height: "25",
+	          width: "25"
+	        }, null)), td({
+	          className: "th2"
+	        }, data.type), td({
+	          className: "th3"
+	        }, data.name), td({
+	          className: "th4 mdl-data-table__cell--non-numeric"
+	        }, !deepEq$(data.owner.length, 0, '===') ? img({
+	          src: "./img/" + data.owner + ".jpg",
+	          height: "25",
+	          width: "100"
+	        }, null) : void 8)));
+	      }
+	      return results$;
+	    }.call(this)))) : void 8);
+	  }
+	});
+	module.exports = AltList;
+	function deepEq$(x, y, type){
+	  var toString = {}.toString, hasOwnProperty = {}.hasOwnProperty,
+	      has = function (obj, key) { return hasOwnProperty.call(obj, key); };
+	  var first = true;
+	  return eq(x, y, []);
+	  function eq(a, b, stack) {
+	    var className, length, size, result, alength, blength, r, key, ref, sizeB;
+	    if (a == null || b == null) { return a === b; }
+	    if (a.__placeholder__ || b.__placeholder__) { return true; }
+	    if (a === b) { return a !== 0 || 1 / a == 1 / b; }
+	    className = toString.call(a);
+	    if (toString.call(b) != className) { return false; }
+	    switch (className) {
+	      case '[object String]': return a == String(b);
+	      case '[object Number]':
+	        return a != +a ? b != +b : (a == 0 ? 1 / a == 1 / b : a == +b);
+	      case '[object Date]':
+	      case '[object Boolean]':
+	        return +a == +b;
+	      case '[object RegExp]':
+	        return a.source == b.source &&
+	               a.global == b.global &&
+	               a.multiline == b.multiline &&
+	               a.ignoreCase == b.ignoreCase;
+	    }
+	    if (typeof a != 'object' || typeof b != 'object') { return false; }
+	    length = stack.length;
+	    while (length--) { if (stack[length] == a) { return true; } }
+	    stack.push(a);
+	    size = 0;
+	    result = true;
+	    if (className == '[object Array]') {
+	      alength = a.length;
+	      blength = b.length;
+	      if (first) {
+	        switch (type) {
+	        case '===': result = alength === blength; break;
+	        case '<==': result = alength <= blength; break;
+	        case '<<=': result = alength < blength; break;
+	        }
+	        size = alength;
+	        first = false;
+	      } else {
+	        result = alength === blength;
+	        size = alength;
+	      }
+	      if (result) {
+	        while (size--) {
+	          if (!(result = size in a == size in b && eq(a[size], b[size], stack))){ break; }
+	        }
+	      }
+	    } else {
+	      if ('constructor' in a != 'constructor' in b || a.constructor != b.constructor) {
+	        return false;
+	      }
+	      for (key in a) {
+	        if (has(a, key)) {
+	          size++;
+	          if (!(result = has(b, key) && eq(a[key], b[key], stack))) { break; }
+	        }
+	      }
+	      if (result) {
+	        sizeB = 0;
+	        for (key in b) {
+	          if (has(b, key)) { ++sizeB; }
+	        }
+	        if (first) {
+	          if (type === '<<=') {
+	            result = size < sizeB;
+	          } else if (type === '<==') {
+	            result = size <= sizeB
+	          } else {
+	            result = size === sizeB;
+	          }
+	        } else {
+	          first = false;
+	          result = size === sizeB;
+	        }
+	      }
+	    }
+	    stack.pop();
+	    return result;
+	  }
+	}
+	//# sourceMappingURL=D:\Code\GitHub\KCAltTable\node_modules\livescript-loader\index.js!D:\Code\GitHub\KCAltTable\src\components\AltList.react.ls.map
+
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AltList.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
+
+/***/ },
+/* 108 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	var React, ReactPropTypes, AltList, Constants, AppAction, ref$, div, button, table, thead, tr, th, a, listTab, listThead, listTheadClass, Content;
+	React = __webpack_require__(3);
+	ReactPropTypes = __webpack_require__(3).PropTypes;
+	AltList = __webpack_require__(107);
+	Constants = __webpack_require__(29);
+	AppAction = __webpack_require__(39);
+	ref$ = React.DOM, div = ref$.div, button = ref$.button, table = ref$.table, thead = ref$.thead, tr = ref$.tr, th = ref$.th, a = ref$.a;
+	AltList = React.createFactory(AltList);
+	listTab = ["日 (Sun)", "月 (Mon)", "火 (Tue)", "水 (Wed)", "木 (Thu)", "金 (Fri)", "土 (Sat)"];
+	listThead = ["", "", "分類", "装備名", "二番艦"];
+	listTheadClass = ["th0", "th1", "th2", "th3", "th4 mdl-data-table__cell--non-numeric"];
+	Content = React.createClass({
+	  displayName: "Content",
+	  propTypes: {
+	    toggle: ReactPropTypes.array.isRequired,
+	    day: ReactPropTypes.number.isRequired,
+	    output: ReactPropTypes.array.isRequired
+	  },
+	  handleDayChange: function(event){
+	    AppAction.dayChange(parseInt(event.target.id));
+	  },
+	  render: function(){
+	    var i, list, toggle;
+	    return div(null, div({
+	      className: "mdl-tabs mdl-js-tabs mdl-js-ripple-effect"
+	    }, div({
+	      className: "mdl-tabs__tab-bar"
+	    }, (function(){
+	      var i$, ref$, len$, results$ = [];
+	      for (i$ = 0, len$ = (ref$ = listTab).length; i$ < len$; ++i$) {
+	        i = i$;
+	        list = ref$[i$];
+	        if (this.props.day === i) {
+	          results$.push(button({
+	            className: Constants.buttonClassActive,
+	            key: i,
+	            id: i,
+	            onClick: this.handleDayChange
+	          }, list));
+	        } else {
+	          results$.push(button({
+	            className: Constants.buttonClassInactive,
+	            key: i,
+	            id: i,
+	            onClick: this.handleDayChange
+	          }, list));
+	        }
+	      }
+	      return results$;
+	    }.call(this)))), table({
+	      className: Constants.TableClass
+	    }, thead(null, tr(null, (function(){
+	      var i$, ref$, len$, results$ = [];
+	      for (i$ = 0, len$ = (ref$ = listThead).length; i$ < len$; ++i$) {
+	        i = i$;
+	        list = ref$[i$];
+	        results$.push(th({
+	          className: listTheadClass[i],
+	          key: "thead" + i.toString()
+	        }, void 8, list));
+	      }
+	      return results$;
+	    }())))), (function(){
+	      var i$, ref$, len$, results$ = [];
+	      for (i$ = 0, len$ = (ref$ = this.props.toggle).length; i$ < len$; ++i$) {
+	        i = i$;
+	        toggle = ref$[i$];
+	        if (toggle === 1) {
+	          results$.push(AltList({
+	            key: "alt" + i.toString(),
+	            display: true,
+	            tableId: i.toString(),
+	            output: this.props.output[i]
+	          }, null));
+	        } else {
+	          results$.push(AltList({
+	            key: "alt" + i.toString(),
+	            display: false,
+	            tableId: i.toString(),
+	            output: this.props.output[i]
+	          }, null));
+	        }
+	      }
+	      return results$;
+	    }.call(this)));
+	  }
+	});
+	module.exports = Content;
+	//# sourceMappingURL=D:\Code\GitHub\KCAltTable\node_modules\livescript-loader\index.js!D:\Code\GitHub\KCAltTable\src\components\Content.react.ls.map
+
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Content.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
+
+/***/ },
+/* 109 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	var React, ref$, div, a, Footer;
+	React = __webpack_require__(3);
+	ref$ = React.DOM, div = ref$.div, a = ref$.a;
+	Footer = React.createClass({
+	  displayName: "Footer",
+	  render: function(){
+	    return div({
+	      className: "demo-footer mdl-mini-footer"
+	    }, div({
+	      className: "mdl-mini-footer--left-section"
+	    }, div(null, "『", a({
+	      href: "http://www.dmm.com/netgame_s/kancolle/"
+	    }, "艦これ"), "』(C) DMMゲームズ"), div(null, "「艦これ」から転載された全てのコンテンツの著作権につきましては、権利者様へ帰属します。"), div(null, "Copyright (C) Panepo@Github 2016 All Rights Reserved.")));
+	  }
+	});
+	module.exports = Footer;
+	//# sourceMappingURL=D:\Code\GitHub\KCAltTable\node_modules\livescript-loader\index.js!D:\Code\GitHub\KCAltTable\src\components\Footer.react.ls.map
+
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Footer.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
+
+/***/ },
+/* 110 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	var React, ReactPropTypes, Constants, AppAction, ref$, div, span, nav, button, Header;
+	React = __webpack_require__(3);
+	ReactPropTypes = __webpack_require__(3).PropTypes;
+	Constants = __webpack_require__(29);
+	AppAction = __webpack_require__(39);
+	ref$ = React.DOM, div = ref$.div, span = ref$.span, nav = ref$.nav, button = ref$.button;
+	Header = React.createClass({
+	  displayName: "Header",
+	  propTypes: {
+	    toggle: ReactPropTypes.array.isRequired
+	  },
+	  getInitialState: function(){
+	    return {
+	      toggleAll: true
+	    };
+	  },
+	  handleToggle: function(event){
+	    var toggle, toggleNumber;
+	    toggle = this.props.toggle;
+	    toggleNumber = parseInt(event.target.id.slice(8));
+	    if (toggle[toggleNumber] === 1) {
+	      toggle[toggleNumber] = 0;
+	    } else {
+	      toggle[toggleNumber] = 1;
+	    }
+	    AppAction.toggleChange(toggle);
+	  },
+	  handleToggleAll: function(event){
+	    var toggle, i$, len$, i, toggleValue;
+	    toggle = this.props.toggle;
+	    if (this.state.toggleAll === true) {
+	      this.setState({
+	        toggleAll: false
+	      });
+	      for (i$ = 0, len$ = toggle.length; i$ < len$; ++i$) {
+	        i = i$;
+	        toggleValue = toggle[i$];
+	        toggle[i] = 0;
+	      }
+	    } else {
+	      this.setState({
+	        toggleAll: true
+	      });
+	      for (i$ = 0, len$ = toggle.length; i$ < len$; ++i$) {
+	        i = i$;
+	        toggleValue = toggle[i$];
+	        toggle[i] = 1;
+	      }
+	    }
+	    AppAction.toggleChange(toggle);
+	  },
+	  render: function(){
+	    var i, type;
+	    return div(null, div({
+	      className: "demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800"
+	    }, div({
+	      className: "mdl-layout__header-row"
+	    }, span({
+	      className: "mdl-layout-title"
+	    }, null), div({
+	      className: "mdl-layout-spacer"
+	    }, null)), nav({
+	      className: "floating-menu mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col"
+	    }, this.state.toggleAll === true
+	      ? button({
+	        className: Constants.buttonClassActive,
+	        onClick: this.handleToggleAll
+	      }, "全選")
+	      : button({
+	        className: Constants.buttonClassInactive,
+	        onClick: this.handleToggleAll
+	      }, "全選"), (function(){
+	      var i$, ref$, len$, results$ = [];
+	      for (i$ = 0, len$ = (ref$ = Constants.listType).length; i$ < len$; ++i$) {
+	        i = i$;
+	        type = ref$[i$];
+	        results$.push(div({
+	          key: "checkbox" + i.toString()
+	        }, this.props.toggle[i] === 1
+	          ? button({
+	            id: "checkbox" + i.toString(),
+	            className: Constants.buttonClassActive,
+	            onClick: this.handleToggle
+	          }, type)
+	          : button({
+	            id: "checkbox" + i.toString(),
+	            className: Constants.buttonClassInactive,
+	            onClick: this.handleToggle
+	          }, type)));
+	      }
+	      return results$;
+	    }.call(this))), div({
+	      className: "demo-ribbon"
+	    }, null)));
+	  }
+	});
+	module.exports = Header;
+	//# sourceMappingURL=D:\Code\GitHub\KCAltTable\node_modules\livescript-loader\index.js!D:\Code\GitHub\KCAltTable\src\components\Header.react.ls.map
+
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Header.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
+
+/***/ },
+/* 111 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	var React, Header, Footer, Content, AppStore, AppAction, ref$, div, table, thead, tbody, th, tr, td, label, input, main, KCFactoryApp;
+	React = __webpack_require__(3);
+	Header = __webpack_require__(110);
+	Footer = __webpack_require__(109);
+	Content = __webpack_require__(108);
+	AppStore = __webpack_require__(112);
+	AppAction = __webpack_require__(39);
+	ref$ = React.DOM, div = ref$.div, table = ref$.table, thead = ref$.thead, tbody = ref$.tbody, th = ref$.th, tr = ref$.tr, td = ref$.td, label = ref$.label, input = ref$.input, main = ref$.main;
+	Header = React.createFactory(Header);
+	Footer = React.createFactory(Footer);
+	Content = React.createFactory(Content);
+	KCFactoryApp = React.createClass({
+	  displayName: "KCFactoryApp",
+	  getInitialState: function(){
+	    return {
+	      data: AppStore.getData()
+	    };
+	  },
+	  componentDidMount: function(){
+	    var dateTime, dateDay, dateHour;
+	    AppStore.addChangeListener(this.onChange);
+	    dateTime = new Date();
+	    dateDay = dateTime.getUTCDay();
+	    dateHour = dateTime.getUTCHours();
+	    dateHour = dateHour + 9;
+	    if (dateHour >= 24) {
+	      dateHour = dateHour - 24;
+	      dateDay = dateDay + 1;
+	      if (dateDay >= 7) {
+	        dateDay = dateDay - 7;
+	      }
+	    }
+	    AppAction.dayChange(dateDay);
+	  },
+	  componentWillUnmount: function(){
+	    AppStore.removeChangeListener(this.onChange);
+	  },
+	  onChange: function(){
+	    this.setState({
+	      data: AppStore.getData()
+	    });
+	  },
+	  render: function(){
+	    return div(null, div({
+	      className: "demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100"
+	    }, Header({
+	      toggle: this.state.data.toggle
+	    }, null), div({
+	      className: "demo-main mdl-layout__content"
+	    }, div({
+	      className: "demo-container mdl-grid"
+	    }, div({
+	      className: "mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"
+	    }, null), div({
+	      className: "demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col"
+	    }, Content({
+	      toggle: this.state.data.toggle,
+	      day: this.state.data.day,
+	      output: this.state.data.output
+	    }, null)))), Footer(null)));
+	  }
+	});
+	module.exports = KCFactoryApp;
+	//# sourceMappingURL=D:\Code\GitHub\KCAltTable\node_modules\livescript-loader\index.js!D:\Code\GitHub\KCAltTable\src\components\KCFactoryApp.react.ls.map
+
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "KCFactoryApp.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
+
+/***/ },
+/* 112 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	var lokijs, EventEmitter, assign, AppDispatcher, ConstActions, RawData, Constants, CHANGE_EVENT, _data, i$, ref$, len$, i, toggle, db, altTable, data, sun, mon, tue, wed, thu, fri, sat, list, toggleChange, dayChange, AppStore;
+	lokijs = __webpack_require__(102);
+	EventEmitter = __webpack_require__(193).EventEmitter;
+	assign = __webpack_require__(103);
+	AppDispatcher = __webpack_require__(60);
+	ConstActions = __webpack_require__(59);
+	RawData = __webpack_require__(99);
+	Constants = __webpack_require__(29);
+	CHANGE_EVENT = 'change';
+	_data = {
+	  toggle: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	  day: 0,
+	  output: []
+	};
+	for (i$ = 0, len$ = (ref$ = _data.toggle).length; i$ < len$; ++i$) {
+	  i = i$;
+	  toggle = ref$[i$];
+	  _data.output[i] = [];
+	}
+	db = new lokijs("db");
+	altTable = db.addCollection("altTable");
+	for (i$ = 0, len$ = RawData.length; i$ < len$; ++i$) {
+	  i = i$;
+	  data = RawData[i$];
+	  altTable.insert(data);
+	}
+	sun = [];
+	mon = [];
+	tue = [];
+	wed = [];
+	thu = [];
+	fri = [];
+	sat = [];
+	for (i$ = 0, len$ = (ref$ = Constants.listType).length; i$ < len$; ++i$) {
+	  i = i$;
+	  list = ref$[i$];
+	  sun[i] = altTable.chain().find({
+	    'sun': 1
+	  }).find({
+	    'type': list
+	  }).data();
+	  mon[i] = altTable.chain().find({
+	    'mon': 1
+	  }).find({
+	    'type': list
+	  }).data();
+	  tue[i] = altTable.chain().find({
+	    'tue': 1
+	  }).find({
+	    'type': list
+	  }).data();
+	  wed[i] = altTable.chain().find({
+	    'wed': 1
+	  }).find({
+	    'type': list
+	  }).data();
+	  thu[i] = altTable.chain().find({
+	    'thu': 1
+	  }).find({
+	    'type': list
+	  }).data();
+	  fri[i] = altTable.chain().find({
+	    'fri': 1
+	  }).find({
+	    'type': list
+	  }).data();
+	  sat[i] = altTable.chain().find({
+	    'sat': 1
+	  }).find({
+	    'type': list
+	  }).data();
+	}
+	toggleChange = function(toggle){
+	  _data.toggle = toggle;
+	};
+	dayChange = function(day){
+	  _data.day = day;
+	  if (day === 0) {
+	    _data.output = sun;
+	  } else if (day === 1) {
+	    _data.output = mon;
+	  } else if (day === 2) {
+	    _data.output = tue;
+	  } else if (day === 3) {
+	    _data.output = wed;
+	  } else if (day === 4) {
+	    _data.output = thu;
+	  } else if (day === 5) {
+	    _data.output = fri;
+	  } else if (day === 6) {
+	    _data.output = sat;
+	  }
+	};
+	AppStore = assign({}, EventEmitter.prototype, {
+	  getData: function(){
+	    return _data;
+	  },
+	  emitChange: function(){
+	    this.emit(CHANGE_EVENT);
+	  },
+	  addChangeListener: function(callback){
+	    this.on(CHANGE_EVENT, callback);
+	  },
+	  removeChangeListener: function(callback){
+	    this.removeListener(CHANGE_EVENT, callback);
+	  }
+	});
+	AppDispatcher.register(function(action){
+	  switch (action.actionType) {
+	  case ConstActions.toggleChange:
+	    toggleChange(action.toggle);
+	    AppStore.emitChange();
+	    break;
+	  case ConstActions.dayChange:
+	    dayChange(action.day);
+	    AppStore.emitChange();
+	  }
+	});
+	module.exports = AppStore;
+	//# sourceMappingURL=D:\Code\GitHub\KCAltTable\node_modules\livescript-loader\index.js!D:\Code\GitHub\KCAltTable\src\stores\AppStore.ls.map
+
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppStore.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
+
+/***/ },
 /* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(13), RootInstanceProvider = __webpack_require__(11), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	"use strict";
-	
-	var AppDispatcher = __webpack_require__(67);
-	var AppAction = {
-		CBtoggleC: function CBtoggleC(CBtoggle) {
-			AppDispatcher.dispatch({
-				actionType: "CBtoggleC",
-				CBtoggle: CBtoggle
-			});
-		}
-	};
-	
-	module.exports = AppAction;
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(12); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppAction.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
-
-/***/ },
-/* 114 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(13), RootInstanceProvider = __webpack_require__(11), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	var React = __webpack_require__(3);
-	var ReactDOM = __webpack_require__(111);
-	var KCFactoryApp = __webpack_require__(119);
-	
-	ReactDOM.render(React.createElement(KCFactoryApp, null), document.getElementById("KCFactoryApp"));
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(12); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "app.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
-
-/***/ },
-/* 115 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(13), RootInstanceProvider = __webpack_require__(11), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	"use strict";
-	
-	var _reactTransformHmr2 = __webpack_require__(25);
-	
-	var _reactTransformHmr3 = _interopRequireDefault(_reactTransformHmr2);
-	
-	var _react = __webpack_require__(3);
-	
-	var _components = {
-		_$AltList: {
-			displayName: "AltList"
-		}
-	};
-	
-	var _reactComponentWrapper = (0, _reactTransformHmr3["default"])({
-		filename: "D:/Code/GitHub/KCAltTable/js/components/AltList.react.js",
-		components: _components,
-		locals: [module],
-		imports: [_react]
-	});
-	
-	function _wrapComponent(uniqueId) {
-		return function (ReactClass) {
-			return _reactComponentWrapper(ReactClass, uniqueId);
-		};
-	}
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-	
-	var React = __webpack_require__(3);
-	var ReactPropTypes = React.PropTypes;
-	var Constants = __webpack_require__(66);
-	
-	var AltList = _wrapComponent("_$AltList")(React.createClass({
-		displayName: "AltList",
-	
-		propTypes: {
-			list: ReactPropTypes.array.isRequired,
-			display: ReactPropTypes.number.isRequired,
-			tableId: ReactPropTypes.string.isRequired,
-			tableClass: ReactPropTypes.string.isRequired,
-			day: ReactPropTypes.number.isRequired
-		},
-	
-		handleChange: function handleChange(event) {
-			var trId = this.props.tableId + event.target.id.slice(-2);
-			if (event.target.checked) {
-				document.getElementById(trId).style.color = "blue";
-			} else {
-				document.getElementById(trId).style.color = "black";
-			}
-		},
-	
-		render: function render() {
-			var TableData = [];
-			var TableCont;
-			var ImgString = "";
-			var CheckString = "";
-			var KeyString = "";
-	
-			for (var j = 0; j < this.props.list.length; j++) {
-				for (var k = 0; k < Constants.checkboxlist.length; k++) {
-					if (this.props.list[j][0] == Constants.checkboxlist[k]) {
-						ImgString = "./img/sit" + (k + 1) + ".png";
-					}
-				}
-	
-				for (var k = 0; k < Constants.AAlist.length; k++) {
-					if (this.props.list[j][1] == Constants.AAlist[k]) {
-						ImgString = "./img/sit0.png";
-					}
-				}
-	
-				CheckString = this.props.tableId + " row" + this.props.day.toString() + j.toString();
-				KeyString = this.props.tableId + this.props.day.toString() + j.toString();
-	
-				TableCont = React.createElement(
-					"tr",
-					{ key: KeyString, id: KeyString },
-					React.createElement(
-						"td",
-						{ className: "th0" },
-						React.createElement(
-							"label",
-							{ className: "mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select", htmlFor: CheckString },
-							React.createElement("input", { type: "checkbox", id: CheckString, className: "mdl-checkbox__input", onChange: this.handleChange })
-						)
-					),
-					React.createElement(
-						"td",
-						{ className: "th1" },
-						React.createElement("img", { src: ImgString, height: "30", width: "30" })
-					),
-					React.createElement(
-						"td",
-						{ id: KeyString, className: "th2" },
-						this.props.list[j][0]
-					),
-					React.createElement(
-						"td",
-						{ id: KeyString, className: "th3" },
-						this.props.list[j][1]
-					),
-					React.createElement(
-						"td",
-						{ id: KeyString, className: "th4 mdl-data-table__cell--non-numeric" },
-						this.props.list[j][2]
-					)
-				);
-				TableData.push(TableCont);
-			}
-	
-			if (this.props.display === 0 || this.props.list.length === 0) {
-				return null;
-			} else {
-				return React.createElement(
-					"div",
-					{ className: "AltList" },
-					React.createElement(
-						"table",
-						{ className: this.props.tableClass },
-						React.createElement(
-							"tbody",
-							null,
-							TableData
-						)
-					)
-				);
-			}
-		}
-	}));
-	
-	module.exports = AltList;
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(12); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AltList.react.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
-
-/***/ },
-/* 116 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(13), RootInstanceProvider = __webpack_require__(11), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	"use strict";
-	
-	var _reactTransformHmr2 = __webpack_require__(25);
-	
-	var _reactTransformHmr3 = _interopRequireDefault(_reactTransformHmr2);
-	
-	var _react = __webpack_require__(3);
-	
-	var _components = {
-		_$Content: {
-			displayName: "Content"
-		}
-	};
-	
-	var _reactComponentWrapper = (0, _reactTransformHmr3["default"])({
-		filename: "D:/Code/GitHub/KCAltTable/js/components/Content.react.js",
-		components: _components,
-		locals: [module],
-		imports: [_react]
-	});
-	
-	function _wrapComponent(uniqueId) {
-		return function (ReactClass) {
-			return _reactComponentWrapper(ReactClass, uniqueId);
-		};
-	}
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-	
-	var React = __webpack_require__(3);
-	var ReactPropTypes = React.PropTypes;
-	var AltList = __webpack_require__(115);
-	var data = __webpack_require__(109);
-	
-	var Content = _wrapComponent("_$Content")(React.createClass({
-		displayName: "Content",
-	
-		propTypes: {
-			CBtoggle: ReactPropTypes.array.isRequired
-		},
-	
-		render: function render() {
-			// ===============================================================================
-			// Day calculation
-			// ===============================================================================
-			var DateTime = new Date();
-			var DateDay = DateTime.getUTCDay();
-			var DateHour = DateTime.getUTCHours();
-	
-			DateHour = DateHour + 9;
-			if (DateHour >= 24) {
-				DateHour = DateHour - 24;
-				DateDay = DateDay + 1;
-				if (DateDay >= 7) {
-					DateDay = DateDay - 7;
-				}
-			}
-	
-			// ===============================================================================
-			// Generate tab data
-			// ===============================================================================
-			var PanelClass = "mdl-tabs__panel";
-			var PanelClassActive = "mdl-tabs__panel is-active";
-			var TabClass = "mdl-tabs__tab";
-			var TabClassActive = "mdl-tabs__tab is-active";
-			var TableClass = "mdl-data-table mdl-shadow--2dp";
-	
-			var DayList = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-			var DayDisp = ["日 (Sun)", "月 (Mon)", "火 (Tue)", "水 (Wed)", "木 (Thu)", "金 (Fri)", "土 (Sat)"];
-	
-			var Tab = [];
-			var Panel = [];
-			var TabData = [];
-			var TabString = "";
-			for (var i = 0; i < DayList.length; i++) {
-				TabString = "#" + DayList[i] + "-panel";
-				if (DateDay == i) {
-					Panel[i] = PanelClassActive;
-					Tab[i] = React.createElement(
-						"a",
-						{ href: TabString, className: TabClassActive, key: TabString },
-						DayDisp[i]
-					);
-				} else {
-					Panel[i] = PanelClass;
-					Tab[i] = React.createElement(
-						"a",
-						{ href: TabString, className: TabClass, key: TabString },
-						DayDisp[i]
-					);
-				}
-				TabData.push(Tab[i]);
-			}
-			// ===============================================================================
-			// Generate panel data
-			// ===============================================================================
-			var PanelData = [];
-			var PanelCont;
-			var PanelString = "";
-			var TableHead = React.createElement(
-				"thead",
-				null,
-				React.createElement(
-					"tr",
-					null,
-					React.createElement("th", { className: "th0" }),
-					React.createElement("th", { className: "th1" }),
-					React.createElement(
-						"th",
-						{ className: "th2" },
-						"分類"
-					),
-					React.createElement(
-						"th",
-						{ className: "th3" },
-						"装備名"
-					),
-					React.createElement(
-						"th",
-						{ className: "th4 mdl-data-table__cell--non-numeric" },
-						"二番艦"
-					)
-				)
-			);
-	
-			for (var i = 0; i < DayList.length; i++) {
-				PanelString = DayList[i] + "-panel";
-				PanelCont = React.createElement(
-					"div",
-					{ className: Panel[i], id: PanelString, key: PanelString },
-					React.createElement("p", null),
-					React.createElement(
-						"table",
-						{ className: TableClass },
-						TableHead
-					),
-					React.createElement(AltList, { day: i, list: data[0][i], display: this.props.CBtoggle[0], tableId: "0", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[1][i], display: this.props.CBtoggle[1], tableId: "1", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[2][i], display: this.props.CBtoggle[2], tableId: "2", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[3][i], display: this.props.CBtoggle[3], tableId: "3", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[4][i], display: this.props.CBtoggle[4], tableId: "4", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[5][i], display: this.props.CBtoggle[5], tableId: "5", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[6][i], display: this.props.CBtoggle[6], tableId: "6", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[7][i], display: this.props.CBtoggle[7], tableId: "7", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[8][i], display: this.props.CBtoggle[8], tableId: "8", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[9][i], display: this.props.CBtoggle[9], tableId: "9", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[10][i], display: this.props.CBtoggle[10], tableId: "10", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[11][i], display: this.props.CBtoggle[11], tableId: "11", tableClass: TableClass }),
-					React.createElement(AltList, { day: i, list: data[12][i], display: this.props.CBtoggle[12], tableId: "12", tableClass: TableClass })
-				);
-				PanelData.push(PanelCont);
-			}
-	
-			// ===============================================================================
-			// return
-			// ===============================================================================
-			return React.createElement(
-				"div",
-				{ className: "ContentOut" },
-				React.createElement(
-					"h4",
-					null,
-					"艦これ装備改修表曜日別逆引き"
-				),
-				"更新: 2016/03/07",
-				React.createElement(
-					"div",
-					{ className: "mdl-tabs mdl-js-tabs mdl-js-ripple-effect" },
-					React.createElement(
-						"div",
-						{ className: "mdl-tabs__tab-bar" },
-						TabData
-					),
-					PanelData
-				)
-			);
-		},
-	
-		componentDidUpdate: function componentDidUpdate() {
-			componentHandler.upgradeDom();
-		}
-	
-	}));
-	
-	module.exports = Content;
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(12); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Content.react.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
-
-/***/ },
-/* 117 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(13), RootInstanceProvider = __webpack_require__(11), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	"use strict";
-	
-	var _reactTransformHmr2 = __webpack_require__(25);
-	
-	var _reactTransformHmr3 = _interopRequireDefault(_reactTransformHmr2);
-	
-	var _react = __webpack_require__(3);
-	
-	var _components = {
-		_$Footer: {
-			displayName: "Footer"
-		}
-	};
-	
-	var _reactComponentWrapper = (0, _reactTransformHmr3["default"])({
-		filename: "D:/Code/GitHub/KCAltTable/js/components/Footer.react.js",
-		components: _components,
-		locals: [module],
-		imports: [_react]
-	});
-	
-	function _wrapComponent(uniqueId) {
-		return function (ReactClass) {
-			return _reactComponentWrapper(ReactClass, uniqueId);
-		};
-	}
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-	
-	var React = __webpack_require__(3);
-	
-	var Footer = _wrapComponent("_$Footer")(React.createClass({
-		displayName: "Footer",
-	
-		render: function render() {
-			return React.createElement(
-				"div",
-				{ className: "Footer" },
-				React.createElement(
-					"footer",
-					{ className: "demo-footer mdl-mini-footer" },
-					React.createElement(
-						"div",
-						{ className: "mdl-mini-footer--left-section" },
-						React.createElement(
-							"div",
-							null,
-							React.createElement(
-								"small",
-								null,
-								" 『",
-								React.createElement(
-									"a",
-									{ href: "http://www.dmm.com/netgame_s/kancolle/" },
-									"艦これ"
-								),
-								"』(C) DMMゲームズ"
-							)
-						),
-						React.createElement(
-							"div",
-							null,
-							React.createElement(
-								"small",
-								null,
-								"「艦これ」から転載された全てのコンテンツの著作権につきましては、権利者様へ帰属します。"
-							)
-						),
-						React.createElement(
-							"div",
-							null,
-							React.createElement(
-								"small",
-								null,
-								" Copyright © Panepo@Github 2015 All Rights Reserved."
-							)
-						)
-					)
-				)
-			);
-		}
-	}));
-	
-	module.exports = Footer;
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(12); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Footer.react.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
-
-/***/ },
-/* 118 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(13), RootInstanceProvider = __webpack_require__(11), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	"use strict";
-	
-	var _reactTransformHmr2 = __webpack_require__(25);
-	
-	var _reactTransformHmr3 = _interopRequireDefault(_reactTransformHmr2);
-	
-	var _react = __webpack_require__(3);
-	
-	var _components = {
-		_$Header: {
-			displayName: "Header"
-		}
-	};
-	
-	var _reactComponentWrapper = (0, _reactTransformHmr3["default"])({
-		filename: "D:/Code/GitHub/KCAltTable/js/components/Header.react.js",
-		components: _components,
-		locals: [module],
-		imports: [_react]
-	});
-	
-	function _wrapComponent(uniqueId) {
-		return function (ReactClass) {
-			return _reactComponentWrapper(ReactClass, uniqueId);
-		};
-	}
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-	
-	var React = __webpack_require__(3);
-	var ReactPropTypes = React.PropTypes;
-	var AppAction = __webpack_require__(113);
-	var Constants = __webpack_require__(66);
-	
-	var Header = _wrapComponent("_$Header")(React.createClass({
-		displayName: "Header",
-	
-		propTypes: {
-			CBtoggle: ReactPropTypes.array.isRequired
-		},
-	
-		getInitialState: function getInitialState() {
-			return {
-				toggleAll: true
-			};
-		},
-	
-		handleToggle: function handleToggle(event) {
-			var CBtoggle = this.props.CBtoggle;
-			var CBnumber = parseInt(event.target.id.slice(8));
-	
-			if (CBtoggle[CBnumber] == 1) {
-				CBtoggle[CBnumber] = 0;
-			} else {
-				CBtoggle[CBnumber] = 1;
-			}
-	
-			AppAction.CBtoggleC(CBtoggle);
-		},
-	
-		handleToggleAll: function handleToggleAll() {
-			var CBtoggle = this.props.CBtoggle;
-	
-			if (this.state.toggleAll == true) {
-				this.setState({
-					toggleAll: false
-				});
-				for (var i = 0; i < CBtoggle.length; i++) {
-					CBtoggle[i] = 0;
-				}
-			} else {
-				this.setState({
-					toggleAll: true
-				});
-				for (var i = 0; i < CBtoggle.length; i++) {
-					CBtoggle[i] = 1;
-				}
-			}
-			AppAction.CBtoggleC(CBtoggle);
-		},
-	
-		render: function render() {
-			// ===============================================================================
-			// Generate checkbox list
-			// ===============================================================================
-			var buttonClassActive = "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary";
-			var buttonClassInactive = "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent";
-			var idStringTemp = "";
-			var classTemp = "";
-			var checkTemp;
-			var checkOutput = [];
-	
-			if (this.state.toggleAll == true) {
-				classTemp = buttonClassActive;
-			} else {
-				classTemp = buttonClassInactive;
-			}
-	
-			checkTemp = React.createElement(
-				"div",
-				{ key: "checkboxAll" },
-				React.createElement(
-					"button",
-					{ className: classTemp, onClick: this.handleToggleAll },
-					"全選"
-				)
-			);
-			checkOutput.push(checkTemp);
-	
-			for (var i = 0; i < Constants.checkboxlist.length; i++) {
-				idStringTemp = "checkbox" + i.toString();
-	
-				if (this.props.CBtoggle[i] == 1) {
-					classTemp = buttonClassActive;
-				} else {
-					classTemp = buttonClassInactive;
-				}
-	
-				checkTemp = React.createElement(
-					"div",
-					{ key: idStringTemp },
-					React.createElement(
-						"button",
-						{ id: idStringTemp, className: classTemp, onClick: this.handleToggle },
-						Constants.checkboxlist[i]
-					)
-				);
-				checkOutput.push(checkTemp);
-			}
-	
-			// ===============================================================================
-			// return
-			// ===============================================================================
-			return React.createElement(
-				"div",
-				{ className: "Header" },
-				React.createElement(
-					"header",
-					{ className: "demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800" },
-					React.createElement(
-						"div",
-						{ className: "mdl-layout__header-row" },
-						React.createElement("div", { className: "mdl-layout-spacer" })
-					)
-				),
-				React.createElement(
-					"nav",
-					{ className: "floating-menu mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col" },
-					checkOutput
-				),
-				React.createElement("div", { className: "demo-ribbon" })
-			);
-		}
-	}));
-	
-	module.exports = Header;
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(12); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Header.react.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
-
-/***/ },
-/* 119 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(13), RootInstanceProvider = __webpack_require__(11), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	"use strict";
-	
-	var _reactTransformHmr2 = __webpack_require__(25);
-	
-	var _reactTransformHmr3 = _interopRequireDefault(_reactTransformHmr2);
-	
-	var _react = __webpack_require__(3);
-	
-	var _components = {
-		_$KCFactoryApp: {
-			displayName: "KCFactoryApp"
-		}
-	};
-	
-	var _reactComponentWrapper = (0, _reactTransformHmr3["default"])({
-		filename: "D:/Code/GitHub/KCAltTable/js/components/KCFactoryApp.react.js",
-		components: _components,
-		locals: [module],
-		imports: [_react]
-	});
-	
-	function _wrapComponent(uniqueId) {
-		return function (ReactClass) {
-			return _reactComponentWrapper(ReactClass, uniqueId);
-		};
-	}
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-	
-	var React = __webpack_require__(3);
-	var Header = __webpack_require__(118);
-	var Content = __webpack_require__(116);
-	var Footer = __webpack_require__(117);
-	var AppStore = __webpack_require__(120);
-	
-	var KCFactoryApp = _wrapComponent("_$KCFactoryApp")(React.createClass({
-		displayName: "KCFactoryApp",
-	
-		getInitialState: function getInitialState() {
-			return {
-				value: AppStore.getValue()
-			};
-		},
-	
-		componentDidMount: function componentDidMount() {
-			AppStore.addChangeListener(this._onChange);
-		},
-	
-		componentWillUnmount: function componentWillUnmount() {
-			AppStore.removeChangeListener(this._onChange);
-		},
-	
-		render: function render() {
-			return React.createElement(
-				"div",
-				{ className: "KCFactoryApp" },
-				React.createElement(
-					"div",
-					{ className: "demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100" },
-					React.createElement(Header, { CBtoggle: this.state.value.CBtoggle }),
-					React.createElement(
-						"main",
-						{ className: "demo-main mdl-layout__content" },
-						React.createElement(
-							"div",
-							{ className: "demo-container mdl-grid" },
-							React.createElement("div", { className: "mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone" }),
-							React.createElement(
-								"div",
-								{ className: "demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col" },
-								React.createElement(Content, { CBtoggle: this.state.value.CBtoggle })
-							)
-						)
-					),
-					React.createElement(Footer, null)
-				)
-			);
-		},
-	
-		_onChange: function _onChange() {
-			this.setState({
-				value: AppStore.getValue()
-			});
-		}
-	}));
-	
-	module.exports = KCFactoryApp;
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(12); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "KCFactoryApp.react.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
-
-/***/ },
-/* 120 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(13), RootInstanceProvider = __webpack_require__(11), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	var AppDispatcher = __webpack_require__(67);
-	var EventEmitter = __webpack_require__(231).EventEmitter;
-	var assign = __webpack_require__(110);
-	
-	var CHANGE_EVENT = 'change';
-	var _value = {
-		CBtoggle: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-	};
-	
-	// ===============================================================================
-	// APP STORE FUNCTIONS
-	// ===============================================================================
-	function _CBtoggleC(CBtoggle) {
-		_value.CBtoggle = CBtoggle;
-	}
-	
-	// ===============================================================================
-	// APP STORE MAIN
-	// ===============================================================================
-	var AppStore = assign({}, EventEmitter.prototype, {
-		getValue: function getValue() {
-			return _value;
-		},
-	
-		emitChange: function emitChange() {
-			this.emit(CHANGE_EVENT);
-		},
-	
-		addChangeListener: function addChangeListener(callback) {
-			this.on(CHANGE_EVENT, callback);
-		},
-	
-		removeChangeListener: function removeChangeListener(callback) {
-			this.removeListener(CHANGE_EVENT, callback);
-		}
-	});
-	
-	// ===============================================================================
-	// APP DISPATCHER
-	// ===============================================================================
-	AppDispatcher.register(function (action) {
-		switch (action.actionType) {
-			case "CBtoggleC":
-				_CBtoggleC(action.CBtoggle);
-				AppStore.emitChange();
-				break;
-	
-			default:
-		}
-	});
-	
-	module.exports = AppStore;
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(12); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppStore.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
-
-/***/ },
-/* 121 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var isReactClassish = __webpack_require__(68);
+	var isReactClassish = __webpack_require__(61);
 	
 	function isReactElementish(obj, React) {
 	  if (!obj) {
@@ -14643,7 +19282,7 @@
 	module.exports = isReactElementish;
 
 /***/ },
-/* 122 */
+/* 114 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14717,13 +19356,13 @@
 	};
 
 /***/ },
-/* 123 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var bindAutoBindMethods = __webpack_require__(122);
-	var traverseRenderedChildren = __webpack_require__(128);
+	var bindAutoBindMethods = __webpack_require__(114);
+	var traverseRenderedChildren = __webpack_require__(120);
 	
 	function setPendingForceUpdate(internalInstance) {
 	  if (internalInstance._pendingForceUpdate === false) {
@@ -14759,7 +19398,7 @@
 
 
 /***/ },
-/* 124 */
+/* 116 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14830,12 +19469,12 @@
 	};
 
 /***/ },
-/* 125 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var makePatchReactClass = __webpack_require__(126);
+	var makePatchReactClass = __webpack_require__(118);
 	
 	/**
 	 * Returns a function that, when invoked, patches a React class with a new
@@ -14870,13 +19509,13 @@
 	};
 
 /***/ },
-/* 126 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var makeAssimilatePrototype = __webpack_require__(124),
-	    requestForceUpdateAll = __webpack_require__(127);
+	var makeAssimilatePrototype = __webpack_require__(116),
+	    requestForceUpdateAll = __webpack_require__(119);
 	
 	function hasNonStubTypeProperty(ReactClass) {
 	  if (!ReactClass.hasOwnProperty('type')) {
@@ -14923,10 +19562,10 @@
 	};
 
 /***/ },
-/* 127 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var deepForceUpdate = __webpack_require__(123);
+	var deepForceUpdate = __webpack_require__(115);
 	
 	var isRequestPending = false;
 	
@@ -14962,7 +19601,7 @@
 
 
 /***/ },
-/* 128 */
+/* 120 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14991,1536 +19630,7 @@
 
 
 /***/ },
-/* 129 */
-/***/ function(module, exports) {
-
-	/* WEBPACK VAR INJECTION */(function(global) {if (typeof window !== "undefined") {
-	    module.exports = window;
-	} else if (typeof global !== "undefined") {
-	    module.exports = global;
-	} else if (typeof self !== "undefined"){
-	    module.exports = self;
-	} else {
-	    module.exports = {};
-	}
-	
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
-
-/***/ },
-/* 130 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = bindAutoBindMethods;
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of React source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * Original:
-	 * https://github.com/facebook/react/blob/6508b1ad273a6f371e8d90ae676e5390199461b4/src/isomorphic/classic/class/ReactClass.js#L650-L713
-	 */
-	
-	function bindAutoBindMethod(component, method) {
-	  var boundMethod = method.bind(component);
-	
-	  boundMethod.__reactBoundContext = component;
-	  boundMethod.__reactBoundMethod = method;
-	  boundMethod.__reactBoundArguments = null;
-	
-	  var componentName = component.constructor.displayName,
-	      _bind = boundMethod.bind;
-	
-	  boundMethod.bind = function (newThis) {
-	    var args = Array.prototype.slice.call(arguments, 1);
-	    if (newThis !== component && newThis !== null) {
-	      console.warn('bind(): React component methods may only be bound to the ' + 'component instance. See ' + componentName);
-	    } else if (!args.length) {
-	      console.warn('bind(): You are binding a component method to the component. ' + 'React does this for you automatically in a high-performance ' + 'way, so you can safely remove this call. See ' + componentName);
-	      return boundMethod;
-	    }
-	
-	    var reboundMethod = _bind.apply(boundMethod, arguments);
-	    reboundMethod.__reactBoundContext = component;
-	    reboundMethod.__reactBoundMethod = method;
-	    reboundMethod.__reactBoundArguments = args;
-	
-	    return reboundMethod;
-	  };
-	
-	  return boundMethod;
-	}
-	
-	function bindAutoBindMethods(component) {
-	  for (var autoBindKey in component.__reactAutoBindMap) {
-	    if (!component.__reactAutoBindMap.hasOwnProperty(autoBindKey)) {
-	      return;
-	    }
-	
-	    // Tweak: skip methods that are already bound.
-	    // This is to preserve method reference in case it is used
-	    // as a subscription handler that needs to be detached later.
-	    if (component.hasOwnProperty(autoBindKey) && component[autoBindKey].__reactBoundContext === component) {
-	      continue;
-	    }
-	
-	    var method = component.__reactAutoBindMap[autoBindKey];
-	    component[autoBindKey] = bindAutoBindMethod(component, method);
-	  }
-	};
-
-/***/ },
-/* 131 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = proxyClass;
-	exports.default = createClassProxy;
-	
-	var _createPrototypeProxy = __webpack_require__(132);
-	
-	var _createPrototypeProxy2 = _interopRequireDefault(_createPrototypeProxy);
-	
-	var _bindAutoBindMethods = __webpack_require__(130);
-	
-	var _bindAutoBindMethods2 = _interopRequireDefault(_bindAutoBindMethods);
-	
-	var _deleteUnknownAutoBindMethods = __webpack_require__(133);
-	
-	var _deleteUnknownAutoBindMethods2 = _interopRequireDefault(_deleteUnknownAutoBindMethods);
-	
-	var _supportsProtoAssignment = __webpack_require__(69);
-	
-	var _supportsProtoAssignment2 = _interopRequireDefault(_supportsProtoAssignment);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var RESERVED_STATICS = ['length', 'name', 'arguments', 'caller', 'prototype', 'toString'];
-	
-	function isEqualDescriptor(a, b) {
-	  if (!a && !b) {
-	    return true;
-	  }
-	  if (!a || !b) {
-	    return false;
-	  }
-	  for (var key in a) {
-	    if (a[key] !== b[key]) {
-	      return false;
-	    }
-	  }
-	  return true;
-	}
-	
-	function proxyClass(InitialClass) {
-	  // Prevent double wrapping.
-	  // Given a proxy class, return the existing proxy managing it.
-	  if (Object.prototype.hasOwnProperty.call(InitialClass, '__reactPatchProxy')) {
-	    return InitialClass.__reactPatchProxy;
-	  }
-	
-	  var prototypeProxy = (0, _createPrototypeProxy2.default)();
-	  var CurrentClass = undefined;
-	
-	  var staticDescriptors = {};
-	  function wasStaticModifiedByUser(key) {
-	    // Compare the descriptor with the one we previously set ourselves.
-	    var currentDescriptor = Object.getOwnPropertyDescriptor(ProxyClass, key);
-	    return !isEqualDescriptor(staticDescriptors[key], currentDescriptor);
-	  }
-	
-	  var ProxyClass = undefined;
-	  try {
-	    // Create a proxy constructor with matching name
-	    ProxyClass = new Function('getCurrentClass', 'return function ' + (InitialClass.name || 'ProxyClass') + '() {\n        return getCurrentClass().apply(this, arguments);\n      }')(function () {
-	      return CurrentClass;
-	    });
-	  } catch (err) {
-	    // Some environments may forbid dynamic evaluation
-	    ProxyClass = function () {
-	      return CurrentClass.apply(this, arguments);
-	    };
-	  }
-	
-	  // Point proxy constructor to the proxy prototype
-	  ProxyClass.prototype = prototypeProxy.get();
-	
-	  // Proxy toString() to the current constructor
-	  ProxyClass.toString = function toString() {
-	    return CurrentClass.toString();
-	  };
-	
-	  function update(NextClass) {
-	    if (typeof NextClass !== 'function') {
-	      throw new Error('Expected a constructor.');
-	    }
-	
-	    // Prevent proxy cycles
-	    if (Object.prototype.hasOwnProperty.call(NextClass, '__reactPatchProxy')) {
-	      return update(NextClass.__reactPatchProxy.__getCurrent());
-	    }
-	
-	    // Save the next constructor so we call it
-	    CurrentClass = NextClass;
-	
-	    // Update the prototype proxy with new methods
-	    var mountedInstances = prototypeProxy.update(NextClass.prototype);
-	
-	    // Set up the constructor property so accessing the statics work
-	    ProxyClass.prototype.constructor = ProxyClass;
-	
-	    // Set up the same prototype for inherited statics
-	    ProxyClass.__proto__ = NextClass.__proto__;
-	
-	    // Copy static methods and properties
-	    Object.getOwnPropertyNames(NextClass).forEach(function (key) {
-	      if (RESERVED_STATICS.indexOf(key) > -1) {
-	        return;
-	      }
-	
-	      var staticDescriptor = _extends({}, Object.getOwnPropertyDescriptor(NextClass, key), {
-	        configurable: true
-	      });
-	
-	      // Copy static unless user has redefined it at runtime
-	      if (!wasStaticModifiedByUser(key)) {
-	        Object.defineProperty(ProxyClass, key, staticDescriptor);
-	        staticDescriptors[key] = staticDescriptor;
-	      }
-	    });
-	
-	    // Remove old static methods and properties
-	    Object.getOwnPropertyNames(ProxyClass).forEach(function (key) {
-	      if (RESERVED_STATICS.indexOf(key) > -1) {
-	        return;
-	      }
-	
-	      // Skip statics that exist on the next class
-	      if (NextClass.hasOwnProperty(key)) {
-	        return;
-	      }
-	
-	      // Skip non-configurable statics
-	      var descriptor = Object.getOwnPropertyDescriptor(ProxyClass, key);
-	      if (descriptor && !descriptor.configurable) {
-	        return;
-	      }
-	
-	      // Delete static unless user has redefined it at runtime
-	      if (!wasStaticModifiedByUser(key)) {
-	        delete ProxyClass[key];
-	        delete staticDescriptors[key];
-	      }
-	    });
-	
-	    // Try to infer displayName
-	    ProxyClass.displayName = NextClass.displayName || NextClass.name;
-	
-	    // We might have added new methods that need to be auto-bound
-	    mountedInstances.forEach(_bindAutoBindMethods2.default);
-	    mountedInstances.forEach(_deleteUnknownAutoBindMethods2.default);
-	
-	    // Let the user take care of redrawing
-	    return mountedInstances;
-	  };
-	
-	  function get() {
-	    return ProxyClass;
-	  }
-	
-	  function getCurrent() {
-	    return CurrentClass;
-	  }
-	
-	  update(InitialClass);
-	
-	  var proxy = { get: get, update: update };
-	
-	  Object.defineProperty(proxy, '__getCurrent', {
-	    configurable: false,
-	    writable: false,
-	    enumerable: false,
-	    value: getCurrent
-	  });
-	
-	  Object.defineProperty(ProxyClass, '__reactPatchProxy', {
-	    configurable: false,
-	    writable: false,
-	    enumerable: false,
-	    value: proxy
-	  });
-	
-	  return proxy;
-	}
-	
-	function createFallback(Component) {
-	  var CurrentComponent = Component;
-	
-	  return {
-	    get: function get() {
-	      return CurrentComponent;
-	    },
-	    update: function update(NextComponent) {
-	      CurrentComponent = NextComponent;
-	    }
-	  };
-	}
-	
-	function createClassProxy(Component) {
-	  return Component.__proto__ && (0, _supportsProtoAssignment2.default)() ? proxyClass(Component) : createFallback(Component);
-	}
-
-/***/ },
-/* 132 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = createPrototypeProxy;
-	
-	var _assign = __webpack_require__(156);
-	
-	var _assign2 = _interopRequireDefault(_assign);
-	
-	var _difference = __webpack_require__(135);
-	
-	var _difference2 = _interopRequireDefault(_difference);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function createPrototypeProxy() {
-	  var proxy = {};
-	  var current = null;
-	  var mountedInstances = [];
-	
-	  /**
-	   * Creates a proxied toString() method pointing to the current version's toString().
-	   */
-	  function proxyToString(name) {
-	    // Wrap to always call the current version
-	    return function toString() {
-	      if (typeof current[name] === 'function') {
-	        return current[name].toString();
-	      } else {
-	        return '<method was deleted>';
-	      }
-	    };
-	  }
-	
-	  /**
-	   * Creates a proxied method that calls the current version, whenever available.
-	   */
-	  function proxyMethod(name) {
-	    // Wrap to always call the current version
-	    var proxiedMethod = function proxiedMethod() {
-	      if (typeof current[name] === 'function') {
-	        return current[name].apply(this, arguments);
-	      }
-	    };
-	
-	    // Copy properties of the original function, if any
-	    (0, _assign2.default)(proxiedMethod, current[name]);
-	    proxiedMethod.toString = proxyToString(name);
-	
-	    return proxiedMethod;
-	  }
-	
-	  /**
-	   * Augments the original componentDidMount with instance tracking.
-	   */
-	  function proxiedComponentDidMount() {
-	    mountedInstances.push(this);
-	    if (typeof current.componentDidMount === 'function') {
-	      return current.componentDidMount.apply(this, arguments);
-	    }
-	  }
-	  proxiedComponentDidMount.toString = proxyToString('componentDidMount');
-	
-	  /**
-	   * Augments the original componentWillUnmount with instance tracking.
-	   */
-	  function proxiedComponentWillUnmount() {
-	    var index = mountedInstances.indexOf(this);
-	    // Unless we're in a weird environment without componentDidMount
-	    if (index !== -1) {
-	      mountedInstances.splice(index, 1);
-	    }
-	    if (typeof current.componentWillUnmount === 'function') {
-	      return current.componentWillUnmount.apply(this, arguments);
-	    }
-	  }
-	  proxiedComponentWillUnmount.toString = proxyToString('componentWillUnmount');
-	
-	  /**
-	   * Defines a property on the proxy.
-	   */
-	  function defineProxyProperty(name, descriptor) {
-	    Object.defineProperty(proxy, name, descriptor);
-	  }
-	
-	  /**
-	   * Defines a property, attempting to keep the original descriptor configuration.
-	   */
-	  function defineProxyPropertyWithValue(name, value) {
-	    var _ref = Object.getOwnPropertyDescriptor(current, name) || {};
-	
-	    var _ref$enumerable = _ref.enumerable;
-	    var enumerable = _ref$enumerable === undefined ? false : _ref$enumerable;
-	    var _ref$writable = _ref.writable;
-	    var writable = _ref$writable === undefined ? true : _ref$writable;
-	
-	    defineProxyProperty(name, {
-	      configurable: true,
-	      enumerable: enumerable,
-	      writable: writable,
-	      value: value
-	    });
-	  }
-	
-	  /**
-	   * Creates an auto-bind map mimicking the original map, but directed at proxy.
-	   */
-	  function createAutoBindMap() {
-	    if (!current.__reactAutoBindMap) {
-	      return;
-	    }
-	
-	    var __reactAutoBindMap = {};
-	    for (var name in current.__reactAutoBindMap) {
-	      if (typeof proxy[name] === 'function' && current.__reactAutoBindMap.hasOwnProperty(name)) {
-	        __reactAutoBindMap[name] = proxy[name];
-	      }
-	    }
-	
-	    return __reactAutoBindMap;
-	  }
-	
-	  /**
-	   * Applies the updated prototype.
-	   */
-	  function update(next) {
-	    // Save current source of truth
-	    current = next;
-	
-	    // Find changed property names
-	    var currentNames = Object.getOwnPropertyNames(current);
-	    var previousName = Object.getOwnPropertyNames(proxy);
-	    var removedNames = (0, _difference2.default)(previousName, currentNames);
-	
-	    // Remove properties and methods that are no longer there
-	    removedNames.forEach(function (name) {
-	      delete proxy[name];
-	    });
-	
-	    // Copy every descriptor
-	    currentNames.forEach(function (name) {
-	      var descriptor = Object.getOwnPropertyDescriptor(current, name);
-	      if (typeof descriptor.value === 'function') {
-	        // Functions require additional wrapping so they can be bound later
-	        defineProxyPropertyWithValue(name, proxyMethod(name));
-	      } else {
-	        // Other values can be copied directly
-	        defineProxyProperty(name, descriptor);
-	      }
-	    });
-	
-	    // Track mounting and unmounting
-	    defineProxyPropertyWithValue('componentDidMount', proxiedComponentDidMount);
-	    defineProxyPropertyWithValue('componentWillUnmount', proxiedComponentWillUnmount);
-	    defineProxyPropertyWithValue('__reactAutoBindMap', createAutoBindMap());
-	
-	    // Set up the prototype chain
-	    proxy.__proto__ = next;
-	
-	    return mountedInstances;
-	  }
-	
-	  /**
-	   * Returns the up-to-date proxy prototype.
-	   */
-	  function get() {
-	    return proxy;
-	  }
-	
-	  return {
-	    update: update,
-	    get: get
-	  };
-	};
-
-/***/ },
-/* 133 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = deleteUnknownAutoBindMethods;
-	function shouldDeleteClassicInstanceMethod(component, name) {
-	  if (component.__reactAutoBindMap.hasOwnProperty(name)) {
-	    // It's a known autobound function, keep it
-	    return false;
-	  }
-	
-	  if (component[name].__reactBoundArguments !== null) {
-	    // It's a function bound to specific args, keep it
-	    return false;
-	  }
-	
-	  // It's a cached bound method for a function
-	  // that was deleted by user, so we delete it from component.
-	  return true;
-	}
-	
-	function shouldDeleteModernInstanceMethod(component, name) {
-	  var prototype = component.constructor.prototype;
-	
-	  var prototypeDescriptor = Object.getOwnPropertyDescriptor(prototype, name);
-	
-	  if (!prototypeDescriptor || !prototypeDescriptor.get) {
-	    // This is definitely not an autobinding getter
-	    return false;
-	  }
-	
-	  if (prototypeDescriptor.get().length !== component[name].length) {
-	    // The length doesn't match, bail out
-	    return false;
-	  }
-	
-	  // This seems like a method bound using an autobinding getter on the prototype
-	  // Hopefully we won't run into too many false positives.
-	  return true;
-	}
-	
-	function shouldDeleteInstanceMethod(component, name) {
-	  var descriptor = Object.getOwnPropertyDescriptor(component, name);
-	  if (typeof descriptor.value !== 'function') {
-	    // Not a function, or something fancy: bail out
-	    return;
-	  }
-	
-	  if (component.__reactAutoBindMap) {
-	    // Classic
-	    return shouldDeleteClassicInstanceMethod(component, name);
-	  } else {
-	    // Modern
-	    return shouldDeleteModernInstanceMethod(component, name);
-	  }
-	}
-	
-	/**
-	 * Deletes autobound methods from the instance.
-	 *
-	 * For classic React classes, we only delete the methods that no longer exist in map.
-	 * This means the user actually deleted them in code.
-	 *
-	 * For modern classes, we delete methods that exist on prototype with the same length,
-	 * and which have getters on prototype, but are normal values on the instance.
-	 * This is usually an indication that an autobinding decorator is being used,
-	 * and the getter will re-generate the memoized handler on next access.
-	 */
-	function deleteUnknownAutoBindMethods(component) {
-	  var names = Object.getOwnPropertyNames(component);
-	
-	  names.forEach(function (name) {
-	    if (shouldDeleteInstanceMethod(component, name)) {
-	      delete component[name];
-	    }
-	  });
-	}
-
-/***/ },
-/* 134 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.getForceUpdate = exports.createProxy = undefined;
-	
-	var _supportsProtoAssignment = __webpack_require__(69);
-	
-	var _supportsProtoAssignment2 = _interopRequireDefault(_supportsProtoAssignment);
-	
-	var _createClassProxy = __webpack_require__(131);
-	
-	var _createClassProxy2 = _interopRequireDefault(_createClassProxy);
-	
-	var _reactDeepForceUpdate = __webpack_require__(159);
-	
-	var _reactDeepForceUpdate2 = _interopRequireDefault(_reactDeepForceUpdate);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	if (!(0, _supportsProtoAssignment2.default)()) {
-	  console.warn('This JavaScript environment does not support __proto__. ' + 'This means that react-proxy is unable to proxy React components. ' + 'Features that rely on react-proxy, such as react-transform-hmr, ' + 'will not function as expected.');
-	}
-	
-	exports.createProxy = _createClassProxy2.default;
-	exports.getForceUpdate = _reactDeepForceUpdate2.default;
-
-/***/ },
-/* 135 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var baseDifference = __webpack_require__(141),
-	    baseFlatten = __webpack_require__(142),
-	    isArrayLike = __webpack_require__(26),
-	    isObjectLike = __webpack_require__(27),
-	    restParam = __webpack_require__(70);
-	
-	/**
-	 * Creates an array of unique `array` values not included in the other
-	 * provided arrays using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
-	 * for equality comparisons.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @category Array
-	 * @param {Array} array The array to inspect.
-	 * @param {...Array} [values] The arrays of values to exclude.
-	 * @returns {Array} Returns the new array of filtered values.
-	 * @example
-	 *
-	 * _.difference([1, 2, 3], [4, 2]);
-	 * // => [1, 3]
-	 */
-	var difference = restParam(function(array, values) {
-	  return (isObjectLike(array) && isArrayLike(array))
-	    ? baseDifference(array, baseFlatten(values, false, true))
-	    : [];
-	});
-	
-	module.exports = difference;
-
-
-/***/ },
-/* 136 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(global) {var cachePush = __webpack_require__(147),
-	    getNative = __webpack_require__(33);
-	
-	/** Native method references. */
-	var Set = getNative(global, 'Set');
-	
-	/* Native method references for those with the same name as other `lodash` methods. */
-	var nativeCreate = getNative(Object, 'create');
-	
-	/**
-	 *
-	 * Creates a cache object to store unique values.
-	 *
-	 * @private
-	 * @param {Array} [values] The values to cache.
-	 */
-	function SetCache(values) {
-	  var length = values ? values.length : 0;
-	
-	  this.data = { 'hash': nativeCreate(null), 'set': new Set };
-	  while (length--) {
-	    this.push(values[length]);
-	  }
-	}
-	
-	// Add functions to the `Set` cache.
-	SetCache.prototype.push = cachePush;
-	
-	module.exports = SetCache;
-	
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
-
-/***/ },
-/* 137 */
-/***/ function(module, exports) {
-
-	/**
-	 * Appends the elements of `values` to `array`.
-	 *
-	 * @private
-	 * @param {Array} array The array to modify.
-	 * @param {Array} values The values to append.
-	 * @returns {Array} Returns `array`.
-	 */
-	function arrayPush(array, values) {
-	  var index = -1,
-	      length = values.length,
-	      offset = array.length;
-	
-	  while (++index < length) {
-	    array[offset + index] = values[index];
-	  }
-	  return array;
-	}
-	
-	module.exports = arrayPush;
-
-
-/***/ },
-/* 138 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var keys = __webpack_require__(71);
-	
-	/**
-	 * A specialized version of `_.assign` for customizing assigned values without
-	 * support for argument juggling, multiple sources, and `this` binding `customizer`
-	 * functions.
-	 *
-	 * @private
-	 * @param {Object} object The destination object.
-	 * @param {Object} source The source object.
-	 * @param {Function} customizer The function to customize assigned values.
-	 * @returns {Object} Returns `object`.
-	 */
-	function assignWith(object, source, customizer) {
-	  var index = -1,
-	      props = keys(source),
-	      length = props.length;
-	
-	  while (++index < length) {
-	    var key = props[index],
-	        value = object[key],
-	        result = customizer(value, source[key], key, object, source);
-	
-	    if ((result === result ? (result !== value) : (value === value)) ||
-	        (value === undefined && !(key in object))) {
-	      object[key] = result;
-	    }
-	  }
-	  return object;
-	}
-	
-	module.exports = assignWith;
-
-
-/***/ },
-/* 139 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var baseCopy = __webpack_require__(140),
-	    keys = __webpack_require__(71);
-	
-	/**
-	 * The base implementation of `_.assign` without support for argument juggling,
-	 * multiple sources, and `customizer` functions.
-	 *
-	 * @private
-	 * @param {Object} object The destination object.
-	 * @param {Object} source The source object.
-	 * @returns {Object} Returns `object`.
-	 */
-	function baseAssign(object, source) {
-	  return source == null
-	    ? object
-	    : baseCopy(source, keys(source), object);
-	}
-	
-	module.exports = baseAssign;
-
-
-/***/ },
-/* 140 */
-/***/ function(module, exports) {
-
-	/**
-	 * Copies properties of `source` to `object`.
-	 *
-	 * @private
-	 * @param {Object} source The object to copy properties from.
-	 * @param {Array} props The property names to copy.
-	 * @param {Object} [object={}] The object to copy properties to.
-	 * @returns {Object} Returns `object`.
-	 */
-	function baseCopy(source, props, object) {
-	  object || (object = {});
-	
-	  var index = -1,
-	      length = props.length;
-	
-	  while (++index < length) {
-	    var key = props[index];
-	    object[key] = source[key];
-	  }
-	  return object;
-	}
-	
-	module.exports = baseCopy;
-
-
-/***/ },
-/* 141 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var baseIndexOf = __webpack_require__(143),
-	    cacheIndexOf = __webpack_require__(146),
-	    createCache = __webpack_require__(149);
-	
-	/** Used as the size to enable large array optimizations. */
-	var LARGE_ARRAY_SIZE = 200;
-	
-	/**
-	 * The base implementation of `_.difference` which accepts a single array
-	 * of values to exclude.
-	 *
-	 * @private
-	 * @param {Array} array The array to inspect.
-	 * @param {Array} values The values to exclude.
-	 * @returns {Array} Returns the new array of filtered values.
-	 */
-	function baseDifference(array, values) {
-	  var length = array ? array.length : 0,
-	      result = [];
-	
-	  if (!length) {
-	    return result;
-	  }
-	  var index = -1,
-	      indexOf = baseIndexOf,
-	      isCommon = true,
-	      cache = (isCommon && values.length >= LARGE_ARRAY_SIZE) ? createCache(values) : null,
-	      valuesLength = values.length;
-	
-	  if (cache) {
-	    indexOf = cacheIndexOf;
-	    isCommon = false;
-	    values = cache;
-	  }
-	  outer:
-	  while (++index < length) {
-	    var value = array[index];
-	
-	    if (isCommon && value === value) {
-	      var valuesIndex = valuesLength;
-	      while (valuesIndex--) {
-	        if (values[valuesIndex] === value) {
-	          continue outer;
-	        }
-	      }
-	      result.push(value);
-	    }
-	    else if (indexOf(values, value, 0) < 0) {
-	      result.push(value);
-	    }
-	  }
-	  return result;
-	}
-	
-	module.exports = baseDifference;
-
-
-/***/ },
-/* 142 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var arrayPush = __webpack_require__(137),
-	    isArguments = __webpack_require__(45),
-	    isArray = __webpack_require__(46),
-	    isArrayLike = __webpack_require__(26),
-	    isObjectLike = __webpack_require__(27);
-	
-	/**
-	 * The base implementation of `_.flatten` with added support for restricting
-	 * flattening and specifying the start index.
-	 *
-	 * @private
-	 * @param {Array} array The array to flatten.
-	 * @param {boolean} [isDeep] Specify a deep flatten.
-	 * @param {boolean} [isStrict] Restrict flattening to arrays-like objects.
-	 * @param {Array} [result=[]] The initial result value.
-	 * @returns {Array} Returns the new flattened array.
-	 */
-	function baseFlatten(array, isDeep, isStrict, result) {
-	  result || (result = []);
-	
-	  var index = -1,
-	      length = array.length;
-	
-	  while (++index < length) {
-	    var value = array[index];
-	    if (isObjectLike(value) && isArrayLike(value) &&
-	        (isStrict || isArray(value) || isArguments(value))) {
-	      if (isDeep) {
-	        // Recursively flatten arrays (susceptible to call stack limits).
-	        baseFlatten(value, isDeep, isStrict, result);
-	      } else {
-	        arrayPush(result, value);
-	      }
-	    } else if (!isStrict) {
-	      result[result.length] = value;
-	    }
-	  }
-	  return result;
-	}
-	
-	module.exports = baseFlatten;
-
-
-/***/ },
-/* 143 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var indexOfNaN = __webpack_require__(151);
-	
-	/**
-	 * The base implementation of `_.indexOf` without support for binary searches.
-	 *
-	 * @private
-	 * @param {Array} array The array to search.
-	 * @param {*} value The value to search for.
-	 * @param {number} fromIndex The index to search from.
-	 * @returns {number} Returns the index of the matched value, else `-1`.
-	 */
-	function baseIndexOf(array, value, fromIndex) {
-	  if (value !== value) {
-	    return indexOfNaN(array, fromIndex);
-	  }
-	  var index = fromIndex - 1,
-	      length = array.length;
-	
-	  while (++index < length) {
-	    if (array[index] === value) {
-	      return index;
-	    }
-	  }
-	  return -1;
-	}
-	
-	module.exports = baseIndexOf;
-
-
-/***/ },
-/* 144 */
-/***/ function(module, exports) {
-
-	/**
-	 * The base implementation of `_.property` without support for deep paths.
-	 *
-	 * @private
-	 * @param {string} key The key of the property to get.
-	 * @returns {Function} Returns the new function.
-	 */
-	function baseProperty(key) {
-	  return function(object) {
-	    return object == null ? undefined : object[key];
-	  };
-	}
-	
-	module.exports = baseProperty;
-
-
-/***/ },
-/* 145 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var identity = __webpack_require__(158);
-	
-	/**
-	 * A specialized version of `baseCallback` which only supports `this` binding
-	 * and specifying the number of arguments to provide to `func`.
-	 *
-	 * @private
-	 * @param {Function} func The function to bind.
-	 * @param {*} thisArg The `this` binding of `func`.
-	 * @param {number} [argCount] The number of arguments to provide to `func`.
-	 * @returns {Function} Returns the callback.
-	 */
-	function bindCallback(func, thisArg, argCount) {
-	  if (typeof func != 'function') {
-	    return identity;
-	  }
-	  if (thisArg === undefined) {
-	    return func;
-	  }
-	  switch (argCount) {
-	    case 1: return function(value) {
-	      return func.call(thisArg, value);
-	    };
-	    case 3: return function(value, index, collection) {
-	      return func.call(thisArg, value, index, collection);
-	    };
-	    case 4: return function(accumulator, value, index, collection) {
-	      return func.call(thisArg, accumulator, value, index, collection);
-	    };
-	    case 5: return function(value, other, key, object, source) {
-	      return func.call(thisArg, value, other, key, object, source);
-	    };
-	  }
-	  return function() {
-	    return func.apply(thisArg, arguments);
-	  };
-	}
-	
-	module.exports = bindCallback;
-
-
-/***/ },
-/* 146 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var isObject = __webpack_require__(23);
-	
-	/**
-	 * Checks if `value` is in `cache` mimicking the return signature of
-	 * `_.indexOf` by returning `0` if the value is found, else `-1`.
-	 *
-	 * @private
-	 * @param {Object} cache The cache to search.
-	 * @param {*} value The value to search for.
-	 * @returns {number} Returns `0` if `value` is found, else `-1`.
-	 */
-	function cacheIndexOf(cache, value) {
-	  var data = cache.data,
-	      result = (typeof value == 'string' || isObject(value)) ? data.set.has(value) : data.hash[value];
-	
-	  return result ? 0 : -1;
-	}
-	
-	module.exports = cacheIndexOf;
-
-
-/***/ },
-/* 147 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var isObject = __webpack_require__(23);
-	
-	/**
-	 * Adds `value` to the cache.
-	 *
-	 * @private
-	 * @name push
-	 * @memberOf SetCache
-	 * @param {*} value The value to cache.
-	 */
-	function cachePush(value) {
-	  var data = this.data;
-	  if (typeof value == 'string' || isObject(value)) {
-	    data.set.add(value);
-	  } else {
-	    data.hash[value] = true;
-	  }
-	}
-	
-	module.exports = cachePush;
-
-
-/***/ },
-/* 148 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var bindCallback = __webpack_require__(145),
-	    isIterateeCall = __webpack_require__(152),
-	    restParam = __webpack_require__(70);
-	
-	/**
-	 * Creates a `_.assign`, `_.defaults`, or `_.merge` function.
-	 *
-	 * @private
-	 * @param {Function} assigner The function to assign values.
-	 * @returns {Function} Returns the new assigner function.
-	 */
-	function createAssigner(assigner) {
-	  return restParam(function(object, sources) {
-	    var index = -1,
-	        length = object == null ? 0 : sources.length,
-	        customizer = length > 2 ? sources[length - 2] : undefined,
-	        guard = length > 2 ? sources[2] : undefined,
-	        thisArg = length > 1 ? sources[length - 1] : undefined;
-	
-	    if (typeof customizer == 'function') {
-	      customizer = bindCallback(customizer, thisArg, 5);
-	      length -= 2;
-	    } else {
-	      customizer = typeof thisArg == 'function' ? thisArg : undefined;
-	      length -= (customizer ? 1 : 0);
-	    }
-	    if (guard && isIterateeCall(sources[0], sources[1], guard)) {
-	      customizer = length < 3 ? undefined : customizer;
-	      length = 1;
-	    }
-	    while (++index < length) {
-	      var source = sources[index];
-	      if (source) {
-	        assigner(object, source, customizer);
-	      }
-	    }
-	    return object;
-	  });
-	}
-	
-	module.exports = createAssigner;
-
-
-/***/ },
-/* 149 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(global) {var SetCache = __webpack_require__(136),
-	    getNative = __webpack_require__(33);
-	
-	/** Native method references. */
-	var Set = getNative(global, 'Set');
-	
-	/* Native method references for those with the same name as other `lodash` methods. */
-	var nativeCreate = getNative(Object, 'create');
-	
-	/**
-	 * Creates a `Set` cache object to optimize linear searches of large arrays.
-	 *
-	 * @private
-	 * @param {Array} [values] The values to cache.
-	 * @returns {null|Object} Returns the new cache object if `Set` is supported, else `null`.
-	 */
-	function createCache(values) {
-	  return (nativeCreate && Set) ? new SetCache(values) : null;
-	}
-	
-	module.exports = createCache;
-	
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
-
-/***/ },
-/* 150 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var baseProperty = __webpack_require__(144);
-	
-	/**
-	 * Gets the "length" property value of `object`.
-	 *
-	 * **Note:** This function is used to avoid a [JIT bug](https://bugs.webkit.org/show_bug.cgi?id=142792)
-	 * that affects Safari on at least iOS 8.1-8.3 ARM64.
-	 *
-	 * @private
-	 * @param {Object} object The object to query.
-	 * @returns {*} Returns the "length" value.
-	 */
-	var getLength = baseProperty('length');
-	
-	module.exports = getLength;
-
-
-/***/ },
-/* 151 */
-/***/ function(module, exports) {
-
-	/**
-	 * Gets the index at which the first occurrence of `NaN` is found in `array`.
-	 *
-	 * @private
-	 * @param {Array} array The array to search.
-	 * @param {number} fromIndex The index to search from.
-	 * @param {boolean} [fromRight] Specify iterating from right to left.
-	 * @returns {number} Returns the index of the matched `NaN`, else `-1`.
-	 */
-	function indexOfNaN(array, fromIndex, fromRight) {
-	  var length = array.length,
-	      index = fromIndex + (fromRight ? 0 : -1);
-	
-	  while ((fromRight ? index-- : ++index < length)) {
-	    var other = array[index];
-	    if (other !== other) {
-	      return index;
-	    }
-	  }
-	  return -1;
-	}
-	
-	module.exports = indexOfNaN;
-
-
-/***/ },
-/* 152 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var isArrayLike = __webpack_require__(26),
-	    isIndex = __webpack_require__(44),
-	    isObject = __webpack_require__(23);
-	
-	/**
-	 * Checks if the provided arguments are from an iteratee call.
-	 *
-	 * @private
-	 * @param {*} value The potential iteratee value argument.
-	 * @param {*} index The potential iteratee index or key argument.
-	 * @param {*} object The potential iteratee object argument.
-	 * @returns {boolean} Returns `true` if the arguments are from an iteratee call, else `false`.
-	 */
-	function isIterateeCall(value, index, object) {
-	  if (!isObject(object)) {
-	    return false;
-	  }
-	  var type = typeof index;
-	  if (type == 'number'
-	      ? (isArrayLike(object) && isIndex(index, object.length))
-	      : (type == 'string' && index in object)) {
-	    var other = object[index];
-	    return value === value ? (value === other) : (other !== other);
-	  }
-	  return false;
-	}
-	
-	module.exports = isIterateeCall;
-
-
-/***/ },
-/* 153 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var isArguments = __webpack_require__(45),
-	    isArray = __webpack_require__(46),
-	    isIndex = __webpack_require__(44),
-	    isLength = __webpack_require__(34),
-	    keysIn = __webpack_require__(157);
-	
-	/** Used for native method references. */
-	var objectProto = Object.prototype;
-	
-	/** Used to check objects for own properties. */
-	var hasOwnProperty = objectProto.hasOwnProperty;
-	
-	/**
-	 * A fallback implementation of `Object.keys` which creates an array of the
-	 * own enumerable property names of `object`.
-	 *
-	 * @private
-	 * @param {Object} object The object to query.
-	 * @returns {Array} Returns the array of property names.
-	 */
-	function shimKeys(object) {
-	  var props = keysIn(object),
-	      propsLength = props.length,
-	      length = propsLength && object.length;
-	
-	  var allowIndexes = !!length && isLength(length) &&
-	    (isArray(object) || isArguments(object));
-	
-	  var index = -1,
-	      result = [];
-	
-	  while (++index < propsLength) {
-	    var key = props[index];
-	    if ((allowIndexes && isIndex(key, length)) || hasOwnProperty.call(object, key)) {
-	      result.push(key);
-	    }
-	  }
-	  return result;
-	}
-	
-	module.exports = shimKeys;
-
-
-/***/ },
-/* 154 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var isObject = __webpack_require__(23);
-	
-	/** `Object#toString` result references. */
-	var funcTag = '[object Function]';
-	
-	/** Used for native method references. */
-	var objectProto = Object.prototype;
-	
-	/**
-	 * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
-	 * of values.
-	 */
-	var objToString = objectProto.toString;
-	
-	/**
-	 * Checks if `value` is classified as a `Function` object.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
-	 * @example
-	 *
-	 * _.isFunction(_);
-	 * // => true
-	 *
-	 * _.isFunction(/abc/);
-	 * // => false
-	 */
-	function isFunction(value) {
-	  // The use of `Object#toString` avoids issues with the `typeof` operator
-	  // in older versions of Chrome and Safari which return 'function' for regexes
-	  // and Safari 8 which returns 'object' for typed array constructors.
-	  return isObject(value) && objToString.call(value) == funcTag;
-	}
-	
-	module.exports = isFunction;
-
-
-/***/ },
-/* 155 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var isFunction = __webpack_require__(154),
-	    isObjectLike = __webpack_require__(27);
-	
-	/** Used to detect host constructors (Safari > 5). */
-	var reIsHostCtor = /^\[object .+?Constructor\]$/;
-	
-	/** Used for native method references. */
-	var objectProto = Object.prototype;
-	
-	/** Used to resolve the decompiled source of functions. */
-	var fnToString = Function.prototype.toString;
-	
-	/** Used to check objects for own properties. */
-	var hasOwnProperty = objectProto.hasOwnProperty;
-	
-	/** Used to detect if a method is native. */
-	var reIsNative = RegExp('^' +
-	  fnToString.call(hasOwnProperty).replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
-	  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
-	);
-	
-	/**
-	 * Checks if `value` is a native function.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a native function, else `false`.
-	 * @example
-	 *
-	 * _.isNative(Array.prototype.push);
-	 * // => true
-	 *
-	 * _.isNative(_);
-	 * // => false
-	 */
-	function isNative(value) {
-	  if (value == null) {
-	    return false;
-	  }
-	  if (isFunction(value)) {
-	    return reIsNative.test(fnToString.call(value));
-	  }
-	  return isObjectLike(value) && reIsHostCtor.test(value);
-	}
-	
-	module.exports = isNative;
-
-
-/***/ },
-/* 156 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var assignWith = __webpack_require__(138),
-	    baseAssign = __webpack_require__(139),
-	    createAssigner = __webpack_require__(148);
-	
-	/**
-	 * Assigns own enumerable properties of source object(s) to the destination
-	 * object. Subsequent sources overwrite property assignments of previous sources.
-	 * If `customizer` is provided it's invoked to produce the assigned values.
-	 * The `customizer` is bound to `thisArg` and invoked with five arguments:
-	 * (objectValue, sourceValue, key, object, source).
-	 *
-	 * **Note:** This method mutates `object` and is based on
-	 * [`Object.assign`](http://ecma-international.org/ecma-262/6.0/#sec-object.assign).
-	 *
-	 * @static
-	 * @memberOf _
-	 * @alias extend
-	 * @category Object
-	 * @param {Object} object The destination object.
-	 * @param {...Object} [sources] The source objects.
-	 * @param {Function} [customizer] The function to customize assigned values.
-	 * @param {*} [thisArg] The `this` binding of `customizer`.
-	 * @returns {Object} Returns `object`.
-	 * @example
-	 *
-	 * _.assign({ 'user': 'barney' }, { 'age': 40 }, { 'user': 'fred' });
-	 * // => { 'user': 'fred', 'age': 40 }
-	 *
-	 * // using a customizer callback
-	 * var defaults = _.partialRight(_.assign, function(value, other) {
-	 *   return _.isUndefined(value) ? other : value;
-	 * });
-	 *
-	 * defaults({ 'user': 'barney' }, { 'age': 36 }, { 'user': 'fred' });
-	 * // => { 'user': 'barney', 'age': 36 }
-	 */
-	var assign = createAssigner(function(object, source, customizer) {
-	  return customizer
-	    ? assignWith(object, source, customizer)
-	    : baseAssign(object, source);
-	});
-	
-	module.exports = assign;
-
-
-/***/ },
-/* 157 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var isArguments = __webpack_require__(45),
-	    isArray = __webpack_require__(46),
-	    isIndex = __webpack_require__(44),
-	    isLength = __webpack_require__(34),
-	    isObject = __webpack_require__(23);
-	
-	/** Used for native method references. */
-	var objectProto = Object.prototype;
-	
-	/** Used to check objects for own properties. */
-	var hasOwnProperty = objectProto.hasOwnProperty;
-	
-	/**
-	 * Creates an array of the own and inherited enumerable property names of `object`.
-	 *
-	 * **Note:** Non-object values are coerced to objects.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @category Object
-	 * @param {Object} object The object to query.
-	 * @returns {Array} Returns the array of property names.
-	 * @example
-	 *
-	 * function Foo() {
-	 *   this.a = 1;
-	 *   this.b = 2;
-	 * }
-	 *
-	 * Foo.prototype.c = 3;
-	 *
-	 * _.keysIn(new Foo);
-	 * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
-	 */
-	function keysIn(object) {
-	  if (object == null) {
-	    return [];
-	  }
-	  if (!isObject(object)) {
-	    object = Object(object);
-	  }
-	  var length = object.length;
-	  length = (length && isLength(length) &&
-	    (isArray(object) || isArguments(object)) && length) || 0;
-	
-	  var Ctor = object.constructor,
-	      index = -1,
-	      isProto = typeof Ctor == 'function' && Ctor.prototype === object,
-	      result = Array(length),
-	      skipIndexes = length > 0;
-	
-	  while (++index < length) {
-	    result[index] = (index + '');
-	  }
-	  for (var key in object) {
-	    if (!(skipIndexes && isIndex(key, length)) &&
-	        !(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
-	      result.push(key);
-	    }
-	  }
-	  return result;
-	}
-	
-	module.exports = keysIn;
-
-
-/***/ },
-/* 158 */
-/***/ function(module, exports) {
-
-	/**
-	 * This method returns the first argument provided to it.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @category Utility
-	 * @param {*} value Any value.
-	 * @returns {*} Returns `value`.
-	 * @example
-	 *
-	 * var object = { 'user': 'fred' };
-	 *
-	 * _.identity(object) === object;
-	 * // => true
-	 */
-	function identity(value) {
-	  return value;
-	}
-	
-	module.exports = identity;
-
-
-/***/ },
-/* 159 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	exports.__esModule = true;
-	exports["default"] = getForceUpdate;
-	function traverseRenderedChildren(internalInstance, callback, argument) {
-	  callback(internalInstance, argument);
-	
-	  if (internalInstance._renderedComponent) {
-	    traverseRenderedChildren(internalInstance._renderedComponent, callback, argument);
-	  } else {
-	    for (var key in internalInstance._renderedChildren) {
-	      if (internalInstance._renderedChildren.hasOwnProperty(key)) {
-	        traverseRenderedChildren(internalInstance._renderedChildren[key], callback, argument);
-	      }
-	    }
-	  }
-	}
-	
-	function setPendingForceUpdate(internalInstance) {
-	  if (internalInstance._pendingForceUpdate === false) {
-	    internalInstance._pendingForceUpdate = true;
-	  }
-	}
-	
-	function forceUpdateIfPending(internalInstance, React) {
-	  if (internalInstance._pendingForceUpdate === true) {
-	    var publicInstance = internalInstance._instance;
-	    React.Component.prototype.forceUpdate.call(publicInstance);
-	  }
-	}
-	
-	function getForceUpdate(React) {
-	  return function (instance) {
-	    var internalInstance = instance._reactInternalInstance;
-	    traverseRenderedChildren(internalInstance, setPendingForceUpdate);
-	    traverseRenderedChildren(internalInstance, forceUpdateIfPending, React);
-	  };
-	}
-	
-	module.exports = exports["default"];
-
-/***/ },
-/* 160 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -16539,8 +19649,8 @@
 	
 	var ReactMount = __webpack_require__(6);
 	
-	var findDOMNode = __webpack_require__(55);
-	var focusNode = __webpack_require__(102);
+	var findDOMNode = __webpack_require__(48);
+	var focusNode = __webpack_require__(92);
 	
 	var Mixin = {
 	  componentDidMount: function () {
@@ -16561,7 +19671,7 @@
 	module.exports = AutoFocusUtils;
 
 /***/ },
-/* 161 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -16579,11 +19689,11 @@
 	'use strict';
 	
 	var EventConstants = __webpack_require__(16);
-	var EventPropagators = __webpack_require__(29);
+	var EventPropagators = __webpack_require__(25);
 	var ExecutionEnvironment = __webpack_require__(7);
-	var FallbackCompositionState = __webpack_require__(169);
-	var SyntheticCompositionEvent = __webpack_require__(201);
-	var SyntheticInputEvent = __webpack_require__(204);
+	var FallbackCompositionState = __webpack_require__(130);
+	var SyntheticCompositionEvent = __webpack_require__(162);
+	var SyntheticInputEvent = __webpack_require__(165);
 	
 	var keyOf = __webpack_require__(19);
 	
@@ -16971,7 +20081,7 @@
 	module.exports = BeforeInputEventPlugin;
 
 /***/ },
-/* 162 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -16988,14 +20098,14 @@
 	
 	'use strict';
 	
-	var CSSProperty = __webpack_require__(72);
+	var CSSProperty = __webpack_require__(62);
 	var ExecutionEnvironment = __webpack_require__(7);
 	var ReactPerf = __webpack_require__(9);
 	
-	var camelizeStyleName = __webpack_require__(218);
-	var dangerousStyleValue = __webpack_require__(209);
-	var hyphenateStyleName = __webpack_require__(223);
-	var memoizeStringOnly = __webpack_require__(227);
+	var camelizeStyleName = __webpack_require__(179);
+	var dangerousStyleValue = __webpack_require__(170);
+	var hyphenateStyleName = __webpack_require__(184);
+	var memoizeStringOnly = __webpack_require__(188);
 	var warning = __webpack_require__(5);
 	
 	var processStyleName = memoizeStringOnly(function (styleName) {
@@ -17152,7 +20262,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 163 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -17169,15 +20279,15 @@
 	'use strict';
 	
 	var EventConstants = __webpack_require__(16);
-	var EventPluginHub = __webpack_require__(28);
-	var EventPropagators = __webpack_require__(29);
+	var EventPluginHub = __webpack_require__(24);
+	var EventPropagators = __webpack_require__(25);
 	var ExecutionEnvironment = __webpack_require__(7);
-	var ReactUpdates = __webpack_require__(10);
+	var ReactUpdates = __webpack_require__(13);
 	var SyntheticEvent = __webpack_require__(22);
 	
-	var getEventTarget = __webpack_require__(58);
-	var isEventSupported = __webpack_require__(61);
-	var isTextInputElement = __webpack_require__(99);
+	var getEventTarget = __webpack_require__(51);
+	var isEventSupported = __webpack_require__(54);
+	var isTextInputElement = __webpack_require__(89);
 	var keyOf = __webpack_require__(19);
 	
 	var topLevelTypes = EventConstants.topLevelTypes;
@@ -17478,7 +20588,7 @@
 	module.exports = ChangeEventPlugin;
 
 /***/ },
-/* 164 */
+/* 125 */
 /***/ function(module, exports) {
 
 	/**
@@ -17506,7 +20616,7 @@
 	module.exports = ClientReactRootIndex;
 
 /***/ },
-/* 165 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -17525,9 +20635,9 @@
 	
 	var ExecutionEnvironment = __webpack_require__(7);
 	
-	var createNodesFromMarkup = __webpack_require__(220);
-	var emptyFunction = __webpack_require__(14);
-	var getMarkupWrap = __webpack_require__(104);
+	var createNodesFromMarkup = __webpack_require__(181);
+	var emptyFunction = __webpack_require__(15);
+	var getMarkupWrap = __webpack_require__(94);
 	var invariant = __webpack_require__(2);
 	
 	var OPEN_TAG_NAME_EXP = /^(<[^ \/>]+)/;
@@ -17657,7 +20767,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 166 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -17689,7 +20799,7 @@
 	module.exports = DefaultEventPluginOrder;
 
 /***/ },
-/* 167 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -17707,8 +20817,8 @@
 	'use strict';
 	
 	var EventConstants = __webpack_require__(16);
-	var EventPropagators = __webpack_require__(29);
-	var SyntheticMouseEvent = __webpack_require__(38);
+	var EventPropagators = __webpack_require__(25);
+	var SyntheticMouseEvent = __webpack_require__(33);
 	
 	var ReactMount = __webpack_require__(6);
 	var keyOf = __webpack_require__(19);
@@ -17818,7 +20928,7 @@
 	module.exports = EnterLeaveEventPlugin;
 
 /***/ },
-/* 168 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -17835,7 +20945,7 @@
 	'use strict';
 	
 	var EventConstants = __webpack_require__(16);
-	var ReactErrorUtils = __webpack_require__(87);
+	var ReactErrorUtils = __webpack_require__(77);
 	
 	var invariant = __webpack_require__(2);
 	var warning = __webpack_require__(5);
@@ -18026,7 +21136,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 169 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -18046,7 +21156,7 @@
 	var PooledClass = __webpack_require__(18);
 	
 	var assign = __webpack_require__(4);
-	var getTextContentAccessor = __webpack_require__(98);
+	var getTextContentAccessor = __webpack_require__(88);
 	
 	/**
 	 * This helper class stores information about text content of a target node,
@@ -18126,7 +21236,7 @@
 	module.exports = FallbackCompositionState;
 
 /***/ },
-/* 170 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -18361,7 +21471,7 @@
 	module.exports = HTMLDOMPropertyConfig;
 
 /***/ },
-/* 171 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -18377,12 +21487,12 @@
 	
 	'use strict';
 	
-	var ReactDOM = __webpack_require__(78);
-	var ReactDOMServer = __webpack_require__(181);
-	var ReactIsomorphic = __webpack_require__(188);
+	var ReactDOM = __webpack_require__(68);
+	var ReactDOMServer = __webpack_require__(142);
+	var ReactIsomorphic = __webpack_require__(149);
 	
 	var assign = __webpack_require__(4);
-	var deprecated = __webpack_require__(210);
+	var deprecated = __webpack_require__(171);
 	
 	// `version` will be added here by ReactIsomorphic.
 	var React = {};
@@ -18406,7 +21516,7 @@
 	module.exports = React;
 
 /***/ },
-/* 172 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -18422,9 +21532,9 @@
 	
 	'use strict';
 	
-	var ReactInstanceMap = __webpack_require__(30);
+	var ReactInstanceMap = __webpack_require__(26);
 	
-	var findDOMNode = __webpack_require__(55);
+	var findDOMNode = __webpack_require__(48);
 	var warning = __webpack_require__(5);
 	
 	var didWarnKey = '_getDOMNodeDidWarn';
@@ -18448,7 +21558,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 173 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -18467,9 +21577,9 @@
 	
 	var ReactReconciler = __webpack_require__(21);
 	
-	var instantiateReactComponent = __webpack_require__(60);
-	var shouldUpdateReactComponent = __webpack_require__(63);
-	var traverseAllChildren = __webpack_require__(64);
+	var instantiateReactComponent = __webpack_require__(53);
+	var shouldUpdateReactComponent = __webpack_require__(56);
+	var traverseAllChildren = __webpack_require__(57);
 	var warning = __webpack_require__(5);
 	
 	function instantiateChild(childInstances, child, name) {
@@ -18576,7 +21686,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 174 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -18592,20 +21702,20 @@
 	
 	'use strict';
 	
-	var ReactComponentEnvironment = __webpack_require__(51);
+	var ReactComponentEnvironment = __webpack_require__(44);
 	var ReactCurrentOwner = __webpack_require__(17);
 	var ReactElement = __webpack_require__(8);
-	var ReactInstanceMap = __webpack_require__(30);
+	var ReactInstanceMap = __webpack_require__(26);
 	var ReactPerf = __webpack_require__(9);
-	var ReactPropTypeLocations = __webpack_require__(37);
-	var ReactPropTypeLocationNames = __webpack_require__(36);
+	var ReactPropTypeLocations = __webpack_require__(32);
+	var ReactPropTypeLocationNames = __webpack_require__(31);
 	var ReactReconciler = __webpack_require__(21);
-	var ReactUpdateQueue = __webpack_require__(53);
+	var ReactUpdateQueue = __webpack_require__(46);
 	
 	var assign = __webpack_require__(4);
-	var emptyObject = __webpack_require__(32);
+	var emptyObject = __webpack_require__(28);
 	var invariant = __webpack_require__(2);
-	var shouldUpdateReactComponent = __webpack_require__(63);
+	var shouldUpdateReactComponent = __webpack_require__(56);
 	var warning = __webpack_require__(5);
 	
 	function getDeclarationErrorAddendum(component) {
@@ -19276,7 +22386,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 175 */
+/* 136 */
 /***/ function(module, exports) {
 
 	/**
@@ -19331,7 +22441,7 @@
 	module.exports = ReactDOMButton;
 
 /***/ },
-/* 176 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -19350,33 +22460,33 @@
 	
 	'use strict';
 	
-	var AutoFocusUtils = __webpack_require__(160);
-	var CSSPropertyOperations = __webpack_require__(162);
+	var AutoFocusUtils = __webpack_require__(121);
+	var CSSPropertyOperations = __webpack_require__(123);
 	var DOMProperty = __webpack_require__(20);
-	var DOMPropertyOperations = __webpack_require__(48);
+	var DOMPropertyOperations = __webpack_require__(41);
 	var EventConstants = __webpack_require__(16);
-	var ReactBrowserEventEmitter = __webpack_require__(35);
-	var ReactComponentBrowserEnvironment = __webpack_require__(50);
-	var ReactDOMButton = __webpack_require__(175);
-	var ReactDOMInput = __webpack_require__(178);
-	var ReactDOMOption = __webpack_require__(179);
-	var ReactDOMSelect = __webpack_require__(80);
-	var ReactDOMTextarea = __webpack_require__(182);
+	var ReactBrowserEventEmitter = __webpack_require__(30);
+	var ReactComponentBrowserEnvironment = __webpack_require__(43);
+	var ReactDOMButton = __webpack_require__(136);
+	var ReactDOMInput = __webpack_require__(139);
+	var ReactDOMOption = __webpack_require__(140);
+	var ReactDOMSelect = __webpack_require__(70);
+	var ReactDOMTextarea = __webpack_require__(143);
 	var ReactMount = __webpack_require__(6);
-	var ReactMultiChild = __webpack_require__(189);
+	var ReactMultiChild = __webpack_require__(150);
 	var ReactPerf = __webpack_require__(9);
-	var ReactUpdateQueue = __webpack_require__(53);
+	var ReactUpdateQueue = __webpack_require__(46);
 	
 	var assign = __webpack_require__(4);
-	var canDefineProperty = __webpack_require__(40);
-	var escapeTextContentForBrowser = __webpack_require__(41);
+	var canDefineProperty = __webpack_require__(35);
+	var escapeTextContentForBrowser = __webpack_require__(36);
 	var invariant = __webpack_require__(2);
-	var isEventSupported = __webpack_require__(61);
+	var isEventSupported = __webpack_require__(54);
 	var keyOf = __webpack_require__(19);
-	var setInnerHTML = __webpack_require__(42);
-	var setTextContent = __webpack_require__(62);
-	var shallowEqual = __webpack_require__(105);
-	var validateDOMNesting = __webpack_require__(65);
+	var setInnerHTML = __webpack_require__(37);
+	var setTextContent = __webpack_require__(55);
+	var shallowEqual = __webpack_require__(95);
+	var validateDOMNesting = __webpack_require__(58);
 	var warning = __webpack_require__(5);
 	
 	var deleteListener = ReactBrowserEventEmitter.deleteListener;
@@ -20299,7 +23409,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 177 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20317,9 +23427,9 @@
 	'use strict';
 	
 	var ReactElement = __webpack_require__(8);
-	var ReactElementValidator = __webpack_require__(84);
+	var ReactElementValidator = __webpack_require__(74);
 	
-	var mapObject = __webpack_require__(226);
+	var mapObject = __webpack_require__(187);
 	
 	/**
 	 * Create a factory that creates HTML tag elements.
@@ -20482,7 +23592,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 178 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20498,10 +23608,10 @@
 	
 	'use strict';
 	
-	var ReactDOMIDOperations = __webpack_require__(52);
-	var LinkedValueUtils = __webpack_require__(49);
+	var ReactDOMIDOperations = __webpack_require__(45);
+	var LinkedValueUtils = __webpack_require__(42);
 	var ReactMount = __webpack_require__(6);
-	var ReactUpdates = __webpack_require__(10);
+	var ReactUpdates = __webpack_require__(13);
 	
 	var assign = __webpack_require__(4);
 	var invariant = __webpack_require__(2);
@@ -20641,7 +23751,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 179 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -20657,8 +23767,8 @@
 	
 	'use strict';
 	
-	var ReactChildren = __webpack_require__(75);
-	var ReactDOMSelect = __webpack_require__(80);
+	var ReactChildren = __webpack_require__(65);
+	var ReactDOMSelect = __webpack_require__(70);
 	
 	var assign = __webpack_require__(4);
 	var warning = __webpack_require__(5);
@@ -20736,7 +23846,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 180 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -20754,8 +23864,8 @@
 	
 	var ExecutionEnvironment = __webpack_require__(7);
 	
-	var getNodeForCharacterOffset = __webpack_require__(213);
-	var getTextContentAccessor = __webpack_require__(98);
+	var getNodeForCharacterOffset = __webpack_require__(174);
+	var getTextContentAccessor = __webpack_require__(88);
 	
 	/**
 	 * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -20953,7 +24063,7 @@
 	module.exports = ReactDOMSelection;
 
 /***/ },
-/* 181 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -20969,9 +24079,9 @@
 	
 	'use strict';
 	
-	var ReactDefaultInjection = __webpack_require__(83);
-	var ReactServerRendering = __webpack_require__(194);
-	var ReactVersion = __webpack_require__(54);
+	var ReactDefaultInjection = __webpack_require__(73);
+	var ReactServerRendering = __webpack_require__(155);
+	var ReactVersion = __webpack_require__(47);
 	
 	ReactDefaultInjection.inject();
 	
@@ -20984,7 +24094,7 @@
 	module.exports = ReactDOMServer;
 
 /***/ },
-/* 182 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -21000,9 +24110,9 @@
 	
 	'use strict';
 	
-	var LinkedValueUtils = __webpack_require__(49);
-	var ReactDOMIDOperations = __webpack_require__(52);
-	var ReactUpdates = __webpack_require__(10);
+	var LinkedValueUtils = __webpack_require__(42);
+	var ReactDOMIDOperations = __webpack_require__(45);
+	var ReactUpdates = __webpack_require__(13);
 	
 	var assign = __webpack_require__(4);
 	var invariant = __webpack_require__(2);
@@ -21103,7 +24213,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 183 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -21121,11 +24231,11 @@
 	'use strict';
 	
 	var DOMProperty = __webpack_require__(20);
-	var ReactDefaultPerfAnalysis = __webpack_require__(184);
+	var ReactDefaultPerfAnalysis = __webpack_require__(145);
 	var ReactMount = __webpack_require__(6);
 	var ReactPerf = __webpack_require__(9);
 	
-	var performanceNow = __webpack_require__(229);
+	var performanceNow = __webpack_require__(190);
 	
 	function roundFloat(val) {
 	  return Math.floor(val * 100) / 100;
@@ -21345,7 +24455,7 @@
 	module.exports = ReactDefaultPerf;
 
 /***/ },
-/* 184 */
+/* 145 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -21551,7 +24661,7 @@
 	module.exports = ReactDefaultPerfAnalysis;
 
 /***/ },
-/* 185 */
+/* 146 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -21567,7 +24677,7 @@
 	
 	'use strict';
 	
-	var EventPluginHub = __webpack_require__(28);
+	var EventPluginHub = __webpack_require__(24);
 	
 	function runEventQueueInBatch(events) {
 	  EventPluginHub.enqueueEvents(events);
@@ -21594,7 +24704,7 @@
 	module.exports = ReactEventEmitterMixin;
 
 /***/ },
-/* 186 */
+/* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -21611,16 +24721,16 @@
 	
 	'use strict';
 	
-	var EventListener = __webpack_require__(100);
+	var EventListener = __webpack_require__(90);
 	var ExecutionEnvironment = __webpack_require__(7);
 	var PooledClass = __webpack_require__(18);
-	var ReactInstanceHandles = __webpack_require__(24);
+	var ReactInstanceHandles = __webpack_require__(23);
 	var ReactMount = __webpack_require__(6);
-	var ReactUpdates = __webpack_require__(10);
+	var ReactUpdates = __webpack_require__(13);
 	
 	var assign = __webpack_require__(4);
-	var getEventTarget = __webpack_require__(58);
-	var getUnboundedScrollPosition = __webpack_require__(221);
+	var getEventTarget = __webpack_require__(51);
+	var getUnboundedScrollPosition = __webpack_require__(182);
 	
 	var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
 	
@@ -21810,7 +24920,7 @@
 	module.exports = ReactEventListener;
 
 /***/ },
-/* 187 */
+/* 148 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -21827,15 +24937,15 @@
 	'use strict';
 	
 	var DOMProperty = __webpack_require__(20);
-	var EventPluginHub = __webpack_require__(28);
-	var ReactComponentEnvironment = __webpack_require__(51);
-	var ReactClass = __webpack_require__(76);
-	var ReactEmptyComponent = __webpack_require__(85);
-	var ReactBrowserEventEmitter = __webpack_require__(35);
-	var ReactNativeComponent = __webpack_require__(91);
+	var EventPluginHub = __webpack_require__(24);
+	var ReactComponentEnvironment = __webpack_require__(44);
+	var ReactClass = __webpack_require__(66);
+	var ReactEmptyComponent = __webpack_require__(75);
+	var ReactBrowserEventEmitter = __webpack_require__(30);
+	var ReactNativeComponent = __webpack_require__(81);
 	var ReactPerf = __webpack_require__(9);
-	var ReactRootIndex = __webpack_require__(94);
-	var ReactUpdates = __webpack_require__(10);
+	var ReactRootIndex = __webpack_require__(84);
+	var ReactUpdates = __webpack_require__(13);
 	
 	var ReactInjection = {
 	  Component: ReactComponentEnvironment.injection,
@@ -21853,7 +24963,7 @@
 	module.exports = ReactInjection;
 
 /***/ },
-/* 188 */
+/* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -21869,17 +24979,17 @@
 	
 	'use strict';
 	
-	var ReactChildren = __webpack_require__(75);
-	var ReactComponent = __webpack_require__(77);
-	var ReactClass = __webpack_require__(76);
-	var ReactDOMFactories = __webpack_require__(177);
+	var ReactChildren = __webpack_require__(65);
+	var ReactComponent = __webpack_require__(67);
+	var ReactClass = __webpack_require__(66);
+	var ReactDOMFactories = __webpack_require__(138);
 	var ReactElement = __webpack_require__(8);
-	var ReactElementValidator = __webpack_require__(84);
-	var ReactPropTypes = __webpack_require__(93);
-	var ReactVersion = __webpack_require__(54);
+	var ReactElementValidator = __webpack_require__(74);
+	var ReactPropTypes = __webpack_require__(83);
+	var ReactVersion = __webpack_require__(47);
 	
 	var assign = __webpack_require__(4);
-	var onlyChild = __webpack_require__(214);
+	var onlyChild = __webpack_require__(175);
 	
 	var createElement = ReactElement.createElement;
 	var createFactory = ReactElement.createFactory;
@@ -21933,7 +25043,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 189 */
+/* 150 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -21950,14 +25060,14 @@
 	
 	'use strict';
 	
-	var ReactComponentEnvironment = __webpack_require__(51);
-	var ReactMultiChildUpdateTypes = __webpack_require__(90);
+	var ReactComponentEnvironment = __webpack_require__(44);
+	var ReactMultiChildUpdateTypes = __webpack_require__(80);
 	
 	var ReactCurrentOwner = __webpack_require__(17);
 	var ReactReconciler = __webpack_require__(21);
-	var ReactChildReconciler = __webpack_require__(173);
+	var ReactChildReconciler = __webpack_require__(134);
 	
-	var flattenChildren = __webpack_require__(211);
+	var flattenChildren = __webpack_require__(172);
 	
 	/**
 	 * Updating children of a component may trigger recursive updates. The depth is
@@ -22435,7 +25545,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 190 */
+/* 151 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -22532,7 +25642,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 191 */
+/* 152 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -22549,12 +25659,12 @@
 	
 	'use strict';
 	
-	var CallbackQueue = __webpack_require__(47);
+	var CallbackQueue = __webpack_require__(40);
 	var PooledClass = __webpack_require__(18);
-	var ReactBrowserEventEmitter = __webpack_require__(35);
-	var ReactDOMFeatureFlags = __webpack_require__(79);
-	var ReactInputSelection = __webpack_require__(88);
-	var Transaction = __webpack_require__(39);
+	var ReactBrowserEventEmitter = __webpack_require__(30);
+	var ReactDOMFeatureFlags = __webpack_require__(69);
+	var ReactInputSelection = __webpack_require__(78);
+	var Transaction = __webpack_require__(34);
 	
 	var assign = __webpack_require__(4);
 	
@@ -22688,7 +25798,7 @@
 	module.exports = ReactReconcileTransaction;
 
 /***/ },
-/* 192 */
+/* 153 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -22704,7 +25814,7 @@
 	
 	'use strict';
 	
-	var ReactOwner = __webpack_require__(190);
+	var ReactOwner = __webpack_require__(151);
 	
 	var ReactRef = {};
 	
@@ -22771,7 +25881,7 @@
 	module.exports = ReactRef;
 
 /***/ },
-/* 193 */
+/* 154 */
 /***/ function(module, exports) {
 
 	/**
@@ -22799,7 +25909,7 @@
 	module.exports = ReactServerBatchingStrategy;
 
 /***/ },
-/* 194 */
+/* 155 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -22815,16 +25925,16 @@
 	 */
 	'use strict';
 	
-	var ReactDefaultBatchingStrategy = __webpack_require__(82);
+	var ReactDefaultBatchingStrategy = __webpack_require__(72);
 	var ReactElement = __webpack_require__(8);
-	var ReactInstanceHandles = __webpack_require__(24);
-	var ReactMarkupChecksum = __webpack_require__(89);
-	var ReactServerBatchingStrategy = __webpack_require__(193);
-	var ReactServerRenderingTransaction = __webpack_require__(195);
-	var ReactUpdates = __webpack_require__(10);
+	var ReactInstanceHandles = __webpack_require__(23);
+	var ReactMarkupChecksum = __webpack_require__(79);
+	var ReactServerBatchingStrategy = __webpack_require__(154);
+	var ReactServerRenderingTransaction = __webpack_require__(156);
+	var ReactUpdates = __webpack_require__(13);
 	
-	var emptyObject = __webpack_require__(32);
-	var instantiateReactComponent = __webpack_require__(60);
+	var emptyObject = __webpack_require__(28);
+	var instantiateReactComponent = __webpack_require__(53);
 	var invariant = __webpack_require__(2);
 	
 	/**
@@ -22888,7 +25998,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 195 */
+/* 156 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -22906,11 +26016,11 @@
 	'use strict';
 	
 	var PooledClass = __webpack_require__(18);
-	var CallbackQueue = __webpack_require__(47);
-	var Transaction = __webpack_require__(39);
+	var CallbackQueue = __webpack_require__(40);
+	var Transaction = __webpack_require__(34);
 	
 	var assign = __webpack_require__(4);
-	var emptyFunction = __webpack_require__(14);
+	var emptyFunction = __webpack_require__(15);
 	
 	/**
 	 * Provides a `CallbackQueue` queue for collecting `onDOMReady` callbacks
@@ -22980,7 +26090,7 @@
 	module.exports = ReactServerRenderingTransaction;
 
 /***/ },
-/* 196 */
+/* 157 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -23112,7 +26222,7 @@
 	module.exports = SVGDOMPropertyConfig;
 
 /***/ },
-/* 197 */
+/* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -23129,15 +26239,15 @@
 	'use strict';
 	
 	var EventConstants = __webpack_require__(16);
-	var EventPropagators = __webpack_require__(29);
+	var EventPropagators = __webpack_require__(25);
 	var ExecutionEnvironment = __webpack_require__(7);
-	var ReactInputSelection = __webpack_require__(88);
+	var ReactInputSelection = __webpack_require__(78);
 	var SyntheticEvent = __webpack_require__(22);
 	
-	var getActiveElement = __webpack_require__(103);
-	var isTextInputElement = __webpack_require__(99);
+	var getActiveElement = __webpack_require__(93);
+	var isTextInputElement = __webpack_require__(89);
 	var keyOf = __webpack_require__(19);
-	var shallowEqual = __webpack_require__(105);
+	var shallowEqual = __webpack_require__(95);
 	
 	var topLevelTypes = EventConstants.topLevelTypes;
 	
@@ -23318,7 +26428,7 @@
 	module.exports = SelectEventPlugin;
 
 /***/ },
-/* 198 */
+/* 159 */
 /***/ function(module, exports) {
 
 	/**
@@ -23352,7 +26462,7 @@
 	module.exports = ServerReactRootIndex;
 
 /***/ },
-/* 199 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -23369,21 +26479,21 @@
 	'use strict';
 	
 	var EventConstants = __webpack_require__(16);
-	var EventListener = __webpack_require__(100);
-	var EventPropagators = __webpack_require__(29);
+	var EventListener = __webpack_require__(90);
+	var EventPropagators = __webpack_require__(25);
 	var ReactMount = __webpack_require__(6);
-	var SyntheticClipboardEvent = __webpack_require__(200);
+	var SyntheticClipboardEvent = __webpack_require__(161);
 	var SyntheticEvent = __webpack_require__(22);
-	var SyntheticFocusEvent = __webpack_require__(203);
-	var SyntheticKeyboardEvent = __webpack_require__(205);
-	var SyntheticMouseEvent = __webpack_require__(38);
-	var SyntheticDragEvent = __webpack_require__(202);
-	var SyntheticTouchEvent = __webpack_require__(206);
-	var SyntheticUIEvent = __webpack_require__(31);
-	var SyntheticWheelEvent = __webpack_require__(207);
+	var SyntheticFocusEvent = __webpack_require__(164);
+	var SyntheticKeyboardEvent = __webpack_require__(166);
+	var SyntheticMouseEvent = __webpack_require__(33);
+	var SyntheticDragEvent = __webpack_require__(163);
+	var SyntheticTouchEvent = __webpack_require__(167);
+	var SyntheticUIEvent = __webpack_require__(27);
+	var SyntheticWheelEvent = __webpack_require__(168);
 	
-	var emptyFunction = __webpack_require__(14);
-	var getEventCharCode = __webpack_require__(56);
+	var emptyFunction = __webpack_require__(15);
+	var getEventCharCode = __webpack_require__(49);
 	var invariant = __webpack_require__(2);
 	var keyOf = __webpack_require__(19);
 	
@@ -23945,7 +27055,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 200 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -23989,7 +27099,7 @@
 	module.exports = SyntheticClipboardEvent;
 
 /***/ },
-/* 201 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24031,7 +27141,7 @@
 	module.exports = SyntheticCompositionEvent;
 
 /***/ },
-/* 202 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24048,7 +27158,7 @@
 	
 	'use strict';
 	
-	var SyntheticMouseEvent = __webpack_require__(38);
+	var SyntheticMouseEvent = __webpack_require__(33);
 	
 	/**
 	 * @interface DragEvent
@@ -24073,7 +27183,7 @@
 	module.exports = SyntheticDragEvent;
 
 /***/ },
-/* 203 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24090,7 +27200,7 @@
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(31);
+	var SyntheticUIEvent = __webpack_require__(27);
 	
 	/**
 	 * @interface FocusEvent
@@ -24115,7 +27225,7 @@
 	module.exports = SyntheticFocusEvent;
 
 /***/ },
-/* 204 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24158,7 +27268,7 @@
 	module.exports = SyntheticInputEvent;
 
 /***/ },
-/* 205 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24175,11 +27285,11 @@
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(31);
+	var SyntheticUIEvent = __webpack_require__(27);
 	
-	var getEventCharCode = __webpack_require__(56);
-	var getEventKey = __webpack_require__(212);
-	var getEventModifierState = __webpack_require__(57);
+	var getEventCharCode = __webpack_require__(49);
+	var getEventKey = __webpack_require__(173);
+	var getEventModifierState = __webpack_require__(50);
 	
 	/**
 	 * @interface KeyboardEvent
@@ -24248,7 +27358,7 @@
 	module.exports = SyntheticKeyboardEvent;
 
 /***/ },
-/* 206 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24265,9 +27375,9 @@
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(31);
+	var SyntheticUIEvent = __webpack_require__(27);
 	
-	var getEventModifierState = __webpack_require__(57);
+	var getEventModifierState = __webpack_require__(50);
 	
 	/**
 	 * @interface TouchEvent
@@ -24299,7 +27409,7 @@
 	module.exports = SyntheticTouchEvent;
 
 /***/ },
-/* 207 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24316,7 +27426,7 @@
 	
 	'use strict';
 	
-	var SyntheticMouseEvent = __webpack_require__(38);
+	var SyntheticMouseEvent = __webpack_require__(33);
 	
 	/**
 	 * @interface WheelEvent
@@ -24359,7 +27469,7 @@
 	module.exports = SyntheticWheelEvent;
 
 /***/ },
-/* 208 */
+/* 169 */
 /***/ function(module, exports) {
 
 	/**
@@ -24406,7 +27516,7 @@
 	module.exports = adler32;
 
 /***/ },
-/* 209 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24423,7 +27533,7 @@
 	
 	'use strict';
 	
-	var CSSProperty = __webpack_require__(72);
+	var CSSProperty = __webpack_require__(62);
 	
 	var isUnitlessNumber = CSSProperty.isUnitlessNumber;
 	
@@ -24466,7 +27576,7 @@
 	module.exports = dangerousStyleValue;
 
 /***/ },
-/* 210 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -24520,7 +27630,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 211 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -24536,7 +27646,7 @@
 	
 	'use strict';
 	
-	var traverseAllChildren = __webpack_require__(64);
+	var traverseAllChildren = __webpack_require__(57);
 	var warning = __webpack_require__(5);
 	
 	/**
@@ -24574,7 +27684,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 212 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24591,7 +27701,7 @@
 	
 	'use strict';
 	
-	var getEventCharCode = __webpack_require__(56);
+	var getEventCharCode = __webpack_require__(49);
 	
 	/**
 	 * Normalization of deprecated HTML5 `key` values
@@ -24682,7 +27792,7 @@
 	module.exports = getEventKey;
 
 /***/ },
-/* 213 */
+/* 174 */
 /***/ function(module, exports) {
 
 	/**
@@ -24760,7 +27870,7 @@
 	module.exports = getNodeForCharacterOffset;
 
 /***/ },
-/* 214 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -24799,7 +27909,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 215 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24815,7 +27925,7 @@
 	
 	'use strict';
 	
-	var escapeTextContentForBrowser = __webpack_require__(41);
+	var escapeTextContentForBrowser = __webpack_require__(36);
 	
 	/**
 	 * Escapes attribute value to prevent scripting attacks.
@@ -24830,7 +27940,7 @@
 	module.exports = quoteAttributeValueForBrowser;
 
 /***/ },
-/* 216 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24851,7 +27961,7 @@
 	module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ },
-/* 217 */
+/* 178 */
 /***/ function(module, exports) {
 
 	/**
@@ -24888,7 +27998,7 @@
 	module.exports = camelize;
 
 /***/ },
-/* 218 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24905,7 +28015,7 @@
 	
 	'use strict';
 	
-	var camelize = __webpack_require__(217);
+	var camelize = __webpack_require__(178);
 	
 	var msPattern = /^-ms-/;
 	
@@ -24933,7 +28043,7 @@
 	module.exports = camelizeStyleName;
 
 /***/ },
-/* 219 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -24950,7 +28060,7 @@
 	
 	'use strict';
 	
-	var toArray = __webpack_require__(230);
+	var toArray = __webpack_require__(191);
 	
 	/**
 	 * Perform a heuristic test to determine if an object is "array-like".
@@ -25023,7 +28133,7 @@
 	module.exports = createArrayFromMixed;
 
 /***/ },
-/* 220 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -25044,8 +28154,8 @@
 	
 	var ExecutionEnvironment = __webpack_require__(7);
 	
-	var createArrayFromMixed = __webpack_require__(219);
-	var getMarkupWrap = __webpack_require__(104);
+	var createArrayFromMixed = __webpack_require__(180);
+	var getMarkupWrap = __webpack_require__(94);
 	var invariant = __webpack_require__(2);
 	
 	/**
@@ -25113,7 +28223,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 221 */
+/* 182 */
 /***/ function(module, exports) {
 
 	/**
@@ -25156,7 +28266,7 @@
 	module.exports = getUnboundedScrollPosition;
 
 /***/ },
-/* 222 */
+/* 183 */
 /***/ function(module, exports) {
 
 	/**
@@ -25194,7 +28304,7 @@
 	module.exports = hyphenate;
 
 /***/ },
-/* 223 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -25211,7 +28321,7 @@
 	
 	'use strict';
 	
-	var hyphenate = __webpack_require__(222);
+	var hyphenate = __webpack_require__(183);
 	
 	var msPattern = /^ms-/;
 	
@@ -25238,7 +28348,7 @@
 	module.exports = hyphenateStyleName;
 
 /***/ },
-/* 224 */
+/* 185 */
 /***/ function(module, exports) {
 
 	/**
@@ -25266,7 +28376,7 @@
 	module.exports = isNode;
 
 /***/ },
-/* 225 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -25283,7 +28393,7 @@
 	
 	'use strict';
 	
-	var isNode = __webpack_require__(224);
+	var isNode = __webpack_require__(185);
 	
 	/**
 	 * @param {*} object The object to check.
@@ -25296,7 +28406,7 @@
 	module.exports = isTextNode;
 
 /***/ },
-/* 226 */
+/* 187 */
 /***/ function(module, exports) {
 
 	/**
@@ -25352,7 +28462,7 @@
 	module.exports = mapObject;
 
 /***/ },
-/* 227 */
+/* 188 */
 /***/ function(module, exports) {
 
 	/**
@@ -25388,7 +28498,7 @@
 	module.exports = memoizeStringOnly;
 
 /***/ },
-/* 228 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -25416,7 +28526,7 @@
 	module.exports = performance || {};
 
 /***/ },
-/* 229 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -25433,7 +28543,7 @@
 	
 	'use strict';
 	
-	var performance = __webpack_require__(228);
+	var performance = __webpack_require__(189);
 	
 	var performanceNow;
 	
@@ -25455,7 +28565,7 @@
 	module.exports = performanceNow;
 
 /***/ },
-/* 230 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -25518,7 +28628,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 231 */
+/* 192 */
+/***/ function(module, exports) {
+
+
+
+/***/ },
+/* 193 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
