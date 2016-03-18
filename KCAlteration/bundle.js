@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0dea74a6756ddf71faf0"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "39ef3ce73b913a53f502"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -18827,13 +18827,13 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, ReactPropTypes, AltList, Constants, AppAction, ref$, div, button, table, thead, tr, th, a, listTab, listThead, listTheadClass, Content;
+	var React, ReactPropTypes, AltList, Constants, AppAction, ref$, div, button, table, thead, tr, th, a, h4, listTab, listThead, listTheadClass, Content;
 	React = __webpack_require__(3);
 	ReactPropTypes = __webpack_require__(3).PropTypes;
 	AltList = __webpack_require__(107);
 	Constants = __webpack_require__(29);
 	AppAction = __webpack_require__(39);
-	ref$ = React.DOM, div = ref$.div, button = ref$.button, table = ref$.table, thead = ref$.thead, tr = ref$.tr, th = ref$.th, a = ref$.a;
+	ref$ = React.DOM, div = ref$.div, button = ref$.button, table = ref$.table, thead = ref$.thead, tr = ref$.tr, th = ref$.th, a = ref$.a, h4 = ref$.h4;
 	AltList = React.createFactory(AltList);
 	listTab = ["日 (Sun)", "月 (Mon)", "火 (Tue)", "水 (Wed)", "木 (Thu)", "金 (Fri)", "土 (Sat)"];
 	listThead = ["", "", "分類", "装備名", "二番艦"];
@@ -18850,7 +18850,7 @@
 	  },
 	  render: function(){
 	    var i, list, toggle;
-	    return div(null, div({
+	    return div(null, h4(null, "艦これ装備改修表曜日別逆引き"), "更新: 2016/03/07", div({
 	      className: "mdl-tabs mdl-js-tabs mdl-js-ripple-effect"
 	    }, div({
 	      className: "mdl-tabs__tab-bar"
