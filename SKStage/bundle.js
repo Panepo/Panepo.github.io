@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8625cabd451615626ac0"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ad11d6fe3c12668f89cc"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -5561,7 +5561,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".expBonus {\n  color: blue; }\n\n.goldBonus {\n  color: green; }\n\n.mdl-data-table {\n  display: flex; }\n", ""]);
+	exports.push([module.id, ".expBonus {\n  color: blue; }\n\n.goldBonus {\n  color: green; }\n\n.mdl-data-table {\n  width: 100%; }\n", ""]);
 	
 	// exports
 
