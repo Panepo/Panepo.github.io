@@ -77,13 +77,17 @@
 	padding: 20px;
 	width: 170px;
 	margin-left: 50px;
-	margin-top: 70px;
+	margin-top: -52vh;
 	z-index: 100;
 	position: fixed;
 }
 
+.mdl-tabs {
+	margin-bottom: 10px;
+}
+
 .mdl-data-table {
-	display: flex;
+	width: 100%;
 }
 .th0{
 	width: 60px;
@@ -95,10 +99,13 @@
 	width: 110px;
 }
 .th3{
-	width: 200px;
+	width: 230px;
 }
 .th4{
-	width: 400px;
+	width: 110px;
+}
+.th5{
+	width: 200px;
 }
 
 .floating-menu .mdl-button {

@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "39ef3ce73b913a53f502"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "7824004cf04289c23473"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -4203,13 +4203,13 @@
 	var Constants;
 	Constants = {
 	  listAA: ["10cm高角砲＋高射装置", "90mm単装高角砲"],
-	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "水上偵察機", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "探照灯"],
-	  listTypeNumber: ["1", "2", "3", "4", "5", "6", "10", "11", "12", "15", "16", "17", "18"],
+	  listBoat: ["特二式内火艇"],
+	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "水上偵察機", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "上陸用舟艇", "探照灯"],
+	  listTypeNumber: ["1", "2", "3", "4", "5", "6", "10", "11", "12", "15", "16", "17", "18", "19"],
 	  buttonClassActive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
 	  buttonClassInactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent",
 	  TableClass: "mdl-data-table mdl-shadow--2dp",
-	  TabClass: "mdl-tabs__tab",
-	  TabClassActive: "mdl-tabs__tab is-active"
+	  TbodyClass: ["th0", "th1", "th2", "th3", "th4", "th5 mdl-data-table__cell--non-numeric"]
 	};
 	module.exports = Constants;
 	//# sourceMappingURL=D:\Code\GitHub\KCAltTable\node_modules\livescript-loader\index.js!D:\Code\GitHub\KCAltTable\src\constants\constants.ls.map
@@ -13234,6 +13234,123 @@
 			"img": "./img/sit17.png"
 		},
 		{
+			"type": "上陸用舟艇",
+			"name": "大発動艇",
+			"owner": "あきつ丸",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit18.png"
+		},
+		{
+			"type": "上陸用舟艇",
+			"name": "大発動艇",
+			"owner": "皐月改二",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit18.png"
+		},
+		{
+			"type": "上陸用舟艇",
+			"name": "大発動艇",
+			"owner": "阿武隈改二",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit18.png"
+		},
+		{
+			"type": "上陸用舟艇",
+			"name": "大発動艇(八九式中戦車＆陸戦隊)",
+			"owner": "あきつ丸",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit18.png"
+		},
+		{
+			"type": "上陸用舟艇",
+			"name": "大発動艇(八九式中戦車＆陸戦隊)",
+			"owner": "皐月改二",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit18.png"
+		},
+		{
+			"type": "上陸用舟艇",
+			"name": "大発動艇(八九式中戦車＆陸戦隊)",
+			"owner": "阿武隈改二",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit18.png"
+		},
+		{
+			"type": "上陸用舟艇",
+			"name": "特二式内火艇",
+			"owner": "伊58",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit00.png"
+		},
+		{
+			"type": "上陸用舟艇",
+			"name": "特二式内火艇",
+			"owner": "伊8",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit00.png"
+		},
+		{
+			"type": "上陸用舟艇",
+			"name": "特二式内火艇",
+			"owner": "伊401",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit00.png"
+		},
+		{
 			"type": "探照灯",
 			"name": "探照灯",
 			"owner": "暁",
@@ -13244,7 +13361,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "./img/sit18.png"
+			"img": "./img/sit19.png"
 		},
 		{
 			"type": "探照灯",
@@ -13257,7 +13374,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "./img/sit18.png"
+			"img": "./img/sit19.png"
 		},
 		{
 			"type": "探照灯",
@@ -13270,7 +13387,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "./img/sit18.png"
+			"img": "./img/sit19.png"
 		},
 		{
 			"type": "探照灯",
@@ -13283,7 +13400,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "./img/sit18.png"
+			"img": "./img/sit19.png"
 		},
 		{
 			"type": "探照灯",
@@ -13296,7 +13413,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "./img/sit18.png"
+			"img": "./img/sit19.png"
 		},
 		{
 			"type": "探照灯",
@@ -13309,7 +13426,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 0,
-			"img": "./img/sit18.png"
+			"img": "./img/sit19.png"
 		}
 	];
 
@@ -18681,9 +18798,9 @@
 	    var trId;
 	    trId = event.target.id + "tr";
 	    if (event.target.checked) {
-	      document.getElementById(trId).style.color = "blue";
+	      document.getElementById(trId).style.backgroundColor = '#f5f5f5';
 	    } else {
-	      document.getElementById(trId).style.color = "black";
+	      document.getElementById(trId).style.backgroundColor = "transparent";
 	    }
 	  },
 	  render: function(){
@@ -18699,7 +18816,7 @@
 	          key: i,
 	          id: this.props.tableId + i.toString() + "tr"
 	        }, td({
-	          className: "th0"
+	          className: Constants.TbodyClass[0]
 	        }, label({
 	          className: "mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select",
 	          htmlFor: this.props.tableId + i.toString()
@@ -18709,17 +18826,19 @@
 	          className: "mdl-checkbox__input",
 	          onChange: this.handleChange
 	        }, null))), td({
-	          className: "th1"
+	          className: Constants.TbodyClass[1]
 	        }, img({
 	          src: data.img,
 	          height: "25",
 	          width: "25"
 	        }, null)), td({
-	          className: "th2"
+	          className: Constants.TbodyClass[2]
 	        }, data.type), td({
-	          className: "th3"
+	          className: Constants.TbodyClass[3]
 	        }, data.name), td({
-	          className: "th4 mdl-data-table__cell--non-numeric"
+	          className: Constants.TbodyClass[4]
+	        }, data.owner), td({
+	          className: Constants.TbodyClass[5]
 	        }, !deepEq$(data.owner.length, 0, '===') ? img({
 	          src: "./img/" + data.owner + ".jpg",
 	          height: "25",
@@ -18827,7 +18946,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, ReactPropTypes, AltList, Constants, AppAction, ref$, div, button, table, thead, tr, th, a, h4, listTab, listThead, listTheadClass, Content;
+	var React, ReactPropTypes, AltList, Constants, AppAction, ref$, div, button, table, thead, tr, th, a, h4, listTab, listThead, Content;
 	React = __webpack_require__(3);
 	ReactPropTypes = __webpack_require__(3).PropTypes;
 	AltList = __webpack_require__(107);
@@ -18836,8 +18955,7 @@
 	ref$ = React.DOM, div = ref$.div, button = ref$.button, table = ref$.table, thead = ref$.thead, tr = ref$.tr, th = ref$.th, a = ref$.a, h4 = ref$.h4;
 	AltList = React.createFactory(AltList);
 	listTab = ["日 (Sun)", "月 (Mon)", "火 (Tue)", "水 (Wed)", "木 (Thu)", "金 (Fri)", "土 (Sat)"];
-	listThead = ["", "", "分類", "装備名", "二番艦"];
-	listTheadClass = ["th0", "th1", "th2", "th3", "th4 mdl-data-table__cell--non-numeric"];
+	listThead = ["", "", "分類", "装備名", "二番艦", ""];
 	Content = React.createClass({
 	  displayName: "Content",
 	  propTypes: {
@@ -18850,7 +18968,7 @@
 	  },
 	  render: function(){
 	    var i, list, toggle;
-	    return div(null, h4(null, "艦これ装備改修表曜日別逆引き"), "更新: 2016/03/07", div({
+	    return div(null, h4(null, "艦これ装備改修表曜日別逆引き"), "更新: 2016/03/25", div({
 	      className: "mdl-tabs mdl-js-tabs mdl-js-ripple-effect"
 	    }, div({
 	      className: "mdl-tabs__tab-bar"
@@ -18884,9 +19002,9 @@
 	        i = i$;
 	        list = ref$[i$];
 	        results$.push(th({
-	          className: listTheadClass[i],
+	          className: Constants.TbodyClass[i],
 	          key: "thead" + i.toString()
-	        }, void 8, list));
+	        }, list));
 	      }
 	      return results$;
 	    }())))), (function(){
@@ -18955,12 +19073,12 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, ReactPropTypes, Constants, AppAction, ref$, div, span, nav, button, Header;
+	var React, ReactPropTypes, Constants, AppAction, ref$, div, span, nav, button, a, Header;
 	React = __webpack_require__(3);
 	ReactPropTypes = __webpack_require__(3).PropTypes;
 	Constants = __webpack_require__(29);
 	AppAction = __webpack_require__(39);
-	ref$ = React.DOM, div = ref$.div, span = ref$.span, nav = ref$.nav, button = ref$.button;
+	ref$ = React.DOM, div = ref$.div, span = ref$.span, nav = ref$.nav, button = ref$.button, a = ref$.a;
 	Header = React.createClass({
 	  displayName: "Header",
 	  propTypes: {
@@ -19016,6 +19134,16 @@
 	      className: "mdl-layout-title"
 	    }, null), div({
 	      className: "mdl-layout-spacer"
+	    }, null), nav({
+	      className: "mdl-navigation"
+	    }, a({
+	      className: Constants.buttonClassActive,
+	      href: "http://wikiwiki.jp/kancolle/"
+	    }, "Wiki"), a({
+	      className: Constants.buttonClassActive,
+	      href: 'http://wikiwiki.jp/kancolle/?%B2%FE%BD%A4%B9%A9%BE%B3#s_kaisyu'
+	    }, "簡易改修表 "))), div({
+	      className: "demo-ribbon"
 	    }, null)), nav({
 	      className: "floating-menu mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col"
 	    }, this.state.toggleAll === true
@@ -19046,9 +19174,7 @@
 	          }, type)));
 	      }
 	      return results$;
-	    }.call(this))), div({
-	      className: "demo-ribbon"
-	    }, null)));
+	    }.call(this))));
 	  }
 	});
 	module.exports = Header;
@@ -19149,7 +19275,7 @@
 	Constants = __webpack_require__(29);
 	CHANGE_EVENT = 'change';
 	_data = {
-	  toggle: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	  toggle: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 	  day: 0,
 	  output: []
 	};
