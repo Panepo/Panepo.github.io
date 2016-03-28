@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "007f965a5e3bf99726f5"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4ec54992a1cfc8a92587"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -5547,7 +5547,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".floating-menu {\n  border-radius: 2px;\n  padding: 20px;\n  width: 170px;\n  margin-left: 50px;\n  margin-top: -52vh;\n  z-index: 100;\n  position: fixed; }\n\n.floating-menu2 {\n  border-radius: 2px;\n  padding: 20px;\n  width: 170px;\n  margin-left: calc(100% - 237px);\n  margin-top: -52vh;\n  z-index: 100;\n  position: fixed; }\n\n.floating-menu .mdl-button {\n  width: 130px;\n  margin-top: 2px;\n  border-style: solid;\n  border-width: 2px;\n  border-color: #66ff66;\n  border-radius: 2px; }\n\n.menu-bonus-text {\n  text-align: center;\n  margin-top: 10px; }\n\n.menu-bonus-image {\n  padding-left: 15px; }\n", ""]);
+	exports.push([module.id, ".floating-menu {\n  border-radius: 2px;\n  padding: 20px;\n  width: 170px;\n  margin-left: 50px;\n  margin-top: -52vh;\n  z-index: 100;\n  position: fixed; }\n\n.floating-menu2 {\n  border-radius: 2px;\n  padding: 20px;\n  width: 170px;\n  margin-left: calc(100% - 237px);\n  margin-top: -52vh;\n  z-index: 100;\n  position: fixed; }\n\n.floating-menu .mdl-button {\n  width: 130px;\n  margin-top: 2px;\n  border-style: solid;\n  border-width: 2px;\n  border-color: #cc99ff;\n  border-radius: 2px; }\n\n.floating-menu2 .menu-bonus {\n  width: 130px;\n  margin-top: 2px;\n  border-style: solid;\n  border-width: 2px;\n  border-color: #cc99ff;\n  border-radius: 2px; }\n\n.menu-bonus {\n  text-align: center;\n  margin-top: 10px; }\n\n.menu-bonus-text {\n  margin-top: 5px;\n  margin-bottom: 5px; }\n\n.menu-bonus-image {\n  margin-bottom: 5px; }\n", ""]);
 	
 	// exports
 
@@ -5561,7 +5561,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/**\r\n * Copyright 2015 Google Inc. All Rights Reserved.\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the \"License\");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n *\r\n *      http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an \"AS IS\" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\n.demo-ribbon {\n  width: 100%;\n  height: 60vh;\n  background-color: #009900;\n  -webkit-flex-shrink: 0;\n  -ms-flex-negative: 0;\n  flex-shrink: 0; }\n\n.demo-main {\n  margin-top: -55vh;\n  -webkit-flex-shrink: 0;\n  -ms-flex-negative: 0;\n  flex-shrink: 0; }\n\n.demo-header .mdl-layout__header-row {\n  padding-left: 40px; }\n\n.demo-container {\n  max-width: 1600px;\n  width: calc(100% - 16px);\n  margin: 0 auto; }\n\n.demo-content {\n  border-radius: 2px;\n  padding: 80px 56px;\n  margin-bottom: 80px; }\n\n.demo-layout.is-small-screen .demo-content {\n  padding: 40px 28px; }\n\n.demo-content h3 {\n  margin-top: 48px; }\n\n.demo-footer {\n  padding-left: 40px; }\n\n.demo-footer .mdl-mini-footer--link-list a {\n  font-size: 13px; }\n\n#view-source {\n  position: fixed;\n  display: block;\n  right: 0;\n  bottom: 0;\n  margin-right: 40px;\n  margin-bottom: 40px;\n  z-index: 900; }\n", ""]);
+	exports.push([module.id, "/**\r\n * Copyright 2015 Google Inc. All Rights Reserved.\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the \"License\");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n *\r\n *      http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an \"AS IS\" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\n.demo-ribbon {\n  width: 100%;\n  height: 60vh;\n  background-color: #6600cc;\n  -webkit-flex-shrink: 0;\n  -ms-flex-negative: 0;\n  flex-shrink: 0; }\n\n.demo-main {\n  margin-top: -55vh;\n  -webkit-flex-shrink: 0;\n  -ms-flex-negative: 0;\n  flex-shrink: 0; }\n\n.demo-header .mdl-layout__header-row {\n  padding-left: 40px; }\n\n.demo-container {\n  max-width: 1600px;\n  width: calc(100% - 16px);\n  margin: 0 auto; }\n\n.demo-content {\n  border-radius: 2px;\n  padding: 80px 56px;\n  margin-bottom: 80px; }\n\n.demo-layout.is-small-screen .demo-content {\n  padding: 40px 28px; }\n\n.demo-content h3 {\n  margin-top: 48px; }\n\n.demo-footer {\n  padding-left: 40px; }\n\n.demo-footer .mdl-mini-footer--link-list a {\n  font-size: 13px; }\n\n#view-source {\n  position: fixed;\n  display: block;\n  right: 0;\n  bottom: 0;\n  margin-right: 40px;\n  margin-bottom: 40px;\n  z-index: 900; }\n", ""]);
 	
 	// exports
 
@@ -12232,10 +12232,6 @@
 			"image": "22_Keyshia.png"
 		},
 		{
-			"day": 23,
-			"image": "23_Conny.png"
-		},
-		{
 			"day": 24,
 			"image": "24_Rynn.png"
 		},
@@ -12250,10 +12246,6 @@
 		{
 			"day": 27,
 			"image": "27_Yulia.png"
-		},
-		{
-			"day": 28,
-			"image": "00_.png"
 		},
 		{
 			"day": 1,
@@ -12304,18 +12296,6 @@
 			"image": "96_Rippo.png"
 		},
 		{
-			"day": 13,
-			"image": "42_Crea.png"
-		},
-		{
-			"day": 14,
-			"image": "42_Crea.png"
-		},
-		{
-			"day": 15,
-			"image": "00_.png"
-		},
-		{
 			"day": 16,
 			"image": "44_Nikolakopoulou.png"
 		},
@@ -12332,10 +12312,6 @@
 			"image": "99_NM_all.png"
 		},
 		{
-			"day": 29,
-			"image": "88_Elena.png"
-		},
-		{
 			"day": 30,
 			"image": "97_NN_all.png"
 		},
@@ -12348,10 +12324,6 @@
 			"image": "99_NM_all.png"
 		},
 		{
-			"day": 30,
-			"image": "88_Elena.png"
-		},
-		{
 			"day": 31,
 			"image": "97_NN_all.png"
 		},
@@ -12362,10 +12334,6 @@
 		{
 			"day": 31,
 			"image": "99_NM_all.png"
-		},
-		{
-			"day": 31,
-			"image": "88_Elena.png"
 		}
 	];
 
@@ -19285,9 +19253,9 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(11), RootInstanceProvider = __webpack_require__(9), ReactMount = __webpack_require__(5), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, ref$, div, a, Footer;
+	var React, ref$, div, a, small, Footer;
 	React = __webpack_require__(3);
-	ref$ = React.DOM, div = ref$.div, a = ref$.a;
+	ref$ = React.DOM, div = ref$.div, a = ref$.a, small = ref$.small;
 	Footer = React.createClass({
 	  displayName: "Footer",
 	  render: function(){
@@ -19295,9 +19263,9 @@
 	      className: "demo-footer mdl-mini-footer"
 	    }, div({
 	      className: "mdl-mini-footer--left-section"
-	    }, div(null, "『", a({
+	    }, div(null, small(null, "『", a({
 	      href: "http://www.dmm.com/netgame_s/seiken/"
-	    }, "政剣マニフェスティア"), "』(C) DMMゲームズ"), div(null, "「政剣マニフェスティア」から転載された全てのコンテンツの著作権につきましては、権利者様へ帰属します。"), div(null, "Copyright (C) Panepo@Github 2016 All Rights Reserved.")));
+	    }, "政剣マニフェスティア"), "』(C) DMMゲームズ")), div(null, small(null, "「政剣マニフェスティア」から転載された全てのコンテンツの著作権につきましては、権利者様へ帰属します。")), div(null, small(null, "Copyright (C) Panepo@Github 2016 All Rights Reserved."))));
 	  }
 	});
 	module.exports = Footer;
@@ -19336,8 +19304,11 @@
 	      href: "http://wikiwiki.jp/seimani/"
 	    }, "Wiki"), a({
 	      className: Constants.buttonClassActive,
+	      href: "./img/char.jpg"
+	    }, "EXPボーナス日程表"), a({
+	      className: Constants.buttonClassActive,
 	      href: "./img/gift.jpg"
-	    }, "贈り物"))), div({
+	    }, "贈り物表"))), div({
 	      className: "demo-ribbon"
 	    }, null)));
 	  }
@@ -19355,13 +19326,13 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(11), RootInstanceProvider = __webpack_require__(9), ReactMount = __webpack_require__(5), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, ReactPropTypes, Constants, AppAction, Navigation, ref$, div, span, nav, button, img, a;
+	var React, ReactPropTypes, Constants, AppAction, Navigation, ref$, div, span, nav, button, img, a, label;
 	React = __webpack_require__(3);
 	ReactPropTypes = __webpack_require__(3).PropTypes;
 	Constants = __webpack_require__(25);
 	AppAction = __webpack_require__(32);
 	Navigation = __webpack_require__(203);
-	ref$ = React.DOM, div = ref$.div, span = ref$.span, nav = ref$.nav, button = ref$.button, img = ref$.img, a = ref$.a;
+	ref$ = React.DOM, div = ref$.div, span = ref$.span, nav = ref$.nav, button = ref$.button, img = ref$.img, a = ref$.a, label = ref$.label;
 	Navigation = React.createClass({
 	  displayName: "Navigation",
 	  propTypes: {
@@ -19444,11 +19415,11 @@
 	      return results$;
 	    }.call(this)))), nav({
 	      className: "floating-menu2 mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col"
-	    }, div({
+	    }, !deepEq$(this.props.bonus[0].length, 0, '===') ? div({
 	      className: "menu-bonus"
 	    }, div({
 	      className: "menu-bonus-text"
-	    }, '今日EXP 2倍'), !deepEq$(this.props.bonus[0].length, 0, '===') ? (function(){
+	    }, '今日EXP 2倍'), (function(){
 	      var i$, ref$, len$, results$ = [];
 	      for (i$ = 0, len$ = (ref$ = this.props.bonus[0]).length; i$ < len$; ++i$) {
 	        i = i$;
@@ -19460,12 +19431,14 @@
 	          src: "./img/" + bonus.image,
 	          height: "90",
 	          width: "90"
-	        }, null)));
+	        })));
 	      }
 	      return results$;
-	    }.call(this)) : void 8, div({
+	    }.call(this))) : void 8, !deepEq$(this.props.bonus[1].length, 0, '===') ? div({
+	      className: "menu-bonus"
+	    }, div({
 	      className: "menu-bonus-text"
-	    }, '明日EXP 2倍'), !deepEq$(this.props.bonus[1].length, 0, '===') ? (function(){
+	    }, '明日EXP 2倍'), (function(){
 	      var i$, ref$, len$, results$ = [];
 	      for (i$ = 0, len$ = (ref$ = this.props.bonus[1]).length; i$ < len$; ++i$) {
 	        i = i$;
@@ -19477,10 +19450,10 @@
 	          src: "./img/" + bonus.image,
 	          height: "90",
 	          width: "90"
-	        }, null)));
+	        })));
 	      }
 	      return results$;
-	    }.call(this)) : void 8)));
+	    }.call(this))) : void 8));
 	  }
 	});
 	module.exports = Navigation;
