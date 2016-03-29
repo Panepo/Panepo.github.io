@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0d73f28af290f8e9a96c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "07779badb03893d8002b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -19180,8 +19180,8 @@
 	    day: ReactPropTypes.number.isRequired,
 	    output: ReactPropTypes.array.isRequired
 	  },
-	  handleDayChange: function(event){
-	    AppAction.dayChange(parseInt(event.target.id));
+	  handleDayChange: function(day){
+	    AppAction.dayChange(day);
 	  },
 	  render: function(){
 	    var i, list, toggle;
@@ -19200,15 +19200,13 @@
 	          results$.push(button({
 	            className: Constants.buttonClassActive,
 	            key: i,
-	            id: i,
-	            onClick: this.handleDayChange
+	            onClick: this.handleDayChange.bind(null, i)
 	          }, list));
 	        } else {
 	          results$.push(button({
 	            className: Constants.buttonClassInactive,
 	            key: i,
-	            id: i,
-	            onClick: this.handleDayChange
+	            onClick: this.handleDayChange.bind(null, i)
 	          }, list));
 	        }
 	      }
@@ -19344,10 +19342,10 @@
 	      toggleAll: false
 	    };
 	  },
-	  handleToggle: function(event){
+	  handleToggle: function(number){
 	    var toggle, toggleNumber;
 	    toggle = this.props.toggle;
-	    toggleNumber = parseInt(event.target.id.slice(8));
+	    toggleNumber = number;
 	    if (toggle[toggleNumber] === 1) {
 	      toggle[toggleNumber] = 0;
 	    } else {
@@ -19402,14 +19400,12 @@
 	          key: "checkbox" + i.toString()
 	        }, this.props.toggle[i] === 1
 	          ? button({
-	            id: "checkbox" + i.toString(),
 	            className: Constants.buttonClassActive,
-	            onClick: this.handleToggle
+	            onClick: this.handleToggle.bind(null, i)
 	          }, type)
 	          : button({
-	            id: "checkbox" + i.toString(),
 	            className: Constants.buttonClassInactive,
-	            onClick: this.handleToggle
+	            onClick: this.handleToggle.bind(null, i)
 	          }, type)));
 	      }
 	      return results$;
