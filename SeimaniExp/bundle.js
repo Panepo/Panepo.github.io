@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5ad9b8c254ab354a4ef7"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "54b7a25f96777556ee22"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -19311,7 +19311,7 @@
 	      className: "material-icons"
 	    }, "clear")), img({
 	      className: "modal-content",
-	      src: imageGift
+	      src: imageChar
 	    }, null)), div({
 	      className: "modal",
 	      id: "modal2"
@@ -19322,7 +19322,7 @@
 	      className: "material-icons"
 	    }, "clear")), img({
 	      className: "modal-content",
-	      src: imageChar
+	      src: imageGift
 	    }, null)), header({
 	      className: "demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800 mdl-shadow--4dp"
 	    }, div({
