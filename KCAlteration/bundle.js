@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7824004cf04289c23473"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9b24ea17278ba15ced7c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -13143,6 +13143,19 @@
 			"img": "./img/sit16.png"
 		},
 		{
+			"type": "対空機銃",
+			"name": "25mm三連装機銃",
+			"owner": "皐月改二",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit16.png"
+		},
+		{
 			"type": "高射装置",
 			"name": "91式高射装置",
 			"owner": "摩耶",
@@ -18818,7 +18831,7 @@
 	        }, td({
 	          className: Constants.TbodyClass[0]
 	        }, label({
-	          className: "mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select",
+	          className: "table-checkbox mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select",
 	          htmlFor: this.props.tableId + i.toString()
 	        }, input({
 	          type: "checkbox",
@@ -18828,6 +18841,7 @@
 	        }, null))), td({
 	          className: Constants.TbodyClass[1]
 	        }, img({
+	          className: "table-image",
 	          src: data.img,
 	          height: "25",
 	          width: "25"
@@ -18840,6 +18854,7 @@
 	        }, data.owner), td({
 	          className: Constants.TbodyClass[5]
 	        }, !deepEq$(data.owner.length, 0, '===') ? img({
+	          className: "table-image",
 	          src: "./img/" + data.owner + ".jpg",
 	          height: "25",
 	          width: "100"
@@ -19045,13 +19060,13 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, ref$, div, a, Footer;
+	var React, ref$, div, a, footer, Footer;
 	React = __webpack_require__(3);
-	ref$ = React.DOM, div = ref$.div, a = ref$.a;
+	ref$ = React.DOM, div = ref$.div, a = ref$.a, footer = ref$.footer;
 	Footer = React.createClass({
 	  displayName: "Footer",
 	  render: function(){
-	    return div({
+	    return footer({
 	      className: "demo-footer mdl-mini-footer"
 	    }, div({
 	      className: "mdl-mini-footer--left-section"
@@ -19073,12 +19088,12 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, ReactPropTypes, Constants, AppAction, ref$, div, span, nav, button, a, Header;
+	var React, ReactPropTypes, Constants, AppAction, ref$, div, span, nav, button, a, header, Header;
 	React = __webpack_require__(3);
 	ReactPropTypes = __webpack_require__(3).PropTypes;
 	Constants = __webpack_require__(29);
 	AppAction = __webpack_require__(39);
-	ref$ = React.DOM, div = ref$.div, span = ref$.span, nav = ref$.nav, button = ref$.button, a = ref$.a;
+	ref$ = React.DOM, div = ref$.div, span = ref$.span, nav = ref$.nav, button = ref$.button, a = ref$.a, header = ref$.header;
 	Header = React.createClass({
 	  displayName: "Header",
 	  propTypes: {
@@ -19126,7 +19141,7 @@
 	  },
 	  render: function(){
 	    var i, type;
-	    return div(null, div({
+	    return header({
 	      className: "demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800"
 	    }, div({
 	      className: "mdl-layout__header-row"
@@ -19142,9 +19157,7 @@
 	    }, "Wiki"), a({
 	      className: Constants.buttonClassActive,
 	      href: 'http://wikiwiki.jp/kancolle/?%B2%FE%BD%A4%B9%A9%BE%B3#s_kaisyu'
-	    }, "簡易改修表 "))), div({
-	      className: "demo-ribbon"
-	    }, null)), nav({
+	    }, "簡易改修表 "))), nav({
 	      className: "floating-menu mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col"
 	    }, this.state.toggleAll === true
 	      ? button({
@@ -19238,6 +19251,8 @@
 	    }, Header({
 	      toggle: this.state.data.toggle
 	    }, null), div({
+	      className: "demo-ribbon"
+	    }, null), main({
 	      className: "demo-main mdl-layout__content"
 	    }, div({
 	      className: "demo-container mdl-grid"
