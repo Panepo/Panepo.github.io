@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8128c791e1a79fc623d0"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e592f01b16712d8a2820"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3722,7 +3722,7 @@
 	  TbodyClass: ['check', 'name', 'point', 'type', 'exp', 'expM', 'gold', 'goldM']
 	};
 	module.exports = Constants;
-	//# sourceMappingURL=D:\Code\GitHub\SKStage\node_modules\livescript-loader\index.js!D:\Code\GitHub\SKStage\src\constants\constants.ls.map
+	//# sourceMappingURL=E:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!E:\Code\GitHub\SeimaniExp\src\constants\constants.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "constants.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -4514,7 +4514,6 @@
 	function applyToTag(styleElement, obj) {
 		var css = obj.css;
 		var media = obj.media;
-		var sourceMap = obj.sourceMap;
 	
 		if(media) {
 			styleElement.setAttribute("media", media)
@@ -4532,7 +4531,6 @@
 	
 	function updateLink(linkElement, obj) {
 		var css = obj.css;
-		var media = obj.media;
 		var sourceMap = obj.sourceMap;
 	
 		if(sourceMap) {
@@ -4581,7 +4579,7 @@
 	  }
 	};
 	module.exports = AppAction;
-	//# sourceMappingURL=D:\Code\GitHub\SKStage\node_modules\livescript-loader\index.js!D:\Code\GitHub\SKStage\src\actions\AppAction.ls.map
+	//# sourceMappingURL=E:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!E:\Code\GitHub\SeimaniExp\src\actions\AppAction.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppAction.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -5533,7 +5531,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/* The Modal (background) */\n.modal {\n  display: none;\n  /* Hidden by default */\n  position: fixed;\n  /* Stay in place */\n  z-index: 1000;\n  /* Sit on top */\n  padding-top: 100px;\n  /* Location of the box */\n  left: 0;\n  top: 0;\n  width: 100%;\n  /* Full width */\n  height: 100%;\n  /* Full height */\n  overflow: auto;\n  /* Enable scroll if needed */\n  background-color: black;\n  /* Fallback color */\n  background-color: rgba(0, 0, 0, 0.8);\n  /* Black w/ opacity */ }\n\n/* Modal Content (image) */\n.modal-content {\n  margin: auto;\n  display: block;\n  width: 80%; }\n\n/* Add Animation */\n.modal-content {\n  -webkit-animation-name: zoom;\n  -webkit-animation-duration: 0.6s;\n  animation-name: zoom;\n  animation-duration: 0.6s; }\n\n@-webkit-keyframes zoom {\n  from {\n    -webkit-transform: scale(0); }\n  to {\n    -webkit-transform: scale(1); } }\n\n@keyframes zoom {\n  from {\n    transform: scale(0.1); }\n  to {\n    transform: scale(1); } }\n\n/* The Close Button */\n.close {\n  position: absolute;\n  top: 15px;\n  right: 35px;\n  color: #f1f1f1;\n  font-size: 40px;\n  font-weight: bold;\n  transition: 0.3s; }\n\n.close:hover,\n.close:focus {\n  color: #bbb;\n  text-decoration: none;\n  cursor: pointer; }\n\n/* 100% Image Width on Smaller Screens */\n@media only screen and (max-width: 1400px) {\n  .modal-content {\n    width: 100%; } }\n", ""]);
+	exports.push([module.id, "/* The Modal (background) */\n.modal {\n  position: fixed;\n  /* Stay in place */\n  z-index: 1000;\n  /* Sit on top */\n  padding-top: 100px;\n  /* Location of the box */\n  left: 0;\n  top: 0;\n  width: 100%;\n  /* Full width */\n  height: 100%;\n  /* Full height */\n  overflow: auto;\n  /* Enable scroll if needed */\n  background-color: black;\n  /* Fallback color */\n  background-color: rgba(0, 0, 0, 0.8);\n  /* Black w/ opacity */ }\n\n/* Modal Content (image) */\n.modal-content {\n  margin: auto;\n  display: block;\n  width: 80%; }\n\n/* Add Animation */\n.modal-content {\n  -webkit-animation-name: zoom;\n  -webkit-animation-duration: 0.6s;\n  animation-name: zoom;\n  animation-duration: 0.6s; }\n\n@-webkit-keyframes zoom {\n  from {\n    -webkit-transform: scale(0); }\n  to {\n    -webkit-transform: scale(1); } }\n\n@keyframes zoom {\n  from {\n    transform: scale(0.1); }\n  to {\n    transform: scale(1); } }\n\n/* The Close Button */\n.close {\n  position: absolute;\n  top: 15px;\n  right: 35px;\n  color: #f1f1f1;\n  font-size: 40px;\n  font-weight: bold;\n  transition: 0.3s; }\n\n.close:hover,\n.close:focus {\n  color: #bbb;\n  text-decoration: none;\n  cursor: pointer; }\n\n/* 100% Image Width on Smaller Screens */\n@media only screen and (max-width: 1400px) {\n  .modal-content {\n    width: 100%; } }\n", ""]);
 	
 	// exports
 
@@ -6533,7 +6531,7 @@
 	
 	'use strict';
 	
-	module.exports = '0.14.7';
+	module.exports = '0.14.8';
 
 /***/ },
 /* 55 */
@@ -7626,7 +7624,7 @@
 	  dayChange: null,
 	  sortChange: null
 	});
-	//# sourceMappingURL=D:\Code\GitHub\SKStage\node_modules\livescript-loader\index.js!D:\Code\GitHub\SKStage\src\constants\ConstActions.ls.map
+	//# sourceMappingURL=E:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!E:\Code\GitHub\SeimaniExp\src\constants\ConstActions.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConstActions.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -7641,7 +7639,7 @@
 	var Dispatcher;
 	Dispatcher = __webpack_require__(103).Dispatcher;
 	module.exports = new Dispatcher();
-	//# sourceMappingURL=D:\Code\GitHub\SKStage\node_modules\livescript-loader\index.js!D:\Code\GitHub\SKStage\src\dispatcher\AppDispatcher.ls.map
+	//# sourceMappingURL=E:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!E:\Code\GitHub\SeimaniExp\src\dispatcher\AppDispatcher.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppDispatcher.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -10235,6 +10233,10 @@
 	  }
 	};
 	
+	function registerNullComponentID() {
+	  ReactEmptyComponentRegistry.registerNullComponentID(this._rootNodeID);
+	}
+	
 	var ReactEmptyComponent = function (instantiate) {
 	  this._currentElement = null;
 	  this._rootNodeID = null;
@@ -10243,7 +10245,7 @@
 	assign(ReactEmptyComponent.prototype, {
 	  construct: function (element) {},
 	  mountComponent: function (rootID, transaction, context) {
-	    ReactEmptyComponentRegistry.registerNullComponentID(rootID);
+	    transaction.getReactMountReady().enqueue(registerNullComponentID, this);
 	    this._rootNodeID = rootID;
 	    return ReactReconciler.mountComponent(this._renderedComponent, rootID, transaction, context);
 	  },
@@ -19153,7 +19155,7 @@
 	React = __webpack_require__(3);
 	SKStageApp = __webpack_require__(119);
 	ReactDOM.render(React.createElement(SKStageApp, null), document.getElementById("SKStageApp"));
-	//# sourceMappingURL=D:\Code\GitHub\SKStage\node_modules\livescript-loader\index.js!D:\Code\GitHub\SKStage\src\app.ls.map
+	//# sourceMappingURL=E:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!E:\Code\GitHub\SeimaniExp\src\app.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "app.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19239,7 +19241,7 @@
 	  }
 	});
 	module.exports = Content;
-	//# sourceMappingURL=D:\Code\GitHub\SKStage\node_modules\livescript-loader\index.js!D:\Code\GitHub\SKStage\src\components\Content.react.ls.map
+	//# sourceMappingURL=E:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!E:\Code\GitHub\SeimaniExp\src\components\Content.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Content.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19267,7 +19269,7 @@
 	  }
 	});
 	module.exports = Footer;
-	//# sourceMappingURL=D:\Code\GitHub\SKStage\node_modules\livescript-loader\index.js!D:\Code\GitHub\SKStage\src\components\Footer.react.ls.map
+	//# sourceMappingURL=E:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!E:\Code\GitHub\SeimaniExp\src\components\Footer.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Footer.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19293,20 +19295,42 @@
 	    toggle: ReactPropTypes.array.isRequired,
 	    bonus: ReactPropTypes.array.isRequired
 	  },
+	  getInitialState: function(){
+	    return {
+	      modal1Display: false,
+	      modal2Display: false
+	    };
+	  },
 	  handleClick: function(input){
-	    var target;
-	    target = document.getElementById(input);
-	    target.style.display = "block";
+	    switch (input) {
+	    case "modal1":
+	      this.setState({
+	        modal1Display: true
+	      });
+	      break;
+	    case "modal2":
+	      this.setState({
+	        modal2Display: true
+	      });
+	    }
 	  },
 	  handleClose: function(input){
-	    var target;
-	    target = document.getElementById(input);
-	    target.style.display = "none";
+	    switch (input) {
+	    case "modal1":
+	      this.setState({
+	        modal1Display: false
+	      });
+	      break;
+	    case "modal2":
+	      this.setState({
+	        modal2Display: false
+	      });
+	    }
 	  },
 	  render: function(){
 	    return header({
 	      className: "demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800"
-	    }, div({
+	    }, this.state.modal1Display === true ? div({
 	      className: "modal",
 	      id: "modal1"
 	    }, button({
@@ -19317,7 +19341,7 @@
 	    }, "clear")), img({
 	      className: "modal-content",
 	      src: "./img/char.jpg"
-	    }, null)), div({
+	    }, null)) : void 8, this.state.modal2Display === true ? div({
 	      className: "modal",
 	      id: "modal2"
 	    }, button({
@@ -19328,7 +19352,7 @@
 	    }, "clear")), img({
 	      className: "modal-content",
 	      src: "./img/gift.jpg"
-	    }, null)), div({
+	    }, null)) : void 8, div({
 	      className: "mdl-layout__header-row"
 	    }, span({
 	      className: "mdl-layout-title"
@@ -19352,7 +19376,7 @@
 	  }
 	});
 	module.exports = Header;
-	//# sourceMappingURL=D:\Code\GitHub\SKStage\node_modules\livescript-loader\index.js!D:\Code\GitHub\SKStage\src\components\Header.react.ls.map
+	//# sourceMappingURL=E:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!E:\Code\GitHub\SeimaniExp\src\components\Header.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Header.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19577,7 +19601,7 @@
 	    return result;
 	  }
 	}
-	//# sourceMappingURL=D:\Code\GitHub\SKStage\node_modules\livescript-loader\index.js!D:\Code\GitHub\SKStage\src\components\Navigation.react.ls.map
+	//# sourceMappingURL=E:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!E:\Code\GitHub\SeimaniExp\src\components\Navigation.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Navigation.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19589,7 +19613,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(11), RootInstanceProvider = __webpack_require__(9), ReactMount = __webpack_require__(5), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, Header, Footer, Content, AppStore, AppAction, SKStageApp, ref$, div, table, thead, tbody, th, tr, td, label, input, main, Navigation;
+	var React, Header, Footer, Content, AppStore, AppAction, SKStageApp, ref$, div, table, thead, tbody, th, tr, td, label, input, main;
 	React = __webpack_require__(3);
 	Header = __webpack_require__(117);
 	Footer = __webpack_require__(116);
@@ -19601,7 +19625,6 @@
 	Header = React.createFactory(Header);
 	Footer = React.createFactory(Footer);
 	Content = React.createFactory(Content);
-	Navigation = React.createFactory(Navigation);
 	SKStageApp = React.createClass({
 	  displayName: "SKStageApp",
 	  getInitialState: function(){
@@ -19644,7 +19667,7 @@
 	  }
 	});
 	module.exports = SKStageApp;
-	//# sourceMappingURL=D:\Code\GitHub\SKStage\node_modules\livescript-loader\index.js!D:\Code\GitHub\SKStage\src\components\SKStageApp.react.ls.map
+	//# sourceMappingURL=E:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!E:\Code\GitHub\SeimaniExp\src\components\SKStageApp.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "SKStageApp.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19817,7 +19840,7 @@
 	  }
 	});
 	module.exports = StageList;
-	//# sourceMappingURL=D:\Code\GitHub\SKStage\node_modules\livescript-loader\index.js!D:\Code\GitHub\SKStage\src\components\StageList.react.ls.map
+	//# sourceMappingURL=E:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!E:\Code\GitHub\SeimaniExp\src\components\StageList.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "StageList.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19979,7 +20002,7 @@
 	  }
 	});
 	module.exports = AppStore;
-	//# sourceMappingURL=D:\Code\GitHub\SKStage\node_modules\livescript-loader\index.js!D:\Code\GitHub\SKStage\src\stores\AppStore.ls.map
+	//# sourceMappingURL=E:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!E:\Code\GitHub\SeimaniExp\src\stores\AppStore.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppStore.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
