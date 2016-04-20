@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "095806b68b9f9be94c76"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1287a19a0279a425aae1"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3715,14 +3715,15 @@
 	Constants = {
 	  listTab: ["日 (Sun)", "月 (Mon)", "火 (Tue)", "水 (Wed)", "木 (Thu)", "金 (Fri)", "土 (Sat)"],
 	  listThead: ["", "マップ", "モチベ", "武器別", "経験値", "経験値効率", "ゴールド", "ゴールド効率"],
-	  listStage: ["戦挙区1-N", "戦挙区1-H", "戦挙区2-N", "戦挙区2-H", "戦挙区3-N", "戦挙区3-H"],
+	  listStage: ["戦挙区1-N", "戦挙区1-H", "戦挙区2-N", "戦挙区2-H", "戦挙区2-T", "戦挙区3-N", "戦挙区3-H"],
+	  updateTime: "2016/04/20",
 	  buttonClassActive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
 	  buttonClassInactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent",
 	  TableClass: "mdl-data-table mdl-shadow--2dp",
 	  TbodyClass: ['check', 'name', 'point', 'type', 'exp', 'expM', 'gold', 'goldM']
 	};
 	module.exports = Constants;
-	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src\constants\constants.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src_flux\constants\constants.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "constants.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -4579,7 +4580,7 @@
 	  }
 	};
 	module.exports = AppAction;
-	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src\actions\AppAction.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src_flux\actions\AppAction.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppAction.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -7624,7 +7625,7 @@
 	  dayChange: null,
 	  sortChange: null
 	});
-	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src\constants\ConstActions.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src_flux\constants\ConstActions.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConstActions.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -7639,7 +7640,7 @@
 	var Dispatcher;
 	Dispatcher = __webpack_require__(103).Dispatcher;
 	module.exports = new Dispatcher();
-	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src\dispatcher\AppDispatcher.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src_flux\dispatcher\AppDispatcher.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppDispatcher.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -13495,6 +13496,144 @@
 			"title": "美しき、毒"
 		},
 		{
+			"0": "0",
+			"1": "0",
+			"2": "0",
+			"3": "0",
+			"4": "0",
+			"5": "2",
+			"6": "1",
+			"stage": 2,
+			"diff": "T",
+			"name": "T2-1",
+			"point": 37,
+			"type": "重装",
+			"exp": 3826,
+			"exp12": 4591,
+			"expM": 103.41,
+			"exp12M": 124.09,
+			"gold": 4130,
+			"gold12": 4956,
+			"goldM": 111.62,
+			"gold12M": 133.95,
+			"title": "真の苦難、トンデモ条例"
+		},
+		{
+			"0": "0",
+			"1": "2",
+			"2": "1",
+			"3": "0",
+			"4": "0",
+			"5": "0",
+			"6": "0",
+			"stage": 2,
+			"diff": "T",
+			"name": "T2-G",
+			"point": 37,
+			"type": "近接",
+			"exp": 3928,
+			"exp12": 4712,
+			"expM": 106.16,
+			"exp12M": 127.36,
+			"gold": 3950,
+			"gold12": 4740,
+			"goldM": 106.76,
+			"gold12M": 128.11,
+			"title": "砦をめぐる攻防"
+		},
+		{
+			"0": "1",
+			"1": "0",
+			"2": "0",
+			"3": "0",
+			"4": "0",
+			"5": "0",
+			"6": "2",
+			"stage": 2,
+			"diff": "T",
+			"name": "T2-2",
+			"point": 38,
+			"type": "射撃",
+			"exp": 4059,
+			"exp12": 4870,
+			"expM": 106.82,
+			"exp12M": 128.16,
+			"gold": 4220,
+			"gold12": 5064,
+			"goldM": 111.05,
+			"gold12M": 133.26,
+			"title": "条例文"
+		},
+		{
+			"0": "2",
+			"1": "1",
+			"2": "0",
+			"3": "0",
+			"4": "0",
+			"5": "0",
+			"6": "0",
+			"stage": 2,
+			"diff": "T",
+			"name": "T2-A",
+			"point": 38,
+			"type": "近接",
+			"exp": 4000,
+			"exp12": 4800,
+			"expM": 105.26,
+			"exp12M": 126.32,
+			"gold": 4250,
+			"gold12": 5100,
+			"goldM": 111.84,
+			"gold12M": 134.21,
+			"title": "ヒャッキ・ヤトー"
+		},
+		{
+			"0": "0",
+			"1": "2",
+			"2": "1",
+			"3": "0",
+			"4": "0",
+			"5": "0",
+			"6": "0",
+			"stage": 2,
+			"diff": "T",
+			"name": "T2-3",
+			"point": 39,
+			"type": "近接",
+			"exp": 4311,
+			"exp12": 5173,
+			"expM": 110.54,
+			"exp12M": 132.64,
+			"gold": 4210,
+			"gold12": 5052,
+			"goldM": 107.95,
+			"gold12M": 129.54,
+			"title": "元凶"
+		},
+		{
+			"0": "0",
+			"1": "0",
+			"2": "2",
+			"3": "1",
+			"4": "0",
+			"5": "0",
+			"6": "0",
+			"stage": 2,
+			"diff": "T",
+			"name": "T2-B",
+			"point": 40,
+			"type": "重装",
+			"exp": 4288,
+			"exp12": 5145,
+			"expM": 107.2,
+			"exp12M": 128.63,
+			"gold": 4500,
+			"gold12": 5400,
+			"goldM": 112.5,
+			"gold12M": 135,
+			"title": "包囲網"
+		},
+		{
 			"0": "1",
 			"1": "0",
 			"2": "0",
@@ -19293,7 +19432,7 @@
 	React = __webpack_require__(3);
 	SKStageApp = __webpack_require__(119);
 	ReactDOM.render(React.createElement(SKStageApp, null), document.getElementById("SKStageApp"));
-	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src\app.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src_flux\app.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "app.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19333,7 +19472,7 @@
 	      className: "mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"
 	    }, null), div({
 	      className: "content demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col"
-	    }, h4(null, "政剣マニフェスティア戦挙区効率表"), "更新: 2016/04/13", div({
+	    }, h4(null, "政剣マニフェスティア戦挙区効率表"), "更新: ", Constants.updateTime, div({
 	      className: "mdl-tabs mdl-js-tabs mdl-js-ripple-effect"
 	    }, div({
 	      className: "mdl-tabs__tab-bar"
@@ -19385,7 +19524,7 @@
 	  }
 	});
 	module.exports = Content;
-	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src\components\Content.react.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src_flux\components\Content.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Content.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19413,7 +19552,7 @@
 	  }
 	});
 	module.exports = Footer;
-	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src\components\Footer.react.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src_flux\components\Footer.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Footer.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19520,7 +19659,7 @@
 	  }
 	});
 	module.exports = Header;
-	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src\components\Header.react.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src_flux\components\Header.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Header.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19745,7 +19884,7 @@
 	    return result;
 	  }
 	}
-	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src\components\Navigation.react.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src_flux\components\Navigation.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Navigation.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19803,7 +19942,7 @@
 	  }
 	});
 	module.exports = SKStageApp;
-	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src\components\SKStageApp.react.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src_flux\components\SKStageApp.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "SKStageApp.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19976,7 +20115,7 @@
 	  }
 	});
 	module.exports = StageList;
-	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src\components\StageList.react.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src_flux\components\StageList.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "StageList.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19988,7 +20127,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(11), RootInstanceProvider = __webpack_require__(9), ReactMount = __webpack_require__(5), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var lokijs, EventEmitter, assign, AppDispatcher, ConstActions, Constants, StageData, CharData, CHANGE_EVENT, db, dbStage, i$, len$, data, dbChar, _data, today, localoffset, destoffset, offset, stageTime, stageDay, charTime, charDay, bonusToday, bonusTomorrow, stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageThirdN, stageThirdH, dayChange, toggleChange, sortChange, AppStore;
+	var lokijs, EventEmitter, assign, AppDispatcher, ConstActions, Constants, StageData, CharData, CHANGE_EVENT, db, dbStage, i$, len$, data, dbChar, _data, today, localoffset, destoffset, offset, stageTime, stageDay, charTime, charDay, bonusToday, bonusTomorrow, stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, dayChange, toggleChange, sortChange, AppStore;
 	lokijs = __webpack_require__(110);
 	EventEmitter = __webpack_require__(211).EventEmitter;
 	assign = __webpack_require__(111);
@@ -20012,7 +20151,7 @@
 	_data = {
 	  day: 0,
 	  output: [],
-	  toggle: [0, 0, 0, 0, 0, 1],
+	  toggle: [0, 0, 0, 0, 0, 0, 1],
 	  bonus: []
 	};
 	today = new Date();
@@ -20057,6 +20196,11 @@
 	}).find({
 	  'diff': 'H'
 	}).simplesort('name').data();
+	stageSecondT = dbStage.chain().find({
+	  'stage': 2
+	}).find({
+	  'diff': 'T'
+	}).simplesort('name').data();
 	stageThirdN = dbStage.chain().find({
 	  'stage': 3
 	}).find({
@@ -20067,7 +20211,7 @@
 	}).find({
 	  'diff': 'H'
 	}).simplesort('name').data();
-	_data.output = [stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageThirdN, stageThirdH];
+	_data.output = [stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH];
 	dayChange = function(day){
 	  _data.day = day;
 	};
@@ -20075,7 +20219,7 @@
 	  _data.toggle = toggle;
 	};
 	sortChange = function(sortValue){
-	  var stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageThirdN, stageThirdH;
+	  var stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH;
 	  stageFirstN = dbStage.chain().find({
 	    'stage': 1
 	  }).find({
@@ -20096,6 +20240,11 @@
 	  }).find({
 	    'diff': 'H'
 	  }).simplesort(sortValue).data();
+	  stageSecondT = dbStage.chain().find({
+	    'stage': 2
+	  }).find({
+	    'diff': 'T'
+	  }).simplesort(sortValue).data();
 	  stageThirdN = dbStage.chain().find({
 	    'stage': 3
 	  }).find({
@@ -20106,7 +20255,7 @@
 	  }).find({
 	    'diff': 'H'
 	  }).simplesort(sortValue).data();
-	  _data.output = [stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageThirdN, stageThirdH];
+	  _data.output = [stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH];
 	};
 	AppStore = assign({}, EventEmitter.prototype, {
 	  getData: function(){
@@ -20138,7 +20287,7 @@
 	  }
 	});
 	module.exports = AppStore;
-	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src\stores\AppStore.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src_flux\stores\AppStore.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppStore.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
