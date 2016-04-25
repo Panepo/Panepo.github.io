@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1287a19a0279a425aae1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "88b107b6016cfd0e7e4c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -4577,6 +4577,12 @@
 	      actionType: ConstActions.sortChange,
 	      sortValue: sortValue
 	    });
+	  },
+	  typeChange: function(charType){
+	    AppDispatcher.dispatch({
+	      actionType: ConstActions.typeChange,
+	      charType: charType
+	    });
 	  }
 	};
 	module.exports = AppAction;
@@ -5518,7 +5524,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".mdl-tabs .mdl-tabs__tab-bar {\n  margin-bottom: 10px; }\n", ""]);
+	exports.push([module.id, "/**\r\n * Copyright 2015 Google Inc. All Rights Reserved.\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the \"License\");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n *\r\n *      http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an \"AS IS\" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\n.demo-ribbon {\n  width: 100%;\n  height: 60vh;\n  background: #99ccff;\n  /* For browsers that do not support gradients */\n  background: -webkit-linear-gradient(left top, #99ccff, #00ffcc);\n  /* For Safari 5.1 to 6.0 */\n  background: -o-linear-gradient(bottom right, #99ccff, #00ffcc);\n  /* For Opera 11.1 to 12.0 */\n  background: -moz-linear-gradient(bottom right, #99ccff, #00ffcc);\n  /* For Firefox 3.6 to 15 */\n  background: linear-gradient(to bottom right, #99ccff, #00ffcc);\n  /* Standard syntax */\n  -webkit-flex-shrink: 0;\n  -ms-flex-negative: 0;\n  flex-shrink: 0; }\n\n.demo-main {\n  margin-top: -55vh;\n  -webkit-flex-shrink: 0;\n  -ms-flex-negative: 0;\n  flex-shrink: 0; }\n\n.demo-header .mdl-layout__header-row {\n  padding-left: 40px; }\n\n.demo-container {\n  max-width: 1600px;\n  width: calc(100% - 16px);\n  margin: 0 auto; }\n\n.demo-content {\n  border-radius: 2px;\n  padding: 80px 56px;\n  margin-bottom: 80px; }\n\n.demo-layout.is-small-screen .demo-content {\n  padding: 40px 28px; }\n\n.demo-content h3 {\n  margin-top: 48px; }\n\n.demo-footer {\n  padding-left: 40px; }\n\n.demo-footer .mdl-mini-footer--link-list a {\n  font-size: 13px; }\n\n#view-source {\n  position: fixed;\n  display: block;\n  right: 0;\n  bottom: 0;\n  margin-right: 40px;\n  margin-bottom: 40px;\n  z-index: 900; }\n", ""]);
 	
 	// exports
 
@@ -5532,7 +5538,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/* The Modal (background) */\n.modal {\n  position: fixed;\n  /* Stay in place */\n  z-index: 1000;\n  /* Sit on top */\n  padding-top: 100px;\n  /* Location of the box */\n  left: 0;\n  top: 0;\n  width: 100%;\n  /* Full width */\n  height: 100%;\n  /* Full height */\n  overflow: auto;\n  /* Enable scroll if needed */\n  background-color: black;\n  /* Fallback color */\n  background-color: rgba(0, 0, 0, 0.8);\n  /* Black w/ opacity */ }\n\n/* Modal Content (image) */\n.modal-content {\n  margin: auto;\n  display: block;\n  width: 80%; }\n\n/* Add Animation */\n.modal-content {\n  -webkit-animation-name: zoom;\n  -webkit-animation-duration: 0.6s;\n  animation-name: zoom;\n  animation-duration: 0.6s; }\n\n@-webkit-keyframes zoom {\n  from {\n    -webkit-transform: scale(0); }\n  to {\n    -webkit-transform: scale(1); } }\n\n@keyframes zoom {\n  from {\n    transform: scale(0.1); }\n  to {\n    transform: scale(1); } }\n\n/* The Close Button */\n.close {\n  position: absolute;\n  top: 15px;\n  right: 35px;\n  color: #f1f1f1;\n  font-size: 40px;\n  font-weight: bold;\n  transition: 0.3s; }\n\n.close:hover,\n.close:focus {\n  color: #bbb;\n  text-decoration: none;\n  cursor: pointer; }\n\n/* 100% Image Width on Smaller Screens */\n@media only screen and (max-width: 1400px) {\n  .modal-content {\n    width: 100%; } }\n", ""]);
+	exports.push([module.id, ".mdl-tabs .mdl-tabs__tab-bar {\n  margin-bottom: 10px; }\n", ""]);
 	
 	// exports
 
@@ -5546,7 +5552,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".floating-menu {\n  border-radius: 2px;\n  padding: 20px;\n  width: 170px;\n  margin-left: 50px;\n  margin-top: 7vh;\n  position: fixed; }\n\n.floating-menu2 {\n  border-radius: 2px;\n  padding: 20px;\n  width: 170px;\n  margin-left: calc(100% - 237px);\n  margin-top: 7vh;\n  position: fixed; }\n\n.floating-menu .mdl-button {\n  width: 130px;\n  margin-top: 2px;\n  border-style: solid;\n  border-width: 2px;\n  border-color: #00ffcc;\n  border-radius: 2px; }\n\n.floating-menu2 .menu-bonus {\n  width: 130px;\n  margin-top: 2px;\n  border-style: solid;\n  border-width: 2px;\n  border-color: #00ffcc;\n  border-radius: 2px; }\n\n.menu-bonus {\n  text-align: center;\n  margin-top: 10px; }\n\n.menu-bonus-text {\n  margin-top: 5px;\n  margin-bottom: 5px; }\n\n.menu-bonus-image {\n  margin-bottom: 5px; }\n\n@media only screen and (max-width: 1200px) {\n  .floating-menu {\n    display: none; }\n  .floating-menu2 {\n    display: none; } }\n", ""]);
+	exports.push([module.id, "/* The Modal (background) */\n.modal {\n  position: fixed;\n  /* Stay in place */\n  z-index: 1000;\n  /* Sit on top */\n  padding-top: 100px;\n  /* Location of the box */\n  left: 0;\n  top: 0;\n  width: 100%;\n  /* Full width */\n  height: 100%;\n  /* Full height */\n  overflow: auto;\n  /* Enable scroll if needed */\n  background-color: black;\n  /* Fallback color */\n  background-color: rgba(0, 0, 0, 0.8);\n  /* Black w/ opacity */ }\n\n/* Modal Content (image) */\n.modal-content {\n  margin: auto;\n  display: block;\n  width: 80%; }\n\n/* Add Animation */\n.modal-content {\n  -webkit-animation-name: zoom;\n  -webkit-animation-duration: 0.6s;\n  animation-name: zoom;\n  animation-duration: 0.6s; }\n\n@-webkit-keyframes zoom {\n  from {\n    -webkit-transform: scale(0); }\n  to {\n    -webkit-transform: scale(1); } }\n\n@keyframes zoom {\n  from {\n    transform: scale(0.1); }\n  to {\n    transform: scale(1); } }\n\n/* The Close Button */\n.close {\n  position: absolute;\n  top: 15px;\n  right: 35px;\n  color: #f1f1f1;\n  font-size: 40px;\n  font-weight: bold;\n  transition: 0.3s; }\n\n.close:hover,\n.close:focus {\n  color: #bbb;\n  text-decoration: none;\n  cursor: pointer; }\n\n/* 100% Image Width on Smaller Screens */\n@media only screen and (max-width: 1400px) {\n  .modal-content {\n    width: 100%; } }\n", ""]);
 	
 	// exports
 
@@ -5560,7 +5566,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/**\r\n * Copyright 2015 Google Inc. All Rights Reserved.\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the \"License\");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n *\r\n *      http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an \"AS IS\" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\n.demo-ribbon {\n  width: 100%;\n  height: 60vh;\n  background: #99ccff;\n  /* For browsers that do not support gradients */\n  background: -webkit-linear-gradient(left top, #99ccff, #00ffcc);\n  /* For Safari 5.1 to 6.0 */\n  background: -o-linear-gradient(bottom right, #99ccff, #00ffcc);\n  /* For Opera 11.1 to 12.0 */\n  background: -moz-linear-gradient(bottom right, #99ccff, #00ffcc);\n  /* For Firefox 3.6 to 15 */\n  background: linear-gradient(to bottom right, #99ccff, #00ffcc);\n  /* Standard syntax */\n  -webkit-flex-shrink: 0;\n  -ms-flex-negative: 0;\n  flex-shrink: 0; }\n\n.demo-main {\n  margin-top: -55vh;\n  -webkit-flex-shrink: 0;\n  -ms-flex-negative: 0;\n  flex-shrink: 0; }\n\n.demo-header .mdl-layout__header-row {\n  padding-left: 40px; }\n\n.demo-container {\n  max-width: 1600px;\n  width: calc(100% - 16px);\n  margin: 0 auto; }\n\n.demo-content {\n  border-radius: 2px;\n  padding: 80px 56px;\n  margin-bottom: 80px; }\n\n.demo-layout.is-small-screen .demo-content {\n  padding: 40px 28px; }\n\n.demo-content h3 {\n  margin-top: 48px; }\n\n.demo-footer {\n  padding-left: 40px; }\n\n.demo-footer .mdl-mini-footer--link-list a {\n  font-size: 13px; }\n\n#view-source {\n  position: fixed;\n  display: block;\n  right: 0;\n  bottom: 0;\n  margin-right: 40px;\n  margin-bottom: 40px;\n  z-index: 900; }\n", ""]);
+	exports.push([module.id, ".floating-menu {\n  border-radius: 2px;\n  padding: 20px;\n  width: 170px;\n  margin-left: 50px;\n  margin-top: 7vh;\n  position: fixed; }\n\n.floating-menu2 {\n  border-radius: 2px;\n  padding: 20px;\n  width: 170px;\n  margin-left: calc(100% - 237px);\n  margin-top: 7vh;\n  position: fixed; }\n\n.floating-menu .mdl-button {\n  width: 130px;\n  margin-top: 2px;\n  border-style: solid;\n  border-width: 2px;\n  border-color: #00ffcc;\n  border-radius: 2px; }\n\n.floating-menu2 .menu-bonus {\n  width: 130px;\n  margin-top: 2px;\n  border-style: solid;\n  border-width: 2px;\n  border-color: #00ffcc;\n  border-radius: 2px; }\n\n.menu-bonus {\n  text-align: center;\n  margin-top: 10px; }\n\n.menu-bonus-text {\n  margin-top: 5px;\n  margin-bottom: 5px; }\n\n.menu-bonus-image {\n  margin-bottom: 5px; }\n\n.img-button {\n  height: 90px; }\n\n.img-inactive {\n  opacity: 0.4;\n  filter: alpha(opacity=40); }\n\n@media only screen and (max-width: 1200px) {\n  .floating-menu {\n    display: none; }\n  .floating-menu2 {\n    display: none; } }\n", ""]);
 	
 	// exports
 
@@ -7623,7 +7629,8 @@
 	module.exports = keyMirror({
 	  toggleChange: null,
 	  dayChange: null,
-	  sortChange: null
+	  sortChange: null,
+	  typeChange: null
 	});
 	//# sourceMappingURL=D:\Code\GitHub\SeimaniExp\node_modules\livescript-loader\index.js!D:\Code\GitHub\SeimaniExp\src_flux\constants\ConstActions.ls.map
 
@@ -12139,204 +12146,304 @@
 
 	module.exports = [
 		{
-			"day": 0,
-			"image": "00_Naikaku.png"
-		},
-		{
-			"day": 0,
-			"image": "00_Shinobu.png"
-		},
-		{
+			"name": "ヒラリィ・イトウ",
+			"type": "近接",
 			"day": 1,
-			"image": "01_Hillary.png"
+			"image": "Hillary.png"
 		},
 		{
+			"name": "キティ・クローダー",
+			"type": "近接",
 			"day": 2,
-			"image": "02_Kitty.png"
+			"image": "Kitty.png"
 		},
 		{
-			"day": 3,
-			"image": "03_Sarah.png"
-		},
-		{
+			"name": "アリシア・ヤマータ",
+			"type": "近接",
 			"day": 4,
-			"image": "04_Alicia.png"
+			"image": "Alicia.png"
 		},
 		{
-			"day": 5,
-			"image": "05_Marsha.png"
-		},
-		{
-			"day": 6,
-			"image": "06_Sherob.png"
-		},
-		{
-			"day": 7,
-			"image": "07_Kimberly.png"
-		},
-		{
+			"name": "タルア・カツラ",
+			"type": "近接",
 			"day": 8,
-			"image": "08_taluah.png"
+			"image": "Taluah.png"
 		},
 		{
-			"day": 9,
-			"image": "09_Cordelia.png"
-		},
-		{
-			"day": 10,
-			"image": "10_Musetta.png"
-		},
-		{
-			"day": 11,
-			"image": "11_Trixi.png"
-		},
-		{
+			"name": "コリス・ウチダ",
+			"type": "近接",
 			"day": 12,
-			"image": "12_Coris.png"
+			"image": "Coris.png"
 		},
 		{
-			"day": 13,
-			"image": "13_Colette.png"
-		},
-		{
-			"day": 14,
-			"image": "14_Sabrina.png"
-		},
-		{
+			"name": "ケイト・キヨーラ",
+			"type": "近接",
 			"day": 15,
-			"image": "15_Cate.png"
+			"image": "Kate.png"
 		},
 		{
-			"day": 16,
-			"image": "16_Titany.png"
-		},
-		{
-			"day": 17,
-			"image": "17_Leshy.png"
-		},
-		{
-			"day": 18,
-			"image": "18_Kirara.png"
-		},
-		{
-			"day": 19,
-			"image": "19_Ophelia.png"
-		},
-		{
-			"day": 20,
-			"image": "20_Tiara.png"
-		},
-		{
-			"day": 21,
-			"image": "21_Maron.png"
-		},
-		{
-			"day": 22,
-			"image": "22_Keyshia.png"
-		},
-		{
+			"name": "リン・ハヤシ",
+			"type": "近接",
 			"day": 24,
-			"image": "24_Rynn.png"
+			"image": "Rin.png"
 		},
 		{
-			"day": 25,
-			"image": "25_Primula.png"
-		},
-		{
-			"day": 26,
-			"image": "26_Caroline.png"
-		},
-		{
+			"name": "ユーリア・アベ",
+			"type": "近接",
 			"day": 27,
-			"image": "27_Yulia.png"
+			"image": "Yulia.png"
 		},
 		{
+			"name": "エリカ",
+			"type": "近接",
 			"day": 1,
-			"image": "85_Elika.png"
+			"image": "Elika.png"
 		},
 		{
+			"name": "エリナ",
+			"type": "近接",
 			"day": 2,
-			"image": "86_Elina.png"
+			"image": "Elina.png"
 		},
 		{
+			"name": "エリサ",
+			"type": "近接",
 			"day": 3,
-			"image": "87_Elisa.png"
+			"image": "Elisa.png"
 		},
 		{
-			"day": 4,
-			"image": "88_Elena.png"
-		},
-		{
+			"name": "マーシャ・マツカタ",
+			"type": "射撃",
 			"day": 5,
-			"image": "89_Aoba.png"
+			"image": "Marsha.png"
 		},
 		{
+			"name": "シェロブ・ビッグベア",
+			"type": "射撃",
 			"day": 6,
-			"image": "90_Wakaba.png"
+			"image": "Sherob.png"
 		},
 		{
-			"day": 7,
-			"image": "91_Kureha.png"
-		},
-		{
-			"day": 8,
-			"image": "92_Matsuba.png"
-		},
-		{
+			"name": "コーデリア・ヤマモト",
+			"type": "射撃",
 			"day": 9,
-			"image": "93_Sann.png"
+			"image": "Cordelia.png"
 		},
 		{
+			"name": "マセッタ・テラウチ",
+			"type": "射撃",
 			"day": 10,
-			"image": "94_Syuu.png"
+			"image": "Musetta.png"
 		},
 		{
-			"day": 11,
-			"image": "95_Shiho.png"
+			"name": "サブリナ・カトー",
+			"type": "射撃",
+			"day": 14,
+			"image": "Sabrina.png"
 		},
 		{
-			"day": 12,
-			"image": "96_Rippo.png"
-		},
-		{
+			"name": "ティターニィ・カトー",
+			"type": "射撃",
 			"day": 16,
-			"image": "44_Nikolakopoulou.png"
+			"image": "Titany.png"
 		},
 		{
+			"name": "キララ・タナカ",
+			"type": "射撃",
+			"day": 18,
+			"image": "Kirara.png"
+		},
+		{
+			"name": "ティアラ・イヌカイ",
+			"type": "射撃",
+			"day": 20,
+			"image": "Tiara.png"
+		},
+		{
+			"name": "キャロライン・ヒラヌマ",
+			"type": "射撃",
+			"day": 26,
+			"image": "Caroline.png"
+		},
+		{
+			"name": "アオバ",
+			"type": "射撃",
+			"day": 5,
+			"image": "Aoba.png"
+		},
+		{
+			"name": "ワカバ",
+			"type": "射撃",
+			"day": 6,
+			"image": "Wakaba.png"
+		},
+		{
+			"name": "クレハ",
+			"type": "射撃",
+			"day": 7,
+			"image": "Kureha.png"
+		},
+		{
+			"name": "マツバ",
+			"type": "射撃",
+			"day": 8,
+			"image": "Matsuba.png"
+		},
+		{
+			"name": "サラ・サンジョウ",
+			"type": "魔法",
+			"day": 3,
+			"image": "Sarah.png"
+		},
+		{
+			"name": "キンバリー・サイオンジ",
+			"type": "魔法",
+			"day": 7,
+			"image": "Kimberly.png"
+		},
+		{
+			"name": "トリクシィ・ハラ",
+			"type": "魔法",
+			"day": 11,
+			"image": "Trixi.png"
+		},
+		{
+			"name": "オフェーリア・ハマグチ",
+			"type": "魔法",
+			"day": 19,
+			"image": "Ophelia.png"
+		},
+		{
+			"name": "マロン・サイトウ",
+			"type": "魔法",
+			"day": 21,
+			"image": "Maron.png"
+		},
+		{
+			"name": "ケイシア・オカダ",
+			"type": "魔法",
+			"day": 22,
+			"image": "Keyshia.png"
+		},
+		{
+			"name": "コニィ・ヒロタ",
+			"type": "魔法",
+			"day": 23,
+			"image": "Conny.png"
+		},
+		{
+			"name": "プリミュラ・コノエ",
+			"type": "魔法",
+			"day": 25,
+			"image": "Primula.png"
+		},
+		{
+			"name": "ニコラコポーロゥ・ヒガシクニ",
+			"type": "魔法",
+			"day": 16,
+			"image": "Nikolakopoulou.png"
+		},
+		{
+			"name": "クレア・コイソ",
+			"type": "魔法",
+			"day": 14,
+			"image": "Crea.png"
+		},
+		{
+			"name": "サン",
+			"type": "魔法",
+			"day": 9,
+			"image": "Sun.png"
+		},
+		{
+			"name": "シュウ",
+			"type": "魔法",
+			"day": 10,
+			"image": "Syuu.png"
+		},
+		{
+			"name": "シホ",
+			"type": "魔法",
+			"day": 11,
+			"image": "Shiho.png"
+		},
+		{
+			"name": "リッポ",
+			"type": "魔法",
+			"day": 12,
+			"image": "Rippo.png"
+		},
+		{
+			"name": "コレット・タカハシ",
+			"type": "重装",
+			"day": 13,
+			"image": "Colette.png"
+		},
+		{
+			"name": "レイシィ・ワカツキ",
+			"type": "重装",
+			"day": 17,
+			"image": "Leshy.png"
+		},
+		{
+			"name": "エレナ",
+			"type": "重装",
+			"day": 4,
+			"image": "Elena.png"
+		},
+		{
+			"name": "N近接",
+			"type": "近接",
 			"day": 29,
-			"image": "97_NN_all.png"
+			"image": "NN_all.png"
 		},
 		{
+			"name": "N射撃",
+			"type": "射撃",
 			"day": 29,
-			"image": "98_NS_all.png"
+			"image": "NS_all.png"
 		},
 		{
+			"name": "N魔法",
+			"type": "魔法",
 			"day": 29,
-			"image": "99_NM_all.png"
+			"image": "NM_all.png"
 		},
 		{
+			"name": "N近接",
+			"type": "近接",
 			"day": 30,
-			"image": "97_NN_all.png"
+			"image": "NN_all.png"
 		},
 		{
+			"name": "N射撃",
+			"type": "射撃",
 			"day": 30,
-			"image": "98_NS_all.png"
+			"image": "NS_all.png"
 		},
 		{
+			"name": "N魔法",
+			"type": "魔法",
 			"day": 30,
-			"image": "99_NM_all.png"
+			"image": "NM_all.png"
 		},
 		{
+			"name": "N近接",
+			"type": "近接",
 			"day": 31,
-			"image": "97_NN_all.png"
+			"image": "NN_all.png"
 		},
 		{
+			"name": "N射撃",
+			"type": "射撃",
 			"day": 31,
-			"image": "98_NS_all.png"
+			"image": "NS_all.png"
 		},
 		{
+			"name": "N魔法",
+			"type": "魔法",
 			"day": 31,
-			"image": "99_NM_all.png"
+			"image": "NM_all.png"
 		}
 	];
 
@@ -12359,13 +12466,9 @@
 			"point": 6,
 			"type": "近接",
 			"exp": 100,
-			"exp12": 120,
 			"expM": 16.7,
-			"exp12M": 20,
 			"gold": 300,
-			"gold12": 360,
 			"goldM": 50,
-			"gold12M": 60,
 			"title": "総理、初陣"
 		},
 		{
@@ -12382,13 +12485,9 @@
 			"point": 6,
 			"type": "射撃",
 			"exp": 112,
-			"exp12": 134,
 			"expM": 18.66,
-			"exp12M": 22.33,
 			"gold": 300,
-			"gold12": 360,
 			"goldM": 50,
-			"gold12M": 60,
 			"title": "切なる願い"
 		},
 		{
@@ -12405,13 +12504,9 @@
 			"point": 7,
 			"type": "魔法",
 			"exp": 126,
-			"exp12": 151,
 			"expM": 18,
-			"exp12M": 21.57,
 			"gold": 350,
-			"gold12": 420,
 			"goldM": 50,
-			"gold12M": 60,
 			"title": "地方戦挙"
 		},
 		{
@@ -12428,13 +12523,9 @@
 			"point": 7,
 			"type": "重装",
 			"exp": 142,
-			"exp12": 170,
 			"expM": 20.28,
-			"exp12M": 24.28,
 			"gold": 350,
-			"gold12": 420,
 			"goldM": 50,
-			"gold12M": 60,
 			"title": "出現、浮遊層！"
 		},
 		{
@@ -12451,13 +12542,9 @@
 			"point": 8,
 			"type": "近接",
 			"exp": 180,
-			"exp12": 216,
 			"expM": 22.5,
-			"exp12M": 27,
 			"gold": 560,
-			"gold12": 672,
 			"goldM": 70,
-			"gold12M": 84,
 			"title": "ヤトー、進軍止まらず"
 		},
 		{
@@ -12474,13 +12561,9 @@
 			"point": 9,
 			"type": "射撃",
 			"exp": 228,
-			"exp12": 273,
 			"expM": 25.33,
-			"exp12M": 30.33,
 			"gold": 460,
-			"gold12": 552,
 			"goldM": 51.11,
-			"gold12M": 61.33,
 			"title": "闇の穴場"
 		},
 		{
@@ -12497,13 +12580,9 @@
 			"point": 11,
 			"type": "重装",
 			"exp": 423,
-			"exp12": 507,
 			"expM": 38.45,
-			"exp12M": 46.09,
 			"gold": 510,
-			"gold12": 612,
 			"goldM": 46.36,
-			"gold12M": 55.63,
 			"title": "湖にそびえたつ"
 		},
 		{
@@ -12520,13 +12599,9 @@
 			"point": 9,
 			"type": "魔法",
 			"exp": 325,
-			"exp12": 390,
 			"expM": 36.11,
-			"exp12M": 43.33,
 			"gold": 460,
-			"gold12": 552,
 			"goldM": 51.11,
-			"gold12M": 61.33,
 			"title": "二つの砦"
 		},
 		{
@@ -12543,13 +12618,9 @@
 			"point": 11,
 			"type": "なし",
 			"exp": 464,
-			"exp12": 556,
 			"expM": 42.18,
-			"exp12M": 50.54,
 			"gold": 570,
-			"gold12": 684,
 			"goldM": 51.81,
-			"gold12M": 62.18,
 			"title": "決戦の時"
 		},
 		{
@@ -12566,13 +12637,9 @@
 			"point": 12,
 			"type": "魔法",
 			"exp": 523,
-			"exp12": 627,
 			"expM": 43.58,
-			"exp12M": 52.25,
 			"gold": 990,
-			"gold12": 1188,
 			"goldM": 82.5,
-			"gold12M": 99,
 			"title": "総理、初陣"
 		},
 		{
@@ -12589,13 +12656,9 @@
 			"point": 13,
 			"type": "射撃",
 			"exp": 589,
-			"exp12": 706,
 			"expM": 45.3,
-			"exp12M": 54.3,
 			"gold": 1050,
-			"gold12": 1260,
 			"goldM": 80.76,
-			"gold12M": 96.92,
 			"title": "切なる願い"
 		},
 		{
@@ -12612,13 +12675,9 @@
 			"point": 14,
 			"type": "近接",
 			"exp": 664,
-			"exp12": 796,
 			"expM": 47.42,
-			"exp12M": 56.85,
 			"gold": 1160,
-			"gold12": 1392,
 			"goldM": 82.85,
-			"gold12M": 99.42,
 			"title": "地方戦挙"
 		},
 		{
@@ -12635,13 +12694,9 @@
 			"point": 15,
 			"type": "重装",
 			"exp": 748,
-			"exp12": 897,
 			"expM": 49.86,
-			"exp12M": 59.8,
 			"gold": 1230,
-			"gold12": 1476,
 			"goldM": 82,
-			"gold12M": 98.4,
 			"title": "出現、浮遊層！"
 		},
 		{
@@ -12658,13 +12713,9 @@
 			"point": 19,
 			"type": "射撃",
 			"exp": 950,
-			"exp12": 1140,
 			"expM": 50,
-			"exp12M": 60,
 			"gold": 1650,
-			"gold12": 1980,
 			"goldM": 86.84,
-			"gold12M": 104.21,
 			"title": "ヤトー、進軍止まらず"
 		},
 		{
@@ -12681,13 +12732,9 @@
 			"point": 22,
 			"type": "近接",
 			"exp": 1142,
-			"exp12": 1370,
 			"expM": 51.9,
-			"exp12M": 62.27,
 			"gold": 1410,
-			"gold12": 1692,
 			"goldM": 64.09,
-			"gold12M": 76.9,
 			"title": "闇の穴場"
 		},
 		{
@@ -12704,13 +12751,9 @@
 			"point": 24,
 			"type": "重装",
 			"exp": 1436,
-			"exp12": 1723,
 			"expM": 59.83,
-			"exp12M": 71.79,
 			"gold": 1350,
-			"gold12": 1620,
 			"goldM": 56.25,
-			"gold12M": 67.5,
 			"title": "湖にそびえたつ"
 		},
 		{
@@ -12727,13 +12770,9 @@
 			"point": 23,
 			"type": "魔法",
 			"exp": 1215,
-			"exp12": 1458,
 			"expM": 52.82,
-			"exp12M": 63.39,
 			"gold": 1540,
-			"gold12": 1848,
 			"goldM": 66.95,
-			"gold12M": 80.34,
 			"title": "二つの砦"
 		},
 		{
@@ -12750,13 +12789,9 @@
 			"point": 24,
 			"type": "なし",
 			"exp": 1292,
-			"exp12": 1550,
 			"expM": 53.83,
-			"exp12M": 64.58,
 			"gold": 1660,
-			"gold12": 1992,
 			"goldM": 69.16,
-			"gold12M": 83,
 			"title": "決戦の時"
 		},
 		{
@@ -12773,13 +12808,9 @@
 			"point": 12,
 			"type": "魔法",
 			"exp": 523,
-			"exp12": 628,
 			"expM": 43.58,
-			"exp12M": 52.3,
 			"gold": 630,
-			"gold12": 756,
 			"goldM": 52.5,
-			"gold12M": 63,
 			"title": "真の苦難、トンデモ条例"
 		},
 		{
@@ -12796,13 +12827,9 @@
 			"point": 12,
 			"type": "魔法",
 			"exp": 775,
-			"exp12": 930,
 			"expM": 64.58,
-			"exp12M": 77.5,
 			"gold": 580,
-			"gold12": 696,
 			"goldM": 48.33,
-			"gold12M": 58,
 			"title": "分かれ道"
 		},
 		{
@@ -12819,13 +12846,9 @@
 			"point": 12,
 			"type": "射撃",
 			"exp": 802,
-			"exp12": 962,
 			"expM": 66.83,
-			"exp12M": 80.16,
 			"gold": 490,
-			"gold12": 588,
 			"goldM": 40.83,
-			"gold12M": 49,
 			"title": "砦をめぐる攻防"
 		},
 		{
@@ -12842,13 +12865,9 @@
 			"point": 13,
 			"type": "近接",
 			"exp": 862,
-			"exp12": 1034,
 			"expM": 66.3,
-			"exp12M": 79.53,
 			"gold": 550,
-			"gold12": 660,
 			"goldM": 42.3,
-			"gold12M": 50.76,
 			"title": "暗夜"
 		},
 		{
@@ -12865,13 +12884,9 @@
 			"point": 12,
 			"type": "射撃",
 			"exp": 589,
-			"exp12": 707,
 			"expM": 49.08,
-			"exp12M": 58.9,
 			"gold": 630,
-			"gold12": 756,
 			"goldM": 52.5,
-			"gold12M": 63,
 			"title": "条例文"
 		},
 		{
@@ -12888,13 +12903,9 @@
 			"point": 13,
 			"type": "重装",
 			"exp": 664,
-			"exp12": 797,
 			"expM": 51.08,
-			"exp12M": 61.29,
 			"gold": 890,
-			"gold12": 1068,
 			"goldM": 68.46,
-			"gold12M": 82.15,
 			"title": "ヒャッキ・ヤトー"
 		},
 		{
@@ -12911,13 +12922,9 @@
 			"point": 13,
 			"type": "近接",
 			"exp": 748,
-			"exp12": 898,
 			"expM": 57.54,
-			"exp12M": 69.05,
 			"gold": 900,
-			"gold12": 1080,
 			"goldM": 69.23,
-			"gold12M": 83.06,
 			"title": "元凶"
 		},
 		{
@@ -12934,13 +12941,9 @@
 			"point": 14,
 			"type": "魔法",
 			"exp": 843,
-			"exp12": 1012,
 			"expM": 60.21,
-			"exp12M": 72.26,
 			"gold": 950,
-			"gold12": 1140,
 			"goldM": 67.86,
-			"gold12M": 81.43,
 			"title": "包囲網"
 		},
 		{
@@ -12957,13 +12960,9 @@
 			"point": 15,
 			"type": "なし",
 			"exp": 950,
-			"exp12": 1140,
 			"expM": 63.33,
-			"exp12M": 76,
 			"gold": 810,
-			"gold12": 972,
 			"goldM": 54,
-			"gold12M": 64.8,
 			"title": "近距離戦挙"
 		},
 		{
@@ -12980,13 +12979,9 @@
 			"point": 13,
 			"type": "重装",
 			"exp": 985,
-			"exp12": 1182,
 			"expM": 75.76,
-			"exp12M": 90.92,
 			"gold": 670,
-			"gold12": 804,
 			"goldM": 51.53,
-			"gold12M": 61.84,
 			"title": "交差点"
 		},
 		{
@@ -13003,13 +12998,9 @@
 			"point": 16,
 			"type": "射撃",
 			"exp": 1142,
-			"exp12": 1370,
 			"expM": 71.38,
-			"exp12M": 85.65,
 			"gold": 870,
-			"gold12": 1044,
 			"goldM": 54.38,
-			"gold12M": 65.25,
 			"title": "例外なき外見改革"
 		},
 		{
@@ -13026,13 +13017,9 @@
 			"point": 17,
 			"type": "近接",
 			"exp": 1215,
-			"exp12": 1458,
 			"expM": 71.47,
-			"exp12M": 85.76,
 			"gold": 1590,
-			"gold12": 1908,
 			"goldM": 93.52,
-			"gold12M": 112.24,
 			"title": "果てしなき道のり"
 		},
 		{
@@ -13049,13 +13036,9 @@
 			"point": 18,
 			"type": "重装",
 			"exp": 1292,
-			"exp12": 1550,
 			"expM": 71.78,
-			"exp12M": 86.13,
 			"gold": 800,
-			"gold12": 960,
 			"goldM": 44.44,
-			"gold12M": 53.33,
 			"title": "行軍の時"
 		},
 		{
@@ -13072,13 +13055,9 @@
 			"point": 17,
 			"type": "魔法",
 			"exp": 1350,
-			"exp12": 1620,
 			"expM": 79.41,
-			"exp12M": 95.29,
 			"gold": 1140,
-			"gold12": 1368,
 			"goldM": 67.05,
-			"gold12M": 80.47,
 			"title": "つむじ道"
 		},
 		{
@@ -13095,13 +13074,9 @@
 			"point": 17,
 			"type": "魔法",
 			"exp": 1371,
-			"exp12": 1645,
 			"expM": 80.64,
-			"exp12M": 96.76,
 			"gold": 1100,
-			"gold12": 1320,
 			"goldM": 64.7,
-			"gold12M": 77.64,
 			"title": "堅牢"
 		},
 		{
@@ -13118,13 +13093,9 @@
 			"point": 20,
 			"type": "なし",
 			"exp": 1758,
-			"exp12": 2142,
 			"expM": 87.95,
-			"exp12M": 107.1,
 			"gold": 1110,
-			"gold12": 1332,
 			"goldM": 55.5,
-			"gold12M": 66.6,
 			"title": "美しき、毒"
 		},
 		{
@@ -13141,13 +13112,9 @@
 			"point": 22,
 			"type": "重装",
 			"exp": 1758,
-			"exp12": 2109,
 			"expM": 79.91,
-			"exp12M": 95.86,
 			"gold": 1730,
-			"gold12": 2076,
 			"goldM": 78.64,
-			"gold12M": 94.36,
 			"title": "真の苦難、トンデモ条例"
 		},
 		{
@@ -13164,13 +13131,9 @@
 			"point": 28,
 			"type": "射撃",
 			"exp": 2506,
-			"exp12": 3007,
 			"expM": 89.5,
-			"exp12M": 107.39,
 			"gold": 2480,
-			"gold12": 2976,
 			"goldM": 88.57,
-			"gold12M": 106.28,
 			"title": "分かれ道"
 		},
 		{
@@ -13187,13 +13150,9 @@
 			"point": 28,
 			"type": "近接",
 			"exp": 2535,
-			"exp12": 3042,
 			"expM": 90.53,
-			"exp12M": 108.64,
 			"gold": 2540,
-			"gold12": 3048,
 			"goldM": 90.71,
-			"gold12M": 108.85,
 			"title": "砦をめぐる攻防"
 		},
 		{
@@ -13210,13 +13169,9 @@
 			"point": 28,
 			"type": "重装",
 			"exp": 2570,
-			"exp12": 3084,
 			"expM": 91.78,
-			"exp12M": 110.14,
 			"gold": 2480,
-			"gold12": 2976,
 			"goldM": 88.57,
-			"gold12M": 106.28,
 			"title": "暗夜"
 		},
 		{
@@ -13233,13 +13188,9 @@
 			"point": 23,
 			"type": "射撃",
 			"exp": 1870,
-			"exp12": 2240,
 			"expM": 81.3,
-			"exp12M": 97.39,
 			"gold": 1800,
-			"gold12": 2160,
 			"goldM": 78.26,
-			"gold12M": 93.91,
 			"title": "条例文"
 		},
 		{
@@ -13256,13 +13207,9 @@
 			"point": 24,
 			"type": "近接",
 			"exp": 1989,
-			"exp12": 2386,
 			"expM": 82.87,
-			"exp12M": 99.42,
 			"gold": 2830,
-			"gold12": 3396,
 			"goldM": 117.91,
-			"gold12M": 141.5,
 			"title": "ヒャッキ・ヤトー"
 		},
 		{
@@ -13279,13 +13226,9 @@
 			"point": 28,
 			"type": "魔法",
 			"exp": 2116,
-			"exp12": 2539,
 			"expM": 75.57,
-			"exp12M": 90.68,
 			"gold": 2900,
-			"gold12": 3480,
 			"goldM": 103.57,
-			"gold12M": 124.28,
 			"title": "元凶"
 		},
 		{
@@ -13302,13 +13245,9 @@
 			"point": 29,
 			"type": "射撃",
 			"exp": 2251,
-			"exp12": 2701,
 			"expM": 77.62,
-			"exp12M": 93.14,
 			"gold": 3070,
-			"gold12": 3684,
 			"goldM": 105.86,
-			"gold12M": 127.03,
 			"title": "包囲網"
 		},
 		{
@@ -13325,13 +13264,9 @@
 			"point": 29,
 			"type": "なし",
 			"exp": 2395,
-			"exp12": 2874,
 			"expM": 82.59,
-			"exp12M": 99.1,
 			"gold": 2140,
-			"gold12": 2568,
 			"goldM": 73.79,
-			"gold12M": 88.55,
 			"title": "近距離戦挙"
 		},
 		{
@@ -13348,13 +13283,9 @@
 			"point": 29,
 			"type": "魔法",
 			"exp": 2696,
-			"exp12": 3235,
 			"expM": 92.96,
-			"exp12M": 111.55,
 			"gold": 2600,
-			"gold12": 3120,
 			"goldM": 89.65,
-			"gold12M": 107.58,
 			"title": "交差点"
 		},
 		{
@@ -13371,13 +13302,9 @@
 			"point": 31,
 			"type": "近接",
 			"exp": 2711,
-			"exp12": 3253,
 			"expM": 87.45,
-			"exp12M": 104.94,
 			"gold": 2210,
-			"gold12": 2652,
 			"goldM": 71.29,
-			"gold12M": 85.55,
 			"title": "例外なき外見改革"
 		},
 		{
@@ -13394,13 +13321,9 @@
 			"point": 36,
 			"type": "重装",
 			"exp": 2884,
-			"exp12": 3460,
 			"expM": 80.11,
-			"exp12M": 96.11,
 			"gold": 4280,
-			"gold12": 5136,
 			"goldM": 118.89,
-			"gold12M": 142.67,
 			"title": "果てしなき道のり"
 		},
 		{
@@ -13417,13 +13340,9 @@
 			"point": 36,
 			"type": "魔法",
 			"exp": 3068,
-			"exp12": 3681,
 			"expM": 85.22,
-			"exp12M": 102.25,
 			"gold": 1860,
-			"gold12": 2232,
 			"goldM": 51.67,
-			"gold12M": 62,
 			"title": "行軍の時"
 		},
 		{
@@ -13440,13 +13359,9 @@
 			"point": 34,
 			"type": "射撃",
 			"exp": 3206,
-			"exp12": 3847,
 			"expM": 94.29,
-			"exp12M": 113.14,
 			"gold": 3020,
-			"gold12": 3624,
 			"goldM": 88.82,
-			"gold12M": 106.58,
 			"title": "つむじ道"
 		},
 		{
@@ -13463,13 +13378,9 @@
 			"point": 35,
 			"type": "近接",
 			"exp": 3311,
-			"exp12": 3973,
 			"expM": 94.6,
-			"exp12M": 113.51,
 			"gold": 3120,
-			"gold12": 3744,
 			"goldM": 89.14,
-			"gold12M": 106.97,
 			"title": "堅牢"
 		},
 		{
@@ -13486,13 +13397,9 @@
 			"point": 36,
 			"type": "なし",
 			"exp": 3264,
-			"exp12": 3916,
 			"expM": 90.67,
-			"exp12M": 108.78,
 			"gold": 2430,
-			"gold12": 2916,
 			"goldM": 67.5,
-			"gold12M": 81,
 			"title": "美しき、毒"
 		},
 		{
@@ -13509,13 +13416,9 @@
 			"point": 37,
 			"type": "重装",
 			"exp": 3826,
-			"exp12": 4591,
 			"expM": 103.41,
-			"exp12M": 124.09,
 			"gold": 4130,
-			"gold12": 4956,
 			"goldM": 111.62,
-			"gold12M": 133.95,
 			"title": "真の苦難、トンデモ条例"
 		},
 		{
@@ -13532,13 +13435,9 @@
 			"point": 37,
 			"type": "近接",
 			"exp": 3928,
-			"exp12": 4712,
 			"expM": 106.16,
-			"exp12M": 127.36,
 			"gold": 3950,
-			"gold12": 4740,
 			"goldM": 106.76,
-			"gold12M": 128.11,
 			"title": "砦をめぐる攻防"
 		},
 		{
@@ -13555,13 +13454,9 @@
 			"point": 38,
 			"type": "射撃",
 			"exp": 4059,
-			"exp12": 4870,
 			"expM": 106.82,
-			"exp12M": 128.16,
 			"gold": 4220,
-			"gold12": 5064,
 			"goldM": 111.05,
-			"gold12M": 133.26,
 			"title": "条例文"
 		},
 		{
@@ -13578,13 +13473,9 @@
 			"point": 38,
 			"type": "近接",
 			"exp": 4000,
-			"exp12": 4800,
 			"expM": 105.26,
-			"exp12M": 126.32,
 			"gold": 4250,
-			"gold12": 5100,
 			"goldM": 111.84,
-			"gold12M": 134.21,
 			"title": "ヒャッキ・ヤトー"
 		},
 		{
@@ -13601,13 +13492,9 @@
 			"point": 39,
 			"type": "近接",
 			"exp": 4311,
-			"exp12": 5173,
 			"expM": 110.54,
-			"exp12M": 132.64,
 			"gold": 4210,
-			"gold12": 5052,
 			"goldM": 107.95,
-			"gold12M": 129.54,
 			"title": "元凶"
 		},
 		{
@@ -13624,13 +13511,9 @@
 			"point": 40,
 			"type": "重装",
 			"exp": 4288,
-			"exp12": 5145,
 			"expM": 107.2,
-			"exp12M": 128.63,
 			"gold": 4500,
-			"gold12": 5400,
 			"goldM": 112.5,
-			"gold12M": 135,
 			"title": "包囲網"
 		},
 		{
@@ -13647,13 +13530,9 @@
 			"point": 19,
 			"type": "射撃",
 			"exp": 1799,
-			"exp12": 2158,
 			"expM": 94.68,
-			"exp12M": 113.62,
 			"gold": 1940,
-			"gold12": 2328,
 			"goldM": 102.11,
-			"gold12M": 122.53,
 			"title": "新たなる戦挙"
 		},
 		{
@@ -13670,13 +13549,9 @@
 			"point": 19,
 			"type": "近接",
 			"exp": 1815,
-			"exp12": 2178,
 			"expM": 95.53,
-			"exp12M": 114.63,
 			"gold": 1960,
-			"gold12": 2352,
 			"goldM": 103.16,
-			"gold12M": 123.79,
 			"title": "武器屋は闇に染まる"
 		},
 		{
@@ -13693,13 +13568,9 @@
 			"point": 19,
 			"type": "魔法",
 			"exp": 1824,
-			"exp12": 2188,
 			"expM": 96,
-			"exp12M": 115.2,
 			"gold": 2560,
-			"gold12": 3072,
 			"goldM": 134.74,
-			"gold12M": 161.68,
 			"title": "接近戦挙"
 		},
 		{
@@ -13716,13 +13587,9 @@
 			"point": 20,
 			"type": "重装",
 			"exp": 1931,
-			"exp12": 2317,
 			"expM": 96.55,
-			"exp12M": 115.86,
 			"gold": 2050,
-			"gold12": 2460,
 			"goldM": 102.5,
-			"gold12M": 123,
 			"title": "堕ちた騎士団"
 		},
 		{
@@ -13739,13 +13606,9 @@
 			"point": 21,
 			"type": "射撃",
 			"exp": 2052,
-			"exp12": 2462,
 			"expM": 97.71,
-			"exp12M": 117.23,
 			"gold": 2200,
-			"gold12": 2640,
 			"goldM": 104.76,
-			"gold12M": 125.71,
 			"title": "急がばまわれ！"
 		},
 		{
@@ -13762,13 +13625,9 @@
 			"point": 20,
 			"type": "近接",
 			"exp": 1963,
-			"exp12": 2355,
 			"expM": 98.15,
-			"exp12M": 117.78,
 			"gold": 2670,
-			"gold12": 3204,
 			"goldM": 133.5,
-			"gold12M": 160.2,
 			"title": "伝達経路"
 		},
 		{
@@ -13785,13 +13644,9 @@
 			"point": 22,
 			"type": "魔法",
 			"exp": 2159,
-			"exp12": 2590,
 			"expM": 98.14,
-			"exp12M": 117.76,
 			"gold": 2300,
-			"gold12": 2760,
 			"goldM": 104.55,
-			"gold12M": 125.45,
 			"title": "まがいものの王"
 		},
 		{
@@ -13808,13 +13663,9 @@
 			"point": 22,
 			"type": "重装",
 			"exp": 2167,
-			"exp12": 2600,
 			"expM": 98.5,
-			"exp12M": 118.18,
 			"gold": 2200,
-			"gold12": 2640,
 			"goldM": 100,
-			"gold12M": 120,
 			"title": "穴と穴の間"
 		},
 		{
@@ -13831,13 +13682,9 @@
 			"point": 23,
 			"type": "射撃",
 			"exp": 2282,
-			"exp12": 2738,
 			"expM": 99.21,
-			"exp12M": 119.04,
 			"gold": 2440,
-			"gold12": 2928,
 			"goldM": 106.09,
-			"gold12M": 127.3,
 			"title": "三つの砦"
 		},
 		{
@@ -13854,13 +13701,9 @@
 			"point": 24,
 			"type": "なし",
 			"exp": 2450,
-			"exp12": 2940,
 			"expM": 102.08,
-			"exp12M": 122.49,
 			"gold": 2530,
-			"gold12": 3036,
 			"goldM": 105.41,
-			"gold12M": 126.49,
 			"title": "悪夢！二頭体制！"
 		},
 		{
@@ -13877,13 +13720,9 @@
 			"point": 37,
 			"type": "近接",
 			"exp": 3920,
-			"exp12": 4704,
 			"expM": 105.94,
-			"exp12M": 127.13,
 			"gold": 4070,
-			"gold12": 4884,
 			"goldM": 110,
-			"gold12M": 132,
 			"title": "新たなる戦挙"
 		},
 		{
@@ -13900,13 +13739,9 @@
 			"point": 37,
 			"type": "射撃",
 			"exp": 3914,
-			"exp12": 4696,
 			"expM": 105.78,
-			"exp12M": 126.91,
 			"gold": 4080,
-			"gold12": 4896,
 			"goldM": 110.27,
-			"gold12M": 132.32,
 			"title": "武器屋は闇に染まる"
 		},
 		{
@@ -13923,13 +13758,9 @@
 			"point": 38,
 			"type": "魔法",
 			"exp": 4018,
-			"exp12": 4821,
 			"expM": 105.73,
-			"exp12M": 126.86,
 			"gold": 4210,
-			"gold12": 5052,
 			"goldM": 110.78,
-			"gold12M": 132.94,
 			"title": "接近戦挙"
 		},
 		{
@@ -13946,13 +13777,9 @@
 			"point": 38,
 			"type": "射撃",
 			"exp": 4072,
-			"exp12": 4886,
 			"expM": 107.15,
-			"exp12M": 128.57,
 			"gold": 4190,
-			"gold12": 5028,
 			"goldM": 110.26,
-			"gold12M": 132.31,
 			"title": "堕ちた騎士団"
 		},
 		{
@@ -13969,13 +13796,9 @@
 			"point": 39,
 			"type": "近接",
 			"exp": 4157,
-			"exp12": 4988,
 			"expM": 106.58,
-			"exp12M": 127.89,
 			"gold": 4370,
-			"gold12": 5244,
 			"goldM": 112.05,
-			"gold12M": 134.46,
 			"title": "伝達経路"
 		},
 		{
@@ -13992,13 +13815,9 @@
 			"point": 40,
 			"type": "射撃",
 			"exp": 4284,
-			"exp12": 5140,
 			"expM": 107.1,
-			"exp12M": 128.5,
 			"gold": 4480,
-			"gold12": 5376,
 			"goldM": 112,
-			"gold12M": 134.4,
 			"title": "急がばまわれ！"
 		},
 		{
@@ -14015,13 +13834,9 @@
 			"point": 40,
 			"type": "重装",
 			"exp": 4347,
-			"exp12": 5216,
 			"expM": 108.67,
-			"exp12M": 130.4,
 			"gold": 4370,
-			"gold12": 5244,
 			"goldM": 109.25,
-			"gold12M": 131.1,
 			"title": "まがいものの王"
 		},
 		{
@@ -14038,13 +13853,9 @@
 			"point": 40,
 			"type": "魔法",
 			"exp": 4323,
-			"exp12": 5187,
 			"expM": 108.07,
-			"exp12M": 129.67,
 			"gold": 4350,
-			"gold12": 5220,
 			"goldM": 108.75,
-			"gold12M": 130.5,
 			"title": "穴と穴の間"
 		},
 		{
@@ -14061,13 +13872,9 @@
 			"point": 40,
 			"type": "重装",
 			"exp": 4343,
-			"exp12": 5211,
 			"expM": 108.57,
-			"exp12M": 130.27,
 			"gold": 4540,
-			"gold12": 5448,
 			"goldM": 113.5,
-			"gold12M": 136.2,
 			"title": "三つの砦"
 		},
 		{
@@ -14084,13 +13891,9 @@
 			"point": 41,
 			"type": "なし",
 			"exp": 4579,
-			"exp12": 5494,
 			"expM": 111.68,
-			"exp12M": 134,
 			"gold": 4460,
-			"gold12": 5352,
 			"goldM": 108.78,
-			"gold12M": 130.53,
 			"title": "悪夢！二頭体制！"
 		}
 	];
@@ -19449,7 +19252,7 @@
 	ReactPropTypes = __webpack_require__(3).PropTypes;
 	Constants = __webpack_require__(25);
 	AppAction = __webpack_require__(32);
-	Content = __webpack_require__(201);
+	Content = __webpack_require__(202);
 	StageList = __webpack_require__(120);
 	ref$ = React.DOM, main = ref$.main, div = ref$.div, h4 = ref$.h4, button = ref$.button;
 	StageList = React.createFactory(StageList);
@@ -19457,7 +19260,8 @@
 	  displayName: "Content",
 	  propTypes: {
 	    day: ReactPropTypes.number.isRequired,
-	    output: ReactPropTypes.array.isRequired
+	    output: ReactPropTypes.array.isRequired,
+	    type: ReactPropTypes.string.isRequired
 	  },
 	  handleDayChange: function(day){
 	    AppAction.dayChange(day);
@@ -19507,7 +19311,8 @@
 	            id: "stage" + i,
 	            output: this.props.output[i],
 	            display: true,
-	            day: this.props.day
+	            day: this.props.day,
+	            type: this.props.type
 	          }, null));
 	        } else {
 	          results$.push(StageList({
@@ -19515,7 +19320,8 @@
 	            id: "stage" + i,
 	            output: this.props.output[i],
 	            display: false,
-	            day: this.props.day
+	            day: this.props.day,
+	            type: this.props.type
 	          }, null));
 	        }
 	      }
@@ -19569,14 +19375,15 @@
 	ReactPropTypes = __webpack_require__(3).PropTypes;
 	Navigation = __webpack_require__(118);
 	Constants = __webpack_require__(25);
-	Header = __webpack_require__(202);
+	Header = __webpack_require__(203);
 	ref$ = React.DOM, div = ref$.div, span = ref$.span, nav = ref$.nav, a = ref$.a, header = ref$.header, button = ref$.button, img = ref$.img;
 	Navigation = React.createFactory(Navigation);
 	Header = React.createClass({
 	  displayName: "Header",
 	  propTypes: {
 	    toggle: ReactPropTypes.array.isRequired,
-	    bonus: ReactPropTypes.array.isRequired
+	    bonus: ReactPropTypes.array.isRequired,
+	    type: ReactPropTypes.string.isRequired
 	  },
 	  getInitialState: function(){
 	    return {
@@ -19654,7 +19461,8 @@
 	      onClick: this.handleClick.bind(null, "modal2")
 	    }, "贈り物表"))), Navigation({
 	      toggle: this.props.toggle,
-	      bonus: this.props.bonus
+	      bonus: this.props.bonus,
+	      type: this.props.type
 	    }, null));
 	  }
 	});
@@ -19676,13 +19484,14 @@
 	ReactPropTypes = __webpack_require__(3).PropTypes;
 	Constants = __webpack_require__(25);
 	AppAction = __webpack_require__(32);
-	Navigation = __webpack_require__(203);
+	Navigation = __webpack_require__(204);
 	ref$ = React.DOM, div = ref$.div, span = ref$.span, nav = ref$.nav, button = ref$.button, img = ref$.img, a = ref$.a, label = ref$.label;
 	Navigation = React.createClass({
 	  displayName: "Navigation",
 	  propTypes: {
 	    toggle: ReactPropTypes.array.isRequired,
-	    bonus: ReactPropTypes.array.isRequired
+	    bonus: ReactPropTypes.array.isRequired,
+	    type: ReactPropTypes.string.isRequired
 	  },
 	  getInitialState: function(){
 	    return {
@@ -19723,6 +19532,9 @@
 	      }
 	    }
 	    AppAction.toggleChange(toggle);
+	  },
+	  handleClick: function(charType){
+	    AppAction.typeChange(charType);
 	  },
 	  render: function(){
 	    var i, type, bonus;
@@ -19767,14 +19579,21 @@
 	      for (i$ = 0, len$ = (ref$ = this.props.bonus[0]).length; i$ < len$; ++i$) {
 	        i = i$;
 	        bonus = ref$[i$];
-	        results$.push(div({
-	          key: "imgtoday" + i
-	        }, img({
-	          className: "menu-bonus-image",
-	          src: "./img/" + bonus.image,
-	          height: "90",
-	          width: "90"
-	        })));
+	        results$.push(button({
+	          className: "img-button mdl-button mdl-js-button mdl-js-ripple-effect",
+	          key: "imgtoday" + i,
+	          onClick: this.handleClick.bind(null, bonus.type)
+	        }, this.props.type === 'none' || this.props.type === bonus.type
+	          ? img({
+	            className: "menu-bonus-image img-active",
+	            src: "./img/" + bonus.image,
+	            alt: bonus.name
+	          })
+	          : img({
+	            className: "menu-bonus-image img-inactive",
+	            src: "./img/" + bonus.image,
+	            alt: bonus.name
+	          })));
 	      }
 	      return results$;
 	    }.call(this))) : void 8, !deepEq$(this.props.bonus[1].length, 0, '===') ? div({
@@ -19786,14 +19605,21 @@
 	      for (i$ = 0, len$ = (ref$ = this.props.bonus[1]).length; i$ < len$; ++i$) {
 	        i = i$;
 	        bonus = ref$[i$];
-	        results$.push(div({
-	          key: "imgtomorrow" + i
-	        }, img({
-	          className: "menu-bonus-image",
-	          src: "./img/" + bonus.image,
-	          height: "90",
-	          width: "90"
-	        })));
+	        results$.push(button({
+	          className: "img-button mdl-button mdl-js-button mdl-js-ripple-effect",
+	          key: "imgtomorrow" + i,
+	          onClick: this.handleClick.bind(null, bonus.type)
+	        }, this.props.type === 'none' || this.props.type === bonus.type
+	          ? img({
+	            className: "menu-bonus-image img-active",
+	            src: "./img/" + bonus.image,
+	            alt: bonus.name
+	          })
+	          : img({
+	            className: "menu-bonus-image img-inactive",
+	            src: "./img/" + bonus.image,
+	            alt: bonus.name
+	          })));
 	      }
 	      return results$;
 	    }.call(this))) : void 8));
@@ -19896,14 +19722,14 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(11), RootInstanceProvider = __webpack_require__(9), ReactMount = __webpack_require__(5), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, Header, Footer, Content, AppStore, AppAction, SKStageApp, div;
+	var React, Header, Footer, Content, AppStore, AppAction, App, div, SKStageApp;
 	React = __webpack_require__(3);
 	Header = __webpack_require__(117);
 	Footer = __webpack_require__(116);
 	Content = __webpack_require__(115);
 	AppStore = __webpack_require__(121);
 	AppAction = __webpack_require__(32);
-	SKStageApp = __webpack_require__(204);
+	App = __webpack_require__(201);
 	div = React.DOM.div;
 	Header = React.createFactory(Header);
 	Footer = React.createFactory(Footer);
@@ -19931,13 +19757,15 @@
 	      className: "demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100"
 	    }, Header({
 	      toggle: this.state.data.toggle,
-	      bonus: this.state.data.bonus
+	      bonus: this.state.data.bonus,
+	      type: this.state.data.type
 	    }, null), div({
 	      className: "demo-ribbon mdl-shadow--4dp"
 	    }, null), Content({
 	      day: this.state.data.day,
 	      output: this.state.data.output,
-	      toggle: this.state.data.toggle
+	      toggle: this.state.data.toggle,
+	      type: this.state.data.type
 	    }, null), Footer(null)));
 	  }
 	});
@@ -19971,7 +19799,8 @@
 	    id: ReactPropTypes.string.isRequired,
 	    output: ReactPropTypes.array.isRequired,
 	    display: ReactPropTypes.bool.isRequired,
-	    day: ReactPropTypes.number.isRequired
+	    day: ReactPropTypes.number.isRequired,
+	    type: ReactPropTypes.string.isRequired
 	  },
 	  componentDidUpdate: function(){
 	    componentHandler.upgradeDom();
@@ -20022,27 +19851,51 @@
 	      break;
 	    case "exp":
 	      if (out[this.props.day] === "1") {
-	        return label({
-	          className: "expBonus"
-	        }, out["exp12"]);
+	        if (out["type"] === this.props.type) {
+	          return label({
+	            className: "expBonus"
+	          }, Math.floor(out[list] * 1.4));
+	        } else {
+	          return label({
+	            className: "expBonus"
+	          }, Math.floor(out[list] * 1.2));
+	        }
 	      } else {
-	        return out[list];
+	        if (out["type"] === this.props.type) {
+	          return label({
+	            className: "expBonus"
+	          }, Math.floor(out[list] * 1.2));
+	        } else {
+	          return out[list];
+	        }
 	      }
 	      break;
 	    case "expM":
 	      if (out[this.props.day] === "1") {
-	        return label({
-	          className: "expBonus"
-	        }, out["exp12M"]);
+	        if (out["type"] === this.props.type) {
+	          return label({
+	            className: "expBonus"
+	          }, (Math.floor(out["exp"] * 1.4) / out["point"]).toFixed(2));
+	        } else {
+	          return label({
+	            className: "expBonus"
+	          }, (Math.floor(out["exp"] * 1.2) / out["point"]).toFixed(2));
+	        }
 	      } else {
-	        return out[list];
+	        if (out["type"] === this.props.type) {
+	          return label({
+	            className: "expBonus"
+	          }, Math.floor(out[list] * 1.2));
+	        } else {
+	          return out[list];
+	        }
 	      }
 	      break;
 	    case "gold":
 	      if (out[this.props.day] === "2") {
 	        return label({
 	          className: "goldBonus"
-	        }, out["gold12"]);
+	        }, Math.floor(out[list] * 1.2));
 	      } else {
 	        return out[list];
 	      }
@@ -20051,7 +19904,7 @@
 	      if (out[this.props.day] === "2") {
 	        return label({
 	          className: "goldBonus"
-	        }, out["gold12M"]);
+	        }, (Math.floor(out["gold"] * 1.2) / out["point"]).toFixed(2));
 	      } else {
 	        return out[list];
 	      }
@@ -20127,7 +19980,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(11), RootInstanceProvider = __webpack_require__(9), ReactMount = __webpack_require__(5), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var lokijs, EventEmitter, assign, AppDispatcher, ConstActions, Constants, StageData, CharData, CHANGE_EVENT, db, dbStage, i$, len$, data, dbChar, _data, today, localoffset, destoffset, offset, stageTime, stageDay, charTime, charDay, bonusToday, bonusTomorrow, stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, dayChange, toggleChange, sortChange, AppStore;
+	var lokijs, EventEmitter, assign, AppDispatcher, ConstActions, Constants, StageData, CharData, CHANGE_EVENT, db, dbStage, i$, len$, data, dbChar, _data, today, localoffset, destoffset, offset, stageTime, stageDay, charTime, charDay, bonusToday, bonusTomorrow, stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, dayChange, toggleChange, sortChange, typeChange, AppStore;
 	lokijs = __webpack_require__(110);
 	EventEmitter = __webpack_require__(211).EventEmitter;
 	assign = __webpack_require__(111);
@@ -20152,7 +20005,8 @@
 	  day: 0,
 	  output: [],
 	  toggle: [0, 0, 0, 0, 0, 0, 1],
-	  bonus: []
+	  bonus: [],
+	  type: "none"
 	};
 	today = new Date();
 	localoffset = -(today.getTimezoneOffset() / 60);
@@ -20257,6 +20111,13 @@
 	  }).simplesort(sortValue).data();
 	  _data.output = [stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH];
 	};
+	typeChange = function(charType){
+	  if (_data.type === charType) {
+	    _data.type = 'none';
+	  } else {
+	    _data.type = charType;
+	  }
+	};
 	AppStore = assign({}, EventEmitter.prototype, {
 	  getData: function(){
 	    return _data;
@@ -20283,6 +20144,10 @@
 	    break;
 	  case ConstActions.sortChange:
 	    sortChange(action.sortValue);
+	    AppStore.emitChange();
+	    break;
+	  case ConstActions.typeChange:
+	    typeChange(action.charType);
 	    AppStore.emitChange();
 	  }
 	});
