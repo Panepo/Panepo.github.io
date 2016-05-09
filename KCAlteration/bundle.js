@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9b24ea17278ba15ced7c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "11660af165e3cff1b155"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -12507,6 +12507,19 @@
 		},
 		{
 			"type": "水上偵察機",
+			"name": "九八式水上偵察機(夜偵)",
+			"owner": "川内改二",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit6.png"
+		},
+		{
+			"type": "水上偵察機",
 			"name": "Ro.43水偵",
 			"owner": "Zara改",
 			"sun": 0,
@@ -19101,7 +19114,7 @@
 	  },
 	  getInitialState: function(){
 	    return {
-	      toggleAll: true
+	      toggleAll: false
 	    };
 	  },
 	  handleToggle: function(event){
@@ -19290,7 +19303,7 @@
 	Constants = __webpack_require__(29);
 	CHANGE_EVENT = 'change';
 	_data = {
-	  toggle: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	  toggle: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
 	  day: 0,
 	  output: []
 	};
