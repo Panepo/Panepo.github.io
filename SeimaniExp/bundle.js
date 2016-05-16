@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e0be7a774aeea61838b9"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "180a25ebd6d57874c6ea"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -12264,6 +12264,12 @@
 			"type": "射撃",
 			"day": 26,
 			"image": "Caroline.png"
+		},
+		{
+			"name": "カルロッタ・スズキ",
+			"type": "射撃",
+			"day": 15,
+			"image": "Carlotta.png"
 		},
 		{
 			"name": "アオバ",
