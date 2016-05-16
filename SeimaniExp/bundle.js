@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b6dac33ef8e96cd099f6"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e0be7a774aeea61838b9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3715,8 +3715,8 @@
 	Constants = {
 	  listTab: ["日 (Sun)", "月 (Mon)", "火 (Tue)", "水 (Wed)", "木 (Thu)", "金 (Fri)", "土 (Sat)"],
 	  listThead: ["", "マップ", "モチベ", "武器別", "経験値", "経験値効率", "ゴールド", "ゴールド効率"],
-	  listStage: ["戦挙区1-N", "戦挙区1-H", "戦挙区2-N", "戦挙区2-H", "戦挙区2-T", "戦挙区3-N", "戦挙区3-H"],
-	  updateTime: "2016/04/25",
+	  listStage: ["戦挙区1-N", "戦挙区1-H", "戦挙区2-N", "戦挙区2-H", "戦挙区2-T", "戦挙区3-N", "戦挙区3-H", "戦挙区4-N", "戦挙区4-H"],
+	  updateTime: "2016/05/16",
 	  buttonClassActive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
 	  buttonClassInactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent",
 	  TableClass: "mdl-data-table mdl-shadow--2dp",
@@ -13977,6 +13977,272 @@
 			"gold": 4460,
 			"goldM": 108.78,
 			"title": "悪夢！二頭体制！"
+		},
+		{
+			"0": "0",
+			"1": "1",
+			"2": "0",
+			"3": "0",
+			"4": "2",
+			"5": "0",
+			"6": "0",
+			"stage": 4,
+			"diff": "N",
+			"name": "4-1",
+			"point": 25,
+			"type": "魔法",
+			"exp": 2966,
+			"expM": 118.64,
+			"gold": 2740,
+			"goldM": 109.6,
+			"title": "ナイカクと森"
+		},
+		{
+			"0": "0",
+			"1": "0",
+			"2": "2",
+			"3": "0",
+			"4": "0",
+			"5": "0",
+			"6": "1",
+			"stage": 4,
+			"diff": "N",
+			"name": "4-A",
+			"point": 25,
+			"type": "近接",
+			"exp": 2971,
+			"expM": 118.84,
+			"gold": 2790,
+			"goldM": 111.6,
+			"title": "湖畔の戦い"
+		},
+		{
+			"0": "0",
+			"1": "0",
+			"2": "1",
+			"3": "0",
+			"4": "0",
+			"5": "2",
+			"6": "0",
+			"stage": 4,
+			"diff": "N",
+			"name": "4-2",
+			"point": 25,
+			"type": "近接",
+			"exp": 3004,
+			"expM": 120.16,
+			"gold": 2760,
+			"goldM": 110.4,
+			"title": "森に住むもの"
+		},
+		{
+			"0": "1",
+			"1": "0",
+			"2": "0",
+			"3": "2",
+			"4": "0",
+			"5": "0",
+			"6": "0",
+			"stage": 4,
+			"diff": "N",
+			"name": "4-B",
+			"point": 25,
+			"type": "重装",
+			"exp": 3042,
+			"expM": 121.68,
+			"gold": 2820,
+			"goldM": 112.8,
+			"title": "四面楚歌"
+		},
+		{
+			"0": "0",
+			"1": "0",
+			"2": "0",
+			"3": "1",
+			"4": "0",
+			"5": "0",
+			"6": "2",
+			"stage": 4,
+			"diff": "N",
+			"name": "4-3",
+			"point": 25,
+			"type": "射撃",
+			"exp": 3062,
+			"expM": 122.48,
+			"gold": 2770,
+			"goldM": 110.8,
+			"title": "再・戦挙"
+		},
+		{
+			"0": "2",
+			"1": "0",
+			"2": "0",
+			"3": "0",
+			"4": "1",
+			"5": "0",
+			"6": "0",
+			"stage": 4,
+			"diff": "N",
+			"name": "4-4",
+			"point": 26,
+			"type": "射撃",
+			"exp": 3246,
+			"expM": 124.85,
+			"gold": 2860,
+			"goldM": 110,
+			"title": "欲望のオショク・ジ剣"
+		},
+		{
+			"0": "0",
+			"1": "2",
+			"2": "0",
+			"3": "0",
+			"4": "0",
+			"5": "1",
+			"6": "0",
+			"stage": 4,
+			"diff": "N",
+			"name": "4-5",
+			"point": 26,
+			"type": "魔法",
+			"exp": 3251,
+			"expM": 125.04,
+			"gold": 2860,
+			"goldM": 110,
+			"title": "ダ＝イセンセイ"
+		},
+		{
+			"0": "0",
+			"1": "1",
+			"2": "0",
+			"3": "0",
+			"4": "2",
+			"5": "0",
+			"6": "0",
+			"stage": 4,
+			"diff": "H",
+			"name": "4-1",
+			"point": 41,
+			"type": "射撃",
+			"exp": 5186,
+			"expM": 126.49,
+			"gold": 4790,
+			"goldM": 116.83,
+			"title": "ナイカクと森"
+		},
+		{
+			"0": "0",
+			"1": "0",
+			"2": "2",
+			"3": "0",
+			"4": "0",
+			"5": "0",
+			"6": "1",
+			"stage": 4,
+			"diff": "H",
+			"name": "4-A",
+			"point": 41,
+			"type": "射撃",
+			"exp": 5234,
+			"expM": 127.66,
+			"gold": 4780,
+			"goldM": 116.59,
+			"title": "湖畔の戦い"
+		},
+		{
+			"0": "0",
+			"1": "0",
+			"2": "1",
+			"3": "0",
+			"4": "0",
+			"5": "2",
+			"6": "0",
+			"stage": 4,
+			"diff": "H",
+			"name": "4-2",
+			"point": 41,
+			"type": "近接",
+			"exp": 5236,
+			"expM": 127.71,
+			"gold": 4840,
+			"goldM": 118.05,
+			"title": "森に住むもの"
+		},
+		{
+			"0": "1",
+			"1": "0",
+			"2": "0",
+			"3": "2",
+			"4": "0",
+			"5": "0",
+			"6": "0",
+			"stage": 4,
+			"diff": "H",
+			"name": "4-B",
+			"point": 41,
+			"type": "魔法",
+			"exp": 5229,
+			"expM": 127.54,
+			"gold": 4900,
+			"goldM": 119.51,
+			"title": "四面楚歌"
+		},
+		{
+			"0": "0",
+			"1": "0",
+			"2": "0",
+			"3": "1",
+			"4": "0",
+			"5": "0",
+			"6": "2",
+			"stage": 4,
+			"diff": "H",
+			"name": "4-3",
+			"point": 41,
+			"type": "魔法",
+			"exp": 5250,
+			"expM": 128.05,
+			"gold": 4740,
+			"goldM": 115.61,
+			"title": "再・戦挙"
+		},
+		{
+			"0": "2",
+			"1": "0",
+			"2": "0",
+			"3": "0",
+			"4": "1",
+			"5": "0",
+			"6": "0",
+			"stage": 4,
+			"diff": "H",
+			"name": "4-4",
+			"point": 41,
+			"type": "近接",
+			"exp": 5352,
+			"expM": 130.54,
+			"gold": 4750,
+			"goldM": 115.85,
+			"title": "欲望のオショク・ジ剣"
+		},
+		{
+			"0": "0",
+			"1": "2",
+			"2": "0",
+			"3": "0",
+			"4": "0",
+			"5": "1",
+			"6": "0",
+			"stage": 4,
+			"diff": "H",
+			"name": "4-5",
+			"point": 42,
+			"type": "重装",
+			"exp": 5524,
+			"expM": 131.52,
+			"gold": 4830,
+			"goldM": 115,
+			"title": "ダ＝イセンセイ"
 		}
 	];
 
@@ -20062,7 +20328,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(11), RootInstanceProvider = __webpack_require__(9), ReactMount = __webpack_require__(5), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var lokijs, EventEmitter, assign, AppDispatcher, ConstActions, Constants, StageData, CharData, CHANGE_EVENT, db, dbStage, i$, len$, data, dbChar, _data, today, localoffset, destoffset, offset, stageTime, stageDay, charTime, charDay, bonusToday, bonusTomorrow, stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, dayChange, toggleChange, sortChange, typeChange, AppStore;
+	var lokijs, EventEmitter, assign, AppDispatcher, ConstActions, Constants, StageData, CharData, CHANGE_EVENT, db, dbStage, i$, len$, data, dbChar, _data, today, localoffset, destoffset, offset, stageTime, stageDay, charTime, charDay, bonusToday, bonusTomorrow, stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, stageFourthN, stageFourthH, dayChange, toggleChange, sortChange, typeChange, AppStore;
 	lokijs = __webpack_require__(110);
 	EventEmitter = __webpack_require__(211).EventEmitter;
 	assign = __webpack_require__(111);
@@ -20086,7 +20352,7 @@
 	_data = {
 	  day: 0,
 	  output: [],
-	  toggle: [0, 0, 0, 0, 0, 0, 1],
+	  toggle: [0, 0, 0, 0, 0, 0, 1, 0, 0],
 	  bonus: [],
 	  type: "none"
 	};
@@ -20147,7 +20413,17 @@
 	}).find({
 	  'diff': 'H'
 	}).simplesort('name').data();
-	_data.output = [stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH];
+	stageFourthN = dbStage.chain().find({
+	  'stage': 4
+	}).find({
+	  'diff': 'N'
+	}).simplesort('name').data();
+	stageFourthH = dbStage.chain().find({
+	  'stage': 4
+	}).find({
+	  'diff': 'H'
+	}).simplesort('name').data();
+	_data.output = [stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, stageFourthN, stageFourthH];
 	dayChange = function(day){
 	  _data.day = day;
 	};
@@ -20155,7 +20431,7 @@
 	  _data.toggle = toggle;
 	};
 	sortChange = function(sortValue){
-	  var stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH;
+	  var stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, stageFourthN, stageFourthH;
 	  stageFirstN = dbStage.chain().find({
 	    'stage': 1
 	  }).find({
@@ -20191,7 +20467,17 @@
 	  }).find({
 	    'diff': 'H'
 	  }).simplesort(sortValue).data();
-	  _data.output = [stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH];
+	  stageFourthN = dbStage.chain().find({
+	    'stage': 4
+	  }).find({
+	    'diff': 'N'
+	  }).simplesort(sortValue).data();
+	  stageFourthH = dbStage.chain().find({
+	    'stage': 4
+	  }).find({
+	    'diff': 'H'
+	  }).simplesort(sortValue).data();
+	  _data.output = [stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, stageFourthN, stageFourthH];
 	};
 	typeChange = function(charType){
 	  if (_data.type === charType) {
