@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b1ab522e0109126705c5"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "fe1fc8b1d911732ba2ca"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -766,7 +766,7 @@
 	var ReactDOMFeatureFlags = __webpack_require__(239);
 	var ReactElement = __webpack_require__(31);
 	var ReactEmptyComponentRegistry = __webpack_require__(246);
-	var ReactInstanceHandles = __webpack_require__(80);
+	var ReactInstanceHandles = __webpack_require__(79);
 	var ReactInstanceMap = __webpack_require__(89);
 	var ReactMarkupChecksum = __webpack_require__(249);
 	var ReactPerf = __webpack_require__(35);
@@ -2660,7 +2660,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	// to indexed object, toObject with fallback for non-array-like ES3 strings
-	var IObject = __webpack_require__(81)
+	var IObject = __webpack_require__(80)
 	  , defined = __webpack_require__(37);
 	module.exports = function(it){
 	  return IObject(defined(it));
@@ -2923,7 +2923,7 @@
 /* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var pIE            = __webpack_require__(82)
+	var pIE            = __webpack_require__(81)
 	  , createDesc     = __webpack_require__(53)
 	  , toIObject      = __webpack_require__(30)
 	  , toPrimitive    = __webpack_require__(43)
@@ -3355,7 +3355,7 @@
 	// 5 -> Array#find
 	// 6 -> Array#findIndex
 	var ctx      = __webpack_require__(45)
-	  , IObject  = __webpack_require__(81)
+	  , IObject  = __webpack_require__(80)
 	  , toObject = __webpack_require__(21)
 	  , toLength = __webpack_require__(19)
 	  , asc      = __webpack_require__(274);
@@ -5473,34 +5473,6 @@
 /* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(15), RootInstanceProvider = __webpack_require__(13), ReactMount = __webpack_require__(4), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var listStatus = exports.listStatus = ["艦隊編成", "ステータス", "出撃海域"];
-	var listStatusS = exports.listStatusS = ["group", "status", "map"];
-	
-	var listAircraft = exports.listAircraft = ["fighter", "bomber", "torpedo", "scout", "scout2", "seaplane", "seaplaneX", "heli", "blue", "big"];
-	var listAircraftS = exports.listAircraftS = ["sit6", "sit7", "sit8", "sit9", "sit10", "sit10", "sit10", "sit21", "sit22", "sit33"];
-	var listAircraftColor = exports.listAircraftColor = ["green-800", "red-800", "blue-800", "yellow-800", "green-500", "green-500", "green-500", "green-600", "blue-500", "green-400"];
-	var listAircraftType = exports.listAircraftType = ["torpedo", "bomb", "air", "sonar", "scout", "firepower", "hit", "evade"];
-	var listAircraftTypeN = exports.listAircraftTypeN = ["雷裝", "爆裝", "対空", "反潛", "索敵", "火力", "命中", "迴避"];
-	var listAircraftSkill = exports.listAircraftSkill = ["無熟練", "|", "||", "|||", "/", "//", "///", ">>"];
-	var listAircraftSkill2 = exports.listAircraftSkill2 = ["", "|", "||", "|||", "/", "//", "///", ">>"];
-	
-	var listCarrierThead = exports.listCarrierThead = ["艦娘", "第一隊", "第二隊", "第三隊", "第四隊"];
-	var listCarrierTbody = exports.listCarrierTbody = ["id", "slot1", "slot2", "slot3", "slot4"];
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(14); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConstList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)(module)))
-
-/***/ },
-/* 80 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright 2013-2015, Facebook, Inc.
 	 * All rights reserved.
@@ -5806,7 +5778,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 81 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// fallback for non-array-like ES3 and non-enumerable old V8 strings
@@ -5816,13 +5788,13 @@
 	};
 
 /***/ },
-/* 82 */
+/* 81 */
 /***/ function(module, exports) {
 
 	exports.f = {}.propertyIsEnumerable;
 
 /***/ },
-/* 83 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var getLength = __webpack_require__(495),
@@ -5862,7 +5834,7 @@
 
 
 /***/ },
-/* 84 */
+/* 83 */
 /***/ function(module, exports) {
 
 	/**
@@ -5897,7 +5869,7 @@
 
 
 /***/ },
-/* 85 */
+/* 84 */
 /***/ function(module, exports) {
 
 	/*
@@ -5953,7 +5925,7 @@
 
 
 /***/ },
-/* 86 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(15), RootInstanceProvider = __webpack_require__(13), ReactMount = __webpack_require__(4), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -6068,6 +6040,34 @@
 	};
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(14); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ToggleButton.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)(module)))
+
+/***/ },
+/* 86 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(15), RootInstanceProvider = __webpack_require__(13), ReactMount = __webpack_require__(4), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var listStatus = exports.listStatus = ["艦隊編成", "ステータス", "出撃海域"];
+	var listStatusS = exports.listStatusS = ["group", "status", "map"];
+	
+	var listAircraft = exports.listAircraft = ["fighter", "bomber", "torpedo", "scout", "scout2", "seaplane", "seaplaneX", "heli", "blue", "big"];
+	var listAircraftS = exports.listAircraftS = ["sit6", "sit7", "sit8", "sit9", "sit10", "sit10", "sit10", "sit21", "sit22", "sit33"];
+	var listAircraftColor = exports.listAircraftColor = ["green-800", "red-800", "blue-800", "yellow-900", "green-600", "green-600", "green-600", "green-700", "blue-500", "green-600"];
+	var listAircraftType = exports.listAircraftType = ["torpedo", "bomb", "air", "sonar", "scout", "firepower", "hit", "evade"];
+	var listAircraftTypeN = exports.listAircraftTypeN = ["雷裝", "爆裝", "対空", "反潛", "索敵", "火力", "命中", "迴避"];
+	var listAircraftSkill = exports.listAircraftSkill = ["無熟練", "|", "||", "|||", "/", "//", "///", ">>"];
+	var listAircraftSkill2 = exports.listAircraftSkill2 = ["", "|", "||", "|||", "/", "//", "///", ">>"];
+	
+	var listCarrierThead = exports.listCarrierThead = ["艦娘", "第一隊", "第二隊", "第三隊", "第四隊"];
+	var listCarrierTbody = exports.listCarrierTbody = ["id", "slot1", "slot2", "slot3", "slot4"];
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(14); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConstList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)(module)))
 
 /***/ },
@@ -7417,7 +7417,7 @@
 /* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObjectLike = __webpack_require__(84);
+	var isObjectLike = __webpack_require__(83);
 	
 	/** `Object#toString` result references. */
 	var symbolTag = '[object Symbol]';
@@ -7465,7 +7465,7 @@
 	var baseHas = __webpack_require__(214),
 	    baseKeys = __webpack_require__(480),
 	    indexKeys = __webpack_require__(506),
-	    isArrayLike = __webpack_require__(83),
+	    isArrayLike = __webpack_require__(82),
 	    isIndex = __webpack_require__(150),
 	    isPrototype = __webpack_require__(221);
 	
@@ -9479,12 +9479,12 @@
 /* 154 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(85)();
+	exports = module.exports = __webpack_require__(84)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, ".img-button {\n  margin-left: 5px;\n  margin-right: 5px;\n  margin-top: 5px;\n  margin-bottom: 5px;\n  width: calc(100% - 10px); }\n\n.aircraft-button {\n  margin-left: 5px;\n  margin-right: 5px;\n  margin-top: 5px;\n  margin-bottom: 5px;\n  width: calc(100% - 42px); }\n\n.display-area {\n  height: 100%; }\n\n.display-list {\n  overflow: auto;\n  max-height: 645px; }\n\n.scroll-menu {\n  margin: auto;\n  display: block;\n  -webkit-animation-name: scroll;\n  -webkit-animation-duration: 0.6s;\n  animation-name: scroll;\n  animation-duration: 0.6s; }\n\n@-webkit-keyframes scroll {\n  from {\n    -webkit-transform: scale(1, 0); }\n  to {\n    -webkit-transform: scale(1, 1); } }\n\n@keyframes scroll {\n  from {\n    transform: scale(1, 0.1); }\n  to {\n    transform: scale(1, 1); } }\n", ""]);
+	exports.push([module.id, ".img-button {\n  margin-left: 5px;\n  margin-right: 5px;\n  margin-top: 5px;\n  margin-bottom: 5px;\n  width: calc(100% - 10px); }\n\n.aircraft-button {\n  margin-left: 5px;\n  margin-right: 5px;\n  margin-top: 5px;\n  margin-bottom: 5px;\n  width: calc(100% - 42px); }\n\n.scroll-menu {\n  -webkit-animation-name: scroll;\n  -webkit-animation-duration: 0.6s;\n  animation-name: scroll;\n  animation-duration: 0.6s; }\n\n@-webkit-keyframes scroll {\n  from {\n    -webkit-transform: scale(1, 0); }\n  to {\n    -webkit-transform: scale(1, 1); } }\n\n@keyframes scroll {\n  from {\n    transform: scale(1, 0.1); }\n  to {\n    transform: scale(1, 1); } }\n", ""]);
 	
 	// exports
 
@@ -9493,7 +9493,7 @@
 /* 155 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(85)();
+	exports = module.exports = __webpack_require__(84)();
 	// imports
 	
 	
@@ -9507,12 +9507,12 @@
 /* 156 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(85)();
+	exports = module.exports = __webpack_require__(84)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, ".page-content {\n  margin: auto;\n  display: block;\n  -webkit-animation-name: zoom;\n  -webkit-animation-duration: 0.6s;\n  animation-name: zoom;\n  animation-duration: 0.6s; }\n\n@-webkit-keyframes zoom {\n  from {\n    -webkit-transform: scale(0); }\n  to {\n    -webkit-transform: scale(1); } }\n\n@keyframes zoom {\n  from {\n    transform: scale(0.1); }\n  to {\n    transform: scale(1); } }\n", ""]);
+	exports.push([module.id, ".page-content {\n  margin: auto;\n  display: block;\n  -webkit-animation-name: zoom;\n  -webkit-animation-duration: 0.6s;\n  animation-name: zoom;\n  animation-duration: 0.6s; }\n\n@-webkit-keyframes zoom {\n  from {\n    -webkit-transform: scale(0); }\n  to {\n    -webkit-transform: scale(1); } }\n\n@keyframes zoom {\n  from {\n    transform: scale(0.1); }\n  to {\n    transform: scale(1); } }\n\n.content {\n  height: 100%;\n  max-height: calc(100% - 112px);\n  overflow: hidden; }\n\n.display-area {\n  height: 100%; }\n\n.display-list {\n  overflow: auto;\n  max-height: calc(100% - 32px); }\n", ""]);
 	
 	// exports
 
@@ -9521,7 +9521,7 @@
 /* 157 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(85)();
+	exports = module.exports = __webpack_require__(84)();
 	// imports
 	
 	
@@ -9535,12 +9535,12 @@
 /* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(85)();
+	exports = module.exports = __webpack_require__(84)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, ".group-table {\n  width: 100%; }\n\n.thead {\n  margin-right: 25%; }\n\n.theadGroup0 {\n  width: 20%; }\n\n.theadGroup1 .theadGroup2 .theadGroup3 .theadGroup4 {\n  width: 20%; }\n\n.info-box {\n  padding: 10px;\n  margin-bottom: 10px; }\n", ""]);
+	exports.push([module.id, ".group-table {\n  width: 100%; }\n\n.thead {\n  margin-right: 25%; }\n\n.theadGroup0 {\n  width: 20%; }\n\n.theadGroup1 .theadGroup2 .theadGroup3 .theadGroup4 {\n  width: 20%; }\n\n.group-unit {\n  margin-bottom: 10px; }\n", ""]);
 	
 	// exports
 
@@ -11179,7 +11179,7 @@
 	
 	var ReactCurrentOwner = __webpack_require__(49);
 	var ReactElement = __webpack_require__(31);
-	var ReactInstanceHandles = __webpack_require__(80);
+	var ReactInstanceHandles = __webpack_require__(79);
 	
 	var getIteratorFn = __webpack_require__(173);
 	var invariant = __webpack_require__(6);
@@ -11784,7 +11784,7 @@
 
 	var aFunction = __webpack_require__(27)
 	  , toObject  = __webpack_require__(21)
-	  , IObject   = __webpack_require__(81)
+	  , IObject   = __webpack_require__(80)
 	  , toLength  = __webpack_require__(19);
 	
 	module.exports = function(that, callbackfn, aLen, memo, isRight){
@@ -12140,9 +12140,9 @@
 	// 19.1.2.1 Object.assign(target, source, ...)
 	var getKeys  = __webpack_require__(63)
 	  , gOPS     = __webpack_require__(101)
-	  , pIE      = __webpack_require__(82)
+	  , pIE      = __webpack_require__(81)
 	  , toObject = __webpack_require__(21)
-	  , IObject  = __webpack_require__(81)
+	  , IObject  = __webpack_require__(80)
 	  , $assign  = Object.assign;
 	
 	// should work with symbols and should have deterministic property order (V8 bug)
@@ -12241,7 +12241,7 @@
 
 	var getKeys   = __webpack_require__(63)
 	  , toIObject = __webpack_require__(30)
-	  , isEnum    = __webpack_require__(82).f;
+	  , isEnum    = __webpack_require__(81).f;
 	module.exports = function(isEntries){
 	  return function(it){
 	    var O      = toIObject(it)
@@ -12658,7 +12658,7 @@
 
 	var baseIsEqualDeep = __webpack_require__(477),
 	    isObject = __webpack_require__(77),
-	    isObjectLike = __webpack_require__(84);
+	    isObjectLike = __webpack_require__(83);
 	
 	/**
 	 * The base implementation of `_.isEqual` which supports partial comparisons
@@ -12983,8 +12983,8 @@
 /* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArrayLike = __webpack_require__(83),
-	    isObjectLike = __webpack_require__(84);
+	var isArrayLike = __webpack_require__(82),
+	    isObjectLike = __webpack_require__(83);
 	
 	/**
 	 * This method is like `_.isArrayLike` except that it also checks if `value`
@@ -13023,7 +13023,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var isArray = __webpack_require__(56),
-	    isObjectLike = __webpack_require__(84);
+	    isObjectLike = __webpack_require__(83);
 	
 	/** `Object#toString` result references. */
 	var stringTag = '[object String]';
@@ -14890,7 +14890,7 @@
 	var ReactCurrentOwner = __webpack_require__(49);
 	var ReactDOMTextComponent = __webpack_require__(241);
 	var ReactDefaultInjection = __webpack_require__(243);
-	var ReactInstanceHandles = __webpack_require__(80);
+	var ReactInstanceHandles = __webpack_require__(79);
 	var ReactMount = __webpack_require__(4);
 	var ReactPerf = __webpack_require__(35);
 	var ReactReconciler = __webpack_require__(69);
@@ -15419,7 +15419,7 @@
 	var ReactDOMTextComponent = __webpack_require__(241);
 	var ReactEventListener = __webpack_require__(618);
 	var ReactInjection = __webpack_require__(619);
-	var ReactInstanceHandles = __webpack_require__(80);
+	var ReactInstanceHandles = __webpack_require__(79);
 	var ReactMount = __webpack_require__(4);
 	var ReactReconcileTransaction = __webpack_require__(623);
 	var SelectEventPlugin = __webpack_require__(629);
@@ -18580,7 +18580,7 @@
 	// all enumerable object keys, includes symbols
 	var getKeys = __webpack_require__(63)
 	  , gOPS    = __webpack_require__(101)
-	  , pIE     = __webpack_require__(82);
+	  , pIE     = __webpack_require__(81);
 	module.exports = function(it){
 	  var result     = getKeys(it)
 	    , getSymbols = gOPS.f;
@@ -18869,7 +18869,7 @@
 	  , arrayJoin = [].join;
 	
 	// fallback for not array-like strings
-	$export($export.P + $export.F * (__webpack_require__(81) != Object || !__webpack_require__(38)(arrayJoin)), 'Array', {
+	$export($export.P + $export.F * (__webpack_require__(80) != Object || !__webpack_require__(38)(arrayJoin)), 'Array', {
 	  join: function join(separator){
 	    return arrayJoin.call(toIObject(this), separator === undefined ? ',' : separator);
 	  }
@@ -21299,7 +21299,7 @@
 	  $GOPD.f = $getOwnPropertyDescriptor;
 	  $DP.f   = $defineProperty;
 	  __webpack_require__(62).f = gOPNExt.f = $getOwnPropertyNames;
-	  __webpack_require__(82).f  = $propertyIsEnumerable;
+	  __webpack_require__(81).f  = $propertyIsEnumerable;
 	  __webpack_require__(101).f = $getOwnPropertySymbols;
 	
 	  if(DESCRIPTORS && !__webpack_require__(60)){
@@ -24249,7 +24249,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseIteratee = __webpack_require__(216),
-	    isArrayLike = __webpack_require__(83),
+	    isArrayLike = __webpack_require__(82),
 	    keys = __webpack_require__(113);
 	
 	/**
@@ -24923,7 +24923,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var eq = __webpack_require__(151),
-	    isArrayLike = __webpack_require__(83),
+	    isArrayLike = __webpack_require__(82),
 	    isIndex = __webpack_require__(150),
 	    isObject = __webpack_require__(77);
 	
@@ -25496,7 +25496,7 @@
 	var assignValue = __webpack_require__(212),
 	    copyObject = __webpack_require__(489),
 	    createAssigner = __webpack_require__(491),
-	    isArrayLike = __webpack_require__(83),
+	    isArrayLike = __webpack_require__(82),
 	    isPrototype = __webpack_require__(221),
 	    keys = __webpack_require__(113);
 	
@@ -25818,7 +25818,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var isLength = __webpack_require__(111),
-	    isObjectLike = __webpack_require__(84);
+	    isObjectLike = __webpack_require__(83);
 	
 	/** `Object#toString` result references. */
 	var argsTag = '[object Arguments]',
@@ -26946,15 +26946,15 @@
 	module.exports = [
 		{
 			"name": "九六式艦戦",
-			"short": "96式艦戰",
+			"short": "96艦戰",
 			"type": "fighter",
 			"id": "19",
+			"firepower": 0,
 			"torpedo": 0,
 			"bomb": 0,
 			"air": 2,
 			"sonar": 0,
 			"scout": 0,
-			"firepower": 0,
 			"hit": 0,
 			"evade": 0
 		},
@@ -26963,12 +26963,12 @@
 			"short": "零戰21型",
 			"type": "fighter",
 			"id": "20",
+			"firepower": 0,
 			"torpedo": 0,
 			"bomb": 0,
 			"air": 5,
 			"sonar": 0,
 			"scout": 0,
-			"firepower": 0,
 			"hit": 0,
 			"evade": 0
 		},
@@ -26977,12 +26977,208 @@
 			"short": "零戰52型",
 			"type": "fighter",
 			"id": "21",
+			"firepower": 0,
 			"torpedo": 0,
 			"bomb": 0,
 			"air": 6,
 			"sonar": 0,
 			"scout": 0,
+			"hit": 0,
+			"evade": 0
+		},
+		{
+			"name": "Bf109T改",
+			"short": "Bf109T改",
+			"type": "fighter",
+			"id": "158",
+			"firepower": 1,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 8,
+			"sonar": 0,
+			"scout": 0,
+			"hit": 0,
+			"evade": 4
+		},
+		{
+			"name": "零式艦戦21型(熟練)",
+			"short": "零戰21熟",
+			"type": "fighter",
+			"id": "96",
 			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 8,
+			"sonar": 0,
+			"scout": 1,
+			"hit": 1,
+			"evade": 2
+		},
+		{
+			"name": "紫電改二",
+			"short": "紫電改二",
+			"type": "fighter",
+			"id": "55",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 9,
+			"sonar": 0,
+			"scout": 0,
+			"hit": 0,
+			"evade": 3
+		},
+		{
+			"name": "零戦52型丙(六〇一空)",
+			"short": "零戰52丙",
+			"type": "fighter",
+			"id": "109",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 9,
+			"sonar": 0,
+			"scout": 0,
+			"hit": 1,
+			"evade": 1
+		},
+		{
+			"name": "零式艦戦52型(熟練)",
+			"short": "零戰52熟",
+			"type": "fighter",
+			"id": "152",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 9,
+			"sonar": 0,
+			"scout": 1,
+			"hit": 1,
+			"evade": 2
+		},
+		{
+			"name": "零戦21型(付岩本小隊)",
+			"short": "零21岩本",
+			"type": "fighter",
+			"id": "155",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 9,
+			"sonar": 0,
+			"scout": 1,
+			"hit": 1,
+			"evade": 3
+		},
+		{
+			"name": "烈風",
+			"short": "烈風",
+			"type": "fighter",
+			"id": "22",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 10,
+			"sonar": 0,
+			"scout": 0,
+			"hit": 0,
+			"evade": 0
+		},
+		{
+			"name": "Fw190T改",
+			"short": "Fw190T改",
+			"type": "fighter",
+			"id": "159",
+			"firepower": 2,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 10,
+			"sonar": 0,
+			"scout": 0,
+			"hit": 0,
+			"evade": 2
+		},
+		{
+			"name": "零戦52型丙(付岩井小隊)",
+			"short": "零52岩井",
+			"type": "fighter",
+			"id": "153",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 10,
+			"sonar": 0,
+			"scout": 1,
+			"hit": 1,
+			"evade": 2
+		},
+		{
+			"name": "烈風(六〇一空)",
+			"short": "烈風601",
+			"type": "fighter",
+			"id": "110",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 11,
+			"sonar": 0,
+			"scout": 0,
+			"hit": 1,
+			"evade": 2
+		},
+		{
+			"name": "零戦52型甲(付岩本小隊)",
+			"short": "零52岩本",
+			"type": "fighter",
+			"id": "156",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 11,
+			"sonar": 0,
+			"scout": 1,
+			"hit": 1,
+			"evade": 3
+		},
+		{
+			"name": "烈風改",
+			"short": "烈風改",
+			"type": "fighter",
+			"id": "53",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 12,
+			"sonar": 0,
+			"scout": 0,
+			"hit": 0,
+			"evade": 0
+		},
+		{
+			"name": "零式艦戦53型(岩本隊)",
+			"short": "零戰虎徹",
+			"type": "fighter",
+			"id": "157",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 12,
+			"sonar": 0,
+			"scout": 3,
+			"hit": 2,
+			"evade": 4
+		},
+		{
+			"name": "震電改",
+			"short": "震電改",
+			"type": "fighter",
+			"id": "56",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 15,
+			"sonar": 0,
+			"scout": 0,
 			"hit": 0,
 			"evade": 0
 		},
@@ -26991,12 +27187,12 @@
 			"short": "爆戦62型",
 			"type": "bomber",
 			"id": "60",
+			"firepower": 0,
 			"torpedo": 0,
 			"bomb": 4,
 			"air": 4,
 			"sonar": 3,
 			"scout": 0,
-			"firepower": 0,
 			"hit": 0,
 			"evade": 0
 		},
@@ -27005,26 +27201,152 @@
 			"short": "爆戦岩井",
 			"type": "bomber",
 			"id": "154",
+			"firepower": 0,
 			"torpedo": 0,
 			"bomb": 4,
 			"air": 7,
 			"sonar": 3,
 			"scout": 1,
-			"firepower": 0,
 			"hit": 1,
 			"evade": 2
 		},
 		{
+			"name": "九九式艦爆",
+			"short": "99艦爆",
+			"type": "bomber",
+			"id": "23",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 5,
+			"air": 0,
+			"sonar": 3,
+			"scout": 0,
+			"hit": 0,
+			"evade": 0
+		},
+		{
+			"name": "九九式艦爆(熟練)",
+			"short": "99艦爆熟",
+			"type": "bomber",
+			"id": "97",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 7,
+			"air": 1,
+			"sonar": 4,
+			"scout": 2,
+			"hit": 2,
+			"evade": 0
+		},
+		{
+			"name": "彗星",
+			"short": "彗星",
+			"type": "bomber",
+			"id": "24",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 8,
+			"air": 0,
+			"sonar": 3,
+			"scout": 0,
+			"hit": 0,
+			"evade": 0
+		},
+		{
+			"name": "Ju87C改",
+			"short": "Ju87C改",
+			"type": "bomber",
+			"id": "64",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 9,
+			"air": 0,
+			"sonar": 5,
+			"scout": 0,
+			"hit": 1,
+			"evade": 0
+		},
+		{
+			"name": "彗星一二型甲",
+			"short": "彗星12甲",
+			"type": "bomber",
+			"id": "57",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 10,
+			"air": 0,
+			"sonar": 3,
+			"scout": 1,
+			"hit": 0,
+			"evade": 0
+		},
+		{
+			"name": "九九式艦爆(江草隊)",
+			"short": "99式江草",
+			"type": "bomber",
+			"id": "99",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 10,
+			"air": 0,
+			"sonar": 5,
+			"scout": 3,
+			"hit": 4,
+			"evade": 0
+		},
+		{
+			"name": "彗星(六〇一空)",
+			"short": "彗星601",
+			"type": "bomber",
+			"id": "111",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 11,
+			"air": 0,
+			"sonar": 4,
+			"scout": 1,
+			"hit": 1,
+			"evade": 0
+		},
+		{
+			"name": "試製南山",
+			"short": "試製南山",
+			"type": "bomber",
+			"id": "148",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 11,
+			"air": 1,
+			"sonar": 4,
+			"scout": 2,
+			"hit": 0,
+			"evade": 0
+		},
+		{
+			"name": "彗星(江草隊)",
+			"short": "彗星江草",
+			"type": "bomber",
+			"id": "100",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 13,
+			"air": 1,
+			"sonar": 5,
+			"scout": 4,
+			"hit": 4,
+			"evade": 0
+		},
+		{
 			"name": "九七式艦攻",
-			"short": "97式艦攻",
+			"short": "97艦攻",
 			"type": "torpedo",
 			"id": "16",
+			"firepower": 0,
 			"torpedo": 5,
 			"bomb": 0,
 			"air": 0,
 			"sonar": 4,
 			"scout": 1,
-			"firepower": 0,
 			"hit": 0,
 			"evade": 0
 		},
@@ -27033,13 +27355,167 @@
 			"short": "97攻931",
 			"type": "torpedo",
 			"id": "82",
+			"firepower": 0,
 			"torpedo": 6,
 			"bomb": 0,
 			"air": 0,
 			"sonar": 7,
 			"scout": 2,
-			"firepower": 0,
 			"hit": 0,
+			"evade": 0
+		},
+		{
+			"name": "天山",
+			"short": "天山",
+			"type": "torpedo",
+			"id": "17",
+			"firepower": 0,
+			"torpedo": 7,
+			"bomb": 0,
+			"air": 0,
+			"sonar": 3,
+			"scout": 1,
+			"hit": 0,
+			"evade": 0
+		},
+		{
+			"name": "九七式艦攻(熟練)",
+			"short": "97艦攻熟",
+			"type": "torpedo",
+			"id": "98",
+			"firepower": 0,
+			"torpedo": 8,
+			"bomb": 0,
+			"air": 0,
+			"sonar": 5,
+			"scout": 2,
+			"hit": 2,
+			"evade": 0
+		},
+		{
+			"name": "天山(九三一空)",
+			"short": "天山931",
+			"type": "torpedo",
+			"id": "83",
+			"firepower": 0,
+			"torpedo": 9,
+			"bomb": 0,
+			"air": 0,
+			"sonar": 8,
+			"scout": 2,
+			"hit": 0,
+			"evade": 0
+		},
+		{
+			"name": "流星",
+			"short": "流星",
+			"type": "torpedo",
+			"id": "18",
+			"firepower": 0,
+			"torpedo": 10,
+			"bomb": 0,
+			"air": 0,
+			"sonar": 4,
+			"scout": 1,
+			"hit": 0,
+			"evade": 0
+		},
+		{
+			"name": "天山(六〇一空)",
+			"short": "天山601",
+			"type": "torpedo",
+			"id": "112",
+			"firepower": 0,
+			"torpedo": 10,
+			"bomb": 0,
+			"air": 0,
+			"sonar": 4,
+			"scout": 2,
+			"hit": 1,
+			"evade": 0
+		},
+		{
+			"name": "九七式艦攻(友永隊)",
+			"short": "97友永",
+			"type": "torpedo",
+			"id": "93",
+			"firepower": 0,
+			"torpedo": 11,
+			"bomb": 0,
+			"air": 1,
+			"sonar": 5,
+			"scout": 4,
+			"hit": 3,
+			"evade": 0
+		},
+		{
+			"name": "九七式艦攻(村田隊)",
+			"short": "97村田",
+			"type": "torpedo",
+			"id": "143",
+			"firepower": 0,
+			"torpedo": 12,
+			"bomb": 0,
+			"air": 1,
+			"sonar": 5,
+			"scout": 4,
+			"hit": 2,
+			"evade": 0
+		},
+		{
+			"name": "流星改",
+			"short": "流星改",
+			"type": "torpedo",
+			"id": "52",
+			"firepower": 0,
+			"torpedo": 13,
+			"bomb": 0,
+			"air": 0,
+			"sonar": 3,
+			"scout": 2,
+			"hit": 0,
+			"evade": 0
+		},
+		{
+			"name": "流星(六〇一空)",
+			"short": "流星601",
+			"type": "torpedo",
+			"id": "113",
+			"firepower": 0,
+			"torpedo": 13,
+			"bomb": 0,
+			"air": 0,
+			"sonar": 5,
+			"scout": 3,
+			"hit": 1,
+			"evade": 0
+		},
+		{
+			"name": "天山一二型(友永隊)",
+			"short": "天山友永",
+			"type": "torpedo",
+			"id": "94",
+			"firepower": 0,
+			"torpedo": 14,
+			"bomb": 0,
+			"air": 1,
+			"sonar": 6,
+			"scout": 5,
+			"hit": 3,
+			"evade": 0
+		},
+		{
+			"name": "天山一二型(村田隊)",
+			"short": "天山村田",
+			"type": "torpedo",
+			"id": "144",
+			"firepower": 0,
+			"torpedo": 15,
+			"bomb": 0,
+			"air": 1,
+			"sonar": 6,
+			"scout": 4,
+			"hit": 2,
 			"evade": 0
 		},
 		{
@@ -27047,13 +27523,41 @@
 			"short": "二式艦偵",
 			"type": "scout",
 			"id": "61",
+			"firepower": 0,
 			"torpedo": 0,
 			"bomb": 0,
 			"air": 1,
 			"sonar": 0,
 			"scout": 7,
-			"firepower": 0,
 			"hit": 3,
+			"evade": 0
+		},
+		{
+			"name": "彩雲",
+			"short": "彩雲",
+			"type": "scout",
+			"id": "54",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 0,
+			"sonar": 0,
+			"scout": 9,
+			"hit": 2,
+			"evade": 0
+		},
+		{
+			"name": "試製景雲(艦偵型)",
+			"short": "試製景雲",
+			"type": "scout",
+			"id": "151",
+			"firepower": 2,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 0,
+			"sonar": 0,
+			"scout": 11,
+			"hit": 2,
 			"evade": 0
 		},
 		{
@@ -27061,12 +27565,96 @@
 			"short": "夜偵",
 			"type": "scout2",
 			"id": "102",
+			"firepower": 0,
 			"torpedo": 0,
 			"bomb": 0,
 			"air": 0,
 			"sonar": 1,
 			"scout": 3,
+			"hit": 1,
+			"evade": 0
+		},
+		{
+			"name": "Ro.43水偵",
+			"short": "Ro43水偵",
+			"type": "scout2",
+			"id": "163",
+			"firepower": 1,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 1,
+			"sonar": 2,
+			"scout": 4,
+			"hit": 2,
+			"evade": 1
+		},
+		{
+			"name": "零式水上偵察機",
+			"short": "零水偵",
+			"type": "scout2",
+			"id": "25",
 			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 1,
+			"air": 1,
+			"sonar": 2,
+			"scout": 5,
+			"hit": 1,
+			"evade": 0
+		},
+		{
+			"name": "Ar196改",
+			"short": "Ar196改",
+			"type": "scout2",
+			"id": "115",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 1,
+			"air": 1,
+			"sonar": 5,
+			"scout": 5,
+			"hit": 2,
+			"evade": 0
+		},
+		{
+			"name": "OS2U",
+			"short": "OS2U",
+			"type": "scout2",
+			"id": "171",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 1,
+			"air": 1,
+			"sonar": 1,
+			"scout": 6,
+			"hit": 2,
+			"evade": 1
+		},
+		{
+			"name": "零式水上観測機",
+			"short": "零水観",
+			"type": "scout2",
+			"id": "59",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 1,
+			"air": 2,
+			"sonar": 4,
+			"scout": 6,
+			"hit": 2,
+			"evade": 0
+		},
+		{
+			"name": "紫雲",
+			"short": "紫雲",
+			"type": "scout2",
+			"id": "118",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 1,
+			"air": 0,
+			"sonar": 2,
+			"scout": 8,
 			"hit": 1,
 			"evade": 0
 		},
@@ -27075,12 +27663,68 @@
 			"short": "瑞雲",
 			"type": "seaplane",
 			"id": "26",
+			"firepower": 0,
 			"torpedo": 0,
 			"bomb": 4,
 			"air": 2,
 			"sonar": 4,
 			"scout": 6,
+			"hit": 1,
+			"evade": 0
+		},
+		{
+			"name": "瑞雲(六三四空)",
+			"short": "瑞雲634",
+			"type": "seaplane",
+			"id": "79",
 			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 6,
+			"air": 2,
+			"sonar": 5,
+			"scout": 6,
+			"hit": 1,
+			"evade": 0
+		},
+		{
+			"name": "瑞雲12型",
+			"short": "瑞雲12型",
+			"type": "seaplane",
+			"id": "80",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 7,
+			"air": 3,
+			"sonar": 5,
+			"scout": 6,
+			"hit": 1,
+			"evade": 0
+		},
+		{
+			"name": "瑞雲12型(六三四空)",
+			"short": "瑞雲1263",
+			"type": "seaplane",
+			"id": "81",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 9,
+			"air": 3,
+			"sonar": 6,
+			"scout": 7,
+			"hit": 1,
+			"evade": 0
+		},
+		{
+			"name": "試製晴嵐",
+			"short": "試製晴嵐",
+			"type": "seaplane",
+			"id": "60",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 11,
+			"air": 0,
+			"sonar": 6,
+			"scout": 6,
 			"hit": 1,
 			"evade": 0
 		},
@@ -27089,12 +27733,26 @@
 			"short": "Ro.44",
 			"type": "seaplaneX",
 			"id": "164",
+			"firepower": 0,
 			"torpedo": 0,
 			"bomb": 0,
 			"air": 2,
 			"sonar": 1,
 			"scout": 2,
+			"hit": 1,
+			"evade": 2
+		},
+		{
+			"name": "二式水戦改",
+			"short": "二式水戦",
+			"type": "seaplaneX",
+			"id": "165",
 			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 3,
+			"sonar": 1,
+			"scout": 1,
 			"hit": 1,
 			"evade": 2
 		},
@@ -27103,12 +27761,12 @@
 			"short": "カ号観測",
 			"type": "heli",
 			"id": "69",
+			"firepower": 0,
 			"torpedo": 0,
 			"bomb": 0,
 			"air": 0,
 			"sonar": 9,
 			"scout": 0,
-			"firepower": 0,
 			"hit": 1,
 			"evade": 0
 		},
@@ -27117,12 +27775,12 @@
 			"short": "三式指揮",
 			"type": "blue",
 			"id": "70",
+			"firepower": 0,
 			"torpedo": 0,
 			"bomb": 0,
 			"air": 0,
 			"sonar": 7,
 			"scout": 1,
-			"firepower": 0,
 			"hit": 2,
 			"evade": 0
 		},
@@ -27131,13 +27789,27 @@
 			"short": "二式大艇",
 			"type": "big",
 			"id": "138",
+			"firepower": 0,
 			"torpedo": 0,
 			"bomb": 0,
 			"air": 0,
 			"sonar": 1,
 			"scout": 12,
-			"firepower": 0,
 			"hit": 1,
+			"evade": 0
+		},
+		{
+			"name": "PBY-5A Catalina",
+			"short": "Catalina",
+			"type": "big",
+			"id": "178",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 0,
+			"sonar": 2,
+			"scout": 9,
+			"hit": 2,
 			"evade": 0
 		}
 	];
@@ -27165,7 +27837,8 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
-			"display": 1
+			"display": 1,
+			"firepower": 54
 		},
 		{
 			"name": "加賀改",
@@ -27185,27 +27858,8 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
-			"display": 1
-		},
-		{
-			"name": "瑞鶴改二",
-			"type": "CV",
-			"id": "462",
-			"slot1": 28,
-			"slot2": 26,
-			"slot3": 26,
-			"slot4": 13,
-			"fighter": 1,
-			"bomber": 1,
-			"torpedo": 1,
-			"scout": 1,
-			"scout2": 0,
-			"seaplane": 0,
-			"seaplaneX": 0,
-			"heli": 0,
-			"blue": 0,
-			"big": 0,
-			"display": 1
+			"display": 1,
+			"firepower": 49
 		},
 		{
 			"name": "翔鶴改二",
@@ -27225,7 +27879,29 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
-			"display": 1
+			"display": 1,
+			"firepower": 63
+		},
+		{
+			"name": "瑞鶴改二",
+			"type": "CV",
+			"id": "462",
+			"slot1": 28,
+			"slot2": 26,
+			"slot3": 26,
+			"slot4": 13,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 56
 		},
 		{
 			"name": "蒼龍改二",
@@ -27245,7 +27921,8 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
-			"display": 1
+			"display": 1,
+			"firepower": 57
 		},
 		{
 			"name": "飛龍改二",
@@ -27265,7 +27942,386 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
-			"display": 1
+			"display": 1,
+			"firepower": 64
+		},
+		{
+			"name": "雲龍改",
+			"type": "CV",
+			"id": "406",
+			"slot1": 18,
+			"slot2": 21,
+			"slot3": 27,
+			"slot4": 3,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 48
+		},
+		{
+			"name": "天城改",
+			"type": "CV",
+			"id": "429",
+			"slot1": 18,
+			"slot2": 21,
+			"slot3": 27,
+			"slot4": 3,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 45
+		},
+		{
+			"name": "葛城改",
+			"type": "CV",
+			"id": "430",
+			"slot1": 18,
+			"slot2": 21,
+			"slot3": 27,
+			"slot4": 3,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 45
+		},
+		{
+			"name": "Graf Zeppelin改",
+			"type": "CV",
+			"id": "353",
+			"slot1": 30,
+			"slot2": 13,
+			"slot3": 10,
+			"slot4": 3,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 50
+		},
+		{
+			"name": "赤城",
+			"type": "CV",
+			"id": "83",
+			"slot1": 18,
+			"slot2": 18,
+			"slot3": 27,
+			"slot4": 10,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 39
+		},
+		{
+			"name": "加賀",
+			"type": "CV",
+			"id": "84",
+			"slot1": 18,
+			"slot2": 18,
+			"slot3": 45,
+			"slot4": 12,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 39
+		},
+		{
+			"name": "蒼龍",
+			"type": "CV",
+			"id": "90",
+			"slot1": 12,
+			"slot2": 27,
+			"slot3": 18,
+			"slot4": 7,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 29
+		},
+		{
+			"name": "飛龍",
+			"type": "CV",
+			"id": "91",
+			"slot1": 12,
+			"slot2": 27,
+			"slot3": 18,
+			"slot4": 7,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 29
+		},
+		{
+			"name": "蒼龍改",
+			"type": "CV",
+			"id": "279",
+			"slot1": 18,
+			"slot2": 27,
+			"slot3": 18,
+			"slot4": 10,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 39
+		},
+		{
+			"name": "飛龍改",
+			"type": "CV",
+			"id": "280",
+			"slot1": 18,
+			"slot2": 27,
+			"slot3": 18,
+			"slot4": 10,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 39
+		},
+		{
+			"name": "翔鶴",
+			"type": "CV",
+			"id": "110",
+			"slot1": 21,
+			"slot2": 21,
+			"slot3": 21,
+			"slot4": 12,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 39
+		},
+		{
+			"name": "瑞鶴",
+			"type": "CV",
+			"id": "111",
+			"slot1": 21,
+			"slot2": 21,
+			"slot3": 21,
+			"slot4": 12,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 39
+		},
+		{
+			"name": "翔鶴改",
+			"type": "CV",
+			"id": "288",
+			"slot1": 24,
+			"slot2": 24,
+			"slot3": 24,
+			"slot4": 12,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 39
+		},
+		{
+			"name": "瑞鶴改",
+			"type": "CV",
+			"id": "112",
+			"slot1": 24,
+			"slot2": 24,
+			"slot3": 24,
+			"slot4": 12,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 39
+		},
+		{
+			"name": "雲龍",
+			"type": "CV",
+			"id": "404",
+			"slot1": 18,
+			"slot2": 24,
+			"slot3": 3,
+			"slot4": 6,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 27
+		},
+		{
+			"name": "天城",
+			"type": "CV",
+			"id": "331",
+			"slot1": 18,
+			"slot2": 24,
+			"slot3": 3,
+			"slot4": 6,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 25
+		},
+		{
+			"name": "葛城",
+			"type": "CV",
+			"id": "332",
+			"slot1": 18,
+			"slot2": 24,
+			"slot3": 3,
+			"slot4": 6,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 25
+		},
+		{
+			"name": "Graf Zeppelin",
+			"type": "CV",
+			"id": "432",
+			"slot1": 20,
+			"slot2": 13,
+			"slot3": 10,
+			"slot4": 0,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 40
 		},
 		{
 			"name": "大鳳改",
@@ -27285,27 +28341,8 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
-			"display": 1
-		},
-		{
-			"name": "瑞鶴改二甲",
-			"type": "AC",
-			"id": "467",
-			"slot1": 34,
-			"slot2": 24,
-			"slot3": 12,
-			"slot4": 6,
-			"fighter": 1,
-			"bomber": 1,
-			"torpedo": 1,
-			"scout": 1,
-			"scout2": 0,
-			"seaplane": 0,
-			"seaplaneX": 0,
-			"heli": 0,
-			"blue": 0,
-			"big": 0,
-			"display": 1
+			"display": 1,
+			"firepower": 59
 		},
 		{
 			"name": "翔鶴改二甲",
@@ -27325,7 +28362,50 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
-			"display": 1
+			"display": 1,
+			"firepower": 70
+		},
+		{
+			"name": "瑞鶴改二甲",
+			"type": "AC",
+			"id": "467",
+			"slot1": 34,
+			"slot2": 24,
+			"slot3": 12,
+			"slot4": 6,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 65
+		},
+		{
+			"name": "大鳳",
+			"type": "AC",
+			"id": "153",
+			"slot1": 18,
+			"slot2": 18,
+			"slot3": 18,
+			"slot4": 7,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 49
 		},
 		{
 			"name": "扶桑改二",
@@ -27345,7 +28425,8 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
-			"display": 1
+			"display": 1,
+			"firepower": 99
 		},
 		{
 			"name": "山城改二",
@@ -27365,7 +28446,407 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
-			"display": 1
+			"display": 1,
+			"firepower": 98
+		},
+		{
+			"name": "伊勢改",
+			"type": "BBV",
+			"id": "82",
+			"slot1": 11,
+			"slot2": 11,
+			"slot3": 11,
+			"slot4": 14,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 1,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 83
+		},
+		{
+			"name": "日向改",
+			"type": "BBV",
+			"id": "88",
+			"slot1": 11,
+			"slot2": 11,
+			"slot3": 11,
+			"slot4": 14,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 1,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 83
+		},
+		{
+			"name": "扶桑改",
+			"type": "BBV",
+			"id": "286",
+			"slot1": 10,
+			"slot2": 10,
+			"slot3": 10,
+			"slot4": 10,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 1,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 79
+		},
+		{
+			"name": "山城改",
+			"type": "BBV",
+			"id": "287",
+			"slot1": 10,
+			"slot2": 10,
+			"slot3": 10,
+			"slot4": 10,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 1,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 79
+		},
+		{
+			"name": "最上改",
+			"type": "CAV",
+			"id": "73",
+			"slot1": 5,
+			"slot2": 6,
+			"slot3": 5,
+			"slot4": 11,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 1,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 75
+		},
+		{
+			"name": "三隈改",
+			"type": "CAV",
+			"id": "121",
+			"slot1": 5,
+			"slot2": 6,
+			"slot3": 5,
+			"slot4": 8,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 1,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 76
+		},
+		{
+			"name": "鈴谷改",
+			"type": "CAV",
+			"id": "129",
+			"slot1": 5,
+			"slot2": 6,
+			"slot3": 5,
+			"slot4": 6,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 1,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 75
+		},
+		{
+			"name": "熊野改",
+			"type": "CAV",
+			"id": "130",
+			"slot1": 5,
+			"slot2": 6,
+			"slot3": 5,
+			"slot4": 6,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 1,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 75
+		},
+		{
+			"name": "利根改二",
+			"type": "CAV",
+			"id": "188",
+			"slot1": 2,
+			"slot2": 2,
+			"slot3": 9,
+			"slot4": 5,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 1,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 77
+		},
+		{
+			"name": "筑摩改二",
+			"type": "CAV",
+			"id": "189",
+			"slot1": 2,
+			"slot2": 2,
+			"slot3": 9,
+			"slot4": 5,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 1,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 77
+		},
+		{
+			"name": "Zara改",
+			"type": "CA",
+			"id": "358",
+			"slot1": 2,
+			"slot2": 2,
+			"slot3": 2,
+			"slot4": 2,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 75
+		},
+		{
+			"name": "Pola改",
+			"type": "CA",
+			"id": "361",
+			"slot1": 2,
+			"slot2": 2,
+			"slot3": 2,
+			"slot4": 2,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 77
+		},
+		{
+			"name": "Italia",
+			"type": "BB",
+			"id": "446",
+			"slot1": 2,
+			"slot2": 2,
+			"slot3": 2,
+			"slot4": 2,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 102
+		},
+		{
+			"name": "Roma改",
+			"type": "BB",
+			"id": "447",
+			"slot1": 2,
+			"slot2": 2,
+			"slot3": 2,
+			"slot4": 2,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 105
+		},
+		{
+			"name": "長門改",
+			"type": "BB",
+			"id": "275",
+			"slot1": 3,
+			"slot2": 3,
+			"slot3": 3,
+			"slot4": 3,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 0,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 99
+		},
+		{
+			"name": "陸奥改",
+			"type": "BB",
+			"id": "276",
+			"slot1": 3,
+			"slot2": 3,
+			"slot3": 3,
+			"slot4": 3,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 0,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 99
+		},
+		{
+			"name": "大和改",
+			"type": "BB",
+			"id": "136",
+			"slot1": 7,
+			"slot2": 7,
+			"slot3": 7,
+			"slot4": 7,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 0,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 139
+		},
+		{
+			"name": "武蔵改",
+			"type": "BB",
+			"id": "148",
+			"slot1": 7,
+			"slot2": 7,
+			"slot3": 7,
+			"slot4": 7,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 0,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 139
+		},
+		{
+			"name": "鳳翔改",
+			"type": "CVL",
+			"id": "285",
+			"slot1": 14,
+			"slot2": 16,
+			"slot3": 12,
+			"slot4": 0,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 1,
+			"firepower": 29
 		},
 		{
 			"name": "飛鷹改",
@@ -27385,10 +28866,11 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
-			"display": 1
+			"display": 1,
+			"firepower": 29
 		},
 		{
-			"name": "準鷹改二",
+			"name": "隼鷹改二",
 			"type": "CVL",
 			"id": "408",
 			"slot1": 24,
@@ -27405,47 +28887,8 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
-			"display": 1
-		},
-		{
-			"name": "千歲航改二",
-			"type": "CVL",
-			"id": "296",
-			"slot1": 24,
-			"slot2": 16,
-			"slot3": 11,
-			"slot4": 8,
-			"fighter": 1,
-			"bomber": 1,
-			"torpedo": 1,
-			"scout": 1,
-			"scout2": 0,
-			"seaplane": 0,
-			"seaplaneX": 0,
-			"heli": 1,
-			"blue": 1,
-			"big": 0,
-			"display": 1
-		},
-		{
-			"name": "千代田航改二",
-			"type": "CVL",
-			"id": "297",
-			"slot1": 24,
-			"slot2": 16,
-			"slot3": 11,
-			"slot4": 8,
-			"fighter": 1,
-			"bomber": 1,
-			"torpedo": 1,
-			"scout": 1,
-			"scout2": 0,
-			"seaplane": 0,
-			"seaplaneX": 0,
-			"heli": 1,
-			"blue": 1,
-			"big": 0,
-			"display": 1
+			"display": 1,
+			"firepower": 40
 		},
 		{
 			"name": "龍驤改二",
@@ -27465,7 +28908,701 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
-			"display": 1
+			"display": 1,
+			"firepower": 40
+		},
+		{
+			"name": "祥鳳改",
+			"type": "CVL",
+			"id": "282",
+			"slot1": 18,
+			"slot2": 12,
+			"slot3": 12,
+			"slot4": 6,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 1,
+			"firepower": 29
+		},
+		{
+			"name": "瑞鳳改",
+			"type": "CVL",
+			"id": "117",
+			"slot1": 18,
+			"slot2": 12,
+			"slot3": 12,
+			"slot4": 6,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 1,
+			"firepower": 40
+		},
+		{
+			"name": "千歲航改二",
+			"type": "CVL",
+			"id": "296",
+			"slot1": 24,
+			"slot2": 16,
+			"slot3": 11,
+			"slot4": 8,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 1,
+			"firepower": 34
+		},
+		{
+			"name": "千代田航改二",
+			"type": "CVL",
+			"id": "297",
+			"slot1": 24,
+			"slot2": 16,
+			"slot3": 11,
+			"slot4": 8,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 1,
+			"firepower": 34
+		},
+		{
+			"name": "龍鳳改",
+			"type": "CVL",
+			"id": "318",
+			"slot1": 21,
+			"slot2": 9,
+			"slot3": 9,
+			"slot4": 6,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 1,
+			"firepower": 32
+		},
+		{
+			"name": "鳳翔",
+			"type": "CVL",
+			"id": "89",
+			"slot1": 8,
+			"slot2": 11,
+			"slot3": 0,
+			"slot4": 0,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 0,
+			"firepower": 19
+		},
+		{
+			"name": "飛鷹",
+			"type": "CVL",
+			"id": "75",
+			"slot1": 12,
+			"slot2": 18,
+			"slot3": 18,
+			"slot4": 10,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 0,
+			"firepower": 19
+		},
+		{
+			"name": "隼鷹",
+			"type": "CVL",
+			"id": "92",
+			"slot1": 12,
+			"slot2": 18,
+			"slot3": 18,
+			"slot4": 10,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 0,
+			"firepower": 19
+		},
+		{
+			"name": "隼鷹改",
+			"type": "CVL",
+			"id": "284",
+			"slot1": 18,
+			"slot2": 18,
+			"slot3": 18,
+			"slot4": 12,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 0,
+			"firepower": 29
+		},
+		{
+			"name": "龍驤",
+			"type": "CVL",
+			"id": "76",
+			"slot1": 9,
+			"slot2": 24,
+			"slot3": 5,
+			"slot4": 0,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 0,
+			"firepower": 19
+		},
+		{
+			"name": "龍驤改",
+			"type": "CVL",
+			"id": "281",
+			"slot1": 9,
+			"slot2": 24,
+			"slot3": 5,
+			"slot4": 5,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 0,
+			"firepower": 29
+		},
+		{
+			"name": "祥鳳",
+			"type": "CVL",
+			"id": "74",
+			"slot1": 18,
+			"slot2": 9,
+			"slot3": 3,
+			"slot4": 0,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 0,
+			"firepower": 19
+		},
+		{
+			"name": "瑞鳳",
+			"type": "CVL",
+			"id": "116",
+			"slot1": 18,
+			"slot2": 9,
+			"slot3": 3,
+			"slot4": 0,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 0,
+			"firepower": 19
+		},
+		{
+			"name": "千歲航",
+			"type": "CVL",
+			"id": "108",
+			"slot1": 21,
+			"slot2": 9,
+			"slot3": 6,
+			"slot4": 0,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 0,
+			"firepower": 19
+		},
+		{
+			"name": "千代田航",
+			"type": "CVL",
+			"id": "109",
+			"slot1": 21,
+			"slot2": 9,
+			"slot3": 6,
+			"slot4": 0,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 0,
+			"firepower": 19
+		},
+		{
+			"name": "千歲航改",
+			"type": "CVL",
+			"id": "291",
+			"slot1": 24,
+			"slot2": 16,
+			"slot3": 8,
+			"slot4": 8,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 0,
+			"firepower": 34
+		},
+		{
+			"name": "千代田航改",
+			"type": "CVL",
+			"id": "292",
+			"slot1": 24,
+			"slot2": 16,
+			"slot3": 8,
+			"slot4": 8,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 0,
+			"firepower": 34
+		},
+		{
+			"name": "龍鳳",
+			"type": "CVL",
+			"id": "185",
+			"slot1": 18,
+			"slot2": 7,
+			"slot3": 6,
+			"slot4": 0,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 0,
+			"firepower": 20
+		},
+		{
+			"name": "千歳甲",
+			"type": "AV",
+			"id": "106",
+			"slot1": 12,
+			"slot2": 6,
+			"slot3": 6,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 29
+		},
+		{
+			"name": "千代田甲",
+			"type": "AV",
+			"id": "107",
+			"slot1": 12,
+			"slot2": 6,
+			"slot3": 6,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 29
+		},
+		{
+			"name": "瑞穂改",
+			"type": "AV",
+			"id": "348",
+			"slot1": 12,
+			"slot2": 12,
+			"slot3": 6,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 45
+		},
+		{
+			"name": "千歳",
+			"type": "AV",
+			"id": "102",
+			"slot1": 12,
+			"slot2": 12,
+			"slot3": 0,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 29
+		},
+		{
+			"name": "千代田",
+			"type": "AV",
+			"id": "103",
+			"slot1": 12,
+			"slot2": 12,
+			"slot3": 0,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 29
+		},
+		{
+			"name": "千歳改",
+			"type": "AV",
+			"id": "104",
+			"slot1": 12,
+			"slot2": 6,
+			"slot3": 6,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 29
+		},
+		{
+			"name": "千代田改",
+			"type": "AV",
+			"id": "105",
+			"slot1": 12,
+			"slot2": 6,
+			"slot3": 6,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 29
+		},
+		{
+			"name": "瑞穂",
+			"type": "AV",
+			"id": "451",
+			"slot1": 12,
+			"slot2": 12,
+			"slot3": 0,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 36
+		},
+		{
+			"name": "秋津洲改",
+			"type": "AV",
+			"id": "450",
+			"slot1": 1,
+			"slot2": 1,
+			"slot3": 1,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 0,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 1,
+			"display": 1,
+			"firepower": 28
+		},
+		{
+			"name": "秋津洲",
+			"type": "AV",
+			"id": "445",
+			"slot1": 1,
+			"slot2": 1,
+			"slot3": 0,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 0,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 1,
+			"display": 0,
+			"firepower": 18
+		},
+		{
+			"name": "伊58改",
+			"type": "SSV",
+			"id": "399",
+			"slot1": 1,
+			"slot2": 1,
+			"slot3": 0,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 12
+		},
+		{
+			"name": "伊8改",
+			"type": "SSV",
+			"id": "400",
+			"slot1": 1,
+			"slot2": 1,
+			"slot3": 0,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 14
+		},
+		{
+			"name": "伊19改",
+			"type": "SSV",
+			"id": "401",
+			"slot1": 1,
+			"slot2": 1,
+			"slot3": 0,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 12
+		},
+		{
+			"name": "伊401改",
+			"type": "SSV",
+			"id": "403",
+			"slot1": 3,
+			"slot2": 3,
+			"slot3": 0,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 19
+		},
+		{
+			"name": "伊401",
+			"type": "SSV",
+			"id": "155",
+			"slot1": 3,
+			"slot2": 0,
+			"slot3": 0,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 9
 		},
 		{
 			"name": "大鯨",
@@ -27485,7 +29622,71 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
-			"display": 1
+			"display": 1,
+			"firepower": 15
+		},
+		{
+			"name": "あきつ丸改",
+			"type": "XA",
+			"id": "166",
+			"slot1": 8,
+			"slot2": 8,
+			"slot3": 8,
+			"slot4": 0,
+			"fighter": 1,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 1,
+			"blue": 1,
+			"big": 0,
+			"display": 1,
+			"firepower": 33
+		},
+		{
+			"name": "速吸改",
+			"type": "TP",
+			"id": "352",
+			"slot1": 6,
+			"slot2": 3,
+			"slot3": 1,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 1,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 1,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 36
+		},
+		{
+			"name": "速吸",
+			"type": "TP",
+			"id": "460",
+			"slot1": 6,
+			"slot2": 1,
+			"slot3": 0,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 1,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 1,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 22
 		}
 	];
 
@@ -33199,7 +35400,7 @@
 	
 	var _reactRedux = __webpack_require__(34);
 	
-	var _ToggleButton = __webpack_require__(86);
+	var _ToggleButton = __webpack_require__(85);
 	
 	var _ToggleButton2 = _interopRequireDefault(_ToggleButton);
 	
@@ -33209,7 +35410,7 @@
 	
 	var _actions = __webpack_require__(78);
 	
-	var _ConstList = __webpack_require__(79);
+	var _ConstList = __webpack_require__(86);
 	
 	__webpack_require__(673);
 	
@@ -33315,7 +35516,7 @@
 	
 				return _react3.default.createElement(
 					'div',
-					{ className: 'display-area display-list mdl-cell mdl-cell--2-col mdl-shadow--4dp' },
+					{ className: 'display-list mdl-cell mdl-cell--2-col mdl-shadow--4dp' },
 					buttonOut
 				);
 			}
@@ -33496,7 +35697,7 @@
 	
 	var _reactRedux = __webpack_require__(34);
 	
-	var _ToggleButton = __webpack_require__(86);
+	var _ToggleButton = __webpack_require__(85);
 	
 	var _ToggleButton2 = _interopRequireDefault(_ToggleButton);
 	
@@ -33571,18 +35772,6 @@
 				var buttonTemp;
 				var buttonOut = [];
 	
-				buttonTemp = _react3.default.createElement(_ToggleButton2.default, {
-					modelId: "1",
-					key: "carrierDispButton",
-					display: carrierDisp.toString(),
-					onClickFunc: function onClickFunc(modelId) {
-						return carrierDisplay(modelId);
-					},
-					Cactive: "aircraft-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary mdl-button--raised",
-					Cinactive: "aircraft-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
-					title: "最終改造表示" });
-				buttonOut.push(buttonTemp);
-	
 				for (var i = 0; i < carrierData.length; i++) {
 					if (carrierData[i].select > 1) {
 						idTemp = carrierData[i].id;
@@ -33604,7 +35793,17 @@
 	
 				return _react3.default.createElement(
 					'div',
-					{ className: 'display-area display-list mdl-cell mdl-cell--2-col mdl-shadow--4dp' },
+					{ className: 'display-list mdl-cell mdl-cell--2-col mdl-shadow--4dp' },
+					_react3.default.createElement(_ToggleButton2.default, {
+						modelId: "1",
+						key: "carrierDispButton",
+						display: carrierDisp.toString(),
+						onClickFunc: function onClickFunc(modelId) {
+							return carrierDisplay(modelId);
+						},
+						Cactive: "aircraft-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary mdl-button--raised",
+						Cinactive: "aircraft-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
+						title: "最終改造表示" }),
 					buttonOut
 				);
 			}
@@ -33683,7 +35882,7 @@
 	
 	var _FleetMap2 = _interopRequireDefault(_FleetMap);
 	
-	var _ConstList = __webpack_require__(79);
+	var _ConstList = __webpack_require__(86);
 	
 	__webpack_require__(675);
 	
@@ -33746,21 +35945,21 @@
 					case _ConstList.listStatusS[0]:
 						dispTemp = _react3.default.createElement(
 							'div',
-							{ className: _ConstList.listStatusS[0] },
+							{ className: _ConstList.listStatusS[0] + " display-area" },
 							_react3.default.createElement(_FleetGroup2.default, null)
 						);
 						break;
 					case _ConstList.listStatusS[1]:
 						dispTemp = _react3.default.createElement(
 							'div',
-							{ className: _ConstList.listStatusS[1] },
+							{ className: _ConstList.listStatusS[1] + " display-area" },
 							_react3.default.createElement(_FleetStatus2.default, null)
 						);
 						break;
 					case _ConstList.listStatusS[2]:
 						dispTemp = _react3.default.createElement(
 							'div',
-							{ className: _ConstList.listStatusS[2] },
+							{ className: _ConstList.listStatusS[2] + " display-area" },
 							_react3.default.createElement(_FleetMap2.default, null)
 						);
 						break;
@@ -34051,10 +36250,10 @@
 	
 				return _react3.default.createElement(
 					'div',
-					{ className: 'page-content' },
+					{ className: 'page-content display-area' },
 					_react3.default.createElement(
 						'div',
-						{ className: 'mdl-grid' },
+						{ className: 'mdl-grid display-area' },
 						_react3.default.createElement(_Aircrafts2.default, null),
 						_react3.default.createElement(_Carriers2.default, null),
 						_react3.default.createElement(_Group2.default, null)
@@ -34485,7 +36684,7 @@
 	
 	var _InfoBox2 = _interopRequireDefault(_InfoBox);
 	
-	var _ToggleButton = __webpack_require__(86);
+	var _ToggleButton = __webpack_require__(85);
 	
 	var _ToggleButton2 = _interopRequireDefault(_ToggleButton);
 	
@@ -34495,7 +36694,7 @@
 	
 	var _actions = __webpack_require__(78);
 	
-	var _ConstList = __webpack_require__(79);
+	var _ConstList = __webpack_require__(86);
 	
 	__webpack_require__(677);
 	
@@ -34555,6 +36754,7 @@
 				var carrierSelect = _props.carrierSelect;
 				var carrierSlotSelect = _props.carrierSlotSelect;
 				var airControl = _props.airControl;
+				var aircraftCount = _props.aircraftCount;
 	
 	
 				var theadTemp;
@@ -34646,6 +36846,9 @@
 										case _ConstList.listAircraft[8]:
 											classTemp = classTemp + " mdl-color--" + _ConstList.listAircraftColor[8] + " mdl-button--raised";
 											break;
+										case _ConstList.listAircraft[9]:
+											classTemp = classTemp + " mdl-color--" + _ConstList.listAircraftColor[9] + " mdl-button--raised";
+											break;
 									}
 								} else {
 									textTemp = selectData[i][_ConstList.listCarrierTbody[j]].toString();
@@ -34691,17 +36894,23 @@
 					_react3.default.createElement(_InfoBox2.default, null),
 					_react3.default.createElement(
 						'div',
-						{ className: 'info-box mdl-shadow--4dp' },
+						{ className: 'group-unit mdl-shadow--4dp mdl-grid' },
 						_react3.default.createElement(
-							'label',
-							null,
+							'div',
+							{ className: 'mdl-cell mdl-cell--2-col' },
 							'総制空力: ',
 							airControl
+						),
+						_react3.default.createElement(
+							'div',
+							{ className: 'mdl-cell mdl-cell--2-col' },
+							'艦載機総數: ',
+							aircraftCount
 						)
 					),
 					_react3.default.createElement(
 						'table',
-						{ className: 'group-table mdl-data-table mdl-js-data-table mdl-shadow--4dp' },
+						{ className: 'group-unit group-table mdl-data-table mdl-js-data-table mdl-shadow--4dp' },
 						theadOut,
 						tbodyOut
 					)
@@ -34714,13 +36923,15 @@
 	
 	Group.propTypes = {
 		selectData: _react2.PropTypes.array.isRequired,
-		airControl: _react2.PropTypes.number.isRequired
+		airControl: _react2.PropTypes.number.isRequired,
+		aircraftCount: _react2.PropTypes.number.isRequired
 	};
 	
 	var mapStateToProps = function mapStateToProps(state) {
 		return {
 			selectData: state.dbStore.dbCarrierSelect,
-			airControl: state.dbStore.airControl
+			airControl: state.dbStore.airControl,
+			aircraftCount: state.dbStore.aircraftCount
 		};
 	};
 	
@@ -34772,11 +36983,11 @@
 	
 	var _actions = __webpack_require__(78);
 	
-	var _ToggleButton = __webpack_require__(86);
+	var _ToggleButton = __webpack_require__(85);
 	
 	var _ToggleButton2 = _interopRequireDefault(_ToggleButton);
 	
-	var _ConstList = __webpack_require__(79);
+	var _ConstList = __webpack_require__(86);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -34946,11 +37157,11 @@
 	
 	var _reactRedux = __webpack_require__(34);
 	
-	var _ToggleButton = __webpack_require__(86);
+	var _ToggleButton = __webpack_require__(85);
 	
 	var _ToggleButton2 = _interopRequireDefault(_ToggleButton);
 	
-	var _ConstList = __webpack_require__(79);
+	var _ConstList = __webpack_require__(86);
 	
 	var _actions = __webpack_require__(78);
 	
@@ -35043,9 +37254,9 @@
 					for (var i = 0; i < _ConstList.listAircraftSkill.length; i++) {
 						buttTemp = _react3.default.createElement(
 							'div',
-							{ className: 'mdl-cell mdl-cell--1-col' },
+							{ key: "info-skill" + i.toString(), className: 'mdl-cell mdl-cell--1-col' },
 							_react3.default.createElement(_ToggleButton2.default, {
-								modelId: i,
+								modelId: i.toString(),
 								key: "info-skill" + i.toString(),
 								display: aircraftSkill.toString(),
 								onClickFunc: function onClickFunc(modelId) {
@@ -35061,7 +37272,7 @@
 	
 				return _react3.default.createElement(
 					'div',
-					{ className: 'mdl-shadow--4dp' },
+					{ className: 'group-unit mdl-shadow--4dp' },
 					_react3.default.createElement(
 						'div',
 						{ className: 'mdl-grid' },
@@ -35182,15 +37393,14 @@
 	
 	var _carriers2 = _interopRequireDefault(_carriers);
 	
-	var _ConstList = __webpack_require__(79);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var db = new _lokijs2.default('db');
 	
 	// ===============================================================================
 	// Initial database
 	// ===============================================================================
 	
-	var db = new _lokijs2.default('db');
 	var dbAircraft = db.addCollection("dbAircraft");
 	var dbCarrier = db.addCollection("dbCarrier");
 	
@@ -35207,15 +37417,16 @@
 	// ===============================================================================
 	
 	var initialState = {
-		aircraftTypeSelect: 'fighter',
-		aircraftSelect: '19',
+		aircraftTypeSelect: '',
+		aircraftSelect: '',
 		aircraftSkillDisp: 1,
 		aircraftSkill: 7,
+		aircraftCount: 0,
 		airControl: 0,
 		carrierDisp: 1,
-		dbAircraftTypeQuery: dbAircraft.chain().find({ 'type': 'fighter' }).simplesort('id').data(),
-		dbAircraftSelect: dbAircraft.chain().find({ 'id': '19' }).data(),
-		dbCarrierTypeQuery: dbCarrier.chain().find({ 'display': 1 }).find({ 'fighter': 1 }).simplesort('type').data(),
+		dbAircraftTypeQuery: [],
+		dbAircraftSelect: [],
+		dbCarrierTypeQuery: [],
 		dbCarrierSelect: []
 	};
 	
@@ -35235,7 +37446,7 @@
 			// ===============================================================================
 			case _ConstActionTypes.AIRCRAFT_TYPE_CHANGE:
 				if (state.aircraftTypeSelect != action.modelId) {
-					var tempDb = dbAircraft.chain().find({ 'type': action.modelId }).simplesort('id').data();
+					var tempDb = dbAircraft.chain().find({ 'type': action.modelId }).simplesort('name').data();
 	
 					return Object.assign({}, state, {
 						aircraftTypeSelect: action.modelId,
@@ -35245,6 +37456,14 @@
 						dbCarrierTypeQuery: dbCarrier.chain().find({ 'display': state.carrierDisp }).where(function (obj) {
 							return obj[action.modelId] == 1;
 						}).simplesort('type').data()
+					});
+				} else {
+					return Object.assign({}, state, {
+						aircraftTypeSelect: '',
+						aircraftSelect: '',
+						dbAircraftTypeQuery: [],
+						dbAircraftSelect: [],
+						dbCarrierTypeQuery: []
 					});
 				}
 				break;
@@ -35360,7 +37579,8 @@
 					dbTemp = dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('select').data();
 					return Object.assign({}, state, {
 						dbCarrierSelect: dbTemp,
-						airControl: calcAirControl(dbTemp)
+						airControl: calcAirControl(dbTemp),
+						aircraftCount: state.aircraftCount - seletcedTarget[selectedSlot]
 					});
 				}
 	
@@ -35375,7 +37595,8 @@
 						calcAirControl(dbTemp);
 						return Object.assign({}, state, {
 							dbCarrierSelect: dbTemp,
-							airControl: calcAirControl(dbTemp)
+							airControl: calcAirControl(dbTemp),
+							aircraftCount: state.aircraftCount - seletcedTarget[selectedSlot]
 						});
 					} else {
 						seletcedTarget[slotID] = selectedAC.id;
@@ -35386,7 +37607,8 @@
 						dbTemp = dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('select').data();
 						return Object.assign({}, state, {
 							dbCarrierSelect: dbTemp,
-							airControl: calcAirControl(dbTemp)
+							airControl: calcAirControl(dbTemp),
+							aircraftCount: state.aircraftCount + seletcedTarget[selectedSlot]
 						});
 					}
 				} else {
@@ -35399,7 +37621,8 @@
 						dbTemp = dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('select').data();
 						return Object.assign({}, state, {
 							dbCarrierSelect: dbTemp,
-							airControl: calcAirControl(dbTemp)
+							airControl: calcAirControl(dbTemp),
+							aircraftCount: state.aircraftCount + seletcedTarget[selectedSlot]
 						});
 					}
 				}
@@ -35425,8 +37648,8 @@
 				if (input[i][searchName[j]]) {
 					tempSelect = dbAircraft.findOne({ 'id': input[i][searchName[j]] });
 					switch (tempSelect.type) {
-						case _ConstList.listAircraft[0]:
-						case _ConstList.listAircraft[6]:
+						case 'fighter':
+						case 'seaplaneX':
 							acValue = acValue + Math.floor(tempSelect.air * Math.sqrt(input[i][searchSlot[j]]));
 	
 							switch (input[i][searchSkill[j]]) {
@@ -35454,8 +37677,8 @@
 							}
 	
 							break;
-						case _ConstList.listAircraft[1]:
-						case _ConstList.listAircraft[2]:
+						case 'bomber':
+						case 'torpedo':
 							if (tempSelect.air > 0) {
 								acValue = acValue + Math.floor(tempSelect.air * Math.sqrt(input[i][searchSlot[j]]));
 							}
@@ -35485,8 +37708,10 @@
 							}
 	
 							break;
-						case _ConstList.listAircraft[5]:
-							acValue = acValue + Math.floor(tempSelect.air * Math.sqrt(input[i][searchSlot[j]]));
+						case 'seaplane':
+							if (tempSelect.air > 0) {
+								acValue = acValue + Math.floor(tempSelect.air * Math.sqrt(input[i][searchSlot[j]]));
+							}
 	
 							switch (input[i][searchSkill[j]]) {
 								case 1:
@@ -41845,7 +44070,7 @@
 	var EventListener = __webpack_require__(260);
 	var ExecutionEnvironment = __webpack_require__(20);
 	var PooledClass = __webpack_require__(57);
-	var ReactInstanceHandles = __webpack_require__(80);
+	var ReactInstanceHandles = __webpack_require__(79);
 	var ReactMount = __webpack_require__(4);
 	var ReactUpdates = __webpack_require__(39);
 	
@@ -43048,7 +45273,7 @@
 	
 	var ReactDefaultBatchingStrategy = __webpack_require__(242);
 	var ReactElement = __webpack_require__(31);
-	var ReactInstanceHandles = __webpack_require__(80);
+	var ReactInstanceHandles = __webpack_require__(79);
 	var ReactMarkupChecksum = __webpack_require__(249);
 	var ReactServerBatchingStrategy = __webpack_require__(625);
 	var ReactServerRenderingTransaction = __webpack_require__(627);
