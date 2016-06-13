@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "180a25ebd6d57874c6ea"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e739c45f4231ddaa76bd"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -19806,8 +19806,11 @@
 	      className: "mdl-navigation"
 	    }, a({
 	      className: Constants.buttonClassActive,
+	      href: "http://www.dmm.com/netgame_s/seiken/"
+	    }, "政剣マニフェスティア"), a({
+	      className: Constants.buttonClassActive,
 	      href: "http://wikiwiki.jp/seimani/"
-	    }, "Wiki"), button({
+	    }, "攻略wiki"), button({
 	      className: Constants.buttonClassActive,
 	      onClick: this.handleClick.bind(null, "modal1")
 	    }, "EXPボーナス日程表"), button({
