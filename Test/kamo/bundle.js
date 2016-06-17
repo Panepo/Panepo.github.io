@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e8152145110d23bebc03"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "761a66a9426ae07bc8d5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -24120,6 +24120,10 @@
 		var aircraftSelect = _dbStore.dbAircraft.chain().find({ 'id': aircraftId }).data();
 		var output = {};
 		var tempDam = 0;
+		output.as1 = 0;
+		output.as2 = 0;
+		output.dam = 0;
+		output.string = 0;
 	
 		switch (aircraftSelect[0].type) {
 			case "bomber":
