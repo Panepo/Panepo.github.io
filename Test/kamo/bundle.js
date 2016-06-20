@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "761a66a9426ae07bc8d5"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "085f5960b79ecdff3d21"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -13783,6 +13783,7 @@
 	var listStatusS = exports.listStatusS = ["group", "status", "map"];
 	
 	var listAircraft = exports.listAircraft = ["fighter", "bomber", "torpedo", "scout", "scout2", "seaplane", "seaplaneX", "heli", "blue", "big"];
+	var listAircraftName = exports.listAircraftName = ["艦上戦闘機", "艦上爆撃機", "艦上攻撃機", "艦上偵察機", "水上偵察機", "水上爆撃機", "水上戦闘機", "オートジャイロ", "対潜哨戒機", "大型飛行艇"];
 	var listAircraftS = exports.listAircraftS = ["sit6", "sit7", "sit8", "sit9", "sit10", "sit10", "sit10", "sit21", "sit22", "sit33"];
 	var listAircraftColor = exports.listAircraftColor = ["green-800", "red-800", "blue-800", "yellow-900", "green-600", "green-600", "green-600", "green-700", "blue-500", "green-600"];
 	var listAircraftType = exports.listAircraftType = ["torpedo", "bomb", "air", "sonar", "scout", "firepower", "hit", "evade"];
@@ -13790,8 +13791,9 @@
 	var listAircraftSkill = exports.listAircraftSkill = ["無熟練", "|", "||", "|||", "/", "//", "///", ">>"];
 	var listAircraftSkill2 = exports.listAircraftSkill2 = ["", "|", "||", "|||", "/", "//", "///", ">>"];
 	
-	var listCarrierThead = exports.listCarrierThead = ["艦娘", "第一隊", "第二隊", "第三隊", "第四隊"];
+	var listCarrierThead = exports.listCarrierThead = ["艦娘", "火力", "第一隊", "第二隊", "第三隊", "第四隊"];
 	var listCarrierTbody = exports.listCarrierTbody = ["id", "slot1", "slot2", "slot3", "slot4"];
+	var listCarrierTbodyText = exports.listCarrierTbodyText = ["id", "slot1text", "slot2text", "slot3text", "slot4text"];
 	
 	var listStatusButton = exports.listStatusButton = ["制空能力", "航空攻撃", "砲撃戦攻撃", "対潜攻撃"];
 	var listStatusButtonS = exports.listStatusButtonS = ["air", "airstrike", "firepower", "sonar"];
@@ -19456,6 +19458,7 @@
 				var Cactive = _props.Cactive;
 				var Cinactive = _props.Cinactive;
 				var imgSrc = _props.imgSrc;
+				var text = _props.text;
 	
 	
 				var bClassName = "";
@@ -19465,11 +19468,22 @@
 					bClassName = "mdl-button mdl-js-button mdl-js-ripple-effect " + Cinactive;
 				}
 	
+				var textTemp;
+				if (text.length > 0) {
+					textTemp = _react3.default.createElement(
+						"label",
+						{ className: Cinactive },
+						" ",
+						text
+					);
+				}
+	
 				var srcTemp = imgSrc;
 				return _react3.default.createElement(
 					"button",
 					{ className: bClassName, onClick: onClickFunc.bind(null, modelId) },
-					_react3.default.createElement("img", { src: srcTemp, alt: title })
+					_react3.default.createElement("img", { src: srcTemp, alt: title }),
+					textTemp
 				);
 			}
 		}]);
@@ -19487,7 +19501,8 @@
 		modelId: _react2.PropTypes.string,
 		Cactive: _react2.PropTypes.string,
 		Cinactive: _react2.PropTypes.string,
-		imgSrc: _react2.PropTypes.string
+		imgSrc: _react2.PropTypes.string,
+		text: _react2.PropTypes.string
 	};
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(1))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ToggleImgButton.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -19585,22 +19600,26 @@
 			case _ConstActionTypes.AIRCRAFT_TYPE_CHANGE:
 				if (state.aircraftTypeSelect != action.modelId) {
 					var tempDb = dbAircraft.chain().find({ 'type': action.modelId }).simplesort('name').data();
+					calcGroupText(tempDb[0].id, action.modelId, state.aircraftSkill);
 	
 					return Object.assign({}, state, {
 						aircraftTypeSelect: action.modelId,
 						aircraftSelect: tempDb[0].id,
 						dbAircraftTypeQuery: tempDb,
 						dbAircraftSelect: dbAircraft.chain().find({ 'id': tempDb[0].id }).data(),
+						dbCarrierSelect: dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('select').data(),
 						dbCarrierTypeQuery: dbCarrier.chain().find({ 'display': state.carrierDisp }).where(function (obj) {
 							return obj[action.modelId] == 1;
 						}).simplesort('type').data()
 					});
 				} else {
+					calcGroupText('', '', state.aircraftSkill);
 					return Object.assign({}, state, {
 						aircraftTypeSelect: '',
-						aircraftSelect: '',
+						aircraftSelect: '0',
 						dbAircraftTypeQuery: [],
 						dbAircraftSelect: [],
+						dbCarrierSelect: dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('select').data(),
 						dbCarrierTypeQuery: []
 					});
 				}
@@ -19610,14 +19629,19 @@
 			// ===============================================================================
 			case _ConstActionTypes.AIRCRAFT_CHANGE:
 				if (state.aircraftSelect === action.modelId) {
+					calcGroupText('', '', state.aircraftSkill);
 					return Object.assign({}, state, {
+						dbCarrierSelect: dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('select').data(),
 						aircraftSelect: '0',
 						dbAircraftSelect: []
 					});
 				} else {
+					var tempDb = dbAircraft.chain().find({ 'id': action.modelId }).data();
+					calcGroupText(action.modelId, tempDb[0].type, state.aircraftSkill);
 					return Object.assign({}, state, {
+						dbCarrierSelect: dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('select').data(),
 						aircraftSelect: action.modelId,
-						dbAircraftSelect: dbAircraft.chain().find({ 'id': action.modelId }).data()
+						dbAircraftSelect: tempDb
 					});
 				}
 			// ===============================================================================
@@ -19637,7 +19661,12 @@
 			// AIRCRAFT_SKILL_CHANGE
 			// ===============================================================================
 			case _ConstActionTypes.AIRCRAFT_SKILL_CHANGE:
+				if (state.aircraftSelect.length > 0) {
+					var tempDb = dbAircraft.findOne({ 'id': state.aircraftSelect });
+					calcGroupText(tempDb.id, tempDb.type, action.modelId);
+				}
 				return Object.assign({}, state, {
+					dbCarrierSelect: dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('select').data(),
 					aircraftSkill: action.modelId
 				});
 			// ===============================================================================
@@ -19666,6 +19695,7 @@
 				var carrierSelect = dbCarrier.findOne({ 'id': action.modelId });
 				var carrierSelected = dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('type').data();
 				var tempCount = state.aircraftCount;
+				var tempDb = dbAircraft.findOne({ 'id': state.aircraftSelect });
 	
 				if (carrierSelect.select > 0) {
 					if (carrierSelect.slot1id) {
@@ -19685,15 +19715,29 @@
 					carrierSelect.slot1id = null;
 					carrierSelect.slot1short = null;
 					carrierSelect.slot1type = null;
+					carrierSelect.slot1text = null;
 					carrierSelect.slot2id = null;
 					carrierSelect.slot2short = null;
 					carrierSelect.slot2type = null;
+					carrierSelect.slot2text = null;
 					carrierSelect.slot3id = null;
 					carrierSelect.slot3short = null;
 					carrierSelect.slot3type = null;
+					carrierSelect.slot3text = null;
 					carrierSelect.slot4id = null;
 					carrierSelect.slot4short = null;
 					carrierSelect.slot4type = null;
+					carrierSelect.slot4text = null;
+					switch (carrierSelect.type) {
+						case "AC":
+						case "CV":
+						case "CVL":
+						case "TP":
+							carrierSelect.firepowerEQ = Math.floor(carrierSelect.firepower * 1.5) + 55;
+							break;
+						default:
+							carrierSelect.firepowerEQ = carrierSelect.firepower + 5;
+					}
 					if (carrierSelected.length === 1) {
 						selectCounter = 10;
 					}
@@ -19701,11 +19745,19 @@
 					if (carrierSelected.length < 6) {
 						carrierSelect.select = selectCounter;
 						selectCounter++;
+						for (var i = 0; i < _ConstList.searchName.length; i++) {
+							if (!carrierSelect[_ConstList.searchName[i]]) {
+								if (tempDb.type) {
+									carrierSelect[_ConstList.searchText[i]] = (0, _calcSlot.calcSlotText)(state.aircraftSelect, tempDb.type, carrierSelect[_ConstList.searchSlot[i]], state.aircraftSkill);
+								} else {
+									carrierSelect[_ConstList.searchText[i]] = carrierSelect[_ConstList.searchSlot[i]];
+								}
+							}
+						}
 					}
 				}
 				dbCarrier.update(carrierSelect);
-				dbTemp = dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('select').data();
-				tempObject = calcGroupAir(dbTemp);
+				tempObject = calcGroupAir(carrierSelected);
 	
 				return Object.assign({}, state, {
 					dbCarrierSelect: dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('select').data(),
@@ -19729,15 +19781,22 @@
 				var slotName = selectedSlot + 'short';
 				var slotType = selectedSlot + 'type';
 				var slotSkill = selectedSlot + 'skill';
+				var slotText = selectedSlot + 'text';
 				var selectedAC = dbAircraft.findOne({ 'id': state.aircraftSelect });
 				var dbTemp;
 				var tempObject = {};
+				var tempFP = {};
 	
 				if (state.aircraftSelect === '0') {
+					if (seletcedTarget[slotID]) {
+						tempFP = (0, _calcSlot.calcSlotFirepower)(seletcedTarget[slotID], seletcedTarget.type);
+						seletcedTarget["firepowerEQ"] = seletcedTarget["firepowerEQ"] - tempFP.firepower;
+					}
 					seletcedTarget[slotID] = null;
 					seletcedTarget[slotName] = null;
 					seletcedTarget[slotType] = null;
 					seletcedTarget[slotSkill] = null;
+					seletcedTarget[slotText] = (0, _calcSlot.calcSlotText)("", "", seletcedTarget[selectedSlot], state.aircraftSkill);
 					dbCarrier.update(seletcedTarget);
 					dbTemp = dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('select').data();
 					tempObject = calcGroupAir(dbTemp);
@@ -19756,10 +19815,13 @@
 	
 				if (seletcedTarget[slotID] === state.aircraftSelect) {
 					if (seletcedTarget[slotSkill] === state.aircraftSkill) {
+						tempFP = (0, _calcSlot.calcSlotFirepower)(selectedAC.id, seletcedTarget.type);
 						seletcedTarget[slotID] = null;
 						seletcedTarget[slotName] = null;
 						seletcedTarget[slotType] = null;
 						seletcedTarget[slotSkill] = null;
+						seletcedTarget[slotText] = (0, _calcSlot.calcSlotText)(selectedAC.id, selectedAC.type, seletcedTarget[selectedSlot], state.aircraftSkill);
+						seletcedTarget["firepowerEQ"] = seletcedTarget["firepowerEQ"] - tempFP.firepower;
 						dbCarrier.update(seletcedTarget);
 						dbTemp = dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('select').data();
 						tempObject = calcGroupAir(dbTemp);
@@ -19775,10 +19837,13 @@
 							aircraftCount: state.aircraftCount - seletcedTarget[selectedSlot]
 						});
 					} else {
+						tempFP = (0, _calcSlot.calcSlotFirepower)(selectedAC.id, seletcedTarget.type);
 						seletcedTarget[slotID] = selectedAC.id;
 						seletcedTarget[slotName] = selectedAC.short;
 						seletcedTarget[slotType] = selectedAC.type;
 						seletcedTarget[slotSkill] = state.aircraftSkill;
+						seletcedTarget[slotText] = "";
+						seletcedTarget["firepowerEQ"] = seletcedTarget["firepowerEQ"] + tempFP.firepower;
 						dbCarrier.update(seletcedTarget);
 						dbTemp = dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('select').data();
 						tempObject = calcGroupAir(dbTemp);
@@ -19802,11 +19867,13 @@
 						} else {
 							tempCount = state.aircraftCount + seletcedTarget[selectedSlot];
 						}
-	
+						tempFP = (0, _calcSlot.calcSlotFirepower)(selectedAC.id, seletcedTarget.type);
 						seletcedTarget[slotID] = selectedAC.id;
 						seletcedTarget[slotName] = selectedAC.short;
 						seletcedTarget[slotType] = selectedAC.type;
 						seletcedTarget[slotSkill] = state.aircraftSkill;
+						seletcedTarget[slotText] = "";
+						seletcedTarget["firepowerEQ"] = seletcedTarget["firepowerEQ"] + tempFP.firepower;
 						dbCarrier.update(seletcedTarget);
 						dbTemp = dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('select').data();
 						tempObject = calcGroupAir(dbTemp);
@@ -19898,6 +19965,35 @@
 		output.airDamage = Math.floor(output.airDamage * 100);
 	
 		return output;
+	}
+	
+	function calcGroupText(aircraftId, aircraftType, aircraftSkill) {
+		var carrierSelected = dbCarrier.chain().find({ 'select': { '$gt': 1 } }).simplesort('type').data();
+	
+		if (aircraftId.length > 0) {
+			for (var i = 0; i < carrierSelected.length; i++) {
+				var seletcedTarget = dbCarrier.findOne({ 'id': carrierSelected[i].id });
+				for (var j = 0; j < _ConstList.searchName.length; j++) {
+					if (!seletcedTarget[_ConstList.searchName[j]]) {
+						if (seletcedTarget[aircraftType] === 1) {
+							seletcedTarget[_ConstList.searchText[j]] = (0, _calcSlot.calcSlotText)(aircraftId, aircraftType, seletcedTarget[_ConstList.searchSlot[j]], aircraftSkill);
+							dbCarrier.update(seletcedTarget);
+						} else {
+							seletcedTarget[_ConstList.searchText[j]] = "裝載不可(" + seletcedTarget[_ConstList.searchSlot[j]] + ")";
+							dbCarrier.update(seletcedTarget);
+						}
+					}
+				}
+			}
+		} else {
+			for (var i = 0; i < carrierSelected.length; i++) {
+				var seletcedTarget = dbCarrier.findOne({ 'id': carrierSelected[i].id });
+				for (var j = 0; j < _ConstList.searchName.length; j++) {
+					seletcedTarget[_ConstList.searchText[j]] = seletcedTarget[_ConstList.searchSlot[j]];
+					dbCarrier.update(seletcedTarget);
+				}
+			}
+		}
 	}
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(1))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "dbStore.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -24094,29 +24190,40 @@
 	exports.calcSlotAircontrol = calcSlotAircontrol;
 	exports.calcSlotScout = calcSlotScout;
 	exports.calcSlotScout2 = calcSlotScout2;
+	exports.calcSlotText = calcSlotText;
 	
 	var _dbStore = __webpack_require__(167);
 	
-	function calcSlotFirepower(aircraftId) {
+	function calcSlotFirepower(aircraftId, carrierType) {
 		var aircraftSelect = _dbStore.dbAircraft.chain().find({ 'id': aircraftId }).data();
 		var output = {};
 	
-		output.firepower = aircraftSelect[0].firepower;
-		switch (aircraftSelect[0].type) {
-			case "bomber":
-				output.firepower = output.firepower + aircraftSelect[0].bomb * 1.3;
+		switch (carrierType) {
+			case "AC":
+			case "CV":
+			case "CVL":
+			case "TP":
+				output.firepower = aircraftSelect[0].firepower;
+				switch (aircraftSelect[0].type) {
+					case "bomber":
+						output.firepower = output.firepower + aircraftSelect[0].bomb * 1.3;
+						break;
+					case "torpedo":
+						output.firepower = output.firepower + aircraftSelect[0].torpedo;
+						break;
+				}
+				output.firepower = Math.floor(output.firepower * 1.5);
 				break;
-			case "torpedo":
-				output.firepower = output.firepower + aircraftSelect[0].torpedo;
-				break;
+			default:
+				output.firepower = aircraftSelect[0].firepower;
 		}
-		output.firepower = Math.floor(output.firepower * 1.5);
+	
 		output.hit = aircraftSelect[0].hit;
 		output.evade = aircraftSelect[0].evade;
 		return output;
 	}
 	
-	function calcSlotAirstrike(aircraftId, slot, airDamage) {
+	function calcSlotAirstrike(aircraftId, slotSize, airDamage) {
 		var aircraftSelect = _dbStore.dbAircraft.chain().find({ 'id': aircraftId }).data();
 		var output = {};
 		var tempDam = 0;
@@ -24127,18 +24234,19 @@
 	
 		switch (aircraftSelect[0].type) {
 			case "bomber":
-				tempDam = (aircraftSelect[0].bomb * Math.sqrt(slot) + 25) * airDamage / 100;
+			case "seaplane":
+				tempDam = (aircraftSelect[0].bomb * Math.sqrt(slotSize) + 25) * airDamage / 100;
 				output.as1 = Math.floor(tempDam);
 				output.as2 = 0;
 				output.dam = output.as1;
 				output.string = output.as1.toString();
 				break;
 			case "torpedo":
-				tempDam = (aircraftSelect[0].torpedo * Math.sqrt(slot) + 25) * airDamage / 100;
+				tempDam = (aircraftSelect[0].torpedo * Math.sqrt(slotSize) + 25) * airDamage / 100;
 				output.as1 = Math.floor(tempDam * 0.8);
 				output.as2 = Math.floor(tempDam * 0.7);
 				output.dam = Math.floor(tempDam * 1.15);
-				output.string = output.as1.toString() + "/" + (output.as1 + output.as2).toString();
+				output.string = output.as1.toString() + "," + (output.as1 + output.as2).toString();
 				break;
 		}
 		return output;
@@ -24301,6 +24409,46 @@
 						break;
 				}
 				break;
+		}
+	
+		return output;
+	}
+	
+	function calcSlotText(aircraftId, aircraftType, slotSize, slotSkill) {
+		var output = slotSize.toString();
+		var tempObject = {};
+		var tempAC = 0;
+		var tempAS = "";
+		var tempScout = 0;
+	
+		switch (aircraftType) {
+			case "fighter":
+			case "bomber":
+			case "torpedo":
+			case "seaplane":
+			case "seaplaneX":
+				tempAC = calcSlotAircontrol(aircraftId, slotSize, slotSkill);
+				break;
+		}
+		switch (aircraftType) {
+			case "bomber":
+			case "torpedo":
+			case "seaplane":
+				tempObject = calcSlotAirstrike(aircraftId, slotSize, 100);
+				tempAS = tempObject.string;
+				break;
+		}
+	
+		if (tempAC > 0) {
+			if (tempAS.length > 0) {
+				output = tempAC + "/" + tempAS + "(" + slotSize.toString() + ")";
+			} else {
+				output = tempAC + "(" + slotSize.toString() + ")";
+			}
+		} else {
+			if (tempAS.length > 0) {
+				output = tempAS + "(" + slotSize.toString() + ")";
+			}
 		}
 	
 		return output;
@@ -38851,7 +38999,7 @@
 			"name": "試製晴嵐",
 			"short": "試製晴嵐",
 			"type": "seaplane",
-			"id": "60",
+			"id": "62",
 			"firepower": 0,
 			"torpedo": 0,
 			"bomb": 11,
@@ -38971,7 +39119,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 54
+			"firepower": 54,
+			"firepowerEQ": 136
 		},
 		{
 			"name": "加賀改",
@@ -38992,7 +39141,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 49
+			"firepower": 49,
+			"firepowerEQ": 128
 		},
 		{
 			"name": "翔鶴改二",
@@ -39013,7 +39163,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 63
+			"firepower": 63,
+			"firepowerEQ": 149
 		},
 		{
 			"name": "瑞鶴改二",
@@ -39034,7 +39185,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 56
+			"firepower": 56,
+			"firepowerEQ": 139
 		},
 		{
 			"name": "蒼龍改二",
@@ -39055,7 +39207,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 57
+			"firepower": 57,
+			"firepowerEQ": 140
 		},
 		{
 			"name": "飛龍改二",
@@ -39076,7 +39229,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 64
+			"firepower": 64,
+			"firepowerEQ": 151
 		},
 		{
 			"name": "雲龍改",
@@ -39097,7 +39251,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 48
+			"firepower": 48,
+			"firepowerEQ": 127
 		},
 		{
 			"name": "天城改",
@@ -39118,7 +39273,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 45
+			"firepower": 45,
+			"firepowerEQ": 122
 		},
 		{
 			"name": "葛城改",
@@ -39139,7 +39295,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 45
+			"firepower": 45,
+			"firepowerEQ": 122
 		},
 		{
 			"name": "Graf Zeppelin改",
@@ -39160,7 +39317,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 50
+			"firepower": 50,
+			"firepowerEQ": 130
 		},
 		{
 			"name": "赤城",
@@ -39181,7 +39339,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 39
+			"firepower": 39,
+			"firepowerEQ": 113
 		},
 		{
 			"name": "加賀",
@@ -39202,7 +39361,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 39
+			"firepower": 39,
+			"firepowerEQ": 113
 		},
 		{
 			"name": "蒼龍",
@@ -39223,7 +39383,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 29
+			"firepower": 29,
+			"firepowerEQ": 98
 		},
 		{
 			"name": "飛龍",
@@ -39244,7 +39405,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 29
+			"firepower": 29,
+			"firepowerEQ": 98
 		},
 		{
 			"name": "蒼龍改",
@@ -39265,7 +39427,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 39
+			"firepower": 39,
+			"firepowerEQ": 113
 		},
 		{
 			"name": "飛龍改",
@@ -39286,7 +39449,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 39
+			"firepower": 39,
+			"firepowerEQ": 113
 		},
 		{
 			"name": "翔鶴",
@@ -39307,7 +39471,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 39
+			"firepower": 39,
+			"firepowerEQ": 113
 		},
 		{
 			"name": "瑞鶴",
@@ -39328,7 +39493,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 39
+			"firepower": 39,
+			"firepowerEQ": 113
 		},
 		{
 			"name": "翔鶴改",
@@ -39349,7 +39515,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 39
+			"firepower": 39,
+			"firepowerEQ": 113
 		},
 		{
 			"name": "瑞鶴改",
@@ -39370,7 +39537,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 39
+			"firepower": 39,
+			"firepowerEQ": 113
 		},
 		{
 			"name": "雲龍",
@@ -39391,7 +39559,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 27
+			"firepower": 27,
+			"firepowerEQ": 95
 		},
 		{
 			"name": "天城",
@@ -39412,7 +39581,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 25
+			"firepower": 25,
+			"firepowerEQ": 92
 		},
 		{
 			"name": "葛城",
@@ -39433,7 +39603,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 25
+			"firepower": 25,
+			"firepowerEQ": 92
 		},
 		{
 			"name": "Graf Zeppelin",
@@ -39454,7 +39625,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 40
+			"firepower": 40,
+			"firepowerEQ": 115
 		},
 		{
 			"name": "大鳳改",
@@ -39475,7 +39647,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 59
+			"firepower": 59,
+			"firepowerEQ": 143
 		},
 		{
 			"name": "翔鶴改二甲",
@@ -39496,7 +39669,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 70
+			"firepower": 70,
+			"firepowerEQ": 160
 		},
 		{
 			"name": "瑞鶴改二甲",
@@ -39517,7 +39691,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 65
+			"firepower": 65,
+			"firepowerEQ": 152
 		},
 		{
 			"name": "大鳳",
@@ -39538,7 +39713,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 49
+			"firepower": 49,
+			"firepowerEQ": 128
 		},
 		{
 			"name": "扶桑改二",
@@ -39559,7 +39735,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 99
+			"firepower": 99,
+			"firepowerEQ": 104
 		},
 		{
 			"name": "山城改二",
@@ -39580,7 +39757,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 98
+			"firepower": 98,
+			"firepowerEQ": 103
 		},
 		{
 			"name": "伊勢改",
@@ -39601,7 +39779,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 83
+			"firepower": 83,
+			"firepowerEQ": 88
 		},
 		{
 			"name": "日向改",
@@ -39622,7 +39801,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 83
+			"firepower": 83,
+			"firepowerEQ": 88
 		},
 		{
 			"name": "扶桑改",
@@ -39643,7 +39823,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 79
+			"firepower": 79,
+			"firepowerEQ": 84
 		},
 		{
 			"name": "山城改",
@@ -39664,7 +39845,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 79
+			"firepower": 79,
+			"firepowerEQ": 84
 		},
 		{
 			"name": "最上改",
@@ -39685,7 +39867,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 75
+			"firepower": 75,
+			"firepowerEQ": 80
 		},
 		{
 			"name": "三隈改",
@@ -39706,7 +39889,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 76
+			"firepower": 76,
+			"firepowerEQ": 81
 		},
 		{
 			"name": "鈴谷改",
@@ -39727,7 +39911,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 75
+			"firepower": 75,
+			"firepowerEQ": 80
 		},
 		{
 			"name": "熊野改",
@@ -39748,7 +39933,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 75
+			"firepower": 75,
+			"firepowerEQ": 80
 		},
 		{
 			"name": "利根改二",
@@ -39769,7 +39955,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 77
+			"firepower": 77,
+			"firepowerEQ": 82
 		},
 		{
 			"name": "筑摩改二",
@@ -39790,7 +39977,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 77
+			"firepower": 77,
+			"firepowerEQ": 82
 		},
 		{
 			"name": "Zara改",
@@ -39811,7 +39999,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 75
+			"firepower": 75,
+			"firepowerEQ": 80
 		},
 		{
 			"name": "Pola改",
@@ -39832,7 +40021,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 77
+			"firepower": 77,
+			"firepowerEQ": 82
 		},
 		{
 			"name": "Italia",
@@ -39853,7 +40043,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 102
+			"firepower": 102,
+			"firepowerEQ": 107
 		},
 		{
 			"name": "Roma改",
@@ -39874,7 +40065,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 105
+			"firepower": 105,
+			"firepowerEQ": 110
 		},
 		{
 			"name": "長門改",
@@ -39895,7 +40087,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 99
+			"firepower": 99,
+			"firepowerEQ": 104
 		},
 		{
 			"name": "陸奥改",
@@ -39916,7 +40109,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 99
+			"firepower": 99,
+			"firepowerEQ": 104
 		},
 		{
 			"name": "大和改",
@@ -39937,7 +40131,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 139
+			"firepower": 139,
+			"firepowerEQ": 144
 		},
 		{
 			"name": "武蔵改",
@@ -39958,7 +40153,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 139
+			"firepower": 139,
+			"firepowerEQ": 144
 		},
 		{
 			"name": "鳳翔改",
@@ -39979,7 +40175,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 1,
-			"firepower": 29
+			"firepower": 29,
+			"firepowerEQ": 98
 		},
 		{
 			"name": "飛鷹改",
@@ -40000,7 +40197,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 1,
-			"firepower": 29
+			"firepower": 29,
+			"firepowerEQ": 98
 		},
 		{
 			"name": "隼鷹改二",
@@ -40021,7 +40219,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 1,
-			"firepower": 40
+			"firepower": 40,
+			"firepowerEQ": 115
 		},
 		{
 			"name": "龍驤改二",
@@ -40042,7 +40241,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 1,
-			"firepower": 40
+			"firepower": 40,
+			"firepowerEQ": 115
 		},
 		{
 			"name": "祥鳳改",
@@ -40063,7 +40263,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 1,
-			"firepower": 29
+			"firepower": 29,
+			"firepowerEQ": 98
 		},
 		{
 			"name": "瑞鳳改",
@@ -40084,7 +40285,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 1,
-			"firepower": 40
+			"firepower": 40,
+			"firepowerEQ": 115
 		},
 		{
 			"name": "千歲航改二",
@@ -40105,7 +40307,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 1,
-			"firepower": 34
+			"firepower": 34,
+			"firepowerEQ": 106
 		},
 		{
 			"name": "千代田航改二",
@@ -40126,7 +40329,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 1,
-			"firepower": 34
+			"firepower": 34,
+			"firepowerEQ": 106
 		},
 		{
 			"name": "龍鳳改",
@@ -40147,7 +40351,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 1,
-			"firepower": 32
+			"firepower": 32,
+			"firepowerEQ": 103
 		},
 		{
 			"name": "鳳翔",
@@ -40168,7 +40373,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 0,
-			"firepower": 19
+			"firepower": 19,
+			"firepowerEQ": 83
 		},
 		{
 			"name": "飛鷹",
@@ -40189,7 +40395,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 0,
-			"firepower": 19
+			"firepower": 19,
+			"firepowerEQ": 83
 		},
 		{
 			"name": "隼鷹",
@@ -40210,7 +40417,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 0,
-			"firepower": 19
+			"firepower": 19,
+			"firepowerEQ": 83
 		},
 		{
 			"name": "隼鷹改",
@@ -40231,7 +40439,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 0,
-			"firepower": 29
+			"firepower": 29,
+			"firepowerEQ": 98
 		},
 		{
 			"name": "龍驤",
@@ -40252,7 +40461,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 0,
-			"firepower": 19
+			"firepower": 19,
+			"firepowerEQ": 83
 		},
 		{
 			"name": "龍驤改",
@@ -40273,7 +40483,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 0,
-			"firepower": 29
+			"firepower": 29,
+			"firepowerEQ": 98
 		},
 		{
 			"name": "祥鳳",
@@ -40294,7 +40505,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 0,
-			"firepower": 19
+			"firepower": 19,
+			"firepowerEQ": 83
 		},
 		{
 			"name": "瑞鳳",
@@ -40315,7 +40527,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 0,
-			"firepower": 19
+			"firepower": 19,
+			"firepowerEQ": 83
 		},
 		{
 			"name": "千歲航",
@@ -40336,7 +40549,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 0,
-			"firepower": 19
+			"firepower": 19,
+			"firepowerEQ": 83
 		},
 		{
 			"name": "千代田航",
@@ -40357,7 +40571,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 0,
-			"firepower": 19
+			"firepower": 19,
+			"firepowerEQ": 83
 		},
 		{
 			"name": "千歲航改",
@@ -40378,7 +40593,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 0,
-			"firepower": 34
+			"firepower": 34,
+			"firepowerEQ": 106
 		},
 		{
 			"name": "千代田航改",
@@ -40399,7 +40615,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 0,
-			"firepower": 34
+			"firepower": 34,
+			"firepowerEQ": 106
 		},
 		{
 			"name": "龍鳳",
@@ -40420,7 +40637,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 0,
-			"firepower": 20
+			"firepower": 20,
+			"firepowerEQ": 85
 		},
 		{
 			"name": "千歳甲",
@@ -40441,7 +40659,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 29
+			"firepower": 29,
+			"firepowerEQ": 34
 		},
 		{
 			"name": "千代田甲",
@@ -40462,7 +40681,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 29
+			"firepower": 29,
+			"firepowerEQ": 34
 		},
 		{
 			"name": "瑞穂改",
@@ -40483,7 +40703,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 45
+			"firepower": 45,
+			"firepowerEQ": 50
 		},
 		{
 			"name": "千歳",
@@ -40504,7 +40725,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 29
+			"firepower": 29,
+			"firepowerEQ": 34
 		},
 		{
 			"name": "千代田",
@@ -40525,7 +40747,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 29
+			"firepower": 29,
+			"firepowerEQ": 34
 		},
 		{
 			"name": "千歳改",
@@ -40546,7 +40769,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 29
+			"firepower": 29,
+			"firepowerEQ": 34
 		},
 		{
 			"name": "千代田改",
@@ -40567,7 +40791,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 29
+			"firepower": 29,
+			"firepowerEQ": 34
 		},
 		{
 			"name": "瑞穂",
@@ -40588,7 +40813,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 36
+			"firepower": 36,
+			"firepowerEQ": 41
 		},
 		{
 			"name": "秋津洲改",
@@ -40609,7 +40835,8 @@
 			"blue": 0,
 			"big": 1,
 			"display": 1,
-			"firepower": 28
+			"firepower": 28,
+			"firepowerEQ": 33
 		},
 		{
 			"name": "秋津洲",
@@ -40630,7 +40857,8 @@
 			"blue": 0,
 			"big": 1,
 			"display": 0,
-			"firepower": 18
+			"firepower": 18,
+			"firepowerEQ": 23
 		},
 		{
 			"name": "伊58改",
@@ -40651,7 +40879,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 12
+			"firepower": 12,
+			"firepowerEQ": 17
 		},
 		{
 			"name": "伊8改",
@@ -40672,7 +40901,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 14
+			"firepower": 14,
+			"firepowerEQ": 19
 		},
 		{
 			"name": "伊19改",
@@ -40693,7 +40923,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 12
+			"firepower": 12,
+			"firepowerEQ": 17
 		},
 		{
 			"name": "伊401改",
@@ -40714,7 +40945,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 19
+			"firepower": 19,
+			"firepowerEQ": 24
 		},
 		{
 			"name": "伊401",
@@ -40735,7 +40967,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 9
+			"firepower": 9,
+			"firepowerEQ": 14
 		},
 		{
 			"name": "大鯨",
@@ -40756,7 +40989,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 15
+			"firepower": 15,
+			"firepowerEQ": 20
 		},
 		{
 			"name": "あきつ丸改",
@@ -40777,7 +41011,8 @@
 			"blue": 1,
 			"big": 0,
 			"display": 1,
-			"firepower": 33
+			"firepower": 33,
+			"firepowerEQ": 38
 		},
 		{
 			"name": "速吸改",
@@ -40798,7 +41033,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 1,
-			"firepower": 36
+			"firepower": 36,
+			"firepowerEQ": 109
 		},
 		{
 			"name": "速吸",
@@ -40819,7 +41055,8 @@
 			"blue": 0,
 			"big": 0,
 			"display": 0,
-			"firepower": 22
+			"firepower": 22,
+			"firepowerEQ": 88
 		}
 	];
 
@@ -50922,6 +51159,7 @@
 						Cactive: "img-button mdl-button--raised mdl-button--colored",
 						Cinactive: "img-button",
 						imgSrc: "./image/icon/" + _ConstList.listAircraftS[i] + ".png",
+						text: _ConstList.listAircraftName[i],
 						title: _ConstList.listAircraft[i] });
 					buttonOut.push(buttonTemp);
 	
@@ -51111,6 +51349,7 @@
 						Cactive: "carrier-button mdl-button--raised mdl-button--colored",
 						Cinactive: "carrier-button",
 						imgSrc: "./image/ship/" + carrierData[i].id + '.jpg',
+						text: "",
 						title: carrierData[i].name });
 					buttonOut.push(buttonTemp);
 				}
@@ -51502,7 +51741,7 @@
 				var tbodyOut = [];
 				for (var i = 0; i < selectData.length; i++) {
 					tdOut = [];
-					for (var j = 0; j < _ConstList.listCarrierTbody.length; j++) {
+					for (var j = 0; j < _ConstList.listCarrierTbody.length + 1; j++) {
 						stringTemp = 'tbodyGroup' + i.toString() + j.toString();
 						if (j === 0) {
 							var imgSrcTemp = 'image/ship/' + selectData[i].id + '.jpg';
@@ -51519,19 +51758,26 @@
 									Cactive: "mdl-button--raised mdl-button--colored",
 									Cinactive: "",
 									imgSrc: imgSrcTemp,
+									text: "",
 									title: selectData[i].name })
 							);
+						} else if (j === 1) {
+							tdTemp = _react3.default.createElement(
+								'td',
+								{ key: "groupFP" + i.toString() },
+								selectData[i]["firepowerEQ"]
+							);
 						} else {
-							if (selectData[i][_ConstList.listCarrierTbody[j]] > 0) {
+							if (selectData[i][_ConstList.listCarrierTbody[j - 1]] > 0) {
 								var textTemp = '';
-								var idTemp = _ConstList.listCarrierTbody[j] + selectData[i].id;
-								var slotID = _ConstList.listCarrierTbody[j] + 'id';
-								var slotName = _ConstList.listCarrierTbody[j] + 'short';
-								var slotType = _ConstList.listCarrierTbody[j] + 'type';
+								var idTemp = _ConstList.listCarrierTbody[j - 1] + selectData[i].id;
+								var slotID = _ConstList.listCarrierTbody[j - 1] + 'id';
+								var slotName = _ConstList.listCarrierTbody[j - 1] + 'short';
+								var slotType = _ConstList.listCarrierTbody[j - 1] + 'type';
 								var classTemp = "group-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary";
 	
 								if (selectData[i][slotID]) {
-									textTemp = selectData[i][slotName] + "(" + selectData[i][_ConstList.listCarrierTbody[j]].toString() + ") " + _ConstList.listAircraftSkill2[selectData[i][_ConstList.listCarrierTbody[j] + 'skill']];
+									textTemp = selectData[i][slotName] + "(" + selectData[i][_ConstList.listCarrierTbody[j - 1]].toString() + ")" + _ConstList.listAircraftSkill2[selectData[i][_ConstList.listCarrierTbody[j - 1] + 'skill']];
 									switch (selectData[i][slotType]) {
 										case _ConstList.listAircraft[0]:
 											classTemp = classTemp + " mdl-color--" + _ConstList.listAircraftColor[0] + " mdl-button--raised";
@@ -51565,7 +51811,7 @@
 											break;
 									}
 								} else {
-									textTemp = selectData[i][_ConstList.listCarrierTbody[j]].toString();
+									textTemp = selectData[i][_ConstList.listCarrierTbodyText[j - 1]].toString();
 								}
 	
 								tdTemp = _react3.default.createElement(
@@ -52617,28 +52863,25 @@
 							for (var j = 0; j < _ConstList.searchName.length; j++) {
 								if (dbCarrierSelect[i][_ConstList.searchName[j]]) {
 									output[i][_ConstList.searchText[j]] = dbCarrierSelect[i].name + " " + _ConstList.listCarrierThead[j + 1];
-									tempObject = (0, _calcSlot.calcSlotFirepower)(dbCarrierSelect[i][_ConstList.searchName[j]]);
+									tempObject = (0, _calcSlot.calcSlotFirepower)(dbCarrierSelect[i][_ConstList.searchName[j]], dbCarrierSelect[i].type);
 									output[i][_ConstList.searchSlot[j]] = tempObject.firepower;
-									tempFirepower = tempFirepower + tempObject.firepower;
 									tempHit = tempHit + tempObject.hit;
 									tempEvade = tempEvade + tempObject.evade;
 								}
 							}
-							tempFirepower = tempFirepower + 55 + Math.floor(dbCarrierSelect[i].firepower * 1.5);
 							break;
 						default:
 							for (var j = 0; j < _ConstList.searchName.length; j++) {
 								if (dbCarrierSelect[i][_ConstList.searchName[j]]) {
 									output[i][_ConstList.searchText[j]] = dbCarrierSelect[i].name + " " + _ConstList.listCarrierThead[j + 1];
-									tempObject = (0, _calcSlot.calcSlotFirepower)(dbCarrierSelect[i][_ConstList.searchName[j]]);
+									tempObject = (0, _calcSlot.calcSlotFirepower)(dbCarrierSelect[i][_ConstList.searchName[j]], dbCarrierSelect[i].type);
 									tempHit = tempHit + tempObject.hit;
 									tempEvade = tempEvade + tempObject.evade;
 								}
 							}
-							tempFirepower = dbCarrierSelect[i].firepower + 5;
 					}
-					output[i].firepower = tempFirepower;
-					output[i].total = "火力:" + tempFirepower + " 命中+" + tempHit + " 迴避+" + tempEvade;
+					output[i].firepower = dbCarrierSelect[i].firepowerEQ;
+					output[i].total = "火力:" + dbCarrierSelect[i].firepowerEQ + " 命中+" + tempHit + " 迴避+" + tempEvade;
 				}
 				break;
 			case "sonar":
