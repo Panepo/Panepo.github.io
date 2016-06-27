@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e739c45f4231ddaa76bd"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c50bc1db1443e525a8af"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3715,8 +3715,8 @@
 	Constants = {
 	  listTab: ["日 (Sun)", "月 (Mon)", "火 (Tue)", "水 (Wed)", "木 (Thu)", "金 (Fri)", "土 (Sat)"],
 	  listThead: ["", "マップ", "モチベ", "武器別", "経験値", "経験値効率", "ゴールド", "ゴールド効率"],
-	  listStage: ["戦挙区1-N", "戦挙区1-H", "戦挙区2-N", "戦挙区2-H", "戦挙区2-T", "戦挙区3-N", "戦挙区3-H", "戦挙区4-N", "戦挙区4-H"],
-	  updateTime: "2016/05/16",
+	  listStage: ["戦挙区1-N", "戦挙区1-H", "戦挙区2-N", "戦挙区2-H", "戦挙区2-T", "戦挙区3-N", "戦挙区3-H", "戦挙区4-N", "戦挙区4-H", "戦挙区5-N", "戦挙区5-H"],
+	  updateTime: "2016/06/27",
 	  buttonClassActive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
 	  buttonClassInactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent",
 	  TableClass: "mdl-data-table mdl-shadow--2dp",
@@ -12200,6 +12200,12 @@
 			"image": "Yulia.png"
 		},
 		{
+			"name": "イシュリーヌ・シデハラ",
+			"type": "近接",
+			"day": 17,
+			"image": "Ishrene.png"
+		},
+		{
 			"name": "エリカ",
 			"type": "近接",
 			"day": 1,
@@ -12270,6 +12276,12 @@
 			"type": "射撃",
 			"day": 15,
 			"image": "Carlotta.png"
+		},
+		{
+			"name": "トルーディ・オオクボ",
+			"type": "射撃",
+			"day": 17,
+			"image": "Trudy.png"
 		},
 		{
 			"name": "アオバ",
@@ -12360,6 +12372,12 @@
 			"type": "魔法",
 			"day": 28,
 			"image": "Mireia.png"
+		},
+		{
+			"name": "ジル・ヨシダ",
+			"type": "魔法",
+			"day": 18,
+			"image": "Zill.png"
 		},
 		{
 			"name": "サン",
@@ -14080,6 +14098,25 @@
 			"title": "再・戦挙"
 		},
 		{
+			"0": "0",
+			"1": "1",
+			"2": "0",
+			"3": "0",
+			"4": "2",
+			"5": "0",
+			"6": "0",
+			"stage": 4,
+			"diff": "N",
+			"name": "4-C",
+			"point": 26,
+			"type": "重装",
+			"exp": 3194,
+			"expM": 122.85,
+			"gold": 2890,
+			"goldM": 111.15,
+			"title": "回り道"
+		},
+		{
 			"0": "2",
 			"1": "0",
 			"2": "0",
@@ -14119,15 +14156,15 @@
 		},
 		{
 			"0": "0",
-			"1": "1",
+			"1": "2",
 			"2": "0",
 			"3": "0",
-			"4": "2",
-			"5": "0",
+			"4": "0",
+			"5": "1",
 			"6": "0",
 			"stage": 4,
 			"diff": "H",
-			"name": "4-1",
+			"name": "H4-1",
 			"point": 41,
 			"type": "射撃",
 			"exp": 5186,
@@ -14139,14 +14176,14 @@
 		{
 			"0": "0",
 			"1": "0",
-			"2": "2",
-			"3": "0",
+			"2": "0",
+			"3": "1",
 			"4": "0",
 			"5": "0",
-			"6": "1",
+			"6": "2",
 			"stage": 4,
 			"diff": "H",
-			"name": "4-A",
+			"name": "H4-A",
 			"point": 41,
 			"type": "射撃",
 			"exp": 5234,
@@ -14158,14 +14195,14 @@
 		{
 			"0": "0",
 			"1": "0",
-			"2": "1",
+			"2": "2",
 			"3": "0",
 			"4": "0",
-			"5": "2",
-			"6": "0",
+			"5": "0",
+			"6": "1",
 			"stage": 4,
 			"diff": "H",
-			"name": "4-2",
+			"name": "H4-2",
 			"point": 41,
 			"type": "近接",
 			"exp": 5236,
@@ -14173,44 +14210,6 @@
 			"gold": 4840,
 			"goldM": 118.05,
 			"title": "森に住むもの"
-		},
-		{
-			"0": "1",
-			"1": "0",
-			"2": "0",
-			"3": "2",
-			"4": "0",
-			"5": "0",
-			"6": "0",
-			"stage": 4,
-			"diff": "H",
-			"name": "4-B",
-			"point": 41,
-			"type": "魔法",
-			"exp": 5229,
-			"expM": 127.54,
-			"gold": 4900,
-			"goldM": 119.51,
-			"title": "四面楚歌"
-		},
-		{
-			"0": "0",
-			"1": "0",
-			"2": "0",
-			"3": "1",
-			"4": "0",
-			"5": "0",
-			"6": "2",
-			"stage": 4,
-			"diff": "H",
-			"name": "4-3",
-			"point": 41,
-			"type": "魔法",
-			"exp": 5250,
-			"expM": 128.05,
-			"gold": 4740,
-			"goldM": 115.61,
-			"title": "再・戦挙"
 		},
 		{
 			"0": "2",
@@ -14222,14 +14221,33 @@
 			"6": "0",
 			"stage": 4,
 			"diff": "H",
-			"name": "4-4",
+			"name": "H4-B",
 			"point": 41,
-			"type": "近接",
-			"exp": 5352,
-			"expM": 130.54,
-			"gold": 4750,
-			"goldM": 115.85,
-			"title": "欲望のオショク・ジ剣"
+			"type": "魔法",
+			"exp": 5229,
+			"expM": 127.54,
+			"gold": 4900,
+			"goldM": 119.51,
+			"title": "四面楚歌"
+		},
+		{
+			"0": "1",
+			"1": "0",
+			"2": "0",
+			"3": "2",
+			"4": "0",
+			"5": "0",
+			"6": "0",
+			"stage": 4,
+			"diff": "H",
+			"name": "H4-3",
+			"point": 41,
+			"type": "魔法",
+			"exp": 5250,
+			"expM": 128.05,
+			"gold": 4740,
+			"goldM": 115.61,
+			"title": "再・戦挙"
 		},
 		{
 			"0": "0",
@@ -14241,7 +14259,45 @@
 			"6": "0",
 			"stage": 4,
 			"diff": "H",
-			"name": "4-5",
+			"name": "H4-C",
+			"point": 41,
+			"type": "重装",
+			"exp": 5272,
+			"expM": 128.59,
+			"gold": 4770,
+			"goldM": 116.34,
+			"title": "回り道"
+		},
+		{
+			"0": "0",
+			"1": "1",
+			"2": "0",
+			"3": "0",
+			"4": "2",
+			"5": "0",
+			"6": "0",
+			"stage": 4,
+			"diff": "H",
+			"name": "H4-4",
+			"point": 41,
+			"type": "近接",
+			"exp": 5352,
+			"expM": 130.54,
+			"gold": 4750,
+			"goldM": 115.85,
+			"title": "欲望のオショク・ジ剣"
+		},
+		{
+			"0": "0",
+			"1": "0",
+			"2": "1",
+			"3": "0",
+			"4": "0",
+			"5": "2",
+			"6": "0",
+			"stage": 4,
+			"diff": "H",
+			"name": "H4-5",
 			"point": 42,
 			"type": "重装",
 			"exp": 5524,
@@ -14249,6 +14305,234 @@
 			"gold": 4830,
 			"goldM": 115,
 			"title": "ダ＝イセンセイ"
+		},
+		{
+			"0": "0",
+			"1": "0",
+			"2": "1",
+			"3": "0",
+			"4": "0",
+			"5": "2",
+			"6": "0",
+			"stage": 5,
+			"diff": "N",
+			"name": "5-1",
+			"point": 26,
+			"type": "射撃",
+			"exp": 3550,
+			"expM": 136.54,
+			"gold": 3120,
+			"goldM": 120,
+			"title": "オショク・ジ剣を求め"
+		},
+		{
+			"0": "1",
+			"1": "0",
+			"2": "0",
+			"3": "2",
+			"4": "0",
+			"5": "0",
+			"6": "0",
+			"stage": 5,
+			"diff": "N",
+			"name": "5-A",
+			"point": 26,
+			"type": "魔法",
+			"exp": 3515,
+			"expM": 135.19,
+			"gold": 3040,
+			"goldM": 116.92,
+			"title": "三種の輪"
+		},
+		{
+			"0": "0",
+			"1": "0",
+			"2": "0",
+			"3": "1",
+			"4": "0",
+			"5": "0",
+			"6": "2",
+			"stage": 5,
+			"diff": "N",
+			"name": "5-2",
+			"point": 26,
+			"type": "近接",
+			"exp": 3630,
+			"expM": 139.62,
+			"gold": 3130,
+			"goldM": 120.38,
+			"title": "恐怖！ シ菌洗浄！"
+		},
+		{
+			"0": "2",
+			"1": "0",
+			"2": "0",
+			"3": "0",
+			"4": "1",
+			"5": "0",
+			"6": "0",
+			"stage": 5,
+			"diff": "N",
+			"name": "5-3",
+			"point": 27,
+			"type": "重装",
+			"exp": 3734,
+			"expM": 138.3,
+			"gold": 3150,
+			"goldM": 116.67,
+			"title": "望まない形で…"
+		},
+		{
+			"0": "0",
+			"1": "2",
+			"2": "0",
+			"3": "0",
+			"4": "0",
+			"5": "1",
+			"6": "0",
+			"stage": 5,
+			"diff": "N",
+			"name": "5-4",
+			"point": 27,
+			"type": "魔法",
+			"exp": 3808,
+			"expM": 141.04,
+			"gold": 3110,
+			"goldM": 115.19,
+			"title": "シ菌の元締め"
+		},
+		{
+			"0": "0",
+			"1": "0",
+			"2": "2",
+			"3": "0",
+			"4": "0",
+			"5": "0",
+			"6": "1",
+			"stage": 5,
+			"diff": "N",
+			"name": "5-5",
+			"point": 27,
+			"type": "射撃",
+			"exp": 3835,
+			"expM": 142.04,
+			"gold": 3090,
+			"goldM": 114.44,
+			"title": "秘密"
+		},
+		{
+			"0": "0",
+			"1": "0",
+			"2": "2",
+			"3": "0",
+			"4": "0",
+			"5": "0",
+			"6": "1",
+			"stage": 5,
+			"diff": "H",
+			"name": "H5-1",
+			"point": 42,
+			"type": "射撃",
+			"exp": 6017,
+			"expM": 143.26,
+			"gold": 5300,
+			"goldM": 126.19,
+			"title": "オショク・ジ剣を求め"
+		},
+		{
+			"0": "2",
+			"1": "0",
+			"2": "0",
+			"3": "0",
+			"4": "1",
+			"5": "0",
+			"6": "0",
+			"stage": 5,
+			"diff": "H",
+			"name": "H5-A",
+			"point": 42,
+			"type": "魔法",
+			"exp": 6030,
+			"expM": 143.57,
+			"gold": 5300,
+			"goldM": 126.19,
+			"title": "三種の輪"
+		},
+		{
+			"0": "1",
+			"1": "0",
+			"2": "0",
+			"3": "2",
+			"4": "0",
+			"5": "0",
+			"6": "0",
+			"stage": 5,
+			"diff": "H",
+			"name": "H5-2",
+			"point": 42,
+			"type": "重装",
+			"exp": 6065,
+			"expM": 144.4,
+			"gold": 5050,
+			"goldM": 120.24,
+			"title": "恐怖！ シ菌洗浄！"
+		},
+		{
+			"0": "0",
+			"1": "1",
+			"2": "0",
+			"3": "0",
+			"4": "2",
+			"5": "0",
+			"6": "0",
+			"stage": 5,
+			"diff": "H",
+			"name": "H5-3",
+			"point": 42,
+			"type": "射撃",
+			"exp": 6129,
+			"expM": 145.93,
+			"gold": 5110,
+			"goldM": 121.67,
+			"title": "望まない形で…"
+		},
+		{
+			"0": "0",
+			"1": "0",
+			"2": "1",
+			"3": "0",
+			"4": "0",
+			"5": "2",
+			"6": "0",
+			"stage": 5,
+			"diff": "H",
+			"name": "H5-4",
+			"point": 42,
+			"type": "近接",
+			"exp": 6181,
+			"expM": 147.17,
+			"gold": 5300,
+			"goldM": 126.19,
+			"title": "シ菌の元締め"
+		},
+		{
+			"0": "0",
+			"1": "0",
+			"2": "0",
+			"3": "1",
+			"4": "0",
+			"5": "0",
+			"6": "2",
+			"stage": 5,
+			"diff": "H",
+			"name": "H5-5",
+			"point": 43,
+			"type": "重装",
+			"exp": 6409,
+			"expM": 149.05,
+			"gold": 5270,
+			"goldM": 122.56,
+			"title": "秘密"
 		}
 	];
 
@@ -20337,7 +20621,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(11), RootInstanceProvider = __webpack_require__(9), ReactMount = __webpack_require__(5), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var lokijs, EventEmitter, assign, AppDispatcher, ConstActions, Constants, StageData, CharData, CHANGE_EVENT, db, dbStage, i$, len$, data, dbChar, _data, today, localoffset, destoffset, offset, stageTime, stageDay, charTime, charDay, bonusToday, bonusTomorrow, stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, stageFourthN, stageFourthH, dayChange, toggleChange, sortChange, typeChange, AppStore;
+	var lokijs, EventEmitter, assign, AppDispatcher, ConstActions, Constants, StageData, CharData, CHANGE_EVENT, db, dbStage, i$, len$, data, dbChar, _data, today, localoffset, destoffset, offset, stageTime, stageDay, charTime, charDay, bonusToday, bonusTomorrow, stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, stageFourthN, stageFourthH, stageFifthN, stageFifthH, dayChange, toggleChange, sortChange, typeChange, AppStore;
 	lokijs = __webpack_require__(110);
 	EventEmitter = __webpack_require__(211).EventEmitter;
 	assign = __webpack_require__(111);
@@ -20361,7 +20645,7 @@
 	_data = {
 	  day: 0,
 	  output: [],
-	  toggle: [0, 0, 0, 0, 0, 0, 1, 0, 0],
+	  toggle: [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
 	  bonus: [],
 	  type: "none"
 	};
@@ -20432,7 +20716,17 @@
 	}).find({
 	  'diff': 'H'
 	}).simplesort('name').data();
-	_data.output = [stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, stageFourthN, stageFourthH];
+	stageFifthN = dbStage.chain().find({
+	  'stage': 5
+	}).find({
+	  'diff': 'N'
+	}).simplesort('name').data();
+	stageFifthH = dbStage.chain().find({
+	  'stage': 5
+	}).find({
+	  'diff': 'H'
+	}).simplesort('name').data();
+	_data.output = [stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, stageFourthN, stageFourthH, stageFifthN, stageFifthH];
 	dayChange = function(day){
 	  _data.day = day;
 	};
@@ -20440,7 +20734,7 @@
 	  _data.toggle = toggle;
 	};
 	sortChange = function(sortValue){
-	  var stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, stageFourthN, stageFourthH;
+	  var stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, stageFourthN, stageFourthH, stageFifthN, stageFifthH;
 	  stageFirstN = dbStage.chain().find({
 	    'stage': 1
 	  }).find({
@@ -20486,7 +20780,17 @@
 	  }).find({
 	    'diff': 'H'
 	  }).simplesort(sortValue).data();
-	  _data.output = [stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, stageFourthN, stageFourthH];
+	  stageFifthN = dbStage.chain().find({
+	    'stage': 5
+	  }).find({
+	    'diff': 'N'
+	  }).simplesort(sortValue).data();
+	  stageFifthH = dbStage.chain().find({
+	    'stage': 5
+	  }).find({
+	    'diff': 'H'
+	  }).simplesort(sortValue).data();
+	  _data.output = [stageFirstN, stageFirstH, stageSecondN, stageSecondH, stageSecondT, stageThirdN, stageThirdH, stageFourthN, stageFourthH, stageFifthN, stageFifthH];
 	};
 	typeChange = function(charType){
 	  if (_data.type === charType) {
