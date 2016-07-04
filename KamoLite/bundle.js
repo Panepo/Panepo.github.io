@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "254baacb09aa182c10be"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9c99c391e04b7f9e5a5a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -36466,7 +36466,7 @@
 								onClickFunc: function onClickFunc(modelId) {
 									return aircraftChange(modelId);
 								},
-								Cactive: "aircraft-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary mdl-button--raised mdl-color--green-800",
+								Cactive: "aircraft-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary mdl-button--raised mdl-color--yellow-900",
 								Cinactive: "aircraft-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
 								title: aircraftData[j].name });
 							tableOut.push(tableTemp);
@@ -37350,7 +37350,7 @@
 						_react3.default.createElement(
 							"span",
 							{ className: "mdl-layout-title" },
-							"KAMO"
+							"KAMO Lite"
 						),
 						_react3.default.createElement("div", { className: "mdl-layout-spacer" }),
 						_react3.default.createElement(
