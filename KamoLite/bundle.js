@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9c99c391e04b7f9e5a5a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "390b61cf6804e9eee53f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -5447,7 +5447,7 @@
 	var listAircraftSkill = exports.listAircraftSkill = ["無熟練", "|", "||", "|||", "/", "//", "///", ">>"];
 	var listAircraftSkill2 = exports.listAircraftSkill2 = ["", "|", "||", "|||", "/", "//", "///", ">>"];
 	
-	var listCarrierThead = exports.listCarrierThead = ["艦娘", "火力", "第一隊", "第二隊", "第三隊", "第四隊"];
+	var listCarrierThead = exports.listCarrierThead = ["艦娘", "第一隊", "第二隊", "第三隊", "第四隊"];
 	var listCarrierTbody = exports.listCarrierTbody = ["id", "slot1", "slot2", "slot3", "slot4"];
 	var listCarrierTbodyText = exports.listCarrierTbodyText = ["id", "slot1text", "slot2text", "slot3text", "slot4text"];
 	
@@ -9662,7 +9662,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".group-table {\n  width: 100%; }\n\n.thead {\n  margin-right: 25%; }\n\n.theadGroup0 {\n  width: 20%; }\n\n.theadGroup1 .theadGroup2 .theadGroup3 .theadGroup4 {\n  width: 20%; }\n\n.group-unit {\n  margin-bottom: 10px; }\n", ""]);
+	exports.push([module.id, ".group-table {\n  width: 100%; }\n\n.thead {\n  margin-right: 25%; }\n\n.theadGroup0 {\n  width: 20%; }\n\n.theadGroup1 .theadGroup2 .theadGroup3 .theadGroup4 {\n  width: 20%; }\n\n.group-unit {\n  margin-bottom: 10px; }\n\n.group-table-div {\n  overflow: auto;\n  height: calc(100% - 208px); }\n", ""]);
 	
 	// exports
 
@@ -36874,7 +36874,7 @@
 					),
 					_react3.default.createElement(
 						'div',
-						{ className: 'mdl-grid' },
+						{ className: 'mdl-grid mdl-grid--no-spacing' },
 						_react3.default.createElement('div', { className: 'mdl-cell mdl-cell--1-col' }),
 						factoryOut
 					)
@@ -37066,36 +37066,41 @@
 							tdTemp = _react3.default.createElement(
 								'td',
 								{ key: stringTemp },
-								_react3.default.createElement(_ToggleImgButton2.default, {
-									key: "groupButton" + i.toString(),
-									modelId: selectData[i].id,
-									display: '0',
-									onClickFunc: function onClickFunc(modelId) {
-										return carrierSelect(modelId);
-									},
-									Cactive: "mdl-button--raised mdl-button--colored",
-									Cinactive: "",
-									imgSrc: imgSrcTemp,
-									text: "",
-									title: selectData[i].name })
-							);
-						} else if (j === 1) {
-							tdTemp = _react3.default.createElement(
-								'td',
-								{ key: "groupFP" + i.toString() },
-								selectData[i]["firepowerEQ"]
+								_react3.default.createElement(
+									'div',
+									null,
+									_react3.default.createElement(_ToggleImgButton2.default, {
+										key: "groupButton" + i.toString(),
+										modelId: selectData[i].id,
+										display: '0',
+										onClickFunc: function onClickFunc(modelId) {
+											return carrierSelect(modelId);
+										},
+										Cactive: "mdl-button--raised mdl-button--colored",
+										Cinactive: "",
+										imgSrc: imgSrcTemp,
+										text: "",
+										title: selectData[i].name })
+								),
+								_react3.default.createElement(
+									'div',
+									{ className: 'thead' },
+									'火力: ',
+									selectData[i]["firepowerEQ"]
+								)
 							);
 						} else {
-							if (selectData[i][_ConstList.listCarrierTbody[j - 1]] > 0) {
+							if (selectData[i][_ConstList.listCarrierTbody[j]] > 0) {
 								var textTemp = '';
-								var idTemp = _ConstList.listCarrierTbody[j - 1] + selectData[i].id;
-								var slotID = _ConstList.listCarrierTbody[j - 1] + 'id';
-								var slotName = _ConstList.listCarrierTbody[j - 1] + 'short';
-								var slotType = _ConstList.listCarrierTbody[j - 1] + 'type';
+								var idTemp = _ConstList.listCarrierTbody[j] + selectData[i].id;
+								var slotID = _ConstList.listCarrierTbody[j] + 'id';
+								var slotName = _ConstList.listCarrierTbody[j] + 'short';
+								var slotType = _ConstList.listCarrierTbody[j] + 'type';
+								var slotFac = _ConstList.listCarrierTbody[j] + 'fac';
 								var classTemp = "group-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary";
 	
 								if (selectData[i][slotID]) {
-									textTemp = selectData[i][slotName] + "(" + selectData[i][_ConstList.listCarrierTbody[j - 1]].toString() + ")" + _ConstList.listAircraftSkill2[selectData[i][_ConstList.listCarrierTbody[j - 1] + 'skill']];
+									textTemp = "+" + selectData[i][slotFac] + selectData[i][slotName] + "(" + selectData[i][_ConstList.listCarrierTbody[j]].toString() + ")" + _ConstList.listAircraftSkill2[selectData[i][_ConstList.listCarrierTbody[j] + 'skill']];
 									switch (selectData[i][slotType]) {
 										case _ConstList.listAircraft[0]:
 											classTemp = classTemp + " mdl-color--" + _ConstList.listAircraftColor[0] + " mdl-button--raised";
@@ -37129,7 +37134,7 @@
 											break;
 									}
 								} else {
-									textTemp = selectData[i][_ConstList.listCarrierTbodyText[j - 1]].toString();
+									textTemp = selectData[i][_ConstList.listCarrierTbodyText[j]].toString();
 								}
 	
 								tdTemp = _react3.default.createElement(
@@ -37214,10 +37219,14 @@
 						)
 					),
 					_react3.default.createElement(
-						'table',
-						{ className: 'group-unit group-table mdl-data-table mdl-js-data-table mdl-shadow--4dp' },
-						theadOut,
-						tbodyOut
+						'div',
+						{ className: 'group-unit group-table group-table-div mdl-shadow--4dp' },
+						_react3.default.createElement(
+							'table',
+							{ className: 'group-table mdl-data-table mdl-js-data-table' },
+							theadOut,
+							tbodyOut
+						)
 					)
 				);
 			}
