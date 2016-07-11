@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "11660af165e3cff1b155"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "8df3dc85f3432e975748"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -4204,8 +4204,8 @@
 	Constants = {
 	  listAA: ["10cm高角砲＋高射装置", "90mm単装高角砲"],
 	  listBoat: ["特二式内火艇"],
-	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "水上偵察機", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "上陸用舟艇", "探照灯"],
-	  listTypeNumber: ["1", "2", "3", "4", "5", "6", "10", "11", "12", "15", "16", "17", "18", "19"],
+	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "艦戰", "水上偵察機", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "上陸用舟艇", "探照灯"],
+	  listTypeNumber: ["1", "2", "3", "4", "5", "7", "6", "10", "11", "12", "15", "16", "17", "18", "19"],
 	  buttonClassActive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
 	  buttonClassInactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent",
 	  TableClass: "mdl-data-table mdl-shadow--2dp",
@@ -12233,6 +12233,32 @@
 			"img": "./img/sit3.png"
 		},
 		{
+			"type": "大口径主砲",
+			"name": "16inch三連装砲 Mk.7",
+			"owner": "Iowa",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "16inch三連装砲 Mk.7＋GFCS",
+			"owner": "Iowa",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit3.png"
+		},
+		{
 			"type": "副砲",
 			"name": "90mm単装高角砲",
 			"owner": "Littorio",
@@ -12426,6 +12452,227 @@
 			"fri": 0,
 			"sat": 0,
 			"img": "./img/sit5.png"
+		},
+		{
+			"type": "魚雷",
+			"name": "試製61cm六連装(酸素)魚雷",
+			"owner": "初月",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit5.png"
+		},
+		{
+			"type": "魚雷",
+			"name": "試製61cm六連装(酸素)魚雷",
+			"owner": "島風",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 1,
+			"img": "./img/sit5.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "九六式艦戦",
+			"owner": "鳳翔",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "零式艦戦21型",
+			"owner": "赤城",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "零式艦戦21型",
+			"owner": "加賀",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "零式艦戦21型(熟練)",
+			"owner": "赤城",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "零式艦戦21型(熟練)",
+			"owner": "加賀",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "零式艦戦32型",
+			"owner": "赤城",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "零式艦戦32型",
+			"owner": "加賀",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "零式艦戦32型(熟練)",
+			"owner": "赤城",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "零式艦戦32型(熟練)",
+			"owner": "加賀",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "零式艦戦52型",
+			"owner": "翔鶴",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "零式艦戦52型",
+			"owner": "瑞鶴",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "零式艦戦52型(熟練)",
+			"owner": "翔鶴",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "零式艦戦52型(熟練)",
+			"owner": "瑞鶴",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "零戦52型丙(六〇一空)",
+			"owner": "大鳳",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦戰",
+			"name": "零戦52型丙(六〇一空)",
+			"owner": "雲龍",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit7.png"
 		},
 		{
 			"type": "水上偵察機",
@@ -18996,7 +19243,7 @@
 	  },
 	  render: function(){
 	    var i, list, toggle;
-	    return div(null, h4(null, "艦これ装備改修表曜日別逆引き"), "更新: 2016/03/25", div({
+	    return div(null, h4(null, "艦これ改修工廠早見表 メロン"), "更新: 2016/07/01", div({
 	      className: "mdl-tabs mdl-js-tabs mdl-js-ripple-effect"
 	    }, div({
 	      className: "mdl-tabs__tab-bar"
@@ -19073,9 +19320,9 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(12), RootInstanceProvider = __webpack_require__(10), ReactMount = __webpack_require__(6), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, ref$, div, a, footer, Footer;
+	var React, ref$, div, a, footer, small, Footer;
 	React = __webpack_require__(3);
-	ref$ = React.DOM, div = ref$.div, a = ref$.a, footer = ref$.footer;
+	ref$ = React.DOM, div = ref$.div, a = ref$.a, footer = ref$.footer, small = ref$.small;
 	Footer = React.createClass({
 	  displayName: "Footer",
 	  render: function(){
@@ -19083,9 +19330,9 @@
 	      className: "demo-footer mdl-mini-footer"
 	    }, div({
 	      className: "mdl-mini-footer--left-section"
-	    }, div(null, "『", a({
+	    }, div(null, small(null, "『", a({
 	      href: "http://www.dmm.com/netgame_s/kancolle/"
-	    }, "艦これ"), "』(C) DMMゲームズ"), div(null, "「艦これ」から転載された全てのコンテンツの著作権につきましては、権利者様へ帰属します。"), div(null, "Copyright (C) Panepo@Github 2016 All Rights Reserved.")));
+	    }, "艦これ"), "』(C) DMMゲームズ")), div(null, small(null, "「艦これ」から転載された全てのコンテンツの著作権につきましては、権利者様へ帰属します。")), div(null, small(null, "Copyright (C) Panepo@Github 2016 All Rights Reserved."))));
 	  }
 	});
 	module.exports = Footer;
@@ -19303,7 +19550,7 @@
 	Constants = __webpack_require__(29);
 	CHANGE_EVENT = 'change';
 	_data = {
-	  toggle: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+	  toggle: [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
 	  day: 0,
 	  output: []
 	};
