@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c50bc1db1443e525a8af"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a1cb791efee8b9fb1c43"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -12404,10 +12404,22 @@
 			"image": "Rippo.png"
 		},
 		{
+			"name": "ビッキー・トウジョウ",
+			"type": "重装",
+			"day": 13,
+			"image": "Bikky.png"
+		},
+		{
 			"name": "コレット・タカハシ",
 			"type": "重装",
 			"day": 13,
 			"image": "Colette.png"
+		},
+		{
+			"name": "モリー・サイゴウ",
+			"type": "重装",
+			"day": 16,
+			"image": "Morry.png"
 		},
 		{
 			"name": "レイシィ・ワカツキ",
@@ -12422,58 +12434,76 @@
 			"image": "Elena.png"
 		},
 		{
-			"name": "N近接",
+			"name": "29近接",
 			"type": "近接",
 			"day": 29,
-			"image": "NN_all.png"
+			"image": "29_N.png"
 		},
 		{
-			"name": "N射撃",
+			"name": "29射撃",
 			"type": "射撃",
 			"day": 29,
-			"image": "NS_all.png"
+			"image": "29_S.png"
 		},
 		{
-			"name": "N魔法",
+			"name": "29魔法",
 			"type": "魔法",
 			"day": 29,
-			"image": "NM_all.png"
+			"image": "29_M.png"
 		},
 		{
-			"name": "N近接",
+			"name": "29重裝",
+			"type": "重装",
+			"day": 29,
+			"image": "29_J.png"
+		},
+		{
+			"name": "30近接",
 			"type": "近接",
 			"day": 30,
-			"image": "NN_all.png"
+			"image": "30_N.png"
 		},
 		{
-			"name": "N射撃",
+			"name": "30射撃",
 			"type": "射撃",
 			"day": 30,
-			"image": "NS_all.png"
+			"image": "30_S.png"
 		},
 		{
-			"name": "N魔法",
+			"name": "30魔法",
 			"type": "魔法",
 			"day": 30,
-			"image": "NM_all.png"
+			"image": "30_M.png"
 		},
 		{
-			"name": "N近接",
+			"name": "30重裝",
+			"type": "重装",
+			"day": 30,
+			"image": "30_J.png"
+		},
+		{
+			"name": "31近接",
 			"type": "近接",
 			"day": 31,
-			"image": "NN_all.png"
+			"image": "31_N.png"
 		},
 		{
-			"name": "N射撃",
+			"name": "31射撃",
 			"type": "射撃",
 			"day": 31,
-			"image": "NS_all.png"
+			"image": "31_S.png"
 		},
 		{
-			"name": "N魔法",
+			"name": "31魔法",
 			"type": "魔法",
 			"day": 31,
-			"image": "NM_all.png"
+			"image": "31_M.png"
+		},
+		{
+			"name": "31重裝",
+			"type": "重装",
+			"day": 31,
+			"image": "31_J.png"
 		}
 	];
 
