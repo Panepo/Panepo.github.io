@@ -53,19 +53,8 @@
 /******/
 /******/ 	
 /******/ 	
-/******/ 	// Copied from https://github.com/facebook/react/blob/bef45b0/src/shared/utils/canDefineProperty.js
-/******/ 	var canDefineProperty = false;
-/******/ 	try {
-/******/ 		Object.defineProperty({}, "x", {
-/******/ 			get: function() {}
-/******/ 		});
-/******/ 		canDefineProperty = true;
-/******/ 	} catch(x) {
-/******/ 		// IE will fail on defineProperty
-/******/ 	}
-/******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "73ac0f5e3417d68d52d5"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e677d70e56afa803b91e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -88,26 +77,10 @@
 /******/ 		};
 /******/ 		for(var name in __webpack_require__) {
 /******/ 			if(Object.prototype.hasOwnProperty.call(__webpack_require__, name)) {
-/******/ 				if(canDefineProperty) {
-/******/ 					Object.defineProperty(fn, name, (function(name) {
-/******/ 						return {
-/******/ 							configurable: true,
-/******/ 							enumerable: true,
-/******/ 							get: function() {
-/******/ 								return __webpack_require__[name];
-/******/ 							},
-/******/ 							set: function(value) {
-/******/ 								__webpack_require__[name] = value;
-/******/ 							}
-/******/ 						};
-/******/ 					}(name)));
-/******/ 				} else {
-/******/ 					fn[name] = __webpack_require__[name];
-/******/ 				}
+/******/ 				fn[name] = __webpack_require__[name];
 /******/ 			}
 /******/ 		}
-/******/ 	
-/******/ 		function ensure(chunkId, callback) {
+/******/ 		fn.e = function(chunkId, callback) {
 /******/ 			if(hotStatus === "ready")
 /******/ 				hotSetStatus("prepare");
 /******/ 			hotChunksLoading++;
@@ -130,15 +103,7 @@
 /******/ 					}
 /******/ 				}
 /******/ 			});
-/******/ 		}
-/******/ 		if(canDefineProperty) {
-/******/ 			Object.defineProperty(fn, "e", {
-/******/ 				enumerable: true,
-/******/ 				value: ensure
-/******/ 			});
-/******/ 		} else {
-/******/ 			fn.e = ensure;
-/******/ 		}
+/******/ 		};
 /******/ 		return fn;
 /******/ 	}
 /******/ 	
@@ -593,40 +558,12 @@
 	// shim for using process in browser
 	
 	var process = module.exports = {};
-	
-	// cached from whatever global is present so that test runners that stub it
-	// don't break things.  But we need to wrap it in a try catch in case it is
-	// wrapped in strict mode code which doesn't define any globals.  It's inside a
-	// function because try/catches deoptimize in certain engines.
-	
-	var cachedSetTimeout;
-	var cachedClearTimeout;
-	
-	(function () {
-	  try {
-	    cachedSetTimeout = setTimeout;
-	  } catch (e) {
-	    cachedSetTimeout = function () {
-	      throw new Error('setTimeout is not defined');
-	    }
-	  }
-	  try {
-	    cachedClearTimeout = clearTimeout;
-	  } catch (e) {
-	    cachedClearTimeout = function () {
-	      throw new Error('clearTimeout is not defined');
-	    }
-	  }
-	} ())
 	var queue = [];
 	var draining = false;
 	var currentQueue;
 	var queueIndex = -1;
 	
 	function cleanUpNextTick() {
-	    if (!draining || !currentQueue) {
-	        return;
-	    }
 	    draining = false;
 	    if (currentQueue.length) {
 	        queue = currentQueue.concat(queue);
@@ -642,7 +579,7 @@
 	    if (draining) {
 	        return;
 	    }
-	    var timeout = cachedSetTimeout(cleanUpNextTick);
+	    var timeout = setTimeout(cleanUpNextTick);
 	    draining = true;
 	
 	    var len = queue.length;
@@ -659,7 +596,7 @@
 	    }
 	    currentQueue = null;
 	    draining = false;
-	    cachedClearTimeout(timeout);
+	    clearTimeout(timeout);
 	}
 	
 	process.nextTick = function (fun) {
@@ -671,7 +608,7 @@
 	    }
 	    queue.push(new Item(fun, args));
 	    if (queue.length === 1 && !draining) {
-	        cachedSetTimeout(drainQueue, 0);
+	        setTimeout(drainQueue, 0);
 	    }
 	};
 	
@@ -3224,7 +3161,6 @@
 	 */
 	var EventInterface = {
 	  type: null,
-	  target: null,
 	  // currentTarget is set when dispatching; no use in copying it here
 	  currentTarget: emptyFunction.thatReturnsNull,
 	  eventPhase: null,
@@ -3258,6 +3194,8 @@
 	  this.dispatchConfig = dispatchConfig;
 	  this.dispatchMarker = dispatchMarker;
 	  this.nativeEvent = nativeEvent;
+	  this.target = nativeEventTarget;
+	  this.currentTarget = nativeEventTarget;
 	
 	  var Interface = this.constructor.Interface;
 	  for (var propName in Interface) {
@@ -3268,11 +3206,7 @@
 	    if (normalize) {
 	      this[propName] = normalize(nativeEvent);
 	    } else {
-	      if (propName === 'target') {
-	        this.target = nativeEventTarget;
-	      } else {
-	        this[propName] = nativeEvent[propName];
-	      }
+	      this[propName] = nativeEvent[propName];
 	    }
 	  }
 	
@@ -6133,7 +6067,7 @@
 	
 	'use strict';
 	
-	module.exports = '0.14.8';
+	module.exports = '0.14.6';
 
 /***/ },
 /* 46 */
@@ -7243,7 +7177,7 @@
 	  }
 	};
 	module.exports = AppAction;
-	//# sourceMappingURL=E:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!E:\Code\GitHub\FKGExpCalFlux\ls\actions\AppAction.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\ls\actions\AppAction.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppAction.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -7258,7 +7192,7 @@
 	var Dispatcher;
 	Dispatcher = __webpack_require__(94).Dispatcher;
 	module.exports = new Dispatcher();
-	//# sourceMappingURL=E:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!E:\Code\GitHub\FKGExpCalFlux\ls\dispatcher\AppDispatcher.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\ls\dispatcher\AppDispatcher.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppDispatcher.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -9852,10 +9786,6 @@
 	  }
 	};
 	
-	function registerNullComponentID() {
-	  ReactEmptyComponentRegistry.registerNullComponentID(this._rootNodeID);
-	}
-	
 	var ReactEmptyComponent = function (instantiate) {
 	  this._currentElement = null;
 	  this._rootNodeID = null;
@@ -9864,7 +9794,7 @@
 	assign(ReactEmptyComponent.prototype, {
 	  construct: function (element) {},
 	  mountComponent: function (rootID, transaction, context) {
-	    transaction.getReactMountReady().enqueue(registerNullComponentID, this);
+	    ReactEmptyComponentRegistry.registerNullComponentID(rootID);
 	    this._rootNodeID = rootID;
 	    return ReactReconciler.mountComponent(this._renderedComponent, rootID, transaction, context);
 	  },
@@ -11755,8 +11685,8 @@
 /* 97 */
 /***/ function(module, exports) {
 
-	'use strict';
 	/* eslint-disable no-unused-vars */
+	'use strict';
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 	
@@ -11768,51 +11698,7 @@
 		return Object(val);
 	}
 	
-	function shouldUseNative() {
-		try {
-			if (!Object.assign) {
-				return false;
-			}
-	
-			// Detect buggy property enumeration order in older V8 versions.
-	
-			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-			var test1 = new String('abc');  // eslint-disable-line
-			test1[5] = 'de';
-			if (Object.getOwnPropertyNames(test1)[0] === '5') {
-				return false;
-			}
-	
-			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-			var test2 = {};
-			for (var i = 0; i < 10; i++) {
-				test2['_' + String.fromCharCode(i)] = i;
-			}
-			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-				return test2[n];
-			});
-			if (order2.join('') !== '0123456789') {
-				return false;
-			}
-	
-			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-			var test3 = {};
-			'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-				test3[letter] = letter;
-			});
-			if (Object.keys(Object.assign({}, test3)).join('') !==
-					'abcdefghijklmnopqrst') {
-				return false;
-			}
-	
-			return true;
-		} catch (e) {
-			// We don't expect any of the above to throw, but better to be safe.
-			return false;
-		}
-	}
-	
-	module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+	module.exports = Object.assign || function (target, source) {
 		var from;
 		var to = toObject(target);
 		var symbols;
@@ -11872,7 +11758,7 @@
 	React = __webpack_require__(3);
 	FKGCalApp = __webpack_require__(105);
 	ReactDOM.render(React.createElement(FKGCalApp, null), document.getElementById("FKGCalApp"));
-	//# sourceMappingURL=E:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!E:\Code\GitHub\FKGExpCalFlux\ls\app.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\ls\app.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "app.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -11909,7 +11795,7 @@
 	    var i, rarValue, proValue;
 	    return div({
 	      className: "ConInpRad"
-	    }, h4(null, "フラワーナイトガール経験値計算機"), h5(null, "對象騎士"), div(null, "レアリティ：", (function(){
+	    }, h4(null, "フラワーナイトガール経験値計算機 貓パンチ"), h5(null, "對象騎士"), div(null, "レアリティ：", (function(){
 	      var i$, ref$, len$, results$ = [];
 	      for (i$ = 0, len$ = (ref$ = rarityList).length; i$ < len$; ++i$) {
 	        i = i$;
@@ -11953,7 +11839,7 @@
 	  }
 	});
 	module.exports = ConInpRad;
-	//# sourceMappingURL=E:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!E:\Code\GitHub\FKGExpCalFlux\ls\components\ConInpRad.react.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\ls\components\ConInpRad.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConInpRad.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12077,7 +11963,7 @@
 	  }
 	});
 	module.exports = ConInpText;
-	//# sourceMappingURL=E:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!E:\Code\GitHub\FKGExpCalFlux\ls\components\ConInpText.react.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\ls\components\ConInpText.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConInpText.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12120,7 +12006,7 @@
 	  }
 	});
 	module.exports = ConOut;
-	//# sourceMappingURL=E:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!E:\Code\GitHub\FKGExpCalFlux\ls\components\ConOut.react.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\ls\components\ConOut.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConOut.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12213,9 +12099,11 @@
 	      for (i$ = 0, len$ = (ref$ = this.props.tableData).length; i$ < len$; ++i$) {
 	        i = i$;
 	        tabValue = ref$[i$];
-	        results$.push(tr({
-	          key: this.props.tableId + " tr" + i.toString()
-	        }, (fn$.call(this))));
+	        if (i < 11) {
+	          results$.push(tr({
+	            key: this.props.tableId + " tr" + i.toString()
+	          }, (fn$.call(this))));
+	        }
 	      }
 	      return results$;
 	      function fn$(){
@@ -12233,7 +12121,7 @@
 	  }
 	});
 	module.exports = ReactDataTable;
-	//# sourceMappingURL=E:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!E:\Code\GitHub\FKGExpCalFlux\ls\components\DataTable.react.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\ls\components\DataTable.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "DataTable.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12312,7 +12200,7 @@
 	  }
 	});
 	module.exports = FKGCalApp;
-	//# sourceMappingURL=E:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!E:\Code\GitHub\FKGExpCalFlux\ls\components\FKGCalApp.react.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\ls\components\FKGCalApp.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "FKGCalApp.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12324,9 +12212,9 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(11), RootInstanceProvider = __webpack_require__(9), ReactMount = __webpack_require__(5), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, ref$, div, table, thead, tbody, th, tr, td, label, input, span, a, Footer;
+	var React, ref$, div, a, Footer;
 	React = __webpack_require__(3);
-	ref$ = React.DOM, div = ref$.div, table = ref$.table, thead = ref$.thead, tbody = ref$.tbody, th = ref$.th, tr = ref$.tr, td = ref$.td, label = ref$.label, input = ref$.input, span = ref$.span, a = ref$.a;
+	ref$ = React.DOM, div = ref$.div, a = ref$.a;
 	Footer = React.createClass({
 	  displayName: "Footer",
 	  render: function(){
@@ -12340,7 +12228,7 @@
 	  }
 	});
 	module.exports = Footer;
-	//# sourceMappingURL=E:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!E:\Code\GitHub\FKGExpCalFlux\ls\components\Footer.react.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\ls\components\Footer.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Footer.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12352,9 +12240,9 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(11), RootInstanceProvider = __webpack_require__(9), ReactMount = __webpack_require__(5), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, ref$, div, table, thead, tbody, th, tr, td, label, input, span, Header;
+	var React, ref$, div, a, nav, span, Header;
 	React = __webpack_require__(3);
-	ref$ = React.DOM, div = ref$.div, table = ref$.table, thead = ref$.thead, tbody = ref$.tbody, th = ref$.th, tr = ref$.tr, td = ref$.td, label = ref$.label, input = ref$.input, span = ref$.span;
+	ref$ = React.DOM, div = ref$.div, a = ref$.a, nav = ref$.nav, span = ref$.span;
 	Header = React.createClass({
 	  displayName: "Header",
 	  render: function(){
@@ -12364,15 +12252,23 @@
 	      className: "mdl-layout__header-row"
 	    }, span({
 	      className: "mdl-layout-title"
-	    }, div({
+	    }, " "), div({
 	      className: "mdl-layout-spacer"
-	    }))), div({
+	    }, null), nav({
+	      className: "mdl-navigation"
+	    }, a({
+	      className: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
+	      href: "http://www.dmm.com/netgame_s/flower/"
+	    }, "フラワーナイトガール"), a({
+	      className: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
+	      href: "http://フラワーナイトガール.攻略wiki.com/index.php"
+	    }, "wiki"))), div({
 	      className: "demo-ribbon"
 	    })));
 	  }
 	});
 	module.exports = Header;
-	//# sourceMappingURL=E:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!E:\Code\GitHub\FKGExpCalFlux\ls\components\Header.react.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\ls\components\Header.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Header.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12454,7 +12350,7 @@
 	  }
 	});
 	module.exports = AppStore;
-	//# sourceMappingURL=E:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!E:\Code\GitHub\FKGExpCalFlux\ls\stores\AppStore.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\ls\stores\AppStore.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppStore.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12556,7 +12452,7 @@
 	  }
 	};
 	module.exports = FKGExpCal;
-	//# sourceMappingURL=E:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!E:\Code\GitHub\FKGExpCalFlux\ls\stores\FKGExpCal.ls.map
+	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\ls\stores\FKGExpCal.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "FKGExpCal.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -17131,10 +17027,7 @@
 	      }
 	    });
 	
-	    if (content) {
-	      nativeProps.children = content;
-	    }
-	
+	    nativeProps.children = content;
 	    return nativeProps;
 	  }
 	
@@ -21988,12 +21881,8 @@
 	      er = arguments[1];
 	      if (er instanceof Error) {
 	        throw er; // Unhandled 'error' event
-	      } else {
-	        // At least give some kind of context to the user
-	        var err = new Error('Uncaught, unspecified "error" event. (' + er + ')');
-	        err.context = er;
-	        throw err;
 	      }
+	      throw TypeError('Uncaught, unspecified "error" event.');
 	    }
 	  }
 	
