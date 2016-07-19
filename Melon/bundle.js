@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "8df3dc85f3432e975748"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b78d9cc29778d842287a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -4204,8 +4204,8 @@
 	Constants = {
 	  listAA: ["10cm高角砲＋高射装置", "90mm単装高角砲"],
 	  listBoat: ["特二式内火艇"],
-	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "艦戰", "水上偵察機", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "上陸用舟艇", "探照灯"],
-	  listTypeNumber: ["1", "2", "3", "4", "5", "7", "6", "10", "11", "12", "15", "16", "17", "18", "19"],
+	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "艦上戦闘機", "艦上爆撃機", "水上偵察機", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "上陸用舟艇", "探照灯"],
+	  listTypeNumber: ["1", "2", "3", "4", "5", "7", "8", "6", "10", "11", "12", "15", "16", "17", "18", "19"],
 	  buttonClassActive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
 	  buttonClassInactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent",
 	  TableClass: "mdl-data-table mdl-shadow--2dp",
@@ -12480,7 +12480,7 @@
 			"img": "./img/sit5.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "九六式艦戦",
 			"owner": "鳳翔",
 			"sun": 1,
@@ -12493,7 +12493,7 @@
 			"img": "./img/sit7.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "零式艦戦21型",
 			"owner": "赤城",
 			"sun": 0,
@@ -12506,7 +12506,7 @@
 			"img": "./img/sit7.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "零式艦戦21型",
 			"owner": "加賀",
 			"sun": 1,
@@ -12519,7 +12519,7 @@
 			"img": "./img/sit7.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "零式艦戦21型(熟練)",
 			"owner": "赤城",
 			"sun": 0,
@@ -12532,7 +12532,7 @@
 			"img": "./img/sit7.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "零式艦戦21型(熟練)",
 			"owner": "加賀",
 			"sun": 1,
@@ -12545,7 +12545,7 @@
 			"img": "./img/sit7.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "零式艦戦32型",
 			"owner": "赤城",
 			"sun": 1,
@@ -12558,7 +12558,7 @@
 			"img": "./img/sit7.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "零式艦戦32型",
 			"owner": "加賀",
 			"sun": 0,
@@ -12571,7 +12571,7 @@
 			"img": "./img/sit7.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "零式艦戦32型(熟練)",
 			"owner": "赤城",
 			"sun": 1,
@@ -12584,7 +12584,7 @@
 			"img": "./img/sit7.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "零式艦戦32型(熟練)",
 			"owner": "加賀",
 			"sun": 0,
@@ -12597,7 +12597,7 @@
 			"img": "./img/sit7.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "零式艦戦52型",
 			"owner": "翔鶴",
 			"sun": 0,
@@ -12610,7 +12610,7 @@
 			"img": "./img/sit7.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "零式艦戦52型",
 			"owner": "瑞鶴",
 			"sun": 1,
@@ -12623,7 +12623,7 @@
 			"img": "./img/sit7.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "零式艦戦52型(熟練)",
 			"owner": "翔鶴",
 			"sun": 0,
@@ -12636,7 +12636,7 @@
 			"img": "./img/sit7.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "零式艦戦52型(熟練)",
 			"owner": "瑞鶴",
 			"sun": 1,
@@ -12649,7 +12649,7 @@
 			"img": "./img/sit7.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "零戦52型丙(六〇一空)",
 			"owner": "大鳳",
 			"sun": 1,
@@ -12662,7 +12662,7 @@
 			"img": "./img/sit7.png"
 		},
 		{
-			"type": "艦戰",
+			"type": "艦上戦闘機",
 			"name": "零戦52型丙(六〇一空)",
 			"owner": "雲龍",
 			"sun": 0,
@@ -12673,6 +12673,84 @@
 			"fri": 1,
 			"sat": 1,
 			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦上戦闘機",
+			"name": "零戦52型丙(付岩井小隊)",
+			"owner": "瑞鶴",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦上戦闘機",
+			"name": "零戦52型甲(付岩本小隊)",
+			"owner": "瑞鶴",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦上戦闘機",
+			"name": "零式艦戦53型(岩本隊)",
+			"owner": "瑞鶴",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦上爆撃機",
+			"name": "零式艦戦62型(爆戦)",
+			"owner": "隼鷹",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit8.png"
+		},
+		{
+			"type": "艦上爆撃機",
+			"name": "零式艦戦62型(爆戦)",
+			"owner": "翔鶴",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit8.png"
+		},
+		{
+			"type": "艦上爆撃機",
+			"name": "零戦62型(爆戦／岩井隊)",
+			"owner": "瑞鶴",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit8.png"
 		},
 		{
 			"type": "水上偵察機",
@@ -19550,7 +19628,7 @@
 	Constants = __webpack_require__(29);
 	CHANGE_EVENT = 'change';
 	_data = {
-	  toggle: [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+	  toggle: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	  day: 0,
 	  output: []
 	};
