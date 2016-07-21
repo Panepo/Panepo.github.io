@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b78d9cc29778d842287a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "560a8e05df3524ee592a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -12681,7 +12681,7 @@
 			"sun": 0,
 			"mon": 0,
 			"tue": 1,
-			"wed": 1,
+			"wed": 0,
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
@@ -12746,7 +12746,7 @@
 			"sun": 0,
 			"mon": 0,
 			"tue": 1,
-			"wed": 1,
+			"wed": 0,
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
@@ -19321,7 +19321,7 @@
 	  },
 	  render: function(){
 	    var i, list, toggle;
-	    return div(null, h4(null, "艦これ改修工廠早見表 メロン"), "更新: 2016/07/01", div({
+	    return div(null, h4(null, "艦これ改修工廠早見表 メロン"), "更新: 2016/07/21", div({
 	      className: "mdl-tabs mdl-js-tabs mdl-js-ripple-effect"
 	    }, div({
 	      className: "mdl-tabs__tab-bar"
@@ -19439,7 +19439,8 @@
 	  },
 	  getInitialState: function(){
 	    return {
-	      toggleAll: false
+	      toggleAll: false,
+	      toggleStart: 0
 	    };
 	  },
 	  handleToggle: function(event){
@@ -19477,6 +19478,33 @@
 	    }
 	    AppAction.toggleChange(toggle);
 	  },
+	  handleUp: function(event){
+	    var temp;
+	    if (this.state.toggleStart <= 6) {
+	      this.setState({
+	        toggleStart: 0
+	      });
+	    } else {
+	      temp = this.state.toggleStart - 6;
+	      this.setState({
+	        toggleStart: temp
+	      });
+	    }
+	  },
+	  handleDown: function(event){
+	    var temp;
+	    if (this.state.toggleStart + 9 > Constants.listType.length) {
+	      temp = Constants.listType.length - 9;
+	      this.setState({
+	        toggleStart: temp
+	      });
+	    } else {
+	      temp = this.state.toggleStart + 6;
+	      this.setState({
+	        toggleStart: temp
+	      });
+	    }
+	  },
 	  render: function(){
 	    var i, type;
 	    return header({
@@ -19497,7 +19525,7 @@
 	      href: 'http://wikiwiki.jp/kancolle/?%B2%FE%BD%A4%B9%A9%BE%B3#s_kaisyu'
 	    }, "簡易改修表 "))), nav({
 	      className: "floating-menu mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col"
-	    }, this.state.toggleAll === true
+	    }, div(null, this.state.toggleAll === true
 	      ? button({
 	        className: Constants.buttonClassActive,
 	        onClick: this.handleToggleAll
@@ -19505,14 +19533,18 @@
 	      : button({
 	        className: Constants.buttonClassInactive,
 	        onClick: this.handleToggleAll
-	      }, "全選"), (function(){
+	      }, "全選")), this.state.toggleStart !== 0 ? div(null, button({
+	      id: "checkbox up",
+	      className: Constants.buttonClassActive,
+	      onClick: this.handleUp
+	    }, "︽")) : void 8, (function(){
 	      var i$, ref$, len$, results$ = [];
 	      for (i$ = 0, len$ = (ref$ = Constants.listType).length; i$ < len$; ++i$) {
 	        i = i$;
 	        type = ref$[i$];
 	        results$.push(div({
 	          key: "checkbox" + i.toString()
-	        }, this.props.toggle[i] === 1
+	        }, i >= this.state.toggleStart && i <= this.state.toggleStart + 10 ? this.props.toggle[i] === 1
 	          ? button({
 	            id: "checkbox" + i.toString(),
 	            className: Constants.buttonClassActive,
@@ -19522,10 +19554,14 @@
 	            id: "checkbox" + i.toString(),
 	            className: Constants.buttonClassInactive,
 	            onClick: this.handleToggle
-	          }, type)));
+	          }, type) : void 8));
 	      }
 	      return results$;
-	    }.call(this))));
+	    }.call(this)), this.state.toggleStart + 10 < Constants.listType.length ? div(null, button({
+	      id: "checkbox down",
+	      className: Constants.buttonClassActive,
+	      onClick: this.handleDown
+	    }, "︾")) : void 8));
 	  }
 	});
 	module.exports = Header;
