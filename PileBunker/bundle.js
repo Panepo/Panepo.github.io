@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f5b61075302ec58a3283"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "58a98f40039396d54e1f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27318,7 +27318,7 @@
 			"name": "真‧正則の剛弩",
 			"type": "xbow",
 			"atk": 113,
-			"aspd": 0,
+			"aspd": -37,
 			"range": 0,
 			"rare": 4,
 			"text": "攻撃速度低下"
