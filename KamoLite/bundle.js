@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "a6722381cfeea678a3e2"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4fafa332687b59541322"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27565,6 +27565,20 @@
 			"evade": 0
 		},
 		{
+			"name": "零式艦戦32型",
+			"short": "零戰32型",
+			"type": "fighter",
+			"id": "181",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 5,
+			"sonar": 0,
+			"scout": 0,
+			"hit": 0,
+			"evade": 2
+		},
+		{
 			"name": "零式艦戦52型",
 			"short": "零戰52型",
 			"type": "fighter",
@@ -27577,6 +27591,34 @@
 			"scout": 0,
 			"hit": 0,
 			"evade": 0
+		},
+		{
+			"name": "Re.2001 OR改",
+			"short": "Re2001改",
+			"type": "fighter",
+			"id": "184",
+			"firepower": 3,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 6,
+			"sonar": 0,
+			"scout": 0,
+			"hit": 0,
+			"evade": 2
+		},
+		{
+			"name": "零式艦戦32型(熟練)",
+			"short": "零戰32熟",
+			"type": "fighter",
+			"id": "182",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 8,
+			"sonar": 0,
+			"scout": 0,
+			"hit": 1,
+			"evade": 4
 		},
 		{
 			"name": "Bf109T改",
