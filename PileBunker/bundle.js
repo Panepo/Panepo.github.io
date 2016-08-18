@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e6a076b6916d2dbcada6"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "bca33a76b7144cf3129f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27882,17 +27882,6 @@
 			"range": 20,
 			"rare": 2,
 			"text": "攻撃範囲+20",
-			"ref": 0,
-			"refText": "+0"
-		},
-		{
-			"name": "芝辻砲",
-			"type": "cannon",
-			"atk": 16,
-			"aspd": 20,
-			"range": 0,
-			"rare": 2,
-			"text": "",
 			"ref": 0,
 			"refText": "+0"
 		},
