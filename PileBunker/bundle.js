@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "dd74f2239f3febb1928f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c5e16938a6fe44ecf7c3"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -12876,6 +12876,7 @@
 	exports.maxChange = maxChange;
 	exports.inputChange = inputChange;
 	exports.refChange = refChange;
+	exports.refSinChange = refSinChange;
 	
 	var _ConstActionTypes = __webpack_require__(229);
 	
@@ -12920,6 +12921,13 @@
 	function refChange(modelId) {
 		return {
 			type: types.REF_CHANGE,
+			modelId: modelId
+		};
+	}
+	
+	function refSinChange(modelId) {
+		return {
+			type: types.REF_SIN_CHANGE,
 			modelId: modelId
 		};
 	}
@@ -13062,6 +13070,7 @@
 	var MAX_CHANGE = exports.MAX_CHANGE = 'MAX_CHANGE';
 	var INPUT_CHANGE = exports.INPUT_CHANGE = 'INPUT_CHANGE';
 	var REF_CHANGE = exports.REF_CHANGE = 'REF_CHANGE';
+	var REF_SIN_CHANGE = exports.REF_SIN_CHANGE = 'REF_SIN_CHANGE';
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(20); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConstActionTypes.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)(module)))
@@ -33913,6 +33922,7 @@
 				var tableData = _props2.tableData;
 				var tableId = _props2.tableId;
 				var tableInd = _props2.tableInd;
+				var tableFunction = _props2.tableFunction;
 				var tableBody = this.state.tableBody;
 	
 	
@@ -33937,7 +33947,7 @@
 						} else {
 							tdTemp = _react3.default.createElement(
 								'td',
-								{ key: tableId + " td" + i.toString() + j.toString() },
+								{ key: tableId + " td" + i.toString() + j.toString(), onClick: tableFunction.bind(null, tableBody[i].name) },
 								tableBody[i][tableInd[j]]
 							);
 							tdTempOut.push(tdTemp);
@@ -33986,7 +33996,8 @@
 		tableInd: _react2.PropTypes.array,
 		tableHead: _react2.PropTypes.array,
 		tableData: _react2.PropTypes.array,
-		tableClass: _react2.PropTypes.string
+		tableClass: _react2.PropTypes.string,
+		tableFunction: _react2.PropTypes.func
 	};
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(20); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "MdlTableClass.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -34793,6 +34804,7 @@
 				var _props = this.props;
 				var output = _props.output;
 				var refChange = _props.refChange;
+				var refSinChange = _props.refSinChange;
 	
 	
 				var butTemp;
@@ -34829,7 +34841,10 @@
 							tableInd: _ConstList.tableInd,
 							tableHead: _ConstList.tableHead,
 							tableData: output,
-							tableClass: "outputTable mdl-data-table mdl-js-data-table mdl-shadow--2dp"
+							tableClass: "outputTable mdl-data-table mdl-js-data-table mdl-shadow--2dp",
+							tableFunction: function tableFunction(modelId) {
+								return refSinChange(modelId);
+							}
 						})
 					)
 				);
@@ -34851,7 +34866,8 @@
 	
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
-			refChange: (0, _redux.bindActionCreators)(_actions.refChange, dispatch)
+			refChange: (0, _redux.bindActionCreators)(_actions.refChange, dispatch),
+			refSinChange: (0, _redux.bindActionCreators)(_actions.refSinChange, dispatch)
 		};
 	};
 	
@@ -35148,6 +35164,22 @@
 							output: calcOutput(calcTemp)
 						});
 				}
+			case _ConstActionTypes.REF_SIN_CHANGE:
+				weaponSelected = _database.dbWeapon.findOne({ 'name': action.modelId });
+				if (weaponSelected.ref === 10) {
+					weaponSelected.atk -= 10;
+					weaponSelected.ref = 0;
+					weaponSelected.refText = '+0';
+				} else {
+					weaponSelected.atk += 1;
+					weaponSelected.ref += 1;
+					weaponSelected.refText = '+' + weaponSelected.ref.toString();
+				}
+				_database.dbWeapon.update(weaponSelected);
+				calcTemp = state;
+				return Object.assign({}, state, {
+					output: calcOutput(calcTemp)
+				});
 			case _ConstActionTypes.INPUT_CHANGE:
 				switch (action.modelId) {
 					case "atk":
@@ -35231,6 +35263,8 @@
 		if (input.fly === 'fly') {
 			if (input.type === 'sword' || input.type === 'lance' || input.type === 'hammer') {
 				flyMux = 0.5;
+			} else if (input.type === 'bow') {
+				flyMux = 1.5;
 			}
 		}
 	
