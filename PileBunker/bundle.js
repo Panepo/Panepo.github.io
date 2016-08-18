@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c5e16938a6fe44ecf7c3"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e6a076b6916d2dbcada6"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -35299,7 +35299,11 @@
 			} else {
 				totalAtk = (charAtk + weaponSelected[i].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 				totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
-				weaponSelected[i].damage = Math.floor(totalAtk - totalDef);
+				if (totalAtk >= totalDef) {
+					weaponSelected[i].damage = Math.floor(totalAtk - totalDef);
+				} else {
+					weaponSelected[i].damage = Math.floor(totalAtk / 10);
+				}
 				weaponSelected[i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[i].aspd) / 100));
 				weaponSelected[i].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 				weaponSelected[i].dps = Math.floor(weaponSelected[i].damage * 30 / (weaponSelected[i].frame1 + weaponSelected[i].frame2) * 100) / 100;
@@ -35323,7 +35327,11 @@
 				for (var i = 0; i < weaponSelected.length; i++) {
 					totalAtk = (charAtk + weaponSelected[i].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
-					weaponSelected[i].damage = Math.floor(totalAtk - totalDef);
+					if (totalAtk >= totalDef) {
+						weaponSelected[i].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[i].damage = Math.floor(totalAtk / 10);
+					}
 					weaponSelected[i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[i].aspd) / 100));
 					weaponSelected[i].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[i].dps = Math.floor(weaponSelected[i].damage * 30 / (weaponSelected[i].frame1 + weaponSelected[i].frame2) * 100) / 100;
@@ -35335,7 +35343,11 @@
 				for (var i = 0; i < weaponSelected.length; i++) {
 					totalAtk = (charAtk + weaponSelected[i].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
-					weaponSelected[i].damage = Math.floor(totalAtk - totalDef);
+					if (totalAtk >= totalDef) {
+						weaponSelected[i].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[i].damage = Math.floor(totalAtk / 10);
+					}
 					weaponSelected[i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[i].aspd) / 100));
 					weaponSelected[i].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[i].dps = Math.floor(weaponSelected[i].damage * 30 / (weaponSelected[i].frame1 + weaponSelected[i].frame2) * 100) / 100;
@@ -35349,7 +35361,11 @@
 				for (var i = 0; i < weaponSelected.length; i++) {
 					totalAtk = (charAtk + weaponSelected[i].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
-					weaponSelected[i].damage = Math.floor(totalAtk - totalDef) * 2;
+					if (totalAtk >= totalDef) {
+						weaponSelected[i].damage = Math.floor(totalAtk - totalDef) * 2;
+					} else {
+						weaponSelected[i].damage = Math.floor(totalAtk / 10) * 2;
+					}
 					weaponSelected[i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[i].aspd) / 100));
 					weaponSelected[i].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[i].dps = Math.floor(weaponSelected[i].damage * 30 / (weaponSelected[i].frame1 + weaponSelected[i].frame2) * 100) / 100;
@@ -35360,7 +35376,11 @@
 				for (var i = 0; i < weaponSelected.length; i++) {
 					totalAtk = (charAtk + weaponSelected[i].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
-					weaponSelected[i].damage = Math.floor(totalAtk - totalDef) * 3;
+					if (totalAtk >= totalDef) {
+						weaponSelected[i].damage = Math.floor(totalAtk - totalDef) * 3;
+					} else {
+						weaponSelected[i].damage = Math.floor(totalAtk / 10) * 3;
+					}
 					weaponSelected[i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[i].aspd) / 100));
 					weaponSelected[i].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[i].dps = Math.floor(weaponSelected[i].damage * 30 / (weaponSelected[i].frame1 + weaponSelected[i].frame2) * 100) / 100;
