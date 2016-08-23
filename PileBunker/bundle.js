@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d664971f078ebf8d8c4a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "bca33a76b7144cf3129f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -12873,7 +12873,6 @@
 	exports.typeChange = typeChange;
 	exports.plainChange = plainChange;
 	exports.flyChange = flyChange;
-	exports.cannonChange = cannonChange;
 	exports.maxChange = maxChange;
 	exports.inputChange = inputChange;
 	exports.refChange = refChange;
@@ -12901,12 +12900,6 @@
 	function flyChange() {
 		return {
 			type: types.FLY_CHANGE
-		};
-	}
-	
-	function cannonChange() {
-		return {
-			type: types.CANNON_CHANGE
 		};
 	}
 	
@@ -13078,7 +13071,6 @@
 	var INPUT_CHANGE = exports.INPUT_CHANGE = 'INPUT_CHANGE';
 	var REF_CHANGE = exports.REF_CHANGE = 'REF_CHANGE';
 	var REF_SIN_CHANGE = exports.REF_SIN_CHANGE = 'REF_SIN_CHANGE';
-	var CANNON_CHANGE = exports.CANNON_CHANGE = 'CANNON_CHANGE';
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(20); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConstActionTypes.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)(module)))
@@ -34209,19 +34201,31 @@
 		}
 	
 		_createClass(Content, [{
-			key: 'generateType',
-			value: function generateType() {
+			key: 'render',
+			value: function render() {
 				var _props = this.props;
 				var type = _props.type;
 				var typeChange = _props.typeChange;
+				var plain = _props.plain;
+				var plainChange = _props.plainChange;
+				var max = _props.max;
+				var maxChange = _props.maxChange;
+				var fly = _props.fly;
+				var flyChange = _props.flyChange;
+				var _props2 = this.props;
+				var atk = _props2.atk;
+				var def = _props2.def;
+				var atkSkill = _props2.atkSkill;
+				var defSkill = _props2.defSkill;
+				var aspdSkill = _props2.aspdSkill;
+				var aspdSpell = _props2.aspdSpell;
+				var inputChange = _props2.inputChange;
+				var atkSkillInt = _props2.atkSkillInt;
+				var defSkillInt = _props2.defSkillInt;
 	
-				var typeTemp = _react3.default.createElement(
-					'label',
-					null,
-					'武器種：'
-				);
+	
+				var typeTemp;
 				var typeOut = [];
-				typeOut.push(typeTemp);
 				for (var i = 0; i < _ConstList.listType.length; i++) {
 					typeTemp = _react3.default.createElement(_ToggleButton2.default, {
 						key: "inputType" + i.toString(),
@@ -34236,94 +34240,9 @@
 					});
 					typeOut.push(typeTemp);
 				}
-				return typeOut;
-			}
-		}, {
-			key: 'generateToggle',
-			value: function generateToggle() {
-				var _props2 = this.props;
-				var plain = _props2.plain;
-				var plainChange = _props2.plainChange;
-				var fly = _props2.fly;
-				var flyChange = _props2.flyChange;
-				var cannon = _props2.cannon;
-				var cannonChange = _props2.cannonChange;
-				var type = _props2.type;
 	
-				var toggleTemp = _react3.default.createElement(
-					'label',
-					null,
-					'地形適性：'
-				);
-				var toggleOut = [];
-				toggleOut.push(toggleTemp);
-				toggleTemp = _react3.default.createElement(_ToggleButton2.default, {
-					key: "inputType plain",
-					display: plain,
-					title: "地形適性あり",
-					onClickFunc: function onClickFunc(modelId) {
-						return plainChange(modelId);
-					},
-					modelId: "plain",
-					Cactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
-					Cinactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent"
-				});
-				toggleOut.push(toggleTemp);
-				toggleTemp = _react3.default.createElement(
-					'label',
-					null,
-					'飛行兜：'
-				);
-				toggleOut.push(toggleTemp);
-				toggleTemp = _react3.default.createElement(_ToggleButton2.default, {
-					key: "inputType fly",
-					display: fly,
-					title: "飛行兜あり",
-					onClickFunc: function onClickFunc(modelId) {
-						return flyChange(modelId);
-					},
-					modelId: "fly",
-					Cactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
-					Cinactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent"
-				});
-				toggleOut.push(toggleTemp);
-	
-				if (type === "cannon") {
-					toggleTemp = _react3.default.createElement(
-						'label',
-						null,
-						'大砲直擊：'
-					);
-					toggleOut.push(toggleTemp);
-					toggleTemp = _react3.default.createElement(_ToggleButton2.default, {
-						key: "inputType cannon",
-						display: cannon,
-						title: "大砲直擊あり",
-						onClickFunc: function onClickFunc(modelId) {
-							return cannonChange(modelId);
-						},
-						modelId: "cannon",
-						Cactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
-						Cinactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent"
-					});
-					toggleOut.push(toggleTemp);
-				}
-				return toggleOut;
-			}
-		}, {
-			key: 'generateMax',
-			value: function generateMax() {
-				var _props3 = this.props;
-				var max = _props3.max;
-				var maxChange = _props3.maxChange;
-	
-				var butTemp = _react3.default.createElement(
-					'label',
-					null,
-					'巨大化：'
-				);
+				var butTemp;
 				var butOut = [];
-				butOut.push(butTemp);
 				for (var i = 0; i < _ConstList.listBut.length; i++) {
 					butTemp = _react3.default.createElement(_ToggleButton2.default, {
 						key: "inputBut" + i.toString(),
@@ -34338,21 +34257,6 @@
 					});
 					butOut.push(butTemp);
 				}
-				return butOut;
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				var _props4 = this.props;
-				var atk = _props4.atk;
-				var def = _props4.def;
-				var atkSkill = _props4.atkSkill;
-				var defSkill = _props4.defSkill;
-				var aspdSkill = _props4.aspdSkill;
-				var aspdSpell = _props4.aspdSpell;
-				var inputChange = _props4.inputChange;
-				var atkSkillInt = _props4.atkSkillInt;
-				var defSkillInt = _props4.defSkillInt;
 	
 				return _react3.default.createElement(
 					'main',
@@ -34377,17 +34281,42 @@
 							_react3.default.createElement(
 								'div',
 								null,
-								this.generateType()
+								'武器種：',
+								typeOut
 							),
 							_react3.default.createElement(
 								'div',
 								null,
-								this.generateToggle()
+								'地形適性：',
+								_react3.default.createElement(_ToggleButton2.default, {
+									key: "inputType plain",
+									display: plain,
+									title: "地形適性あり",
+									onClickFunc: function onClickFunc(modelId) {
+										return plainChange(modelId);
+									},
+									modelId: "plain",
+									Cactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
+									Cinactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+								}),
+								'飛行兜：',
+								_react3.default.createElement(_ToggleButton2.default, {
+									key: "inputType fly",
+									display: fly,
+									title: "飛行兜あり",
+									onClickFunc: function onClickFunc(modelId) {
+										return flyChange(modelId);
+									},
+									modelId: "fly",
+									Cactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
+									Cinactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+								})
 							),
 							_react3.default.createElement(
 								'div',
 								null,
-								this.generateMax()
+								'巨大化：',
+								butOut
 							),
 							_react3.default.createElement(
 								'div',
@@ -34482,7 +34411,6 @@
 	Content.propTypes = {
 		type: _react2.PropTypes.string.isRequired,
 		plain: _react2.PropTypes.string.isRequired,
-		cannon: _react2.PropTypes.string.isRequired,
 		fly: _react2.PropTypes.string.isRequired,
 		max: _react2.PropTypes.string.isRequired,
 		atk: _react2.PropTypes.number.isRequired,
@@ -34500,7 +34428,6 @@
 		return {
 			type: state.reducerCalc.type,
 			plain: state.reducerCalc.plain,
-			cannon: state.reducerCalc.cannon,
 			fly: state.reducerCalc.fly,
 			max: state.reducerCalc.max,
 			atk: state.reducerCalc.atk,
@@ -34521,8 +34448,7 @@
 			plainChange: (0, _redux.bindActionCreators)(_actions.plainChange, dispatch),
 			flyChange: (0, _redux.bindActionCreators)(_actions.flyChange, dispatch),
 			maxChange: (0, _redux.bindActionCreators)(_actions.maxChange, dispatch),
-			inputChange: (0, _redux.bindActionCreators)(_actions.inputChange, dispatch),
-			cannonChange: (0, _redux.bindActionCreators)(_actions.cannonChange, dispatch)
+			inputChange: (0, _redux.bindActionCreators)(_actions.inputChange, dispatch)
 		};
 	};
 	
@@ -35082,7 +35008,6 @@
 		type: 'sword',
 		plain: 'plain',
 		fly: '',
-		cannon: 'cannon',
 		max: "max0",
 		atk: 200,
 		def: 100,
@@ -35137,22 +35062,6 @@
 					calcTemp.fly = 'fly';
 					return Object.assign({}, state, {
 						fly: 'fly',
-						output: calcOutput(calcTemp)
-					});
-				}
-			case _ConstActionTypes.CANNON_CHANGE:
-				if (state.cannon === 'cannon') {
-					calcTemp = state;
-					calcTemp.cannon = '';
-					return Object.assign({}, state, {
-						cannon: '',
-						output: calcOutput(calcTemp)
-					});
-				} else {
-					calcTemp = state;
-					calcTemp.cannon = 'cannon';
-					return Object.assign({}, state, {
-						cannon: 'cannon',
 						output: calcOutput(calcTemp)
 					});
 				}
@@ -35346,10 +35255,6 @@
 			} else if (input.type === 'bow') {
 				flyMux = 1.5;
 			}
-		}
-	
-		if (input.type === 'cannon' && input.cannon === 'cannon') {
-			flyMux = 1.2;
 		}
 	
 		switch (input.max) {
