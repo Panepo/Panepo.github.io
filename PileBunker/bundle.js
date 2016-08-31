@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f3a3bc7258f914c0421b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "902c4d396a2751524ed2"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -9080,8 +9080,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var listType = exports.listType = ["刀", "槍", "槌", "弓", "石弓", "鉄砲", "大砲", "法術"];
-	var listTypeS = exports.listTypeS = ["sword", "lance", "hammer", "bow", "xbow", "arqu", "cannon", "spell"];
+	var listType = exports.listType = ["刀", "槍", "槌", "盾", "弓", "石弓", "鉄砲", "大砲", "法術"];
+	var listTypeS = exports.listTypeS = ["sword", "lance", "hammer", "shield", "bow", "xbow", "arqu", "cannon", "spell"];
 	
 	var listBut = exports.listBut = ["無巨大化", "巨大化一階", "巨大化二階", "巨大化三階", "巨大化四階", "巨大化五階"];
 	var listButS = exports.listButS = ["max0", "max1", "max2", "max3", "max4", "max5"];
@@ -26870,6 +26870,12 @@
 			"range": 90
 		},
 		{
+			"name": "shield",
+			"frame1": 32,
+			"frame2": 30,
+			"range": 90
+		},
+		{
 			"name": "bow",
 			"frame1": 19,
 			"frame2": 18,
@@ -27080,6 +27086,17 @@
 			"refText": "+0"
 		},
 		{
+			"name": "フラガラッハ",
+			"type": "sword",
+			"atk": 54,
+			"aspd": 0,
+			"range": 50,
+			"rare": 3,
+			"text": "攻撃範囲+50 敵1體に攻撃",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "妖刀村正",
 			"type": "sword",
 			"atk": 43,
@@ -27131,6 +27148,17 @@
 			"range": 0,
 			"rare": 4,
 			"text": "",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "魔剣フラガラッハ",
+			"type": "sword",
+			"atk": 72,
+			"aspd": 0,
+			"range": 50,
+			"rare": 4,
+			"text": "攻撃範囲+50 敵1體に攻撃",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27395,6 +27423,105 @@
 			"range": 0,
 			"rare": 4,
 			"text": "",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "ウッドシールド",
+			"type": "shield",
+			"atk": 3,
+			"aspd": 0,
+			"range": 0,
+			"rare": 1,
+			"text": "防禦+7",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "バックラー",
+			"type": "shield",
+			"atk": 5,
+			"aspd": 0,
+			"range": 0,
+			"rare": 1,
+			"text": "防禦+5",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "ブロンズシールド",
+			"type": "shield",
+			"atk": 2,
+			"aspd": 0,
+			"range": 0,
+			"rare": 1,
+			"text": "防禦+10",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "タワーシールド",
+			"type": "shield",
+			"atk": 8,
+			"aspd": 0,
+			"range": 0,
+			"rare": 2,
+			"text": "防禦+19",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "カイトシールド",
+			"type": "shield",
+			"atk": 10,
+			"aspd": 0,
+			"range": 0,
+			"rare": 2,
+			"text": "防禦+17",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "ラウンドシールド",
+			"type": "shield",
+			"atk": 13,
+			"aspd": 0,
+			"range": 0,
+			"rare": 2,
+			"text": "防禦+13",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "プリトウェン",
+			"type": "shield",
+			"atk": 15,
+			"aspd": 0,
+			"range": 0,
+			"rare": 3,
+			"text": "防禦+29",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "アキレウスの盾",
+			"type": "shield",
+			"atk": 20,
+			"aspd": 0,
+			"range": 0,
+			"rare": 3,
+			"text": "防禦+22",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "イージスの盾",
+			"type": "shield",
+			"atk": 25,
+			"aspd": 0,
+			"range": 0,
+			"rare": 4,
+			"text": "防禦+35",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -35341,7 +35468,7 @@
 		}
 	
 		if (input.fly === 'fly') {
-			if (input.type === 'sword' || input.type === 'lance' || input.type === 'hammer') {
+			if (input.type === 'sword' || input.type === 'lance' || input.type === 'hammer' || input.type === 'shield') {
 				flyMux = 0.5;
 			} else if (input.type === 'bow') {
 				flyMux = 1.5;
@@ -35400,6 +35527,7 @@
 			case 'sword':
 			case 'hammer':
 			case 'lance':
+			case 'shield':
 			case 'bow':
 			case 'spell':
 			case 'cannon':
