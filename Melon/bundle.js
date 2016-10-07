@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7c0600844bfdd069f5f4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "7e9462c73030c7dd4908"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -12154,19 +12154,6 @@
 		},
 		{
 			"type": "大口径主砲",
-			"name": "38.1cm Mk.I連装砲",
-			"owner": "Warspite",
-			"sun": 1,
-			"mon": 0,
-			"tue": 0,
-			"wed": 0,
-			"thu": 1,
-			"fri": 1,
-			"sat": 1,
-			"img": "./img/sit3.png"
-		},
-		{
-			"type": "大口径主砲",
 			"name": "38cm連装砲",
 			"owner": "Bismarck",
 			"sun": 0,
@@ -12189,6 +12176,32 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "38.1cm Mk.I連装砲",
+			"owner": "Warspite",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit3.png"
+		},
+		{
+			"type": "大口径主砲",
+			"name": "38.1cm Mk.I/N連装砲改",
+			"owner": "Warspite",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
 			"img": "./img/sit3.png"
 		},
 		{
