@@ -53,8 +53,19 @@
 /******/
 /******/ 	
 /******/ 	
+/******/ 	// Copied from https://github.com/facebook/react/blob/bef45b0/src/shared/utils/canDefineProperty.js
+/******/ 	var canDefineProperty = false;
+/******/ 	try {
+/******/ 		Object.defineProperty({}, "x", {
+/******/ 			get: function() {}
+/******/ 		});
+/******/ 		canDefineProperty = true;
+/******/ 	} catch(x) {
+/******/ 		// IE will fail on defineProperty
+/******/ 	}
+/******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b415fd2d38e51dd24c9d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9f02a22132c65f750db9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -77,10 +88,26 @@
 /******/ 		};
 /******/ 		for(var name in __webpack_require__) {
 /******/ 			if(Object.prototype.hasOwnProperty.call(__webpack_require__, name)) {
-/******/ 				fn[name] = __webpack_require__[name];
+/******/ 				if(canDefineProperty) {
+/******/ 					Object.defineProperty(fn, name, (function(name) {
+/******/ 						return {
+/******/ 							configurable: true,
+/******/ 							enumerable: true,
+/******/ 							get: function() {
+/******/ 								return __webpack_require__[name];
+/******/ 							},
+/******/ 							set: function(value) {
+/******/ 								__webpack_require__[name] = value;
+/******/ 							}
+/******/ 						};
+/******/ 					}(name)));
+/******/ 				} else {
+/******/ 					fn[name] = __webpack_require__[name];
+/******/ 				}
 /******/ 			}
 /******/ 		}
-/******/ 		fn.e = function(chunkId, callback) {
+/******/ 	
+/******/ 		function ensure(chunkId, callback) {
 /******/ 			if(hotStatus === "ready")
 /******/ 				hotSetStatus("prepare");
 /******/ 			hotChunksLoading++;
@@ -103,7 +130,15 @@
 /******/ 					}
 /******/ 				}
 /******/ 			});
-/******/ 		};
+/******/ 		}
+/******/ 		if(canDefineProperty) {
+/******/ 			Object.defineProperty(fn, "e", {
+/******/ 				enumerable: true,
+/******/ 				value: ensure
+/******/ 			});
+/******/ 		} else {
+/******/ 			fn.e = ensure;
+/******/ 		}
 /******/ 		return fn;
 /******/ 	}
 /******/ 	
@@ -556,14 +591,103 @@
 /***/ function(module, exports) {
 
 	// shim for using process in browser
-	
 	var process = module.exports = {};
+	
+	// cached from whatever global is present so that test runners that stub it
+	// don't break things.  But we need to wrap it in a try catch in case it is
+	// wrapped in strict mode code which doesn't define any globals.  It's inside a
+	// function because try/catches deoptimize in certain engines.
+	
+	var cachedSetTimeout;
+	var cachedClearTimeout;
+	
+	function defaultSetTimout() {
+	    throw new Error('setTimeout has not been defined');
+	}
+	function defaultClearTimeout () {
+	    throw new Error('clearTimeout has not been defined');
+	}
+	(function () {
+	    try {
+	        if (typeof setTimeout === 'function') {
+	            cachedSetTimeout = setTimeout;
+	        } else {
+	            cachedSetTimeout = defaultSetTimout;
+	        }
+	    } catch (e) {
+	        cachedSetTimeout = defaultSetTimout;
+	    }
+	    try {
+	        if (typeof clearTimeout === 'function') {
+	            cachedClearTimeout = clearTimeout;
+	        } else {
+	            cachedClearTimeout = defaultClearTimeout;
+	        }
+	    } catch (e) {
+	        cachedClearTimeout = defaultClearTimeout;
+	    }
+	} ())
+	function runTimeout(fun) {
+	    if (cachedSetTimeout === setTimeout) {
+	        //normal enviroments in sane situations
+	        return setTimeout(fun, 0);
+	    }
+	    // if setTimeout wasn't available but was latter defined
+	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+	        cachedSetTimeout = setTimeout;
+	        return setTimeout(fun, 0);
+	    }
+	    try {
+	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        return cachedSetTimeout(fun, 0);
+	    } catch(e){
+	        try {
+	            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+	            return cachedSetTimeout.call(null, fun, 0);
+	        } catch(e){
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+	            return cachedSetTimeout.call(this, fun, 0);
+	        }
+	    }
+	
+	
+	}
+	function runClearTimeout(marker) {
+	    if (cachedClearTimeout === clearTimeout) {
+	        //normal enviroments in sane situations
+	        return clearTimeout(marker);
+	    }
+	    // if clearTimeout wasn't available but was latter defined
+	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+	        cachedClearTimeout = clearTimeout;
+	        return clearTimeout(marker);
+	    }
+	    try {
+	        // when when somebody has screwed with setTimeout but no I.E. maddness
+	        return cachedClearTimeout(marker);
+	    } catch (e){
+	        try {
+	            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+	            return cachedClearTimeout.call(null, marker);
+	        } catch (e){
+	            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+	            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+	            return cachedClearTimeout.call(this, marker);
+	        }
+	    }
+	
+	
+	
+	}
 	var queue = [];
 	var draining = false;
 	var currentQueue;
 	var queueIndex = -1;
 	
 	function cleanUpNextTick() {
+	    if (!draining || !currentQueue) {
+	        return;
+	    }
 	    draining = false;
 	    if (currentQueue.length) {
 	        queue = currentQueue.concat(queue);
@@ -579,7 +703,7 @@
 	    if (draining) {
 	        return;
 	    }
-	    var timeout = setTimeout(cleanUpNextTick);
+	    var timeout = runTimeout(cleanUpNextTick);
 	    draining = true;
 	
 	    var len = queue.length;
@@ -596,7 +720,7 @@
 	    }
 	    currentQueue = null;
 	    draining = false;
-	    clearTimeout(timeout);
+	    runClearTimeout(timeout);
 	}
 	
 	process.nextTick = function (fun) {
@@ -608,7 +732,7 @@
 	    }
 	    queue.push(new Item(fun, args));
 	    if (queue.length === 1 && !draining) {
-	        setTimeout(drainQueue, 0);
+	        runTimeout(drainQueue);
 	    }
 	};
 	
@@ -3161,6 +3285,7 @@
 	 */
 	var EventInterface = {
 	  type: null,
+	  target: null,
 	  // currentTarget is set when dispatching; no use in copying it here
 	  currentTarget: emptyFunction.thatReturnsNull,
 	  eventPhase: null,
@@ -3194,8 +3319,6 @@
 	  this.dispatchConfig = dispatchConfig;
 	  this.dispatchMarker = dispatchMarker;
 	  this.nativeEvent = nativeEvent;
-	  this.target = nativeEventTarget;
-	  this.currentTarget = nativeEventTarget;
 	
 	  var Interface = this.constructor.Interface;
 	  for (var propName in Interface) {
@@ -3206,7 +3329,11 @@
 	    if (normalize) {
 	      this[propName] = normalize(nativeEvent);
 	    } else {
-	      this[propName] = nativeEvent[propName];
+	      if (propName === 'target') {
+	        this.target = nativeEventTarget;
+	      } else {
+	        this[propName] = nativeEvent[propName];
+	      }
 	    }
 	  }
 	
@@ -6067,7 +6194,7 @@
 	
 	'use strict';
 	
-	module.exports = '0.14.6';
+	module.exports = '0.14.8';
 
 /***/ },
 /* 46 */
@@ -7177,7 +7304,7 @@
 	  }
 	};
 	module.exports = AppAction;
-	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\src\actions\AppAction.ls.map
+	//# sourceMappingURL=D:\Github\CatPunch\node_modules\livescript-loader\index.js!D:\Github\CatPunch\src\actions\AppAction.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppAction.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -7192,7 +7319,7 @@
 	var Dispatcher;
 	Dispatcher = __webpack_require__(94).Dispatcher;
 	module.exports = new Dispatcher();
-	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\src\dispatcher\AppDispatcher.ls.map
+	//# sourceMappingURL=D:\Github\CatPunch\node_modules\livescript-loader\index.js!D:\Github\CatPunch\src\dispatcher\AppDispatcher.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppDispatcher.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -9786,6 +9913,10 @@
 	  }
 	};
 	
+	function registerNullComponentID() {
+	  ReactEmptyComponentRegistry.registerNullComponentID(this._rootNodeID);
+	}
+	
 	var ReactEmptyComponent = function (instantiate) {
 	  this._currentElement = null;
 	  this._rootNodeID = null;
@@ -9794,7 +9925,7 @@
 	assign(ReactEmptyComponent.prototype, {
 	  construct: function (element) {},
 	  mountComponent: function (rootID, transaction, context) {
-	    ReactEmptyComponentRegistry.registerNullComponentID(rootID);
+	    transaction.getReactMountReady().enqueue(registerNullComponentID, this);
 	    this._rootNodeID = rootID;
 	    return ReactReconciler.mountComponent(this._renderedComponent, rootID, transaction, context);
 	  },
@@ -11685,8 +11816,8 @@
 /* 97 */
 /***/ function(module, exports) {
 
-	/* eslint-disable no-unused-vars */
 	'use strict';
+	/* eslint-disable no-unused-vars */
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 	
@@ -11698,7 +11829,51 @@
 		return Object(val);
 	}
 	
-	module.exports = Object.assign || function (target, source) {
+	function shouldUseNative() {
+		try {
+			if (!Object.assign) {
+				return false;
+			}
+	
+			// Detect buggy property enumeration order in older V8 versions.
+	
+			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+			var test1 = new String('abc');  // eslint-disable-line
+			test1[5] = 'de';
+			if (Object.getOwnPropertyNames(test1)[0] === '5') {
+				return false;
+			}
+	
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test2 = {};
+			for (var i = 0; i < 10; i++) {
+				test2['_' + String.fromCharCode(i)] = i;
+			}
+			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+				return test2[n];
+			});
+			if (order2.join('') !== '0123456789') {
+				return false;
+			}
+	
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test3 = {};
+			'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+				test3[letter] = letter;
+			});
+			if (Object.keys(Object.assign({}, test3)).join('') !==
+					'abcdefghijklmnopqrst') {
+				return false;
+			}
+	
+			return true;
+		} catch (e) {
+			// We don't expect any of the above to throw, but better to be safe.
+			return false;
+		}
+	}
+	
+	module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 		var from;
 		var to = toObject(target);
 		var symbols;
@@ -11758,7 +11933,7 @@
 	React = __webpack_require__(3);
 	FKGCalApp = __webpack_require__(105);
 	ReactDOM.render(React.createElement(FKGCalApp, null), document.getElementById("FKGCalApp"));
-	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\src\app.ls.map
+	//# sourceMappingURL=D:\Github\CatPunch\node_modules\livescript-loader\index.js!D:\Github\CatPunch\src\app.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "app.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -11820,18 +11995,36 @@
 	      for (i$ = 0, len$ = (ref$ = promptList).length; i$ < len$; ++i$) {
 	        i = i$;
 	        proValue = ref$[i$];
-	        if (this.props.InpPrompt === i) {
-	          results$.push(button({
-	            key: "prompt" + i.toString(),
-	            className: buttonClassActive,
-	            onClick: this.handlePrompt.bind(null, i)
-	          }, proValue));
+	        if (i === 2) {
+	          if (this.props.InpRarity >= 5) {
+	            if (this.props.InpPrompt === i) {
+	              results$.push(button({
+	                key: "prompt" + i.toString(),
+	                className: buttonClassActive,
+	                onClick: this.handlePrompt.bind(null, i)
+	              }, proValue));
+	            } else {
+	              results$.push(button({
+	                key: "prompt" + i.toString(),
+	                className: buttonClassInactive,
+	                onClick: this.handlePrompt.bind(null, i)
+	              }, proValue));
+	            }
+	          }
 	        } else {
-	          results$.push(button({
-	            key: "prompt" + i.toString(),
-	            className: buttonClassInactive,
-	            onClick: this.handlePrompt.bind(null, i)
-	          }, proValue));
+	          if (this.props.InpPrompt === i) {
+	            results$.push(button({
+	              key: "prompt" + i.toString(),
+	              className: buttonClassActive,
+	              onClick: this.handlePrompt.bind(null, i)
+	            }, proValue));
+	          } else {
+	            results$.push(button({
+	              key: "prompt" + i.toString(),
+	              className: buttonClassInactive,
+	              onClick: this.handlePrompt.bind(null, i)
+	            }, proValue));
+	          }
 	        }
 	      }
 	      return results$;
@@ -11839,7 +12032,7 @@
 	  }
 	});
 	module.exports = ConInpRad;
-	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\src\components\ConInpRad.react.ls.map
+	//# sourceMappingURL=D:\Github\CatPunch\node_modules\livescript-loader\index.js!D:\Github\CatPunch\src\components\ConInpRad.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConInpRad.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -11856,11 +12049,11 @@
 	types = __webpack_require__(3).PropTypes;
 	AppAction = __webpack_require__(57);
 	ref$ = React.DOM, div = ref$.div, table = ref$.table, thead = ref$.thead, tbody = ref$.tbody, th = ref$.th, tr = ref$.tr, td = ref$.td, label = ref$.label, input = ref$.input, span = ref$.span, h5 = ref$.h5;
-	textAList = ["現在Lv:", "次のLvまでの経験値:"];
+	textAList = ["現在Lv：", "次のLvまでの経験値："];
 	textAId = ["InpLevel", "InpExp"];
-	textBList = ["同属性 5才:", "20才:", "100才:"];
+	textBList = ["同属性 5才：", "20才：", "100才："];
 	textBId = ["InpFeed5", "InpFeed20", "InpFeed100"];
-	textCList = ["別属性 5才:", "20才:", "100才:"];
+	textCList = ["別属性 5才：", "20才：", "100才："];
 	textCId = ["InpFeed5x", "InpFeed20x", "InpFeed100x"];
 	ConInpText = React.createClass({
 	  displayName: "ConInpText",
@@ -11963,7 +12156,7 @@
 	  }
 	});
 	module.exports = ConInpText;
-	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\src\components\ConInpText.react.ls.map
+	//# sourceMappingURL=D:\Github\CatPunch\node_modules\livescript-loader\index.js!D:\Github\CatPunch\src\components\ConInpText.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConInpText.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12006,7 +12199,7 @@
 	  }
 	});
 	module.exports = ConOut;
-	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\src\components\ConOut.react.ls.map
+	//# sourceMappingURL=D:\Github\CatPunch\node_modules\livescript-loader\index.js!D:\Github\CatPunch\src\components\ConOut.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConOut.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12140,7 +12333,7 @@
 	  }
 	});
 	module.exports = ReactDataTable;
-	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\src\components\DataTable.react.ls.map
+	//# sourceMappingURL=D:\Github\CatPunch\node_modules\livescript-loader\index.js!D:\Github\CatPunch\src\components\DataTable.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "DataTable.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12152,7 +12345,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(11), RootInstanceProvider = __webpack_require__(9), ReactMount = __webpack_require__(5), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, Header, Footer, ConInpRad, ConInpText, ConOut, AppStore, ref$, div, table, thead, tbody, th, tr, td, label, input, main, Con1, Con2, Con3, FKGCalApp;
+	var React, Header, Footer, ConInpRad, ConInpText, ConOut, AppStore, ref$, main, div, Con1, Con2, Con3, FKGCalApp;
 	React = __webpack_require__(3);
 	Header = __webpack_require__(107);
 	Footer = __webpack_require__(106);
@@ -12160,7 +12353,7 @@
 	ConInpText = __webpack_require__(102);
 	ConOut = __webpack_require__(103);
 	AppStore = __webpack_require__(108);
-	ref$ = React.DOM, div = ref$.div, table = ref$.table, thead = ref$.thead, tbody = ref$.tbody, th = ref$.th, tr = ref$.tr, td = ref$.td, label = ref$.label, input = ref$.input, main = ref$.main;
+	ref$ = React.DOM, main = ref$.main, div = ref$.div;
 	Header = React.createFactory(Header);
 	Footer = React.createFactory(Footer);
 	Con1 = React.createFactory(ConInpRad);
@@ -12191,6 +12384,8 @@
 	    return div(null, div({
 	      className: "demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100"
 	    }, Header(null), div({
+	      className: "demo-ribbon"
+	    }, null), main({
 	      className: "demo-main mdl-layout__content"
 	    }, div({
 	      className: "demo-container mdl-grid"
@@ -12219,7 +12414,7 @@
 	  }
 	});
 	module.exports = FKGCalApp;
-	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\src\components\FKGCalApp.react.ls.map
+	//# sourceMappingURL=D:\Github\CatPunch\node_modules\livescript-loader\index.js!D:\Github\CatPunch\src\components\FKGCalApp.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "FKGCalApp.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12231,23 +12426,23 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(11), RootInstanceProvider = __webpack_require__(9), ReactMount = __webpack_require__(5), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, ref$, div, a, Footer;
+	var React, ref$, footer, div, a, small, Footer;
 	React = __webpack_require__(3);
-	ref$ = React.DOM, div = ref$.div, a = ref$.a;
+	ref$ = React.DOM, footer = ref$.footer, div = ref$.div, a = ref$.a, small = ref$.small;
 	Footer = React.createClass({
 	  displayName: "Footer",
 	  render: function(){
-	    return div({
+	    return footer({
 	      className: "demo-footer mdl-mini-footer"
 	    }, div({
 	      className: "mdl-mini-footer--left-section"
-	    }, div(null, "『", a({
+	    }, div(null, small(null, "『", a({
 	      href: "http://www.dmm.com/netgame_s/flower/"
-	    }, "フラワーナイトガール"), "』(C) DMMゲームズ"), div(null, "「フラワーナイトガール」から転載された全てのコンテンツの著作権につきましては、権利者様へ帰属します。"), div(null, "Copyright (C) Panepo@Github 2015 All Rights Reserved.")));
+	    }, "フラワーナイトガール"), "』(C) DMMゲームズ")), div(null, small(null, "「フラワーナイトガール」から転載された全てのコンテンツの著作権につきましては、権利者様へ帰属します。")), div(null, small(null, "Copyright (C) Panepo@Github 2016 All Rights Reserved."))));
 	  }
 	});
 	module.exports = Footer;
-	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\src\components\Footer.react.ls.map
+	//# sourceMappingURL=D:\Github\CatPunch\node_modules\livescript-loader\index.js!D:\Github\CatPunch\src\components\Footer.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Footer.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12259,13 +12454,13 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(11), RootInstanceProvider = __webpack_require__(9), ReactMount = __webpack_require__(5), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	var React, ref$, div, a, nav, span, Header;
+	var React, ref$, header, div, a, nav, span, Header;
 	React = __webpack_require__(3);
-	ref$ = React.DOM, div = ref$.div, a = ref$.a, nav = ref$.nav, span = ref$.span;
+	ref$ = React.DOM, header = ref$.header, div = ref$.div, a = ref$.a, nav = ref$.nav, span = ref$.span;
 	Header = React.createClass({
 	  displayName: "Header",
 	  render: function(){
-	    return div(null, div({
+	    return header({
 	      className: "demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800"
 	    }, div({
 	      className: "mdl-layout__header-row"
@@ -12281,13 +12476,11 @@
 	    }, "フラワーナイトガール"), a({
 	      className: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
 	      href: "http://フラワーナイトガール.攻略wiki.com/index.php"
-	    }, "wiki"))), div({
-	      className: "demo-ribbon"
-	    })));
+	    }, "wiki"))));
 	  }
 	});
 	module.exports = Header;
-	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\src\components\Header.react.ls.map
+	//# sourceMappingURL=D:\Github\CatPunch\node_modules\livescript-loader\index.js!D:\Github\CatPunch\src\components\Header.react.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Header.react.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12330,6 +12523,11 @@
 	_InpRarity = function(InpRarity){
 	  var ref$;
 	  _CalData.InpRarity = InpRarity;
+	  if (_CalData.InpPrompt === 2) {
+	    if (InpRarity <= 4) {
+	      _CalData.InpPrompt = 0;
+	    }
+	  }
 	  ref$ = FKGExpCal.ExpCal(_CalData), _CalData.outString = ref$[0], _CalData.expLeft = ref$[1], _CalData.FeedTable = ref$[2];
 	  _CalData.DisplayEnable = true;
 	};
@@ -12369,7 +12567,7 @@
 	  }
 	});
 	module.exports = AppStore;
-	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\src\stores\AppStore.ls.map
+	//# sourceMappingURL=D:\Github\CatPunch\node_modules\livescript-loader\index.js!D:\Github\CatPunch\src\stores\AppStore.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppStore.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -12480,7 +12678,7 @@
 	  }
 	};
 	module.exports = FKGExpCal;
-	//# sourceMappingURL=D:\Code\GitHub\FKGExpCalFlux\node_modules\livescript-loader\index.js!D:\Code\GitHub\FKGExpCalFlux\src\stores\FKGExpCal.ls.map
+	//# sourceMappingURL=D:\Github\CatPunch\node_modules\livescript-loader\index.js!D:\Github\CatPunch\src\stores\FKGExpCal.ls.map
 
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(10); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "FKGExpCal.ls" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -17055,7 +17253,10 @@
 	      }
 	    });
 	
-	    nativeProps.children = content;
+	    if (content) {
+	      nativeProps.children = content;
+	    }
+	
 	    return nativeProps;
 	  }
 	
@@ -21909,8 +22110,12 @@
 	      er = arguments[1];
 	      if (er instanceof Error) {
 	        throw er; // Unhandled 'error' event
+	      } else {
+	        // At least give some kind of context to the user
+	        var err = new Error('Uncaught, unspecified "error" event. (' + er + ')');
+	        err.context = er;
+	        throw err;
 	      }
-	      throw TypeError('Uncaught, unspecified "error" event.');
 	    }
 	  }
 	
