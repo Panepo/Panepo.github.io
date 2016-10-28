@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "dcb7c95f6d18f6c524b1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "12b9d4d159e6b1c9ade2"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27108,7 +27108,7 @@
 			"name": "lance",
 			"frame1": 23,
 			"frame2": 30,
-			"range": 180
+			"range": 200
 		},
 		{
 			"name": "hammer",
@@ -27118,7 +27118,7 @@
 		},
 		{
 			"name": "shield",
-			"frame1": 32,
+			"frame1": 25,
 			"frame2": 30,
 			"range": 90
 		},
@@ -35153,6 +35153,11 @@
 								'a',
 								{ className: 'mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary', href: 'http://scre.swiki.jp/' },
 								'\u653B\u7565wiki'
+							),
+							_react3.default.createElement(
+								'a',
+								{ className: 'mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary', href: 'http://www116.sakura.ne.jp/~kuromoji/castle_enemy.htm' },
+								'\u304F\u308D\u3082\u3058\u5C4B'
 							)
 						)
 					)
