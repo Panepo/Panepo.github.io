@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "12b9d4d159e6b1c9ade2"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "6d3a852fcce40bb3aa0b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27196,7 +27196,7 @@
 			"aspd": 25,
 			"range": 0,
 			"rare": 1,
-			"text": "攻撃速度上昇",
+			"text": "速度上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27207,7 +27207,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 1,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27218,7 +27218,7 @@
 			"aspd": 0,
 			"range": 5,
 			"rare": 1,
-			"text": "攻撃範囲+5",
+			"text": "範囲+5",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27240,7 +27240,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 2,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27251,7 +27251,7 @@
 			"aspd": 0,
 			"range": 5,
 			"rare": 2,
-			"text": "攻撃範囲+5",
+			"text": "範囲+5",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27284,7 +27284,7 @@
 			"aspd": 25,
 			"range": 0,
 			"rare": 3,
-			"text": "攻撃速度上昇",
+			"text": "速度上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27295,7 +27295,7 @@
 			"aspd": 0,
 			"range": 5,
 			"rare": 3,
-			"text": "攻撃範囲+5",
+			"text": "範囲+5",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27317,7 +27317,7 @@
 			"aspd": 0,
 			"range": 10,
 			"rare": 3,
-			"text": "攻撃範囲+10",
+			"text": "範囲+10",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27339,7 +27339,7 @@
 			"aspd": 0,
 			"range": 50,
 			"rare": 3,
-			"text": "攻撃範囲+50 敵1體に攻撃",
+			"text": "範囲+50 敵1體に攻撃",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27350,7 +27350,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 4,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27361,7 +27361,7 @@
 			"aspd": 0,
 			"range": 5,
 			"rare": 4,
-			"text": "攻撃範囲+5",
+			"text": "範囲+5",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27405,7 +27405,7 @@
 			"aspd": 0,
 			"range": 50,
 			"rare": 4,
-			"text": "攻撃範囲+50 敵1體に攻撃",
+			"text": "範囲+50 敵1體に攻撃",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27416,7 +27416,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 1,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27438,7 +27438,7 @@
 			"aspd": 0,
 			"range": 10,
 			"rare": 1,
-			"text": "攻撃範囲+10",
+			"text": "範囲+10",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27460,7 +27460,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 2,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27482,7 +27482,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 3,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27504,7 +27504,7 @@
 			"aspd": 0,
 			"range": 5,
 			"rare": 3,
-			"text": "攻撃範囲+5",
+			"text": "範囲+5",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27526,7 +27526,7 @@
 			"aspd": -42,
 			"range": 0,
 			"rare": 3,
-			"text": "攻撃速度低下",
+			"text": "速度低下",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27537,7 +27537,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 4,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27548,7 +27548,7 @@
 			"aspd": 0,
 			"range": 5,
 			"rare": 4,
-			"text": "攻撃範囲+5",
+			"text": "範囲+5",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27603,7 +27603,7 @@
 			"aspd": -42,
 			"range": 0,
 			"rare": 4,
-			"text": "攻撃速度低下",
+			"text": "速度低下",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27614,7 +27614,7 @@
 			"aspd": 25,
 			"range": 0,
 			"rare": 1,
-			"text": "攻撃速度上昇",
+			"text": "速度上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27636,7 +27636,7 @@
 			"aspd": 0,
 			"range": 10,
 			"rare": 2,
-			"text": "攻撃範囲+10",
+			"text": "範囲+10",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27669,7 +27669,7 @@
 			"aspd": -40,
 			"range": 0,
 			"rare": 3,
-			"text": "攻撃速度低下",
+			"text": "速度低下",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27691,7 +27691,7 @@
 			"aspd": -40,
 			"range": 0,
 			"rare": 4,
-			"text": "攻撃速度低下",
+			"text": "速度低下",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27801,7 +27801,7 @@
 			"aspd": 0,
 			"range": 10,
 			"rare": 1,
-			"text": "攻撃範囲+10",
+			"text": "範囲+10",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27834,7 +27834,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 2,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27845,7 +27845,7 @@
 			"aspd": 0,
 			"range": 10,
 			"rare": 2,
-			"text": "攻撃範囲+10",
+			"text": "範囲+10",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27878,7 +27878,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 3,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27889,7 +27889,7 @@
 			"aspd": 0,
 			"range": 20,
 			"rare": 3,
-			"text": "攻撃範囲+20",
+			"text": "範囲+20",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27912,6 +27912,17 @@
 			"range": 0,
 			"rare": 3,
 			"text": "",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "元就の謀弓",
+			"type": "bow",
+			"atk": 3,
+			"aspd": -40,
+			"range": 0,
+			"rare": 3,
+			"text": "速度低下 敵3体に攻撃",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27960,13 +27971,35 @@
 			"refText": "+0"
 		},
 		{
+			"name": "真‧元就の謀弓",
+			"type": "bow",
+			"atk": 8,
+			"aspd": -40,
+			"range": 0,
+			"rare": 4,
+			"text": "速度低下 敵3体に攻撃",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "連弩",
+			"type": "xbow2",
+			"atk": 6,
+			"aspd": 0,
+			"range": 0,
+			"rare": 2,
+			"text": "敵2体に攻撃",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "木弩",
 			"type": "xbow",
 			"atk": 10,
 			"aspd": 20,
 			"range": 0,
 			"rare": 1,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27978,17 +28011,6 @@
 			"range": 0,
 			"rare": 1,
 			"text": "",
-			"ref": 0,
-			"refText": "+0"
-		},
-		{
-			"name": "連弩",
-			"type": "xbow2",
-			"atk": 6,
-			"aspd": 0,
-			"range": 0,
-			"rare": 2,
-			"text": "範囲內の敵2體に攻撃",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28010,7 +28032,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 3,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28021,7 +28043,7 @@
 			"aspd": 0,
 			"range": 20,
 			"rare": 3,
-			"text": "攻撃範囲+20",
+			"text": "範囲+20",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28032,7 +28054,7 @@
 			"aspd": -37,
 			"range": 0,
 			"rare": 3,
-			"text": "攻撃速度低下",
+			"text": "速度低下",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28043,7 +28065,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 4,
-			"text": "範囲內の敵3體に攻撃",
+			"text": "敵3体に攻撃",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28054,7 +28076,7 @@
 			"aspd": -37,
 			"range": 0,
 			"rare": 4,
-			"text": "攻撃速度低下",
+			"text": "速度低下",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28065,7 +28087,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 1,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28087,7 +28109,7 @@
 			"aspd": 0,
 			"range": 10,
 			"rare": 1,
-			"text": "攻撃範囲+10",
+			"text": "範囲+10",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28120,7 +28142,7 @@
 			"aspd": 0,
 			"range": 20,
 			"rare": 2,
-			"text": "攻撃範囲+20",
+			"text": "範囲+20",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28142,7 +28164,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 3,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28153,7 +28175,7 @@
 			"aspd": 0,
 			"range": 20,
 			"rare": 3,
-			"text": "攻撃範囲+20",
+			"text": "範囲+20",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28197,7 +28219,7 @@
 			"aspd": -40,
 			"range": 0,
 			"rare": 3,
-			"text": "攻撃速度低下",
+			"text": "速度低下",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28219,7 +28241,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 4,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28241,7 +28263,7 @@
 			"aspd": -40,
 			"range": 0,
 			"rare": 4,
-			"text": "攻撃速度低下",
+			"text": "速度低下",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28252,7 +28274,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 1,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28274,7 +28296,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 2,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28285,7 +28307,7 @@
 			"aspd": 0,
 			"range": 20,
 			"rare": 2,
-			"text": "攻撃範囲+20",
+			"text": "範囲+20",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28307,7 +28329,7 @@
 			"aspd": 0,
 			"range": 20,
 			"rare": 3,
-			"text": "攻撃範囲+20",
+			"text": "範囲+20",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28340,7 +28362,7 @@
 			"aspd": 0,
 			"range": 20,
 			"rare": 1,
-			"text": "攻撃範囲+20",
+			"text": "範囲+20",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28362,7 +28384,7 @@
 			"aspd": 0,
 			"range": 20,
 			"rare": 2,
-			"text": "攻撃範囲+20",
+			"text": "範囲+20",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28384,7 +28406,7 @@
 			"aspd": 0,
 			"range": 20,
 			"rare": 3,
-			"text": "攻撃範囲+20",
+			"text": "範囲+20",
 			"ref": 0,
 			"refText": "+0"
 		},
