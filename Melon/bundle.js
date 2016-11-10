@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7e9462c73030c7dd4908"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1bfb9fd70161912abdd9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -12197,11 +12197,11 @@
 			"owner": "Warspite",
 			"sun": 0,
 			"mon": 0,
-			"tue": 0,
+			"tue": 1,
 			"wed": 1,
 			"thu": 1,
 			"fri": 1,
-			"sat": 1,
+			"sat": 0,
 			"img": "./img/sit3.png"
 		},
 		{
@@ -13624,6 +13624,45 @@
 		{
 			"type": "対空機銃",
 			"name": "25mm三連装機銃",
+			"owner": "皐月改二",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit16.png"
+		},
+		{
+			"type": "対空機銃",
+			"name": "25mm三連装機銃",
+			"owner": "摩耶改二",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit16.png"
+		},
+		{
+			"type": "対空機銃",
+			"name": "25mm三連装機銃",
+			"owner": "鬼怒改二",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit16.png"
+		},
+		{
+			"type": "対空機銃",
+			"name": "25mm三連装機銃  集中配備",
 			"owner": "摩耶改二",
 			"sun": 1,
 			"mon": 1,
@@ -13636,15 +13675,15 @@
 		},
 		{
 			"type": "対空機銃",
-			"name": "25mm三連装機銃",
-			"owner": "皐月改二",
+			"name": "25mm三連装機銃  集中配備",
+			"owner": "鬼怒改二",
 			"sun": 0,
-			"mon": 0,
-			"tue": 0,
+			"mon": 1,
+			"tue": 1,
 			"wed": 1,
-			"thu": 1,
+			"thu": 0,
 			"fri": 0,
-			"sat": 0,
+			"sat": 1,
 			"img": "./img/sit16.png"
 		},
 		{
@@ -13768,6 +13807,45 @@
 			"type": "上陸用舟艇",
 			"name": "大発動艇",
 			"owner": "阿武隈改二",
+			"sun": 1,
+			"mon": 1,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit18.png"
+		},
+		{
+			"type": "上陸用舟艇",
+			"name": "大発動艇",
+			"owner": "鬼怒改二",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit18.png"
+		},
+		{
+			"type": "上陸用舟艇",
+			"name": "特大発動艇",
+			"owner": "あきつ丸",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit18.png"
+		},
+		{
+			"type": "上陸用舟艇",
+			"name": "特大発動艇",
+			"owner": "鬼怒改二",
 			"sun": 1,
 			"mon": 1,
 			"tue": 0,
