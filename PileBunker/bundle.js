@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "6d3a852fcce40bb3aa0b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d05ed0017f719496f0f7"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27118,7 +27118,7 @@
 		},
 		{
 			"name": "shield",
-			"frame1": 25,
+			"frame1": 24,
 			"frame2": 30,
 			"range": 90
 		},
@@ -27523,7 +27523,7 @@
 			"name": "利家の巨槍",
 			"type": "lance",
 			"atk": 48,
-			"aspd": -42,
+			"aspd": -40,
 			"range": 0,
 			"rare": 3,
 			"text": "速度低下",
@@ -27600,7 +27600,7 @@
 			"name": "真‧利家の巨槍",
 			"type": "lance",
 			"atk": 58,
-			"aspd": -42,
+			"aspd": -40,
 			"range": 0,
 			"rare": 4,
 			"text": "速度低下",
@@ -27955,7 +27955,7 @@
 			"aspd": 0,
 			"range": 10,
 			"rare": 4,
-			"text": "攻撃範囲+10",
+			"text": "範囲+10",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28051,7 +28051,7 @@
 			"name": "正則の剛弩",
 			"type": "xbow",
 			"atk": 84,
-			"aspd": -37,
+			"aspd": -40,
 			"range": 0,
 			"rare": 3,
 			"text": "速度低下",
@@ -28073,7 +28073,7 @@
 			"name": "真‧正則の剛弩",
 			"type": "xbow",
 			"atk": 113,
-			"aspd": -37,
+			"aspd": -40,
 			"range": 0,
 			"rare": 4,
 			"text": "速度低下",
