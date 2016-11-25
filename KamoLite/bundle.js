@@ -63,7 +63,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c27952660b3b5d7bede4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "fc4883f9b7f0b1e04f5b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -29260,6 +29260,28 @@
 			"firepowerEQ": 91
 		},
 		{
+			"name": "Saratoga改",
+			"type": "CV",
+			"id": "438",
+			"slot1": 36,
+			"slot2": 18,
+			"slot3": 18,
+			"slot4": 18,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 53,
+			"firepowerEQ": 134
+		},
+		{
 			"name": "赤城",
 			"type": "CV",
 			"id": "83",
@@ -29588,6 +29610,28 @@
 			"display": 0,
 			"firepower": 14,
 			"firepowerEQ": 76
+		},
+		{
+			"name": "Saratoga",
+			"type": "CV",
+			"id": "433",
+			"slot1": 27,
+			"slot2": 19,
+			"slot3": 19,
+			"slot4": 15,
+			"fighter": 1,
+			"bomber": 1,
+			"torpedo": 1,
+			"scout": 1,
+			"scout2": 0,
+			"seaplane": 0,
+			"seaplaneX": 0,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 45,
+			"firepowerEQ": 122
 		},
 		{
 			"name": "大鳳改",
@@ -30668,6 +30712,28 @@
 			"firepowerEQ": 50
 		},
 		{
+			"name": "Commandant Teste改",
+			"type": "AV",
+			"id": "372",
+			"slot1": 12,
+			"slot2": 12,
+			"slot3": 7,
+			"slot4": 7,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 1,
+			"firepower": 58,
+			"firepowerEQ": 63
+		},
+		{
 			"name": "千歳",
 			"type": "AV",
 			"id": "102",
@@ -30776,6 +30842,28 @@
 			"display": 0,
 			"firepower": 36,
 			"firepowerEQ": 41
+		},
+		{
+			"name": "Commandant Teste",
+			"type": "AV",
+			"id": "491",
+			"slot1": 12,
+			"slot2": 12,
+			"slot3": 7,
+			"slot4": 0,
+			"fighter": 0,
+			"bomber": 0,
+			"torpedo": 0,
+			"scout": 0,
+			"scout2": 1,
+			"seaplane": 1,
+			"seaplaneX": 1,
+			"heli": 0,
+			"blue": 0,
+			"big": 0,
+			"display": 0,
+			"firepower": 48,
+			"firepowerEQ": 53
 		},
 		{
 			"name": "秋津洲改",
