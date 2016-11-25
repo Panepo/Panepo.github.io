@@ -63,7 +63,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9a9ad07a25e660f765dc"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "be189f4ccce1997e203d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -11914,6 +11914,19 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
+			"img": "./img/sit0.png"
+		},
+		{
+			"type": "小口径主砲",
+			"name": "10cm高角砲＋高射装置",
+			"owner": "初月",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
 			"img": "./img/sit0.png"
 		},
 		{
