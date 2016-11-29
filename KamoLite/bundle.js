@@ -63,7 +63,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "fc4883f9b7f0b1e04f5b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "03d2890b1584c496be2d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -28043,6 +28043,34 @@
 			"scout": 0,
 			"hit": 0,
 			"evade": 0
+		},
+		{
+			"name": "F4F-4",
+			"short": "F4F-4",
+			"type": "fighter",
+			"id": "197",
+			"firepower": 1,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 4,
+			"sonar": 0,
+			"scout": 0,
+			"hit": 0,
+			"evade": 2
+		},
+		{
+			"name": "F4F-5",
+			"short": "F4F-5",
+			"type": "fighter",
+			"id": "198",
+			"firepower": 1,
+			"torpedo": 0,
+			"bomb": 0,
+			"air": 5,
+			"sonar": 0,
+			"scout": 1,
+			"hit": 1,
+			"evade": 2
 		},
 		{
 			"name": "零式艦戦21型",
