@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "65b9b6abdaa68c97debe"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "91b3fc66adb4676d7de6"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27702,7 +27702,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 1,
-			"text": "防禦+7",
+			"text": "防禦+10",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27713,7 +27713,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 1,
-			"text": "防禦+5",
+			"text": "防禦+12",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27724,7 +27724,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 1,
-			"text": "防禦+10",
+			"text": "防禦+15",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27735,7 +27735,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 2,
-			"text": "防禦+19",
+			"text": "防禦+29",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27746,7 +27746,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 2,
-			"text": "防禦+17",
+			"text": "防禦+27",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27757,7 +27757,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 2,
-			"text": "防禦+13",
+			"text": "防禦+23",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27768,7 +27768,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 3,
-			"text": "防禦+29",
+			"text": "防禦+44",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27779,7 +27779,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 3,
-			"text": "防禦+22",
+			"text": "防禦+37",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27790,7 +27790,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 4,
-			"text": "防禦+35",
+			"text": "防禦+55",
 			"ref": 0,
 			"refText": "+0"
 		},
