@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "91b3fc66adb4676d7de6"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e3f93e8a2784d289e8b2"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28345,6 +28345,17 @@
 			"refText": "+0"
 		},
 		{
+			"name": "長政の激砲",
+			"type": "cannon",
+			"atk": 48,
+			"aspd": -40,
+			"range": 0,
+			"rare": 3,
+			"text": "速度低下",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "散星",
 			"type": "cannon",
 			"atk": 50,
@@ -28352,6 +28363,17 @@
 			"range": 0,
 			"rare": 4,
 			"text": "",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "真‧長政の激砲",
+			"type": "cannon",
+			"atk": 65,
+			"aspd": -40,
+			"range": 0,
+			"rare": 4,
+			"text": "速度低下",
 			"ref": 0,
 			"refText": "+0"
 		},
