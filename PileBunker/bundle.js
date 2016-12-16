@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e3f93e8a2784d289e8b2"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a8426e04b70ecaf0bdbb"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27167,7 +27167,7 @@
 		{
 			"name": "cannon",
 			"frame1": 42,
-			"frame2": 60,
+			"frame2": 45,
 			"range": 340
 		},
 		{
