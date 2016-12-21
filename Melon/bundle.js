@@ -63,7 +63,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "be189f4ccce1997e203d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "bfc493819d33ded67615"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -4324,10 +4324,11 @@
 	
 	var Constants;
 	Constants = {
+	  updateTime: "2016/12/21",
 	  listAA: ["10cm高角砲＋高射装置", "90mm単装高角砲"],
 	  listBoat: ["特二式内火艇"],
-	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "艦上戦闘機", "艦上爆撃機", "水上偵察機", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "上陸用舟艇", "探照灯"],
-	  listTypeNumber: ["1", "2", "3", "4", "5", "7", "8", "6", "10", "11", "12", "15", "16", "17", "18", "19"],
+	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "艦上戦闘機", "艦上爆撃機", "艦上偵察機", "水上偵察機", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "上陸用舟艇", "探照灯"],
+	  listTypeNumber: ["1", "2", "3", "4", "5", "7", "8", "9", "6", "10", "11", "12", "15", "16", "17", "18", "19"],
 	  buttonClassActive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
 	  buttonClassInactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent",
 	  TableClass: "mdl-data-table mdl-shadow--2dp",
@@ -12879,6 +12880,58 @@
 			"img": "./img/sit7.png"
 		},
 		{
+			"type": "艦上戦闘機",
+			"name": "F4F-3",
+			"owner": "Saratoga",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦上戦闘機",
+			"name": "F4F-3",
+			"owner": "Saratoga改",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦上戦闘機",
+			"name": "F4F-4",
+			"owner": "Saratoga",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit7.png"
+		},
+		{
+			"type": "艦上戦闘機",
+			"name": "F4F-4",
+			"owner": "Saratoga改",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit7.png"
+		},
+		{
 			"type": "艦上爆撃機",
 			"name": "零式艦戦62型(爆戦)",
 			"owner": "隼鷹",
@@ -12916,6 +12969,32 @@
 			"fri": 0,
 			"sat": 0,
 			"img": "./img/sit8.png"
+		},
+		{
+			"type": "艦上偵察機",
+			"name": "試製景雲(艦偵型)",
+			"owner": "翔鶴改二甲",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit9.png"
+		},
+		{
+			"type": "艦上偵察機",
+			"name": "試製景雲(艦偵型)",
+			"owner": "瑞鶴改二甲",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "./img/sit9.png"
 		},
 		{
 			"type": "水上偵察機",
@@ -19964,7 +20043,7 @@
 	  },
 	  render: function(){
 	    var i, list, toggle;
-	    return div(null, h4(null, "艦これ改修工廠早見表 メロン"), "更新: 2016/07/21", div({
+	    return div(null, h4(null, "艦これ改修工廠早見表 メロン"), "更新:", Constants.updateTime, div({
 	      className: "mdl-tabs mdl-js-tabs mdl-js-ripple-effect"
 	    }, div({
 	      className: "mdl-tabs__tab-bar"
