@@ -63,7 +63,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "bfc493819d33ded67615"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4042b5e11a802d973e30"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -4324,11 +4324,11 @@
 	
 	var Constants;
 	Constants = {
-	  updateTime: "2016/12/21",
+	  updateTime: "2016/12/23",
 	  listAA: ["10cm高角砲＋高射装置", "90mm単装高角砲"],
 	  listBoat: ["特二式内火艇"],
-	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "艦上戦闘機", "艦上爆撃機", "艦上偵察機", "水上偵察機", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "上陸用舟艇", "探照灯"],
-	  listTypeNumber: ["1", "2", "3", "4", "5", "7", "8", "9", "6", "10", "11", "12", "15", "16", "17", "18", "19"],
+	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "艦上戦闘機", "艦上爆撃機", "艦上偵察機", "水上偵察機", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "上陸用舟艇", "探照灯", "バルジ"],
+	  listTypeNumber: ["1", "2", "3", "4", "5", "7", "8", "9", "6", "10", "11", "12", "15", "16", "17", "18", "19", "23"],
 	  buttonClassActive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
 	  buttonClassInactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent",
 	  TableClass: "mdl-data-table mdl-shadow--2dp",
@@ -14100,6 +14100,58 @@
 			"fri": 1,
 			"sat": 0,
 			"img": "./img/sit19.png"
+		},
+		{
+			"type": "バルジ",
+			"name": "増設バルジ(大型艦)",
+			"owner": "長門",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit23.png"
+		},
+		{
+			"type": "バルジ",
+			"name": "増設バルジ(大型艦)",
+			"owner": "陸奥",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit23.png"
+		},
+		{
+			"type": "バルジ",
+			"name": "増設バルジ(大型艦)",
+			"owner": "大和",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit23.png"
+		},
+		{
+			"type": "バルジ",
+			"name": "増設バルジ(大型艦)",
+			"owner": "武蔵",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "./img/sit23.png"
 		}
 	];
 
@@ -20386,7 +20438,7 @@
 	Constants = __webpack_require__(29);
 	CHANGE_EVENT = 'change';
 	_data = {
-	  toggle: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	  toggle: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	  day: 0,
 	  output: []
 	};
