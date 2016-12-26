@@ -63,7 +63,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4042b5e11a802d973e30"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f6fe5b1d62a510dade0d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -4332,7 +4332,8 @@
 	  buttonClassActive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
 	  buttonClassInactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent",
 	  TableClass: "mdl-data-table mdl-shadow--2dp",
-	  TbodyClass: ["th0", "th1", "th2", "th3", "th4", "th5 mdl-data-table__cell--non-numeric"]
+	  TbodyClass: ["th0", "th1", "th2", "th3", "th4", "th5 mdl-data-table__cell--non-numeric"],
+	  buttonLength: 11
 	};
 	module.exports = Constants;
 	//# sourceMappingURL=D:\Github\Melon\node_modules\livescript-loader\index.js!D:\Github\Melon\src\constants\constants.ls.map
@@ -20254,12 +20255,12 @@
 	  },
 	  handleUp: function(event){
 	    var temp;
-	    if (this.state.toggleStart <= 6) {
+	    if (this.state.toggleStart <= Constants.buttonLength - 4) {
 	      this.setState({
 	        toggleStart: 0
 	      });
 	    } else {
-	      temp = this.state.toggleStart - 6;
+	      temp = this.state.toggleStart - (Constants.buttonLength - 4);
 	      this.setState({
 	        toggleStart: temp
 	      });
@@ -20267,13 +20268,13 @@
 	  },
 	  handleDown: function(event){
 	    var temp;
-	    if (this.state.toggleStart + 9 > Constants.listType.length) {
-	      temp = Constants.listType.length - 9;
+	    if (this.state.toggleStart + (Constants.buttonLength - 1) > Constants.listType.length) {
+	      temp = Constants.listType.length - (Constants.buttonLength - 1);
 	      this.setState({
 	        toggleStart: temp
 	      });
 	    } else {
-	      temp = this.state.toggleStart + 6;
+	      temp = this.state.toggleStart + (Constants.buttonLength - 4);
 	      this.setState({
 	        toggleStart: temp
 	      });
@@ -20318,7 +20319,7 @@
 	        type = ref$[i$];
 	        results$.push(div({
 	          key: "checkbox" + i.toString()
-	        }, i >= this.state.toggleStart && i <= this.state.toggleStart + 10 ? this.props.toggle[i] === 1
+	        }, i >= this.state.toggleStart && i <= this.state.toggleStart + Constants.buttonLength ? this.props.toggle[i] === 1
 	          ? button({
 	            id: "checkbox" + i.toString(),
 	            className: Constants.buttonClassActive,
@@ -20331,7 +20332,7 @@
 	          }, type) : void 8));
 	      }
 	      return results$;
-	    }.call(this)), this.state.toggleStart + 10 < Constants.listType.length ? div(null, button({
+	    }.call(this)), this.state.toggleStart + Constants.buttonLength < Constants.listType.length ? div(null, button({
 	      id: "checkbox down",
 	      className: Constants.buttonClassActive,
 	      onClick: this.handleDown
