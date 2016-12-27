@@ -63,7 +63,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "03d2890b1584c496be2d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "14006ce0367cd8aa3ad8"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -4436,10 +4436,11 @@
 	var listStatus = exports.listStatus = ["艦隊編成", "ステータス", "出撃海域"];
 	var listStatusS = exports.listStatusS = ["group", "status", "map"];
 	
-	var listAircraft = exports.listAircraft = ["fighter", "bomber", "torpedo", "scout", "scout2", "seaplane", "seaplaneX", "heli", "blue", "big"];
-	var listAircraftName = exports.listAircraftName = ["艦上戦闘機", "艦上爆撃機", "艦上攻撃機", "艦上偵察機", "水上偵察機", "水上爆撃機", "水上戦闘機", "オートジャイロ", "対潜哨戒機", "大型飛行艇"];
-	var listAircraftS = exports.listAircraftS = ["sit6", "sit7", "sit8", "sit9", "sit10", "sit10", "sit10", "sit21", "sit22", "sit33"];
-	var listAircraftColor = exports.listAircraftColor = ["green-800", "red-800", "blue-800", "yellow-900", "green-600", "green-600", "green-600", "green-700", "blue-500", "green-600"];
+	var listAircraft = exports.listAircraft = ["fighter", "bomber", "torpedo", "jetFB", "scout", "scout2", "seaplane", "seaplaneX", "heli", "blue", "big"];
+	var listAircraftName = exports.listAircraftName = ["艦上戦闘機", "艦上爆撃機", "艦上攻撃機", "噴式戦闘爆撃機", "艦上偵察機", "水上偵察機", "水上爆撃機", "水上戦闘機", "オートジャイロ", "対潜哨戒機", "大型飛行艇"];
+	var listAircraftS = exports.listAircraftS = ["sit6", "sit7", "sit8", "sit39", "sit9", "sit10", "sit10", "sit10", "sit21", "sit22", "sit33"];
+	var listAircraftColor = exports.listAircraftColor = ["green-800", "red-800", "blue-800", "yellow-900", "yellow-800", "green-600", "green-600", "green-600", "green-700", "blue-500", "green-600"];
+	
 	var listAircraftType = exports.listAircraftType = ["torpedo", "bomb", "air", "sonar", "scout", "firepower", "hit", "evade"];
 	var listAircraftTypeN = exports.listAircraftTypeN = ["雷裝", "爆裝", "対空", "反潛", "索敵", "火力", "命中", "迴避"];
 	var listAircraftSkill = exports.listAircraftSkill = ["無熟練", "|", "||", "|||", "/", "//", "///", ">>"];
@@ -9959,6 +9960,7 @@
 				output.firepower = aircraftSelect[0].firepower;
 				switch (aircraftSelect[0].type) {
 					case "bomber":
+					case "jetFB":
 						output.firepower = output.firepower + aircraftSelect[0].bomb * 1.3;
 						break;
 					case "torpedo":
@@ -9988,6 +9990,7 @@
 		switch (aircraftSelect[0].type) {
 			case "bomber":
 			case "seaplane":
+			case "jetFB":
 				tempDam = (aircraftSelect[0].bomb * Math.sqrt(slotSize) + 25) * airDamage / 100;
 				output.as1 = Math.floor(tempDam);
 				output.as2 = 0;
@@ -10060,6 +10063,7 @@
 	
 				break;
 			case 'bomber':
+			case "jetFB":
 				acValue = Math.floor((aircraftSelect.air + 0.25 * slotFactory) * Math.sqrt(slotSize));
 	
 				switch (slotSkill) {
@@ -10207,6 +10211,7 @@
 			case "torpedo":
 			case "seaplane":
 			case "seaplaneX":
+			case "jetFB":
 				tempAC = calcSlotAircontrol(aircraftId, slotSize, slotSkill, slotFactory);
 				break;
 		}
@@ -10214,6 +10219,7 @@
 			case "bomber":
 			case "torpedo":
 			case "seaplane":
+			case "jetFB":
 				tempObject = calcSlotAirstrike(aircraftId, slotSize, 100);
 				tempAS = tempObject.string;
 				break;
@@ -13879,7 +13885,7 @@
 	
 				for (var j = 0; j < 4; j++) {
 					if (carrierSelected[i][_ConstList.searchName[j]]) {
-						tempString = "+" + carrierSelected[i][_ConstList.searchFactory[j]] + " " + carrierSelected[i][_ConstList.searchShort[j]] + " " + _ConstList.listAircraftSkill2[carrierSelected[i][_ConstList.searchSkill[j]]];
+						tempString = "★" + carrierSelected[i][_ConstList.searchFactory[j]] + " " + carrierSelected[i][_ConstList.searchShort[j]] + " " + _ConstList.listAircraftSkill2[carrierSelected[i][_ConstList.searchSkill[j]]];
 						output[i] = output[i] + tempString + " ";
 					} else {
 						output[i] = output[i] + "empty ";
@@ -28521,6 +28527,34 @@
 			"evade": 0
 		},
 		{
+			"name": "橘花改",
+			"short": "橘花改",
+			"type": "jetFB",
+			"id": "200",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 11,
+			"air": 12,
+			"sonar": 0,
+			"scout": 0,
+			"hit": 0,
+			"evade": 1
+		},
+		{
+			"name": "噴式景雲改",
+			"short": "景雲改",
+			"type": "jetFB",
+			"id": "199",
+			"firepower": 0,
+			"torpedo": 0,
+			"bomb": 15,
+			"air": 6,
+			"sonar": 0,
+			"scout": 3,
+			"hit": 1,
+			"evade": 0
+		},
+		{
 			"name": "Re.2001 G改",
 			"short": "Re2001G",
 			"type": "torpedo",
@@ -29063,6 +29097,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 54,
 			"firepowerEQ": 136
@@ -29085,6 +29120,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 49,
 			"firepowerEQ": 128
@@ -29107,6 +29143,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 63,
 			"firepowerEQ": 149
@@ -29129,6 +29166,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 56,
 			"firepowerEQ": 139
@@ -29151,6 +29189,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 57,
 			"firepowerEQ": 140
@@ -29173,6 +29212,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 64,
 			"firepowerEQ": 151
@@ -29195,6 +29235,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 48,
 			"firepowerEQ": 127
@@ -29217,6 +29258,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 45,
 			"firepowerEQ": 122
@@ -29239,6 +29281,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 45,
 			"firepowerEQ": 122
@@ -29261,6 +29304,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 50,
 			"firepowerEQ": 130
@@ -29283,6 +29327,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 24,
 			"firepowerEQ": 91
@@ -29305,6 +29350,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 53,
 			"firepowerEQ": 134
@@ -29327,6 +29373,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 39,
 			"firepowerEQ": 113
@@ -29349,6 +29396,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 39,
 			"firepowerEQ": 113
@@ -29371,6 +29419,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 29,
 			"firepowerEQ": 98
@@ -29393,6 +29442,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 29,
 			"firepowerEQ": 98
@@ -29415,6 +29465,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 39,
 			"firepowerEQ": 113
@@ -29437,6 +29488,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 39,
 			"firepowerEQ": 113
@@ -29459,6 +29511,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 39,
 			"firepowerEQ": 113
@@ -29481,6 +29534,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 39,
 			"firepowerEQ": 113
@@ -29503,6 +29557,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 39,
 			"firepowerEQ": 113
@@ -29525,6 +29580,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 39,
 			"firepowerEQ": 113
@@ -29547,6 +29603,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 27,
 			"firepowerEQ": 95
@@ -29569,6 +29626,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 25,
 			"firepowerEQ": 92
@@ -29591,6 +29649,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 25,
 			"firepowerEQ": 92
@@ -29613,6 +29672,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 40,
 			"firepowerEQ": 115
@@ -29635,6 +29695,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 14,
 			"firepowerEQ": 76
@@ -29657,6 +29718,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 45,
 			"firepowerEQ": 122
@@ -29679,6 +29741,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 59,
 			"firepowerEQ": 143
@@ -29701,6 +29764,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 1,
 			"display": 1,
 			"firepower": 70,
 			"firepowerEQ": 160
@@ -29723,6 +29787,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 1,
 			"display": 1,
 			"firepower": 65,
 			"firepowerEQ": 152
@@ -29745,6 +29810,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 49,
 			"firepowerEQ": 128
@@ -29767,6 +29833,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 99,
 			"firepowerEQ": 104
@@ -29789,6 +29856,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 98,
 			"firepowerEQ": 103
@@ -29811,6 +29879,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 83,
 			"firepowerEQ": 88
@@ -29833,6 +29902,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 83,
 			"firepowerEQ": 88
@@ -29855,6 +29925,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 79,
 			"firepowerEQ": 84
@@ -29877,6 +29948,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 79,
 			"firepowerEQ": 84
@@ -29899,6 +29971,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 75,
 			"firepowerEQ": 80
@@ -29921,6 +29994,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 76,
 			"firepowerEQ": 81
@@ -29943,6 +30017,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 75,
 			"firepowerEQ": 80
@@ -29965,6 +30040,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 75,
 			"firepowerEQ": 80
@@ -29987,6 +30063,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 77,
 			"firepowerEQ": 82
@@ -30009,6 +30086,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 77,
 			"firepowerEQ": 82
@@ -30031,6 +30109,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 75,
 			"firepowerEQ": 80
@@ -30053,6 +30132,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 77,
 			"firepowerEQ": 82
@@ -30075,6 +30155,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 102,
 			"firepowerEQ": 107
@@ -30097,6 +30178,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 105,
 			"firepowerEQ": 110
@@ -30119,6 +30201,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 99,
 			"firepowerEQ": 104
@@ -30141,6 +30224,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 99,
 			"firepowerEQ": 104
@@ -30163,6 +30247,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 139,
 			"firepowerEQ": 144
@@ -30185,6 +30270,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 139,
 			"firepowerEQ": 144
@@ -30207,6 +30293,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 29,
 			"firepowerEQ": 98
@@ -30229,6 +30316,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 29,
 			"firepowerEQ": 98
@@ -30251,6 +30339,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 40,
 			"firepowerEQ": 115
@@ -30273,6 +30362,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 40,
 			"firepowerEQ": 115
@@ -30295,6 +30385,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 29,
 			"firepowerEQ": 98
@@ -30317,6 +30408,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 40,
 			"firepowerEQ": 115
@@ -30339,6 +30431,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 34,
 			"firepowerEQ": 106
@@ -30361,6 +30454,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 34,
 			"firepowerEQ": 106
@@ -30383,6 +30477,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 32,
 			"firepowerEQ": 103
@@ -30405,6 +30500,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 19,
 			"firepowerEQ": 83
@@ -30427,6 +30523,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 19,
 			"firepowerEQ": 83
@@ -30449,6 +30546,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 19,
 			"firepowerEQ": 83
@@ -30471,6 +30569,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 29,
 			"firepowerEQ": 98
@@ -30493,6 +30592,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 19,
 			"firepowerEQ": 83
@@ -30515,6 +30615,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 29,
 			"firepowerEQ": 98
@@ -30537,6 +30638,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 19,
 			"firepowerEQ": 83
@@ -30559,6 +30661,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 19,
 			"firepowerEQ": 83
@@ -30581,6 +30684,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 19,
 			"firepowerEQ": 83
@@ -30603,6 +30707,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 19,
 			"firepowerEQ": 83
@@ -30625,6 +30730,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 34,
 			"firepowerEQ": 106
@@ -30647,6 +30753,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 34,
 			"firepowerEQ": 106
@@ -30669,6 +30776,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 20,
 			"firepowerEQ": 85
@@ -30691,6 +30799,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 29,
 			"firepowerEQ": 34
@@ -30713,6 +30822,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 29,
 			"firepowerEQ": 34
@@ -30735,6 +30845,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 45,
 			"firepowerEQ": 50
@@ -30757,6 +30868,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 58,
 			"firepowerEQ": 63
@@ -30779,6 +30891,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 29,
 			"firepowerEQ": 34
@@ -30801,6 +30914,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 29,
 			"firepowerEQ": 34
@@ -30823,6 +30937,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 29,
 			"firepowerEQ": 34
@@ -30845,6 +30960,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 29,
 			"firepowerEQ": 34
@@ -30867,6 +30983,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 36,
 			"firepowerEQ": 41
@@ -30889,6 +31006,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 48,
 			"firepowerEQ": 53
@@ -30911,6 +31029,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 1,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 28,
 			"firepowerEQ": 33
@@ -30933,6 +31052,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 1,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 18,
 			"firepowerEQ": 23
@@ -30955,6 +31075,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 12,
 			"firepowerEQ": 17
@@ -30977,6 +31098,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 14,
 			"firepowerEQ": 19
@@ -30999,6 +31121,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 12,
 			"firepowerEQ": 17
@@ -31021,6 +31144,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 19,
 			"firepowerEQ": 24
@@ -31043,6 +31167,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 12,
 			"firepowerEQ": 17
@@ -31065,6 +31190,7 @@
 			"heli": 0,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 9,
 			"firepowerEQ": 14
@@ -31087,6 +31213,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 15,
 			"firepowerEQ": 20
@@ -31109,6 +31236,7 @@
 			"heli": 1,
 			"blue": 1,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 33,
 			"firepowerEQ": 38
@@ -31131,6 +31259,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 1,
 			"firepower": 36,
 			"firepowerEQ": 109
@@ -31153,6 +31282,7 @@
 			"heli": 1,
 			"blue": 0,
 			"big": 0,
+			"jetFB": 0,
 			"display": 0,
 			"firepower": 22,
 			"firepowerEQ": 88
@@ -38239,7 +38369,7 @@
 								var classTemp = "group-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary";
 	
 								if (selectData[i][slotID]) {
-									textTemp = "+" + selectData[i][slotFac] + selectData[i][slotName] + "(" + selectData[i][_ConstList.listCarrierTbody[j]].toString() + ")" + _ConstList.listAircraftSkill2[selectData[i][_ConstList.listCarrierTbody[j] + 'skill']];
+									textTemp = "★" + selectData[i][slotFac] + selectData[i][slotName] + "(" + selectData[i][_ConstList.listCarrierTbody[j]].toString() + ")" + _ConstList.listAircraftSkill2[selectData[i][_ConstList.listCarrierTbody[j] + 'skill']];
 									switch (selectData[i][slotType]) {
 										case _ConstList.listAircraft[0]:
 											classTemp = classTemp + " mdl-color--" + _ConstList.listAircraftColor[0] + " mdl-button--raised";
