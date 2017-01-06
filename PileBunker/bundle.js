@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "a8426e04b70ecaf0bdbb"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ae8cee4992b70c84da6c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27604,6 +27604,17 @@
 			"range": 0,
 			"rare": 4,
 			"text": "速度低下",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "門松寿槍",
+			"type": "lance",
+			"atk": 22,
+			"aspd": 0,
+			"range": 0,
+			"rare": 4,
+			"text": "防御+25",
 			"ref": 0,
 			"refText": "+0"
 		},
