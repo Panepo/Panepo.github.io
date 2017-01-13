@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ae8cee4992b70c84da6c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "44a85b85788416dda26f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27351,6 +27351,17 @@
 			"range": 0,
 			"rare": 4,
 			"text": "速度やや上昇",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "同田貫",
+			"type": "sword",
+			"atk": 52,
+			"aspd": 0,
+			"range": 10,
+			"rare": 4,
+			"text": "範囲+10",
 			"ref": 0,
 			"refText": "+0"
 		},
