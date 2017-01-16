@@ -63,7 +63,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ef675710cef4a18f8730"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0c43bfa8d60f2683688c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -4324,16 +4324,16 @@
 	
 	var Constants;
 	Constants = {
-	  updateTime: "2016/12/23",
+	  updateTime: "2017/01/16",
 	  listAA: ["10cm高角砲＋高射装置", "90mm単装高角砲"],
 	  listBoat: ["特二式内火艇"],
-	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "艦上戦闘機", "艦上爆撃機", "艦上偵察機", "水上偵察機", "電探", "ソナー", "爆雷", "対艦強化弾", "対空機銃", "高射装置", "上陸用舟艇", "探照灯", "バルジ"],
-	  listTypeNumber: ["1", "2", "3", "4", "5", "7", "8", "9", "6", "10", "11", "12", "15", "16", "17", "18", "19", "23"],
+	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "水上偵察機", "艦上戦闘機", "艦上爆撃機", "艦上偵察機", "電探", "対艦強化弾", "対空機銃", "爆雷", "ソナー", "機関部強化", "上陸用舟艇", "バルジ", "探照灯", "高射装置"],
+	  listTypeNumber: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "11", "13", "15", "17", "18", "19", "20", "23", "24", "30"],
 	  buttonClassActive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
 	  buttonClassInactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent",
 	  TableClass: "mdl-data-table mdl-shadow--2dp",
 	  TbodyClass: ["th0", "th1", "th2", "th3", "th4", "th5 mdl-data-table__cell--non-numeric"],
-	  buttonLength: 11
+	  buttonLength: 12
 	};
 	module.exports = Constants;
 	//# sourceMappingURL=D:\Github\Melon\node_modules\livescript-loader\index.js!D:\Github\Melon\src\constants\constants.ls.map
@@ -11903,7 +11903,7 @@
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit0.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
 		},
 		{
 			"type": "小口径主砲",
@@ -11916,7 +11916,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit0.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
 		},
 		{
 			"type": "小口径主砲",
@@ -11929,7 +11929,7 @@
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit0.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
 		},
 		{
 			"type": "中口径主砲",
@@ -12436,7 +12436,7 @@
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit0.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
 		},
 		{
 			"type": "副砲",
@@ -12449,7 +12449,7 @@
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit0.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
 		},
 		{
 			"type": "副砲",
@@ -12933,6 +12933,32 @@
 			"img": "http://panepo.github.io/KCData/image/icon/sit7.png"
 		},
 		{
+			"type": "艦上戦闘機",
+			"name": "F6F-3",
+			"owner": "Saratoga",
+			"sun": 0,
+			"mon": 0,
+			"tue": 0,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "http://panepo.github.io/KCData/image/icon/sit7.png"
+		},
+		{
+			"type": "艦上戦闘機",
+			"name": "F6F-3",
+			"owner": "Saratoga改",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "http://panepo.github.io/KCData/image/icon/sit7.png"
+		},
+		{
 			"type": "艦上爆撃機",
 			"name": "零式艦戦62型(爆戦)",
 			"owner": "隼鷹",
@@ -13138,7 +13164,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13151,7 +13177,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13164,7 +13190,7 @@
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13177,7 +13203,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13190,7 +13216,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13203,7 +13229,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13216,7 +13242,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13229,7 +13255,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13242,7 +13268,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13255,7 +13281,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13268,7 +13294,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13281,7 +13307,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13294,7 +13320,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13307,7 +13333,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13320,7 +13346,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13333,7 +13359,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13346,7 +13372,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13359,7 +13385,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13372,7 +13398,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13385,7 +13411,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "電探",
@@ -13398,7 +13424,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
 		},
 		{
 			"type": "ソナー",
@@ -13411,7 +13437,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
 		},
 		{
 			"type": "ソナー",
@@ -13424,7 +13450,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
 		},
 		{
 			"type": "ソナー",
@@ -13437,7 +13463,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
 		},
 		{
 			"type": "ソナー",
@@ -13450,7 +13476,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
 		},
 		{
 			"type": "ソナー",
@@ -13463,7 +13489,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
 		},
 		{
 			"type": "ソナー",
@@ -13476,7 +13502,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
 		},
 		{
 			"type": "ソナー",
@@ -13489,7 +13515,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
 		},
 		{
 			"type": "ソナー",
@@ -13502,7 +13528,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
 		},
 		{
 			"type": "ソナー",
@@ -13515,7 +13541,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
 		},
 		{
 			"type": "ソナー",
@@ -13528,7 +13554,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit11.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
 		},
 		{
 			"type": "爆雷",
@@ -13541,7 +13567,7 @@
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit12.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit17.png"
 		},
 		{
 			"type": "爆雷",
@@ -13554,7 +13580,7 @@
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit12.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit17.png"
 		},
 		{
 			"type": "対艦強化弾",
@@ -13567,7 +13593,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit13.png"
 		},
 		{
 			"type": "対艦強化弾",
@@ -13580,7 +13606,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit13.png"
 		},
 		{
 			"type": "対艦強化弾",
@@ -13593,7 +13619,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit13.png"
 		},
 		{
 			"type": "対艦強化弾",
@@ -13606,7 +13632,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit13.png"
 		},
 		{
 			"type": "対空機銃",
@@ -13619,7 +13645,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
 		},
 		{
 			"type": "対空機銃",
@@ -13632,7 +13658,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
 		},
 		{
 			"type": "対空機銃",
@@ -13645,7 +13671,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
 		},
 		{
 			"type": "対空機銃",
@@ -13658,7 +13684,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
 		},
 		{
 			"type": "対空機銃",
@@ -13671,7 +13697,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
 		},
 		{
 			"type": "対空機銃",
@@ -13684,7 +13710,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
 		},
 		{
 			"type": "対空機銃",
@@ -13697,7 +13723,7 @@
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
 		},
 		{
 			"type": "対空機銃",
@@ -13710,7 +13736,7 @@
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
 		},
 		{
 			"type": "対空機銃",
@@ -13723,7 +13749,7 @@
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
 		},
 		{
 			"type": "対空機銃",
@@ -13736,7 +13762,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
 		},
 		{
 			"type": "対空機銃",
@@ -13749,7 +13775,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
 		},
 		{
 			"type": "対空機銃",
@@ -13762,7 +13788,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
 		},
 		{
 			"type": "対空機銃",
@@ -13775,7 +13801,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit16.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit15.png"
 		},
 		{
 			"type": "高射装置",
@@ -13788,7 +13814,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit17.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit30.png"
 		},
 		{
 			"type": "高射装置",
@@ -13801,7 +13827,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit17.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit30.png"
 		},
 		{
 			"type": "高射装置",
@@ -13814,7 +13840,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit17.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit30.png"
 		},
 		{
 			"type": "高射装置",
@@ -13827,7 +13853,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit17.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit30.png"
 		},
 		{
 			"type": "高射装置",
@@ -13840,7 +13866,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit17.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit30.png"
 		},
 		{
 			"type": "高射装置",
@@ -13853,7 +13879,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit17.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit30.png"
 		},
 		{
 			"type": "高射装置",
@@ -13866,7 +13892,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit17.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit30.png"
 		},
 		{
 			"type": "上陸用舟艇",
@@ -13879,7 +13905,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit20.png"
 		},
 		{
 			"type": "上陸用舟艇",
@@ -13892,7 +13918,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit20.png"
 		},
 		{
 			"type": "上陸用舟艇",
@@ -13905,7 +13931,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit20.png"
 		},
 		{
 			"type": "上陸用舟艇",
@@ -13918,7 +13944,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit20.png"
 		},
 		{
 			"type": "上陸用舟艇",
@@ -13931,7 +13957,7 @@
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit20.png"
 		},
 		{
 			"type": "上陸用舟艇",
@@ -13944,7 +13970,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit20.png"
 		},
 		{
 			"type": "上陸用舟艇",
@@ -13957,7 +13983,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit20.png"
 		},
 		{
 			"type": "上陸用舟艇",
@@ -13970,7 +13996,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit20.png"
 		},
 		{
 			"type": "上陸用舟艇",
@@ -13983,7 +14009,7 @@
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit18.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit20.png"
 		},
 		{
 			"type": "上陸用舟艇",
@@ -14035,7 +14061,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit19.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit24.png"
 		},
 		{
 			"type": "探照灯",
@@ -14048,7 +14074,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit19.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit24.png"
 		},
 		{
 			"type": "探照灯",
@@ -14061,7 +14087,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit19.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit24.png"
 		},
 		{
 			"type": "探照灯",
@@ -14074,7 +14100,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit19.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit24.png"
 		},
 		{
 			"type": "探照灯",
@@ -14087,7 +14113,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit19.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit24.png"
 		},
 		{
 			"type": "探照灯",
@@ -14100,7 +14126,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit19.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit24.png"
 		},
 		{
 			"type": "バルジ",
@@ -14122,10 +14148,10 @@
 			"sun": 0,
 			"mon": 0,
 			"tue": 0,
-			"wed": 0,
+			"wed": 1,
 			"thu": 1,
 			"fri": 1,
-			"sat": 1,
+			"sat": 0,
 			"img": "http://panepo.github.io/KCData/image/icon/sit23.png"
 		},
 		{
@@ -14135,10 +14161,10 @@
 			"sun": 0,
 			"mon": 0,
 			"tue": 0,
-			"wed": 0,
+			"wed": 1,
 			"thu": 1,
 			"fri": 1,
-			"sat": 1,
+			"sat": 0,
 			"img": "http://panepo.github.io/KCData/image/icon/sit23.png"
 		},
 		{
@@ -14153,6 +14179,84 @@
 			"fri": 1,
 			"sat": 1,
 			"img": "http://panepo.github.io/KCData/image/icon/sit23.png"
+		},
+		{
+			"type": "バルジ",
+			"name": "艦本新設計 増設バルジ(大型艦)",
+			"owner": "大和",
+			"sun": 1,
+			"mon": 0,
+			"tue": 0,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 1,
+			"img": "http://panepo.github.io/KCData/image/icon/sit23.png"
+		},
+		{
+			"type": "バルジ",
+			"name": "艦本新設計 増設バルジ(大型艦)",
+			"owner": "武蔵",
+			"sun": 1,
+			"mon": 0,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "http://panepo.github.io/KCData/image/icon/sit23.png"
+		},
+		{
+			"type": "機関部強化",
+			"name": "強化型艦本式缶",
+			"owner": "天津風",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 1,
+			"sat": 1,
+			"img": "http://panepo.github.io/KCData/image/icon/sit19.png"
+		},
+		{
+			"type": "機関部強化",
+			"name": "強化型艦本式缶",
+			"owner": "島風改",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "http://panepo.github.io/KCData/image/icon/sit19.png"
+		},
+		{
+			"type": "機関部強化",
+			"name": "新型高温高圧缶",
+			"owner": "天津風改",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "http://panepo.github.io/KCData/image/icon/sit19.png"
+		},
+		{
+			"type": "機関部強化",
+			"name": "新型高温高圧缶",
+			"owner": "島風改",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 0,
+			"thu": 0,
+			"fri": 1,
+			"sat": 0,
+			"img": "http://panepo.github.io/KCData/image/icon/sit19.png"
 		}
 	];
 
