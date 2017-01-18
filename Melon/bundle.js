@@ -63,7 +63,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0c43bfa8d60f2683688c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "6b0cc6799d4f7f44f22b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -4327,8 +4327,8 @@
 	  updateTime: "2017/01/16",
 	  listAA: ["10cm高角砲＋高射装置", "90mm単装高角砲"],
 	  listBoat: ["特二式内火艇"],
-	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "水上偵察機", "艦上戦闘機", "艦上爆撃機", "艦上偵察機", "電探", "対艦強化弾", "対空機銃", "爆雷", "ソナー", "機関部強化", "上陸用舟艇", "バルジ", "探照灯", "高射装置"],
-	  listTypeNumber: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "11", "13", "15", "17", "18", "19", "20", "23", "24", "30"],
+	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "艦上戦闘機", "艦上爆撃機", "艦上偵察機", "水上偵察機", "電探", "対艦強化弾", "対空機銃", "爆雷", "ソナー", "機関部強化", "上陸用舟艇", "バルジ", "探照灯", "高射装置"],
+	  listTypeNumber: ["1", "2", "3", "4", "5", "7", "8", "9", "10", "11", "13", "15", "17", "18", "19", "20", "23", "24", "30"],
 	  buttonClassActive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
 	  buttonClassInactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent",
 	  TableClass: "mdl-data-table mdl-shadow--2dp",
@@ -13034,7 +13034,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit6.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
 		},
 		{
 			"type": "水上偵察機",
@@ -13047,7 +13047,7 @@
 			"thu": 1,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit6.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
 		},
 		{
 			"type": "水上偵察機",
@@ -13060,7 +13060,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit6.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
 		},
 		{
 			"type": "水上偵察機",
@@ -13073,7 +13073,7 @@
 			"thu": 0,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit6.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
 		},
 		{
 			"type": "水上偵察機",
@@ -13086,7 +13086,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit6.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
 		},
 		{
 			"type": "水上偵察機",
@@ -13099,7 +13099,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit6.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
 		},
 		{
 			"type": "水上偵察機",
@@ -13112,7 +13112,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit6.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
 		},
 		{
 			"type": "水上偵察機",
@@ -13125,7 +13125,7 @@
 			"thu": 1,
 			"fri": 1,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit6.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
 		},
 		{
 			"type": "水上偵察機",
@@ -13138,7 +13138,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 1,
-			"img": "http://panepo.github.io/KCData/image/icon/sit6.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
 		},
 		{
 			"type": "水上偵察機",
@@ -13151,7 +13151,7 @@
 			"thu": 0,
 			"fri": 0,
 			"sat": 0,
-			"img": "http://panepo.github.io/KCData/image/icon/sit6.png"
+			"img": "http://panepo.github.io/KCData/image/icon/sit10.png"
 		},
 		{
 			"type": "電探",
