@@ -63,7 +63,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "14006ce0367cd8aa3ad8"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b61b261b641f9e9bc34d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -37719,7 +37719,7 @@
 						},
 						Cactive: "img-button mdl-button--raised mdl-button--colored",
 						Cinactive: "img-button",
-						imgSrc: "./image/icon/" + _ConstList.listAircraftS[i] + ".png",
+						imgSrc: "http://panepo.github.io/KCData/image/icon/" + _ConstList.listAircraftS[i] + ".png",
 						text: _ConstList.listAircraftName[i],
 						title: _ConstList.listAircraft[i] });
 					buttonOut.push(buttonTemp);
