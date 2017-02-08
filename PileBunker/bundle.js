@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "44a85b85788416dda26f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e975cf343ebe59b88648"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27806,6 +27806,17 @@
 			"refText": "+0"
 		},
 		{
+			"name": "ｼｭﾃﾌｧﾝの闘盾",
+			"type": "shield",
+			"atk": 10,
+			"aspd": 0,
+			"range": 20,
+			"rare": 3,
+			"text": "防禦+33 範囲+20",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "イージスの盾",
 			"type": "shield",
 			"atk": 25,
@@ -27813,6 +27824,17 @@
 			"range": 0,
 			"rare": 4,
 			"text": "防禦+55",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "真‧ｼｭﾃﾌｧﾝの闘盾",
+			"type": "shield",
+			"atk": 15,
+			"aspd": 0,
+			"range": 20,
+			"rare": 4,
+			"text": "防禦+43 範囲+20",
 			"ref": 0,
 			"refText": "+0"
 		},
