@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e975cf343ebe59b88648"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "bbc0db054e7800396ed4"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27784,6 +27784,17 @@
 			"refText": "+0"
 		},
 		{
+			"name": "ｼｭﾃﾌｧﾝの闘盾",
+			"type": "shield",
+			"atk": 10,
+			"aspd": 0,
+			"range": 20,
+			"rare": 3,
+			"text": "範囲+20 防禦+33",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "プリトウェン",
 			"type": "shield",
 			"atk": 15,
@@ -27806,13 +27817,24 @@
 			"refText": "+0"
 		},
 		{
-			"name": "ｼｭﾃﾌｧﾝの闘盾",
+			"name": "真‧ｼｭﾃﾌｧﾝの闘盾",
 			"type": "shield",
-			"atk": 10,
+			"atk": 15,
 			"aspd": 0,
 			"range": 20,
-			"rare": 3,
-			"text": "防禦+33 範囲+20",
+			"rare": 4,
+			"text": "範囲+20 防禦+43",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "ちょこしぃるど",
+			"type": "shield",
+			"atk": 21,
+			"aspd": 0,
+			"range": 0,
+			"rare": 4,
+			"text": "回復+3 防禦+30",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27824,17 +27846,6 @@
 			"range": 0,
 			"rare": 4,
 			"text": "防禦+55",
-			"ref": 0,
-			"refText": "+0"
-		},
-		{
-			"name": "真‧ｼｭﾃﾌｧﾝの闘盾",
-			"type": "shield",
-			"atk": 15,
-			"aspd": 0,
-			"range": 20,
-			"rare": 4,
-			"text": "防禦+43 範囲+20",
 			"ref": 0,
 			"refText": "+0"
 		},
