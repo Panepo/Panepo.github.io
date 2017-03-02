@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "bbc0db054e7800396ed4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "873a2e2f4d05d8611bf7"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27487,6 +27487,17 @@
 			"refText": "+0"
 		},
 		{
+			"name": "名槍ロン",
+			"type": "lance",
+			"atk": 13,
+			"aspd": 0,
+			"range": 0,
+			"rare": 3,
+			"text": "耐久+400",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "雙龍槍",
 			"type": "lance",
 			"atk": 26,
@@ -27538,6 +27549,28 @@
 			"range": 0,
 			"rare": 3,
 			"text": "速度低下",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "聖槍ロンゴミニアド",
+			"type": "lance",
+			"atk": 20,
+			"aspd": 0,
+			"range": 0,
+			"rare": 4,
+			"text": "耐久+500",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "門松寿槍",
+			"type": "lance",
+			"atk": 22,
+			"aspd": 0,
+			"range": 0,
+			"rare": 4,
+			"text": "防御+25",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27615,17 +27648,6 @@
 			"range": 0,
 			"rare": 4,
 			"text": "速度低下",
-			"ref": 0,
-			"refText": "+0"
-		},
-		{
-			"name": "門松寿槍",
-			"type": "lance",
-			"atk": 22,
-			"aspd": 0,
-			"range": 0,
-			"rare": 4,
-			"text": "防御+25",
 			"ref": 0,
 			"refText": "+0"
 		},
