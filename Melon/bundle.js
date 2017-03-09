@@ -63,7 +63,7 @@
 /******/ 	}
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "6b0cc6799d4f7f44f22b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "16ac500ca233c118d67b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/
@@ -4327,8 +4327,8 @@
 	  updateTime: "2017/01/16",
 	  listAA: ["10cm高角砲＋高射装置", "90mm単装高角砲"],
 	  listBoat: ["特二式内火艇"],
-	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "艦上戦闘機", "艦上爆撃機", "艦上偵察機", "水上偵察機", "電探", "対艦強化弾", "対空機銃", "爆雷", "ソナー", "機関部強化", "上陸用舟艇", "バルジ", "探照灯", "高射装置"],
-	  listTypeNumber: ["1", "2", "3", "4", "5", "7", "8", "9", "10", "11", "13", "15", "17", "18", "19", "20", "23", "24", "30"],
+	  listType: ["小口径主砲", "中口径主砲", "大口径主砲", "副砲", "魚雷", "艦上戦闘機", "艦上爆撃機", "艦上偵察機", "水上偵察機", "電探", "対艦強化弾", "対空機銃", "爆雷", "ソナー", "機関部強化", "上陸用舟艇", "バルジ", "探照灯", "高射装置", "潜水艦装備"],
+	  listTypeNumber: ["1", "2", "3", "4", "5", "7", "8", "9", "10", "11", "13", "15", "17", "18", "19", "20", "23", "24", "30", "18"],
 	  buttonClassActive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary",
 	  buttonClassInactive: "mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent",
 	  TableClass: "mdl-data-table mdl-shadow--2dp",
@@ -12101,6 +12101,19 @@
 			"img": "http://panepo.github.io/KCData/image/icon/sit2.png"
 		},
 		{
+			"type": "中口径主砲",
+			"name": "203mm／53 連装砲",
+			"owner": "Zara due",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "http://panepo.github.io/KCData/image/icon/sit2.png"
+		},
+		{
 			"type": "大口径主砲",
 			"name": "35.6cm連装砲",
 			"owner": "扶桑",
@@ -14130,6 +14143,58 @@
 		},
 		{
 			"type": "バルジ",
+			"name": "増設バルジ(中型艦)",
+			"owner": "Верный",
+			"sun": 1,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "http://panepo.github.io/KCData/image/icon/sit23.png"
+		},
+		{
+			"type": "バルジ",
+			"name": "増設バルジ(中型艦)",
+			"owner": "酒匂",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "http://panepo.github.io/KCData/image/icon/sit23.png"
+		},
+		{
+			"type": "バルジ",
+			"name": "増設バルジ(中型艦)",
+			"owner": "Zara due",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 0,
+			"fri": 0,
+			"sat": 0,
+			"img": "http://panepo.github.io/KCData/image/icon/sit23.png"
+		},
+		{
+			"type": "バルジ",
+			"name": "艦本新設計 増設バルジ(中型艦)",
+			"owner": "Zara due",
+			"sun": 0,
+			"mon": 0,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
+			"sat": 0,
+			"img": "http://panepo.github.io/KCData/image/icon/sit23.png"
+		},
+		{
+			"type": "バルジ",
 			"name": "増設バルジ(大型艦)",
 			"owner": "長門",
 			"sun": 0,
@@ -14255,6 +14320,19 @@
 			"wed": 0,
 			"thu": 0,
 			"fri": 1,
+			"sat": 0,
+			"img": "http://panepo.github.io/KCData/image/icon/sit19.png"
+		},
+		{
+			"type": "潜水艦装備",
+			"name": "潜水艦搭載電探＆水防式望遠鏡",
+			"owner": "伊401",
+			"sun": 0,
+			"mon": 1,
+			"tue": 1,
+			"wed": 1,
+			"thu": 1,
+			"fri": 0,
 			"sat": 0,
 			"img": "http://panepo.github.io/KCData/image/icon/sit19.png"
 		}
