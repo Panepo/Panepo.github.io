@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f380ba3bbd8a62aab706"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "347dee6a7b0ddf77c45a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27382,6 +27382,18 @@
 			"refText": "+0"
 		},
 		{
+			"name": "千代金丸",
+			"type": "sword",
+			"atk": 50,
+			"hit": 1,
+			"aspd": 0,
+			"range": 0,
+			"rare": 4,
+			"text": "回復+3",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "同田貫",
 			"type": "sword",
 			"atk": 52,
@@ -27654,6 +27666,18 @@
 			"range": 5,
 			"rare": 4,
 			"text": "範囲+5",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "夜叉彦槍",
+			"type": "lance",
+			"atk": 44,
+			"hit": 1,
+			"aspd": 0,
+			"range": 0,
+			"rare": 4,
+			"text": "計略再使用-3秒",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28110,6 +28134,18 @@
 			"range": 0,
 			"rare": 4,
 			"text": "攻撃速度上昇",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "聚楽の弓",
+			"type": "bow",
+			"atk": 35,
+			"hit": 1,
+			"aspd": 20,
+			"range": 0,
+			"rare": 4,
+			"text": "攻撃速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
