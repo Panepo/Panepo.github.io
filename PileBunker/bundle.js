@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "08476c8a78b0c1974658"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "959faa83b1a723fe4e01"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28781,6 +28781,18 @@
 			"refText": "+0"
 		},
 		{
+			"name": "小十郎の響杖",
+			"type": "spell",
+			"atk": 22,
+			"hit": 1,
+			"aspd": 20,
+			"range": 0,
+			"rare": 3,
+			"text": "速度やや上昇",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "三蔵法師の杖",
 			"type": "spell",
 			"atk": 28,
@@ -28801,6 +28813,18 @@
 			"range": 0,
 			"rare": 3,
 			"text": "",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "真・小十郎の響杖",
+			"type": "spell",
+			"atk": 31,
+			"hit": 1,
+			"aspd": 20,
+			"range": 0,
+			"rare": 4,
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		}
