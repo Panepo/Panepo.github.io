@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "959faa83b1a723fe4e01"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "dd01d26d85dfaea360ae"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27365,6 +27365,18 @@
 			"refText": "+0"
 		},
 		{
+			"name": "清正の邪刀",
+			"type": "sword",
+			"atk": 24,
+			"hit": 1,
+			"aspd": 0,
+			"range": 0,
+			"rare": 3,
+			"text": "敵の移動速度を少し下げる",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "虎徹",
 			"type": "sword",
 			"atk": 30,
@@ -27445,6 +27457,18 @@
 			"range": 0,
 			"rare": 4,
 			"text": "防御+30",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "真・清正の邪刀",
+			"type": "sword",
+			"atk": 35,
+			"hit": 1,
+			"aspd": 0,
+			"range": 0,
+			"rare": 4,
+			"text": "敵の移動速度を少し下げる",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28212,7 +28236,7 @@
 			"aspd": 25,
 			"range": 0,
 			"rare": 4,
-			"text": "攻撃速度上昇",
+			"text": "速度上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28224,7 +28248,7 @@
 			"aspd": 20,
 			"range": 0,
 			"rare": 4,
-			"text": "攻撃速度やや上昇",
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
