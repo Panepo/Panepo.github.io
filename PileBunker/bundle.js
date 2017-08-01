@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "dd01d26d85dfaea360ae"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b4590395efb438f2bb54"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27913,6 +27913,18 @@
 			"range": 0,
 			"rare": 3,
 			"text": "速度低下",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "軍配形天守槌",
+			"type": "hammer",
+			"atk": 50,
+			"hit": 1,
+			"aspd": 20,
+			"range": 0,
+			"rare": 4,
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
