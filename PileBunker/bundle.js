@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b4590395efb438f2bb54"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ceb82df633c102202821"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28729,6 +28729,18 @@
 			"range": 0,
 			"rare": 3,
 			"text": "速度低下",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "車山形大砲-祭-",
+			"type": "cannon",
+			"atk": 33,
+			"hit": 1,
+			"aspd": 20,
+			"range": 0,
+			"rare": 4,
+			"text": "速度やや上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
