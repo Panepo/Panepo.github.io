@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ceb82df633c102202821"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "45ea28f81fe0066cc1b5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27283,7 +27283,7 @@
 		{
 			"name": "兜割",
 			"type": "sword",
-			"atk": 8,
+			"atk": 12,
 			"hit": 1,
 			"aspd": 20,
 			"range": 0,
@@ -27334,9 +27334,9 @@
 			"atk": 22,
 			"hit": 1,
 			"aspd": 0,
-			"range": 5,
+			"range": 10,
 			"rare": 2,
-			"text": "範囲+5",
+			"text": "範囲+10",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27345,10 +27345,10 @@
 			"type": "sword",
 			"atk": 31,
 			"hit": 1,
-			"aspd": 0,
+			"aspd": 10,
 			"range": 0,
 			"rare": 2,
-			"text": "",
+			"text": "速度若干上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27394,9 +27394,9 @@
 			"atk": 42,
 			"hit": 1,
 			"aspd": 0,
-			"range": 5,
+			"range": 15,
 			"rare": 3,
-			"text": "範囲+5",
+			"text": "範囲+15",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27405,10 +27405,10 @@
 			"type": "sword",
 			"atk": 45,
 			"hit": 1,
-			"aspd": 0,
+			"aspd": 10,
 			"range": 0,
 			"rare": 3,
-			"text": "",
+			"text": "速度若干上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27475,7 +27475,7 @@
 		{
 			"name": "妖刀村正",
 			"type": "sword",
-			"atk": 43,
+			"atk": 48,
 			"hit": 1,
 			"aspd": 20,
 			"range": 0,
@@ -27528,7 +27528,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 4,
-			"text": "",
+			"text": "防禦+10",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27540,7 +27540,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 4,
-			"text": "",
+			"text": "耐久+100",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27588,7 +27588,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 1,
-			"text": "",
+			"text": "防禦+5",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27669,10 +27669,10 @@
 			"type": "lance",
 			"atk": 33,
 			"hit": 1,
-			"aspd": 0,
+			"aspd": 10,
 			"range": 0,
 			"rare": 3,
-			"text": "",
+			"text": "速度若干上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27792,7 +27792,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 4,
-			"text": "",
+			"text": "回覆+3",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27804,7 +27804,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 4,
-			"text": "",
+			"text": "防禦+5",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27816,7 +27816,7 @@
 			"aspd": 0,
 			"range": 0,
 			"rare": 4,
-			"text": "",
+			"text": "耐久+50",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -27859,7 +27859,7 @@
 		{
 			"name": "棍棒",
 			"type": "hammer",
-			"atk": 10,
+			"atk": 28,
 			"hit": 1,
 			"aspd": 0,
 			"range": 0,
@@ -27895,7 +27895,7 @@
 		{
 			"name": "神木の槌",
 			"type": "hammer",
-			"atk": 47,
+			"atk": 54,
 			"hit": 1,
 			"aspd": 0,
 			"range": 0,
@@ -27917,9 +27917,21 @@
 			"refText": "+0"
 		},
 		{
+			"name": "打ち出の小槌",
+			"type": "hammer",
+			"atk": 44,
+			"hit": 1,
+			"aspd": 25,
+			"range": 0,
+			"rare": 4,
+			"text": "速度上昇",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "軍配形天守槌",
 			"type": "hammer",
-			"atk": 50,
+			"atk": 54,
 			"hit": 1,
 			"aspd": 20,
 			"range": 0,
@@ -27929,9 +27941,21 @@
 			"refText": "+0"
 		},
 		{
+			"name": "鬼の金棒",
+			"type": "hammer",
+			"atk": 60,
+			"hit": 1,
+			"aspd": 0,
+			"range": 10,
+			"rare": 4,
+			"text": "範囲+10",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "源翁鎚",
 			"type": "hammer",
-			"atk": 68,
+			"atk": 74,
 			"hit": 1,
 			"aspd": 0,
 			"range": 0,
@@ -28097,6 +28121,18 @@
 			"refText": "+0"
 		},
 		{
+			"name": "スヴェル",
+			"type": "shield",
+			"atk": 30,
+			"hit": 1,
+			"aspd": 0,
+			"range": 0,
+			"rare": 4,
+			"text": "防禦+50",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "鏑矢",
 			"type": "bow",
 			"atk": 6,
@@ -28113,10 +28149,10 @@
 			"type": "bow",
 			"atk": 9,
 			"hit": 1,
-			"aspd": 0,
+			"aspd": 10,
 			"range": 0,
 			"rare": 1,
-			"text": "",
+			"text": "速度若干上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28161,10 +28197,10 @@
 			"type": "bow",
 			"atk": 20,
 			"hit": 1,
-			"aspd": 0,
+			"aspd": 10,
 			"range": 0,
 			"rare": 2,
-			"text": "",
+			"text": "速度若干上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28210,9 +28246,9 @@
 			"atk": 32,
 			"hit": 1,
 			"aspd": 0,
-			"range": 0,
+			"range": 5,
 			"rare": 3,
-			"text": "",
+			"text": "範囲+5",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28269,10 +28305,10 @@
 			"type": "bow",
 			"atk": 40,
 			"hit": 1,
-			"aspd": 0,
+			"aspd": 10,
 			"range": 0,
 			"rare": 4,
-			"text": "",
+			"text": "速度若干上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28315,7 +28351,7 @@
 		{
 			"name": "連弩",
 			"type": "xbow2",
-			"atk": 6,
+			"atk": 18,
 			"hit": 1,
 			"aspd": 0,
 			"range": 0,
@@ -28411,12 +28447,36 @@
 		{
 			"name": "無雙弩",
 			"type": "xbow3",
-			"atk": 10,
+			"atk": 21,
 			"hit": 1,
 			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "敵3体に攻撃",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "龍髭の弩",
+			"type": "xbow",
+			"atk": 83,
+			"hit": 1,
+			"aspd": 0,
+			"range": 20,
+			"rare": 4,
+			"text": "範囲+20",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "床子弩",
+			"type": "xbow",
+			"atk": 96,
+			"hit": 1,
+			"aspd": 0,
+			"range": 0,
+			"rare": 4,
+			"text": "",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28435,7 +28495,7 @@
 		{
 			"name": "手銃",
 			"type": "arqu",
-			"atk": 3,
+			"atk": 4,
 			"hit": 1,
 			"aspd": 20,
 			"range": 0,
@@ -28447,19 +28507,19 @@
 		{
 			"name": "鉄砲",
 			"type": "arqu",
-			"atk": 10,
+			"atk": 15,
 			"hit": 1,
 			"aspd": 0,
-			"range": 0,
+			"range": 20,
 			"rare": 1,
-			"text": "",
+			"text": "範囲+20",
 			"ref": 0,
 			"refText": "+0"
 		},
 		{
 			"name": "木砲",
 			"type": "arqu",
-			"atk": 13,
+			"atk": 19,
 			"hit": 1,
 			"aspd": 0,
 			"range": 10,
@@ -28471,7 +28531,7 @@
 		{
 			"name": "紅蓮の小筒",
 			"type": "arqu",
-			"atk": 15,
+			"atk": 25,
 			"hit": 1,
 			"aspd": 0,
 			"range": 0,
@@ -28483,7 +28543,7 @@
 		{
 			"name": "連裝銃",
 			"type": "arqu2",
-			"atk": 4,
+			"atk": 8,
 			"hit": 1,
 			"aspd": 0,
 			"range": 0,
@@ -28495,7 +28555,7 @@
 		{
 			"name": "大筒",
 			"type": "arqu",
-			"atk": 20,
+			"atk": 35,
 			"hit": 1,
 			"aspd": 0,
 			"range": 20,
@@ -28507,7 +28567,7 @@
 		{
 			"name": "回転砲",
 			"type": "arqu3",
-			"atk": 6,
+			"atk": 12,
 			"hit": 1,
 			"aspd": 0,
 			"range": 0,
@@ -28519,7 +28579,7 @@
 		{
 			"name": "墨縄",
 			"type": "arqu",
-			"atk": 23,
+			"atk": 33,
 			"hit": 1,
 			"aspd": 20,
 			"range": 0,
@@ -28531,7 +28591,7 @@
 		{
 			"name": "氷結の大筒",
 			"type": "arqu",
-			"atk": 37,
+			"atk": 54,
 			"hit": 1,
 			"aspd": 0,
 			"range": 20,
@@ -28541,33 +28601,45 @@
 			"refText": "+0"
 		},
 		{
-			"name": "雷光の中筒",
+			"name": "國友鉄砲",
 			"type": "arqu",
-			"atk": 40,
+			"atk": 57,
 			"hit": 1,
 			"aspd": 0,
+			"range": 10,
+			"rare": 3,
+			"text": "範囲+10",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "雷光の中筒",
+			"type": "arqu",
+			"atk": 50,
+			"hit": 1,
+			"aspd": 10,
 			"range": 0,
 			"rare": 3,
-			"text": "",
+			"text": "速度若干上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
 		{
 			"name": "信玄砲",
 			"type": "arqu",
-			"atk": 43,
+			"atk": 50,
 			"hit": 1,
 			"aspd": 0,
 			"range": 0,
 			"rare": 3,
-			"text": "",
+			"text": "後退距離若干上昇",
 			"ref": 0,
 			"refText": "+0"
 		},
 		{
 			"name": "天海の鉄砲",
 			"type": "arqu",
-			"atk": 45,
+			"atk": 65,
 			"hit": 1,
 			"aspd": 0,
 			"range": 0,
@@ -28579,7 +28651,7 @@
 		{
 			"name": "三成の烈砲",
 			"type": "arqu",
-			"atk": 48,
+			"atk": 70,
 			"hit": 1,
 			"aspd": -65,
 			"range": 0,
@@ -28591,7 +28663,7 @@
 		{
 			"name": "滅‧ガトリング砲",
 			"type": "arqu3",
-			"atk": 10,
+			"atk": 18,
 			"hit": 1,
 			"aspd": 0,
 			"range": 0,
@@ -28603,7 +28675,7 @@
 		{
 			"name": "八咫烏",
 			"type": "arqu",
-			"atk": 40,
+			"atk": 58,
 			"hit": 1,
 			"aspd": 20,
 			"range": 0,
@@ -28615,7 +28687,7 @@
 		{
 			"name": "雨夜手拍子",
 			"type": "arqu",
-			"atk": 55,
+			"atk": 80,
 			"hit": 1,
 			"aspd": 0,
 			"range": 0,
@@ -28627,7 +28699,7 @@
 		{
 			"name": "真‧三成の烈砲",
 			"type": "arqu",
-			"atk": 66,
+			"atk": 96,
 			"hit": 1,
 			"aspd": -65,
 			"range": 0,
@@ -28757,6 +28829,30 @@
 			"refText": "+0"
 		},
 		{
+			"name": "加農砲",
+			"type": "cannon",
+			"atk": 40,
+			"hit": 1,
+			"aspd": 0,
+			"range": 20,
+			"rare": 4,
+			"text": "範囲+20",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "國崩し",
+			"type": "cannon",
+			"atk": 45,
+			"hit": 1,
+			"aspd": 10,
+			"range": 0,
+			"rare": 4,
+			"text": "速度若干上昇",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "散星",
 			"type": "cannon",
 			"atk": 50,
@@ -28873,6 +28969,42 @@
 			"range": 0,
 			"rare": 4,
 			"text": "速度やや上昇",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "菩薩の杖",
+			"type": "spell",
+			"atk": 37,
+			"hit": 1,
+			"aspd": 0,
+			"range": 20,
+			"rare": 4,
+			"text": "範囲+20",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "道風の筆",
+			"type": "spell",
+			"atk": 42,
+			"hit": 1,
+			"aspd": 10,
+			"range": 0,
+			"rare": 4,
+			"text": "速度若干上昇",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "役小角の杖",
+			"type": "spell",
+			"atk": 53,
+			"hit": 1,
+			"aspd": 0,
+			"range": 0,
+			"rare": 4,
+			"text": "",
 			"ref": 0,
 			"refText": "+0"
 		}
