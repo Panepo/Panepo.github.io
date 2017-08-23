@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "45ea28f81fe0066cc1b5"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c2c4591ac7077bf5b6a9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27229,19 +27229,19 @@
 			"name": "arqu",
 			"frame1": 37,
 			"frame2": 30,
-			"range": 320
+			"range": 340
 		},
 		{
 			"name": "arqu2",
 			"frame1": 82,
 			"frame2": 30,
-			"range": 320
+			"range": 340
 		},
 		{
 			"name": "arqu3",
 			"frame1": 102,
 			"frame2": 30,
-			"range": 320
+			"range": 340
 		},
 		{
 			"name": "cannon",
@@ -28793,6 +28793,18 @@
 			"refText": "+0"
 		},
 		{
+			"name": "兼続の愛砲",
+			"type": "cannon",
+			"atk": 47,
+			"hit": 1,
+			"aspd": 0,
+			"range": 0,
+			"rare": 3,
+			"text": "爆風範囲低下",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "長政の激砲",
 			"type": "cannon",
 			"atk": 48,
@@ -28861,6 +28873,18 @@
 			"range": 0,
 			"rare": 4,
 			"text": "",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "真‧兼続の愛砲",
+			"type": "cannon",
+			"atk": 60,
+			"hit": 1,
+			"aspd": 0,
+			"range": 0,
+			"rare": 4,
+			"text": "爆風範囲低下",
 			"ref": 0,
 			"refText": "+0"
 		},
