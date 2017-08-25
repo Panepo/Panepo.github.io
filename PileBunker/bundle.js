@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c2c4591ac7077bf5b6a9"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b39f1093c09fda8cb43c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27345,7 +27345,7 @@
 			"type": "sword",
 			"atk": 31,
 			"hit": 1,
-			"aspd": 10,
+			"aspd": 15,
 			"range": 0,
 			"rare": 2,
 			"text": "速度若干上昇",
@@ -27405,7 +27405,7 @@
 			"type": "sword",
 			"atk": 45,
 			"hit": 1,
-			"aspd": 10,
+			"aspd": 15,
 			"range": 0,
 			"rare": 3,
 			"text": "速度若干上昇",
@@ -27669,7 +27669,7 @@
 			"type": "lance",
 			"atk": 33,
 			"hit": 1,
-			"aspd": 10,
+			"aspd": 15,
 			"range": 0,
 			"rare": 3,
 			"text": "速度若干上昇",
@@ -28149,7 +28149,7 @@
 			"type": "bow",
 			"atk": 9,
 			"hit": 1,
-			"aspd": 10,
+			"aspd": 15,
 			"range": 0,
 			"rare": 1,
 			"text": "速度若干上昇",
@@ -28197,7 +28197,7 @@
 			"type": "bow",
 			"atk": 20,
 			"hit": 1,
-			"aspd": 10,
+			"aspd": 15,
 			"range": 0,
 			"rare": 2,
 			"text": "速度若干上昇",
@@ -28305,7 +28305,7 @@
 			"type": "bow",
 			"atk": 40,
 			"hit": 1,
-			"aspd": 10,
+			"aspd": 15,
 			"range": 0,
 			"rare": 4,
 			"text": "速度若干上昇",
@@ -28617,7 +28617,7 @@
 			"type": "arqu",
 			"atk": 50,
 			"hit": 1,
-			"aspd": 10,
+			"aspd": 15,
 			"range": 0,
 			"rare": 3,
 			"text": "速度若干上昇",
@@ -28857,7 +28857,7 @@
 			"type": "cannon",
 			"atk": 45,
 			"hit": 1,
-			"aspd": 10,
+			"aspd": 15,
 			"range": 0,
 			"rare": 4,
 			"text": "速度若干上昇",
@@ -29013,7 +29013,7 @@
 			"type": "spell",
 			"atk": 42,
 			"hit": 1,
-			"aspd": 10,
+			"aspd": 15,
 			"range": 0,
 			"rare": 4,
 			"text": "速度若干上昇",
