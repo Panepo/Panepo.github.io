@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b39f1093c09fda8cb43c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "70a90f954fba2f79b24d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27191,7 +27191,7 @@
 		},
 		{
 			"name": "hammer",
-			"frame1": 32,
+			"frame1": 21,
 			"frame2": 30,
 			"range": 90
 		},
