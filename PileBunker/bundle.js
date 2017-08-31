@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7c327f4d845062747868"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4771be24bffe57f52b41"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28860,7 +28860,7 @@
 		},
 		{
 			"name": "滅‧ガトリング砲",
-			"type": "arqu3",
+			"type": "arqux2",
 			"atk": 18,
 			"hit": 1,
 			"aspd": 0,
