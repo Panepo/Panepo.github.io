@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "70a90f954fba2f79b24d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "7c327f4d845062747868"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27184,16 +27184,88 @@
 			"range": 140
 		},
 		{
+			"name": "sword1",
+			"frame1": 17,
+			"frame2": 30,
+			"range": 140
+		},
+		{
+			"name": "sword2",
+			"frame1": 16,
+			"frame2": 30,
+			"range": 140
+		},
+		{
+			"name": "sword3",
+			"frame1": 15,
+			"frame2": 30,
+			"range": 140
+		},
+		{
 			"name": "lance",
 			"frame1": 23,
 			"frame2": 30,
 			"range": 200
 		},
 		{
+			"name": "lance1",
+			"frame1": 20,
+			"frame2": 30,
+			"range": 200
+		},
+		{
+			"name": "lance2",
+			"frame1": 19,
+			"frame2": 30,
+			"range": 200
+		},
+		{
+			"name": "lance3",
+			"frame1": 18,
+			"frame2": 30,
+			"range": 200
+		},
+		{
+			"name": "lancex1",
+			"frame1": 40,
+			"frame2": 30,
+			"range": 200
+		},
+		{
+			"name": "lancex2",
+			"frame1": 57,
+			"frame2": 30,
+			"range": 200
+		},
+		{
 			"name": "hammer",
+			"frame1": 27,
+			"frame2": 30,
+			"range": 100
+		},
+		{
+			"name": "hammer1",
+			"frame1": 23,
+			"frame2": 30,
+			"range": 100
+		},
+		{
+			"name": "hammer2",
+			"frame1": 22,
+			"frame2": 30,
+			"range": 100
+		},
+		{
+			"name": "hammer3",
 			"frame1": 21,
 			"frame2": 30,
-			"range": 90
+			"range": 100
+		},
+		{
+			"name": "hammerx1",
+			"frame1": 42,
+			"frame2": 30,
+			"range": 100
 		},
 		{
 			"name": "shield",
@@ -27208,20 +27280,68 @@
 			"range": 280
 		},
 		{
+			"name": "bow1",
+			"frame1": 17,
+			"frame2": 18,
+			"range": 280
+		},
+		{
+			"name": "bow2",
+			"frame1": 16,
+			"frame2": 18,
+			"range": 280
+		},
+		{
+			"name": "bow3",
+			"frame1": 15,
+			"frame2": 18,
+			"range": 280
+		},
+		{
+			"name": "bowx1",
+			"frame1": 69,
+			"frame2": 18,
+			"range": 280
+		},
+		{
 			"name": "xbow",
 			"frame1": 24,
 			"frame2": 30,
 			"range": 250
 		},
 		{
+			"name": "xbow1",
+			"frame1": 21,
+			"frame2": 30,
+			"range": 250
+		},
+		{
 			"name": "xbow2",
-			"frame1": 42,
+			"frame1": 20,
 			"frame2": 30,
 			"range": 250
 		},
 		{
 			"name": "xbow3",
+			"frame1": 18,
+			"frame2": 30,
+			"range": 250
+		},
+		{
+			"name": "xbowx1",
+			"frame1": 42,
+			"frame2": 30,
+			"range": 250
+		},
+		{
+			"name": "xbowx2",
 			"frame1": 57,
+			"frame2": 30,
+			"range": 250
+		},
+		{
+			"name": "xbowx3",
+			"frame1": 38,
 			"frame2": 30,
 			"range": 250
 		},
@@ -27232,14 +27352,38 @@
 			"range": 340
 		},
 		{
+			"name": "arqu1",
+			"frame1": 32,
+			"frame2": 30,
+			"range": 340
+		},
+		{
 			"name": "arqu2",
-			"frame1": 82,
+			"frame1": 31,
 			"frame2": 30,
 			"range": 340
 		},
 		{
 			"name": "arqu3",
+			"frame1": 28,
+			"frame2": 30,
+			"range": 340
+		},
+		{
+			"name": "arqux1",
+			"frame1": 82,
+			"frame2": 30,
+			"range": 340
+		},
+		{
+			"name": "arqux2",
 			"frame1": 102,
+			"frame2": 30,
+			"range": 340
+		},
+		{
+			"name": "arqux3",
+			"frame1": 62,
 			"frame2": 30,
 			"range": 340
 		},
@@ -27250,16 +27394,70 @@
 			"range": 340
 		},
 		{
+			"name": "cannon1",
+			"frame1": 36,
+			"frame2": 45,
+			"range": 340
+		},
+		{
+			"name": "cannon2",
+			"frame1": 35,
+			"frame2": 45,
+			"range": 340
+		},
+		{
+			"name": "cannon3",
+			"frame1": 32,
+			"frame2": 45,
+			"range": 340
+		},
+		{
+			"name": "cannonx1",
+			"frame1": 67,
+			"frame2": 45,
+			"range": 340
+		},
+		{
 			"name": "spell",
 			"frame1": 42,
 			"frame2": 30,
-			"range": 220
+			"range": 240
+		},
+		{
+			"name": "spell1",
+			"frame1": 36,
+			"frame2": 30,
+			"range": 240
+		},
+		{
+			"name": "spell2",
+			"frame1": 34,
+			"frame2": 30,
+			"range": 240
+		},
+		{
+			"name": "spell3",
+			"frame1": 32,
+			"frame2": 30,
+			"range": 240
 		},
 		{
 			"name": "dance",
 			"frame1": 62,
 			"frame2": 60,
 			"range": 300
+		},
+		{
+			"name": "staff",
+			"frame1": 37,
+			"frame2": 30,
+			"range": 240
+		},
+		{
+			"name": "fist",
+			"frame1": 32,
+			"frame2": 19,
+			"range": 90
 		}
 	];
 
@@ -27270,10 +27468,10 @@
 	module.exports = [
 		{
 			"name": "脇差",
-			"type": "sword",
+			"type": "sword3",
 			"atk": 5,
 			"hit": 1,
-			"aspd": 25,
+			"aspd": 0,
 			"range": 0,
 			"rare": 1,
 			"text": "速度上昇",
@@ -27282,10 +27480,10 @@
 		},
 		{
 			"name": "兜割",
-			"type": "sword",
+			"type": "sword2",
 			"atk": 12,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 1,
 			"text": "速度やや上昇",
@@ -27318,10 +27516,10 @@
 		},
 		{
 			"name": "鉄砲切り兼光",
-			"type": "sword",
+			"type": "sword2",
 			"atk": 20,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 2,
 			"text": "速度やや上昇",
@@ -27342,10 +27540,10 @@
 		},
 		{
 			"name": "雷切",
-			"type": "sword",
+			"type": "sword1",
 			"atk": 31,
 			"hit": 1,
-			"aspd": 15,
+			"aspd": 0,
 			"range": 0,
 			"rare": 2,
 			"text": "速度若干上昇",
@@ -27378,10 +27576,10 @@
 		},
 		{
 			"name": "虎徹",
-			"type": "sword",
+			"type": "sword3",
 			"atk": 30,
 			"hit": 1,
-			"aspd": 25,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度上昇",
@@ -27402,10 +27600,10 @@
 		},
 		{
 			"name": "古代刀",
-			"type": "sword",
+			"type": "sword1",
 			"atk": 45,
 			"hit": 1,
-			"aspd": 15,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度若干上昇",
@@ -27474,10 +27672,10 @@
 		},
 		{
 			"name": "妖刀村正",
-			"type": "sword",
+			"type": "sword2",
 			"atk": 48,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度やや上昇",
@@ -27570,10 +27768,10 @@
 		},
 		{
 			"name": "竹槍",
-			"type": "lance",
+			"type": "lance2",
 			"atk": 5,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 1,
 			"text": "速度やや上昇",
@@ -27618,10 +27816,10 @@
 		},
 		{
 			"name": "裂空の真槍",
-			"type": "lance",
+			"type": "lance2",
 			"atk": 14,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 2,
 			"text": "速度やや上昇",
@@ -27654,10 +27852,10 @@
 		},
 		{
 			"name": "雙龍槍",
-			"type": "lance",
+			"type": "lance2",
 			"atk": 26,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度やや上昇",
@@ -27666,10 +27864,10 @@
 		},
 		{
 			"name": "片鎌槍",
-			"type": "lance",
+			"type": "lance1",
 			"atk": 33,
 			"hit": 1,
-			"aspd": 15,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度若干上昇",
@@ -27702,10 +27900,10 @@
 		},
 		{
 			"name": "利家の巨槍",
-			"type": "lance",
+			"type": "lancex1",
 			"atk": 48,
 			"hit": 1,
-			"aspd": -70,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度低下",
@@ -27726,10 +27924,10 @@
 		},
 		{
 			"name": "両刃櫃槍",
-			"type": "lance",
+			"type": "lancex2",
 			"atk": 20,
 			"hit": 2,
-			"aspd": -140,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度低下 2連攻撃",
@@ -27750,10 +27948,10 @@
 		},
 		{
 			"name": "蜻蛉切",
-			"type": "lance",
+			"type": "lance2",
 			"atk": 35,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度やや上昇",
@@ -27834,10 +28032,10 @@
 		},
 		{
 			"name": "真‧利家の巨槍",
-			"type": "lance",
+			"type": "lancex1",
 			"atk": 58,
 			"hit": 1,
-			"aspd": -70,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度低下",
@@ -27846,10 +28044,10 @@
 		},
 		{
 			"name": "木槌",
-			"type": "hammer",
+			"type": "hammer3",
 			"atk": 6,
 			"hit": 1,
-			"aspd": 25,
+			"aspd": 0,
 			"range": 0,
 			"rare": 1,
 			"text": "速度上昇",
@@ -27906,10 +28104,10 @@
 		},
 		{
 			"name": "義弘の暴槌",
-			"type": "hammer",
+			"type": "hammerx1",
 			"atk": 73,
 			"hit": 1,
-			"aspd": -60,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度低下",
@@ -27918,10 +28116,10 @@
 		},
 		{
 			"name": "打ち出の小槌",
-			"type": "hammer",
+			"type": "hammer3",
 			"atk": 44,
 			"hit": 1,
-			"aspd": 25,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度上昇",
@@ -27930,10 +28128,10 @@
 		},
 		{
 			"name": "軍配形天守槌",
-			"type": "hammer",
+			"type": "hammer2",
 			"atk": 54,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度やや上昇",
@@ -27966,10 +28164,10 @@
 		},
 		{
 			"name": "真・義弘の暴槌",
-			"type": "hammer",
+			"type": "hammerx1",
 			"atk": 100,
 			"hit": 1,
-			"aspd": -60,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度低下",
@@ -28146,10 +28344,10 @@
 		},
 		{
 			"name": "柳葉",
-			"type": "bow",
+			"type": "bow1",
 			"atk": 9,
 			"hit": 1,
-			"aspd": 15,
+			"aspd": 0,
 			"range": 0,
 			"rare": 1,
 			"text": "速度若干上昇",
@@ -28170,10 +28368,10 @@
 		},
 		{
 			"name": "重藤の弓",
-			"type": "bow",
+			"type": "bow2",
 			"atk": 14,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 2,
 			"text": "速度やや上昇",
@@ -28194,10 +28392,10 @@
 		},
 		{
 			"name": "雷の弓",
-			"type": "bow",
+			"type": "bow1",
 			"atk": 20,
 			"hit": 1,
-			"aspd": 15,
+			"aspd": 0,
 			"range": 0,
 			"rare": 2,
 			"text": "速度若干上昇",
@@ -28218,10 +28416,10 @@
 		},
 		{
 			"name": "天鹿児弓",
-			"type": "bow",
+			"type": "bow2",
 			"atk": 24,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度やや上昇",
@@ -28266,10 +28464,10 @@
 		},
 		{
 			"name": "元就の謀弓",
-			"type": "bow",
+			"type": "bowx1",
 			"atk": 3,
 			"hit": 1,
-			"aspd": -260,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度低下 敵3体に攻撃",
@@ -28278,10 +28476,10 @@
 		},
 		{
 			"name": "天の羽々矢",
-			"type": "bow",
+			"type": "bow3",
 			"atk": 29,
 			"hit": 1,
-			"aspd": 25,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度上昇",
@@ -28290,10 +28488,10 @@
 		},
 		{
 			"name": "聚楽の弓",
-			"type": "bow",
+			"type": "bow2",
 			"atk": 35,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度やや上昇",
@@ -28302,10 +28500,10 @@
 		},
 		{
 			"name": "雷上動",
-			"type": "bow",
+			"type": "bow1",
 			"atk": 40,
 			"hit": 1,
-			"aspd": 15,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度若干上昇",
@@ -28338,10 +28536,10 @@
 		},
 		{
 			"name": "真‧元就の謀弓",
-			"type": "bow",
+			"type": "bowx1",
 			"atk": 8,
 			"hit": 1,
-			"aspd": -260,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度低下 敵3体に攻撃",
@@ -28350,7 +28548,7 @@
 		},
 		{
 			"name": "連弩",
-			"type": "xbow2",
+			"type": "xbowx1",
 			"atk": 18,
 			"hit": 1,
 			"aspd": 0,
@@ -28362,10 +28560,10 @@
 		},
 		{
 			"name": "木弩",
-			"type": "xbow",
+			"type": "xbow2",
 			"atk": 10,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 1,
 			"text": "速度やや上昇",
@@ -28398,10 +28596,10 @@
 		},
 		{
 			"name": "舞鶴",
-			"type": "xbow",
+			"type": "xbow2",
 			"atk": 55,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度やや上昇",
@@ -28422,10 +28620,10 @@
 		},
 		{
 			"name": "正則の剛弩",
-			"type": "xbow",
+			"type": "xbowx3",
 			"atk": 84,
 			"hit": 1,
-			"aspd": -55,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度低下",
@@ -28446,7 +28644,7 @@
 		},
 		{
 			"name": "無雙弩",
-			"type": "xbow3",
+			"type": "xbowx2",
 			"atk": 21,
 			"hit": 1,
 			"aspd": 0,
@@ -28482,10 +28680,10 @@
 		},
 		{
 			"name": "真‧正則の剛弩",
-			"type": "xbow",
+			"type": "xbowx3",
 			"atk": 113,
 			"hit": 1,
-			"aspd": -55,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度低下",
@@ -28494,10 +28692,10 @@
 		},
 		{
 			"name": "手銃",
-			"type": "arqu",
+			"type": "arqu2",
 			"atk": 4,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 1,
 			"text": "速度やや上昇",
@@ -28542,7 +28740,7 @@
 		},
 		{
 			"name": "連裝銃",
-			"type": "arqu2",
+			"type": "arqux1",
 			"atk": 8,
 			"hit": 1,
 			"aspd": 0,
@@ -28566,7 +28764,7 @@
 		},
 		{
 			"name": "回転砲",
-			"type": "arqu3",
+			"type": "arqux2",
 			"atk": 12,
 			"hit": 1,
 			"aspd": 0,
@@ -28578,10 +28776,10 @@
 		},
 		{
 			"name": "墨縄",
-			"type": "arqu",
+			"type": "arqu2",
 			"atk": 33,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度やや上昇",
@@ -28614,10 +28812,10 @@
 		},
 		{
 			"name": "雷光の中筒",
-			"type": "arqu",
+			"type": "arqu1",
 			"atk": 50,
 			"hit": 1,
-			"aspd": 15,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度若干上昇",
@@ -28650,10 +28848,10 @@
 		},
 		{
 			"name": "三成の烈砲",
-			"type": "arqu",
+			"type": "arqux3",
 			"atk": 70,
 			"hit": 1,
-			"aspd": -65,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度低下",
@@ -28674,10 +28872,10 @@
 		},
 		{
 			"name": "八咫烏",
-			"type": "arqu",
+			"type": "arqu2",
 			"atk": 58,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度やや上昇",
@@ -28698,10 +28896,10 @@
 		},
 		{
 			"name": "真‧三成の烈砲",
-			"type": "arqu",
+			"type": "arqux3",
 			"atk": 96,
 			"hit": 1,
-			"aspd": -65,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度低下",
@@ -28710,10 +28908,10 @@
 		},
 		{
 			"name": "木製大砲",
-			"type": "cannon",
+			"type": "cannon2",
 			"atk": 7,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 1,
 			"text": "速度やや上昇",
@@ -28734,10 +28932,10 @@
 		},
 		{
 			"name": "芝辻砲",
-			"type": "cannon",
+			"type": "cannon2",
 			"atk": 16,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 2,
 			"text": "速度やや上昇",
@@ -28806,10 +29004,10 @@
 		},
 		{
 			"name": "長政の激砲",
-			"type": "cannon",
+			"type": "cannonx1",
 			"atk": 48,
 			"hit": 1,
-			"aspd": -58,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度低下",
@@ -28818,10 +29016,10 @@
 		},
 		{
 			"name": "車山形大砲-祭-",
-			"type": "cannon",
+			"type": "cannon2",
 			"atk": 33,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度やや上昇",
@@ -28854,10 +29052,10 @@
 		},
 		{
 			"name": "國崩し",
-			"type": "cannon",
+			"type": "cannon1",
 			"atk": 45,
 			"hit": 1,
-			"aspd": 15,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度若干上昇",
@@ -28890,10 +29088,10 @@
 		},
 		{
 			"name": "真‧長政の激砲",
-			"type": "cannon",
+			"type": "cannonx1",
 			"atk": 65,
 			"hit": 1,
-			"aspd": -58,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度低下",
@@ -28950,10 +29148,10 @@
 		},
 		{
 			"name": "小十郎の響杖",
-			"type": "spell",
+			"type": "spell2",
 			"atk": 22,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 3,
 			"text": "速度やや上昇",
@@ -28986,10 +29184,10 @@
 		},
 		{
 			"name": "真・小十郎の響杖",
-			"type": "spell",
+			"type": "spell2",
 			"atk": 31,
 			"hit": 1,
-			"aspd": 20,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度やや上昇",
@@ -29010,10 +29208,10 @@
 		},
 		{
 			"name": "道風の筆",
-			"type": "spell",
+			"type": "spell1",
 			"atk": 42,
 			"hit": 1,
-			"aspd": 15,
+			"aspd": 0,
 			"range": 0,
 			"rare": 4,
 			"text": "速度若干上昇",
@@ -34811,8 +35009,13 @@
 	
 			var _this = _possibleConstructorReturn(this, (MdlTableClass.__proto__ || Object.getPrototypeOf(MdlTableClass)).call(this, props, context));
 	
+			var tempData = _this.props.tableData;
+			tempData.sort(function (a, b) {
+				return b.dps - a.dps;
+			});
+	
 			_this.state = {
-				tableBody: _this.props.tableData,
+				tableBody: tempData,
 				sortKey: 'dps',
 				sortDir: 1
 			};
@@ -36107,41 +36310,26 @@
 				maxMux = 1;
 		}
 	
-		for (var i = 0; i < weaponSelected.length; i += 1) {
-			if (input.type === 'spell') {
-				totalAtk = (charAtk + weaponSelected[i].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
-				weaponSelected[i].damage = Math.floor(totalAtk);
-				weaponSelected[i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[i].aspd) / 100));
-				weaponSelected[i].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
-				weaponSelected[i].dps = Math.floor(weaponSelected[i].damage * weaponSelected[i].hit * parameters.valueFPS / (weaponSelected[i].frame1 + weaponSelected[i].frame2) * 100) / 100;
-			} else {
-				totalAtk = (charAtk + weaponSelected[i].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
-				totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
-				if (totalAtk - parameters.valueProDam >= totalDef) {
-					weaponSelected[i].damage = Math.floor(totalAtk - totalDef);
-				} else {
-					weaponSelected[i].damage = parameters.valueProDam;
-				}
-				weaponSelected[i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[i].aspd) / 100));
-				weaponSelected[i].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
-				weaponSelected[i].dps = Math.floor(weaponSelected[i].damage * weaponSelected[i].hit * parameters.valueFPS / (weaponSelected[i].frame1 + weaponSelected[i].frame2) * 100) / 100;
-			}
-		}
-		_database.dbWeapon.update(weaponSelected);
-	
 		switch (input.type) {
 			case 'sword':
-			case 'hammer':
-			case 'lance':
-			case 'shield':
-			case 'bow':
-			case 'spell':
-			case 'cannon':
-				output = _database.dbWeapon.chain().find({ type: input.type }).data();
-				break;
-			case 'xbow':
-				weaponSelected = _database.dbWeapon.chain().find({ type: 'xbow2' }).data();
-				typeSelected = _database.dbType.findOne({ name: 'xbow2' });
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'sword' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'sword' });
+				for (var i = 0; i < weaponSelected.length; i += 1) {
+					totalAtk = (charAtk + weaponSelected[i].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[i].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[i].damage = parameters.valueProDam;
+					}
+					weaponSelected[i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[i].aspd) / 100));
+					weaponSelected[i].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[i].dps = Math.floor(weaponSelected[i].damage * weaponSelected[i].hit * parameters.valueFPS / (weaponSelected[i].frame1 + weaponSelected[i].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'sword1' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'sword1' });
 				for (var _i = 0; _i < weaponSelected.length; _i += 1) {
 					totalAtk = (charAtk + weaponSelected[_i].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
@@ -36156,8 +36344,8 @@
 				}
 				_database.dbWeapon.update(weaponSelected);
 	
-				weaponSelected = _database.dbWeapon.chain().find({ type: 'xbow3' }).data();
-				typeSelected = _database.dbType.findOne({ name: 'xbow3' });
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'sword2' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'sword2' });
 				for (var _i2 = 0; _i2 < weaponSelected.length; _i2 += 1) {
 					totalAtk = (charAtk + weaponSelected[_i2].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
@@ -36171,40 +36359,659 @@
 					weaponSelected[_i2].dps = Math.floor(weaponSelected[_i2].damage * weaponSelected[_i2].hit * parameters.valueFPS / (weaponSelected[_i2].frame1 + weaponSelected[_i2].frame2) * 100) / 100;
 				}
 				_database.dbWeapon.update(weaponSelected);
-				output = _database.dbWeapon.chain().find({ $or: [{ type: 'xbow' }, { type: 'xbow2' }, { type: 'xbow3' }] }).data();
-				break;
-			case 'arqu':
-				weaponSelected = _database.dbWeapon.chain().find({ type: 'arqu2' }).data();
-				typeSelected = _database.dbType.findOne({ name: 'arqu2' });
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'sword3' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'sword3' });
 				for (var _i3 = 0; _i3 < weaponSelected.length; _i3 += 1) {
 					totalAtk = (charAtk + weaponSelected[_i3].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
 					if (totalAtk - parameters.valueProDam >= totalDef) {
-						weaponSelected[_i3].damage = Math.floor(totalAtk - totalDef) * 2;
+						weaponSelected[_i3].damage = Math.floor(totalAtk - totalDef);
 					} else {
-						weaponSelected[_i3].damage = parameters.valueProDam * 2;
+						weaponSelected[_i3].damage = parameters.valueProDam;
 					}
 					weaponSelected[_i3].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i3].aspd) / 100));
 					weaponSelected[_i3].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i3].dps = Math.floor(weaponSelected[_i3].damage * weaponSelected[_i3].hit * parameters.valueFPS / (weaponSelected[_i3].frame1 + weaponSelected[_i3].frame2) * 100) / 100;
 				}
 				_database.dbWeapon.update(weaponSelected);
-				weaponSelected = _database.dbWeapon.chain().find({ type: 'arqu3' }).data();
-				typeSelected = _database.dbType.findOne({ name: 'arqu3' });
+				output = _database.dbWeapon.chain().find({ $or: [{ type: 'sword' }, { type: 'sword1' }, { type: 'sword2' }, { type: 'sword3' }] }).data();
+				break;
+			case 'hammer':
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'hammer' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'hammer' });
 				for (var _i4 = 0; _i4 < weaponSelected.length; _i4 += 1) {
 					totalAtk = (charAtk + weaponSelected[_i4].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
 					if (totalAtk - parameters.valueProDam >= totalDef) {
-						weaponSelected[_i4].damage = Math.floor(totalAtk - totalDef) * 3;
+						weaponSelected[_i4].damage = Math.floor(totalAtk - totalDef);
 					} else {
-						weaponSelected[_i4].damage = parameters.valueProDam * 3;
+						weaponSelected[_i4].damage = parameters.valueProDam;
 					}
 					weaponSelected[_i4].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i4].aspd) / 100));
 					weaponSelected[_i4].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i4].dps = Math.floor(weaponSelected[_i4].damage * weaponSelected[_i4].hit * parameters.valueFPS / (weaponSelected[_i4].frame1 + weaponSelected[_i4].frame2) * 100) / 100;
 				}
 				_database.dbWeapon.update(weaponSelected);
-				output = _database.dbWeapon.chain().find({ $or: [{ type: 'arqu' }, { type: 'arqu2' }, { type: 'arqu3' }] }).data();
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'hammer1' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'hammer1' });
+				for (var _i5 = 0; _i5 < weaponSelected.length; _i5 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i5].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i5].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i5].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i5].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i5].aspd) / 100));
+					weaponSelected[_i5].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i5].dps = Math.floor(weaponSelected[_i5].damage * weaponSelected[_i5].hit * parameters.valueFPS / (weaponSelected[_i5].frame1 + weaponSelected[_i5].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'hammer2' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'hammer2' });
+				for (var _i6 = 0; _i6 < weaponSelected.length; _i6 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i6].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i6].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i6].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i6].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i6].aspd) / 100));
+					weaponSelected[_i6].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i6].dps = Math.floor(weaponSelected[_i6].damage * weaponSelected[_i6].hit * parameters.valueFPS / (weaponSelected[_i6].frame1 + weaponSelected[_i6].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'hammer3' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'hammer3' });
+				for (var _i7 = 0; _i7 < weaponSelected.length; _i7 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i7].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i7].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i7].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i7].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i7].aspd) / 100));
+					weaponSelected[_i7].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i7].dps = Math.floor(weaponSelected[_i7].damage * weaponSelected[_i7].hit * parameters.valueFPS / (weaponSelected[_i7].frame1 + weaponSelected[_i7].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'hammerx1' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'hammerx1' });
+				for (var _i8 = 0; _i8 < weaponSelected.length; _i8 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i8].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i8].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i8].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i8].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i8].aspd) / 100));
+					weaponSelected[_i8].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i8].dps = Math.floor(weaponSelected[_i8].damage * weaponSelected[_i8].hit * parameters.valueFPS / (weaponSelected[_i8].frame1 + weaponSelected[_i8].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+				output = _database.dbWeapon.chain().find({ $or: [{ type: 'hammer' }, { type: 'hammer1' }, { type: 'hammer2' }, { type: 'hammer3' }, { type: 'hammerx1' }] }).data();
+				break;
+			case 'lance':
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'lance' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'lance' });
+				for (var _i9 = 0; _i9 < weaponSelected.length; _i9 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i9].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i9].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i9].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i9].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i9].aspd) / 100));
+					weaponSelected[_i9].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i9].dps = Math.floor(weaponSelected[_i9].damage * weaponSelected[_i9].hit * parameters.valueFPS / (weaponSelected[_i9].frame1 + weaponSelected[_i9].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'lance1' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'lance1' });
+				for (var _i10 = 0; _i10 < weaponSelected.length; _i10 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i10].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i10].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i10].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i10].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i10].aspd) / 100));
+					weaponSelected[_i10].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i10].dps = Math.floor(weaponSelected[_i10].damage * weaponSelected[_i10].hit * parameters.valueFPS / (weaponSelected[_i10].frame1 + weaponSelected[_i10].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'lance2' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'lance2' });
+				for (var _i11 = 0; _i11 < weaponSelected.length; _i11 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i11].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i11].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i11].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i11].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i11].aspd) / 100));
+					weaponSelected[_i11].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i11].dps = Math.floor(weaponSelected[_i11].damage * weaponSelected[_i11].hit * parameters.valueFPS / (weaponSelected[_i11].frame1 + weaponSelected[_i11].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'lance3' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'lance3' });
+				for (var _i12 = 0; _i12 < weaponSelected.length; _i12 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i12].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i12].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i12].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i12].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i12].aspd) / 100));
+					weaponSelected[_i12].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i12].dps = Math.floor(weaponSelected[_i12].damage * weaponSelected[_i12].hit * parameters.valueFPS / (weaponSelected[_i12].frame1 + weaponSelected[_i12].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'lancex1' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'lancex1' });
+				for (var _i13 = 0; _i13 < weaponSelected.length; _i13 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i13].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i13].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i13].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i13].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i13].aspd) / 100));
+					weaponSelected[_i13].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i13].dps = Math.floor(weaponSelected[_i13].damage * weaponSelected[_i13].hit * parameters.valueFPS / (weaponSelected[_i13].frame1 + weaponSelected[_i13].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'lancex2' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'lancex2' });
+				for (var _i14 = 0; _i14 < weaponSelected.length; _i14 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i14].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i14].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i14].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i14].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i14].aspd) / 100));
+					weaponSelected[_i14].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i14].dps = Math.floor(weaponSelected[_i14].damage * weaponSelected[_i14].hit * parameters.valueFPS / (weaponSelected[_i14].frame1 + weaponSelected[_i14].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+				output = _database.dbWeapon.chain().find({ $or: [{ type: 'lance' }, { type: 'lance1' }, { type: 'lance2' }, { type: 'lance3' }, { type: 'lancex1' }, { type: 'lancex2' }] }).data();
+				break;
+			case 'shield':
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'shield' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'shield' });
+				for (var _i15 = 0; _i15 < weaponSelected.length; _i15 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i15].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i15].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i15].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i15].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i15].aspd) / 100));
+					weaponSelected[_i15].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i15].dps = Math.floor(weaponSelected[_i15].damage * weaponSelected[_i15].hit * parameters.valueFPS / (weaponSelected[_i15].frame1 + weaponSelected[_i15].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+				output = _database.dbWeapon.chain().find({ type: input.type }).data();
+				break;
+			case 'bow':
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'bow' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'bow' });
+				for (var _i16 = 0; _i16 < weaponSelected.length; _i16 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i16].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i16].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i16].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i16].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i16].aspd) / 100));
+					weaponSelected[_i16].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i16].dps = Math.floor(weaponSelected[_i16].damage * weaponSelected[_i16].hit * parameters.valueFPS / (weaponSelected[_i16].frame1 + weaponSelected[_i16].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'bow1' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'bow1' });
+				for (var _i17 = 0; _i17 < weaponSelected.length; _i17 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i17].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i17].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i17].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i17].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i17].aspd) / 100));
+					weaponSelected[_i17].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i17].dps = Math.floor(weaponSelected[_i17].damage * weaponSelected[_i17].hit * parameters.valueFPS / (weaponSelected[_i17].frame1 + weaponSelected[_i17].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'bow2' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'bow2' });
+				for (var _i18 = 0; _i18 < weaponSelected.length; _i18 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i18].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i18].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i18].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i18].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i18].aspd) / 100));
+					weaponSelected[_i18].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i18].dps = Math.floor(weaponSelected[_i18].damage * weaponSelected[_i18].hit * parameters.valueFPS / (weaponSelected[_i18].frame1 + weaponSelected[_i18].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'bow3' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'bow3' });
+				for (var _i19 = 0; _i19 < weaponSelected.length; _i19 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i19].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i19].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i19].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i19].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i19].aspd) / 100));
+					weaponSelected[_i19].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i19].dps = Math.floor(weaponSelected[_i19].damage * weaponSelected[_i19].hit * parameters.valueFPS / (weaponSelected[_i19].frame1 + weaponSelected[_i19].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'bowx1' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'bowx1' });
+				for (var _i20 = 0; _i20 < weaponSelected.length; _i20 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i20].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i20].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i20].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i20].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i20].aspd) / 100));
+					weaponSelected[_i20].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i20].dps = Math.floor(weaponSelected[_i20].damage * weaponSelected[_i20].hit * parameters.valueFPS / (weaponSelected[_i20].frame1 + weaponSelected[_i20].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+				output = _database.dbWeapon.chain().find({ $or: [{ type: 'bow' }, { type: 'bow1' }, { type: 'bow2' }, { type: 'bow3' }, { type: 'bowx1' }] }).data();
+				break;
+			case 'spell':
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'spell' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'spell' });
+				for (var _i21 = 0; _i21 < weaponSelected.length; _i21 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i21].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					weaponSelected[_i21].damage = Math.floor(totalAtk);
+					weaponSelected[_i21].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i21].aspd) / 100));
+					weaponSelected[_i21].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i21].dps = Math.floor(weaponSelected[_i21].damage * weaponSelected[_i21].hit * parameters.valueFPS / (weaponSelected[_i21].frame1 + weaponSelected[_i21].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'spell1' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'spell1' });
+				for (var _i22 = 0; _i22 < weaponSelected.length; _i22 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i22].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					weaponSelected[_i22].damage = Math.floor(totalAtk);
+					weaponSelected[_i22].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i22].aspd) / 100));
+					weaponSelected[_i22].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i22].dps = Math.floor(weaponSelected[_i22].damage * weaponSelected[_i22].hit * parameters.valueFPS / (weaponSelected[_i22].frame1 + weaponSelected[_i22].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'spell2' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'spell2' });
+				for (var _i23 = 0; _i23 < weaponSelected.length; _i23 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i23].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					weaponSelected[_i23].damage = Math.floor(totalAtk);
+					weaponSelected[_i23].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i23].aspd) / 100));
+					weaponSelected[_i23].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i23].dps = Math.floor(weaponSelected[_i23].damage * weaponSelected[_i23].hit * parameters.valueFPS / (weaponSelected[_i23].frame1 + weaponSelected[_i23].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'spell3' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'spell3' });
+				for (var _i24 = 0; _i24 < weaponSelected.length; _i24 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i24].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					weaponSelected[_i24].damage = Math.floor(totalAtk);
+					weaponSelected[_i24].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i24].aspd) / 100));
+					weaponSelected[_i24].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i24].dps = Math.floor(weaponSelected[_i24].damage * weaponSelected[_i24].hit * parameters.valueFPS / (weaponSelected[_i24].frame1 + weaponSelected[_i24].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+				output = _database.dbWeapon.chain().find({ $or: [{ type: 'spell' }, { type: 'spell1' }, { type: 'spell2' }, { type: 'spell3' }] }).data();
+				break;
+			case 'cannon':
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'cannon' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'cannon' });
+				for (var _i25 = 0; _i25 < weaponSelected.length; _i25 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i25].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i25].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i25].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i25].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i25].aspd) / 100));
+					weaponSelected[_i25].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i25].dps = Math.floor(weaponSelected[_i25].damage * weaponSelected[_i25].hit * parameters.valueFPS / (weaponSelected[_i25].frame1 + weaponSelected[_i25].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'cannon1' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'cannon1' });
+				for (var _i26 = 0; _i26 < weaponSelected.length; _i26 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i26].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i26].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i26].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i26].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i26].aspd) / 100));
+					weaponSelected[_i26].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i26].dps = Math.floor(weaponSelected[_i26].damage * weaponSelected[_i26].hit * parameters.valueFPS / (weaponSelected[_i26].frame1 + weaponSelected[_i26].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'cannon2' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'cannon2' });
+				for (var _i27 = 0; _i27 < weaponSelected.length; _i27 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i27].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i27].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i27].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i27].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i27].aspd) / 100));
+					weaponSelected[_i27].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i27].dps = Math.floor(weaponSelected[_i27].damage * weaponSelected[_i27].hit * parameters.valueFPS / (weaponSelected[_i27].frame1 + weaponSelected[_i27].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'cannon3' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'cannon3' });
+				for (var _i28 = 0; _i28 < weaponSelected.length; _i28 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i28].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i28].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i28].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i28].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i28].aspd) / 100));
+					weaponSelected[_i28].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i28].dps = Math.floor(weaponSelected[_i28].damage * weaponSelected[_i28].hit * parameters.valueFPS / (weaponSelected[_i28].frame1 + weaponSelected[_i28].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'cannonx1' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'cannonx1' });
+				for (var _i29 = 0; _i29 < weaponSelected.length; _i29 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i29].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i29].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i29].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i29].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i29].aspd) / 100));
+					weaponSelected[_i29].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i29].dps = Math.floor(weaponSelected[_i29].damage * weaponSelected[_i29].hit * parameters.valueFPS / (weaponSelected[_i29].frame1 + weaponSelected[_i29].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				output = _database.dbWeapon.chain().find({ $or: [{ type: 'cannon' }, { type: 'cannon1' }, { type: 'cannon2' }, { type: 'cannon3' }, { type: 'cannonx1' }] }).data();
+				break;
+			case 'xbow':
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'xbow' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'xbow' });
+				for (var _i30 = 0; _i30 < weaponSelected.length; _i30 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i30].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i30].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i30].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i30].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i30].aspd) / 100));
+					weaponSelected[_i30].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i30].dps = Math.floor(weaponSelected[_i30].damage * weaponSelected[_i30].hit * parameters.valueFPS / (weaponSelected[_i30].frame1 + weaponSelected[_i30].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'xbow1' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'xbow1' });
+				for (var _i31 = 0; _i31 < weaponSelected.length; _i31 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i31].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i31].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i31].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i31].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i31].aspd) / 100));
+					weaponSelected[_i31].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i31].dps = Math.floor(weaponSelected[_i31].damage * weaponSelected[_i31].hit * parameters.valueFPS / (weaponSelected[_i31].frame1 + weaponSelected[_i31].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'xbow2' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'xbow2' });
+				for (var _i32 = 0; _i32 < weaponSelected.length; _i32 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i32].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i32].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i32].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i32].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i32].aspd) / 100));
+					weaponSelected[_i32].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i32].dps = Math.floor(weaponSelected[_i32].damage * weaponSelected[_i32].hit * parameters.valueFPS / (weaponSelected[_i32].frame1 + weaponSelected[_i32].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'xbow3' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'xbow3' });
+				for (var _i33 = 0; _i33 < weaponSelected.length; _i33 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i33].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i33].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i33].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i33].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i33].aspd) / 100));
+					weaponSelected[_i33].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i33].dps = Math.floor(weaponSelected[_i33].damage * weaponSelected[_i33].hit * parameters.valueFPS / (weaponSelected[_i33].frame1 + weaponSelected[_i33].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'xbowx3' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'xbowx3' });
+				for (var _i34 = 0; _i34 < weaponSelected.length; _i34 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i34].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i34].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i34].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i34].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i34].aspd) / 100));
+					weaponSelected[_i34].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i34].dps = Math.floor(weaponSelected[_i34].damage * weaponSelected[_i34].hit * parameters.valueFPS / (weaponSelected[_i34].frame1 + weaponSelected[_i34].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'xbowx1' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'xbowx1' });
+				for (var _i35 = 0; _i35 < weaponSelected.length; _i35 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i35].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i35].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i35].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i35].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i35].aspd) / 100));
+					weaponSelected[_i35].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i35].dps = Math.floor(weaponSelected[_i35].damage * weaponSelected[_i35].hit * parameters.valueFPS / (weaponSelected[_i35].frame1 + weaponSelected[_i35].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'xbowx2' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'xbowx2' });
+				for (var _i36 = 0; _i36 < weaponSelected.length; _i36 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i36].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i36].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i36].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i36].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i36].aspd) / 100));
+					weaponSelected[_i36].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i36].dps = Math.floor(weaponSelected[_i36].damage * weaponSelected[_i36].hit * parameters.valueFPS / (weaponSelected[_i36].frame1 + weaponSelected[_i36].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+				output = _database.dbWeapon.chain().find({ $or: [{ type: 'xbow' }, { type: 'xbow1' }, { type: 'xbow2' }, { type: 'xbow3' }, { type: 'xbowx1' }, { type: 'xbowx2' }, { type: 'xbowx3' }] }).data();
+				break;
+			case 'arqu':
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'arqu' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'arqu' });
+				for (var _i37 = 0; _i37 < weaponSelected.length; _i37 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i37].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i37].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i37].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i37].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i37].aspd) / 100));
+					weaponSelected[_i37].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i37].dps = Math.floor(weaponSelected[_i37].damage * weaponSelected[_i37].hit * parameters.valueFPS / (weaponSelected[_i37].frame1 + weaponSelected[_i37].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'arqu1' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'arqu1' });
+				for (var _i38 = 0; _i38 < weaponSelected.length; _i38 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i38].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i38].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i38].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i38].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i38].aspd) / 100));
+					weaponSelected[_i38].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i38].dps = Math.floor(weaponSelected[_i38].damage * weaponSelected[_i38].hit * parameters.valueFPS / (weaponSelected[_i38].frame1 + weaponSelected[_i38].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'arqu2' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'arqu2' });
+				for (var _i39 = 0; _i39 < weaponSelected.length; _i39 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i39].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i39].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i39].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i39].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i39].aspd) / 100));
+					weaponSelected[_i39].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i39].dps = Math.floor(weaponSelected[_i39].damage * weaponSelected[_i39].hit * parameters.valueFPS / (weaponSelected[_i39].frame1 + weaponSelected[_i39].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'arqu3' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'arqu3' });
+				for (var _i40 = 0; _i40 < weaponSelected.length; _i40 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i40].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i40].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i40].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i40].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i40].aspd) / 100));
+					weaponSelected[_i40].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i40].dps = Math.floor(weaponSelected[_i40].damage * weaponSelected[_i40].hit * parameters.valueFPS / (weaponSelected[_i40].frame1 + weaponSelected[_i40].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'arqux3' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'arqux3' });
+				for (var _i41 = 0; _i41 < weaponSelected.length; _i41 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i41].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i41].damage = Math.floor(totalAtk - totalDef);
+					} else {
+						weaponSelected[_i41].damage = parameters.valueProDam;
+					}
+					weaponSelected[_i41].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i41].aspd) / 100));
+					weaponSelected[_i41].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i41].dps = Math.floor(weaponSelected[_i41].damage * weaponSelected[_i41].hit * parameters.valueFPS / (weaponSelected[_i41].frame1 + weaponSelected[_i41].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+	
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'arqux1' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'arqux1' });
+				for (var _i42 = 0; _i42 < weaponSelected.length; _i42 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i42].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i42].damage = Math.floor(totalAtk - totalDef) * 2;
+					} else {
+						weaponSelected[_i42].damage = parameters.valueProDam * 2;
+					}
+					weaponSelected[_i42].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i42].aspd) / 100));
+					weaponSelected[_i42].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i42].dps = Math.floor(weaponSelected[_i42].damage * weaponSelected[_i42].hit * parameters.valueFPS / (weaponSelected[_i42].frame1 + weaponSelected[_i42].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+				weaponSelected = _database.dbWeapon.chain().find({ type: 'arqux2' }).data();
+				typeSelected = _database.dbType.findOne({ name: 'arqux2' });
+				for (var _i43 = 0; _i43 < weaponSelected.length; _i43 += 1) {
+					totalAtk = (charAtk + weaponSelected[_i43].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
+					totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+					if (totalAtk - parameters.valueProDam >= totalDef) {
+						weaponSelected[_i43].damage = Math.floor(totalAtk - totalDef) * 3;
+					} else {
+						weaponSelected[_i43].damage = parameters.valueProDam * 3;
+					}
+					weaponSelected[_i43].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i43].aspd) / 100));
+					weaponSelected[_i43].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
+					weaponSelected[_i43].dps = Math.floor(weaponSelected[_i43].damage * weaponSelected[_i43].hit * parameters.valueFPS / (weaponSelected[_i43].frame1 + weaponSelected[_i43].frame2) * 100) / 100;
+				}
+				_database.dbWeapon.update(weaponSelected);
+				output = _database.dbWeapon.chain().find({ $or: [{ type: 'arqu' }, { type: 'arqu1' }, { type: 'arqu2' }, { type: 'arqu3' }, { type: 'arqux1' }, { type: 'arqux2' }, { type: 'arqux3' }] }).data();
 				break;
 			default:
 				output = _database.dbWeapon.chain().find({ type: input.type }).data();
