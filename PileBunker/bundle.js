@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4771be24bffe57f52b41"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c4b30d85f0e8692583d6"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -932,17 +932,17 @@
 	var ReactMarkupChecksum = __webpack_require__(250);
 	var ReactPerf = __webpack_require__(31);
 	var ReactReconciler = __webpack_require__(67);
-	var ReactUpdateQueue = __webpack_require__(161);
+	var ReactUpdateQueue = __webpack_require__(162);
 	var ReactUpdates = __webpack_require__(35);
 	
 	var assign = __webpack_require__(9);
 	var emptyObject = __webpack_require__(84);
 	var containsNode = __webpack_require__(262);
-	var instantiateReactComponent = __webpack_require__(168);
+	var instantiateReactComponent = __webpack_require__(169);
 	var invariant = __webpack_require__(4);
 	var setInnerHTML = __webpack_require__(114);
-	var shouldUpdateReactComponent = __webpack_require__(171);
-	var validateDOMNesting = __webpack_require__(173);
+	var shouldUpdateReactComponent = __webpack_require__(172);
+	var validateDOMNesting = __webpack_require__(174);
 	var warning = __webpack_require__(10);
 	
 	var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
@@ -1925,7 +1925,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var anObject       = __webpack_require__(5)
-	  , IE8_DOM_DEFINE = __webpack_require__(183)
+	  , IE8_DOM_DEFINE = __webpack_require__(184)
 	  , toPrimitive    = __webpack_require__(38)
 	  , dP             = Object.defineProperty;
 	
@@ -2498,7 +2498,7 @@
 	  , toIObject      = __webpack_require__(27)
 	  , toPrimitive    = __webpack_require__(38)
 	  , has            = __webpack_require__(22)
-	  , IE8_DOM_DEFINE = __webpack_require__(183)
+	  , IE8_DOM_DEFINE = __webpack_require__(184)
 	  , gOPD           = Object.getOwnPropertyDescriptor;
 	
 	exports.f = __webpack_require__(13) ? gOPD : function getOwnPropertyDescriptor(O, P){
@@ -2679,7 +2679,7 @@
 	
 	'use strict';
 	
-	var CallbackQueue = __webpack_require__(155);
+	var CallbackQueue = __webpack_require__(156);
 	var PooledClass = __webpack_require__(53);
 	var ReactPerf = __webpack_require__(31);
 	var ReactReconciler = __webpack_require__(67);
@@ -3051,10 +3051,10 @@
 /* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Map     = __webpack_require__(199)
+	var Map     = __webpack_require__(200)
 	  , $export = __webpack_require__(1)
 	  , shared  = __webpack_require__(95)('metadata')
-	  , store   = shared.store || (shared.store = new (__webpack_require__(202)));
+	  , store   = shared.store || (shared.store = new (__webpack_require__(203)));
 	
 	var getOrCreateMetadataMap = function(target, targetKey, create){
 	  var targetMetadata = store.get(target);
@@ -3125,7 +3125,7 @@
 	    , toIndex             = __webpack_require__(62)
 	    , toPrimitive         = __webpack_require__(38)
 	    , has                 = __webpack_require__(22)
-	    , same                = __webpack_require__(196)
+	    , same                = __webpack_require__(197)
 	    , classof             = __webpack_require__(76)
 	    , isObject            = __webpack_require__(11)
 	    , toObject            = __webpack_require__(21)
@@ -3144,7 +3144,7 @@
 	    , $iterDetect         = __webpack_require__(92)
 	    , setSpecies          = __webpack_require__(61)
 	    , arrayFill           = __webpack_require__(116)
-	    , arrayCopyWithin     = __webpack_require__(176)
+	    , arrayCopyWithin     = __webpack_require__(177)
 	    , $DP                 = __webpack_require__(14)
 	    , $GOPD               = __webpack_require__(29)
 	    , dP                  = $DP.f
@@ -3970,7 +3970,7 @@
 /* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var freeGlobal = __webpack_require__(217);
+	var freeGlobal = __webpack_require__(218);
 	
 	/** Detect free variable `self`. */
 	var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
@@ -4000,7 +4000,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(224);
+	var _reactDom = __webpack_require__(225);
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
@@ -4575,7 +4575,7 @@
 
 	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 	var anObject    = __webpack_require__(5)
-	  , dPs         = __webpack_require__(189)
+	  , dPs         = __webpack_require__(190)
 	  , enumBugKeys = __webpack_require__(119)
 	  , IE_PROTO    = __webpack_require__(131)('IE_PROTO')
 	  , Empty       = function(){ /* empty */ }
@@ -4621,7 +4621,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-	var $keys      = __webpack_require__(191)
+	var $keys      = __webpack_require__(192)
 	  , hiddenKeys = __webpack_require__(119).concat('length', 'prototype');
 	
 	exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
@@ -4633,7 +4633,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 / 15.2.3.14 Object.keys(O)
-	var $keys       = __webpack_require__(191)
+	var $keys       = __webpack_require__(192)
 	  , enumBugKeys = __webpack_require__(119);
 	
 	module.exports = Object.keys || function keys(O){
@@ -5300,7 +5300,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var ctx         = __webpack_require__(41)
-	  , call        = __webpack_require__(185)
+	  , call        = __webpack_require__(186)
 	  , isArrayIter = __webpack_require__(123)
 	  , anObject    = __webpack_require__(5)
 	  , toLength    = __webpack_require__(16)
@@ -5771,7 +5771,7 @@
 /* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isFunction = __webpack_require__(223),
+	var isFunction = __webpack_require__(224),
 	    isLength = __webpack_require__(148);
 	
 	/**
@@ -6304,7 +6304,7 @@
 	
 	var SyntheticEvent = __webpack_require__(68);
 	
-	var getEventTarget = __webpack_require__(166);
+	var getEventTarget = __webpack_require__(167);
 	
 	/**
 	 * @interface UIEvent
@@ -7068,7 +7068,7 @@
 	var ViewportMetrics = __webpack_require__(256);
 	
 	var assign = __webpack_require__(9);
-	var isEventSupported = __webpack_require__(169);
+	var isEventSupported = __webpack_require__(170);
 	
 	/**
 	 * Summary of `ReactBrowserEventEmitter` event handling:
@@ -7449,7 +7449,7 @@
 	var SyntheticUIEvent = __webpack_require__(83);
 	var ViewportMetrics = __webpack_require__(256);
 	
-	var getEventModifierState = __webpack_require__(165);
+	var getEventModifierState = __webpack_require__(166);
 	
 	/**
 	 * @interface MouseEvent
@@ -8745,7 +8745,7 @@
 	var global         = __webpack_require__(6)
 	  , core           = __webpack_require__(40)
 	  , LIBRARY        = __webpack_require__(56)
-	  , wksExt         = __webpack_require__(198)
+	  , wksExt         = __webpack_require__(199)
 	  , defineProperty = __webpack_require__(14).f;
 	module.exports = function(name){
 	  var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
@@ -8771,7 +8771,7 @@
 
 	'use strict';
 	var addToUnscopables = __webpack_require__(69)
-	  , step             = __webpack_require__(186)
+	  , step             = __webpack_require__(187)
 	  , Iterators        = __webpack_require__(71)
 	  , toIObject        = __webpack_require__(27);
 	
@@ -8926,7 +8926,7 @@
 /* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArrayLikeObject = __webpack_require__(222);
+	var isArrayLikeObject = __webpack_require__(223);
 	
 	/** `Object#toString` result references. */
 	var argsTag = '[object Arguments]';
@@ -9143,6 +9143,38 @@
 /* 154 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(19), RootInstanceProvider = __webpack_require__(17), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var defaultAtk = exports.defaultAtk = 200; // define the default attack value
+	var defaultDef = exports.defaultDef = 100; // define the default defense value
+	
+	var muxPlain = exports.muxPlain = 1.2; // define the multiplier when attacker have plain
+	var muxFlyBow = exports.muxFlyBow = 1.5; // define the multiplier when bow attack a flying enemy
+	var muxFlyMelee = exports.muxFlyMelee = 0.5; // define the multiplier when melee attack a flying enemy
+	var muxCanDirect = exports.muxCanDirect = 1.5; // define the multiplier when cannon direct hit
+	
+	var muxMax = exports.muxMax = [1.16, 1.32, 1.48, 1.64, 1.8];
+	// define the multiplier for each maximum step
+	
+	var valueProDam = exports.valueProDam = 20; // define the promised damage when hit
+	var valueFPS = exports.valueFPS = 30; // define the system frame per second
+	var valueMaxRef = exports.valueMaxRef = 10; // define the maximum refine value
+	
+	var maxAspdSkill = exports.maxAspdSkill = 75; // define the maximum aspd skill value
+	var maxAspdSpell = exports.maxAspdSpell = 75; // define the maximum aspd spell value
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(18); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConstParameters.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
+
+/***/ },
+/* 155 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 	
 	exports.__esModule = true;
@@ -9162,7 +9194,7 @@
 	exports.connect = _connect2["default"];
 
 /***/ },
-/* 155 */
+/* 156 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9261,7 +9293,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 156 */
+/* 157 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9492,7 +9524,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 157 */
+/* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9632,7 +9664,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 158 */
+/* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -9648,7 +9680,7 @@
 	
 	'use strict';
 	
-	var ReactDOMIDOperations = __webpack_require__(160);
+	var ReactDOMIDOperations = __webpack_require__(161);
 	var ReactMount = __webpack_require__(7);
 	
 	/**
@@ -9678,7 +9710,7 @@
 	module.exports = ReactComponentBrowserEnvironment;
 
 /***/ },
-/* 159 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9735,7 +9767,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 160 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9753,7 +9785,7 @@
 	'use strict';
 	
 	var DOMChildrenOperations = __webpack_require__(234);
-	var DOMPropertyOperations = __webpack_require__(156);
+	var DOMPropertyOperations = __webpack_require__(157);
 	var ReactMount = __webpack_require__(7);
 	var ReactPerf = __webpack_require__(31);
 	
@@ -9835,7 +9867,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 161 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -10098,7 +10130,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 162 */
+/* 163 */
 /***/ function(module, exports) {
 
 	/**
@@ -10117,7 +10149,7 @@
 	module.exports = '0.14.8';
 
 /***/ },
-/* 163 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -10172,7 +10204,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 164 */
+/* 165 */
 /***/ function(module, exports) {
 
 	/**
@@ -10227,7 +10259,7 @@
 	module.exports = getEventCharCode;
 
 /***/ },
-/* 165 */
+/* 166 */
 /***/ function(module, exports) {
 
 	/**
@@ -10276,7 +10308,7 @@
 	module.exports = getEventModifierState;
 
 /***/ },
-/* 166 */
+/* 167 */
 /***/ function(module, exports) {
 
 	/**
@@ -10310,7 +10342,7 @@
 	module.exports = getEventTarget;
 
 /***/ },
-/* 167 */
+/* 168 */
 /***/ function(module, exports) {
 
 	/**
@@ -10355,7 +10387,7 @@
 	module.exports = getIteratorFn;
 
 /***/ },
-/* 168 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -10473,7 +10505,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 169 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10538,7 +10570,7 @@
 	module.exports = isEventSupported;
 
 /***/ },
-/* 170 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10583,7 +10615,7 @@
 	module.exports = setTextContent;
 
 /***/ },
-/* 171 */
+/* 172 */
 /***/ function(module, exports) {
 
 	/**
@@ -10631,7 +10663,7 @@
 	module.exports = shouldUpdateReactComponent;
 
 /***/ },
-/* 172 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -10651,7 +10683,7 @@
 	var ReactElement = __webpack_require__(28);
 	var ReactInstanceHandles = __webpack_require__(75);
 	
-	var getIteratorFn = __webpack_require__(167);
+	var getIteratorFn = __webpack_require__(168);
 	var invariant = __webpack_require__(4);
 	var warning = __webpack_require__(10);
 	
@@ -10826,7 +10858,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 173 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -11195,7 +11227,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 174 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -11447,7 +11479,7 @@
 
 
 /***/ },
-/* 175 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var cof = __webpack_require__(32);
@@ -11457,7 +11489,7 @@
 	};
 
 /***/ },
-/* 176 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
@@ -11488,7 +11520,7 @@
 	};
 
 /***/ },
-/* 177 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var forOf = __webpack_require__(70);
@@ -11501,7 +11533,7 @@
 
 
 /***/ },
-/* 178 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var aFunction = __webpack_require__(23)
@@ -11534,7 +11566,7 @@
 	};
 
 /***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11563,7 +11595,7 @@
 	};
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11575,7 +11607,7 @@
 	  , defined     = __webpack_require__(33)
 	  , forOf       = __webpack_require__(70)
 	  , $iterDefine = __webpack_require__(126)
-	  , step        = __webpack_require__(186)
+	  , step        = __webpack_require__(187)
 	  , setSpecies  = __webpack_require__(61)
 	  , DESCRIPTORS = __webpack_require__(13)
 	  , fastKey     = __webpack_require__(46).fastKey
@@ -11710,12 +11742,12 @@
 	};
 
 /***/ },
-/* 181 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// https://github.com/DavidBruant/Map-Set.prototype.toJSON
 	var classof = __webpack_require__(76)
-	  , from    = __webpack_require__(177);
+	  , from    = __webpack_require__(178);
 	module.exports = function(NAME){
 	  return function toJSON(){
 	    if(classof(this) != NAME)throw TypeError(NAME + "#toJSON isn't generic");
@@ -11724,7 +11756,7 @@
 	};
 
 /***/ },
-/* 182 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11812,7 +11844,7 @@
 	};
 
 /***/ },
-/* 183 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = !__webpack_require__(13) && !__webpack_require__(8)(function(){
@@ -11820,7 +11852,7 @@
 	});
 
 /***/ },
-/* 184 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 20.1.2.3 Number.isInteger(number)
@@ -11831,7 +11863,7 @@
 	};
 
 /***/ },
-/* 185 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// call something on iterator step with safe closing on error
@@ -11848,7 +11880,7 @@
 	};
 
 /***/ },
-/* 186 */
+/* 187 */
 /***/ function(module, exports) {
 
 	module.exports = function(done, value){
@@ -11856,7 +11888,7 @@
 	};
 
 /***/ },
-/* 187 */
+/* 188 */
 /***/ function(module, exports) {
 
 	// 20.2.2.20 Math.log1p(x)
@@ -11865,7 +11897,7 @@
 	};
 
 /***/ },
-/* 188 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11903,7 +11935,7 @@
 	} : $assign;
 
 /***/ },
-/* 189 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var dP       = __webpack_require__(14)
@@ -11921,7 +11953,7 @@
 	};
 
 /***/ },
-/* 190 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
@@ -11946,7 +11978,7 @@
 
 
 /***/ },
-/* 191 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var has          = __webpack_require__(22)
@@ -11968,7 +12000,7 @@
 	};
 
 /***/ },
-/* 192 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var getKeys   = __webpack_require__(59)
@@ -11989,7 +12021,7 @@
 	};
 
 /***/ },
-/* 193 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// all object keys, includes non-enumerable and symbols
@@ -12004,7 +12036,7 @@
 	};
 
 /***/ },
-/* 194 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $parseFloat = __webpack_require__(6).parseFloat
@@ -12017,7 +12049,7 @@
 	} : $parseFloat;
 
 /***/ },
-/* 195 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $parseInt = __webpack_require__(6).parseInt
@@ -12031,7 +12063,7 @@
 	} : $parseInt;
 
 /***/ },
-/* 196 */
+/* 197 */
 /***/ function(module, exports) {
 
 	// 7.2.9 SameValue(x, y)
@@ -12040,7 +12072,7 @@
 	};
 
 /***/ },
-/* 197 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// https://github.com/tc39/proposal-string-pad-start-end
@@ -12062,17 +12094,17 @@
 
 
 /***/ },
-/* 198 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports.f = __webpack_require__(12);
 
 /***/ },
-/* 199 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var strong = __webpack_require__(180);
+	var strong = __webpack_require__(181);
 	
 	// 23.1 Map Objects
 	module.exports = __webpack_require__(87)('Map', function(get){
@@ -12090,7 +12122,7 @@
 	}, strong, true);
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 21.2.5.3 get RegExp.prototype.flags()
@@ -12100,11 +12132,11 @@
 	});
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var strong = __webpack_require__(180);
+	var strong = __webpack_require__(181);
 	
 	// 23.2 Set Objects
 	module.exports = __webpack_require__(87)('Set', function(get){
@@ -12117,15 +12149,15 @@
 	}, strong);
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var each         = __webpack_require__(36)(0)
 	  , redefine     = __webpack_require__(25)
 	  , meta         = __webpack_require__(46)
-	  , assign       = __webpack_require__(188)
-	  , weak         = __webpack_require__(182)
+	  , assign       = __webpack_require__(189)
+	  , weak         = __webpack_require__(183)
 	  , isObject     = __webpack_require__(11)
 	  , getWeak      = meta.getWeak
 	  , isExtensible = Object.isExtensible
@@ -12178,7 +12210,7 @@
 	}
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -12198,7 +12230,7 @@
 	};
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var MapCache = __webpack_require__(143),
@@ -12231,7 +12263,7 @@
 
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ListCache = __webpack_require__(97),
@@ -12264,10 +12296,10 @@
 
 
 /***/ },
-/* 206 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseAssignValue = __webpack_require__(207),
+	var baseAssignValue = __webpack_require__(208),
 	    eq = __webpack_require__(103);
 	
 	/** Used for built-in method references. */
@@ -12298,7 +12330,7 @@
 
 
 /***/ },
-/* 207 */
+/* 208 */
 /***/ function(module, exports) {
 
 	/** Built-in value references. */
@@ -12330,7 +12362,7 @@
 
 
 /***/ },
-/* 208 */
+/* 209 */
 /***/ function(module, exports) {
 
 	/**
@@ -12360,10 +12392,10 @@
 
 
 /***/ },
-/* 209 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var castPath = __webpack_require__(215),
+	var castPath = __webpack_require__(216),
 	    isKey = __webpack_require__(100),
 	    toKey = __webpack_require__(102);
 	
@@ -12391,7 +12423,7 @@
 
 
 /***/ },
-/* 210 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseIsEqualDeep = __webpack_require__(478),
@@ -12427,7 +12459,7 @@
 
 
 /***/ },
-/* 211 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseMatches = __webpack_require__(484),
@@ -12464,7 +12496,7 @@
 
 
 /***/ },
-/* 212 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var identity = __webpack_require__(146),
@@ -12487,7 +12519,7 @@
 
 
 /***/ },
-/* 213 */
+/* 214 */
 /***/ function(module, exports) {
 
 	/**
@@ -12507,7 +12539,7 @@
 
 
 /***/ },
-/* 214 */
+/* 215 */
 /***/ function(module, exports) {
 
 	/**
@@ -12526,7 +12558,7 @@
 
 
 /***/ },
-/* 215 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isArray = __webpack_require__(65),
@@ -12547,12 +12579,12 @@
 
 
 /***/ },
-/* 216 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var SetCache = __webpack_require__(204),
+	var SetCache = __webpack_require__(205),
 	    arraySome = __webpack_require__(472),
-	    cacheHas = __webpack_require__(214);
+	    cacheHas = __webpack_require__(215);
 	
 	/** Used to compose bitmasks for comparison styles. */
 	var UNORDERED_COMPARE_FLAG = 1,
@@ -12637,7 +12669,7 @@
 
 
 /***/ },
-/* 217 */
+/* 218 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
@@ -12648,7 +12680,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 218 */
+/* 219 */
 /***/ function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -12672,7 +12704,7 @@
 
 
 /***/ },
-/* 219 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(74);
@@ -12693,7 +12725,7 @@
 
 
 /***/ },
-/* 220 */
+/* 221 */
 /***/ function(module, exports) {
 
 	/**
@@ -12719,7 +12751,7 @@
 
 
 /***/ },
-/* 221 */
+/* 222 */
 /***/ function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -12751,7 +12783,7 @@
 
 
 /***/ },
-/* 222 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isArrayLike = __webpack_require__(79),
@@ -12790,7 +12822,7 @@
 
 
 /***/ },
-/* 223 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(74);
@@ -12837,7 +12869,7 @@
 
 
 /***/ },
-/* 224 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12846,7 +12878,7 @@
 
 
 /***/ },
-/* 225 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(19), RootInstanceProvider = __webpack_require__(17), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -12865,7 +12897,7 @@
 	exports.refChange = refChange;
 	exports.refSinChange = refSinChange;
 	
-	var _ConstActionTypes = __webpack_require__(227);
+	var _ConstActionTypes = __webpack_require__(228);
 	
 	var types = _interopRequireWildcard(_ConstActionTypes);
 	
@@ -12929,7 +12961,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
 
 /***/ },
-/* 226 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(19), RootInstanceProvider = __webpack_require__(17), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13055,7 +13087,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
 
 /***/ },
-/* 227 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(19), RootInstanceProvider = __webpack_require__(17), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13075,35 +13107,6 @@
 	var CANNON_CHANGE = exports.CANNON_CHANGE = 'CANNON_CHANGE';
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(18); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConstActionTypes.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
-
-/***/ },
-/* 228 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(19), RootInstanceProvider = __webpack_require__(17), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var defaultAtk = exports.defaultAtk = 200; // define the default attack value
-	var defaultDef = exports.defaultDef = 100; // define the default defense value
-	
-	var muxPlain = exports.muxPlain = 1.2; // define the multiplier when attacker have plain
-	var muxFlyBow = exports.muxFlyBow = 1.5; // define the multiplier when bow attack a flying enemy
-	var muxFlyMelee = exports.muxFlyMelee = 0.5; // define the multiplier when melee attack a flying enemy
-	var muxCanDirect = exports.muxCanDirect = 1.5; // define the multiplier when cannon direct hit
-	
-	var muxMax = exports.muxMax = [1.16, 1.32, 1.48, 1.64, 1.8];
-	// define the multiplier for each maximum step
-	
-	var valueProDam = exports.valueProDam = 20; // define the promised damage when hit
-	var valueFPS = exports.valueFPS = 30; // define the system frame per second
-	var valueMaxRef = exports.valueMaxRef = 10; // define the maximum refine value
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(18); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConstParameters.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
 
 /***/ },
@@ -13410,7 +13413,7 @@
 	var ReactPerf = __webpack_require__(31);
 	
 	var setInnerHTML = __webpack_require__(114);
-	var setTextContent = __webpack_require__(170);
+	var setTextContent = __webpack_require__(171);
 	var invariant = __webpack_require__(4);
 	
 	/**
@@ -13769,7 +13772,7 @@
 	var ReactElement = __webpack_require__(28);
 	
 	var emptyFunction = __webpack_require__(39);
-	var traverseAllChildren = __webpack_require__(172);
+	var traverseAllChildren = __webpack_require__(173);
 	
 	var twoArgumentPooler = PooledClass.twoArgumentPooler;
 	var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -14867,9 +14870,9 @@
 	var ReactPerf = __webpack_require__(31);
 	var ReactReconciler = __webpack_require__(67);
 	var ReactUpdates = __webpack_require__(35);
-	var ReactVersion = __webpack_require__(162);
+	var ReactVersion = __webpack_require__(163);
 	
-	var findDOMNode = __webpack_require__(163);
+	var findDOMNode = __webpack_require__(164);
 	var renderSubtreeIntoContainer = __webpack_require__(649);
 	var warning = __webpack_require__(10);
 	
@@ -14978,7 +14981,7 @@
 	
 	'use strict';
 	
-	var LinkedValueUtils = __webpack_require__(157);
+	var LinkedValueUtils = __webpack_require__(158);
 	var ReactMount = __webpack_require__(7);
 	var ReactUpdates = __webpack_require__(35);
 	
@@ -15174,14 +15177,14 @@
 	'use strict';
 	
 	var DOMChildrenOperations = __webpack_require__(234);
-	var DOMPropertyOperations = __webpack_require__(156);
-	var ReactComponentBrowserEnvironment = __webpack_require__(158);
+	var DOMPropertyOperations = __webpack_require__(157);
+	var ReactComponentBrowserEnvironment = __webpack_require__(159);
 	var ReactMount = __webpack_require__(7);
 	
 	var assign = __webpack_require__(9);
 	var escapeTextContentForBrowser = __webpack_require__(113);
-	var setTextContent = __webpack_require__(170);
-	var validateDOMNesting = __webpack_require__(173);
+	var setTextContent = __webpack_require__(171);
+	var validateDOMNesting = __webpack_require__(174);
 	
 	/**
 	 * Text nodes violate a couple assumptions that React makes about components:
@@ -15385,7 +15388,7 @@
 	var ExecutionEnvironment = __webpack_require__(20);
 	var HTMLDOMPropertyConfig = __webpack_require__(603);
 	var ReactBrowserComponentMixin = __webpack_require__(605);
-	var ReactComponentBrowserEnvironment = __webpack_require__(158);
+	var ReactComponentBrowserEnvironment = __webpack_require__(159);
 	var ReactDefaultBatchingStrategy = __webpack_require__(243);
 	var ReactDOMComponent = __webpack_require__(609);
 	var ReactDOMTextComponent = __webpack_require__(242);
@@ -15493,7 +15496,7 @@
 	var ReactCurrentOwner = __webpack_require__(45);
 	
 	var canDefineProperty = __webpack_require__(112);
-	var getIteratorFn = __webpack_require__(167);
+	var getIteratorFn = __webpack_require__(168);
 	var invariant = __webpack_require__(4);
 	var warning = __webpack_require__(10);
 	
@@ -16407,7 +16410,7 @@
 	var ReactPropTypeLocationNames = __webpack_require__(108);
 	
 	var emptyFunction = __webpack_require__(39);
-	var getIteratorFn = __webpack_require__(167);
+	var getIteratorFn = __webpack_require__(168);
 	
 	/**
 	 * Collection of methods that allow declaration and validation of props that are
@@ -17972,7 +17975,7 @@
 	// 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
 	var $export = __webpack_require__(1);
 	
-	$export($export.P, 'Array', {copyWithin: __webpack_require__(176)});
+	$export($export.P, 'Array', {copyWithin: __webpack_require__(177)});
 	
 	__webpack_require__(69)('copyWithin');
 
@@ -18079,7 +18082,7 @@
 	var ctx            = __webpack_require__(41)
 	  , $export        = __webpack_require__(1)
 	  , toObject       = __webpack_require__(21)
-	  , call           = __webpack_require__(185)
+	  , call           = __webpack_require__(186)
 	  , isArrayIter    = __webpack_require__(123)
 	  , toLength       = __webpack_require__(16)
 	  , createProperty = __webpack_require__(117)
@@ -18232,7 +18235,7 @@
 
 	'use strict';
 	var $export = __webpack_require__(1)
-	  , $reduce = __webpack_require__(178);
+	  , $reduce = __webpack_require__(179);
 	
 	$export($export.P + $export.F * !__webpack_require__(34)([].reduceRight, true), 'Array', {
 	  // 22.1.3.19 / 15.4.4.22 Array.prototype.reduceRight(callbackfn [, initialValue])
@@ -18247,7 +18250,7 @@
 
 	'use strict';
 	var $export = __webpack_require__(1)
-	  , $reduce = __webpack_require__(178);
+	  , $reduce = __webpack_require__(179);
 	
 	$export($export.P + $export.F * !__webpack_require__(34)([].reduce, true), 'Array', {
 	  // 22.1.3.18 / 15.4.4.21 Array.prototype.reduce(callbackfn [, initialValue])
@@ -18431,7 +18434,7 @@
 	// 19.2.3.2 / 15.3.4.5 Function.prototype.bind(thisArg, args...)
 	var $export = __webpack_require__(1);
 	
-	$export($export.P, 'Function', {bind: __webpack_require__(179)});
+	$export($export.P, 'Function', {bind: __webpack_require__(180)});
 
 /***/ },
 /* 308 */
@@ -18487,7 +18490,7 @@
 
 	// 20.2.2.3 Math.acosh(x)
 	var $export = __webpack_require__(1)
-	  , log1p   = __webpack_require__(187)
+	  , log1p   = __webpack_require__(188)
 	  , sqrt    = Math.sqrt
 	  , $acosh  = Math.acosh;
 	
@@ -18688,7 +18691,7 @@
 	// 20.2.2.20 Math.log1p(x)
 	var $export = __webpack_require__(1);
 	
-	$export($export.S, 'Math', {log1p: __webpack_require__(187)});
+	$export($export.S, 'Math', {log1p: __webpack_require__(188)});
 
 /***/ },
 /* 322 */
@@ -18866,7 +18869,7 @@
 	// 20.1.2.3 Number.isInteger(number)
 	var $export = __webpack_require__(1);
 	
-	$export($export.S, 'Number', {isInteger: __webpack_require__(184)});
+	$export($export.S, 'Number', {isInteger: __webpack_require__(185)});
 
 /***/ },
 /* 331 */
@@ -18887,7 +18890,7 @@
 
 	// 20.1.2.5 Number.isSafeInteger(number)
 	var $export   = __webpack_require__(1)
-	  , isInteger = __webpack_require__(184)
+	  , isInteger = __webpack_require__(185)
 	  , abs       = Math.abs;
 	
 	$export($export.S, 'Number', {
@@ -18919,7 +18922,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var $export     = __webpack_require__(1)
-	  , $parseFloat = __webpack_require__(194);
+	  , $parseFloat = __webpack_require__(195);
 	// 20.1.2.12 Number.parseFloat(string)
 	$export($export.S + $export.F * (Number.parseFloat != $parseFloat), 'Number', {parseFloat: $parseFloat});
 
@@ -18928,7 +18931,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var $export   = __webpack_require__(1)
-	  , $parseInt = __webpack_require__(195);
+	  , $parseInt = __webpack_require__(196);
 	// 20.1.2.13 Number.parseInt(string, radix)
 	$export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', {parseInt: $parseInt});
 
@@ -18939,7 +18942,7 @@
 	'use strict';
 	var $export      = __webpack_require__(1)
 	  , toInteger    = __webpack_require__(48)
-	  , aNumberValue = __webpack_require__(175)
+	  , aNumberValue = __webpack_require__(176)
 	  , repeat       = __webpack_require__(135)
 	  , $toFixed     = 1..toFixed
 	  , floor        = Math.floor
@@ -19057,7 +19060,7 @@
 	'use strict';
 	var $export      = __webpack_require__(1)
 	  , $fails       = __webpack_require__(8)
-	  , aNumberValue = __webpack_require__(175)
+	  , aNumberValue = __webpack_require__(176)
 	  , $toPrecision = 1..toPrecision;
 	
 	$export($export.P + $export.F * ($fails(function(){
@@ -19080,7 +19083,7 @@
 	// 19.1.3.1 Object.assign(target, source)
 	var $export = __webpack_require__(1);
 	
-	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(188)});
+	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(189)});
 
 /***/ },
 /* 340 */
@@ -19096,7 +19099,7 @@
 
 	var $export = __webpack_require__(1);
 	// 19.1.2.3 / 15.2.3.7 Object.defineProperties(O, Properties)
-	$export($export.S + $export.F * !__webpack_require__(13), 'Object', {defineProperties: __webpack_require__(189)});
+	$export($export.S + $export.F * !__webpack_require__(13), 'Object', {defineProperties: __webpack_require__(190)});
 
 /***/ },
 /* 342 */
@@ -19140,7 +19143,7 @@
 
 	// 19.1.2.7 Object.getOwnPropertyNames(O)
 	__webpack_require__(37)('getOwnPropertyNames', function(){
-	  return __webpack_require__(190).f;
+	  return __webpack_require__(191).f;
 	});
 
 /***/ },
@@ -19202,7 +19205,7 @@
 
 	// 19.1.3.10 Object.is(value1, value2)
 	var $export = __webpack_require__(1);
-	$export($export.S, 'Object', {is: __webpack_require__(196)});
+	$export($export.S, 'Object', {is: __webpack_require__(197)});
 
 /***/ },
 /* 351 */
@@ -19274,7 +19277,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var $export     = __webpack_require__(1)
-	  , $parseFloat = __webpack_require__(194);
+	  , $parseFloat = __webpack_require__(195);
 	// 18.2.4 parseFloat(string)
 	$export($export.G + $export.F * (parseFloat != $parseFloat), {parseFloat: $parseFloat});
 
@@ -19283,7 +19286,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var $export   = __webpack_require__(1)
-	  , $parseInt = __webpack_require__(195);
+	  , $parseInt = __webpack_require__(196);
 	// 18.2.5 parseInt(string, radix)
 	$export($export.G + $export.F * (parseInt != $parseInt), {parseInt: $parseInt});
 
@@ -19623,7 +19626,7 @@
 	  , anObject   = __webpack_require__(5)
 	  , isObject   = __webpack_require__(11)
 	  , fails      = __webpack_require__(8)
-	  , bind       = __webpack_require__(179)
+	  , bind       = __webpack_require__(180)
 	  , rConstruct = (__webpack_require__(6).Reflect || {}).construct;
 	
 	// MS Edge supports only 2 arguments and argumentsList argument is optional
@@ -19830,7 +19833,7 @@
 	// 26.1.11 Reflect.ownKeys(target)
 	var $export = __webpack_require__(1);
 	
-	$export($export.S, 'Reflect', {ownKeys: __webpack_require__(193)});
+	$export($export.S, 'Reflect', {ownKeys: __webpack_require__(194)});
 
 /***/ },
 /* 370 */
@@ -20084,7 +20087,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	__webpack_require__(200);
+	__webpack_require__(201);
 	var anObject    = __webpack_require__(5)
 	  , $flags      = __webpack_require__(89)
 	  , DESCRIPTORS = __webpack_require__(13)
@@ -20457,7 +20460,7 @@
 	  , setToStringTag = __webpack_require__(72)
 	  , uid            = __webpack_require__(63)
 	  , wks            = __webpack_require__(12)
-	  , wksExt         = __webpack_require__(198)
+	  , wksExt         = __webpack_require__(199)
 	  , wksDefine      = __webpack_require__(139)
 	  , keyOf          = __webpack_require__(277)
 	  , enumKeys       = __webpack_require__(276)
@@ -20467,7 +20470,7 @@
 	  , toPrimitive    = __webpack_require__(38)
 	  , createDesc     = __webpack_require__(47)
 	  , _create        = __webpack_require__(57)
-	  , gOPNExt        = __webpack_require__(190)
+	  , gOPNExt        = __webpack_require__(191)
 	  , $GOPD          = __webpack_require__(29)
 	  , $DP            = __webpack_require__(14)
 	  , $keys          = __webpack_require__(59)
@@ -20835,7 +20838,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var weak = __webpack_require__(182);
+	var weak = __webpack_require__(183);
 	
 	// 23.4 WeakSet Objects
 	__webpack_require__(87)('WeakSet', function(get){
@@ -20902,7 +20905,7 @@
 	// https://github.com/DavidBruant/Map-Set.prototype.toJSON
 	var $export  = __webpack_require__(1);
 	
-	$export($export.P + $export.R, 'Map', {toJSON: __webpack_require__(181)('Map')});
+	$export($export.P + $export.R, 'Map', {toJSON: __webpack_require__(182)('Map')});
 
 /***/ },
 /* 418 */
@@ -21018,7 +21021,7 @@
 
 	// https://github.com/tc39/proposal-object-values-entries
 	var $export  = __webpack_require__(1)
-	  , $entries = __webpack_require__(192)(true);
+	  , $entries = __webpack_require__(193)(true);
 	
 	$export($export.S, 'Object', {
 	  entries: function entries(it){
@@ -21032,7 +21035,7 @@
 
 	// https://github.com/tc39/proposal-object-getownpropertydescriptors
 	var $export        = __webpack_require__(1)
-	  , ownKeys        = __webpack_require__(193)
+	  , ownKeys        = __webpack_require__(194)
 	  , toIObject      = __webpack_require__(27)
 	  , gOPD           = __webpack_require__(29)
 	  , createProperty = __webpack_require__(117);
@@ -21102,7 +21105,7 @@
 
 	// https://github.com/tc39/proposal-object-values-entries
 	var $export = __webpack_require__(1)
-	  , $values = __webpack_require__(192)(false);
+	  , $values = __webpack_require__(193)(false);
 	
 	$export($export.S, 'Object', {
 	  values: function values(it){
@@ -21351,8 +21354,8 @@
 /* 432 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Set                     = __webpack_require__(201)
-	  , from                    = __webpack_require__(177)
+	var Set                     = __webpack_require__(202)
+	  , from                    = __webpack_require__(178)
 	  , metadata                = __webpack_require__(42)
 	  , anObject                = __webpack_require__(5)
 	  , getPrototypeOf          = __webpack_require__(30)
@@ -21482,7 +21485,7 @@
 	// https://github.com/DavidBruant/Map-Set.prototype.toJSON
 	var $export  = __webpack_require__(1);
 	
-	$export($export.P + $export.R, 'Set', {toJSON: __webpack_require__(181)('Set')});
+	$export($export.P + $export.R, 'Set', {toJSON: __webpack_require__(182)('Set')});
 
 /***/ },
 /* 440 */
@@ -21541,7 +21544,7 @@
 	'use strict';
 	// https://github.com/tc39/proposal-string-pad-start-end
 	var $export = __webpack_require__(1)
-	  , $pad    = __webpack_require__(197);
+	  , $pad    = __webpack_require__(198);
 	
 	$export($export.P, 'String', {
 	  padEnd: function padEnd(maxLength /*, fillString = ' ' */){
@@ -21556,7 +21559,7 @@
 	'use strict';
 	// https://github.com/tc39/proposal-string-pad-start-end
 	var $export = __webpack_require__(1)
-	  , $pad    = __webpack_require__(197);
+	  , $pad    = __webpack_require__(198);
 	
 	$export($export.P, 'String', {
 	  padStart: function padStart(maxLength /*, fillString = ' ' */){
@@ -21778,15 +21781,15 @@
 	__webpack_require__(141);
 	__webpack_require__(373);
 	__webpack_require__(378);
-	__webpack_require__(200);
+	__webpack_require__(201);
 	__webpack_require__(374);
 	__webpack_require__(375);
 	__webpack_require__(376);
 	__webpack_require__(377);
 	__webpack_require__(358);
-	__webpack_require__(199);
-	__webpack_require__(201);
+	__webpack_require__(200);
 	__webpack_require__(202);
+	__webpack_require__(203);
 	__webpack_require__(413);
 	__webpack_require__(402);
 	__webpack_require__(403);
@@ -22675,7 +22678,7 @@
 	
 	var _deleteUnknownAutoBindMethods2 = _interopRequireDefault(_deleteUnknownAutoBindMethods);
 	
-	var _supportsProtoAssignment = __webpack_require__(203);
+	var _supportsProtoAssignment = __webpack_require__(204);
 	
 	var _supportsProtoAssignment2 = _interopRequireDefault(_supportsProtoAssignment);
 	
@@ -23198,7 +23201,7 @@
 	});
 	exports.getForceUpdate = exports.createProxy = undefined;
 	
-	var _supportsProtoAssignment = __webpack_require__(203);
+	var _supportsProtoAssignment = __webpack_require__(204);
 	
 	var _supportsProtoAssignment2 = _interopRequireDefault(_supportsProtoAssignment);
 	
@@ -23530,12 +23533,12 @@
 /* 473 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var SetCache = __webpack_require__(204),
+	var SetCache = __webpack_require__(205),
 	    arrayIncludes = __webpack_require__(467),
 	    arrayIncludesWith = __webpack_require__(468),
 	    arrayMap = __webpack_require__(470),
-	    baseUnary = __webpack_require__(213),
-	    cacheHas = __webpack_require__(214);
+	    baseUnary = __webpack_require__(214),
+	    cacheHas = __webpack_require__(215);
 	
 	/** Used as the size to enable large array optimizations. */
 	var LARGE_ARRAY_SIZE = 200;
@@ -23694,7 +23697,7 @@
 /* 477 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseFindIndex = __webpack_require__(208),
+	var baseFindIndex = __webpack_require__(209),
 	    baseIsNaN = __webpack_require__(480),
 	    strictIndexOf = __webpack_require__(537);
 	
@@ -23720,8 +23723,8 @@
 /* 478 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Stack = __webpack_require__(205),
-	    equalArrays = __webpack_require__(216),
+	var Stack = __webpack_require__(206),
+	    equalArrays = __webpack_require__(217),
 	    equalByTag = __webpack_require__(495),
 	    equalObjects = __webpack_require__(496),
 	    getTag = __webpack_require__(498),
@@ -23807,8 +23810,8 @@
 /* 479 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Stack = __webpack_require__(205),
-	    baseIsEqual = __webpack_require__(210);
+	var Stack = __webpack_require__(206),
+	    baseIsEqual = __webpack_require__(211);
 	
 	/** Used to compose bitmasks for comparison styles. */
 	var UNORDERED_COMPARE_FLAG = 1,
@@ -23893,10 +23896,10 @@
 /* 481 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isFunction = __webpack_require__(223),
+	var isFunction = __webpack_require__(224),
 	    isMasked = __webpack_require__(509),
 	    isObject = __webpack_require__(74),
-	    toSource = __webpack_require__(221);
+	    toSource = __webpack_require__(222);
 	
 	/**
 	 * Used to match `RegExp`
@@ -24021,7 +24024,7 @@
 /* 483 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isPrototype = __webpack_require__(218),
+	var isPrototype = __webpack_require__(219),
 	    nativeKeys = __webpack_require__(523);
 	
 	/** Used for built-in method references. */
@@ -24059,7 +24062,7 @@
 
 	var baseIsMatch = __webpack_require__(479),
 	    getMatchData = __webpack_require__(497),
-	    matchesStrictComparable = __webpack_require__(220);
+	    matchesStrictComparable = __webpack_require__(221);
 	
 	/**
 	 * The base implementation of `_.matches` which doesn't clone `source`.
@@ -24085,12 +24088,12 @@
 /* 485 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIsEqual = __webpack_require__(210),
+	var baseIsEqual = __webpack_require__(211),
 	    get = __webpack_require__(544),
 	    hasIn = __webpack_require__(545),
 	    isKey = __webpack_require__(100),
-	    isStrictComparable = __webpack_require__(219),
-	    matchesStrictComparable = __webpack_require__(220),
+	    isStrictComparable = __webpack_require__(220),
+	    matchesStrictComparable = __webpack_require__(221),
 	    toKey = __webpack_require__(102);
 	
 	/** Used to compose bitmasks for comparison styles. */
@@ -24144,7 +24147,7 @@
 /* 487 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseGet = __webpack_require__(209);
+	var baseGet = __webpack_require__(210);
 	
 	/**
 	 * A specialized version of `baseProperty` which supports deep paths.
@@ -24257,8 +24260,8 @@
 /* 491 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assignValue = __webpack_require__(206),
-	    baseAssignValue = __webpack_require__(207);
+	var assignValue = __webpack_require__(207),
+	    baseAssignValue = __webpack_require__(208);
 	
 	/**
 	 * Copies properties of `source` to `object`.
@@ -24315,7 +24318,7 @@
 /* 493 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseRest = __webpack_require__(212),
+	var baseRest = __webpack_require__(213),
 	    isIterateeCall = __webpack_require__(507);
 	
 	/**
@@ -24358,7 +24361,7 @@
 /* 494 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIteratee = __webpack_require__(211),
+	var baseIteratee = __webpack_require__(212),
 	    isArrayLike = __webpack_require__(79),
 	    keys = __webpack_require__(106);
 	
@@ -24392,7 +24395,7 @@
 	var Symbol = __webpack_require__(144),
 	    Uint8Array = __webpack_require__(464),
 	    eq = __webpack_require__(103),
-	    equalArrays = __webpack_require__(216),
+	    equalArrays = __webpack_require__(217),
 	    mapToArray = __webpack_require__(520),
 	    setToArray = __webpack_require__(529);
 	
@@ -24604,7 +24607,7 @@
 /* 497 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isStrictComparable = __webpack_require__(219),
+	var isStrictComparable = __webpack_require__(220),
 	    keys = __webpack_require__(106);
 	
 	/**
@@ -24640,7 +24643,7 @@
 	    Set = __webpack_require__(463),
 	    WeakMap = __webpack_require__(465),
 	    baseGetTag = __webpack_require__(475),
-	    toSource = __webpack_require__(221);
+	    toSource = __webpack_require__(222);
 	
 	/** `Object#toString` result references. */
 	var mapTag = '[object Map]',
@@ -24727,7 +24730,7 @@
 /* 500 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var castPath = __webpack_require__(215),
+	var castPath = __webpack_require__(216),
 	    isArguments = __webpack_require__(147),
 	    isArray = __webpack_require__(65),
 	    isIndex = __webpack_require__(145),
@@ -25362,7 +25365,7 @@
 /* 524 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(217);
+	/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(218);
 	
 	/** Detect free variable `exports`. */
 	var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -25777,11 +25780,11 @@
 /* 539 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assignValue = __webpack_require__(206),
+	var assignValue = __webpack_require__(207),
 	    copyObject = __webpack_require__(491),
 	    createAssigner = __webpack_require__(493),
 	    isArrayLike = __webpack_require__(79),
-	    isPrototype = __webpack_require__(218),
+	    isPrototype = __webpack_require__(219),
 	    keys = __webpack_require__(106);
 	
 	/** Used for built-in method references. */
@@ -25875,8 +25878,8 @@
 
 	var baseDifference = __webpack_require__(473),
 	    baseFlatten = __webpack_require__(474),
-	    baseRest = __webpack_require__(212),
-	    isArrayLikeObject = __webpack_require__(222);
+	    baseRest = __webpack_require__(213),
+	    isArrayLikeObject = __webpack_require__(223);
 	
 	/**
 	 * Creates an array of `array` values not included in the other given arrays
@@ -25961,8 +25964,8 @@
 /* 543 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseFindIndex = __webpack_require__(208),
-	    baseIteratee = __webpack_require__(211),
+	var baseFindIndex = __webpack_require__(209),
+	    baseIteratee = __webpack_require__(212),
 	    toInteger = __webpack_require__(550);
 	
 	/* Built-in method references for those with the same name as other `lodash` methods. */
@@ -26023,7 +26026,7 @@
 /* 544 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseGet = __webpack_require__(209);
+	var baseGet = __webpack_require__(210);
 	
 	/**
 	 * Gets the value at `path` of `object`. If the resolved value is
@@ -26103,7 +26106,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseIsTypedArray = __webpack_require__(482),
-	    baseUnary = __webpack_require__(213),
+	    baseUnary = __webpack_require__(214),
 	    nodeUtil = __webpack_require__(524);
 	
 	/* Node.js helper references. */
@@ -34831,6 +34834,12 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
+	var _ConstParameters = __webpack_require__(154);
+	
+	var parameters = _interopRequireWildcard(_ConstParameters);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -34888,6 +34897,19 @@
 				if (isNaN(modelValue)) {
 					modelValue = 0;
 					this.setState({ text: modelValue });
+					this.props.inputFunc(modelId, modelValue);
+				} else if (modelId === 'aspdSkill') {
+					if (modelValue > parameters.maxAspdSkill) {
+						modelValue = parameters.maxAspdSkill;
+					}
+					this.setState({ text: modelValue });
+					this.props.inputFunc(modelId, modelValue);
+				} else if (modelId === 'aspdSpell') {
+					if (modelValue > parameters.maxAspdSpell) {
+						modelValue = parameters.maxAspdSpell;
+					}
+					this.setState({ text: modelValue });
+					this.props.inputFunc(modelId, modelValue);
 				} else {
 					this.setState({ text: modelValue });
 					this.props.inputFunc(modelId, modelValue);
@@ -35381,11 +35403,11 @@
 	
 	var _redux = __webpack_require__(85);
 	
-	var _reactRedux = __webpack_require__(154);
+	var _reactRedux = __webpack_require__(155);
 	
-	var _actions = __webpack_require__(225);
+	var _actions = __webpack_require__(226);
 	
-	var _ToggleButton = __webpack_require__(226);
+	var _ToggleButton = __webpack_require__(227);
 	
 	var _ToggleButton2 = _interopRequireDefault(_ToggleButton);
 	
@@ -36051,15 +36073,15 @@
 	
 	var _redux = __webpack_require__(85);
 	
-	var _reactRedux = __webpack_require__(154);
+	var _reactRedux = __webpack_require__(155);
 	
-	var _actions = __webpack_require__(225);
+	var _actions = __webpack_require__(226);
 	
 	var _MdlTableClass = __webpack_require__(565);
 	
 	var _MdlTableClass2 = _interopRequireDefault(_MdlTableClass);
 	
-	var _ToggleButton = __webpack_require__(226);
+	var _ToggleButton = __webpack_require__(227);
 	
 	var _ToggleButton2 = _interopRequireDefault(_ToggleButton);
 	
@@ -36202,11 +36224,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(224);
+	var _reactDom = __webpack_require__(225);
 	
 	var _redux = __webpack_require__(85);
 	
-	var _reactRedux = __webpack_require__(154);
+	var _reactRedux = __webpack_require__(155);
 	
 	var _reduxLogger = __webpack_require__(664);
 	
@@ -36256,7 +36278,7 @@
 	
 	var _ConstList = __webpack_require__(153);
 	
-	var _ConstParameters = __webpack_require__(228);
+	var _ConstParameters = __webpack_require__(154);
 	
 	var parameters = _interopRequireWildcard(_ConstParameters);
 	
@@ -36271,6 +36293,7 @@
 		var totalAtk = void 0;
 		var totalDef = void 0;
 		var output = [];
+		var dataAspdSkill = void 0;
 	
 		if (input.plain === 'plain') {
 			charAtk = input.atk * parameters.muxPlain;
@@ -36310,6 +36333,12 @@
 				maxMux = 1;
 		}
 	
+		if (input.aspdSpell >= input.aspdSkill) {
+			dataAspdSkill = 0;
+		} else {
+			dataAspdSkill = input.aspdSkill;
+		}
+	
 		switch (input.type) {
 			case 'sword':
 				weaponSelected = _database.dbWeapon.chain().find({ type: 'sword' }).data();
@@ -36322,7 +36351,7 @@
 					} else {
 						weaponSelected[i].damage = parameters.valueProDam;
 					}
-					weaponSelected[i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[i].aspd) / 100));
+					weaponSelected[i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[i].aspd) / 100));
 					weaponSelected[i].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[i].dps = Math.floor(weaponSelected[i].damage * weaponSelected[i].hit * parameters.valueFPS / (weaponSelected[i].frame1 + weaponSelected[i].frame2) * 100) / 100;
 				}
@@ -36338,7 +36367,7 @@
 					} else {
 						weaponSelected[_i].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i].aspd) / 100));
+					weaponSelected[_i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i].aspd) / 100));
 					weaponSelected[_i].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i].dps = Math.floor(weaponSelected[_i].damage * weaponSelected[_i].hit * parameters.valueFPS / (weaponSelected[_i].frame1 + weaponSelected[_i].frame2) * 100) / 100;
 				}
@@ -36354,7 +36383,7 @@
 					} else {
 						weaponSelected[_i2].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i2].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i2].aspd) / 100));
+					weaponSelected[_i2].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i2].aspd) / 100));
 					weaponSelected[_i2].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i2].dps = Math.floor(weaponSelected[_i2].damage * weaponSelected[_i2].hit * parameters.valueFPS / (weaponSelected[_i2].frame1 + weaponSelected[_i2].frame2) * 100) / 100;
 				}
@@ -36370,7 +36399,7 @@
 					} else {
 						weaponSelected[_i3].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i3].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i3].aspd) / 100));
+					weaponSelected[_i3].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i3].aspd) / 100));
 					weaponSelected[_i3].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i3].dps = Math.floor(weaponSelected[_i3].damage * weaponSelected[_i3].hit * parameters.valueFPS / (weaponSelected[_i3].frame1 + weaponSelected[_i3].frame2) * 100) / 100;
 				}
@@ -36388,7 +36417,7 @@
 					} else {
 						weaponSelected[_i4].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i4].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i4].aspd) / 100));
+					weaponSelected[_i4].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i4].aspd) / 100));
 					weaponSelected[_i4].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i4].dps = Math.floor(weaponSelected[_i4].damage * weaponSelected[_i4].hit * parameters.valueFPS / (weaponSelected[_i4].frame1 + weaponSelected[_i4].frame2) * 100) / 100;
 				}
@@ -36404,7 +36433,7 @@
 					} else {
 						weaponSelected[_i5].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i5].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i5].aspd) / 100));
+					weaponSelected[_i5].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i5].aspd) / 100));
 					weaponSelected[_i5].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i5].dps = Math.floor(weaponSelected[_i5].damage * weaponSelected[_i5].hit * parameters.valueFPS / (weaponSelected[_i5].frame1 + weaponSelected[_i5].frame2) * 100) / 100;
 				}
@@ -36420,7 +36449,7 @@
 					} else {
 						weaponSelected[_i6].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i6].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i6].aspd) / 100));
+					weaponSelected[_i6].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i6].aspd) / 100));
 					weaponSelected[_i6].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i6].dps = Math.floor(weaponSelected[_i6].damage * weaponSelected[_i6].hit * parameters.valueFPS / (weaponSelected[_i6].frame1 + weaponSelected[_i6].frame2) * 100) / 100;
 				}
@@ -36436,7 +36465,7 @@
 					} else {
 						weaponSelected[_i7].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i7].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i7].aspd) / 100));
+					weaponSelected[_i7].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i7].aspd) / 100));
 					weaponSelected[_i7].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i7].dps = Math.floor(weaponSelected[_i7].damage * weaponSelected[_i7].hit * parameters.valueFPS / (weaponSelected[_i7].frame1 + weaponSelected[_i7].frame2) * 100) / 100;
 				}
@@ -36452,7 +36481,7 @@
 					} else {
 						weaponSelected[_i8].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i8].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i8].aspd) / 100));
+					weaponSelected[_i8].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i8].aspd) / 100));
 					weaponSelected[_i8].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i8].dps = Math.floor(weaponSelected[_i8].damage * weaponSelected[_i8].hit * parameters.valueFPS / (weaponSelected[_i8].frame1 + weaponSelected[_i8].frame2) * 100) / 100;
 				}
@@ -36470,7 +36499,7 @@
 					} else {
 						weaponSelected[_i9].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i9].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i9].aspd) / 100));
+					weaponSelected[_i9].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i9].aspd) / 100));
 					weaponSelected[_i9].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i9].dps = Math.floor(weaponSelected[_i9].damage * weaponSelected[_i9].hit * parameters.valueFPS / (weaponSelected[_i9].frame1 + weaponSelected[_i9].frame2) * 100) / 100;
 				}
@@ -36486,7 +36515,7 @@
 					} else {
 						weaponSelected[_i10].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i10].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i10].aspd) / 100));
+					weaponSelected[_i10].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i10].aspd) / 100));
 					weaponSelected[_i10].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i10].dps = Math.floor(weaponSelected[_i10].damage * weaponSelected[_i10].hit * parameters.valueFPS / (weaponSelected[_i10].frame1 + weaponSelected[_i10].frame2) * 100) / 100;
 				}
@@ -36502,7 +36531,7 @@
 					} else {
 						weaponSelected[_i11].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i11].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i11].aspd) / 100));
+					weaponSelected[_i11].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i11].aspd) / 100));
 					weaponSelected[_i11].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i11].dps = Math.floor(weaponSelected[_i11].damage * weaponSelected[_i11].hit * parameters.valueFPS / (weaponSelected[_i11].frame1 + weaponSelected[_i11].frame2) * 100) / 100;
 				}
@@ -36518,7 +36547,7 @@
 					} else {
 						weaponSelected[_i12].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i12].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i12].aspd) / 100));
+					weaponSelected[_i12].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i12].aspd) / 100));
 					weaponSelected[_i12].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i12].dps = Math.floor(weaponSelected[_i12].damage * weaponSelected[_i12].hit * parameters.valueFPS / (weaponSelected[_i12].frame1 + weaponSelected[_i12].frame2) * 100) / 100;
 				}
@@ -36534,7 +36563,7 @@
 					} else {
 						weaponSelected[_i13].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i13].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i13].aspd) / 100));
+					weaponSelected[_i13].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i13].aspd) / 100));
 					weaponSelected[_i13].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i13].dps = Math.floor(weaponSelected[_i13].damage * weaponSelected[_i13].hit * parameters.valueFPS / (weaponSelected[_i13].frame1 + weaponSelected[_i13].frame2) * 100) / 100;
 				}
@@ -36550,7 +36579,7 @@
 					} else {
 						weaponSelected[_i14].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i14].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i14].aspd) / 100));
+					weaponSelected[_i14].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i14].aspd) / 100));
 					weaponSelected[_i14].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i14].dps = Math.floor(weaponSelected[_i14].damage * weaponSelected[_i14].hit * parameters.valueFPS / (weaponSelected[_i14].frame1 + weaponSelected[_i14].frame2) * 100) / 100;
 				}
@@ -36568,7 +36597,7 @@
 					} else {
 						weaponSelected[_i15].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i15].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i15].aspd) / 100));
+					weaponSelected[_i15].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i15].aspd) / 100));
 					weaponSelected[_i15].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i15].dps = Math.floor(weaponSelected[_i15].damage * weaponSelected[_i15].hit * parameters.valueFPS / (weaponSelected[_i15].frame1 + weaponSelected[_i15].frame2) * 100) / 100;
 				}
@@ -36586,7 +36615,7 @@
 					} else {
 						weaponSelected[_i16].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i16].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i16].aspd) / 100));
+					weaponSelected[_i16].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i16].aspd) / 100));
 					weaponSelected[_i16].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i16].dps = Math.floor(weaponSelected[_i16].damage * weaponSelected[_i16].hit * parameters.valueFPS / (weaponSelected[_i16].frame1 + weaponSelected[_i16].frame2) * 100) / 100;
 				}
@@ -36602,7 +36631,7 @@
 					} else {
 						weaponSelected[_i17].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i17].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i17].aspd) / 100));
+					weaponSelected[_i17].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i17].aspd) / 100));
 					weaponSelected[_i17].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i17].dps = Math.floor(weaponSelected[_i17].damage * weaponSelected[_i17].hit * parameters.valueFPS / (weaponSelected[_i17].frame1 + weaponSelected[_i17].frame2) * 100) / 100;
 				}
@@ -36618,7 +36647,7 @@
 					} else {
 						weaponSelected[_i18].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i18].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i18].aspd) / 100));
+					weaponSelected[_i18].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i18].aspd) / 100));
 					weaponSelected[_i18].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i18].dps = Math.floor(weaponSelected[_i18].damage * weaponSelected[_i18].hit * parameters.valueFPS / (weaponSelected[_i18].frame1 + weaponSelected[_i18].frame2) * 100) / 100;
 				}
@@ -36634,7 +36663,7 @@
 					} else {
 						weaponSelected[_i19].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i19].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i19].aspd) / 100));
+					weaponSelected[_i19].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i19].aspd) / 100));
 					weaponSelected[_i19].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i19].dps = Math.floor(weaponSelected[_i19].damage * weaponSelected[_i19].hit * parameters.valueFPS / (weaponSelected[_i19].frame1 + weaponSelected[_i19].frame2) * 100) / 100;
 				}
@@ -36650,7 +36679,7 @@
 					} else {
 						weaponSelected[_i20].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i20].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i20].aspd) / 100));
+					weaponSelected[_i20].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i20].aspd) / 100));
 					weaponSelected[_i20].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i20].dps = Math.floor(weaponSelected[_i20].damage * weaponSelected[_i20].hit * parameters.valueFPS / (weaponSelected[_i20].frame1 + weaponSelected[_i20].frame2) * 100) / 100;
 				}
@@ -36663,7 +36692,7 @@
 				for (var _i21 = 0; _i21 < weaponSelected.length; _i21 += 1) {
 					totalAtk = (charAtk + weaponSelected[_i21].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					weaponSelected[_i21].damage = Math.floor(totalAtk);
-					weaponSelected[_i21].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i21].aspd) / 100));
+					weaponSelected[_i21].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i21].aspd) / 100));
 					weaponSelected[_i21].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i21].dps = Math.floor(weaponSelected[_i21].damage * weaponSelected[_i21].hit * parameters.valueFPS / (weaponSelected[_i21].frame1 + weaponSelected[_i21].frame2) * 100) / 100;
 				}
@@ -36674,7 +36703,7 @@
 				for (var _i22 = 0; _i22 < weaponSelected.length; _i22 += 1) {
 					totalAtk = (charAtk + weaponSelected[_i22].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					weaponSelected[_i22].damage = Math.floor(totalAtk);
-					weaponSelected[_i22].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i22].aspd) / 100));
+					weaponSelected[_i22].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i22].aspd) / 100));
 					weaponSelected[_i22].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i22].dps = Math.floor(weaponSelected[_i22].damage * weaponSelected[_i22].hit * parameters.valueFPS / (weaponSelected[_i22].frame1 + weaponSelected[_i22].frame2) * 100) / 100;
 				}
@@ -36685,7 +36714,7 @@
 				for (var _i23 = 0; _i23 < weaponSelected.length; _i23 += 1) {
 					totalAtk = (charAtk + weaponSelected[_i23].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					weaponSelected[_i23].damage = Math.floor(totalAtk);
-					weaponSelected[_i23].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i23].aspd) / 100));
+					weaponSelected[_i23].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i23].aspd) / 100));
 					weaponSelected[_i23].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i23].dps = Math.floor(weaponSelected[_i23].damage * weaponSelected[_i23].hit * parameters.valueFPS / (weaponSelected[_i23].frame1 + weaponSelected[_i23].frame2) * 100) / 100;
 				}
@@ -36696,7 +36725,7 @@
 				for (var _i24 = 0; _i24 < weaponSelected.length; _i24 += 1) {
 					totalAtk = (charAtk + weaponSelected[_i24].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					weaponSelected[_i24].damage = Math.floor(totalAtk);
-					weaponSelected[_i24].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i24].aspd) / 100));
+					weaponSelected[_i24].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i24].aspd) / 100));
 					weaponSelected[_i24].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i24].dps = Math.floor(weaponSelected[_i24].damage * weaponSelected[_i24].hit * parameters.valueFPS / (weaponSelected[_i24].frame1 + weaponSelected[_i24].frame2) * 100) / 100;
 				}
@@ -36714,7 +36743,7 @@
 					} else {
 						weaponSelected[_i25].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i25].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i25].aspd) / 100));
+					weaponSelected[_i25].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i25].aspd) / 100));
 					weaponSelected[_i25].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i25].dps = Math.floor(weaponSelected[_i25].damage * weaponSelected[_i25].hit * parameters.valueFPS / (weaponSelected[_i25].frame1 + weaponSelected[_i25].frame2) * 100) / 100;
 				}
@@ -36730,7 +36759,7 @@
 					} else {
 						weaponSelected[_i26].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i26].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i26].aspd) / 100));
+					weaponSelected[_i26].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i26].aspd) / 100));
 					weaponSelected[_i26].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i26].dps = Math.floor(weaponSelected[_i26].damage * weaponSelected[_i26].hit * parameters.valueFPS / (weaponSelected[_i26].frame1 + weaponSelected[_i26].frame2) * 100) / 100;
 				}
@@ -36746,7 +36775,7 @@
 					} else {
 						weaponSelected[_i27].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i27].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i27].aspd) / 100));
+					weaponSelected[_i27].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i27].aspd) / 100));
 					weaponSelected[_i27].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i27].dps = Math.floor(weaponSelected[_i27].damage * weaponSelected[_i27].hit * parameters.valueFPS / (weaponSelected[_i27].frame1 + weaponSelected[_i27].frame2) * 100) / 100;
 				}
@@ -36762,7 +36791,7 @@
 					} else {
 						weaponSelected[_i28].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i28].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i28].aspd) / 100));
+					weaponSelected[_i28].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i28].aspd) / 100));
 					weaponSelected[_i28].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i28].dps = Math.floor(weaponSelected[_i28].damage * weaponSelected[_i28].hit * parameters.valueFPS / (weaponSelected[_i28].frame1 + weaponSelected[_i28].frame2) * 100) / 100;
 				}
@@ -36778,7 +36807,7 @@
 					} else {
 						weaponSelected[_i29].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i29].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i29].aspd) / 100));
+					weaponSelected[_i29].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i29].aspd) / 100));
 					weaponSelected[_i29].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i29].dps = Math.floor(weaponSelected[_i29].damage * weaponSelected[_i29].hit * parameters.valueFPS / (weaponSelected[_i29].frame1 + weaponSelected[_i29].frame2) * 100) / 100;
 				}
@@ -36797,7 +36826,7 @@
 					} else {
 						weaponSelected[_i30].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i30].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i30].aspd) / 100));
+					weaponSelected[_i30].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i30].aspd) / 100));
 					weaponSelected[_i30].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i30].dps = Math.floor(weaponSelected[_i30].damage * weaponSelected[_i30].hit * parameters.valueFPS / (weaponSelected[_i30].frame1 + weaponSelected[_i30].frame2) * 100) / 100;
 				}
@@ -36813,7 +36842,7 @@
 					} else {
 						weaponSelected[_i31].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i31].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i31].aspd) / 100));
+					weaponSelected[_i31].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i31].aspd) / 100));
 					weaponSelected[_i31].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i31].dps = Math.floor(weaponSelected[_i31].damage * weaponSelected[_i31].hit * parameters.valueFPS / (weaponSelected[_i31].frame1 + weaponSelected[_i31].frame2) * 100) / 100;
 				}
@@ -36829,7 +36858,7 @@
 					} else {
 						weaponSelected[_i32].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i32].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i32].aspd) / 100));
+					weaponSelected[_i32].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i32].aspd) / 100));
 					weaponSelected[_i32].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i32].dps = Math.floor(weaponSelected[_i32].damage * weaponSelected[_i32].hit * parameters.valueFPS / (weaponSelected[_i32].frame1 + weaponSelected[_i32].frame2) * 100) / 100;
 				}
@@ -36845,7 +36874,7 @@
 					} else {
 						weaponSelected[_i33].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i33].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i33].aspd) / 100));
+					weaponSelected[_i33].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i33].aspd) / 100));
 					weaponSelected[_i33].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i33].dps = Math.floor(weaponSelected[_i33].damage * weaponSelected[_i33].hit * parameters.valueFPS / (weaponSelected[_i33].frame1 + weaponSelected[_i33].frame2) * 100) / 100;
 				}
@@ -36861,7 +36890,7 @@
 					} else {
 						weaponSelected[_i34].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i34].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i34].aspd) / 100));
+					weaponSelected[_i34].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i34].aspd) / 100));
 					weaponSelected[_i34].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i34].dps = Math.floor(weaponSelected[_i34].damage * weaponSelected[_i34].hit * parameters.valueFPS / (weaponSelected[_i34].frame1 + weaponSelected[_i34].frame2) * 100) / 100;
 				}
@@ -36877,7 +36906,7 @@
 					} else {
 						weaponSelected[_i35].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i35].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i35].aspd) / 100));
+					weaponSelected[_i35].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i35].aspd) / 100));
 					weaponSelected[_i35].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i35].dps = Math.floor(weaponSelected[_i35].damage * weaponSelected[_i35].hit * parameters.valueFPS / (weaponSelected[_i35].frame1 + weaponSelected[_i35].frame2) * 100) / 100;
 				}
@@ -36893,7 +36922,7 @@
 					} else {
 						weaponSelected[_i36].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i36].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i36].aspd) / 100));
+					weaponSelected[_i36].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i36].aspd) / 100));
 					weaponSelected[_i36].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i36].dps = Math.floor(weaponSelected[_i36].damage * weaponSelected[_i36].hit * parameters.valueFPS / (weaponSelected[_i36].frame1 + weaponSelected[_i36].frame2) * 100) / 100;
 				}
@@ -36911,7 +36940,7 @@
 					} else {
 						weaponSelected[_i37].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i37].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i37].aspd) / 100));
+					weaponSelected[_i37].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i37].aspd) / 100));
 					weaponSelected[_i37].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i37].dps = Math.floor(weaponSelected[_i37].damage * weaponSelected[_i37].hit * parameters.valueFPS / (weaponSelected[_i37].frame1 + weaponSelected[_i37].frame2) * 100) / 100;
 				}
@@ -36927,7 +36956,7 @@
 					} else {
 						weaponSelected[_i38].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i38].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i38].aspd) / 100));
+					weaponSelected[_i38].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i38].aspd) / 100));
 					weaponSelected[_i38].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i38].dps = Math.floor(weaponSelected[_i38].damage * weaponSelected[_i38].hit * parameters.valueFPS / (weaponSelected[_i38].frame1 + weaponSelected[_i38].frame2) * 100) / 100;
 				}
@@ -36943,7 +36972,7 @@
 					} else {
 						weaponSelected[_i39].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i39].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i39].aspd) / 100));
+					weaponSelected[_i39].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i39].aspd) / 100));
 					weaponSelected[_i39].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i39].dps = Math.floor(weaponSelected[_i39].damage * weaponSelected[_i39].hit * parameters.valueFPS / (weaponSelected[_i39].frame1 + weaponSelected[_i39].frame2) * 100) / 100;
 				}
@@ -36959,7 +36988,7 @@
 					} else {
 						weaponSelected[_i40].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i40].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i40].aspd) / 100));
+					weaponSelected[_i40].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i40].aspd) / 100));
 					weaponSelected[_i40].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i40].dps = Math.floor(weaponSelected[_i40].damage * weaponSelected[_i40].hit * parameters.valueFPS / (weaponSelected[_i40].frame1 + weaponSelected[_i40].frame2) * 100) / 100;
 				}
@@ -36975,7 +37004,7 @@
 					} else {
 						weaponSelected[_i41].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i41].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i41].aspd) / 100));
+					weaponSelected[_i41].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i41].aspd) / 100));
 					weaponSelected[_i41].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i41].dps = Math.floor(weaponSelected[_i41].damage * weaponSelected[_i41].hit * parameters.valueFPS / (weaponSelected[_i41].frame1 + weaponSelected[_i41].frame2) * 100) / 100;
 				}
@@ -36991,7 +37020,7 @@
 					} else {
 						weaponSelected[_i42].damage = parameters.valueProDam * 2;
 					}
-					weaponSelected[_i42].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i42].aspd) / 100));
+					weaponSelected[_i42].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i42].aspd) / 100));
 					weaponSelected[_i42].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i42].dps = Math.floor(weaponSelected[_i42].damage * weaponSelected[_i42].hit * parameters.valueFPS / (weaponSelected[_i42].frame1 + weaponSelected[_i42].frame2) * 100) / 100;
 				}
@@ -37006,7 +37035,7 @@
 					} else {
 						weaponSelected[_i43].damage = parameters.valueProDam * 3;
 					}
-					weaponSelected[_i43].frame1 = Math.ceil(typeSelected.frame1 * (1 - (input.aspdSkill + input.aspdSpell + weaponSelected[_i43].aspd) / 100));
+					weaponSelected[_i43].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i43].aspd) / 100));
 					weaponSelected[_i43].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i43].dps = Math.floor(weaponSelected[_i43].damage * weaponSelected[_i43].hit * parameters.valueFPS / (weaponSelected[_i43].frame1 + weaponSelected[_i43].frame2) * 100) / 100;
 				}
@@ -37063,11 +37092,11 @@
 	});
 	exports.default = reducerCalc;
 	
-	var _ConstActionTypes = __webpack_require__(227);
+	var _ConstActionTypes = __webpack_require__(228);
 	
 	var _database = __webpack_require__(229);
 	
-	var _ConstParameters = __webpack_require__(228);
+	var _ConstParameters = __webpack_require__(154);
 	
 	var parameters = _interopRequireWildcard(_ConstParameters);
 	
@@ -37294,16 +37323,24 @@
 						});
 					case 'aspdSkill':
 						calcTemp = state;
-						calcTemp.aspdSkill = action.modelValue;
+						if (action.modelValue >= parameters.maxAspdSkill) {
+							calcTemp.aspdSkill = parameters.maxAspdSkill;
+						} else {
+							calcTemp.aspdSkill = action.modelValue;
+						}
 						return Object.assign({}, state, {
-							aspdSkill: action.modelValue,
+							aspdSkill: calcTemp.aspdSkill,
 							output: (0, _calcOutput.calcOutput)(calcTemp)
 						});
 					case 'aspdSpell':
 						calcTemp = state;
-						calcTemp.aspdSpell = action.modelValue;
+						if (action.modelValue >= parameters.maxAspdSpell) {
+							calcTemp.aspdSpell = parameters.maxAspdSpell;
+						} else {
+							calcTemp.aspdSpell = action.modelValue;
+						}
 						return Object.assign({}, state, {
-							aspdSpell: action.modelValue,
+							aspdSpell: calcTemp.aspdSpell,
 							output: (0, _calcOutput.calcOutput)(calcTemp)
 						});
 					default:
@@ -38492,7 +38529,7 @@
 	
 	var ReactMount = __webpack_require__(7);
 	
-	var findDOMNode = __webpack_require__(163);
+	var findDOMNode = __webpack_require__(164);
 	var focusNode = __webpack_require__(263);
 	
 	var Mixin = {
@@ -39128,8 +39165,8 @@
 	var ReactUpdates = __webpack_require__(35);
 	var SyntheticEvent = __webpack_require__(68);
 	
-	var getEventTarget = __webpack_require__(166);
-	var isEventSupported = __webpack_require__(169);
+	var getEventTarget = __webpack_require__(167);
+	var isEventSupported = __webpack_require__(170);
 	var isTextInputElement = __webpack_require__(260);
 	var keyOf = __webpack_require__(54);
 	
@@ -40377,7 +40414,7 @@
 	
 	var ReactInstanceMap = __webpack_require__(82);
 	
-	var findDOMNode = __webpack_require__(163);
+	var findDOMNode = __webpack_require__(164);
 	var warning = __webpack_require__(10);
 	
 	var didWarnKey = '_getDOMNodeDidWarn';
@@ -40420,9 +40457,9 @@
 	
 	var ReactReconciler = __webpack_require__(67);
 	
-	var instantiateReactComponent = __webpack_require__(168);
-	var shouldUpdateReactComponent = __webpack_require__(171);
-	var traverseAllChildren = __webpack_require__(172);
+	var instantiateReactComponent = __webpack_require__(169);
+	var shouldUpdateReactComponent = __webpack_require__(172);
+	var traverseAllChildren = __webpack_require__(173);
 	var warning = __webpack_require__(10);
 	
 	function instantiateChild(childInstances, child, name) {
@@ -40545,7 +40582,7 @@
 	
 	'use strict';
 	
-	var ReactComponentEnvironment = __webpack_require__(159);
+	var ReactComponentEnvironment = __webpack_require__(160);
 	var ReactCurrentOwner = __webpack_require__(45);
 	var ReactElement = __webpack_require__(28);
 	var ReactInstanceMap = __webpack_require__(82);
@@ -40553,12 +40590,12 @@
 	var ReactPropTypeLocations = __webpack_require__(109);
 	var ReactPropTypeLocationNames = __webpack_require__(108);
 	var ReactReconciler = __webpack_require__(67);
-	var ReactUpdateQueue = __webpack_require__(161);
+	var ReactUpdateQueue = __webpack_require__(162);
 	
 	var assign = __webpack_require__(9);
 	var emptyObject = __webpack_require__(84);
 	var invariant = __webpack_require__(4);
-	var shouldUpdateReactComponent = __webpack_require__(171);
+	var shouldUpdateReactComponent = __webpack_require__(172);
 	var warning = __webpack_require__(10);
 	
 	function getDeclarationErrorAddendum(component) {
@@ -41306,10 +41343,10 @@
 	var AutoFocusUtils = __webpack_require__(593);
 	var CSSPropertyOperations = __webpack_require__(595);
 	var DOMProperty = __webpack_require__(66);
-	var DOMPropertyOperations = __webpack_require__(156);
+	var DOMPropertyOperations = __webpack_require__(157);
 	var EventConstants = __webpack_require__(44);
 	var ReactBrowserEventEmitter = __webpack_require__(107);
-	var ReactComponentBrowserEnvironment = __webpack_require__(158);
+	var ReactComponentBrowserEnvironment = __webpack_require__(159);
 	var ReactDOMButton = __webpack_require__(608);
 	var ReactDOMInput = __webpack_require__(611);
 	var ReactDOMOption = __webpack_require__(612);
@@ -41318,18 +41355,18 @@
 	var ReactMount = __webpack_require__(7);
 	var ReactMultiChild = __webpack_require__(622);
 	var ReactPerf = __webpack_require__(31);
-	var ReactUpdateQueue = __webpack_require__(161);
+	var ReactUpdateQueue = __webpack_require__(162);
 	
 	var assign = __webpack_require__(9);
 	var canDefineProperty = __webpack_require__(112);
 	var escapeTextContentForBrowser = __webpack_require__(113);
 	var invariant = __webpack_require__(4);
-	var isEventSupported = __webpack_require__(169);
+	var isEventSupported = __webpack_require__(170);
 	var keyOf = __webpack_require__(54);
 	var setInnerHTML = __webpack_require__(114);
-	var setTextContent = __webpack_require__(170);
+	var setTextContent = __webpack_require__(171);
 	var shallowEqual = __webpack_require__(266);
-	var validateDOMNesting = __webpack_require__(173);
+	var validateDOMNesting = __webpack_require__(174);
 	var warning = __webpack_require__(10);
 	
 	var deleteListener = ReactBrowserEventEmitter.deleteListener;
@@ -42451,8 +42488,8 @@
 	
 	'use strict';
 	
-	var ReactDOMIDOperations = __webpack_require__(160);
-	var LinkedValueUtils = __webpack_require__(157);
+	var ReactDOMIDOperations = __webpack_require__(161);
+	var LinkedValueUtils = __webpack_require__(158);
 	var ReactMount = __webpack_require__(7);
 	var ReactUpdates = __webpack_require__(35);
 	
@@ -42924,7 +42961,7 @@
 	
 	var ReactDefaultInjection = __webpack_require__(244);
 	var ReactServerRendering = __webpack_require__(627);
-	var ReactVersion = __webpack_require__(162);
+	var ReactVersion = __webpack_require__(163);
 	
 	ReactDefaultInjection.inject();
 	
@@ -42953,8 +42990,8 @@
 	
 	'use strict';
 	
-	var LinkedValueUtils = __webpack_require__(157);
-	var ReactDOMIDOperations = __webpack_require__(160);
+	var LinkedValueUtils = __webpack_require__(158);
+	var ReactDOMIDOperations = __webpack_require__(161);
 	var ReactUpdates = __webpack_require__(35);
 	
 	var assign = __webpack_require__(9);
@@ -43572,7 +43609,7 @@
 	var ReactUpdates = __webpack_require__(35);
 	
 	var assign = __webpack_require__(9);
-	var getEventTarget = __webpack_require__(166);
+	var getEventTarget = __webpack_require__(167);
 	var getUnboundedScrollPosition = __webpack_require__(654);
 	
 	var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
@@ -43781,7 +43818,7 @@
 	
 	var DOMProperty = __webpack_require__(66);
 	var EventPluginHub = __webpack_require__(80);
-	var ReactComponentEnvironment = __webpack_require__(159);
+	var ReactComponentEnvironment = __webpack_require__(160);
 	var ReactClass = __webpack_require__(237);
 	var ReactEmptyComponent = __webpack_require__(246);
 	var ReactBrowserEventEmitter = __webpack_require__(107);
@@ -43829,7 +43866,7 @@
 	var ReactElement = __webpack_require__(28);
 	var ReactElementValidator = __webpack_require__(245);
 	var ReactPropTypes = __webpack_require__(254);
-	var ReactVersion = __webpack_require__(162);
+	var ReactVersion = __webpack_require__(163);
 	
 	var assign = __webpack_require__(9);
 	var onlyChild = __webpack_require__(647);
@@ -43903,7 +43940,7 @@
 	
 	'use strict';
 	
-	var ReactComponentEnvironment = __webpack_require__(159);
+	var ReactComponentEnvironment = __webpack_require__(160);
 	var ReactMultiChildUpdateTypes = __webpack_require__(251);
 	
 	var ReactCurrentOwner = __webpack_require__(45);
@@ -44502,7 +44539,7 @@
 	
 	'use strict';
 	
-	var CallbackQueue = __webpack_require__(155);
+	var CallbackQueue = __webpack_require__(156);
 	var PooledClass = __webpack_require__(53);
 	var ReactBrowserEventEmitter = __webpack_require__(107);
 	var ReactDOMFeatureFlags = __webpack_require__(240);
@@ -44777,7 +44814,7 @@
 	var ReactUpdates = __webpack_require__(35);
 	
 	var emptyObject = __webpack_require__(84);
-	var instantiateReactComponent = __webpack_require__(168);
+	var instantiateReactComponent = __webpack_require__(169);
 	var invariant = __webpack_require__(4);
 	
 	/**
@@ -44859,7 +44896,7 @@
 	'use strict';
 	
 	var PooledClass = __webpack_require__(53);
-	var CallbackQueue = __webpack_require__(155);
+	var CallbackQueue = __webpack_require__(156);
 	var Transaction = __webpack_require__(111);
 	
 	var assign = __webpack_require__(9);
@@ -45336,7 +45373,7 @@
 	var SyntheticWheelEvent = __webpack_require__(640);
 	
 	var emptyFunction = __webpack_require__(39);
-	var getEventCharCode = __webpack_require__(164);
+	var getEventCharCode = __webpack_require__(165);
 	var invariant = __webpack_require__(4);
 	var keyOf = __webpack_require__(54);
 	
@@ -46130,9 +46167,9 @@
 	
 	var SyntheticUIEvent = __webpack_require__(83);
 	
-	var getEventCharCode = __webpack_require__(164);
+	var getEventCharCode = __webpack_require__(165);
 	var getEventKey = __webpack_require__(645);
-	var getEventModifierState = __webpack_require__(165);
+	var getEventModifierState = __webpack_require__(166);
 	
 	/**
 	 * @interface KeyboardEvent
@@ -46220,7 +46257,7 @@
 	
 	var SyntheticUIEvent = __webpack_require__(83);
 	
-	var getEventModifierState = __webpack_require__(165);
+	var getEventModifierState = __webpack_require__(166);
 	
 	/**
 	 * @interface TouchEvent
@@ -46489,7 +46526,7 @@
 	
 	'use strict';
 	
-	var traverseAllChildren = __webpack_require__(172);
+	var traverseAllChildren = __webpack_require__(173);
 	var warning = __webpack_require__(10);
 	
 	/**
@@ -46544,7 +46581,7 @@
 	
 	'use strict';
 	
-	var getEventCharCode = __webpack_require__(164);
+	var getEventCharCode = __webpack_require__(165);
 	
 	/**
 	 * Normalization of deprecated HTML5 `key` values
@@ -48139,7 +48176,7 @@
 	var content = __webpack_require__(149);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(174)(content, {});
+	var update = __webpack_require__(175)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(true) {
@@ -48165,7 +48202,7 @@
 	var content = __webpack_require__(150);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(174)(content, {});
+	var update = __webpack_require__(175)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(true) {
@@ -48191,7 +48228,7 @@
 	var content = __webpack_require__(151);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(174)(content, {});
+	var update = __webpack_require__(175)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(true) {
