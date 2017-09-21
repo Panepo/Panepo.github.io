@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c4b30d85f0e8692583d6"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "12684d16fb173a622e30"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -36334,7 +36334,7 @@
 		}
 	
 		if (input.aspdSpell >= input.aspdSkill) {
-			dataAspdSkill = 0;
+			dataAspdSkill = input.aspdSpell;
 		} else {
 			dataAspdSkill = input.aspdSkill;
 		}
@@ -36351,7 +36351,7 @@
 					} else {
 						weaponSelected[i].damage = parameters.valueProDam;
 					}
-					weaponSelected[i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[i].aspd) / 100));
+					weaponSelected[i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[i].aspd) / 100));
 					weaponSelected[i].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[i].dps = Math.floor(weaponSelected[i].damage * weaponSelected[i].hit * parameters.valueFPS / (weaponSelected[i].frame1 + weaponSelected[i].frame2) * 100) / 100;
 				}
@@ -36367,7 +36367,7 @@
 					} else {
 						weaponSelected[_i].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i].aspd) / 100));
+					weaponSelected[_i].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i].aspd) / 100));
 					weaponSelected[_i].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i].dps = Math.floor(weaponSelected[_i].damage * weaponSelected[_i].hit * parameters.valueFPS / (weaponSelected[_i].frame1 + weaponSelected[_i].frame2) * 100) / 100;
 				}
@@ -36383,7 +36383,7 @@
 					} else {
 						weaponSelected[_i2].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i2].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i2].aspd) / 100));
+					weaponSelected[_i2].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i2].aspd) / 100));
 					weaponSelected[_i2].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i2].dps = Math.floor(weaponSelected[_i2].damage * weaponSelected[_i2].hit * parameters.valueFPS / (weaponSelected[_i2].frame1 + weaponSelected[_i2].frame2) * 100) / 100;
 				}
@@ -36399,7 +36399,7 @@
 					} else {
 						weaponSelected[_i3].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i3].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i3].aspd) / 100));
+					weaponSelected[_i3].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i3].aspd) / 100));
 					weaponSelected[_i3].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i3].dps = Math.floor(weaponSelected[_i3].damage * weaponSelected[_i3].hit * parameters.valueFPS / (weaponSelected[_i3].frame1 + weaponSelected[_i3].frame2) * 100) / 100;
 				}
@@ -36417,7 +36417,7 @@
 					} else {
 						weaponSelected[_i4].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i4].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i4].aspd) / 100));
+					weaponSelected[_i4].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i4].aspd) / 100));
 					weaponSelected[_i4].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i4].dps = Math.floor(weaponSelected[_i4].damage * weaponSelected[_i4].hit * parameters.valueFPS / (weaponSelected[_i4].frame1 + weaponSelected[_i4].frame2) * 100) / 100;
 				}
@@ -36433,7 +36433,7 @@
 					} else {
 						weaponSelected[_i5].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i5].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i5].aspd) / 100));
+					weaponSelected[_i5].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i5].aspd) / 100));
 					weaponSelected[_i5].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i5].dps = Math.floor(weaponSelected[_i5].damage * weaponSelected[_i5].hit * parameters.valueFPS / (weaponSelected[_i5].frame1 + weaponSelected[_i5].frame2) * 100) / 100;
 				}
@@ -36449,7 +36449,7 @@
 					} else {
 						weaponSelected[_i6].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i6].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i6].aspd) / 100));
+					weaponSelected[_i6].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i6].aspd) / 100));
 					weaponSelected[_i6].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i6].dps = Math.floor(weaponSelected[_i6].damage * weaponSelected[_i6].hit * parameters.valueFPS / (weaponSelected[_i6].frame1 + weaponSelected[_i6].frame2) * 100) / 100;
 				}
@@ -36465,7 +36465,7 @@
 					} else {
 						weaponSelected[_i7].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i7].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i7].aspd) / 100));
+					weaponSelected[_i7].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i7].aspd) / 100));
 					weaponSelected[_i7].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i7].dps = Math.floor(weaponSelected[_i7].damage * weaponSelected[_i7].hit * parameters.valueFPS / (weaponSelected[_i7].frame1 + weaponSelected[_i7].frame2) * 100) / 100;
 				}
@@ -36481,7 +36481,7 @@
 					} else {
 						weaponSelected[_i8].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i8].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i8].aspd) / 100));
+					weaponSelected[_i8].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i8].aspd) / 100));
 					weaponSelected[_i8].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i8].dps = Math.floor(weaponSelected[_i8].damage * weaponSelected[_i8].hit * parameters.valueFPS / (weaponSelected[_i8].frame1 + weaponSelected[_i8].frame2) * 100) / 100;
 				}
@@ -36499,7 +36499,7 @@
 					} else {
 						weaponSelected[_i9].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i9].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i9].aspd) / 100));
+					weaponSelected[_i9].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i9].aspd) / 100));
 					weaponSelected[_i9].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i9].dps = Math.floor(weaponSelected[_i9].damage * weaponSelected[_i9].hit * parameters.valueFPS / (weaponSelected[_i9].frame1 + weaponSelected[_i9].frame2) * 100) / 100;
 				}
@@ -36515,7 +36515,7 @@
 					} else {
 						weaponSelected[_i10].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i10].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i10].aspd) / 100));
+					weaponSelected[_i10].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i10].aspd) / 100));
 					weaponSelected[_i10].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i10].dps = Math.floor(weaponSelected[_i10].damage * weaponSelected[_i10].hit * parameters.valueFPS / (weaponSelected[_i10].frame1 + weaponSelected[_i10].frame2) * 100) / 100;
 				}
@@ -36531,7 +36531,7 @@
 					} else {
 						weaponSelected[_i11].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i11].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i11].aspd) / 100));
+					weaponSelected[_i11].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i11].aspd) / 100));
 					weaponSelected[_i11].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i11].dps = Math.floor(weaponSelected[_i11].damage * weaponSelected[_i11].hit * parameters.valueFPS / (weaponSelected[_i11].frame1 + weaponSelected[_i11].frame2) * 100) / 100;
 				}
@@ -36547,7 +36547,7 @@
 					} else {
 						weaponSelected[_i12].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i12].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i12].aspd) / 100));
+					weaponSelected[_i12].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i12].aspd) / 100));
 					weaponSelected[_i12].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i12].dps = Math.floor(weaponSelected[_i12].damage * weaponSelected[_i12].hit * parameters.valueFPS / (weaponSelected[_i12].frame1 + weaponSelected[_i12].frame2) * 100) / 100;
 				}
@@ -36563,7 +36563,7 @@
 					} else {
 						weaponSelected[_i13].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i13].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i13].aspd) / 100));
+					weaponSelected[_i13].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i13].aspd) / 100));
 					weaponSelected[_i13].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i13].dps = Math.floor(weaponSelected[_i13].damage * weaponSelected[_i13].hit * parameters.valueFPS / (weaponSelected[_i13].frame1 + weaponSelected[_i13].frame2) * 100) / 100;
 				}
@@ -36579,7 +36579,7 @@
 					} else {
 						weaponSelected[_i14].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i14].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i14].aspd) / 100));
+					weaponSelected[_i14].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i14].aspd) / 100));
 					weaponSelected[_i14].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i14].dps = Math.floor(weaponSelected[_i14].damage * weaponSelected[_i14].hit * parameters.valueFPS / (weaponSelected[_i14].frame1 + weaponSelected[_i14].frame2) * 100) / 100;
 				}
@@ -36597,7 +36597,7 @@
 					} else {
 						weaponSelected[_i15].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i15].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i15].aspd) / 100));
+					weaponSelected[_i15].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i15].aspd) / 100));
 					weaponSelected[_i15].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i15].dps = Math.floor(weaponSelected[_i15].damage * weaponSelected[_i15].hit * parameters.valueFPS / (weaponSelected[_i15].frame1 + weaponSelected[_i15].frame2) * 100) / 100;
 				}
@@ -36615,7 +36615,7 @@
 					} else {
 						weaponSelected[_i16].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i16].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i16].aspd) / 100));
+					weaponSelected[_i16].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i16].aspd) / 100));
 					weaponSelected[_i16].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i16].dps = Math.floor(weaponSelected[_i16].damage * weaponSelected[_i16].hit * parameters.valueFPS / (weaponSelected[_i16].frame1 + weaponSelected[_i16].frame2) * 100) / 100;
 				}
@@ -36631,7 +36631,7 @@
 					} else {
 						weaponSelected[_i17].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i17].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i17].aspd) / 100));
+					weaponSelected[_i17].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i17].aspd) / 100));
 					weaponSelected[_i17].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i17].dps = Math.floor(weaponSelected[_i17].damage * weaponSelected[_i17].hit * parameters.valueFPS / (weaponSelected[_i17].frame1 + weaponSelected[_i17].frame2) * 100) / 100;
 				}
@@ -36647,7 +36647,7 @@
 					} else {
 						weaponSelected[_i18].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i18].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i18].aspd) / 100));
+					weaponSelected[_i18].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i18].aspd) / 100));
 					weaponSelected[_i18].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i18].dps = Math.floor(weaponSelected[_i18].damage * weaponSelected[_i18].hit * parameters.valueFPS / (weaponSelected[_i18].frame1 + weaponSelected[_i18].frame2) * 100) / 100;
 				}
@@ -36663,7 +36663,7 @@
 					} else {
 						weaponSelected[_i19].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i19].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i19].aspd) / 100));
+					weaponSelected[_i19].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i19].aspd) / 100));
 					weaponSelected[_i19].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i19].dps = Math.floor(weaponSelected[_i19].damage * weaponSelected[_i19].hit * parameters.valueFPS / (weaponSelected[_i19].frame1 + weaponSelected[_i19].frame2) * 100) / 100;
 				}
@@ -36679,7 +36679,7 @@
 					} else {
 						weaponSelected[_i20].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i20].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i20].aspd) / 100));
+					weaponSelected[_i20].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i20].aspd) / 100));
 					weaponSelected[_i20].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i20].dps = Math.floor(weaponSelected[_i20].damage * weaponSelected[_i20].hit * parameters.valueFPS / (weaponSelected[_i20].frame1 + weaponSelected[_i20].frame2) * 100) / 100;
 				}
@@ -36692,7 +36692,7 @@
 				for (var _i21 = 0; _i21 < weaponSelected.length; _i21 += 1) {
 					totalAtk = (charAtk + weaponSelected[_i21].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					weaponSelected[_i21].damage = Math.floor(totalAtk);
-					weaponSelected[_i21].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i21].aspd) / 100));
+					weaponSelected[_i21].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i21].aspd) / 100));
 					weaponSelected[_i21].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i21].dps = Math.floor(weaponSelected[_i21].damage * weaponSelected[_i21].hit * parameters.valueFPS / (weaponSelected[_i21].frame1 + weaponSelected[_i21].frame2) * 100) / 100;
 				}
@@ -36703,7 +36703,7 @@
 				for (var _i22 = 0; _i22 < weaponSelected.length; _i22 += 1) {
 					totalAtk = (charAtk + weaponSelected[_i22].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					weaponSelected[_i22].damage = Math.floor(totalAtk);
-					weaponSelected[_i22].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i22].aspd) / 100));
+					weaponSelected[_i22].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i22].aspd) / 100));
 					weaponSelected[_i22].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i22].dps = Math.floor(weaponSelected[_i22].damage * weaponSelected[_i22].hit * parameters.valueFPS / (weaponSelected[_i22].frame1 + weaponSelected[_i22].frame2) * 100) / 100;
 				}
@@ -36714,7 +36714,7 @@
 				for (var _i23 = 0; _i23 < weaponSelected.length; _i23 += 1) {
 					totalAtk = (charAtk + weaponSelected[_i23].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					weaponSelected[_i23].damage = Math.floor(totalAtk);
-					weaponSelected[_i23].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i23].aspd) / 100));
+					weaponSelected[_i23].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i23].aspd) / 100));
 					weaponSelected[_i23].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i23].dps = Math.floor(weaponSelected[_i23].damage * weaponSelected[_i23].hit * parameters.valueFPS / (weaponSelected[_i23].frame1 + weaponSelected[_i23].frame2) * 100) / 100;
 				}
@@ -36725,7 +36725,7 @@
 				for (var _i24 = 0; _i24 < weaponSelected.length; _i24 += 1) {
 					totalAtk = (charAtk + weaponSelected[_i24].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 					weaponSelected[_i24].damage = Math.floor(totalAtk);
-					weaponSelected[_i24].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i24].aspd) / 100));
+					weaponSelected[_i24].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i24].aspd) / 100));
 					weaponSelected[_i24].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i24].dps = Math.floor(weaponSelected[_i24].damage * weaponSelected[_i24].hit * parameters.valueFPS / (weaponSelected[_i24].frame1 + weaponSelected[_i24].frame2) * 100) / 100;
 				}
@@ -36743,7 +36743,7 @@
 					} else {
 						weaponSelected[_i25].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i25].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i25].aspd) / 100));
+					weaponSelected[_i25].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i25].aspd) / 100));
 					weaponSelected[_i25].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i25].dps = Math.floor(weaponSelected[_i25].damage * weaponSelected[_i25].hit * parameters.valueFPS / (weaponSelected[_i25].frame1 + weaponSelected[_i25].frame2) * 100) / 100;
 				}
@@ -36759,7 +36759,7 @@
 					} else {
 						weaponSelected[_i26].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i26].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i26].aspd) / 100));
+					weaponSelected[_i26].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i26].aspd) / 100));
 					weaponSelected[_i26].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i26].dps = Math.floor(weaponSelected[_i26].damage * weaponSelected[_i26].hit * parameters.valueFPS / (weaponSelected[_i26].frame1 + weaponSelected[_i26].frame2) * 100) / 100;
 				}
@@ -36775,7 +36775,7 @@
 					} else {
 						weaponSelected[_i27].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i27].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i27].aspd) / 100));
+					weaponSelected[_i27].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i27].aspd) / 100));
 					weaponSelected[_i27].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i27].dps = Math.floor(weaponSelected[_i27].damage * weaponSelected[_i27].hit * parameters.valueFPS / (weaponSelected[_i27].frame1 + weaponSelected[_i27].frame2) * 100) / 100;
 				}
@@ -36791,7 +36791,7 @@
 					} else {
 						weaponSelected[_i28].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i28].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i28].aspd) / 100));
+					weaponSelected[_i28].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i28].aspd) / 100));
 					weaponSelected[_i28].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i28].dps = Math.floor(weaponSelected[_i28].damage * weaponSelected[_i28].hit * parameters.valueFPS / (weaponSelected[_i28].frame1 + weaponSelected[_i28].frame2) * 100) / 100;
 				}
@@ -36807,7 +36807,7 @@
 					} else {
 						weaponSelected[_i29].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i29].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i29].aspd) / 100));
+					weaponSelected[_i29].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i29].aspd) / 100));
 					weaponSelected[_i29].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i29].dps = Math.floor(weaponSelected[_i29].damage * weaponSelected[_i29].hit * parameters.valueFPS / (weaponSelected[_i29].frame1 + weaponSelected[_i29].frame2) * 100) / 100;
 				}
@@ -36826,7 +36826,7 @@
 					} else {
 						weaponSelected[_i30].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i30].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i30].aspd) / 100));
+					weaponSelected[_i30].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i30].aspd) / 100));
 					weaponSelected[_i30].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i30].dps = Math.floor(weaponSelected[_i30].damage * weaponSelected[_i30].hit * parameters.valueFPS / (weaponSelected[_i30].frame1 + weaponSelected[_i30].frame2) * 100) / 100;
 				}
@@ -36842,7 +36842,7 @@
 					} else {
 						weaponSelected[_i31].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i31].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i31].aspd) / 100));
+					weaponSelected[_i31].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i31].aspd) / 100));
 					weaponSelected[_i31].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i31].dps = Math.floor(weaponSelected[_i31].damage * weaponSelected[_i31].hit * parameters.valueFPS / (weaponSelected[_i31].frame1 + weaponSelected[_i31].frame2) * 100) / 100;
 				}
@@ -36858,7 +36858,7 @@
 					} else {
 						weaponSelected[_i32].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i32].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i32].aspd) / 100));
+					weaponSelected[_i32].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i32].aspd) / 100));
 					weaponSelected[_i32].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i32].dps = Math.floor(weaponSelected[_i32].damage * weaponSelected[_i32].hit * parameters.valueFPS / (weaponSelected[_i32].frame1 + weaponSelected[_i32].frame2) * 100) / 100;
 				}
@@ -36874,7 +36874,7 @@
 					} else {
 						weaponSelected[_i33].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i33].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i33].aspd) / 100));
+					weaponSelected[_i33].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i33].aspd) / 100));
 					weaponSelected[_i33].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i33].dps = Math.floor(weaponSelected[_i33].damage * weaponSelected[_i33].hit * parameters.valueFPS / (weaponSelected[_i33].frame1 + weaponSelected[_i33].frame2) * 100) / 100;
 				}
@@ -36890,7 +36890,7 @@
 					} else {
 						weaponSelected[_i34].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i34].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i34].aspd) / 100));
+					weaponSelected[_i34].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i34].aspd) / 100));
 					weaponSelected[_i34].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i34].dps = Math.floor(weaponSelected[_i34].damage * weaponSelected[_i34].hit * parameters.valueFPS / (weaponSelected[_i34].frame1 + weaponSelected[_i34].frame2) * 100) / 100;
 				}
@@ -36906,7 +36906,7 @@
 					} else {
 						weaponSelected[_i35].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i35].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i35].aspd) / 100));
+					weaponSelected[_i35].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i35].aspd) / 100));
 					weaponSelected[_i35].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i35].dps = Math.floor(weaponSelected[_i35].damage * weaponSelected[_i35].hit * parameters.valueFPS / (weaponSelected[_i35].frame1 + weaponSelected[_i35].frame2) * 100) / 100;
 				}
@@ -36922,7 +36922,7 @@
 					} else {
 						weaponSelected[_i36].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i36].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i36].aspd) / 100));
+					weaponSelected[_i36].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i36].aspd) / 100));
 					weaponSelected[_i36].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i36].dps = Math.floor(weaponSelected[_i36].damage * weaponSelected[_i36].hit * parameters.valueFPS / (weaponSelected[_i36].frame1 + weaponSelected[_i36].frame2) * 100) / 100;
 				}
@@ -36940,7 +36940,7 @@
 					} else {
 						weaponSelected[_i37].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i37].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i37].aspd) / 100));
+					weaponSelected[_i37].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i37].aspd) / 100));
 					weaponSelected[_i37].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i37].dps = Math.floor(weaponSelected[_i37].damage * weaponSelected[_i37].hit * parameters.valueFPS / (weaponSelected[_i37].frame1 + weaponSelected[_i37].frame2) * 100) / 100;
 				}
@@ -36956,7 +36956,7 @@
 					} else {
 						weaponSelected[_i38].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i38].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i38].aspd) / 100));
+					weaponSelected[_i38].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i38].aspd) / 100));
 					weaponSelected[_i38].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i38].dps = Math.floor(weaponSelected[_i38].damage * weaponSelected[_i38].hit * parameters.valueFPS / (weaponSelected[_i38].frame1 + weaponSelected[_i38].frame2) * 100) / 100;
 				}
@@ -36972,7 +36972,7 @@
 					} else {
 						weaponSelected[_i39].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i39].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i39].aspd) / 100));
+					weaponSelected[_i39].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i39].aspd) / 100));
 					weaponSelected[_i39].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i39].dps = Math.floor(weaponSelected[_i39].damage * weaponSelected[_i39].hit * parameters.valueFPS / (weaponSelected[_i39].frame1 + weaponSelected[_i39].frame2) * 100) / 100;
 				}
@@ -36988,7 +36988,7 @@
 					} else {
 						weaponSelected[_i40].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i40].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i40].aspd) / 100));
+					weaponSelected[_i40].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i40].aspd) / 100));
 					weaponSelected[_i40].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i40].dps = Math.floor(weaponSelected[_i40].damage * weaponSelected[_i40].hit * parameters.valueFPS / (weaponSelected[_i40].frame1 + weaponSelected[_i40].frame2) * 100) / 100;
 				}
@@ -37004,7 +37004,7 @@
 					} else {
 						weaponSelected[_i41].damage = parameters.valueProDam;
 					}
-					weaponSelected[_i41].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i41].aspd) / 100));
+					weaponSelected[_i41].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i41].aspd) / 100));
 					weaponSelected[_i41].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i41].dps = Math.floor(weaponSelected[_i41].damage * weaponSelected[_i41].hit * parameters.valueFPS / (weaponSelected[_i41].frame1 + weaponSelected[_i41].frame2) * 100) / 100;
 				}
@@ -37020,7 +37020,7 @@
 					} else {
 						weaponSelected[_i42].damage = parameters.valueProDam * 2;
 					}
-					weaponSelected[_i42].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i42].aspd) / 100));
+					weaponSelected[_i42].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i42].aspd) / 100));
 					weaponSelected[_i42].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i42].dps = Math.floor(weaponSelected[_i42].damage * weaponSelected[_i42].hit * parameters.valueFPS / (weaponSelected[_i42].frame1 + weaponSelected[_i42].frame2) * 100) / 100;
 				}
@@ -37035,7 +37035,7 @@
 					} else {
 						weaponSelected[_i43].damage = parameters.valueProDam * 3;
 					}
-					weaponSelected[_i43].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + input.aspdSpell + weaponSelected[_i43].aspd) / 100));
+					weaponSelected[_i43].frame1 = Math.ceil(typeSelected.frame1 * (1 - (dataAspdSkill + weaponSelected[_i43].aspd) / 100));
 					weaponSelected[_i43].frame2 = Math.ceil(typeSelected.frame2 * (1 - input.aspdSpell / 100));
 					weaponSelected[_i43].dps = Math.floor(weaponSelected[_i43].damage * weaponSelected[_i43].hit * parameters.valueFPS / (weaponSelected[_i43].frame1 + weaponSelected[_i43].frame2) * 100) / 100;
 				}
