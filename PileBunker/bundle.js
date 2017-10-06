@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "12684d16fb173a622e30"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3a3d30acf1a9fc59c045"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -28306,6 +28306,18 @@
 			"range": 0,
 			"rare": 4,
 			"text": "回復+3 防禦+30",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "アイアースの盾",
+			"type": "shield",
+			"atk": 23,
+			"hit": 1,
+			"aspd": 0,
+			"range": 0,
+			"rare": 4,
+			"text": "耐久+300 防禦+48",
 			"ref": 0,
 			"refText": "+0"
 		},
