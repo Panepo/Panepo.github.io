@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "3a3d30acf1a9fc59c045"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "8331ced250f922bec9aa"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27710,6 +27710,18 @@
 			"refText": "+0"
 		},
 		{
+			"name": "蜂須賀虎徹",
+			"type": "sword",
+			"atk": 56,
+			"hit": 1,
+			"aspd": 0,
+			"range": 0,
+			"rare": 4,
+			"text": "計略再使用-3秒",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
 			"name": "明鏡止水",
 			"type": "sword",
 			"atk": 57,
@@ -27946,6 +27958,18 @@
 			"range": 0,
 			"rare": 4,
 			"text": "防御+25",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "とんぼきり",
+			"type": "lance",
+			"atk": 31,
+			"hit": 1,
+			"aspd": 0,
+			"range": 20,
+			"rare": 4,
+			"text": "範囲+20",
 			"ref": 0,
 			"refText": "+0"
 		},
@@ -28654,6 +28678,18 @@
 			"range": 0,
 			"rare": 4,
 			"text": "",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "多賀柵弩",
+			"type": "xbowx2",
+			"atk": 11,
+			"hit": 1,
+			"aspd": 0,
+			"range": 20,
+			"rare": 4,
+			"text": "敵3体に攻撃 範囲+20",
 			"ref": 0,
 			"refText": "+0"
 		},
