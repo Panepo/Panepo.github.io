@@ -20,11 +20,11 @@ circle {
 var w = 1280,
     h = 800;
 
-var nodes = d3.range(200).map(function() { return {radius: Math.random() * 12 + 4}; }),
+var nodes = d3.range(300).map(function() { return {radius: Math.random() * 12 + 10}; }),
     color = d3.scale.category10();
 
 var force = d3.layout.force()
-    .gravity(0.3)
+    .gravity(0.03)
     .charge(function(d, i) { return i ? 0 : -2000; })
     .nodes(nodes)
     .size([w, h]);
