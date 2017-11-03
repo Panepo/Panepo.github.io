@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "193b7ec3f52c7f11a57d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ffa4736dabb32e38d0ad"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -9165,8 +9165,8 @@
 	var valueFPS = exports.valueFPS = 30; // define the system frame per second
 	var valueMaxRef = exports.valueMaxRef = 10; // define the maximum refine value
 	
-	var maxAspdSkill = exports.maxAspdSkill = 75; // define the maximum aspd skill value
-	var maxAspdSpell = exports.maxAspdSpell = 75; // define the maximum aspd spell value
+	var maxAspdSkill = exports.maxAspdSkill = 95; // define the maximum aspd skill value
+	var maxAspdSpell = exports.maxAspdSpell = 100; // define the maximum aspd spell value
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(18); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ConstParameters.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
@@ -35870,7 +35870,7 @@
 								}),
 								_react3.default.createElement(_InputBoxValue2.default, {
 									classes: 'text-input',
-									title: '技能攻擊速度增加',
+									title: '攻撃速度上昇(%)',
 									modelId: 'aspdSkill',
 									inputFunc: function inputFunc(modelId, modelValue) {
 										inputChange(modelId, modelValue);
@@ -35879,7 +35879,7 @@
 								}),
 								_react3.default.createElement(_InputBoxValue2.default, {
 									classes: 'text-input',
-									title: '策略攻擊速度增加',
+									title: '攻撃後の隙短縮(%)',
 									modelId: 'aspdSpell',
 									inputFunc: function inputFunc(modelId, modelValue) {
 										inputChange(modelId, modelValue);
@@ -36492,7 +36492,6 @@
 		var totalAtk = void 0;
 		var totalDef = void 0;
 		var output = [];
-		var dataAspdSkill = void 0;
 	
 		if (input.plain === 'plain') {
 			charAtk = input.atk * parameters.muxPlain;
@@ -36532,12 +36531,6 @@
 				maxMux = 1;
 		}
 	
-		if (input.aspdSpell >= input.aspdSkill) {
-			dataAspdSkill = input.aspdSpell;
-		} else {
-			dataAspdSkill = input.aspdSkill;
-		}
-	
 		for (var i = 0; i < weaponSelected.length; i += 1) {
 			totalAtk = (charAtk + weaponSelected[i].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 			totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
@@ -36546,7 +36539,7 @@
 			} else {
 				weaponSelected[i].damage = parameters.valueProDam;
 			}
-			weaponSelected[i].frame1 = Math.ceil(weaponSelected[i].f1 * (1 - dataAspdSkill / 100));
+			weaponSelected[i].frame1 = Math.ceil(weaponSelected[i].f1 * (1 - input.aspdSkill / 100));
 			weaponSelected[i].frame2 = Math.ceil(weaponSelected[i].f2 * (1 - input.aspdSpell / 100));
 			weaponSelected[i].dps = Math.floor(weaponSelected[i].damage * weaponSelected[i].hit * parameters.valueFPS / (weaponSelected[i].frame1 + weaponSelected[i].frame2) * 100) / 100;
 		}
