@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e9ddf1fe193113bbd12a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "eae9a1df1e01eb70792b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -35755,7 +35755,7 @@
 								}),
 								_react3.default.createElement(_InputBoxValue2.default, {
 									classes: 'text-input',
-									title: '伴',
+									title: '絆',
 									modelId: 'com',
 									inputFunc: function inputFunc(modelId, modelValue) {
 										inputChange(modelId, modelValue);
