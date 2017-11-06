@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ffa4736dabb32e38d0ad"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e9ddf1fe193113bbd12a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -9150,7 +9150,12 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var defaultAtk = exports.defaultAtk = 200; // define the default attack value
+	var defaultLevel = exports.defaultLevel = 50; // define the default level
+	var defaultHPParm = exports.defaultHPParm = 100; // define the default hp parameter
+	var defaultAtkParm = exports.defaultAtkParm = 100; // define the default atk parameter
+	var defaultDefParm = exports.defaultDefParm = 100; // define the default def parameter
+	var defaultCompanion = exports.defaultCompanion = 100; // define the default Companion parameter
+	
 	var defaultDef = exports.defaultDef = 100; // define the default defense value
 	
 	var muxPlain = exports.muxPlain = 1.2; // define the multiplier when attacker have plain
@@ -13054,7 +13059,7 @@
 	
 				return _react3.default.createElement(
 					'button',
-					{ className: bClassName, onClick: onClickFunc.bind(null, modelId) },
+					{ className: bClassName, onClick: onClickFunc.bind(null, modelId), key: title },
 					title
 				);
 			}
@@ -27182,285 +27187,172 @@
 	module.exports = [
 		{
 			"name": "sword",
+			"cname": "刀",
 			"frame1": 19,
 			"frame2": 30,
-			"range": 140
-		},
-		{
-			"name": "sword1",
-			"frame1": 17,
-			"frame2": 30,
-			"range": 140
-		},
-		{
-			"name": "sword2",
-			"frame1": 16,
-			"frame2": 30,
-			"range": 140
-		},
-		{
-			"name": "sword3",
-			"frame1": 15,
-			"frame2": 30,
-			"range": 140
+			"range": 140,
+			"hp": 1560,
+			"atk": 66,
+			"def": 65,
+			"hpM": 12072,
+			"atkM": 1626,
+			"defM": 1585
 		},
 		{
 			"name": "lance",
+			"cname": "槍",
 			"frame1": 23,
 			"frame2": 30,
-			"range": 200
-		},
-		{
-			"name": "lance1",
-			"frame1": 20,
-			"frame2": 30,
-			"range": 200
-		},
-		{
-			"name": "lance2",
-			"frame1": 19,
-			"frame2": 30,
-			"range": 200
-		},
-		{
-			"name": "lance3",
-			"frame1": 18,
-			"frame2": 30,
-			"range": 200
-		},
-		{
-			"name": "lancex1",
-			"frame1": 40,
-			"frame2": 30,
-			"range": 200
-		},
-		{
-			"name": "lancex2",
-			"frame1": 57,
-			"frame2": 30,
-			"range": 200
+			"range": 200,
+			"hp": 1140,
+			"atk": 51,
+			"def": 48,
+			"hpM": 8820,
+			"atkM": 1267,
+			"defM": 1192
 		},
 		{
 			"name": "hammer",
+			"cname": "槌",
 			"frame1": 27,
 			"frame2": 30,
-			"range": 100
-		},
-		{
-			"name": "hammer1",
-			"frame1": 23,
-			"frame2": 30,
-			"range": 100
-		},
-		{
-			"name": "hammer2",
-			"frame1": 22,
-			"frame2": 30,
-			"range": 100
-		},
-		{
-			"name": "hammer3",
-			"frame1": 21,
-			"frame2": 30,
-			"range": 100
-		},
-		{
-			"name": "hammerx1",
-			"frame1": 42,
-			"frame2": 30,
-			"range": 100
+			"range": 100,
+			"hp": 1680,
+			"atk": 90,
+			"def": 66,
+			"hpM": 15540,
+			"atkM": 2194,
+			"defM": 1742
 		},
 		{
 			"name": "shield",
+			"cname": "盾",
 			"frame1": 24,
 			"frame2": 30,
-			"range": 90
+			"range": 90,
+			"hp": 1800,
+			"atk": 61,
+			"def": 90,
+			"hpM": 15800,
+			"atkM": 1501,
+			"defM": 1890
 		},
 		{
 			"name": "bow",
+			"cname": "弓",
 			"frame1": 19,
 			"frame2": 18,
-			"range": 280
-		},
-		{
-			"name": "bow1",
-			"frame1": 17,
-			"frame2": 18,
-			"range": 280
-		},
-		{
-			"name": "bow2",
-			"frame1": 16,
-			"frame2": 18,
-			"range": 280
-		},
-		{
-			"name": "bow3",
-			"frame1": 15,
-			"frame2": 18,
-			"range": 280
-		},
-		{
-			"name": "bowx1",
-			"frame1": 69,
-			"frame2": 18,
-			"range": 280
+			"range": 280,
+			"hp": 960,
+			"atk": 50,
+			"def": 39,
+			"hpM": 7432,
+			"atkM": 1234,
+			"defM": 959
 		},
 		{
 			"name": "xbow",
+			"cname": "石弓",
 			"frame1": 24,
 			"frame2": 30,
-			"range": 250
-		},
-		{
-			"name": "xbow1",
-			"frame1": 21,
-			"frame2": 30,
-			"range": 250
-		},
-		{
-			"name": "xbow2",
-			"frame1": 20,
-			"frame2": 30,
-			"range": 250
-		},
-		{
-			"name": "xbow3",
-			"frame1": 18,
-			"frame2": 30,
-			"range": 250
-		},
-		{
-			"name": "xbowx1",
-			"frame1": 42,
-			"frame2": 30,
-			"range": 250
-		},
-		{
-			"name": "xbowx2",
-			"frame1": 57,
-			"frame2": 30,
-			"range": 250
-		},
-		{
-			"name": "xbowx3",
-			"frame1": 38,
-			"frame2": 30,
-			"range": 250
+			"range": 250,
+			"hp": 1080,
+			"atk": 72,
+			"def": 45,
+			"hpM": 8360,
+			"atkM": 1776,
+			"defM": 1117
 		},
 		{
 			"name": "arqu",
+			"cname": "鉄砲",
 			"frame1": 37,
 			"frame2": 30,
-			"range": 340
-		},
-		{
-			"name": "arqu1",
-			"frame1": 32,
-			"frame2": 30,
-			"range": 340
-		},
-		{
-			"name": "arqu2",
-			"frame1": 31,
-			"frame2": 30,
-			"range": 340
-		},
-		{
-			"name": "arqu3",
-			"frame1": 28,
-			"frame2": 30,
-			"range": 340
-		},
-		{
-			"name": "arqux1",
-			"frame1": 82,
-			"frame2": 30,
-			"range": 340
-		},
-		{
-			"name": "arqux2",
-			"frame1": 102,
-			"frame2": 30,
-			"range": 340
-		},
-		{
-			"name": "arqux3",
-			"frame1": 62,
-			"frame2": 30,
-			"range": 340
+			"range": 340,
+			"hp": 840,
+			"atk": 90,
+			"def": 36,
+			"hpM": 6505,
+			"atkM": 2226,
+			"defM": 892
 		},
 		{
 			"name": "cannon",
+			"cname": "大砲",
 			"frame1": 42,
 			"frame2": 45,
-			"range": 340
-		},
-		{
-			"name": "cannon1",
-			"frame1": 36,
-			"frame2": 45,
-			"range": 340
-		},
-		{
-			"name": "cannon2",
-			"frame1": 35,
-			"frame2": 45,
-			"range": 340
-		},
-		{
-			"name": "cannon3",
-			"frame1": 32,
-			"frame2": 45,
-			"range": 340
-		},
-		{
-			"name": "cannonx1",
-			"frame1": 67,
-			"frame2": 45,
-			"range": 340
-		},
-		{
-			"name": "spell",
-			"frame1": 42,
-			"frame2": 30,
-			"range": 240
-		},
-		{
-			"name": "spell1",
-			"frame1": 36,
-			"frame2": 30,
-			"range": 240
-		},
-		{
-			"name": "spell2",
-			"frame1": 34,
-			"frame2": 30,
-			"range": 240
-		},
-		{
-			"name": "spell3",
-			"frame1": 32,
-			"frame2": 30,
-			"range": 240
+			"range": 340,
+			"hp": 870,
+			"atk": 69,
+			"def": 39,
+			"hpM": 6734,
+			"atkM": 1701,
+			"defM": 959
 		},
 		{
 			"name": "dance",
+			"cname": "歌舞",
 			"frame1": 62,
 			"frame2": 60,
-			"range": 300
+			"range": 300,
+			"hp": 900,
+			"atk": 41,
+			"def": 37,
+			"hpM": 6972,
+			"atkM": 1037,
+			"defM": 933
+		},
+		{
+			"name": "spell",
+			"cname": "法術",
+			"frame1": 42,
+			"frame2": 30,
+			"range": 240,
+			"hp": 960,
+			"atk": 48,
+			"def": 34,
+			"hpM": 7432,
+			"atkM": 1192,
+			"defM": 858
+		},
+		{
+			"name": "bell",
+			"cname": "鈴",
+			"frame1": 62,
+			"frame2": 60,
+			"range": 320,
+			"hp": 1000,
+			"atk": 45,
+			"def": 36,
+			"hpM": 8000,
+			"atkM": 1197,
+			"defM": 932
 		},
 		{
 			"name": "staff",
+			"cname": "杖",
 			"frame1": 37,
 			"frame2": 30,
-			"range": 240
+			"range": 220,
+			"hp": 850,
+			"atk": 90,
+			"def": 34,
+			"hpM": 6350,
+			"atkM": 2194,
+			"defM": 858
 		},
 		{
 			"name": "fist",
+			"cname": "拳",
 			"frame1": 32,
 			"frame2": 19,
-			"range": 90
+			"range": 90,
+			"hp": 1900,
+			"atk": 48,
+			"def": 40,
+			"hpM": 16900,
+			"atkM": 1168,
+			"defM": 1240
 		}
 	];
 
@@ -35088,6 +34980,13 @@
 		}
 	
 		_createClass(InputBoxValue, [{
+			key: 'componentWillReceiveProps',
+			value: function componentWillReceiveProps(nextProps) {
+				this.setState({
+					text: nextProps.defaultValue
+				});
+			}
+		}, {
 			key: 'handleInput',
 			value: function handleInput(event) {
 				var modelId = event.target.id;
@@ -35125,7 +35024,7 @@
 	
 				return _react3.default.createElement(
 					'div',
-					{ className: classes + ' mdl-textfield mdl-js-textfield mdl-textfield--floating-label' },
+					{ className: classes + ' mdl-textfield mdl-js-textfield mdl-textfield--floating-label', key: title },
 					_react3.default.createElement('input', { className: 'mdl-textfield__input', type: 'text', pattern: '-?[0-9]*(\\.[0-9]+)?', id: modelId, onChange: this.handleInput.bind(this), value: this.state.text }),
 					_react3.default.createElement(
 						'label',
@@ -35802,15 +35701,21 @@
 			key: 'render',
 			value: function render() {
 				var _props4 = this.props,
-				    atk = _props4.atk,
-				    def = _props4.def,
-				    atkSkill = _props4.atkSkill,
-				    defSkill = _props4.defSkill,
-				    aspdSkill = _props4.aspdSkill,
-				    aspdSpell = _props4.aspdSpell,
-				    inputChange = _props4.inputChange,
-				    atkSkillInt = _props4.atkSkillInt,
-				    defSkillInt = _props4.defSkillInt;
+				    level = _props4.level,
+				    HPParm = _props4.HPParm,
+				    AtkParm = _props4.AtkParm,
+				    DefParm = _props4.DefParm,
+				    com = _props4.com;
+				var _props5 = this.props,
+				    atk = _props5.atk,
+				    def = _props5.def,
+				    atkSkill = _props5.atkSkill,
+				    defSkill = _props5.defSkill,
+				    aspdSkill = _props5.aspdSkill,
+				    aspdSpell = _props5.aspdSpell,
+				    inputChange = _props5.inputChange,
+				    atkSkillInt = _props5.atkSkillInt,
+				    defSkillInt = _props5.defSkillInt;
 	
 				return _react3.default.createElement(
 					'main',
@@ -35823,19 +35728,40 @@
 							'div',
 							{ className: 'content demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col' },
 							_react3.default.createElement(
-								'h4',
+								'div',
 								null,
-								'\u57CE\u30D7\u30EDRE \u6B66\u5668\u50B7\u5BB3\u6A5F\u7B97\u6A5F \u30D1\u30A4\u30EB\u30D0\u30F3\u30AB\u30FC'
-							),
-							_react3.default.createElement(
-								'h5',
-								null,
-								'\u8A2D\u5B9A'
+								this.generateType()
 							),
 							_react3.default.createElement(
 								'div',
 								null,
-								this.generateType()
+								_react3.default.createElement(_InputBoxValue2.default, {
+									classes: 'text-input',
+									title: '城娘等級',
+									modelId: 'level',
+									inputFunc: function inputFunc(modelId, modelValue) {
+										inputChange(modelId, modelValue);
+									},
+									defaultValue: level
+								}),
+								_react3.default.createElement(_InputBoxValue2.default, {
+									classes: 'text-input',
+									title: '攻擊係數(%)',
+									modelId: 'AtkParm',
+									inputFunc: function inputFunc(modelId, modelValue) {
+										inputChange(modelId, modelValue);
+									},
+									defaultValue: AtkParm
+								}),
+								_react3.default.createElement(_InputBoxValue2.default, {
+									classes: 'text-input',
+									title: '伴',
+									modelId: 'com',
+									inputFunc: function inputFunc(modelId, modelValue) {
+										inputChange(modelId, modelValue);
+									},
+									defaultValue: com
+								})
 							),
 							_react3.default.createElement(
 								'div',
@@ -35938,6 +35864,11 @@
 	}(_react2.Component));
 	
 	Content.propTypes = {
+		level: _react2.PropTypes.number.isRequired,
+		HPParm: _react2.PropTypes.number.isRequired,
+		AtkParm: _react2.PropTypes.number.isRequired,
+		DefParm: _react2.PropTypes.number.isRequired,
+		com: _react2.PropTypes.number.isRequired,
 		type: _react2.PropTypes.string.isRequired,
 		plain: _react2.PropTypes.string.isRequired,
 		cannon: _react2.PropTypes.string.isRequired,
@@ -35961,6 +35892,11 @@
 	
 	var mapStateToProps = function mapStateToProps(state) {
 		return {
+			level: state.reducerCalc.level,
+			HPParm: state.reducerCalc.HPParm,
+			AtkParm: state.reducerCalc.AtkParm,
+			DefParm: state.reducerCalc.DefParm,
+			com: state.reducerCalc.com,
 			type: state.reducerCalc.type,
 			plain: state.reducerCalc.plain,
 			cannon: state.reducerCalc.cannon,
@@ -36206,7 +36142,15 @@
 					_react3.default.createElement(
 						'div',
 						{ className: 'mdl-layout__header-row' },
-						_react3.default.createElement('span', { className: 'mdl-layout-title' }),
+						_react3.default.createElement(
+							'span',
+							{ className: 'mdl-layout-title' },
+							_react3.default.createElement(
+								'b',
+								null,
+								'\u57CE\u30D7\u30EDRE \u6B66\u5668\u50B7\u5BB3\u6A5F\u7B97\u6A5F \u30D1\u30A4\u30EB\u30D0\u30F3\u30AB\u30FC'
+							)
+						),
 						_react3.default.createElement('div', { className: 'mdl-layout-spacer' }),
 						_react3.default.createElement(
 							'nav',
@@ -36486,17 +36430,20 @@
 	function calcOutput(input) {
 		var weaponSelected = _database.dbWeapon.chain().find({ type: input.type }).data();
 		var typeSelected = _database.dbType.findOne({ name: input.type });
-		var charAtk = 0;
 		var maxMux = 1;
 		var flyMux = 1;
 		var totalAtk = void 0;
 		var totalDef = void 0;
 		var output = [];
 	
+		var typeAtk = (typeSelected.atkM - typeSelected.atk) / 1000;
+		var comAtk = 1 + Math.floor(input.com / 10) / 100;
+		var charAtk = Math.floor(typeAtk * input.level + typeSelected.atk);
+		charAtk = Math.floor(charAtk * input.AtkParm / 100);
+		charAtk = Math.floor(charAtk * comAtk);
+	
 		if (input.plain === 'plain') {
-			charAtk = input.atk * parameters.muxPlain;
-		} else {
-			charAtk = input.atk;
+			charAtk *= parameters.muxPlain;
 		}
 	
 		if (input.fly === 'fly') {
@@ -36610,7 +36557,12 @@
 		fly: '',
 		cannon: 'cannon',
 		max: 'max0',
-		atk: parameters.defaultAtk,
+		level: parameters.defaultLevel,
+		HPParm: parameters.defaultHPParm,
+		AtkParm: parameters.defaultAtkParm,
+		DefParm: parameters.defaultDefParm,
+		com: parameters.defaultCompanion,
+		atk: 0,
 		def: parameters.defaultDef,
 		atkSkill: 0,
 		defSkill: 0,
@@ -36627,14 +36579,25 @@
 	
 		var calcTemp = {};
 		var weaponSelected = [];
+		var typeSelected = [];
+		var typeAtk = 0;
+		var comAtk = 0;
+		var charAtk = 0;
 	
 		switch (action.type) {
 			case _ConstActionTypes.TYPE_CHANGE:
 				calcTemp = state;
 				calcTemp.type = action.modelId;
+				typeSelected = _database.dbType.findOne({ name: calcTemp.type });
+				typeAtk = (typeSelected.atkM - typeSelected.atk) / 1000;
+				comAtk = 1 + Math.floor(calcTemp.com / 10) / 100;
+				charAtk = Math.floor(typeAtk * calcTemp.level + typeSelected.atk);
+				charAtk = Math.floor(charAtk * calcTemp.AtkParm / 100);
+				charAtk = Math.floor(charAtk * comAtk);
 				return Object.assign({}, state, {
 					type: action.modelId,
-					output: (0, _calcOutput.calcOutput)(calcTemp)
+					output: (0, _calcOutput.calcOutput)(calcTemp),
+					atk: charAtk
 				});
 			case _ConstActionTypes.PLAIN_CHANGE:
 				if (state.plain === 'plain') {
@@ -36779,6 +36742,48 @@
 				});
 			case _ConstActionTypes.INPUT_CHANGE:
 				switch (action.modelId) {
+					case 'level':
+						calcTemp = state;
+						calcTemp.level = action.modelValue;
+						typeSelected = _database.dbType.findOne({ name: calcTemp.type });
+						typeAtk = (typeSelected.atkM - typeSelected.atk) / 1000;
+						comAtk = 1 + Math.floor(calcTemp.com / 10) / 100;
+						charAtk = Math.floor(typeAtk * calcTemp.level + typeSelected.atk);
+						charAtk = Math.floor(charAtk * calcTemp.AtkParm / 100);
+						charAtk = Math.floor(charAtk * comAtk);
+						return Object.assign({}, state, {
+							level: action.modelValue,
+							atk: charAtk,
+							output: (0, _calcOutput.calcOutput)(calcTemp)
+						});
+					case 'AtkParm':
+						calcTemp = state;
+						calcTemp.AtkParm = action.modelValue;
+						typeSelected = _database.dbType.findOne({ name: calcTemp.type });
+						typeAtk = (typeSelected.atkM - typeSelected.atk) / 1000;
+						comAtk = 1 + Math.floor(calcTemp.com / 10) / 100;
+						charAtk = Math.floor(typeAtk * calcTemp.level + typeSelected.atk);
+						charAtk = Math.floor(charAtk * calcTemp.AtkParm / 100);
+						charAtk = Math.floor(charAtk * comAtk);
+						return Object.assign({}, state, {
+							AtkParm: action.modelValue,
+							atk: charAtk,
+							output: (0, _calcOutput.calcOutput)(calcTemp)
+						});
+					case 'com':
+						calcTemp = state;
+						calcTemp.com = action.modelValue;
+						typeSelected = _database.dbType.findOne({ name: calcTemp.type });
+						typeAtk = (typeSelected.atkM - typeSelected.atk) / 1000;
+						comAtk = 1 + Math.floor(calcTemp.com / 10) / 100;
+						charAtk = Math.floor(typeAtk * calcTemp.level + typeSelected.atk);
+						charAtk = Math.floor(charAtk * calcTemp.AtkParm / 100);
+						charAtk = Math.floor(charAtk * comAtk);
+						return Object.assign({}, state, {
+							com: action.modelValue,
+							atk: charAtk,
+							output: (0, _calcOutput.calcOutput)(calcTemp)
+						});
 					case 'atk':
 						calcTemp = state;
 						calcTemp.atk = action.modelValue;
@@ -36847,8 +36852,15 @@
 						return state;
 				}
 			default:
+				typeSelected = _database.dbType.findOne({ name: state.type });
+				typeAtk = (typeSelected.atkM - typeSelected.atk) / 1000;
+				comAtk = 1 + Math.floor(state.com / 10) / 100;
+				charAtk = Math.floor(typeAtk * state.level + typeSelected.atk);
+				charAtk = Math.floor(charAtk * state.AtkParm / 100);
+				charAtk = Math.floor(charAtk * comAtk);
 				calcTemp = state;
 				return Object.assign({}, state, {
+					atk: charAtk,
 					output: (0, _calcOutput.calcOutput)(calcTemp)
 				});
 		}
