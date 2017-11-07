@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "eae9a1df1e01eb70792b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0527933b9fce8f6581e1"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -9024,7 +9024,7 @@
 	
 	
 	// module
-	exports.push([module.id, "/**\r\n * Copyright 2015 Google Inc. All Rights Reserved.\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the \"License\");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n *\r\n *      http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an \"AS IS\" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\n.demo-ribbon {\n  width: 100%;\n  height: 60vh;\n  background: #99ccff;\n  /* For browsers that do not support gradients */\n  background: -webkit-linear-gradient(left top, #9966ff, #ff99ff);\n  /* For Safari 5.1 to 6.0 */\n  background: -o-linear-gradient(bottom right, #9966ff, #ff99ff);\n  /* For Opera 11.1 to 12.0 */\n  background: -moz-linear-gradient(bottom right, #9966ff, #ff99ff);\n  /* For Firefox 3.6 to 15 */\n  background: linear-gradient(to bottom right, #9966ff, #ff99ff);\n  /* Standard syntax */\n  -webkit-flex-shrink: 0;\n  -ms-flex-negative: 0;\n  flex-shrink: 0; }\n\n.demo-main {\n  margin-top: -55vh;\n  -webkit-flex-shrink: 0;\n  -ms-flex-negative: 0;\n  flex-shrink: 0; }\n\n.demo-header .mdl-layout__header-row {\n  padding-left: 40px; }\n\n.demo-container {\n  max-width: 1600px;\n  width: calc(100% - 16px);\n  margin: 0 auto; }\n\n.demo-content {\n  border-radius: 2px;\n  padding: 80px 56px;\n  margin-bottom: 80px; }\n\n.demo-layout.is-small-screen .demo-content {\n  padding: 40px 28px; }\n\n.demo-content h3 {\n  margin-top: 48px; }\n\n.demo-footer {\n  padding-left: 40px; }\n\n.demo-footer .mdl-mini-footer--link-list a {\n  font-size: 13px; }\n\n#view-source {\n  position: fixed;\n  display: block;\n  right: 0;\n  bottom: 0;\n  margin-right: 40px;\n  margin-bottom: 40px;\n  z-index: 900; }\n", ""]);
+	exports.push([module.id, "/**\r\n * Copyright 2015 Google Inc. All Rights Reserved.\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the \"License\");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n *\r\n *      http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an \"AS IS\" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\n.demo-ribbon {\n  width: 100%;\n  height: 60vh;\n  background: #99ccff;\n  /* For browsers that do not support gradients */\n  background: -webkit-linear-gradient(left top, #9966ff, #ff99ff);\n  /* For Safari 5.1 to 6.0 */\n  background: -o-linear-gradient(bottom right, #9966ff, #ff99ff);\n  /* For Opera 11.1 to 12.0 */\n  background: -moz-linear-gradient(bottom right, #9966ff, #ff99ff);\n  /* For Firefox 3.6 to 15 */\n  background: linear-gradient(to bottom right, #9966ff, #ff99ff);\n  /* Standard syntax */\n  -webkit-flex-shrink: 0;\n  -ms-flex-negative: 0;\n  flex-shrink: 0; }\n\n.demo-main {\n  margin-top: -55vh;\n  -webkit-flex-shrink: 0;\n  -ms-flex-negative: 0;\n  flex-shrink: 0; }\n\n.demo-header .mdl-layout__header-row {\n  padding-left: 70px; }\n\n.demo-container {\n  max-width: 1600px;\n  width: calc(100% - 16px);\n  margin: 0 auto; }\n\n.demo-content {\n  border-radius: 2px;\n  padding: 80px 56px;\n  margin-bottom: 80px; }\n\n.demo-layout.is-small-screen .demo-content {\n  padding: 40px 28px; }\n\n.demo-content h3 {\n  margin-top: 48px; }\n\n.demo-footer {\n  padding-left: 40px; }\n\n.demo-footer .mdl-mini-footer--link-list a {\n  font-size: 13px; }\n\n#view-source {\n  position: fixed;\n  display: block;\n  right: 0;\n  bottom: 0;\n  margin-right: 40px;\n  margin-bottom: 40px;\n  z-index: 900; }\n\n.mdl-layout__drawer-button {\n  color: #9966ff; }\n", ""]);
 	
 	// exports
 
@@ -9124,8 +9124,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var listType = exports.listType = ['刀', '槍', '槌', '盾', '弓', '石弓', '鉄砲', '大砲', '法術'];
-	var listTypeS = exports.listTypeS = ['sword', 'lance', 'hammer', 'shield', 'bow', 'xbow', 'arqu', 'cannon', 'spell'];
+	var listType = exports.listType = ['刀', '槍', '槌', '拳', '盾', '弓', '石弓', '鉄砲', '大砲', '法術', '法杖', '歌舞', '鈴'];
+	var listTypeS = exports.listTypeS = ['sword', 'lance', 'hammer', 'fist', 'shield', 'bow', 'xbow', 'arqu', 'cannon', 'spell', 'staff', 'dance', 'bell'];
 	
 	var listBut = exports.listBut = ['無巨大化', '巨大化一階', '巨大化二階', '巨大化三階', '巨大化四階', '巨大化五階'];
 	var listButS = exports.listButS = ['max0', 'max1', 'max2', 'max3', 'max4', 'max5'];
@@ -29323,6 +29323,240 @@
 			"text": "",
 			"ref": 0,
 			"refText": "+0"
+		},
+		{
+			"name": "白虎",
+			"type": "fist",
+			"atk": 35,
+			"hit": 3,
+			"f1": 32,
+			"f2": 19,
+			"range": 90,
+			"rare": 6,
+			"text": "長安城",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "黃龍",
+			"type": "fist",
+			"atk": 45,
+			"hit": 3,
+			"f1": 32,
+			"f2": 19,
+			"range": 90,
+			"rare": 7,
+			"text": "紫禁城",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "扇",
+			"type": "dance",
+			"atk": 5,
+			"hit": 1,
+			"f1": 62,
+			"f2": 60,
+			"range": 300,
+			"rare": 1,
+			"text": "窪田城",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "扇改",
+			"type": "dance",
+			"atk": 11,
+			"hit": 1,
+			"f1": 62,
+			"f2": 60,
+			"range": 300,
+			"rare": 2,
+			"text": "久保田城",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "衝波扇",
+			"type": "dance",
+			"atk": 14,
+			"hit": 1,
+			"f1": 62,
+			"f2": 60,
+			"range": 300,
+			"rare": 3,
+			"text": "鶴ヶ岡城",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "スマイルボイス",
+			"type": "dance",
+			"atk": 13,
+			"hit": 1,
+			"f1": 62,
+			"f2": 60,
+			"range": 300,
+			"rare": 2,
+			"text": "尾山御坊",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "スイートボイス",
+			"type": "dance",
+			"atk": 14,
+			"hit": 1,
+			"f1": 62,
+			"f2": 60,
+			"range": 300,
+			"rare": 3,
+			"text": "山科本願寺",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "ハッピーボイス",
+			"type": "dance",
+			"atk": 25,
+			"hit": 1,
+			"f1": 62,
+			"f2": 60,
+			"range": 300,
+			"rare": 6,
+			"text": "石山御坊",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "ミラクルボイス",
+			"type": "dance",
+			"atk": 35,
+			"hit": 1,
+			"f1": 62,
+			"f2": 60,
+			"range": 300,
+			"rare": 7,
+			"text": "大阪城",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "真鍮の鈴",
+			"type": "bell",
+			"atk": 20,
+			"hit": 1,
+			"f1": 62,
+			"f2": 60,
+			"range": 320,
+			"rare": 5,
+			"text": "濱田城",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "シルバーベル",
+			"type": "bell",
+			"atk": 28,
+			"hit": 1,
+			"f1": 62,
+			"f2": 60,
+			"range": 320,
+			"rare": 6,
+			"text": "アンボワーズ城",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "海辺の風鈴",
+			"type": "bell",
+			"atk": 28,
+			"hit": 1,
+			"f1": 62,
+			"f2": 60,
+			"range": 320,
+			"rare": 6,
+			"text": "［夏］指月伏見城",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "太平の鈴",
+			"type": "bell",
+			"atk": 28,
+			"hit": 1,
+			"f1": 62,
+			"f2": 60,
+			"range": 320,
+			"rare": 6,
+			"text": "新田金山城",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "金の鈴",
+			"type": "bell",
+			"atk": 35,
+			"hit": 1,
+			"f1": 62,
+			"f2": 60,
+			"range": 320,
+			"rare": 7,
+			"text": "指月伏見城",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "銀の杖",
+			"type": "staff",
+			"atk": 25,
+			"hit": 1,
+			"f1": 37,
+			"f2": 30,
+			"range": 240,
+			"rare": 4,
+			"text": "アイリーン・ドナン城",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "荊棘の杖",
+			"type": "staff",
+			"atk": 28,
+			"hit": 1,
+			"f1": 37,
+			"f2": 30,
+			"range": 240,
+			"rare": 6,
+			"text": "ユッセ城",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "クリスタルの杖",
+			"type": "staff",
+			"atk": 28,
+			"hit": 1,
+			"f1": 37,
+			"f2": 30,
+			"range": 240,
+			"rare": 6,
+			"text": "シュノンソー城",
+			"ref": 0,
+			"refText": "+0"
+		},
+		{
+			"name": "女神の杖",
+			"type": "staff",
+			"atk": 35,
+			"hit": 1,
+			"f1": 37,
+			"f2": 30,
+			"range": 240,
+			"rare": 7,
+			"text": "プラハ城",
+			"ref": 0,
+			"refText": "+0"
 		}
 	];
 
@@ -35451,8 +35685,46 @@
 					null,
 					_react3.default.createElement(
 						'div',
-						{ className: 'demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100' },
+						{ className: 'demo-layout mdl-layout mdl-js-layout mdl-color--grey-100' },
 						_react3.default.createElement(_Header2.default, null),
+						_react3.default.createElement(
+							'div',
+							{ className: 'mdl-layout__drawer' },
+							_react3.default.createElement(
+								'span',
+								{ className: 'mdl-layout-title' },
+								'License'
+							),
+							_react3.default.createElement(
+								'nav',
+								{ className: 'mdl-navigation' },
+								_react3.default.createElement(
+									'a',
+									{ className: 'mdl-navigation__link', href: 'http://www.dmm.com/netgame_s/oshirore/' },
+									'\u57CE\u30D7\u30EDRE'
+								),
+								_react3.default.createElement(
+									'a',
+									{ className: 'mdl-navigation__link', href: 'https://facebook.github.io/react/' },
+									'React'
+								),
+								_react3.default.createElement(
+									'a',
+									{ className: 'mdl-navigation__link', href: 'http://redux.js.org/' },
+									'Redux'
+								),
+								_react3.default.createElement(
+									'a',
+									{ className: 'mdl-navigation__link', href: 'https://getmdl.io/' },
+									'Material Design Lite'
+								),
+								_react3.default.createElement(
+									'a',
+									{ className: 'mdl-navigation__link', href: 'http://lokijs.org/' },
+									'LokiJS'
+								)
+							)
+						),
 						_react3.default.createElement('div', { className: 'demo-ribbon' }),
 						_react3.default.createElement(_Content2.default, null),
 						_react3.default.createElement(_Footer2.default, null)
@@ -36447,7 +36719,7 @@
 		}
 	
 		if (input.fly === 'fly') {
-			if (input.type === 'sword' || input.type === 'lance' || input.type === 'hammer' || input.type === 'shield') {
+			if (input.type === 'sword' || input.type === 'lance' || input.type === 'hammer' || input.type === 'shield' || input.type === 'fist') {
 				flyMux = parameters.muxFlyMelee;
 			} else if (input.type === 'bow') {
 				flyMux = parameters.muxFlyBow;
@@ -36478,9 +36750,14 @@
 				maxMux = 1;
 		}
 	
+		if (input.type === 'spell' || input.type === 'dance' || input.type === 'staff' || input.type === 'bell') {
+			totalDef = 0;
+		} else {
+			totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
+		}
+	
 		for (var i = 0; i < weaponSelected.length; i += 1) {
 			totalAtk = (charAtk + weaponSelected[i].atk) * maxMux * flyMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
-			totalDef = input.def * (1 - input.defSkill / 100) - input.defSkillInt;
 			if (totalAtk - parameters.valueProDam >= totalDef) {
 				weaponSelected[i].damage = Math.floor(totalAtk - totalDef);
 			} else {
