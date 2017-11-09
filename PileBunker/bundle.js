@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0527933b9fce8f6581e1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "5d14f32b1459334dfc83"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -27318,8 +27318,8 @@
 		{
 			"name": "bell",
 			"cname": "鈴",
-			"frame1": 62,
-			"frame2": 60,
+			"frame1": 60,
+			"frame2": 97,
 			"range": 320,
 			"hp": 1000,
 			"atk": 45,
@@ -27333,7 +27333,7 @@
 			"cname": "杖",
 			"frame1": 37,
 			"frame2": 30,
-			"range": 220,
+			"range": 240,
 			"hp": 850,
 			"atk": 90,
 			"def": 34,
@@ -29446,8 +29446,8 @@
 			"type": "bell",
 			"atk": 20,
 			"hit": 1,
-			"f1": 62,
-			"f2": 60,
+			"f1": 60,
+			"f2": 97,
 			"range": 320,
 			"rare": 5,
 			"text": "濱田城",
@@ -29459,8 +29459,8 @@
 			"type": "bell",
 			"atk": 28,
 			"hit": 1,
-			"f1": 62,
-			"f2": 60,
+			"f1": 60,
+			"f2": 97,
 			"range": 320,
 			"rare": 6,
 			"text": "アンボワーズ城",
@@ -29472,8 +29472,8 @@
 			"type": "bell",
 			"atk": 28,
 			"hit": 1,
-			"f1": 62,
-			"f2": 60,
+			"f1": 60,
+			"f2": 97,
 			"range": 320,
 			"rare": 6,
 			"text": "［夏］指月伏見城",
@@ -29485,8 +29485,8 @@
 			"type": "bell",
 			"atk": 28,
 			"hit": 1,
-			"f1": 62,
-			"f2": 60,
+			"f1": 60,
+			"f2": 97,
 			"range": 320,
 			"rare": 6,
 			"text": "新田金山城",
@@ -29498,8 +29498,8 @@
 			"type": "bell",
 			"atk": 35,
 			"hit": 1,
-			"f1": 62,
-			"f2": 60,
+			"f1": 60,
+			"f2": 97,
 			"range": 320,
 			"rare": 7,
 			"text": "指月伏見城",
@@ -35998,7 +35998,7 @@
 						_react3.default.createElement('div', { className: 'mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone' }),
 						_react3.default.createElement(
 							'div',
-							{ className: 'content demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col' },
+							{ className: 'content demo-content mdl-color--white mdl-shadow--4dp mdl-color-text--grey-800 mdl-cell mdl-cell--8-col' },
 							_react3.default.createElement(
 								'div',
 								null,
@@ -36410,10 +36410,10 @@
 			value: function render() {
 				return _react3.default.createElement(
 					'header',
-					{ className: 'demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800' },
+					{ className: 'demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-800' },
 					_react3.default.createElement(
 						'div',
-						{ className: 'mdl-layout__header-row' },
+						{ className: 'mdl-layout__header-row mdl-shadow--4dp' },
 						_react3.default.createElement(
 							'span',
 							{ className: 'mdl-layout-title' },
