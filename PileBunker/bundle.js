@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0137c15b79c07e4a2dcf"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "972a995eeb4b94ca6d1f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -583,7 +583,7 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(639);
+	module.exports = __webpack_require__(640);
 
 
 /***/ }),
@@ -931,14 +931,14 @@
 	'use strict';
 	
 	var DOMProperty = __webpack_require__(69);
-	var ReactBrowserEventEmitter = __webpack_require__(114);
-	var ReactCurrentOwner = __webpack_require__(50);
-	var ReactDOMFeatureFlags = __webpack_require__(270);
+	var ReactBrowserEventEmitter = __webpack_require__(116);
+	var ReactCurrentOwner = __webpack_require__(51);
+	var ReactDOMFeatureFlags = __webpack_require__(271);
 	var ReactElement = __webpack_require__(27);
-	var ReactEmptyComponentRegistry = __webpack_require__(277);
-	var ReactInstanceHandles = __webpack_require__(77);
-	var ReactInstanceMap = __webpack_require__(88);
-	var ReactMarkupChecksum = __webpack_require__(280);
+	var ReactEmptyComponentRegistry = __webpack_require__(278);
+	var ReactInstanceHandles = __webpack_require__(78);
+	var ReactInstanceMap = __webpack_require__(90);
+	var ReactMarkupChecksum = __webpack_require__(281);
 	var ReactPerf = __webpack_require__(31);
 	var ReactReconciler = __webpack_require__(70);
 	var ReactUpdateQueue = __webpack_require__(175);
@@ -949,7 +949,7 @@
 	var containsNode = __webpack_require__(224);
 	var instantiateReactComponent = __webpack_require__(182);
 	var invariant = __webpack_require__(5);
-	var setInnerHTML = __webpack_require__(121);
+	var setInnerHTML = __webpack_require__(123);
 	var shouldUpdateReactComponent = __webpack_require__(185);
 	var validateDOMNesting = __webpack_require__(187);
 	var warning = __webpack_require__(11);
@@ -1910,7 +1910,7 @@
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var store = __webpack_require__(101)('wks');
+	var store = __webpack_require__(103)('wks');
 	var uid = __webpack_require__(66);
 	var Symbol = __webpack_require__(6).Symbol;
 	var USE_SYMBOL = typeof Symbol == 'function';
@@ -1989,7 +1989,7 @@
 
 	'use strict';
 	
-	module.exports = __webpack_require__(626);
+	module.exports = __webpack_require__(627);
 
 /***/ }),
 /* 18 */
@@ -1997,7 +1997,7 @@
 
 	'use strict';
 	
-	var getRootInstancesFromReactMount = __webpack_require__(630);
+	var getRootInstancesFromReactMount = __webpack_require__(631);
 	
 	var injectedProvider = null,
 	    didWarn = false;
@@ -2043,7 +2043,7 @@
 
 	'use strict';
 	
-	var isReactClassish = __webpack_require__(259),
+	var isReactClassish = __webpack_require__(260),
 	    isReactElementish = __webpack_require__(644);
 	
 	function makeExportsHot(m, React) {
@@ -2262,10 +2262,10 @@
 	
 	'use strict';
 	
-	var ReactCurrentOwner = __webpack_require__(50);
+	var ReactCurrentOwner = __webpack_require__(51);
 	
 	var assign = __webpack_require__(10);
-	var canDefineProperty = __webpack_require__(119);
+	var canDefineProperty = __webpack_require__(121);
 	
 	// The Symbol used to tag the ReactElement type. If there is no native Symbol
 	// nor polyfill, then a plain number is used for performance.
@@ -2527,7 +2527,7 @@
 	// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 	var has = __webpack_require__(23);
 	var toObject = __webpack_require__(20);
-	var IE_PROTO = __webpack_require__(138)('IE_PROTO');
+	var IE_PROTO = __webpack_require__(140)('IE_PROTO');
 	var ObjectProto = Object.prototype;
 	
 	module.exports = Object.getPrototypeOf || function (O) {
@@ -2726,7 +2726,7 @@
 	var PooledClass = __webpack_require__(55);
 	var ReactPerf = __webpack_require__(31);
 	var ReactReconciler = __webpack_require__(70);
-	var Transaction = __webpack_require__(118);
+	var Transaction = __webpack_require__(120);
 	
 	var assign = __webpack_require__(10);
 	var invariant = __webpack_require__(5);
@@ -2949,7 +2949,7 @@
 	var IObject = __webpack_require__(80);
 	var toObject = __webpack_require__(20);
 	var toLength = __webpack_require__(16);
-	var asc = __webpack_require__(123);
+	var asc = __webpack_require__(125);
 	module.exports = function (TYPE, $create) {
 	  var IS_MAP = TYPE == 1;
 	  var IS_FILTER = TYPE == 2;
@@ -3094,596 +3094,6 @@
 
 /***/ }),
 /* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	var Map = __webpack_require__(219);
-	var $export = __webpack_require__(1);
-	var shared = __webpack_require__(101)('metadata');
-	var store = shared.store || (shared.store = new (__webpack_require__(222))());
-	
-	var getOrCreateMetadataMap = function (target, targetKey, create) {
-	  var targetMetadata = store.get(target);
-	  if (!targetMetadata) {
-	    if (!create) return undefined;
-	    store.set(target, targetMetadata = new Map());
-	  }
-	  var keyMetadata = targetMetadata.get(targetKey);
-	  if (!keyMetadata) {
-	    if (!create) return undefined;
-	    targetMetadata.set(targetKey, keyMetadata = new Map());
-	  } return keyMetadata;
-	};
-	var ordinaryHasOwnMetadata = function (MetadataKey, O, P) {
-	  var metadataMap = getOrCreateMetadataMap(O, P, false);
-	  return metadataMap === undefined ? false : metadataMap.has(MetadataKey);
-	};
-	var ordinaryGetOwnMetadata = function (MetadataKey, O, P) {
-	  var metadataMap = getOrCreateMetadataMap(O, P, false);
-	  return metadataMap === undefined ? undefined : metadataMap.get(MetadataKey);
-	};
-	var ordinaryDefineOwnMetadata = function (MetadataKey, MetadataValue, O, P) {
-	  getOrCreateMetadataMap(O, P, true).set(MetadataKey, MetadataValue);
-	};
-	var ordinaryOwnMetadataKeys = function (target, targetKey) {
-	  var metadataMap = getOrCreateMetadataMap(target, targetKey, false);
-	  var keys = [];
-	  if (metadataMap) metadataMap.forEach(function (_, key) { keys.push(key); });
-	  return keys;
-	};
-	var toMetaKey = function (it) {
-	  return it === undefined || typeof it == 'symbol' ? it : String(it);
-	};
-	var exp = function (O) {
-	  $export($export.S, 'Reflect', O);
-	};
-	
-	module.exports = {
-	  store: store,
-	  map: getOrCreateMetadataMap,
-	  has: ordinaryHasOwnMetadata,
-	  get: ordinaryGetOwnMetadata,
-	  set: ordinaryDefineOwnMetadata,
-	  keys: ordinaryOwnMetadataKeys,
-	  key: toMetaKey,
-	  exp: exp
-	};
-
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	if (__webpack_require__(14)) {
-	  var LIBRARY = __webpack_require__(58);
-	  var global = __webpack_require__(6);
-	  var fails = __webpack_require__(8);
-	  var $export = __webpack_require__(1);
-	  var $typed = __webpack_require__(103);
-	  var $buffer = __webpack_require__(144);
-	  var ctx = __webpack_require__(33);
-	  var anInstance = __webpack_require__(56);
-	  var propertyDesc = __webpack_require__(62);
-	  var hide = __webpack_require__(24);
-	  var redefineAll = __webpack_require__(63);
-	  var toInteger = __webpack_require__(40);
-	  var toLength = __webpack_require__(16);
-	  var toIndex = __webpack_require__(217);
-	  var toAbsoluteIndex = __webpack_require__(65);
-	  var toPrimitive = __webpack_require__(41);
-	  var has = __webpack_require__(23);
-	  var classof = __webpack_require__(79);
-	  var isObject = __webpack_require__(9);
-	  var toObject = __webpack_require__(20);
-	  var isArrayIter = __webpack_require__(130);
-	  var create = __webpack_require__(59);
-	  var getPrototypeOf = __webpack_require__(29);
-	  var gOPN = __webpack_require__(60).f;
-	  var getIterFn = __webpack_require__(147);
-	  var uid = __webpack_require__(66);
-	  var wks = __webpack_require__(12);
-	  var createArrayMethod = __webpack_require__(36);
-	  var createArrayIncludes = __webpack_require__(90);
-	  var speciesConstructor = __webpack_require__(102);
-	  var ArrayIterators = __webpack_require__(148);
-	  var Iterators = __webpack_require__(72);
-	  var $iterDetect = __webpack_require__(96);
-	  var setSpecies = __webpack_require__(64);
-	  var arrayFill = __webpack_require__(122);
-	  var arrayCopyWithin = __webpack_require__(190);
-	  var $DP = __webpack_require__(15);
-	  var $GOPD = __webpack_require__(28);
-	  var dP = $DP.f;
-	  var gOPD = $GOPD.f;
-	  var RangeError = global.RangeError;
-	  var TypeError = global.TypeError;
-	  var Uint8Array = global.Uint8Array;
-	  var ARRAY_BUFFER = 'ArrayBuffer';
-	  var SHARED_BUFFER = 'Shared' + ARRAY_BUFFER;
-	  var BYTES_PER_ELEMENT = 'BYTES_PER_ELEMENT';
-	  var PROTOTYPE = 'prototype';
-	  var ArrayProto = Array[PROTOTYPE];
-	  var $ArrayBuffer = $buffer.ArrayBuffer;
-	  var $DataView = $buffer.DataView;
-	  var arrayForEach = createArrayMethod(0);
-	  var arrayFilter = createArrayMethod(2);
-	  var arraySome = createArrayMethod(3);
-	  var arrayEvery = createArrayMethod(4);
-	  var arrayFind = createArrayMethod(5);
-	  var arrayFindIndex = createArrayMethod(6);
-	  var arrayIncludes = createArrayIncludes(true);
-	  var arrayIndexOf = createArrayIncludes(false);
-	  var arrayValues = ArrayIterators.values;
-	  var arrayKeys = ArrayIterators.keys;
-	  var arrayEntries = ArrayIterators.entries;
-	  var arrayLastIndexOf = ArrayProto.lastIndexOf;
-	  var arrayReduce = ArrayProto.reduce;
-	  var arrayReduceRight = ArrayProto.reduceRight;
-	  var arrayJoin = ArrayProto.join;
-	  var arraySort = ArrayProto.sort;
-	  var arraySlice = ArrayProto.slice;
-	  var arrayToString = ArrayProto.toString;
-	  var arrayToLocaleString = ArrayProto.toLocaleString;
-	  var ITERATOR = wks('iterator');
-	  var TAG = wks('toStringTag');
-	  var TYPED_CONSTRUCTOR = uid('typed_constructor');
-	  var DEF_CONSTRUCTOR = uid('def_constructor');
-	  var ALL_CONSTRUCTORS = $typed.CONSTR;
-	  var TYPED_ARRAY = $typed.TYPED;
-	  var VIEW = $typed.VIEW;
-	  var WRONG_LENGTH = 'Wrong length!';
-	
-	  var $map = createArrayMethod(1, function (O, length) {
-	    return allocate(speciesConstructor(O, O[DEF_CONSTRUCTOR]), length);
-	  });
-	
-	  var LITTLE_ENDIAN = fails(function () {
-	    // eslint-disable-next-line no-undef
-	    return new Uint8Array(new Uint16Array([1]).buffer)[0] === 1;
-	  });
-	
-	  var FORCED_SET = !!Uint8Array && !!Uint8Array[PROTOTYPE].set && fails(function () {
-	    new Uint8Array(1).set({});
-	  });
-	
-	  var toOffset = function (it, BYTES) {
-	    var offset = toInteger(it);
-	    if (offset < 0 || offset % BYTES) throw RangeError('Wrong offset!');
-	    return offset;
-	  };
-	
-	  var validate = function (it) {
-	    if (isObject(it) && TYPED_ARRAY in it) return it;
-	    throw TypeError(it + ' is not a typed array!');
-	  };
-	
-	  var allocate = function (C, length) {
-	    if (!(isObject(C) && TYPED_CONSTRUCTOR in C)) {
-	      throw TypeError('It is not a typed array constructor!');
-	    } return new C(length);
-	  };
-	
-	  var speciesFromList = function (O, list) {
-	    return fromList(speciesConstructor(O, O[DEF_CONSTRUCTOR]), list);
-	  };
-	
-	  var fromList = function (C, list) {
-	    var index = 0;
-	    var length = list.length;
-	    var result = allocate(C, length);
-	    while (length > index) result[index] = list[index++];
-	    return result;
-	  };
-	
-	  var addGetter = function (it, key, internal) {
-	    dP(it, key, { get: function () { return this._d[internal]; } });
-	  };
-	
-	  var $from = function from(source /* , mapfn, thisArg */) {
-	    var O = toObject(source);
-	    var aLen = arguments.length;
-	    var mapfn = aLen > 1 ? arguments[1] : undefined;
-	    var mapping = mapfn !== undefined;
-	    var iterFn = getIterFn(O);
-	    var i, length, values, result, step, iterator;
-	    if (iterFn != undefined && !isArrayIter(iterFn)) {
-	      for (iterator = iterFn.call(O), values = [], i = 0; !(step = iterator.next()).done; i++) {
-	        values.push(step.value);
-	      } O = values;
-	    }
-	    if (mapping && aLen > 2) mapfn = ctx(mapfn, arguments[2], 2);
-	    for (i = 0, length = toLength(O.length), result = allocate(this, length); length > i; i++) {
-	      result[i] = mapping ? mapfn(O[i], i) : O[i];
-	    }
-	    return result;
-	  };
-	
-	  var $of = function of(/* ...items */) {
-	    var index = 0;
-	    var length = arguments.length;
-	    var result = allocate(this, length);
-	    while (length > index) result[index] = arguments[index++];
-	    return result;
-	  };
-	
-	  // iOS Safari 6.x fails here
-	  var TO_LOCALE_BUG = !!Uint8Array && fails(function () { arrayToLocaleString.call(new Uint8Array(1)); });
-	
-	  var $toLocaleString = function toLocaleString() {
-	    return arrayToLocaleString.apply(TO_LOCALE_BUG ? arraySlice.call(validate(this)) : validate(this), arguments);
-	  };
-	
-	  var proto = {
-	    copyWithin: function copyWithin(target, start /* , end */) {
-	      return arrayCopyWithin.call(validate(this), target, start, arguments.length > 2 ? arguments[2] : undefined);
-	    },
-	    every: function every(callbackfn /* , thisArg */) {
-	      return arrayEvery(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-	    },
-	    fill: function fill(value /* , start, end */) { // eslint-disable-line no-unused-vars
-	      return arrayFill.apply(validate(this), arguments);
-	    },
-	    filter: function filter(callbackfn /* , thisArg */) {
-	      return speciesFromList(this, arrayFilter(validate(this), callbackfn,
-	        arguments.length > 1 ? arguments[1] : undefined));
-	    },
-	    find: function find(predicate /* , thisArg */) {
-	      return arrayFind(validate(this), predicate, arguments.length > 1 ? arguments[1] : undefined);
-	    },
-	    findIndex: function findIndex(predicate /* , thisArg */) {
-	      return arrayFindIndex(validate(this), predicate, arguments.length > 1 ? arguments[1] : undefined);
-	    },
-	    forEach: function forEach(callbackfn /* , thisArg */) {
-	      arrayForEach(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-	    },
-	    indexOf: function indexOf(searchElement /* , fromIndex */) {
-	      return arrayIndexOf(validate(this), searchElement, arguments.length > 1 ? arguments[1] : undefined);
-	    },
-	    includes: function includes(searchElement /* , fromIndex */) {
-	      return arrayIncludes(validate(this), searchElement, arguments.length > 1 ? arguments[1] : undefined);
-	    },
-	    join: function join(separator) { // eslint-disable-line no-unused-vars
-	      return arrayJoin.apply(validate(this), arguments);
-	    },
-	    lastIndexOf: function lastIndexOf(searchElement /* , fromIndex */) { // eslint-disable-line no-unused-vars
-	      return arrayLastIndexOf.apply(validate(this), arguments);
-	    },
-	    map: function map(mapfn /* , thisArg */) {
-	      return $map(validate(this), mapfn, arguments.length > 1 ? arguments[1] : undefined);
-	    },
-	    reduce: function reduce(callbackfn /* , initialValue */) { // eslint-disable-line no-unused-vars
-	      return arrayReduce.apply(validate(this), arguments);
-	    },
-	    reduceRight: function reduceRight(callbackfn /* , initialValue */) { // eslint-disable-line no-unused-vars
-	      return arrayReduceRight.apply(validate(this), arguments);
-	    },
-	    reverse: function reverse() {
-	      var that = this;
-	      var length = validate(that).length;
-	      var middle = Math.floor(length / 2);
-	      var index = 0;
-	      var value;
-	      while (index < middle) {
-	        value = that[index];
-	        that[index++] = that[--length];
-	        that[length] = value;
-	      } return that;
-	    },
-	    some: function some(callbackfn /* , thisArg */) {
-	      return arraySome(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-	    },
-	    sort: function sort(comparefn) {
-	      return arraySort.call(validate(this), comparefn);
-	    },
-	    subarray: function subarray(begin, end) {
-	      var O = validate(this);
-	      var length = O.length;
-	      var $begin = toAbsoluteIndex(begin, length);
-	      return new (speciesConstructor(O, O[DEF_CONSTRUCTOR]))(
-	        O.buffer,
-	        O.byteOffset + $begin * O.BYTES_PER_ELEMENT,
-	        toLength((end === undefined ? length : toAbsoluteIndex(end, length)) - $begin)
-	      );
-	    }
-	  };
-	
-	  var $slice = function slice(start, end) {
-	    return speciesFromList(this, arraySlice.call(validate(this), start, end));
-	  };
-	
-	  var $set = function set(arrayLike /* , offset */) {
-	    validate(this);
-	    var offset = toOffset(arguments[1], 1);
-	    var length = this.length;
-	    var src = toObject(arrayLike);
-	    var len = toLength(src.length);
-	    var index = 0;
-	    if (len + offset > length) throw RangeError(WRONG_LENGTH);
-	    while (index < len) this[offset + index] = src[index++];
-	  };
-	
-	  var $iterators = {
-	    entries: function entries() {
-	      return arrayEntries.call(validate(this));
-	    },
-	    keys: function keys() {
-	      return arrayKeys.call(validate(this));
-	    },
-	    values: function values() {
-	      return arrayValues.call(validate(this));
-	    }
-	  };
-	
-	  var isTAIndex = function (target, key) {
-	    return isObject(target)
-	      && target[TYPED_ARRAY]
-	      && typeof key != 'symbol'
-	      && key in target
-	      && String(+key) == String(key);
-	  };
-	  var $getDesc = function getOwnPropertyDescriptor(target, key) {
-	    return isTAIndex(target, key = toPrimitive(key, true))
-	      ? propertyDesc(2, target[key])
-	      : gOPD(target, key);
-	  };
-	  var $setDesc = function defineProperty(target, key, desc) {
-	    if (isTAIndex(target, key = toPrimitive(key, true))
-	      && isObject(desc)
-	      && has(desc, 'value')
-	      && !has(desc, 'get')
-	      && !has(desc, 'set')
-	      // TODO: add validation descriptor w/o calling accessors
-	      && !desc.configurable
-	      && (!has(desc, 'writable') || desc.writable)
-	      && (!has(desc, 'enumerable') || desc.enumerable)
-	    ) {
-	      target[key] = desc.value;
-	      return target;
-	    } return dP(target, key, desc);
-	  };
-	
-	  if (!ALL_CONSTRUCTORS) {
-	    $GOPD.f = $getDesc;
-	    $DP.f = $setDesc;
-	  }
-	
-	  $export($export.S + $export.F * !ALL_CONSTRUCTORS, 'Object', {
-	    getOwnPropertyDescriptor: $getDesc,
-	    defineProperty: $setDesc
-	  });
-	
-	  if (fails(function () { arrayToString.call({}); })) {
-	    arrayToString = arrayToLocaleString = function toString() {
-	      return arrayJoin.call(this);
-	    };
-	  }
-	
-	  var $TypedArrayPrototype$ = redefineAll({}, proto);
-	  redefineAll($TypedArrayPrototype$, $iterators);
-	  hide($TypedArrayPrototype$, ITERATOR, $iterators.values);
-	  redefineAll($TypedArrayPrototype$, {
-	    slice: $slice,
-	    set: $set,
-	    constructor: function () { /* noop */ },
-	    toString: arrayToString,
-	    toLocaleString: $toLocaleString
-	  });
-	  addGetter($TypedArrayPrototype$, 'buffer', 'b');
-	  addGetter($TypedArrayPrototype$, 'byteOffset', 'o');
-	  addGetter($TypedArrayPrototype$, 'byteLength', 'l');
-	  addGetter($TypedArrayPrototype$, 'length', 'e');
-	  dP($TypedArrayPrototype$, TAG, {
-	    get: function () { return this[TYPED_ARRAY]; }
-	  });
-	
-	  // eslint-disable-next-line max-statements
-	  module.exports = function (KEY, BYTES, wrapper, CLAMPED) {
-	    CLAMPED = !!CLAMPED;
-	    var NAME = KEY + (CLAMPED ? 'Clamped' : '') + 'Array';
-	    var GETTER = 'get' + KEY;
-	    var SETTER = 'set' + KEY;
-	    var TypedArray = global[NAME];
-	    var Base = TypedArray || {};
-	    var TAC = TypedArray && getPrototypeOf(TypedArray);
-	    var FORCED = !TypedArray || !$typed.ABV;
-	    var O = {};
-	    var TypedArrayPrototype = TypedArray && TypedArray[PROTOTYPE];
-	    var getter = function (that, index) {
-	      var data = that._d;
-	      return data.v[GETTER](index * BYTES + data.o, LITTLE_ENDIAN);
-	    };
-	    var setter = function (that, index, value) {
-	      var data = that._d;
-	      if (CLAMPED) value = (value = Math.round(value)) < 0 ? 0 : value > 0xff ? 0xff : value & 0xff;
-	      data.v[SETTER](index * BYTES + data.o, value, LITTLE_ENDIAN);
-	    };
-	    var addElement = function (that, index) {
-	      dP(that, index, {
-	        get: function () {
-	          return getter(this, index);
-	        },
-	        set: function (value) {
-	          return setter(this, index, value);
-	        },
-	        enumerable: true
-	      });
-	    };
-	    if (FORCED) {
-	      TypedArray = wrapper(function (that, data, $offset, $length) {
-	        anInstance(that, TypedArray, NAME, '_d');
-	        var index = 0;
-	        var offset = 0;
-	        var buffer, byteLength, length, klass;
-	        if (!isObject(data)) {
-	          length = toIndex(data);
-	          byteLength = length * BYTES;
-	          buffer = new $ArrayBuffer(byteLength);
-	        } else if (data instanceof $ArrayBuffer || (klass = classof(data)) == ARRAY_BUFFER || klass == SHARED_BUFFER) {
-	          buffer = data;
-	          offset = toOffset($offset, BYTES);
-	          var $len = data.byteLength;
-	          if ($length === undefined) {
-	            if ($len % BYTES) throw RangeError(WRONG_LENGTH);
-	            byteLength = $len - offset;
-	            if (byteLength < 0) throw RangeError(WRONG_LENGTH);
-	          } else {
-	            byteLength = toLength($length) * BYTES;
-	            if (byteLength + offset > $len) throw RangeError(WRONG_LENGTH);
-	          }
-	          length = byteLength / BYTES;
-	        } else if (TYPED_ARRAY in data) {
-	          return fromList(TypedArray, data);
-	        } else {
-	          return $from.call(TypedArray, data);
-	        }
-	        hide(that, '_d', {
-	          b: buffer,
-	          o: offset,
-	          l: byteLength,
-	          e: length,
-	          v: new $DataView(buffer)
-	        });
-	        while (index < length) addElement(that, index++);
-	      });
-	      TypedArrayPrototype = TypedArray[PROTOTYPE] = create($TypedArrayPrototype$);
-	      hide(TypedArrayPrototype, 'constructor', TypedArray);
-	    } else if (!fails(function () {
-	      TypedArray(1);
-	    }) || !fails(function () {
-	      new TypedArray(-1); // eslint-disable-line no-new
-	    }) || !$iterDetect(function (iter) {
-	      new TypedArray(); // eslint-disable-line no-new
-	      new TypedArray(null); // eslint-disable-line no-new
-	      new TypedArray(1.5); // eslint-disable-line no-new
-	      new TypedArray(iter); // eslint-disable-line no-new
-	    }, true)) {
-	      TypedArray = wrapper(function (that, data, $offset, $length) {
-	        anInstance(that, TypedArray, NAME);
-	        var klass;
-	        // `ws` module bug, temporarily remove validation length for Uint8Array
-	        // https://github.com/websockets/ws/pull/645
-	        if (!isObject(data)) return new Base(toIndex(data));
-	        if (data instanceof $ArrayBuffer || (klass = classof(data)) == ARRAY_BUFFER || klass == SHARED_BUFFER) {
-	          return $length !== undefined
-	            ? new Base(data, toOffset($offset, BYTES), $length)
-	            : $offset !== undefined
-	              ? new Base(data, toOffset($offset, BYTES))
-	              : new Base(data);
-	        }
-	        if (TYPED_ARRAY in data) return fromList(TypedArray, data);
-	        return $from.call(TypedArray, data);
-	      });
-	      arrayForEach(TAC !== Function.prototype ? gOPN(Base).concat(gOPN(TAC)) : gOPN(Base), function (key) {
-	        if (!(key in TypedArray)) hide(TypedArray, key, Base[key]);
-	      });
-	      TypedArray[PROTOTYPE] = TypedArrayPrototype;
-	      if (!LIBRARY) TypedArrayPrototype.constructor = TypedArray;
-	    }
-	    var $nativeIterator = TypedArrayPrototype[ITERATOR];
-	    var CORRECT_ITER_NAME = !!$nativeIterator
-	      && ($nativeIterator.name == 'values' || $nativeIterator.name == undefined);
-	    var $iterator = $iterators.values;
-	    hide(TypedArray, TYPED_CONSTRUCTOR, true);
-	    hide(TypedArrayPrototype, TYPED_ARRAY, NAME);
-	    hide(TypedArrayPrototype, VIEW, true);
-	    hide(TypedArrayPrototype, DEF_CONSTRUCTOR, TypedArray);
-	
-	    if (CLAMPED ? new TypedArray(1)[TAG] != NAME : !(TAG in TypedArrayPrototype)) {
-	      dP(TypedArrayPrototype, TAG, {
-	        get: function () { return NAME; }
-	      });
-	    }
-	
-	    O[NAME] = TypedArray;
-	
-	    $export($export.G + $export.W + $export.F * (TypedArray != Base), O);
-	
-	    $export($export.S, NAME, {
-	      BYTES_PER_ELEMENT: BYTES
-	    });
-	
-	    $export($export.S + $export.F * fails(function () { Base.of.call(TypedArray, 1); }), NAME, {
-	      from: $from,
-	      of: $of
-	    });
-	
-	    if (!(BYTES_PER_ELEMENT in TypedArrayPrototype)) hide(TypedArrayPrototype, BYTES_PER_ELEMENT, BYTES);
-	
-	    $export($export.P, NAME, proto);
-	
-	    setSpecies(NAME);
-	
-	    $export($export.P + $export.F * FORCED_SET, NAME, { set: $set });
-	
-	    $export($export.P + $export.F * !CORRECT_ITER_NAME, NAME, $iterators);
-	
-	    if (!LIBRARY && TypedArrayPrototype.toString != arrayToString) TypedArrayPrototype.toString = arrayToString;
-	
-	    $export($export.P + $export.F * fails(function () {
-	      new TypedArray(1).slice();
-	    }), NAME, { slice: $slice });
-	
-	    $export($export.P + $export.F * (fails(function () {
-	      return [1, 2].toLocaleString() != new TypedArray([1, 2]).toLocaleString();
-	    }) || !fails(function () {
-	      TypedArrayPrototype.toLocaleString.call([1, 2]);
-	    })), NAME, { toLocaleString: $toLocaleString });
-	
-	    Iterators[NAME] = CORRECT_ITER_NAME ? $nativeIterator : $iterator;
-	    if (!LIBRARY && !CORRECT_ITER_NAME) hide(TypedArrayPrototype, ITERATOR, $iterator);
-	  };
-	} else module.exports = function () { /* empty */ };
-
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	var freeGlobal = __webpack_require__(245);
-	
-	/** Detect free variable `self`. */
-	var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
-	
-	/** Used as a reference to the global object. */
-	var root = freeGlobal || freeSelf || Function('return this')();
-	
-	module.exports = root;
-
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports) {
-
-	/**
-	 * Checks if `value` is classified as an `Array` object.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 0.1.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is an array, else `false`.
-	 * @example
-	 *
-	 * _.isArray([1, 2, 3]);
-	 * // => true
-	 *
-	 * _.isArray(document.body.children);
-	 * // => false
-	 *
-	 * _.isArray('abc');
-	 * // => false
-	 *
-	 * _.isArray(_.noop);
-	 * // => false
-	 */
-	var isArray = Array.isArray;
-	
-	module.exports = isArray;
-
-
-/***/ }),
-/* 47 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -3748,7 +3158,7 @@
 	}
 
 /***/ }),
-/* 48 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3765,7 +3175,7 @@
 	
 	var _reactProxy = __webpack_require__(649);
 	
-	var _globalWindow = __webpack_require__(512);
+	var _globalWindow = __webpack_require__(513);
 	
 	var _globalWindow2 = _interopRequireDefault(_globalWindow);
 	
@@ -3848,139 +3258,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule EventConstants
-	 */
-	
-	'use strict';
-	
-	var keyMirror = __webpack_require__(104);
-	
-	var PropagationPhases = keyMirror({ bubbled: null, captured: null });
-	
-	/**
-	 * Types of raw signals from the browser caught at the top level.
-	 */
-	var topLevelTypes = keyMirror({
-	  topAbort: null,
-	  topBlur: null,
-	  topCanPlay: null,
-	  topCanPlayThrough: null,
-	  topChange: null,
-	  topClick: null,
-	  topCompositionEnd: null,
-	  topCompositionStart: null,
-	  topCompositionUpdate: null,
-	  topContextMenu: null,
-	  topCopy: null,
-	  topCut: null,
-	  topDoubleClick: null,
-	  topDrag: null,
-	  topDragEnd: null,
-	  topDragEnter: null,
-	  topDragExit: null,
-	  topDragLeave: null,
-	  topDragOver: null,
-	  topDragStart: null,
-	  topDrop: null,
-	  topDurationChange: null,
-	  topEmptied: null,
-	  topEncrypted: null,
-	  topEnded: null,
-	  topError: null,
-	  topFocus: null,
-	  topInput: null,
-	  topKeyDown: null,
-	  topKeyPress: null,
-	  topKeyUp: null,
-	  topLoad: null,
-	  topLoadedData: null,
-	  topLoadedMetadata: null,
-	  topLoadStart: null,
-	  topMouseDown: null,
-	  topMouseMove: null,
-	  topMouseOut: null,
-	  topMouseOver: null,
-	  topMouseUp: null,
-	  topPaste: null,
-	  topPause: null,
-	  topPlay: null,
-	  topPlaying: null,
-	  topProgress: null,
-	  topRateChange: null,
-	  topReset: null,
-	  topScroll: null,
-	  topSeeked: null,
-	  topSeeking: null,
-	  topSelectionChange: null,
-	  topStalled: null,
-	  topSubmit: null,
-	  topSuspend: null,
-	  topTextInput: null,
-	  topTimeUpdate: null,
-	  topTouchCancel: null,
-	  topTouchEnd: null,
-	  topTouchMove: null,
-	  topTouchStart: null,
-	  topVolumeChange: null,
-	  topWaiting: null,
-	  topWheel: null
-	});
-	
-	var EventConstants = {
-	  topLevelTypes: topLevelTypes,
-	  PropagationPhases: PropagationPhases
-	};
-	
-	module.exports = EventConstants;
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports) {
-
-	/**
-	 * Copyright 2013-2015, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule ReactCurrentOwner
-	 */
-	
-	'use strict';
-	
-	/**
-	 * Keeps track of the current owner.
-	 *
-	 * The current owner is the component who should own any components that are
-	 * currently being constructed.
-	 */
-	var ReactCurrentOwner = {
-	
-	  /**
-	   * @internal
-	   * @type {ReactComponent}
-	   */
-	  current: null
-	
-	};
-	
-	module.exports = ReactCurrentOwner;
-
-/***/ }),
-/* 51 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3996,7 +3274,7 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _propTypes = __webpack_require__(161);
+	var _propTypes = __webpack_require__(163);
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
@@ -4012,7 +3290,7 @@
 	
 	var _style2 = _interopRequireDefault(_style);
 	
-	var _errorStackParser = __webpack_require__(497);
+	var _errorStackParser = __webpack_require__(498);
 	
 	var _errorStackParser2 = _interopRequireDefault(_errorStackParser);
 	
@@ -4494,6 +3772,728 @@
 	exports.__RewireAPI__ = _RewireAPI__;
 
 /***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var Map = __webpack_require__(219);
+	var $export = __webpack_require__(1);
+	var shared = __webpack_require__(103)('metadata');
+	var store = shared.store || (shared.store = new (__webpack_require__(222))());
+	
+	var getOrCreateMetadataMap = function (target, targetKey, create) {
+	  var targetMetadata = store.get(target);
+	  if (!targetMetadata) {
+	    if (!create) return undefined;
+	    store.set(target, targetMetadata = new Map());
+	  }
+	  var keyMetadata = targetMetadata.get(targetKey);
+	  if (!keyMetadata) {
+	    if (!create) return undefined;
+	    targetMetadata.set(targetKey, keyMetadata = new Map());
+	  } return keyMetadata;
+	};
+	var ordinaryHasOwnMetadata = function (MetadataKey, O, P) {
+	  var metadataMap = getOrCreateMetadataMap(O, P, false);
+	  return metadataMap === undefined ? false : metadataMap.has(MetadataKey);
+	};
+	var ordinaryGetOwnMetadata = function (MetadataKey, O, P) {
+	  var metadataMap = getOrCreateMetadataMap(O, P, false);
+	  return metadataMap === undefined ? undefined : metadataMap.get(MetadataKey);
+	};
+	var ordinaryDefineOwnMetadata = function (MetadataKey, MetadataValue, O, P) {
+	  getOrCreateMetadataMap(O, P, true).set(MetadataKey, MetadataValue);
+	};
+	var ordinaryOwnMetadataKeys = function (target, targetKey) {
+	  var metadataMap = getOrCreateMetadataMap(target, targetKey, false);
+	  var keys = [];
+	  if (metadataMap) metadataMap.forEach(function (_, key) { keys.push(key); });
+	  return keys;
+	};
+	var toMetaKey = function (it) {
+	  return it === undefined || typeof it == 'symbol' ? it : String(it);
+	};
+	var exp = function (O) {
+	  $export($export.S, 'Reflect', O);
+	};
+	
+	module.exports = {
+	  store: store,
+	  map: getOrCreateMetadataMap,
+	  has: ordinaryHasOwnMetadata,
+	  get: ordinaryGetOwnMetadata,
+	  set: ordinaryDefineOwnMetadata,
+	  keys: ordinaryOwnMetadataKeys,
+	  key: toMetaKey,
+	  exp: exp
+	};
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	if (__webpack_require__(14)) {
+	  var LIBRARY = __webpack_require__(58);
+	  var global = __webpack_require__(6);
+	  var fails = __webpack_require__(8);
+	  var $export = __webpack_require__(1);
+	  var $typed = __webpack_require__(105);
+	  var $buffer = __webpack_require__(146);
+	  var ctx = __webpack_require__(33);
+	  var anInstance = __webpack_require__(56);
+	  var propertyDesc = __webpack_require__(62);
+	  var hide = __webpack_require__(24);
+	  var redefineAll = __webpack_require__(63);
+	  var toInteger = __webpack_require__(40);
+	  var toLength = __webpack_require__(16);
+	  var toIndex = __webpack_require__(217);
+	  var toAbsoluteIndex = __webpack_require__(65);
+	  var toPrimitive = __webpack_require__(41);
+	  var has = __webpack_require__(23);
+	  var classof = __webpack_require__(79);
+	  var isObject = __webpack_require__(9);
+	  var toObject = __webpack_require__(20);
+	  var isArrayIter = __webpack_require__(132);
+	  var create = __webpack_require__(59);
+	  var getPrototypeOf = __webpack_require__(29);
+	  var gOPN = __webpack_require__(60).f;
+	  var getIterFn = __webpack_require__(149);
+	  var uid = __webpack_require__(66);
+	  var wks = __webpack_require__(12);
+	  var createArrayMethod = __webpack_require__(36);
+	  var createArrayIncludes = __webpack_require__(92);
+	  var speciesConstructor = __webpack_require__(104);
+	  var ArrayIterators = __webpack_require__(150);
+	  var Iterators = __webpack_require__(73);
+	  var $iterDetect = __webpack_require__(98);
+	  var setSpecies = __webpack_require__(64);
+	  var arrayFill = __webpack_require__(124);
+	  var arrayCopyWithin = __webpack_require__(190);
+	  var $DP = __webpack_require__(15);
+	  var $GOPD = __webpack_require__(28);
+	  var dP = $DP.f;
+	  var gOPD = $GOPD.f;
+	  var RangeError = global.RangeError;
+	  var TypeError = global.TypeError;
+	  var Uint8Array = global.Uint8Array;
+	  var ARRAY_BUFFER = 'ArrayBuffer';
+	  var SHARED_BUFFER = 'Shared' + ARRAY_BUFFER;
+	  var BYTES_PER_ELEMENT = 'BYTES_PER_ELEMENT';
+	  var PROTOTYPE = 'prototype';
+	  var ArrayProto = Array[PROTOTYPE];
+	  var $ArrayBuffer = $buffer.ArrayBuffer;
+	  var $DataView = $buffer.DataView;
+	  var arrayForEach = createArrayMethod(0);
+	  var arrayFilter = createArrayMethod(2);
+	  var arraySome = createArrayMethod(3);
+	  var arrayEvery = createArrayMethod(4);
+	  var arrayFind = createArrayMethod(5);
+	  var arrayFindIndex = createArrayMethod(6);
+	  var arrayIncludes = createArrayIncludes(true);
+	  var arrayIndexOf = createArrayIncludes(false);
+	  var arrayValues = ArrayIterators.values;
+	  var arrayKeys = ArrayIterators.keys;
+	  var arrayEntries = ArrayIterators.entries;
+	  var arrayLastIndexOf = ArrayProto.lastIndexOf;
+	  var arrayReduce = ArrayProto.reduce;
+	  var arrayReduceRight = ArrayProto.reduceRight;
+	  var arrayJoin = ArrayProto.join;
+	  var arraySort = ArrayProto.sort;
+	  var arraySlice = ArrayProto.slice;
+	  var arrayToString = ArrayProto.toString;
+	  var arrayToLocaleString = ArrayProto.toLocaleString;
+	  var ITERATOR = wks('iterator');
+	  var TAG = wks('toStringTag');
+	  var TYPED_CONSTRUCTOR = uid('typed_constructor');
+	  var DEF_CONSTRUCTOR = uid('def_constructor');
+	  var ALL_CONSTRUCTORS = $typed.CONSTR;
+	  var TYPED_ARRAY = $typed.TYPED;
+	  var VIEW = $typed.VIEW;
+	  var WRONG_LENGTH = 'Wrong length!';
+	
+	  var $map = createArrayMethod(1, function (O, length) {
+	    return allocate(speciesConstructor(O, O[DEF_CONSTRUCTOR]), length);
+	  });
+	
+	  var LITTLE_ENDIAN = fails(function () {
+	    // eslint-disable-next-line no-undef
+	    return new Uint8Array(new Uint16Array([1]).buffer)[0] === 1;
+	  });
+	
+	  var FORCED_SET = !!Uint8Array && !!Uint8Array[PROTOTYPE].set && fails(function () {
+	    new Uint8Array(1).set({});
+	  });
+	
+	  var toOffset = function (it, BYTES) {
+	    var offset = toInteger(it);
+	    if (offset < 0 || offset % BYTES) throw RangeError('Wrong offset!');
+	    return offset;
+	  };
+	
+	  var validate = function (it) {
+	    if (isObject(it) && TYPED_ARRAY in it) return it;
+	    throw TypeError(it + ' is not a typed array!');
+	  };
+	
+	  var allocate = function (C, length) {
+	    if (!(isObject(C) && TYPED_CONSTRUCTOR in C)) {
+	      throw TypeError('It is not a typed array constructor!');
+	    } return new C(length);
+	  };
+	
+	  var speciesFromList = function (O, list) {
+	    return fromList(speciesConstructor(O, O[DEF_CONSTRUCTOR]), list);
+	  };
+	
+	  var fromList = function (C, list) {
+	    var index = 0;
+	    var length = list.length;
+	    var result = allocate(C, length);
+	    while (length > index) result[index] = list[index++];
+	    return result;
+	  };
+	
+	  var addGetter = function (it, key, internal) {
+	    dP(it, key, { get: function () { return this._d[internal]; } });
+	  };
+	
+	  var $from = function from(source /* , mapfn, thisArg */) {
+	    var O = toObject(source);
+	    var aLen = arguments.length;
+	    var mapfn = aLen > 1 ? arguments[1] : undefined;
+	    var mapping = mapfn !== undefined;
+	    var iterFn = getIterFn(O);
+	    var i, length, values, result, step, iterator;
+	    if (iterFn != undefined && !isArrayIter(iterFn)) {
+	      for (iterator = iterFn.call(O), values = [], i = 0; !(step = iterator.next()).done; i++) {
+	        values.push(step.value);
+	      } O = values;
+	    }
+	    if (mapping && aLen > 2) mapfn = ctx(mapfn, arguments[2], 2);
+	    for (i = 0, length = toLength(O.length), result = allocate(this, length); length > i; i++) {
+	      result[i] = mapping ? mapfn(O[i], i) : O[i];
+	    }
+	    return result;
+	  };
+	
+	  var $of = function of(/* ...items */) {
+	    var index = 0;
+	    var length = arguments.length;
+	    var result = allocate(this, length);
+	    while (length > index) result[index] = arguments[index++];
+	    return result;
+	  };
+	
+	  // iOS Safari 6.x fails here
+	  var TO_LOCALE_BUG = !!Uint8Array && fails(function () { arrayToLocaleString.call(new Uint8Array(1)); });
+	
+	  var $toLocaleString = function toLocaleString() {
+	    return arrayToLocaleString.apply(TO_LOCALE_BUG ? arraySlice.call(validate(this)) : validate(this), arguments);
+	  };
+	
+	  var proto = {
+	    copyWithin: function copyWithin(target, start /* , end */) {
+	      return arrayCopyWithin.call(validate(this), target, start, arguments.length > 2 ? arguments[2] : undefined);
+	    },
+	    every: function every(callbackfn /* , thisArg */) {
+	      return arrayEvery(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+	    },
+	    fill: function fill(value /* , start, end */) { // eslint-disable-line no-unused-vars
+	      return arrayFill.apply(validate(this), arguments);
+	    },
+	    filter: function filter(callbackfn /* , thisArg */) {
+	      return speciesFromList(this, arrayFilter(validate(this), callbackfn,
+	        arguments.length > 1 ? arguments[1] : undefined));
+	    },
+	    find: function find(predicate /* , thisArg */) {
+	      return arrayFind(validate(this), predicate, arguments.length > 1 ? arguments[1] : undefined);
+	    },
+	    findIndex: function findIndex(predicate /* , thisArg */) {
+	      return arrayFindIndex(validate(this), predicate, arguments.length > 1 ? arguments[1] : undefined);
+	    },
+	    forEach: function forEach(callbackfn /* , thisArg */) {
+	      arrayForEach(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+	    },
+	    indexOf: function indexOf(searchElement /* , fromIndex */) {
+	      return arrayIndexOf(validate(this), searchElement, arguments.length > 1 ? arguments[1] : undefined);
+	    },
+	    includes: function includes(searchElement /* , fromIndex */) {
+	      return arrayIncludes(validate(this), searchElement, arguments.length > 1 ? arguments[1] : undefined);
+	    },
+	    join: function join(separator) { // eslint-disable-line no-unused-vars
+	      return arrayJoin.apply(validate(this), arguments);
+	    },
+	    lastIndexOf: function lastIndexOf(searchElement /* , fromIndex */) { // eslint-disable-line no-unused-vars
+	      return arrayLastIndexOf.apply(validate(this), arguments);
+	    },
+	    map: function map(mapfn /* , thisArg */) {
+	      return $map(validate(this), mapfn, arguments.length > 1 ? arguments[1] : undefined);
+	    },
+	    reduce: function reduce(callbackfn /* , initialValue */) { // eslint-disable-line no-unused-vars
+	      return arrayReduce.apply(validate(this), arguments);
+	    },
+	    reduceRight: function reduceRight(callbackfn /* , initialValue */) { // eslint-disable-line no-unused-vars
+	      return arrayReduceRight.apply(validate(this), arguments);
+	    },
+	    reverse: function reverse() {
+	      var that = this;
+	      var length = validate(that).length;
+	      var middle = Math.floor(length / 2);
+	      var index = 0;
+	      var value;
+	      while (index < middle) {
+	        value = that[index];
+	        that[index++] = that[--length];
+	        that[length] = value;
+	      } return that;
+	    },
+	    some: function some(callbackfn /* , thisArg */) {
+	      return arraySome(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+	    },
+	    sort: function sort(comparefn) {
+	      return arraySort.call(validate(this), comparefn);
+	    },
+	    subarray: function subarray(begin, end) {
+	      var O = validate(this);
+	      var length = O.length;
+	      var $begin = toAbsoluteIndex(begin, length);
+	      return new (speciesConstructor(O, O[DEF_CONSTRUCTOR]))(
+	        O.buffer,
+	        O.byteOffset + $begin * O.BYTES_PER_ELEMENT,
+	        toLength((end === undefined ? length : toAbsoluteIndex(end, length)) - $begin)
+	      );
+	    }
+	  };
+	
+	  var $slice = function slice(start, end) {
+	    return speciesFromList(this, arraySlice.call(validate(this), start, end));
+	  };
+	
+	  var $set = function set(arrayLike /* , offset */) {
+	    validate(this);
+	    var offset = toOffset(arguments[1], 1);
+	    var length = this.length;
+	    var src = toObject(arrayLike);
+	    var len = toLength(src.length);
+	    var index = 0;
+	    if (len + offset > length) throw RangeError(WRONG_LENGTH);
+	    while (index < len) this[offset + index] = src[index++];
+	  };
+	
+	  var $iterators = {
+	    entries: function entries() {
+	      return arrayEntries.call(validate(this));
+	    },
+	    keys: function keys() {
+	      return arrayKeys.call(validate(this));
+	    },
+	    values: function values() {
+	      return arrayValues.call(validate(this));
+	    }
+	  };
+	
+	  var isTAIndex = function (target, key) {
+	    return isObject(target)
+	      && target[TYPED_ARRAY]
+	      && typeof key != 'symbol'
+	      && key in target
+	      && String(+key) == String(key);
+	  };
+	  var $getDesc = function getOwnPropertyDescriptor(target, key) {
+	    return isTAIndex(target, key = toPrimitive(key, true))
+	      ? propertyDesc(2, target[key])
+	      : gOPD(target, key);
+	  };
+	  var $setDesc = function defineProperty(target, key, desc) {
+	    if (isTAIndex(target, key = toPrimitive(key, true))
+	      && isObject(desc)
+	      && has(desc, 'value')
+	      && !has(desc, 'get')
+	      && !has(desc, 'set')
+	      // TODO: add validation descriptor w/o calling accessors
+	      && !desc.configurable
+	      && (!has(desc, 'writable') || desc.writable)
+	      && (!has(desc, 'enumerable') || desc.enumerable)
+	    ) {
+	      target[key] = desc.value;
+	      return target;
+	    } return dP(target, key, desc);
+	  };
+	
+	  if (!ALL_CONSTRUCTORS) {
+	    $GOPD.f = $getDesc;
+	    $DP.f = $setDesc;
+	  }
+	
+	  $export($export.S + $export.F * !ALL_CONSTRUCTORS, 'Object', {
+	    getOwnPropertyDescriptor: $getDesc,
+	    defineProperty: $setDesc
+	  });
+	
+	  if (fails(function () { arrayToString.call({}); })) {
+	    arrayToString = arrayToLocaleString = function toString() {
+	      return arrayJoin.call(this);
+	    };
+	  }
+	
+	  var $TypedArrayPrototype$ = redefineAll({}, proto);
+	  redefineAll($TypedArrayPrototype$, $iterators);
+	  hide($TypedArrayPrototype$, ITERATOR, $iterators.values);
+	  redefineAll($TypedArrayPrototype$, {
+	    slice: $slice,
+	    set: $set,
+	    constructor: function () { /* noop */ },
+	    toString: arrayToString,
+	    toLocaleString: $toLocaleString
+	  });
+	  addGetter($TypedArrayPrototype$, 'buffer', 'b');
+	  addGetter($TypedArrayPrototype$, 'byteOffset', 'o');
+	  addGetter($TypedArrayPrototype$, 'byteLength', 'l');
+	  addGetter($TypedArrayPrototype$, 'length', 'e');
+	  dP($TypedArrayPrototype$, TAG, {
+	    get: function () { return this[TYPED_ARRAY]; }
+	  });
+	
+	  // eslint-disable-next-line max-statements
+	  module.exports = function (KEY, BYTES, wrapper, CLAMPED) {
+	    CLAMPED = !!CLAMPED;
+	    var NAME = KEY + (CLAMPED ? 'Clamped' : '') + 'Array';
+	    var GETTER = 'get' + KEY;
+	    var SETTER = 'set' + KEY;
+	    var TypedArray = global[NAME];
+	    var Base = TypedArray || {};
+	    var TAC = TypedArray && getPrototypeOf(TypedArray);
+	    var FORCED = !TypedArray || !$typed.ABV;
+	    var O = {};
+	    var TypedArrayPrototype = TypedArray && TypedArray[PROTOTYPE];
+	    var getter = function (that, index) {
+	      var data = that._d;
+	      return data.v[GETTER](index * BYTES + data.o, LITTLE_ENDIAN);
+	    };
+	    var setter = function (that, index, value) {
+	      var data = that._d;
+	      if (CLAMPED) value = (value = Math.round(value)) < 0 ? 0 : value > 0xff ? 0xff : value & 0xff;
+	      data.v[SETTER](index * BYTES + data.o, value, LITTLE_ENDIAN);
+	    };
+	    var addElement = function (that, index) {
+	      dP(that, index, {
+	        get: function () {
+	          return getter(this, index);
+	        },
+	        set: function (value) {
+	          return setter(this, index, value);
+	        },
+	        enumerable: true
+	      });
+	    };
+	    if (FORCED) {
+	      TypedArray = wrapper(function (that, data, $offset, $length) {
+	        anInstance(that, TypedArray, NAME, '_d');
+	        var index = 0;
+	        var offset = 0;
+	        var buffer, byteLength, length, klass;
+	        if (!isObject(data)) {
+	          length = toIndex(data);
+	          byteLength = length * BYTES;
+	          buffer = new $ArrayBuffer(byteLength);
+	        } else if (data instanceof $ArrayBuffer || (klass = classof(data)) == ARRAY_BUFFER || klass == SHARED_BUFFER) {
+	          buffer = data;
+	          offset = toOffset($offset, BYTES);
+	          var $len = data.byteLength;
+	          if ($length === undefined) {
+	            if ($len % BYTES) throw RangeError(WRONG_LENGTH);
+	            byteLength = $len - offset;
+	            if (byteLength < 0) throw RangeError(WRONG_LENGTH);
+	          } else {
+	            byteLength = toLength($length) * BYTES;
+	            if (byteLength + offset > $len) throw RangeError(WRONG_LENGTH);
+	          }
+	          length = byteLength / BYTES;
+	        } else if (TYPED_ARRAY in data) {
+	          return fromList(TypedArray, data);
+	        } else {
+	          return $from.call(TypedArray, data);
+	        }
+	        hide(that, '_d', {
+	          b: buffer,
+	          o: offset,
+	          l: byteLength,
+	          e: length,
+	          v: new $DataView(buffer)
+	        });
+	        while (index < length) addElement(that, index++);
+	      });
+	      TypedArrayPrototype = TypedArray[PROTOTYPE] = create($TypedArrayPrototype$);
+	      hide(TypedArrayPrototype, 'constructor', TypedArray);
+	    } else if (!fails(function () {
+	      TypedArray(1);
+	    }) || !fails(function () {
+	      new TypedArray(-1); // eslint-disable-line no-new
+	    }) || !$iterDetect(function (iter) {
+	      new TypedArray(); // eslint-disable-line no-new
+	      new TypedArray(null); // eslint-disable-line no-new
+	      new TypedArray(1.5); // eslint-disable-line no-new
+	      new TypedArray(iter); // eslint-disable-line no-new
+	    }, true)) {
+	      TypedArray = wrapper(function (that, data, $offset, $length) {
+	        anInstance(that, TypedArray, NAME);
+	        var klass;
+	        // `ws` module bug, temporarily remove validation length for Uint8Array
+	        // https://github.com/websockets/ws/pull/645
+	        if (!isObject(data)) return new Base(toIndex(data));
+	        if (data instanceof $ArrayBuffer || (klass = classof(data)) == ARRAY_BUFFER || klass == SHARED_BUFFER) {
+	          return $length !== undefined
+	            ? new Base(data, toOffset($offset, BYTES), $length)
+	            : $offset !== undefined
+	              ? new Base(data, toOffset($offset, BYTES))
+	              : new Base(data);
+	        }
+	        if (TYPED_ARRAY in data) return fromList(TypedArray, data);
+	        return $from.call(TypedArray, data);
+	      });
+	      arrayForEach(TAC !== Function.prototype ? gOPN(Base).concat(gOPN(TAC)) : gOPN(Base), function (key) {
+	        if (!(key in TypedArray)) hide(TypedArray, key, Base[key]);
+	      });
+	      TypedArray[PROTOTYPE] = TypedArrayPrototype;
+	      if (!LIBRARY) TypedArrayPrototype.constructor = TypedArray;
+	    }
+	    var $nativeIterator = TypedArrayPrototype[ITERATOR];
+	    var CORRECT_ITER_NAME = !!$nativeIterator
+	      && ($nativeIterator.name == 'values' || $nativeIterator.name == undefined);
+	    var $iterator = $iterators.values;
+	    hide(TypedArray, TYPED_CONSTRUCTOR, true);
+	    hide(TypedArrayPrototype, TYPED_ARRAY, NAME);
+	    hide(TypedArrayPrototype, VIEW, true);
+	    hide(TypedArrayPrototype, DEF_CONSTRUCTOR, TypedArray);
+	
+	    if (CLAMPED ? new TypedArray(1)[TAG] != NAME : !(TAG in TypedArrayPrototype)) {
+	      dP(TypedArrayPrototype, TAG, {
+	        get: function () { return NAME; }
+	      });
+	    }
+	
+	    O[NAME] = TypedArray;
+	
+	    $export($export.G + $export.W + $export.F * (TypedArray != Base), O);
+	
+	    $export($export.S, NAME, {
+	      BYTES_PER_ELEMENT: BYTES
+	    });
+	
+	    $export($export.S + $export.F * fails(function () { Base.of.call(TypedArray, 1); }), NAME, {
+	      from: $from,
+	      of: $of
+	    });
+	
+	    if (!(BYTES_PER_ELEMENT in TypedArrayPrototype)) hide(TypedArrayPrototype, BYTES_PER_ELEMENT, BYTES);
+	
+	    $export($export.P, NAME, proto);
+	
+	    setSpecies(NAME);
+	
+	    $export($export.P + $export.F * FORCED_SET, NAME, { set: $set });
+	
+	    $export($export.P + $export.F * !CORRECT_ITER_NAME, NAME, $iterators);
+	
+	    if (!LIBRARY && TypedArrayPrototype.toString != arrayToString) TypedArrayPrototype.toString = arrayToString;
+	
+	    $export($export.P + $export.F * fails(function () {
+	      new TypedArray(1).slice();
+	    }), NAME, { slice: $slice });
+	
+	    $export($export.P + $export.F * (fails(function () {
+	      return [1, 2].toLocaleString() != new TypedArray([1, 2]).toLocaleString();
+	    }) || !fails(function () {
+	      TypedArrayPrototype.toLocaleString.call([1, 2]);
+	    })), NAME, { toLocaleString: $toLocaleString });
+	
+	    Iterators[NAME] = CORRECT_ITER_NAME ? $nativeIterator : $iterator;
+	    if (!LIBRARY && !CORRECT_ITER_NAME) hide(TypedArrayPrototype, ITERATOR, $iterator);
+	  };
+	} else module.exports = function () { /* empty */ };
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var freeGlobal = __webpack_require__(245);
+	
+	/** Detect free variable `self`. */
+	var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+	
+	/** Used as a reference to the global object. */
+	var root = freeGlobal || freeSelf || Function('return this')();
+	
+	module.exports = root;
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports) {
+
+	/**
+	 * Checks if `value` is classified as an `Array` object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+	 * @example
+	 *
+	 * _.isArray([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isArray(document.body.children);
+	 * // => false
+	 *
+	 * _.isArray('abc');
+	 * // => false
+	 *
+	 * _.isArray(_.noop);
+	 * // => false
+	 */
+	var isArray = Array.isArray;
+	
+	module.exports = isArray;
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule EventConstants
+	 */
+	
+	'use strict';
+	
+	var keyMirror = __webpack_require__(106);
+	
+	var PropagationPhases = keyMirror({ bubbled: null, captured: null });
+	
+	/**
+	 * Types of raw signals from the browser caught at the top level.
+	 */
+	var topLevelTypes = keyMirror({
+	  topAbort: null,
+	  topBlur: null,
+	  topCanPlay: null,
+	  topCanPlayThrough: null,
+	  topChange: null,
+	  topClick: null,
+	  topCompositionEnd: null,
+	  topCompositionStart: null,
+	  topCompositionUpdate: null,
+	  topContextMenu: null,
+	  topCopy: null,
+	  topCut: null,
+	  topDoubleClick: null,
+	  topDrag: null,
+	  topDragEnd: null,
+	  topDragEnter: null,
+	  topDragExit: null,
+	  topDragLeave: null,
+	  topDragOver: null,
+	  topDragStart: null,
+	  topDrop: null,
+	  topDurationChange: null,
+	  topEmptied: null,
+	  topEncrypted: null,
+	  topEnded: null,
+	  topError: null,
+	  topFocus: null,
+	  topInput: null,
+	  topKeyDown: null,
+	  topKeyPress: null,
+	  topKeyUp: null,
+	  topLoad: null,
+	  topLoadedData: null,
+	  topLoadedMetadata: null,
+	  topLoadStart: null,
+	  topMouseDown: null,
+	  topMouseMove: null,
+	  topMouseOut: null,
+	  topMouseOver: null,
+	  topMouseUp: null,
+	  topPaste: null,
+	  topPause: null,
+	  topPlay: null,
+	  topPlaying: null,
+	  topProgress: null,
+	  topRateChange: null,
+	  topReset: null,
+	  topScroll: null,
+	  topSeeked: null,
+	  topSeeking: null,
+	  topSelectionChange: null,
+	  topStalled: null,
+	  topSubmit: null,
+	  topSuspend: null,
+	  topTextInput: null,
+	  topTimeUpdate: null,
+	  topTouchCancel: null,
+	  topTouchEnd: null,
+	  topTouchMove: null,
+	  topTouchStart: null,
+	  topVolumeChange: null,
+	  topWaiting: null,
+	  topWheel: null
+	});
+	
+	var EventConstants = {
+	  topLevelTypes: topLevelTypes,
+	  PropagationPhases: PropagationPhases
+	};
+	
+	module.exports = EventConstants;
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ReactCurrentOwner
+	 */
+	
+	'use strict';
+	
+	/**
+	 * Keeps track of the current owner.
+	 *
+	 * The current owner is the component who should own any components that are
+	 * currently being constructed.
+	 */
+	var ReactCurrentOwner = {
+	
+	  /**
+	   * @internal
+	   * @type {ReactComponent}
+	   */
+	  current: null
+	
+	};
+	
+	module.exports = ReactCurrentOwner;
+
+/***/ }),
 /* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4747,10 +4747,10 @@
 
 	var ctx = __webpack_require__(33);
 	var call = __webpack_require__(201);
-	var isArrayIter = __webpack_require__(130);
+	var isArrayIter = __webpack_require__(132);
 	var anObject = __webpack_require__(4);
 	var toLength = __webpack_require__(16);
-	var getIterFn = __webpack_require__(147);
+	var getIterFn = __webpack_require__(149);
 	var BREAK = {};
 	var RETURN = {};
 	var exports = module.exports = function (iterable, entries, fn, that, ITERATOR) {
@@ -4786,21 +4786,21 @@
 	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 	var anObject = __webpack_require__(4);
 	var dPs = __webpack_require__(207);
-	var enumBugKeys = __webpack_require__(126);
-	var IE_PROTO = __webpack_require__(138)('IE_PROTO');
+	var enumBugKeys = __webpack_require__(128);
+	var IE_PROTO = __webpack_require__(140)('IE_PROTO');
 	var Empty = function () { /* empty */ };
 	var PROTOTYPE = 'prototype';
 	
 	// Create object with fake `null` prototype: use iframe Object with cleared prototype
 	var createDict = function () {
 	  // Thrash, waste and sodomy: IE GC bug
-	  var iframe = __webpack_require__(125)('iframe');
+	  var iframe = __webpack_require__(127)('iframe');
 	  var i = enumBugKeys.length;
 	  var lt = '<';
 	  var gt = '>';
 	  var iframeDocument;
 	  iframe.style.display = 'none';
-	  __webpack_require__(128).appendChild(iframe);
+	  __webpack_require__(130).appendChild(iframe);
 	  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
 	  // createDict = iframe.contentWindow.Object;
 	  // html.removeChild(iframe);
@@ -4832,7 +4832,7 @@
 
 	// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
 	var $keys = __webpack_require__(209);
-	var hiddenKeys = __webpack_require__(126).concat('length', 'prototype');
+	var hiddenKeys = __webpack_require__(128).concat('length', 'prototype');
 	
 	exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 	  return $keys(O, hiddenKeys);
@@ -4845,7 +4845,7 @@
 
 	// 19.1.2.14 / 15.2.3.14 Object.keys(O)
 	var $keys = __webpack_require__(209);
-	var enumBugKeys = __webpack_require__(126);
+	var enumBugKeys = __webpack_require__(128);
 	
 	module.exports = Object.keys || function keys(O) {
 	  return $keys(O, enumBugKeys);
@@ -4924,8 +4924,8 @@
 /* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseIsNative = __webpack_require__(539),
-	    getValue = __webpack_require__(561);
+	var baseIsNative = __webpack_require__(540),
+	    getValue = __webpack_require__(562);
 	
 	/**
 	 * Gets the native function at `key` of `object`.
@@ -5518,13 +5518,65 @@
 
 /***/ }),
 /* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	exports.__esModule = true;
+	exports.compose = exports.applyMiddleware = exports.bindActionCreators = exports.combineReducers = exports.createStore = undefined;
+	
+	var _createStore = __webpack_require__(294);
+	
+	var _createStore2 = _interopRequireDefault(_createStore);
+	
+	var _combineReducers = __webpack_require__(720);
+	
+	var _combineReducers2 = _interopRequireDefault(_combineReducers);
+	
+	var _bindActionCreators = __webpack_require__(719);
+	
+	var _bindActionCreators2 = _interopRequireDefault(_bindActionCreators);
+	
+	var _applyMiddleware = __webpack_require__(718);
+	
+	var _applyMiddleware2 = _interopRequireDefault(_applyMiddleware);
+	
+	var _compose = __webpack_require__(293);
+	
+	var _compose2 = _interopRequireDefault(_compose);
+	
+	var _warning = __webpack_require__(295);
+	
+	var _warning2 = _interopRequireDefault(_warning);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	/*
+	* This is a dummy function to check if the function name has been altered by minification.
+	* If the function has been minified and NODE_ENV !== 'production', warn the user.
+	*/
+	function isCrushed() {}
+	
+	if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
+	  (0, _warning2['default'])('You are currently using minified code outside of NODE_ENV === \'production\'. ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or DefinePlugin for webpack (http://stackoverflow.com/questions/30030031) ' + 'to ensure you have the correct code for your production build.');
+	}
+	
+	exports.createStore = _createStore2['default'];
+	exports.combineReducers = _combineReducers2['default'];
+	exports.bindActionCreators = _bindActionCreators2['default'];
+	exports.applyMiddleware = _applyMiddleware2['default'];
+	exports.compose = _compose2['default'];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 73 */
 /***/ (function(module, exports) {
 
 	module.exports = {};
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var def = __webpack_require__(15).f;
@@ -5537,13 +5589,13 @@
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(1);
 	var defined = __webpack_require__(38);
 	var fails = __webpack_require__(8);
-	var spaces = __webpack_require__(142);
+	var spaces = __webpack_require__(144);
 	var space = '[' + spaces + ']';
 	var non = '\u200b\u0085';
 	var ltrim = RegExp('^' + space + space + '*');
@@ -5573,7 +5625,7 @@
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(9);
@@ -5584,12 +5636,12 @@
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var Symbol = __webpack_require__(83),
-	    getRawTag = __webpack_require__(558),
-	    objectToString = __webpack_require__(586);
+	    getRawTag = __webpack_require__(559),
+	    objectToString = __webpack_require__(587);
 	
 	/** `Object#toString` result references. */
 	var nullTag = '[object Null]',
@@ -5618,7 +5670,7 @@
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -5635,7 +5687,7 @@
 	
 	'use strict';
 	
-	var ReactRootIndex = __webpack_require__(285);
+	var ReactRootIndex = __webpack_require__(286);
 	
 	var invariant = __webpack_require__(5);
 	
@@ -5926,58 +5978,6 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 78 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-	
-	exports.__esModule = true;
-	exports.compose = exports.applyMiddleware = exports.bindActionCreators = exports.combineReducers = exports.createStore = undefined;
-	
-	var _createStore = __webpack_require__(293);
-	
-	var _createStore2 = _interopRequireDefault(_createStore);
-	
-	var _combineReducers = __webpack_require__(720);
-	
-	var _combineReducers2 = _interopRequireDefault(_combineReducers);
-	
-	var _bindActionCreators = __webpack_require__(719);
-	
-	var _bindActionCreators2 = _interopRequireDefault(_bindActionCreators);
-	
-	var _applyMiddleware = __webpack_require__(718);
-	
-	var _applyMiddleware2 = _interopRequireDefault(_applyMiddleware);
-	
-	var _compose = __webpack_require__(292);
-	
-	var _compose2 = _interopRequireDefault(_compose);
-	
-	var _warning = __webpack_require__(294);
-	
-	var _warning2 = _interopRequireDefault(_warning);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	/*
-	* This is a dummy function to check if the function name has been altered by minification.
-	* If the function has been minified and NODE_ENV !== 'production', warn the user.
-	*/
-	function isCrushed() {}
-	
-	if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
-	  (0, _warning2['default'])('You are currently using minified code outside of NODE_ENV === \'production\'. ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or DefinePlugin for webpack (http://stackoverflow.com/questions/30030031) ' + 'to ensure you have the correct code for your production build.');
-	}
-	
-	exports.createStore = _createStore2['default'];
-	exports.combineReducers = _combineReducers2['default'];
-	exports.bindActionCreators = _bindActionCreators2['default'];
-	exports.applyMiddleware = _applyMiddleware2['default'];
-	exports.compose = _compose2['default'];
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
 /* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6055,7 +6055,7 @@
 /* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(45);
+	var root = __webpack_require__(48);
 	
 	/** Built-in value references. */
 	var Symbol = root.Symbol;
@@ -6068,7 +6068,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var isFunction = __webpack_require__(252),
-	    isLength = __webpack_require__(159);
+	    isLength = __webpack_require__(161);
 	
 	/**
 	 * Checks if `value` is array-like. A value is considered array-like if it's
@@ -6143,6 +6143,61 @@
 /* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(17), RootInstanceProvider = __webpack_require__(18), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var listType = exports.listType = ['刀', '槍', '槌', '拳', '盾', '弓', '石弓', '鉄砲', '大砲', '法術', '杖', '歌舞', '鈴'];
+	var listTypeS = exports.listTypeS = ['sword', 'lance', 'hammer', 'fist', 'shield', 'bow', 'xbow', 'arqu', 'cannon', 'spell', 'staff', 'dance', 'bell'];
+	
+	var listBut = exports.listBut = ['無巨大化', '巨大化一階', '巨大化二階', '巨大化三階', '巨大化四階', '巨大化五階'];
+	var listButS = exports.listButS = ['max0', 'max1', 'max2', 'max3', 'max4', 'max5'];
+	
+	var listRef = exports.listRef = ['無精煉', '全精煉+10', '★4+10', '★3+10', '★2+10', '★1+10'];
+	var listRefS = exports.listRefS = ['ref0', 'refAll', 'ref4', 'ref3', 'ref2', 'ref1'];
+	
+	var tableHead = exports.tableHead = ['', '★', '名稱', '精煉', '攻擊', '傷害', 'DPS', '攻擊(f)', '延遲(f)', '特殊效果'];
+	var tableInd = exports.tableInd = ['', 'rare', 'name', 'refText', 'atk', 'damage', 'dps', 'frame1', 'frame2', 'text'];
+	
+	var tableCharHead = exports.tableCharHead = ['', '名稱', '武器種', '★', '屬性', '耐久係數', '攻擊係數', '防禦係數', '係數合計'];
+	var tableCharInd = exports.tableCharInd = ['', 'name', 'weapon', 'rarity', 'plain', 'hpF', 'atF', 'dfF', 'totF'];
+	
+	var listMelee = exports.listMelee = ['sword', 'lance', 'hammer', 'fist', 'shield'];
+	var listMagic = exports.listMagic = ['spell', 'staff', 'dance', 'bell'];
+	var listPhys = exports.listPhys = ['sword', 'lance', 'hammer', 'fist', 'shield', 'bow', 'xbow', 'arqu', 'cannon'];
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ConstList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	exports.connect = exports.Provider = undefined;
+	
+	var _Provider = __webpack_require__(650);
+	
+	var _Provider2 = _interopRequireDefault(_Provider);
+	
+	var _connect = __webpack_require__(651);
+	
+	var _connect2 = _interopRequireDefault(_connect);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	exports.Provider = _Provider2["default"];
+	exports.connect = _connect2["default"];
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright 2013-2015, Facebook, Inc.
 	 * All rights reserved.
@@ -6156,12 +6211,12 @@
 	
 	'use strict';
 	
-	var EventPluginRegistry = __webpack_require__(265);
+	var EventPluginRegistry = __webpack_require__(266);
 	var EventPluginUtils = __webpack_require__(662);
-	var ReactErrorUtils = __webpack_require__(278);
+	var ReactErrorUtils = __webpack_require__(279);
 	
-	var accumulateInto = __webpack_require__(287);
-	var forEachAccumulated = __webpack_require__(288);
+	var accumulateInto = __webpack_require__(288);
+	var forEachAccumulated = __webpack_require__(289);
 	var invariant = __webpack_require__(5);
 	var warning = __webpack_require__(11);
 	
@@ -6425,7 +6480,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 87 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -6441,13 +6496,13 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(49);
-	var EventPluginHub = __webpack_require__(86);
+	var EventConstants = __webpack_require__(50);
+	var EventPluginHub = __webpack_require__(88);
 	
 	var warning = __webpack_require__(11);
 	
-	var accumulateInto = __webpack_require__(287);
-	var forEachAccumulated = __webpack_require__(288);
+	var accumulateInto = __webpack_require__(288);
+	var forEachAccumulated = __webpack_require__(289);
 	
 	var PropagationPhases = EventConstants.PropagationPhases;
 	var getListener = EventPluginHub.getListener;
@@ -6566,7 +6621,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 88 */
+/* 90 */
 /***/ (function(module, exports) {
 
 	/**
@@ -6618,7 +6673,7 @@
 	module.exports = ReactInstanceMap;
 
 /***/ }),
-/* 89 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -6683,7 +6738,7 @@
 	module.exports = SyntheticUIEvent;
 
 /***/ }),
-/* 90 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// false -> Array#indexOf
@@ -6712,7 +6767,7 @@
 
 
 /***/ }),
-/* 91 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6725,9 +6780,9 @@
 	var anInstance = __webpack_require__(56);
 	var isObject = __webpack_require__(9);
 	var fails = __webpack_require__(8);
-	var $iterDetect = __webpack_require__(96);
-	var setToStringTag = __webpack_require__(73);
-	var inheritIfRequired = __webpack_require__(129);
+	var $iterDetect = __webpack_require__(98);
+	var setToStringTag = __webpack_require__(74);
+	var inheritIfRequired = __webpack_require__(131);
 	
 	module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
 	  var Base = global[NAME];
@@ -6803,7 +6858,7 @@
 
 
 /***/ }),
-/* 92 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6837,7 +6892,7 @@
 
 
 /***/ }),
-/* 93 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6856,7 +6911,7 @@
 
 
 /***/ }),
-/* 94 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 7.2.2 IsArray(argument)
@@ -6867,7 +6922,7 @@
 
 
 /***/ }),
-/* 95 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 7.2.8 IsRegExp(argument)
@@ -6881,7 +6936,7 @@
 
 
 /***/ }),
-/* 96 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var ITERATOR = __webpack_require__(12)('iterator');
@@ -6909,7 +6964,7 @@
 
 
 /***/ }),
-/* 97 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6924,14 +6979,14 @@
 
 
 /***/ }),
-/* 98 */
+/* 100 */
 /***/ (function(module, exports) {
 
 	exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 99 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6965,7 +7020,7 @@
 
 
 /***/ }),
-/* 100 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6983,7 +7038,7 @@
 
 
 /***/ }),
-/* 101 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var global = __webpack_require__(6);
@@ -6995,7 +7050,7 @@
 
 
 /***/ }),
-/* 102 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 7.3.20 SpeciesConstructor(O, defaultConstructor)
@@ -7010,7 +7065,7 @@
 
 
 /***/ }),
-/* 103 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var global = __webpack_require__(6);
@@ -7044,7 +7099,7 @@
 
 
 /***/ }),
-/* 104 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7098,14 +7153,14 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 105 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var listCacheClear = __webpack_require__(572),
-	    listCacheDelete = __webpack_require__(573),
-	    listCacheGet = __webpack_require__(574),
-	    listCacheHas = __webpack_require__(575),
-	    listCacheSet = __webpack_require__(576);
+	var listCacheClear = __webpack_require__(573),
+	    listCacheDelete = __webpack_require__(574),
+	    listCacheGet = __webpack_require__(575),
+	    listCacheHas = __webpack_require__(576),
+	    listCacheSet = __webpack_require__(577);
 	
 	/**
 	 * Creates an list cache object.
@@ -7136,10 +7191,10 @@
 
 
 /***/ }),
-/* 106 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var eq = __webpack_require__(110);
+	var eq = __webpack_require__(112);
 	
 	/**
 	 * Gets the index at which the `key` is found in `array` of key-value pairs.
@@ -7163,10 +7218,10 @@
 
 
 /***/ }),
-/* 107 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var isKeyable = __webpack_require__(570);
+	var isKeyable = __webpack_require__(571);
 	
 	/**
 	 * Gets the data for `map`.
@@ -7187,7 +7242,7 @@
 
 
 /***/ }),
-/* 108 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var getNative = __webpack_require__(67);
@@ -7199,10 +7254,10 @@
 
 
 /***/ }),
-/* 109 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var isSymbol = __webpack_require__(111);
+	var isSymbol = __webpack_require__(113);
 	
 	/** Used as references for various `Number` constants. */
 	var INFINITY = 1 / 0;
@@ -7226,7 +7281,7 @@
 
 
 /***/ }),
-/* 110 */
+/* 112 */
 /***/ (function(module, exports) {
 
 	/**
@@ -7269,10 +7324,10 @@
 
 
 /***/ }),
-/* 111 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseGetTag = __webpack_require__(76),
+	var baseGetTag = __webpack_require__(77),
 	    isObjectLike = __webpack_require__(68);
 	
 	/** `Object#toString` result references. */
@@ -7304,11 +7359,11 @@
 
 
 /***/ }),
-/* 112 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var arrayLikeKeys = __webpack_require__(528),
-	    baseKeys = __webpack_require__(541),
+	var arrayLikeKeys = __webpack_require__(529),
+	    baseKeys = __webpack_require__(542),
 	    isArrayLike = __webpack_require__(84);
 	
 	/**
@@ -7347,29 +7402,121 @@
 
 
 /***/ }),
-/* 113 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(17), RootInstanceProvider = __webpack_require__(18), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
 	'use strict';
 	
-	exports.__esModule = true;
-	exports.connect = exports.Provider = undefined;
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.typeChange = typeChange;
+	exports.plainChange = plainChange;
+	exports.flyChange = flyChange;
+	exports.monsChange = monsChange;
+	exports.cannonChange = cannonChange;
+	exports.maxChange = maxChange;
+	exports.inputChange = inputChange;
+	exports.refChange = refChange;
+	exports.refSinChange = refSinChange;
+	exports.modelOpen = modelOpen;
+	exports.modelClose = modelClose;
+	exports.charSelect = charSelect;
 	
-	var _Provider = __webpack_require__(650);
+	var _ConstActionTypes = __webpack_require__(258);
 	
-	var _Provider2 = _interopRequireDefault(_Provider);
+	var types = _interopRequireWildcard(_ConstActionTypes);
 	
-	var _connect = __webpack_require__(651);
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
-	var _connect2 = _interopRequireDefault(_connect);
+	function typeChange(modelId) {
+		return {
+			type: types.TYPE_CHANGE,
+			modelId: modelId
+		};
+	}
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	function plainChange() {
+		return {
+			type: types.PLAIN_CHANGE
+		};
+	}
 	
-	exports.Provider = _Provider2["default"];
-	exports.connect = _connect2["default"];
+	function flyChange() {
+		return {
+			type: types.FLY_CHANGE
+		};
+	}
+	
+	function monsChange() {
+		return {
+			type: types.MONS_CHANGE
+		};
+	}
+	
+	function cannonChange() {
+		return {
+			type: types.CANNON_CHANGE
+		};
+	}
+	
+	function maxChange(modelId) {
+		return {
+			type: types.MAX_CHANGE,
+			modelId: modelId
+		};
+	}
+	
+	function inputChange(modelId, modelValue) {
+		return {
+			type: types.INPUT_CHANGE,
+			modelId: modelId,
+			modelValue: modelValue
+		};
+	}
+	
+	function refChange(modelId) {
+		return {
+			type: types.REF_CHANGE,
+			modelId: modelId
+		};
+	}
+	
+	function refSinChange(modelId) {
+		return {
+			type: types.REF_SIN_CHANGE,
+			modelId: modelId
+		};
+	}
+	
+	function modelOpen(modelId) {
+		return {
+			type: types.MODEL_OPEN,
+			modelId: modelId
+		};
+	}
+	
+	function modelClose(modelId) {
+		return {
+			type: types.MODEL_CLOSE,
+			modelId: modelId
+		};
+	}
+	
+	function charSelect(modelId) {
+		return {
+			type: types.CHAR_SELECT,
+			modelId: modelId
+		};
+	}
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
 /***/ }),
-/* 114 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -7386,12 +7533,12 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(49);
-	var EventPluginHub = __webpack_require__(86);
-	var EventPluginRegistry = __webpack_require__(265);
+	var EventConstants = __webpack_require__(50);
+	var EventPluginHub = __webpack_require__(88);
+	var EventPluginRegistry = __webpack_require__(266);
 	var ReactEventEmitterMixin = __webpack_require__(679);
 	var ReactPerf = __webpack_require__(31);
-	var ViewportMetrics = __webpack_require__(286);
+	var ViewportMetrics = __webpack_require__(287);
 	
 	var assign = __webpack_require__(10);
 	var isEventSupported = __webpack_require__(183);
@@ -7698,7 +7845,7 @@
 	module.exports = ReactBrowserEventEmitter;
 
 /***/ }),
-/* 115 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7728,7 +7875,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 116 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -7744,7 +7891,7 @@
 	
 	'use strict';
 	
-	var keyMirror = __webpack_require__(104);
+	var keyMirror = __webpack_require__(106);
 	
 	var ReactPropTypeLocations = keyMirror({
 	  prop: null,
@@ -7755,7 +7902,7 @@
 	module.exports = ReactPropTypeLocations;
 
 /***/ }),
-/* 117 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -7772,8 +7919,8 @@
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(89);
-	var ViewportMetrics = __webpack_require__(286);
+	var SyntheticUIEvent = __webpack_require__(91);
+	var ViewportMetrics = __webpack_require__(287);
 	
 	var getEventModifierState = __webpack_require__(179);
 	
@@ -7833,7 +7980,7 @@
 	module.exports = SyntheticMouseEvent;
 
 /***/ }),
-/* 118 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -8070,7 +8217,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 119 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -8100,7 +8247,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 120 */
+/* 122 */
 /***/ (function(module, exports) {
 
 	/**
@@ -8143,7 +8290,7 @@
 	module.exports = escapeTextContentForBrowser;
 
 /***/ }),
-/* 121 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -8238,7 +8385,7 @@
 	module.exports = setInnerHTML;
 
 /***/ }),
-/* 122 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
@@ -8259,11 +8406,11 @@
 
 
 /***/ }),
-/* 123 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 9.4.2.3 ArraySpeciesCreate(originalArray, length)
-	var speciesConstructor = __webpack_require__(297);
+	var speciesConstructor = __webpack_require__(298);
 	
 	module.exports = function (original, length) {
 	  return new (speciesConstructor(original))(length);
@@ -8271,7 +8418,7 @@
 
 
 /***/ }),
-/* 124 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8285,7 +8432,7 @@
 
 
 /***/ }),
-/* 125 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(9);
@@ -8298,7 +8445,7 @@
 
 
 /***/ }),
-/* 126 */
+/* 128 */
 /***/ (function(module, exports) {
 
 	// IE 8- don't enum bug keys
@@ -8308,7 +8455,7 @@
 
 
 /***/ }),
-/* 127 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var MATCH = __webpack_require__(12)('match');
@@ -8326,7 +8473,7 @@
 
 
 /***/ }),
-/* 128 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var document = __webpack_require__(6).document;
@@ -8334,11 +8481,11 @@
 
 
 /***/ }),
-/* 129 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(9);
-	var setPrototypeOf = __webpack_require__(137).set;
+	var setPrototypeOf = __webpack_require__(139).set;
 	module.exports = function (that, target, C) {
 	  var S = target.constructor;
 	  var P;
@@ -8349,11 +8496,11 @@
 
 
 /***/ }),
-/* 130 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// check on default Array iterator
-	var Iterators = __webpack_require__(72);
+	var Iterators = __webpack_require__(73);
 	var ITERATOR = __webpack_require__(12)('iterator');
 	var ArrayProto = Array.prototype;
 	
@@ -8363,13 +8510,13 @@
 
 
 /***/ }),
-/* 131 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var create = __webpack_require__(59);
 	var descriptor = __webpack_require__(62);
-	var setToStringTag = __webpack_require__(73);
+	var setToStringTag = __webpack_require__(74);
 	var IteratorPrototype = {};
 	
 	// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
@@ -8382,7 +8529,7 @@
 
 
 /***/ }),
-/* 132 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8391,9 +8538,9 @@
 	var redefine = __webpack_require__(25);
 	var hide = __webpack_require__(24);
 	var has = __webpack_require__(23);
-	var Iterators = __webpack_require__(72);
-	var $iterCreate = __webpack_require__(131);
-	var setToStringTag = __webpack_require__(73);
+	var Iterators = __webpack_require__(73);
+	var $iterCreate = __webpack_require__(133);
+	var setToStringTag = __webpack_require__(74);
 	var getPrototypeOf = __webpack_require__(29);
 	var ITERATOR = __webpack_require__(12)('iterator');
 	var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
@@ -8458,7 +8605,7 @@
 
 
 /***/ }),
-/* 133 */
+/* 135 */
 /***/ (function(module, exports) {
 
 	// 20.2.2.14 Math.expm1(x)
@@ -8474,7 +8621,7 @@
 
 
 /***/ }),
-/* 134 */
+/* 136 */
 /***/ (function(module, exports) {
 
 	// 20.2.2.28 Math.sign(x)
@@ -8485,11 +8632,11 @@
 
 
 /***/ }),
-/* 135 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var global = __webpack_require__(6);
-	var macrotask = __webpack_require__(143).set;
+	var macrotask = __webpack_require__(145).set;
 	var Observer = global.MutationObserver || global.WebKitMutationObserver;
 	var process = global.process;
 	var Promise = global.Promise;
@@ -8559,7 +8706,7 @@
 
 
 /***/ }),
-/* 136 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8583,7 +8730,7 @@
 
 
 /***/ }),
-/* 137 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// Works with __proto__ only. Old v8 can't work with null proto objects.
@@ -8614,10 +8761,10 @@
 
 
 /***/ }),
-/* 138 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var shared = __webpack_require__(101)('keys');
+	var shared = __webpack_require__(103)('keys');
 	var uid = __webpack_require__(66);
 	module.exports = function (key) {
 	  return shared[key] || (shared[key] = uid(key));
@@ -8625,7 +8772,7 @@
 
 
 /***/ }),
-/* 139 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var toInteger = __webpack_require__(40);
@@ -8648,11 +8795,11 @@
 
 
 /***/ }),
-/* 140 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// helper for String#{startsWith, endsWith, includes}
-	var isRegExp = __webpack_require__(95);
+	var isRegExp = __webpack_require__(97);
 	var defined = __webpack_require__(38);
 	
 	module.exports = function (that, searchString, NAME) {
@@ -8662,7 +8809,7 @@
 
 
 /***/ }),
-/* 141 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8680,7 +8827,7 @@
 
 
 /***/ }),
-/* 142 */
+/* 144 */
 /***/ (function(module, exports) {
 
 	module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
@@ -8688,13 +8835,13 @@
 
 
 /***/ }),
-/* 143 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var ctx = __webpack_require__(33);
 	var invoke = __webpack_require__(199);
-	var html = __webpack_require__(128);
-	var cel = __webpack_require__(125);
+	var html = __webpack_require__(130);
+	var cel = __webpack_require__(127);
 	var global = __webpack_require__(6);
 	var process = global.process;
 	var setTask = global.setImmediate;
@@ -8778,14 +8925,14 @@
 
 
 /***/ }),
-/* 144 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var global = __webpack_require__(6);
 	var DESCRIPTORS = __webpack_require__(14);
 	var LIBRARY = __webpack_require__(58);
-	var $typed = __webpack_require__(103);
+	var $typed = __webpack_require__(105);
 	var hide = __webpack_require__(24);
 	var redefineAll = __webpack_require__(63);
 	var fails = __webpack_require__(8);
@@ -8795,8 +8942,8 @@
 	var toIndex = __webpack_require__(217);
 	var gOPN = __webpack_require__(60).f;
 	var dP = __webpack_require__(15).f;
-	var arrayFill = __webpack_require__(122);
-	var setToStringTag = __webpack_require__(73);
+	var arrayFill = __webpack_require__(124);
+	var setToStringTag = __webpack_require__(74);
 	var ARRAY_BUFFER = 'ArrayBuffer';
 	var DATA_VIEW = 'DataView';
 	var PROTOTYPE = 'prototype';
@@ -9060,7 +9207,7 @@
 
 
 /***/ }),
-/* 145 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var global = __webpack_require__(6);
@@ -9070,7 +9217,7 @@
 
 
 /***/ }),
-/* 146 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var global = __webpack_require__(6);
@@ -9085,12 +9232,12 @@
 
 
 /***/ }),
-/* 147 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var classof = __webpack_require__(79);
 	var ITERATOR = __webpack_require__(12)('iterator');
-	var Iterators = __webpack_require__(72);
+	var Iterators = __webpack_require__(73);
 	module.exports = __webpack_require__(37).getIteratorMethod = function (it) {
 	  if (it != undefined) return it[ITERATOR]
 	    || it['@@iterator']
@@ -9099,20 +9246,20 @@
 
 
 /***/ }),
-/* 148 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var addToUnscopables = __webpack_require__(52);
 	var step = __webpack_require__(202);
-	var Iterators = __webpack_require__(72);
+	var Iterators = __webpack_require__(73);
 	var toIObject = __webpack_require__(30);
 	
 	// 22.1.3.4 Array.prototype.entries()
 	// 22.1.3.13 Array.prototype.keys()
 	// 22.1.3.29 Array.prototype.values()
 	// 22.1.3.30 Array.prototype[@@iterator]()
-	module.exports = __webpack_require__(132)(Array, 'Array', function (iterated, kind) {
+	module.exports = __webpack_require__(134)(Array, 'Array', function (iterated, kind) {
 	  this._t = toIObject(iterated); // target
 	  this._i = 0;                   // next index
 	  this._k = kind;                // kind
@@ -9139,10 +9286,10 @@
 
 
 /***/ }),
-/* 149 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(152)();
+	exports = module.exports = __webpack_require__(154)();
 	// imports
 	
 	
@@ -9153,35 +9300,35 @@
 
 
 /***/ }),
-/* 150 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(152)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, ".type-button {\n  width: 10px; }\n\n.text-input {\n  width: 180px;\n  margin-right: 10px; }\n\n.outputTable {\n  width: 100%; }\n\n.theadOver {\n  text-decoration: overline; }\n\n.theadUnder {\n  text-decoration: underline; }\n\n.refine-button {\n  margin-bottom: 10px; }\n", ""]);
-	
-	// exports
-
-
-/***/ }),
-/* 151 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(152)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "/* The Modal (background) */\n.modal {\n  position: fixed;\n  /* Stay in place */\n  z-index: 1000;\n  /* Sit on top */\n  padding-top: 100px;\n  /* Location of the box */\n  left: 0;\n  top: 0;\n  width: 100%;\n  /* Full width */\n  height: 100%;\n  /* Full height */\n  overflow: auto;\n  /* Enable scroll if needed */\n  background-color: black;\n  /* Fallback color */\n  background-color: rgba(0, 0, 0, 0.8);\n  /* Black w/ opacity */ }\n\n/* Modal Content (image) */\n.modal-content {\n  margin: auto;\n  display: block;\n  width: 80%; }\n\n/* Add Animation */\n.modal-content {\n  -webkit-animation-name: zoom;\n  -webkit-animation-duration: 0.6s;\n  animation-name: zoom;\n  animation-duration: 0.6s; }\n\n@-webkit-keyframes zoom {\n  from {\n    -webkit-transform: scale(0); }\n  to {\n    -webkit-transform: scale(1); } }\n\n@keyframes zoom {\n  from {\n    transform: scale(0.1); }\n  to {\n    transform: scale(1); } }\n\n/* The Close Button */\n.close {\n  position: absolute;\n  top: 15px;\n  right: 35px;\n  color: #f1f1f1;\n  font-size: 40px;\n  font-weight: bold;\n  transition: 0.3s; }\n\n.close:hover,\n.close:focus {\n  color: #bbb;\n  text-decoration: none;\n  cursor: pointer; }\n\n/* 100% Image Width on Smaller Screens */\n@media only screen and (max-width: 1400px) {\n  .modal-content {\n    width: 100%; } }\n", ""]);
-	
-	// exports
-
-
-/***/ }),
 /* 152 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(154)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".type-button {\n  width: 10px; }\n\n.text-input {\n  width: 180px;\n  margin-right: 10px; }\n\n.outputTable {\n  width: 100%; }\n\n.theadOver {\n  text-decoration: overline; }\n\n.theadUnder {\n  text-decoration: underline; }\n\n.char-type-button,\n.refine-button {\n  margin-bottom: 10px; }\n", ""]);
+	
+	// exports
+
+
+/***/ }),
+/* 153 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(154)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "/* The Modal (background) */\n.modal {\n  position: fixed;\n  /* Stay in place */\n  z-index: 1000;\n  /* Sit on top */\n  padding-top: 100px;\n  /* Location of the box */\n  left: 0;\n  top: 0;\n  width: 100%;\n  /* Full width */\n  height: 100%;\n  /* Full height */\n  overflow: auto;\n  /* Enable scroll if needed */\n  background-color: black;\n  /* Fallback color */\n  background-color: rgba(0, 0, 0, 0.8);\n  /* Black w/ opacity */ }\n\n/* Modal Content (image) */\n.modal-content {\n  margin: auto;\n  display: block;\n  width: 80%; }\n\n/* Add Animation */\n.modal-content {\n  -webkit-animation-name: zoom;\n  -webkit-animation-duration: 0.6s;\n  animation-name: zoom;\n  animation-duration: 0.6s; }\n\n@-webkit-keyframes zoom {\n  from {\n    -webkit-transform: scale(0); }\n  to {\n    -webkit-transform: scale(1); } }\n\n@keyframes zoom {\n  from {\n    transform: scale(0.1); }\n  to {\n    transform: scale(1); } }\n\n/* The Close Button */\n.close {\n  position: absolute;\n  top: 15px;\n  right: 35px;\n  color: #f1f1f1;\n  font-size: 40px;\n  font-weight: bold;\n  transition: 0.3s; }\n\n.close:hover,\n.close:focus {\n  color: #bbb;\n  text-decoration: none;\n  cursor: pointer; }\n\n/* 100% Image Width on Smaller Screens */\n@media only screen and (max-width: 1400px) {\n  .modal-content {\n    width: 100%; } }\n\n.index-content {\n  border-radius: 2px;\n  padding: 80px 56px;\n  margin-bottom: 80px; }\n", ""]);
+	
+	// exports
+
+
+/***/ }),
+/* 154 */
 /***/ (function(module, exports) {
 
 	/*
@@ -9237,11 +9384,11 @@
 
 
 /***/ }),
-/* 153 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var getNative = __webpack_require__(67),
-	    root = __webpack_require__(45);
+	    root = __webpack_require__(48);
 	
 	/* Built-in method references that are verified to be native. */
 	var Map = getNative(root, 'Map');
@@ -9250,14 +9397,14 @@
 
 
 /***/ }),
-/* 154 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var mapCacheClear = __webpack_require__(577),
-	    mapCacheDelete = __webpack_require__(578),
-	    mapCacheGet = __webpack_require__(579),
-	    mapCacheHas = __webpack_require__(580),
-	    mapCacheSet = __webpack_require__(581);
+	var mapCacheClear = __webpack_require__(578),
+	    mapCacheDelete = __webpack_require__(579),
+	    mapCacheGet = __webpack_require__(580),
+	    mapCacheHas = __webpack_require__(581),
+	    mapCacheSet = __webpack_require__(582);
 	
 	/**
 	 * Creates a map cache object to store key-value pairs.
@@ -9288,7 +9435,7 @@
 
 
 /***/ }),
-/* 155 */
+/* 157 */
 /***/ (function(module, exports) {
 
 	/** Used as references for various `Number` constants. */
@@ -9316,11 +9463,11 @@
 
 
 /***/ }),
-/* 156 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var isArray = __webpack_require__(46),
-	    isSymbol = __webpack_require__(111);
+	var isArray = __webpack_require__(49),
+	    isSymbol = __webpack_require__(113);
 	
 	/** Used to match property names within property paths. */
 	var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
@@ -9351,7 +9498,7 @@
 
 
 /***/ }),
-/* 157 */
+/* 159 */
 /***/ (function(module, exports) {
 
 	/**
@@ -9378,10 +9525,10 @@
 
 
 /***/ }),
-/* 158 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseIsArguments = __webpack_require__(535),
+	var baseIsArguments = __webpack_require__(536),
 	    isObjectLike = __webpack_require__(68);
 	
 	/** Used for built-in method references. */
@@ -9420,7 +9567,7 @@
 
 
 /***/ }),
-/* 159 */
+/* 161 */
 /***/ (function(module, exports) {
 
 	/** Used as references for various `Number` constants. */
@@ -9461,11 +9608,11 @@
 
 
 /***/ }),
-/* 160 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseGetTag = __webpack_require__(76),
-	    getPrototype = __webpack_require__(557),
+	var baseGetTag = __webpack_require__(77),
+	    getPrototype = __webpack_require__(558),
 	    isObjectLike = __webpack_require__(68);
 	
 	/** `Object#toString` result references. */
@@ -9529,7 +9676,7 @@
 
 
 /***/ }),
-/* 161 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9554,17 +9701,17 @@
 	  // By explicitly using `prop-types` you are opting into new development behavior.
 	  // http://fb.me/prop-types-in-prod
 	  var throwOnDirectAccess = true;
-	  module.exports = __webpack_require__(621)(isValidElement, throwOnDirectAccess);
+	  module.exports = __webpack_require__(622)(isValidElement, throwOnDirectAccess);
 	} else {
 	  // By explicitly using `prop-types` you are opting into new production behavior.
 	  // http://fb.me/prop-types-in-prod
-	  module.exports = __webpack_require__(620)();
+	  module.exports = __webpack_require__(621)();
 	}
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 162 */
+/* 164 */
 /***/ (function(module, exports) {
 
 	/**
@@ -9582,7 +9729,7 @@
 
 
 /***/ }),
-/* 163 */
+/* 165 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -9623,7 +9770,7 @@
 	module.exports = emptyFunction;
 
 /***/ }),
-/* 164 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -9682,7 +9829,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 165 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(17), RootInstanceProvider = __webpack_require__(18), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -9692,164 +9839,119 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.typeChange = typeChange;
-	exports.plainChange = plainChange;
-	exports.flyChange = flyChange;
-	exports.monsChange = monsChange;
-	exports.cannonChange = cannonChange;
-	exports.maxChange = maxChange;
-	exports.inputChange = inputChange;
-	exports.refChange = refChange;
-	exports.refSinChange = refSinChange;
-	exports.modelOpen = modelOpen;
-	exports.modelClose = modelClose;
-	exports.charSelect = charSelect;
 	
-	var _ConstActionTypes = __webpack_require__(166);
+	var _index = __webpack_require__(45);
 	
-	var types = _interopRequireWildcard(_ConstActionTypes);
+	var _index2 = _interopRequireDefault(_index);
 	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	var _index3 = __webpack_require__(43);
 	
-	function typeChange(modelId) {
-		return {
-			type: types.TYPE_CHANGE,
-			modelId: modelId
-		};
-	}
+	var _index4 = _interopRequireDefault(_index3);
 	
-	function plainChange() {
-		return {
-			type: types.PLAIN_CHANGE
-		};
-	}
+	var _react2 = __webpack_require__(3);
 	
-	function flyChange() {
-		return {
-			type: types.FLY_CHANGE
-		};
-	}
+	var _react3 = _interopRequireDefault(_react2);
 	
-	function monsChange() {
-		return {
-			type: types.MONS_CHANGE
-		};
-	}
+	var _index5 = __webpack_require__(44);
 	
-	function cannonChange() {
-		return {
-			type: types.CANNON_CHANGE
-		};
-	}
+	var _index6 = _interopRequireDefault(_index5);
 	
-	function maxChange(modelId) {
-		return {
-			type: types.MAX_CHANGE,
-			modelId: modelId
-		};
-	}
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	function inputChange(modelId, modelValue) {
-		return {
-			type: types.INPUT_CHANGE,
-			modelId: modelId,
-			modelValue: modelValue
-		};
-	}
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function refChange(modelId) {
-		return {
-			type: types.REF_CHANGE,
-			modelId: modelId
-		};
-	}
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	function refSinChange(modelId) {
-		return {
-			type: types.REF_SIN_CHANGE,
-			modelId: modelId
-		};
-	}
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function modelOpen(modelId) {
-		return {
-			type: types.MODEL_OPEN,
-			modelId: modelId
-		};
-	}
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	function modelClose(modelId) {
-		return {
-			type: types.MODEL_CLOSE,
-			modelId: modelId
-		};
-	}
+	var _components = {
+		ToggleButton: {
+			displayName: 'ToggleButton'
+		}
+	};
 	
-	function charSelect(modelId) {
-		return {
-			type: types.CHAR_SELECT,
-			modelId: modelId
-		};
-	}
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
-
-/***/ }),
-/* 166 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(17), RootInstanceProvider = __webpack_require__(18), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	var _DGithubPileBunkerNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
+		filename: 'D:/Github/PileBunker/src/components/ToggleButton.jsx',
+		components: _components,
+		locals: [module],
+		imports: [_react3.default]
 	});
-	var TYPE_CHANGE = exports.TYPE_CHANGE = 'TYPE_CHANGE';
-	var PLAIN_CHANGE = exports.PLAIN_CHANGE = 'PLAIN_CHANGE';
-	var FLY_CHANGE = exports.FLY_CHANGE = 'FLY_CHANGE';
-	var MONS_CHANGE = exports.MONS_CHANGE = 'MONS_CHANGE';
-	var MAX_CHANGE = exports.MAX_CHANGE = 'MAX_CHANGE';
-	var INPUT_CHANGE = exports.INPUT_CHANGE = 'INPUT_CHANGE';
-	var REF_CHANGE = exports.REF_CHANGE = 'REF_CHANGE';
-	var REF_SIN_CHANGE = exports.REF_SIN_CHANGE = 'REF_SIN_CHANGE';
-	var CANNON_CHANGE = exports.CANNON_CHANGE = 'CANNON_CHANGE';
-	var MODEL_OPEN = exports.MODEL_OPEN = 'MODEL_OPEN';
-	var MODEL_CLOSE = exports.MODEL_CLOSE = 'MODEL_CLOSE';
-	var CHAR_SELECT = exports.CHAR_SELECT = 'CHAR_SELECT';
 	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ConstActionTypes.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
-
-/***/ }),
-/* 167 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(17), RootInstanceProvider = __webpack_require__(18), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	var _DGithubPileBunkerNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
+		filename: 'D:/Github/PileBunker/src/components/ToggleButton.jsx',
+		components: _components,
+		locals: [],
+		imports: [_react3.default, _index2.default]
 	});
-	var listType = exports.listType = ['刀', '槍', '槌', '拳', '盾', '弓', '石弓', '鉄砲', '大砲', '法術', '法杖', '歌舞', '鈴'];
-	var listTypeS = exports.listTypeS = ['sword', 'lance', 'hammer', 'fist', 'shield', 'bow', 'xbow', 'arqu', 'cannon', 'spell', 'staff', 'dance', 'bell'];
 	
-	var listBut = exports.listBut = ['無巨大化', '巨大化一階', '巨大化二階', '巨大化三階', '巨大化四階', '巨大化五階'];
-	var listButS = exports.listButS = ['max0', 'max1', 'max2', 'max3', 'max4', 'max5'];
+	function _wrapComponent(id) {
+		return function (Component) {
+			return _DGithubPileBunkerNode_modulesReactTransformHmrLibIndexJs2(_DGithubPileBunkerNode_modulesReactTransformCatchErrorsLibIndexJs2(Component, id), id);
+		};
+	}
 	
-	var listRef = exports.listRef = ['無精煉', '全精煉+10', '★4+10', '★3+10', '★2+10', '★1+10'];
-	var listRefS = exports.listRefS = ['ref0', 'refAll', 'ref4', 'ref3', 'ref2', 'ref1'];
+	var ToggleButton = _wrapComponent('ToggleButton')(function (_Component) {
+		_inherits(ToggleButton, _Component);
 	
-	var tableHead = exports.tableHead = ['', '★', '名稱', '精煉', '攻擊', '傷害', 'DPS', '攻擊(f)', '延遲(f)', '特殊效果'];
-	var tableInd = exports.tableInd = ['', 'rare', 'name', 'refText', 'atk', 'damage', 'dps', 'frame1', 'frame2', 'text'];
+		function ToggleButton() {
+			_classCallCheck(this, ToggleButton);
 	
-	var listMelee = exports.listMelee = ['sword', 'lance', 'hammer', 'fist', 'shield'];
-	var listMagic = exports.listMagic = ['spell', 'staff', 'dance', 'bell'];
-	var listPhys = exports.listPhys = ['sword', 'lance', 'hammer', 'fist', 'shield', 'bow', 'xbow', 'arqu', 'cannon'];
+			return _possibleConstructorReturn(this, (ToggleButton.__proto__ || Object.getPrototypeOf(ToggleButton)).apply(this, arguments));
+		}
 	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ConstList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+		_createClass(ToggleButton, [{
+			key: 'render',
+			value: function render() {
+				var _props = this.props,
+				    display = _props.display,
+				    title = _props.title,
+				    onClickFunc = _props.onClickFunc,
+				    modelId = _props.modelId,
+				    Cactive = _props.Cactive,
+				    Cinactive = _props.Cinactive;
+	
+	
+				var bClassName = '';
+				if (display === modelId) {
+					bClassName = Cactive;
+				} else {
+					bClassName = Cinactive;
+				}
+	
+				return _react3.default.createElement(
+					'button',
+					{ className: bClassName, onClick: onClickFunc.bind(null, modelId), key: title },
+					title
+				);
+			}
+		}]);
+	
+		return ToggleButton;
+	}(_react2.Component));
+	
+	exports.default = ToggleButton;
+	
+	
+	ToggleButton.propTypes = {
+		display: _react2.PropTypes.string,
+		title: _react2.PropTypes.string,
+		onClickFunc: _react2.PropTypes.func,
+		modelId: _react2.PropTypes.string,
+		Cactive: _react2.PropTypes.string,
+		Cinactive: _react2.PropTypes.string
+	};
+	
+	ToggleButton.defaultProps = {
+		display: 0,
+		title: 'ToggleButton',
+		modelId: 'ToggleButton',
+		Cactive: 'type-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary',
+		Cinactive: 'type-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent'
+	};
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ToggleButton.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
 /***/ }),
@@ -10238,8 +10340,8 @@
 	
 	'use strict';
 	
-	var ReactPropTypes = __webpack_require__(284);
-	var ReactPropTypeLocations = __webpack_require__(116);
+	var ReactPropTypes = __webpack_require__(285);
+	var ReactPropTypeLocations = __webpack_require__(118);
 	
 	var invariant = __webpack_require__(5);
 	var warning = __webpack_require__(11);
@@ -10481,7 +10583,7 @@
 	
 	'use strict';
 	
-	var DOMChildrenOperations = __webpack_require__(264);
+	var DOMChildrenOperations = __webpack_require__(265);
 	var DOMPropertyOperations = __webpack_require__(170);
 	var ReactMount = __webpack_require__(7);
 	var ReactPerf = __webpack_require__(31);
@@ -10580,9 +10682,9 @@
 	
 	'use strict';
 	
-	var ReactCurrentOwner = __webpack_require__(50);
+	var ReactCurrentOwner = __webpack_require__(51);
 	var ReactElement = __webpack_require__(27);
-	var ReactInstanceMap = __webpack_require__(88);
+	var ReactInstanceMap = __webpack_require__(90);
 	var ReactUpdates = __webpack_require__(35);
 	
 	var assign = __webpack_require__(10);
@@ -10863,8 +10965,8 @@
 	
 	'use strict';
 	
-	var ReactCurrentOwner = __webpack_require__(50);
-	var ReactInstanceMap = __webpack_require__(88);
+	var ReactCurrentOwner = __webpack_require__(51);
+	var ReactInstanceMap = __webpack_require__(90);
 	var ReactMount = __webpack_require__(7);
 	
 	var invariant = __webpack_require__(5);
@@ -11102,8 +11204,8 @@
 	'use strict';
 	
 	var ReactCompositeComponent = __webpack_require__(668);
-	var ReactEmptyComponent = __webpack_require__(276);
-	var ReactNativeComponent = __webpack_require__(282);
+	var ReactEmptyComponent = __webpack_require__(277);
+	var ReactNativeComponent = __webpack_require__(283);
 	
 	var assign = __webpack_require__(10);
 	var invariant = __webpack_require__(5);
@@ -11284,8 +11386,8 @@
 	'use strict';
 	
 	var ExecutionEnvironment = __webpack_require__(21);
-	var escapeTextContentForBrowser = __webpack_require__(120);
-	var setInnerHTML = __webpack_require__(121);
+	var escapeTextContentForBrowser = __webpack_require__(122);
+	var setInnerHTML = __webpack_require__(123);
 	
 	/**
 	 * Set the textContent property of a node, ensuring that whitespace is preserved
@@ -11376,9 +11478,9 @@
 	
 	'use strict';
 	
-	var ReactCurrentOwner = __webpack_require__(50);
+	var ReactCurrentOwner = __webpack_require__(51);
 	var ReactElement = __webpack_require__(27);
-	var ReactInstanceHandles = __webpack_require__(77);
+	var ReactInstanceHandles = __webpack_require__(78);
 	
 	var getIteratorFn = __webpack_require__(181);
 	var invariant = __webpack_require__(5);
@@ -12307,12 +12409,12 @@
 	var ctx = __webpack_require__(33);
 	var anInstance = __webpack_require__(56);
 	var forOf = __webpack_require__(57);
-	var $iterDefine = __webpack_require__(132);
+	var $iterDefine = __webpack_require__(134);
 	var step = __webpack_require__(202);
 	var setSpecies = __webpack_require__(64);
 	var DESCRIPTORS = __webpack_require__(14);
 	var fastKey = __webpack_require__(53).fastKey;
-	var validate = __webpack_require__(75);
+	var validate = __webpack_require__(76);
 	var SIZE = DESCRIPTORS ? '_s' : 'size';
 	
 	var getEntry = function (that, key) {
@@ -12474,7 +12576,7 @@
 	var forOf = __webpack_require__(57);
 	var createArrayMethod = __webpack_require__(36);
 	var $has = __webpack_require__(23);
-	var validate = __webpack_require__(75);
+	var validate = __webpack_require__(76);
 	var arrayFind = createArrayMethod(5);
 	var arrayFindIndex = createArrayMethod(6);
 	var id = 0;
@@ -12558,7 +12660,7 @@
 
 	'use strict';
 	// https://tc39.github.io/proposal-flatMap/#sec-FlattenIntoArray
-	var isArray = __webpack_require__(94);
+	var isArray = __webpack_require__(96);
 	var isObject = __webpack_require__(9);
 	var toLength = __webpack_require__(16);
 	var ctx = __webpack_require__(33);
@@ -12602,7 +12704,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	module.exports = !__webpack_require__(14) && !__webpack_require__(8)(function () {
-	  return Object.defineProperty(__webpack_require__(125)('div'), 'a', { get: function () { return 7; } }).a != 7;
+	  return Object.defineProperty(__webpack_require__(127)('div'), 'a', { get: function () { return 7; } }).a != 7;
 	});
 
 
@@ -12672,7 +12774,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.16 Math.fround(x)
-	var sign = __webpack_require__(134);
+	var sign = __webpack_require__(136);
 	var pow = Math.pow;
 	var EPSILON = pow(2, -52);
 	var EPSILON32 = pow(2, -23);
@@ -12737,7 +12839,7 @@
 	'use strict';
 	// 19.1.2.1 Object.assign(target, source, ...)
 	var getKeys = __webpack_require__(61);
-	var gOPS = __webpack_require__(98);
+	var gOPS = __webpack_require__(100);
 	var pIE = __webpack_require__(81);
 	var toObject = __webpack_require__(20);
 	var IObject = __webpack_require__(80);
@@ -12820,8 +12922,8 @@
 
 	var has = __webpack_require__(23);
 	var toIObject = __webpack_require__(30);
-	var arrayIndexOf = __webpack_require__(90)(false);
-	var IE_PROTO = __webpack_require__(138)('IE_PROTO');
+	var arrayIndexOf = __webpack_require__(92)(false);
+	var IE_PROTO = __webpack_require__(140)('IE_PROTO');
 	
 	module.exports = function (object, names) {
 	  var O = toIObject(object);
@@ -12865,7 +12967,7 @@
 
 	// all object keys, includes non-enumerable and symbols
 	var gOPN = __webpack_require__(60);
-	var gOPS = __webpack_require__(98);
+	var gOPS = __webpack_require__(100);
 	var anObject = __webpack_require__(4);
 	var Reflect = __webpack_require__(6).Reflect;
 	module.exports = Reflect && Reflect.ownKeys || function ownKeys(it) {
@@ -12880,9 +12982,9 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $parseFloat = __webpack_require__(6).parseFloat;
-	var $trim = __webpack_require__(74).trim;
+	var $trim = __webpack_require__(75).trim;
 	
-	module.exports = 1 / $parseFloat(__webpack_require__(142) + '-0') !== -Infinity ? function parseFloat(str) {
+	module.exports = 1 / $parseFloat(__webpack_require__(144) + '-0') !== -Infinity ? function parseFloat(str) {
 	  var string = $trim(String(str), 3);
 	  var result = $parseFloat(string);
 	  return result === 0 && string.charAt(0) == '-' ? -0 : result;
@@ -12894,8 +12996,8 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $parseInt = __webpack_require__(6).parseInt;
-	var $trim = __webpack_require__(74).trim;
-	var ws = __webpack_require__(142);
+	var $trim = __webpack_require__(75).trim;
+	var ws = __webpack_require__(144);
 	var hex = /^[-+]?0[xX]/;
 	
 	module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? function parseInt(str, radix) {
@@ -12923,7 +13025,7 @@
 
 	var anObject = __webpack_require__(4);
 	var isObject = __webpack_require__(9);
-	var newPromiseCapability = __webpack_require__(136);
+	var newPromiseCapability = __webpack_require__(138);
 	
 	module.exports = function (C, x) {
 	  anObject(C);
@@ -12941,7 +13043,7 @@
 
 	// https://github.com/tc39/proposal-string-pad-start-end
 	var toLength = __webpack_require__(16);
-	var repeat = __webpack_require__(141);
+	var repeat = __webpack_require__(143);
 	var defined = __webpack_require__(38);
 	
 	module.exports = function (that, maxLength, fillString, left) {
@@ -12986,11 +13088,11 @@
 
 	'use strict';
 	var strong = __webpack_require__(194);
-	var validate = __webpack_require__(75);
+	var validate = __webpack_require__(76);
 	var MAP = 'Map';
 	
 	// 23.1 Map Objects
-	module.exports = __webpack_require__(91)(MAP, function (get) {
+	module.exports = __webpack_require__(93)(MAP, function (get) {
 	  return function Map() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
 	}, {
 	  // 23.1.3.6 Map.prototype.get(key)
@@ -13012,7 +13114,7 @@
 	// 21.2.5.3 get RegExp.prototype.flags()
 	if (__webpack_require__(14) && /./g.flags != 'g') __webpack_require__(15).f(RegExp.prototype, 'flags', {
 	  configurable: true,
-	  get: __webpack_require__(93)
+	  get: __webpack_require__(95)
 	});
 
 
@@ -13022,11 +13124,11 @@
 
 	'use strict';
 	var strong = __webpack_require__(194);
-	var validate = __webpack_require__(75);
+	var validate = __webpack_require__(76);
 	var SET = 'Set';
 	
 	// 23.2 Set Objects
-	module.exports = __webpack_require__(91)(SET, function (get) {
+	module.exports = __webpack_require__(93)(SET, function (get) {
 	  return function Set() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
 	}, {
 	  // 23.2.3.1 Set.prototype.add(value)
@@ -13048,7 +13150,7 @@
 	var weak = __webpack_require__(196);
 	var isObject = __webpack_require__(9);
 	var fails = __webpack_require__(8);
-	var validate = __webpack_require__(75);
+	var validate = __webpack_require__(76);
 	var WEAK_MAP = 'WeakMap';
 	var getWeak = meta.getWeak;
 	var isExtensible = Object.isExtensible;
@@ -13078,7 +13180,7 @@
 	};
 	
 	// 23.3 WeakMap Objects
-	var $WeakMap = module.exports = __webpack_require__(91)(WEAK_MAP, wrapper, methods, weak, true, true);
+	var $WeakMap = module.exports = __webpack_require__(93)(WEAK_MAP, wrapper, methods, weak, true, true);
 	
 	// IE11 WeakMap frozen keys fix
 	if (fails(function () { return new $WeakMap().set((Object.freeze || Object)(tmp), 7).get(tmp) != 7; })) {
@@ -13209,7 +13311,7 @@
 	
 	'use strict';
 	
-	var isTextNode = __webpack_require__(506);
+	var isTextNode = __webpack_require__(507);
 	
 	/*eslint-disable no-bitwise */
 	
@@ -13482,9 +13584,9 @@
 /* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var MapCache = __webpack_require__(154),
-	    setCacheAdd = __webpack_require__(588),
-	    setCacheHas = __webpack_require__(589);
+	var MapCache = __webpack_require__(156),
+	    setCacheAdd = __webpack_require__(589),
+	    setCacheHas = __webpack_require__(590);
 	
 	/**
 	 *
@@ -13515,12 +13617,12 @@
 /* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var ListCache = __webpack_require__(105),
-	    stackClear = __webpack_require__(593),
-	    stackDelete = __webpack_require__(594),
-	    stackGet = __webpack_require__(595),
-	    stackHas = __webpack_require__(596),
-	    stackSet = __webpack_require__(597);
+	var ListCache = __webpack_require__(107),
+	    stackClear = __webpack_require__(594),
+	    stackDelete = __webpack_require__(595),
+	    stackGet = __webpack_require__(596),
+	    stackHas = __webpack_require__(597),
+	    stackSet = __webpack_require__(598);
 	
 	/**
 	 * Creates a stack cache object to store key-value pairs.
@@ -13602,7 +13704,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var baseAssignValue = __webpack_require__(234),
-	    eq = __webpack_require__(110);
+	    eq = __webpack_require__(112);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -13697,7 +13799,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var castPath = __webpack_require__(242),
-	    toKey = __webpack_require__(109);
+	    toKey = __webpack_require__(111);
 	
 	/**
 	 * The base implementation of `_.get` without support for default values.
@@ -13726,7 +13828,7 @@
 /* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseIsEqualDeep = __webpack_require__(536),
+	var baseIsEqualDeep = __webpack_require__(537),
 	    isObjectLike = __webpack_require__(68);
 	
 	/**
@@ -13760,11 +13862,11 @@
 /* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseMatches = __webpack_require__(542),
-	    baseMatchesProperty = __webpack_require__(543),
-	    identity = __webpack_require__(157),
-	    isArray = __webpack_require__(46),
-	    property = __webpack_require__(609);
+	var baseMatches = __webpack_require__(543),
+	    baseMatchesProperty = __webpack_require__(544),
+	    identity = __webpack_require__(159),
+	    isArray = __webpack_require__(49),
+	    property = __webpack_require__(610);
 	
 	/**
 	 * The base implementation of `_.iteratee`.
@@ -13797,9 +13899,9 @@
 /* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var identity = __webpack_require__(157),
-	    overRest = __webpack_require__(587),
-	    setToString = __webpack_require__(591);
+	var identity = __webpack_require__(159),
+	    overRest = __webpack_require__(588),
+	    setToString = __webpack_require__(592);
 	
 	/**
 	 * The base implementation of `_.rest` which doesn't validate or coerce arguments.
@@ -13859,10 +13961,10 @@
 /* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var isArray = __webpack_require__(46),
-	    isKey = __webpack_require__(156),
-	    stringToPath = __webpack_require__(599),
-	    toString = __webpack_require__(615);
+	var isArray = __webpack_require__(49),
+	    isKey = __webpack_require__(158),
+	    stringToPath = __webpack_require__(600),
+	    toString = __webpack_require__(616);
 	
 	/**
 	 * Casts `value` to a path array if it's not one.
@@ -13904,7 +14006,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var SetCache = __webpack_require__(229),
-	    arraySome = __webpack_require__(529),
+	    arraySome = __webpack_require__(530),
 	    cacheHas = __webpack_require__(241);
 	
 	/** Used to compose bitmasks for value comparisons. */
@@ -14127,8 +14229,8 @@
 /* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(45),
-	    stubFalse = __webpack_require__(611);
+	/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(48),
+	    stubFalse = __webpack_require__(612);
 	
 	/** Detect free variable `exports`. */
 	var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -14172,7 +14274,7 @@
 /* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseGetTag = __webpack_require__(76),
+	var baseGetTag = __webpack_require__(77),
 	    isObject = __webpack_require__(85);
 	
 	/** `Object#toString` result references. */
@@ -14215,9 +14317,9 @@
 /* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseIsTypedArray = __webpack_require__(540),
+	var baseIsTypedArray = __webpack_require__(541),
 	    baseUnary = __webpack_require__(240),
-	    nodeUtil = __webpack_require__(585);
+	    nodeUtil = __webpack_require__(586);
 	
 	/* Node.js helper references. */
 	var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
@@ -14354,7 +14456,7 @@
 	
 	'use strict';
 	
-	var emptyFunction = __webpack_require__(163);
+	var emptyFunction = __webpack_require__(165);
 	
 	/**
 	 * Similar to invariant but only logs a warning if the condition is not met.
@@ -14414,7 +14516,7 @@
 
 	'use strict';
 	
-	module.exports = __webpack_require__(269);
+	module.exports = __webpack_require__(270);
 
 
 /***/ }),
@@ -14429,11 +14531,11 @@
 		value: true
 	});
 	
-	var _index = __webpack_require__(51);
+	var _index = __webpack_require__(45);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _index3 = __webpack_require__(47);
+	var _index3 = __webpack_require__(43);
 	
 	var _index4 = _interopRequireDefault(_index3);
 	
@@ -14441,7 +14543,7 @@
 	
 	var _react3 = _interopRequireDefault(_react2);
 	
-	var _index5 = __webpack_require__(48);
+	var _index5 = __webpack_require__(44);
 	
 	var _index6 = _interopRequireDefault(_index5);
 	
@@ -14456,20 +14558,20 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var _components = {
-		ToggleButton: {
-			displayName: 'ToggleButton'
+		MdlTableClass: {
+			displayName: 'MdlTableClass'
 		}
 	};
 	
 	var _DGithubPileBunkerNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
-		filename: 'D:/Github/PileBunker/src/components/ToggleButton.jsx',
+		filename: 'D:/Github/PileBunker/src/components/MdlTableClass.jsx',
 		components: _components,
 		locals: [module],
 		imports: [_react3.default]
 	});
 	
 	var _DGithubPileBunkerNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
-		filename: 'D:/Github/PileBunker/src/components/ToggleButton.jsx',
+		filename: 'D:/Github/PileBunker/src/components/MdlTableClass.jsx',
 		components: _components,
 		locals: [],
 		imports: [_react3.default, _index2.default]
@@ -14481,66 +14583,239 @@
 		};
 	}
 	
-	var ToggleButton = _wrapComponent('ToggleButton')(function (_Component) {
-		_inherits(ToggleButton, _Component);
+	var MdlTableClass = _wrapComponent('MdlTableClass')(function (_Component) {
+		_inherits(MdlTableClass, _Component);
 	
-		function ToggleButton() {
-			_classCallCheck(this, ToggleButton);
+		function MdlTableClass(props, context) {
+			_classCallCheck(this, MdlTableClass);
 	
-			return _possibleConstructorReturn(this, (ToggleButton.__proto__ || Object.getPrototypeOf(ToggleButton)).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, (MdlTableClass.__proto__ || Object.getPrototypeOf(MdlTableClass)).call(this, props, context));
+	
+			var tempData = _this.props.tableData;
+			tempData.sort(function (a, b) {
+				return b.dps - a.dps;
+			});
+	
+			_this.state = {
+				tableBody: tempData,
+				sortKey: 'dps',
+				sortDir: 1
+			};
+			return _this;
 		}
 	
-		_createClass(ToggleButton, [{
-			key: 'render',
-			value: function render() {
-				var _props = this.props,
-				    display = _props.display,
-				    title = _props.title,
-				    onClickFunc = _props.onClickFunc,
-				    modelId = _props.modelId,
-				    Cactive = _props.Cactive,
-				    Cinactive = _props.Cinactive;
+		_createClass(MdlTableClass, [{
+			key: 'componentWillReceiveProps',
+			value: function componentWillReceiveProps(nextProps) {
+				var _state = this.state,
+				    sortDir = _state.sortDir,
+				    sortKey = _state.sortKey;
 	
+				var tempData = nextProps.tableData;
 	
-				var bClassName = '';
-				if (display === modelId) {
-					bClassName = Cactive;
+				if (sortDir) {
+					tempData.sort(function (a, b) {
+						return b[sortKey] - a[sortKey];
+					});
 				} else {
-					bClassName = Cinactive;
+					tempData.sort(function (a, b) {
+						return a[sortKey] - b[sortKey];
+					});
 				}
 	
+				this.setState({
+					tableBody: tempData
+				});
+			}
+		}, {
+			key: 'componentDidUpdate',
+			value: function componentDidUpdate() {
+				componentHandler.upgradeDom();
+			}
+		}, {
+			key: 'handleChange',
+			value: function handleChange(event) {
+				var trId = event.target.id + 'tr';
+				if (event.target.checked) {
+					document.getElementById(trId).style.backgroundColor = '#f5f5f5';
+				} else {
+					document.getElementById(trId).style.backgroundColor = 'transparent';
+				}
+			}
+		}, {
+			key: 'handleSort',
+			value: function handleSort(event) {
+				var _state2 = this.state,
+				    sortDir = _state2.sortDir,
+				    sortKey = _state2.sortKey,
+				    tableBody = _state2.tableBody;
+	
+				var newKey = event.target.id;
+				var tempData = tableBody;
+				var newDir = sortDir;
+	
+				if (newKey === sortKey) {
+					if (sortDir) {
+						newDir = 0;
+					} else {
+						newDir = 1;
+					}
+				}
+	
+				if (newDir) {
+					tempData.sort(function (a, b) {
+						return b[newKey] - a[newKey];
+					});
+				} else {
+					tempData.sort(function (a, b) {
+						return a[newKey] - b[newKey];
+					});
+				}
+	
+				this.setState({
+					tableBody: tempData,
+					sortKey: newKey,
+					sortDir: newDir
+				});
+			}
+		}, {
+			key: 'generateTableHead',
+			value: function generateTableHead() {
+				var _props = this.props,
+				    tableHead = _props.tableHead,
+				    tableId = _props.tableId,
+				    tableInd = _props.tableInd;
+				var _state3 = this.state,
+				    sortDir = _state3.sortDir,
+				    sortKey = _state3.sortKey;
+	
+	
+				var theadOut = void 0;
+				var theadTemp = void 0;
+				var theadTempOut = [];
+				var theadClass = '';
+				for (var i = 0; i < tableHead.length; i += 1) {
+					if (tableInd[i] === sortKey) {
+						if (sortDir === 1) {
+							theadClass = 'theadOver';
+						} else {
+							theadClass = 'theadUnder';
+						}
+					} else {
+						theadClass = '';
+					}
+	
+					theadTemp = _react3.default.createElement(
+						'th',
+						{ className: theadClass, id: tableInd[i], key: tableId + ' th' + i.toString(), onClick: this.handleSort.bind(this) },
+						tableHead[i]
+					);
+					theadTempOut.push(theadTemp);
+				}
+				theadOut = _react3.default.createElement(
+					'thead',
+					null,
+					_react3.default.createElement(
+						'tr',
+						null,
+						theadTempOut
+					)
+				);
+	
+				return theadOut;
+			}
+		}, {
+			key: 'generateTableBody',
+			value: function generateTableBody() {
+				var _props2 = this.props,
+				    tableId = _props2.tableId,
+				    tableInd = _props2.tableInd,
+				    tableFunction = _props2.tableFunction;
+				var tableBody = this.state.tableBody;
+	
+	
+				var tbodyOut = void 0;
+				var tbodyTemp = void 0;
+				var tbodyTempOut = [];
+				var tdTemp = void 0;
+				var tdTempOut = [];
+	
+				for (var i = 0; i < tableBody.length; i += 1) {
+					tdTempOut = [];
+					for (var j = 0; j < tableInd.length; j += 1) {
+						if (j === 0) {
+							tdTemp = _react3.default.createElement(
+								'td',
+								{ key: tableId + ' td' + i.toString() + j.toString() },
+								_react3.default.createElement(
+									'label',
+									{ className: 'mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect', htmlFor: tableId + i.toString() },
+									_react3.default.createElement('input', { type: 'checkbox', id: tableId + i.toString(), className: 'mdl-checkbox__input', onChange: this.handleChange.bind(this) })
+								)
+							);
+							tdTempOut.push(tdTemp);
+						} else {
+							tdTemp = _react3.default.createElement(
+								'td',
+								{ key: tableId + ' td' + i.toString() + j.toString(), onClick: tableFunction.bind(null, tableBody[i].name) },
+								tableBody[i][tableInd[j]]
+							);
+							tdTempOut.push(tdTemp);
+						}
+					}
+					tbodyTemp = _react3.default.createElement(
+						'tr',
+						{ key: tableId + ' th' + i.toString(), id: tableId + i.toString() + 'tr' },
+						tdTempOut
+					);
+					tbodyTempOut.push(tbodyTemp);
+				}
+				tbodyOut = _react3.default.createElement(
+					'tbody',
+					null,
+					tbodyTempOut
+				);
+	
+				return tbodyOut;
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var _props3 = this.props,
+				    tableClass = _props3.tableClass,
+				    tableId = _props3.tableId;
+	
+	
 				return _react3.default.createElement(
-					'button',
-					{ className: bClassName, onClick: onClickFunc.bind(null, modelId), key: title },
-					title
+					'table',
+					{ className: tableClass, id: tableId },
+					this.generateTableHead(),
+					this.generateTableBody()
 				);
 			}
 		}]);
 	
-		return ToggleButton;
+		return MdlTableClass;
 	}(_react2.Component));
 	
-	exports.default = ToggleButton;
+	exports.default = MdlTableClass;
 	
 	
-	ToggleButton.propTypes = {
-		display: _react2.PropTypes.string,
-		title: _react2.PropTypes.string,
-		onClickFunc: _react2.PropTypes.func,
-		modelId: _react2.PropTypes.string,
-		Cactive: _react2.PropTypes.string,
-		Cinactive: _react2.PropTypes.string
+	MdlTableClass.propTypes = {
+		tableId: _react2.PropTypes.string,
+		tableInd: _react2.PropTypes.array,
+		tableHead: _react2.PropTypes.array,
+		tableData: _react2.PropTypes.array,
+		tableClass: _react2.PropTypes.string,
+		tableFunction: _react2.PropTypes.func
 	};
 	
-	ToggleButton.defaultProps = {
-		display: 0,
-		title: 'ToggleButton',
-		modelId: 'ToggleButton',
-		Cactive: 'type-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary',
-		Cinactive: 'type-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent'
+	MdlTableClass.defaultProps = {
+		tableId: 'tableId',
+		tableClass: 'tableClass'
 	};
 	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ToggleButton.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "MdlTableClass.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
 /***/ }),
@@ -14552,23 +14827,50 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var TYPE_CHANGE = exports.TYPE_CHANGE = 'TYPE_CHANGE';
+	var PLAIN_CHANGE = exports.PLAIN_CHANGE = 'PLAIN_CHANGE';
+	var FLY_CHANGE = exports.FLY_CHANGE = 'FLY_CHANGE';
+	var MONS_CHANGE = exports.MONS_CHANGE = 'MONS_CHANGE';
+	var MAX_CHANGE = exports.MAX_CHANGE = 'MAX_CHANGE';
+	var INPUT_CHANGE = exports.INPUT_CHANGE = 'INPUT_CHANGE';
+	var REF_CHANGE = exports.REF_CHANGE = 'REF_CHANGE';
+	var REF_SIN_CHANGE = exports.REF_SIN_CHANGE = 'REF_SIN_CHANGE';
+	var CANNON_CHANGE = exports.CANNON_CHANGE = 'CANNON_CHANGE';
+	var MODEL_OPEN = exports.MODEL_OPEN = 'MODEL_OPEN';
+	var MODEL_CLOSE = exports.MODEL_CLOSE = 'MODEL_CLOSE';
+	var CHAR_SELECT = exports.CHAR_SELECT = 'CHAR_SELECT';
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ConstActionTypes.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
+
+/***/ }),
+/* 259 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(17), RootInstanceProvider = __webpack_require__(18), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
 	exports.dbChar = exports.dbType = exports.dbWeapon = undefined;
 	
-	var _lokijs = __webpack_require__(617);
+	var _lokijs = __webpack_require__(618);
 	
 	var _lokijs2 = _interopRequireDefault(_lokijs);
 	
-	var _weapons = __webpack_require__(517);
+	var _weapons = __webpack_require__(518);
 	
 	var _weapons2 = _interopRequireDefault(_weapons);
 	
-	var _weaponTypes = __webpack_require__(516);
+	var _weaponTypes = __webpack_require__(517);
 	
 	var _weaponTypes2 = _interopRequireDefault(_weaponTypes);
 	
-	var _chars = __webpack_require__(515);
+	var _chars = __webpack_require__(516);
 	
 	var _chars2 = _interopRequireDefault(_chars);
 	
@@ -14595,7 +14897,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
 /***/ }),
-/* 259 */
+/* 260 */
 /***/ (function(module, exports) {
 
 	function hasRender(Class) {
@@ -14645,7 +14947,7 @@
 	module.exports = isReactClassish;
 
 /***/ }),
-/* 260 */
+/* 261 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -14665,14 +14967,14 @@
 	};
 
 /***/ }),
-/* 261 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	exports.__esModule = true;
 	
-	var _propTypes = __webpack_require__(161);
+	var _propTypes = __webpack_require__(163);
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
@@ -14685,7 +14987,7 @@
 	});
 
 /***/ }),
-/* 262 */
+/* 263 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -14715,7 +15017,7 @@
 	}
 
 /***/ }),
-/* 263 */
+/* 264 */
 /***/ (function(module, exports) {
 
 	/**
@@ -14859,7 +15161,7 @@
 	module.exports = CSSProperty;
 
 /***/ }),
-/* 264 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -14877,10 +15179,10 @@
 	'use strict';
 	
 	var Danger = __webpack_require__(659);
-	var ReactMultiChildUpdateTypes = __webpack_require__(281);
+	var ReactMultiChildUpdateTypes = __webpack_require__(282);
 	var ReactPerf = __webpack_require__(31);
 	
-	var setInnerHTML = __webpack_require__(121);
+	var setInnerHTML = __webpack_require__(123);
 	var setTextContent = __webpack_require__(184);
 	var invariant = __webpack_require__(5);
 	
@@ -14994,7 +15296,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 265 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -15220,7 +15522,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 266 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -15407,7 +15709,7 @@
 	module.exports = ReactChildren;
 
 /***/ }),
-/* 267 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -15423,16 +15725,16 @@
 	
 	'use strict';
 	
-	var ReactComponent = __webpack_require__(268);
+	var ReactComponent = __webpack_require__(269);
 	var ReactElement = __webpack_require__(27);
-	var ReactPropTypeLocations = __webpack_require__(116);
-	var ReactPropTypeLocationNames = __webpack_require__(115);
-	var ReactNoopUpdateQueue = __webpack_require__(283);
+	var ReactPropTypeLocations = __webpack_require__(118);
+	var ReactPropTypeLocationNames = __webpack_require__(117);
+	var ReactNoopUpdateQueue = __webpack_require__(284);
 	
 	var assign = __webpack_require__(10);
 	var emptyObject = __webpack_require__(82);
 	var invariant = __webpack_require__(5);
-	var keyMirror = __webpack_require__(104);
+	var keyMirror = __webpack_require__(106);
 	var keyOf = __webpack_require__(54);
 	var warning = __webpack_require__(11);
 	
@@ -16184,7 +16486,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 268 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -16200,9 +16502,9 @@
 	
 	'use strict';
 	
-	var ReactNoopUpdateQueue = __webpack_require__(283);
+	var ReactNoopUpdateQueue = __webpack_require__(284);
 	
-	var canDefineProperty = __webpack_require__(119);
+	var canDefineProperty = __webpack_require__(121);
 	var emptyObject = __webpack_require__(82);
 	var invariant = __webpack_require__(5);
 	var warning = __webpack_require__(11);
@@ -16312,7 +16614,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 269 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -16330,10 +16632,10 @@
 	
 	'use strict';
 	
-	var ReactCurrentOwner = __webpack_require__(50);
-	var ReactDOMTextComponent = __webpack_require__(272);
-	var ReactDefaultInjection = __webpack_require__(274);
-	var ReactInstanceHandles = __webpack_require__(77);
+	var ReactCurrentOwner = __webpack_require__(51);
+	var ReactDOMTextComponent = __webpack_require__(273);
+	var ReactDefaultInjection = __webpack_require__(275);
+	var ReactInstanceHandles = __webpack_require__(78);
 	var ReactMount = __webpack_require__(7);
 	var ReactPerf = __webpack_require__(31);
 	var ReactReconciler = __webpack_require__(70);
@@ -16410,7 +16712,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 270 */
+/* 271 */
 /***/ (function(module, exports) {
 
 	/**
@@ -16433,7 +16735,7 @@
 	module.exports = ReactDOMFeatureFlags;
 
 /***/ }),
-/* 271 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -16627,7 +16929,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 272 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -16644,13 +16946,13 @@
 	
 	'use strict';
 	
-	var DOMChildrenOperations = __webpack_require__(264);
+	var DOMChildrenOperations = __webpack_require__(265);
 	var DOMPropertyOperations = __webpack_require__(170);
 	var ReactComponentBrowserEnvironment = __webpack_require__(172);
 	var ReactMount = __webpack_require__(7);
 	
 	var assign = __webpack_require__(10);
-	var escapeTextContentForBrowser = __webpack_require__(120);
+	var escapeTextContentForBrowser = __webpack_require__(122);
 	var setTextContent = __webpack_require__(184);
 	var validateDOMNesting = __webpack_require__(187);
 	
@@ -16760,7 +17062,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 273 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -16777,7 +17079,7 @@
 	'use strict';
 	
 	var ReactUpdates = __webpack_require__(35);
-	var Transaction = __webpack_require__(118);
+	var Transaction = __webpack_require__(120);
 	
 	var assign = __webpack_require__(10);
 	var emptyFunction = __webpack_require__(42);
@@ -16832,7 +17134,7 @@
 	module.exports = ReactDefaultBatchingStrategy;
 
 /***/ }),
-/* 274 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -16857,12 +17159,12 @@
 	var HTMLDOMPropertyConfig = __webpack_require__(664);
 	var ReactBrowserComponentMixin = __webpack_require__(666);
 	var ReactComponentBrowserEnvironment = __webpack_require__(172);
-	var ReactDefaultBatchingStrategy = __webpack_require__(273);
+	var ReactDefaultBatchingStrategy = __webpack_require__(274);
 	var ReactDOMComponent = __webpack_require__(670);
-	var ReactDOMTextComponent = __webpack_require__(272);
+	var ReactDOMTextComponent = __webpack_require__(273);
 	var ReactEventListener = __webpack_require__(680);
 	var ReactInjection = __webpack_require__(681);
-	var ReactInstanceHandles = __webpack_require__(77);
+	var ReactInstanceHandles = __webpack_require__(78);
 	var ReactMount = __webpack_require__(7);
 	var ReactReconcileTransaction = __webpack_require__(685);
 	var SelectEventPlugin = __webpack_require__(691);
@@ -16935,7 +17237,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 275 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -16959,11 +17261,11 @@
 	'use strict';
 	
 	var ReactElement = __webpack_require__(27);
-	var ReactPropTypeLocations = __webpack_require__(116);
-	var ReactPropTypeLocationNames = __webpack_require__(115);
-	var ReactCurrentOwner = __webpack_require__(50);
+	var ReactPropTypeLocations = __webpack_require__(118);
+	var ReactPropTypeLocationNames = __webpack_require__(117);
+	var ReactCurrentOwner = __webpack_require__(51);
 	
-	var canDefineProperty = __webpack_require__(119);
+	var canDefineProperty = __webpack_require__(121);
 	var getIteratorFn = __webpack_require__(181);
 	var invariant = __webpack_require__(5);
 	var warning = __webpack_require__(11);
@@ -17222,7 +17524,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 276 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -17239,7 +17541,7 @@
 	'use strict';
 	
 	var ReactElement = __webpack_require__(27);
-	var ReactEmptyComponentRegistry = __webpack_require__(277);
+	var ReactEmptyComponentRegistry = __webpack_require__(278);
 	var ReactReconciler = __webpack_require__(70);
 	
 	var assign = __webpack_require__(10);
@@ -17282,7 +17584,7 @@
 	module.exports = ReactEmptyComponent;
 
 /***/ }),
-/* 277 */
+/* 278 */
 /***/ (function(module, exports) {
 
 	/**
@@ -17335,7 +17637,7 @@
 	module.exports = ReactEmptyComponentRegistry;
 
 /***/ }),
-/* 278 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -17418,7 +17720,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 279 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -17547,7 +17849,7 @@
 	module.exports = ReactInputSelection;
 
 /***/ }),
-/* 280 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -17597,7 +17899,7 @@
 	module.exports = ReactMarkupChecksum;
 
 /***/ }),
-/* 281 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -17613,7 +17915,7 @@
 	
 	'use strict';
 	
-	var keyMirror = __webpack_require__(104);
+	var keyMirror = __webpack_require__(106);
 	
 	/**
 	 * When a component's children are updated, a series of update configuration
@@ -17634,7 +17936,7 @@
 	module.exports = ReactMultiChildUpdateTypes;
 
 /***/ }),
-/* 282 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -17734,7 +18036,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 283 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -17858,7 +18160,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 284 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -17875,7 +18177,7 @@
 	'use strict';
 	
 	var ReactElement = __webpack_require__(27);
-	var ReactPropTypeLocationNames = __webpack_require__(115);
+	var ReactPropTypeLocationNames = __webpack_require__(117);
 	
 	var emptyFunction = __webpack_require__(42);
 	var getIteratorFn = __webpack_require__(181);
@@ -18219,7 +18521,7 @@
 	module.exports = ReactPropTypes;
 
 /***/ }),
-/* 285 */
+/* 286 */
 /***/ (function(module, exports) {
 
 	/**
@@ -18253,7 +18555,7 @@
 	module.exports = ReactRootIndex;
 
 /***/ }),
-/* 286 */
+/* 287 */
 /***/ (function(module, exports) {
 
 	/**
@@ -18285,7 +18587,7 @@
 	module.exports = ViewportMetrics;
 
 /***/ }),
-/* 287 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -18350,7 +18652,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 288 */
+/* 289 */
 /***/ (function(module, exports) {
 
 	/**
@@ -18384,7 +18686,7 @@
 	module.exports = forEachAccumulated;
 
 /***/ }),
-/* 289 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -18422,7 +18724,7 @@
 	module.exports = getTextContentAccessor;
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports) {
 
 	/**
@@ -18467,7 +18769,7 @@
 	module.exports = isTextInputElement;
 
 /***/ }),
-/* 291 */
+/* 292 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -18491,7 +18793,7 @@
 	var timer = exports.timer = typeof performance !== "undefined" && performance !== null && typeof performance.now === "function" ? performance : Date;
 
 /***/ }),
-/* 292 */
+/* 293 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -18532,7 +18834,7 @@
 	}
 
 /***/ }),
-/* 293 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18541,7 +18843,7 @@
 	exports.ActionTypes = undefined;
 	exports['default'] = createStore;
 	
-	var _isPlainObject = __webpack_require__(160);
+	var _isPlainObject = __webpack_require__(162);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
@@ -18798,7 +19100,7 @@
 	}
 
 /***/ }),
-/* 294 */
+/* 295 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -18828,16 +19130,16 @@
 	}
 
 /***/ }),
-/* 295 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
 	
-	__webpack_require__(495);
+	__webpack_require__(496);
 	
 	__webpack_require__(721);
 	
-	__webpack_require__(296);
+	__webpack_require__(297);
 	
 	if (global._babelPolyfill) {
 	  throw new Error("only one instance of babel-polyfill is allowed");
@@ -18862,19 +19164,19 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 296 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(303);
+	__webpack_require__(304);
 	module.exports = __webpack_require__(37).RegExp.escape;
 
 
 /***/ }),
-/* 297 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(9);
-	var isArray = __webpack_require__(94);
+	var isArray = __webpack_require__(96);
 	var SPECIES = __webpack_require__(12)('species');
 	
 	module.exports = function (original) {
@@ -18892,7 +19194,7 @@
 
 
 /***/ }),
-/* 298 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18924,7 +19226,7 @@
 
 
 /***/ }),
-/* 299 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18939,12 +19241,12 @@
 
 
 /***/ }),
-/* 300 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// all enumerable object keys, includes symbols
 	var getKeys = __webpack_require__(61);
-	var gOPS = __webpack_require__(98);
+	var gOPS = __webpack_require__(100);
 	var pIE = __webpack_require__(81);
 	module.exports = function (it) {
 	  var result = getKeys(it);
@@ -18960,7 +19262,7 @@
 
 
 /***/ }),
-/* 301 */
+/* 302 */
 /***/ (function(module, exports) {
 
 	module.exports = function (regExp, replace) {
@@ -18974,7 +19276,7 @@
 
 
 /***/ }),
-/* 302 */
+/* 303 */
 /***/ (function(module, exports) {
 
 	// 7.2.9 SameValue(x, y)
@@ -18985,18 +19287,18 @@
 
 
 /***/ }),
-/* 303 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/benjamingr/RexExp.escape
 	var $export = __webpack_require__(1);
-	var $re = __webpack_require__(301)(/[\\^$*+?.()|[\]{}]/g, '\\$&');
+	var $re = __webpack_require__(302)(/[\\^$*+?.()|[\]{}]/g, '\\$&');
 	
 	$export($export.S, 'RegExp', { escape: function escape(it) { return $re(it); } });
 
 
 /***/ }),
-/* 304 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
@@ -19008,7 +19310,7 @@
 
 
 /***/ }),
-/* 305 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19024,19 +19326,19 @@
 
 
 /***/ }),
-/* 306 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
 	var $export = __webpack_require__(1);
 	
-	$export($export.P, 'Array', { fill: __webpack_require__(122) });
+	$export($export.P, 'Array', { fill: __webpack_require__(124) });
 	
 	__webpack_require__(52)('fill');
 
 
 /***/ }),
-/* 307 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19052,7 +19354,7 @@
 
 
 /***/ }),
-/* 308 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19072,7 +19374,7 @@
 
 
 /***/ }),
-/* 309 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19092,7 +19394,7 @@
 
 
 /***/ }),
-/* 310 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19109,7 +19411,7 @@
 
 
 /***/ }),
-/* 311 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19117,12 +19419,12 @@
 	var $export = __webpack_require__(1);
 	var toObject = __webpack_require__(20);
 	var call = __webpack_require__(201);
-	var isArrayIter = __webpack_require__(130);
+	var isArrayIter = __webpack_require__(132);
 	var toLength = __webpack_require__(16);
-	var createProperty = __webpack_require__(124);
-	var getIterFn = __webpack_require__(147);
+	var createProperty = __webpack_require__(126);
+	var getIterFn = __webpack_require__(149);
 	
-	$export($export.S + $export.F * !__webpack_require__(96)(function (iter) { Array.from(iter); }), 'Array', {
+	$export($export.S + $export.F * !__webpack_require__(98)(function (iter) { Array.from(iter); }), 'Array', {
 	  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
 	  from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
 	    var O = toObject(arrayLike);
@@ -19152,12 +19454,12 @@
 
 
 /***/ }),
-/* 312 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var $export = __webpack_require__(1);
-	var $indexOf = __webpack_require__(90)(false);
+	var $indexOf = __webpack_require__(92)(false);
 	var $native = [].indexOf;
 	var NEGATIVE_ZERO = !!$native && 1 / [1].indexOf(1, -0) < 0;
 	
@@ -19173,17 +19475,17 @@
 
 
 /***/ }),
-/* 313 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
 	var $export = __webpack_require__(1);
 	
-	$export($export.S, 'Array', { isArray: __webpack_require__(94) });
+	$export($export.S, 'Array', { isArray: __webpack_require__(96) });
 
 
 /***/ }),
-/* 314 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19201,7 +19503,7 @@
 
 
 /***/ }),
-/* 315 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19229,7 +19531,7 @@
 
 
 /***/ }),
-/* 316 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19245,12 +19547,12 @@
 
 
 /***/ }),
-/* 317 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var $export = __webpack_require__(1);
-	var createProperty = __webpack_require__(124);
+	var createProperty = __webpack_require__(126);
 	
 	// WebKit Array.of isn't generic
 	$export($export.S + $export.F * __webpack_require__(8)(function () {
@@ -19270,7 +19572,7 @@
 
 
 /***/ }),
-/* 318 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19286,7 +19588,7 @@
 
 
 /***/ }),
-/* 319 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19302,12 +19604,12 @@
 
 
 /***/ }),
-/* 320 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var $export = __webpack_require__(1);
-	var html = __webpack_require__(128);
+	var html = __webpack_require__(130);
 	var cof = __webpack_require__(32);
 	var toAbsoluteIndex = __webpack_require__(65);
 	var toLength = __webpack_require__(16);
@@ -19336,7 +19638,7 @@
 
 
 /***/ }),
-/* 321 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19352,7 +19654,7 @@
 
 
 /***/ }),
-/* 322 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19381,14 +19683,14 @@
 
 
 /***/ }),
-/* 323 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(64)('Array');
 
 
 /***/ }),
-/* 324 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.3.3.1 / 15.9.4.4 Date.now()
@@ -19398,12 +19700,12 @@
 
 
 /***/ }),
-/* 325 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.3.4.36 / 15.9.5.43 Date.prototype.toISOString()
 	var $export = __webpack_require__(1);
-	var toISOString = __webpack_require__(298);
+	var toISOString = __webpack_require__(299);
 	
 	// PhantomJS / old WebKit has a broken implementations
 	$export($export.P + $export.F * (Date.prototype.toISOString !== toISOString), 'Date', {
@@ -19412,7 +19714,7 @@
 
 
 /***/ }),
-/* 326 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19434,17 +19736,17 @@
 
 
 /***/ }),
-/* 327 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var TO_PRIMITIVE = __webpack_require__(12)('toPrimitive');
 	var proto = Date.prototype;
 	
-	if (!(TO_PRIMITIVE in proto)) __webpack_require__(24)(proto, TO_PRIMITIVE, __webpack_require__(299));
+	if (!(TO_PRIMITIVE in proto)) __webpack_require__(24)(proto, TO_PRIMITIVE, __webpack_require__(300));
 
 
 /***/ }),
-/* 328 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var DateProto = Date.prototype;
@@ -19462,7 +19764,7 @@
 
 
 /***/ }),
-/* 329 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.2.3.2 / 15.3.4.5 Function.prototype.bind(thisArg, args...)
@@ -19472,7 +19774,7 @@
 
 
 /***/ }),
-/* 330 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19491,7 +19793,7 @@
 
 
 /***/ }),
-/* 331 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var dP = __webpack_require__(15).f;
@@ -19513,7 +19815,7 @@
 
 
 /***/ }),
-/* 332 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.3 Math.acosh(x)
@@ -19537,7 +19839,7 @@
 
 
 /***/ }),
-/* 333 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.5 Math.asinh(x)
@@ -19553,7 +19855,7 @@
 
 
 /***/ }),
-/* 334 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.7 Math.atanh(x)
@@ -19569,12 +19871,12 @@
 
 
 /***/ }),
-/* 335 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.9 Math.cbrt(x)
 	var $export = __webpack_require__(1);
-	var sign = __webpack_require__(134);
+	var sign = __webpack_require__(136);
 	
 	$export($export.S, 'Math', {
 	  cbrt: function cbrt(x) {
@@ -19584,7 +19886,7 @@
 
 
 /***/ }),
-/* 336 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.11 Math.clz32(x)
@@ -19598,7 +19900,7 @@
 
 
 /***/ }),
-/* 337 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.12 Math.cosh(x)
@@ -19613,18 +19915,18 @@
 
 
 /***/ }),
-/* 338 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.14 Math.expm1(x)
 	var $export = __webpack_require__(1);
-	var $expm1 = __webpack_require__(133);
+	var $expm1 = __webpack_require__(135);
 	
 	$export($export.S + $export.F * ($expm1 != Math.expm1), 'Math', { expm1: $expm1 });
 
 
 /***/ }),
-/* 339 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.16 Math.fround(x)
@@ -19634,7 +19936,7 @@
 
 
 /***/ }),
-/* 340 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.17 Math.hypot([value1[, value2[, … ]]])
@@ -19665,7 +19967,7 @@
 
 
 /***/ }),
-/* 341 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.18 Math.imul(x, y)
@@ -19688,7 +19990,7 @@
 
 
 /***/ }),
-/* 342 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.21 Math.log10(x)
@@ -19702,7 +20004,7 @@
 
 
 /***/ }),
-/* 343 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.20 Math.log1p(x)
@@ -19712,7 +20014,7 @@
 
 
 /***/ }),
-/* 344 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.22 Math.log2(x)
@@ -19726,22 +20028,22 @@
 
 
 /***/ }),
-/* 345 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.28 Math.sign(x)
 	var $export = __webpack_require__(1);
 	
-	$export($export.S, 'Math', { sign: __webpack_require__(134) });
+	$export($export.S, 'Math', { sign: __webpack_require__(136) });
 
 
 /***/ }),
-/* 346 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.30 Math.sinh(x)
 	var $export = __webpack_require__(1);
-	var expm1 = __webpack_require__(133);
+	var expm1 = __webpack_require__(135);
 	var exp = Math.exp;
 	
 	// V8 near Chromium 38 has a problem with very small numbers
@@ -19757,12 +20059,12 @@
 
 
 /***/ }),
-/* 347 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.33 Math.tanh(x)
 	var $export = __webpack_require__(1);
-	var expm1 = __webpack_require__(133);
+	var expm1 = __webpack_require__(135);
 	var exp = Math.exp;
 	
 	$export($export.S, 'Math', {
@@ -19775,7 +20077,7 @@
 
 
 /***/ }),
-/* 348 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.2.2.34 Math.trunc(x)
@@ -19789,20 +20091,20 @@
 
 
 /***/ }),
-/* 349 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var global = __webpack_require__(6);
 	var has = __webpack_require__(23);
 	var cof = __webpack_require__(32);
-	var inheritIfRequired = __webpack_require__(129);
+	var inheritIfRequired = __webpack_require__(131);
 	var toPrimitive = __webpack_require__(41);
 	var fails = __webpack_require__(8);
 	var gOPN = __webpack_require__(60).f;
 	var gOPD = __webpack_require__(28).f;
 	var dP = __webpack_require__(15).f;
-	var $trim = __webpack_require__(74).trim;
+	var $trim = __webpack_require__(75).trim;
 	var NUMBER = 'Number';
 	var $Number = global[NUMBER];
 	var Base = $Number;
@@ -19864,7 +20166,7 @@
 
 
 /***/ }),
-/* 350 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.1.2.1 Number.EPSILON
@@ -19874,7 +20176,7 @@
 
 
 /***/ }),
-/* 351 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.1.2.2 Number.isFinite(number)
@@ -19889,7 +20191,7 @@
 
 
 /***/ }),
-/* 352 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.1.2.3 Number.isInteger(number)
@@ -19899,7 +20201,7 @@
 
 
 /***/ }),
-/* 353 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.1.2.4 Number.isNaN(number)
@@ -19914,7 +20216,7 @@
 
 
 /***/ }),
-/* 354 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.1.2.5 Number.isSafeInteger(number)
@@ -19930,7 +20232,7 @@
 
 
 /***/ }),
-/* 355 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.1.2.6 Number.MAX_SAFE_INTEGER
@@ -19940,7 +20242,7 @@
 
 
 /***/ }),
-/* 356 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 20.1.2.10 Number.MIN_SAFE_INTEGER
@@ -19950,7 +20252,7 @@
 
 
 /***/ }),
-/* 357 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(1);
@@ -19960,7 +20262,7 @@
 
 
 /***/ }),
-/* 358 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(1);
@@ -19970,14 +20272,14 @@
 
 
 /***/ }),
-/* 359 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var $export = __webpack_require__(1);
 	var toInteger = __webpack_require__(40);
 	var aNumberValue = __webpack_require__(189);
-	var repeat = __webpack_require__(141);
+	var repeat = __webpack_require__(143);
 	var $toFixed = 1.0.toFixed;
 	var floor = Math.floor;
 	var data = [0, 0, 0, 0, 0, 0];
@@ -20090,7 +20392,7 @@
 
 
 /***/ }),
-/* 360 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20114,7 +20416,7 @@
 
 
 /***/ }),
-/* 361 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.3.1 Object.assign(target, source)
@@ -20124,7 +20426,7 @@
 
 
 /***/ }),
-/* 362 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(1);
@@ -20133,7 +20435,7 @@
 
 
 /***/ }),
-/* 363 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(1);
@@ -20142,7 +20444,7 @@
 
 
 /***/ }),
-/* 364 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(1);
@@ -20151,7 +20453,7 @@
 
 
 /***/ }),
-/* 365 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.5 Object.freeze(O)
@@ -20166,7 +20468,7 @@
 
 
 /***/ }),
-/* 366 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
@@ -20181,7 +20483,7 @@
 
 
 /***/ }),
-/* 367 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.7 Object.getOwnPropertyNames(O)
@@ -20191,7 +20493,7 @@
 
 
 /***/ }),
-/* 368 */
+/* 369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.9 Object.getPrototypeOf(O)
@@ -20206,7 +20508,7 @@
 
 
 /***/ }),
-/* 369 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.11 Object.isExtensible(O)
@@ -20220,7 +20522,7 @@
 
 
 /***/ }),
-/* 370 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.12 Object.isFrozen(O)
@@ -20234,7 +20536,7 @@
 
 
 /***/ }),
-/* 371 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.13 Object.isSealed(O)
@@ -20248,16 +20550,16 @@
 
 
 /***/ }),
-/* 372 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.3.10 Object.is(value1, value2)
 	var $export = __webpack_require__(1);
-	$export($export.S, 'Object', { is: __webpack_require__(302) });
+	$export($export.S, 'Object', { is: __webpack_require__(303) });
 
 
 /***/ }),
-/* 373 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
@@ -20272,7 +20574,7 @@
 
 
 /***/ }),
-/* 374 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.15 Object.preventExtensions(O)
@@ -20287,7 +20589,7 @@
 
 
 /***/ }),
-/* 375 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.17 Object.seal(O)
@@ -20302,16 +20604,16 @@
 
 
 /***/ }),
-/* 376 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.3.19 Object.setPrototypeOf(O, proto)
 	var $export = __webpack_require__(1);
-	$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(137).set });
+	$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(139).set });
 
 
 /***/ }),
-/* 377 */
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20327,7 +20629,7 @@
 
 
 /***/ }),
-/* 378 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(1);
@@ -20337,7 +20639,7 @@
 
 
 /***/ }),
-/* 379 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(1);
@@ -20347,7 +20649,7 @@
 
 
 /***/ }),
-/* 380 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20360,10 +20662,10 @@
 	var aFunction = __webpack_require__(22);
 	var anInstance = __webpack_require__(56);
 	var forOf = __webpack_require__(57);
-	var speciesConstructor = __webpack_require__(102);
-	var task = __webpack_require__(143).set;
-	var microtask = __webpack_require__(135)();
-	var newPromiseCapabilityModule = __webpack_require__(136);
+	var speciesConstructor = __webpack_require__(104);
+	var task = __webpack_require__(145).set;
+	var microtask = __webpack_require__(137)();
+	var newPromiseCapabilityModule = __webpack_require__(138);
 	var perform = __webpack_require__(214);
 	var promiseResolve = __webpack_require__(215);
 	var PROMISE = 'Promise';
@@ -20559,7 +20861,7 @@
 	}
 	
 	$export($export.G + $export.W + $export.F * !USE_NATIVE, { Promise: $Promise });
-	__webpack_require__(73)($Promise, PROMISE);
+	__webpack_require__(74)($Promise, PROMISE);
 	__webpack_require__(64)(PROMISE);
 	Wrapper = __webpack_require__(37)[PROMISE];
 	
@@ -20579,7 +20881,7 @@
 	    return promiseResolve(LIBRARY && this === Wrapper ? $Promise : this, x);
 	  }
 	});
-	$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(96)(function (iter) {
+	$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(98)(function (iter) {
 	  $Promise.all(iter)['catch'](empty);
 	})), PROMISE, {
 	  // 25.4.4.1 Promise.all(iterable)
@@ -20626,7 +20928,7 @@
 
 
 /***/ }),
-/* 381 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 26.1.1 Reflect.apply(target, thisArgument, argumentsList)
@@ -20648,7 +20950,7 @@
 
 
 /***/ }),
-/* 382 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 26.1.2 Reflect.construct(target, argumentsList [, newTarget])
@@ -20701,7 +21003,7 @@
 
 
 /***/ }),
-/* 383 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 26.1.3 Reflect.defineProperty(target, propertyKey, attributes)
@@ -20730,7 +21032,7 @@
 
 
 /***/ }),
-/* 384 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 26.1.4 Reflect.deleteProperty(target, propertyKey)
@@ -20747,7 +21049,7 @@
 
 
 /***/ }),
-/* 385 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20761,7 +21063,7 @@
 	  var key;
 	  for (key in iterated) keys.push(key);
 	};
-	__webpack_require__(131)(Enumerate, 'Object', function () {
+	__webpack_require__(133)(Enumerate, 'Object', function () {
 	  var that = this;
 	  var keys = that._k;
 	  var key;
@@ -20779,7 +21081,7 @@
 
 
 /***/ }),
-/* 386 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 26.1.7 Reflect.getOwnPropertyDescriptor(target, propertyKey)
@@ -20795,7 +21097,7 @@
 
 
 /***/ }),
-/* 387 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 26.1.8 Reflect.getPrototypeOf(target)
@@ -20811,7 +21113,7 @@
 
 
 /***/ }),
-/* 388 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 26.1.6 Reflect.get(target, propertyKey [, receiver])
@@ -20838,7 +21140,7 @@
 
 
 /***/ }),
-/* 389 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 26.1.9 Reflect.has(target, propertyKey)
@@ -20852,7 +21154,7 @@
 
 
 /***/ }),
-/* 390 */
+/* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 26.1.10 Reflect.isExtensible(target)
@@ -20869,7 +21171,7 @@
 
 
 /***/ }),
-/* 391 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 26.1.11 Reflect.ownKeys(target)
@@ -20879,7 +21181,7 @@
 
 
 /***/ }),
-/* 392 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 26.1.12 Reflect.preventExtensions(target)
@@ -20901,12 +21203,12 @@
 
 
 /***/ }),
-/* 393 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 26.1.14 Reflect.setPrototypeOf(target, proto)
 	var $export = __webpack_require__(1);
-	var setProto = __webpack_require__(137);
+	var setProto = __webpack_require__(139);
 	
 	if (setProto) $export($export.S, 'Reflect', {
 	  setPrototypeOf: function setPrototypeOf(target, proto) {
@@ -20922,7 +21224,7 @@
 
 
 /***/ }),
-/* 394 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 26.1.13 Reflect.set(target, propertyKey, V [, receiver])
@@ -20959,15 +21261,15 @@
 
 
 /***/ }),
-/* 395 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var global = __webpack_require__(6);
-	var inheritIfRequired = __webpack_require__(129);
+	var inheritIfRequired = __webpack_require__(131);
 	var dP = __webpack_require__(15).f;
 	var gOPN = __webpack_require__(60).f;
-	var isRegExp = __webpack_require__(95);
-	var $flags = __webpack_require__(93);
+	var isRegExp = __webpack_require__(97);
+	var $flags = __webpack_require__(95);
 	var $RegExp = global.RegExp;
 	var Base = $RegExp;
 	var proto = $RegExp.prototype;
@@ -21008,11 +21310,11 @@
 
 
 /***/ }),
-/* 396 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// @@match logic
-	__webpack_require__(92)('match', 1, function (defined, MATCH, $match) {
+	__webpack_require__(94)('match', 1, function (defined, MATCH, $match) {
 	  // 21.1.3.11 String.prototype.match(regexp)
 	  return [function match(regexp) {
 	    'use strict';
@@ -21024,11 +21326,11 @@
 
 
 /***/ }),
-/* 397 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// @@replace logic
-	__webpack_require__(92)('replace', 2, function (defined, REPLACE, $replace) {
+	__webpack_require__(94)('replace', 2, function (defined, REPLACE, $replace) {
 	  // 21.1.3.14 String.prototype.replace(searchValue, replaceValue)
 	  return [function replace(searchValue, replaceValue) {
 	    'use strict';
@@ -21042,11 +21344,11 @@
 
 
 /***/ }),
-/* 398 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// @@search logic
-	__webpack_require__(92)('search', 1, function (defined, SEARCH, $search) {
+	__webpack_require__(94)('search', 1, function (defined, SEARCH, $search) {
 	  // 21.1.3.15 String.prototype.search(regexp)
 	  return [function search(regexp) {
 	    'use strict';
@@ -21058,13 +21360,13 @@
 
 
 /***/ }),
-/* 399 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// @@split logic
-	__webpack_require__(92)('split', 2, function (defined, SPLIT, $split) {
+	__webpack_require__(94)('split', 2, function (defined, SPLIT, $split) {
 	  'use strict';
-	  var isRegExp = __webpack_require__(95);
+	  var isRegExp = __webpack_require__(97);
 	  var _split = $split;
 	  var $push = [].push;
 	  var $SPLIT = 'split';
@@ -21135,13 +21437,13 @@
 
 
 /***/ }),
-/* 400 */
+/* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	__webpack_require__(220);
 	var anObject = __webpack_require__(4);
-	var $flags = __webpack_require__(93);
+	var $flags = __webpack_require__(95);
 	var DESCRIPTORS = __webpack_require__(14);
 	var TO_STRING = 'toString';
 	var $toString = /./[TO_STRING];
@@ -21166,7 +21468,7 @@
 
 
 /***/ }),
-/* 401 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21179,7 +21481,7 @@
 
 
 /***/ }),
-/* 402 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21192,7 +21494,7 @@
 
 
 /***/ }),
-/* 403 */
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21205,7 +21507,7 @@
 
 
 /***/ }),
-/* 404 */
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21218,12 +21520,12 @@
 
 
 /***/ }),
-/* 405 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var $export = __webpack_require__(1);
-	var $at = __webpack_require__(139)(false);
+	var $at = __webpack_require__(141)(false);
 	$export($export.P, 'String', {
 	  // 21.1.3.3 String.prototype.codePointAt(pos)
 	  codePointAt: function codePointAt(pos) {
@@ -21233,18 +21535,18 @@
 
 
 /***/ }),
-/* 406 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 21.1.3.6 String.prototype.endsWith(searchString [, endPosition])
 	'use strict';
 	var $export = __webpack_require__(1);
 	var toLength = __webpack_require__(16);
-	var context = __webpack_require__(140);
+	var context = __webpack_require__(142);
 	var ENDS_WITH = 'endsWith';
 	var $endsWith = ''[ENDS_WITH];
 	
-	$export($export.P + $export.F * __webpack_require__(127)(ENDS_WITH), 'String', {
+	$export($export.P + $export.F * __webpack_require__(129)(ENDS_WITH), 'String', {
 	  endsWith: function endsWith(searchString /* , endPosition = @length */) {
 	    var that = context(this, searchString, ENDS_WITH);
 	    var endPosition = arguments.length > 1 ? arguments[1] : undefined;
@@ -21259,7 +21561,7 @@
 
 
 /***/ }),
-/* 407 */
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21272,7 +21574,7 @@
 
 
 /***/ }),
-/* 408 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21285,7 +21587,7 @@
 
 
 /***/ }),
-/* 409 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21298,7 +21600,7 @@
 
 
 /***/ }),
-/* 410 */
+/* 411 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(1);
@@ -21327,16 +21629,16 @@
 
 
 /***/ }),
-/* 411 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 21.1.3.7 String.prototype.includes(searchString, position = 0)
 	'use strict';
 	var $export = __webpack_require__(1);
-	var context = __webpack_require__(140);
+	var context = __webpack_require__(142);
 	var INCLUDES = 'includes';
 	
-	$export($export.P + $export.F * __webpack_require__(127)(INCLUDES), 'String', {
+	$export($export.P + $export.F * __webpack_require__(129)(INCLUDES), 'String', {
 	  includes: function includes(searchString /* , position = 0 */) {
 	    return !!~context(this, searchString, INCLUDES)
 	      .indexOf(searchString, arguments.length > 1 ? arguments[1] : undefined);
@@ -21345,7 +21647,7 @@
 
 
 /***/ }),
-/* 412 */
+/* 413 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21358,14 +21660,14 @@
 
 
 /***/ }),
-/* 413 */
+/* 414 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var $at = __webpack_require__(139)(true);
+	var $at = __webpack_require__(141)(true);
 	
 	// 21.1.3.27 String.prototype[@@iterator]()
-	__webpack_require__(132)(String, 'String', function (iterated) {
+	__webpack_require__(134)(String, 'String', function (iterated) {
 	  this._t = String(iterated); // target
 	  this._i = 0;                // next index
 	// 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -21381,7 +21683,7 @@
 
 
 /***/ }),
-/* 414 */
+/* 415 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21394,7 +21696,7 @@
 
 
 /***/ }),
-/* 415 */
+/* 416 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(1);
@@ -21418,19 +21720,19 @@
 
 
 /***/ }),
-/* 416 */
+/* 417 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(1);
 	
 	$export($export.P, 'String', {
 	  // 21.1.3.13 String.prototype.repeat(count)
-	  repeat: __webpack_require__(141)
+	  repeat: __webpack_require__(143)
 	});
 
 
 /***/ }),
-/* 417 */
+/* 418 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21443,18 +21745,18 @@
 
 
 /***/ }),
-/* 418 */
+/* 419 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 21.1.3.18 String.prototype.startsWith(searchString [, position ])
 	'use strict';
 	var $export = __webpack_require__(1);
 	var toLength = __webpack_require__(16);
-	var context = __webpack_require__(140);
+	var context = __webpack_require__(142);
 	var STARTS_WITH = 'startsWith';
 	var $startsWith = ''[STARTS_WITH];
 	
-	$export($export.P + $export.F * __webpack_require__(127)(STARTS_WITH), 'String', {
+	$export($export.P + $export.F * __webpack_require__(129)(STARTS_WITH), 'String', {
 	  startsWith: function startsWith(searchString /* , position = 0 */) {
 	    var that = context(this, searchString, STARTS_WITH);
 	    var index = toLength(Math.min(arguments.length > 1 ? arguments[1] : undefined, that.length));
@@ -21467,7 +21769,7 @@
 
 
 /***/ }),
-/* 419 */
+/* 420 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21480,7 +21782,7 @@
 
 
 /***/ }),
-/* 420 */
+/* 421 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21493,7 +21795,7 @@
 
 
 /***/ }),
-/* 421 */
+/* 422 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21506,12 +21808,12 @@
 
 
 /***/ }),
-/* 422 */
+/* 423 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// 21.1.3.25 String.prototype.trim()
-	__webpack_require__(74)('trim', function ($trim) {
+	__webpack_require__(75)('trim', function ($trim) {
 	  return function trim() {
 	    return $trim(this, 3);
 	  };
@@ -21519,7 +21821,7 @@
 
 
 /***/ }),
-/* 423 */
+/* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21531,14 +21833,14 @@
 	var redefine = __webpack_require__(25);
 	var META = __webpack_require__(53).KEY;
 	var $fails = __webpack_require__(8);
-	var shared = __webpack_require__(101);
-	var setToStringTag = __webpack_require__(73);
+	var shared = __webpack_require__(103);
+	var setToStringTag = __webpack_require__(74);
 	var uid = __webpack_require__(66);
 	var wks = __webpack_require__(12);
 	var wksExt = __webpack_require__(218);
-	var wksDefine = __webpack_require__(146);
-	var enumKeys = __webpack_require__(300);
-	var isArray = __webpack_require__(94);
+	var wksDefine = __webpack_require__(148);
+	var enumKeys = __webpack_require__(301);
+	var isArray = __webpack_require__(96);
 	var anObject = __webpack_require__(4);
 	var isObject = __webpack_require__(9);
 	var toIObject = __webpack_require__(30);
@@ -21673,7 +21975,7 @@
 	  $DP.f = $defineProperty;
 	  __webpack_require__(60).f = gOPNExt.f = $getOwnPropertyNames;
 	  __webpack_require__(81).f = $propertyIsEnumerable;
-	  __webpack_require__(98).f = $getOwnPropertySymbols;
+	  __webpack_require__(100).f = $getOwnPropertySymbols;
 	
 	  if (DESCRIPTORS && !__webpack_require__(58)) {
 	    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
@@ -21759,19 +22061,19 @@
 
 
 /***/ }),
-/* 424 */
+/* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var $export = __webpack_require__(1);
-	var $typed = __webpack_require__(103);
-	var buffer = __webpack_require__(144);
+	var $typed = __webpack_require__(105);
+	var buffer = __webpack_require__(146);
 	var anObject = __webpack_require__(4);
 	var toAbsoluteIndex = __webpack_require__(65);
 	var toLength = __webpack_require__(16);
 	var isObject = __webpack_require__(9);
 	var ArrayBuffer = __webpack_require__(6).ArrayBuffer;
-	var speciesConstructor = __webpack_require__(102);
+	var speciesConstructor = __webpack_require__(104);
 	var $ArrayBuffer = buffer.ArrayBuffer;
 	var $DataView = buffer.DataView;
 	var $isView = $typed.ABV && ArrayBuffer.isView;
@@ -21811,23 +22113,12 @@
 
 
 /***/ }),
-/* 425 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	var $export = __webpack_require__(1);
-	$export($export.G + $export.W + $export.F * !__webpack_require__(103).ABV, {
-	  DataView: __webpack_require__(144).DataView
-	});
-
-
-/***/ }),
 /* 426 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(44)('Float32', 4, function (init) {
-	  return function Float32Array(data, byteOffset, length) {
-	    return init(this, data, byteOffset, length);
-	  };
+	var $export = __webpack_require__(1);
+	$export($export.G + $export.W + $export.F * !__webpack_require__(105).ABV, {
+	  DataView: __webpack_require__(146).DataView
 	});
 
 
@@ -21835,8 +22126,8 @@
 /* 427 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(44)('Float64', 8, function (init) {
-	  return function Float64Array(data, byteOffset, length) {
+	__webpack_require__(47)('Float32', 4, function (init) {
+	  return function Float32Array(data, byteOffset, length) {
 	    return init(this, data, byteOffset, length);
 	  };
 	});
@@ -21846,8 +22137,8 @@
 /* 428 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(44)('Int16', 2, function (init) {
-	  return function Int16Array(data, byteOffset, length) {
+	__webpack_require__(47)('Float64', 8, function (init) {
+	  return function Float64Array(data, byteOffset, length) {
 	    return init(this, data, byteOffset, length);
 	  };
 	});
@@ -21857,8 +22148,8 @@
 /* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(44)('Int32', 4, function (init) {
-	  return function Int32Array(data, byteOffset, length) {
+	__webpack_require__(47)('Int16', 2, function (init) {
+	  return function Int16Array(data, byteOffset, length) {
 	    return init(this, data, byteOffset, length);
 	  };
 	});
@@ -21868,8 +22159,8 @@
 /* 430 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(44)('Int8', 1, function (init) {
-	  return function Int8Array(data, byteOffset, length) {
+	__webpack_require__(47)('Int32', 4, function (init) {
+	  return function Int32Array(data, byteOffset, length) {
 	    return init(this, data, byteOffset, length);
 	  };
 	});
@@ -21879,8 +22170,8 @@
 /* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(44)('Uint16', 2, function (init) {
-	  return function Uint16Array(data, byteOffset, length) {
+	__webpack_require__(47)('Int8', 1, function (init) {
+	  return function Int8Array(data, byteOffset, length) {
 	    return init(this, data, byteOffset, length);
 	  };
 	});
@@ -21890,8 +22181,8 @@
 /* 432 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(44)('Uint32', 4, function (init) {
-	  return function Uint32Array(data, byteOffset, length) {
+	__webpack_require__(47)('Uint16', 2, function (init) {
+	  return function Uint16Array(data, byteOffset, length) {
 	    return init(this, data, byteOffset, length);
 	  };
 	});
@@ -21901,8 +22192,8 @@
 /* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(44)('Uint8', 1, function (init) {
-	  return function Uint8Array(data, byteOffset, length) {
+	__webpack_require__(47)('Uint32', 4, function (init) {
+	  return function Uint32Array(data, byteOffset, length) {
 	    return init(this, data, byteOffset, length);
 	  };
 	});
@@ -21912,7 +22203,18 @@
 /* 434 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(44)('Uint8', 1, function (init) {
+	__webpack_require__(47)('Uint8', 1, function (init) {
+	  return function Uint8Array(data, byteOffset, length) {
+	    return init(this, data, byteOffset, length);
+	  };
+	});
+
+
+/***/ }),
+/* 435 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	__webpack_require__(47)('Uint8', 1, function (init) {
 	  return function Uint8ClampedArray(data, byteOffset, length) {
 	    return init(this, data, byteOffset, length);
 	  };
@@ -21920,16 +22222,16 @@
 
 
 /***/ }),
-/* 435 */
+/* 436 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var weak = __webpack_require__(196);
-	var validate = __webpack_require__(75);
+	var validate = __webpack_require__(76);
 	var WEAK_SET = 'WeakSet';
 	
 	// 23.4 WeakSet Objects
-	__webpack_require__(91)(WEAK_SET, function (get) {
+	__webpack_require__(93)(WEAK_SET, function (get) {
 	  return function WeakSet() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
 	}, {
 	  // 23.4.3.1 WeakSet.prototype.add(value)
@@ -21940,7 +22242,7 @@
 
 
 /***/ }),
-/* 436 */
+/* 437 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21950,7 +22252,7 @@
 	var toObject = __webpack_require__(20);
 	var toLength = __webpack_require__(16);
 	var aFunction = __webpack_require__(22);
-	var arraySpeciesCreate = __webpack_require__(123);
+	var arraySpeciesCreate = __webpack_require__(125);
 	
 	$export($export.P, 'Array', {
 	  flatMap: function flatMap(callbackfn /* , thisArg */) {
@@ -21968,7 +22270,7 @@
 
 
 /***/ }),
-/* 437 */
+/* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21978,7 +22280,7 @@
 	var toObject = __webpack_require__(20);
 	var toLength = __webpack_require__(16);
 	var toInteger = __webpack_require__(40);
-	var arraySpeciesCreate = __webpack_require__(123);
+	var arraySpeciesCreate = __webpack_require__(125);
 	
 	$export($export.P, 'Array', {
 	  flatten: function flatten(/* depthArg = 1 */) {
@@ -21995,13 +22297,13 @@
 
 
 /***/ }),
-/* 438 */
+/* 439 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// https://github.com/tc39/Array.prototype.includes
 	var $export = __webpack_require__(1);
-	var $includes = __webpack_require__(90)(true);
+	var $includes = __webpack_require__(92)(true);
 	
 	$export($export.P, 'Array', {
 	  includes: function includes(el /* , fromIndex = 0 */) {
@@ -22013,12 +22315,12 @@
 
 
 /***/ }),
-/* 439 */
+/* 440 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/rwaldron/tc39-notes/blob/master/es6/2014-09/sept-25.md#510-globalasap-for-enqueuing-a-microtask
 	var $export = __webpack_require__(1);
-	var microtask = __webpack_require__(135)();
+	var microtask = __webpack_require__(137)();
 	var process = __webpack_require__(6).process;
 	var isNode = __webpack_require__(32)(process) == 'process';
 	
@@ -22031,7 +22333,7 @@
 
 
 /***/ }),
-/* 440 */
+/* 441 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/ljharb/proposal-is-error
@@ -22046,7 +22348,7 @@
 
 
 /***/ }),
-/* 441 */
+/* 442 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/tc39/proposal-global
@@ -22056,23 +22358,23 @@
 
 
 /***/ }),
-/* 442 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// https://tc39.github.io/proposal-setmap-offrom/#sec-map.from
-	__webpack_require__(99)('Map');
-
-
-/***/ }),
 /* 443 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	// https://tc39.github.io/proposal-setmap-offrom/#sec-map.of
-	__webpack_require__(100)('Map');
+	// https://tc39.github.io/proposal-setmap-offrom/#sec-map.from
+	__webpack_require__(101)('Map');
 
 
 /***/ }),
 /* 444 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// https://tc39.github.io/proposal-setmap-offrom/#sec-map.of
+	__webpack_require__(102)('Map');
+
+
+/***/ }),
+/* 445 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/DavidBruant/Map-Set.prototype.toJSON
@@ -22082,7 +22384,7 @@
 
 
 /***/ }),
-/* 445 */
+/* 446 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://rwaldron.github.io/proposal-math-extensions/
@@ -22096,7 +22398,7 @@
 
 
 /***/ }),
-/* 446 */
+/* 447 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://rwaldron.github.io/proposal-math-extensions/
@@ -22106,7 +22408,7 @@
 
 
 /***/ }),
-/* 447 */
+/* 448 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://rwaldron.github.io/proposal-math-extensions/
@@ -22121,7 +22423,7 @@
 
 
 /***/ }),
-/* 448 */
+/* 449 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://rwaldron.github.io/proposal-math-extensions/
@@ -22137,7 +22439,7 @@
 
 
 /***/ }),
-/* 449 */
+/* 450 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -22154,7 +22456,7 @@
 
 
 /***/ }),
-/* 450 */
+/* 451 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -22176,7 +22478,7 @@
 
 
 /***/ }),
-/* 451 */
+/* 452 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -22193,7 +22495,7 @@
 
 
 /***/ }),
-/* 452 */
+/* 453 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://rwaldron.github.io/proposal-math-extensions/
@@ -22203,7 +22505,7 @@
 
 
 /***/ }),
-/* 453 */
+/* 454 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://rwaldron.github.io/proposal-math-extensions/
@@ -22218,7 +22520,7 @@
 
 
 /***/ }),
-/* 454 */
+/* 455 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://rwaldron.github.io/proposal-math-extensions/
@@ -22228,7 +22530,7 @@
 
 
 /***/ }),
-/* 455 */
+/* 456 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// http://jfbastien.github.io/papers/Math.signbit.html
@@ -22241,7 +22543,7 @@
 
 
 /***/ }),
-/* 456 */
+/* 457 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -22263,24 +22565,6 @@
 
 
 /***/ }),
-/* 457 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	var $export = __webpack_require__(1);
-	var toObject = __webpack_require__(20);
-	var aFunction = __webpack_require__(22);
-	var $defineProperty = __webpack_require__(15);
-	
-	// B.2.2.2 Object.prototype.__defineGetter__(P, getter)
-	__webpack_require__(14) && $export($export.P + __webpack_require__(97), 'Object', {
-	  __defineGetter__: function __defineGetter__(P, getter) {
-	    $defineProperty.f(toObject(this), P, { get: aFunction(getter), enumerable: true, configurable: true });
-	  }
-	});
-
-
-/***/ }),
 /* 458 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22290,8 +22574,26 @@
 	var aFunction = __webpack_require__(22);
 	var $defineProperty = __webpack_require__(15);
 	
+	// B.2.2.2 Object.prototype.__defineGetter__(P, getter)
+	__webpack_require__(14) && $export($export.P + __webpack_require__(99), 'Object', {
+	  __defineGetter__: function __defineGetter__(P, getter) {
+	    $defineProperty.f(toObject(this), P, { get: aFunction(getter), enumerable: true, configurable: true });
+	  }
+	});
+
+
+/***/ }),
+/* 459 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var $export = __webpack_require__(1);
+	var toObject = __webpack_require__(20);
+	var aFunction = __webpack_require__(22);
+	var $defineProperty = __webpack_require__(15);
+	
 	// B.2.2.3 Object.prototype.__defineSetter__(P, setter)
-	__webpack_require__(14) && $export($export.P + __webpack_require__(97), 'Object', {
+	__webpack_require__(14) && $export($export.P + __webpack_require__(99), 'Object', {
 	  __defineSetter__: function __defineSetter__(P, setter) {
 	    $defineProperty.f(toObject(this), P, { set: aFunction(setter), enumerable: true, configurable: true });
 	  }
@@ -22299,7 +22601,7 @@
 
 
 /***/ }),
-/* 459 */
+/* 460 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/tc39/proposal-object-values-entries
@@ -22314,7 +22616,7 @@
 
 
 /***/ }),
-/* 460 */
+/* 461 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/tc39/proposal-object-getownpropertydescriptors
@@ -22322,7 +22624,7 @@
 	var ownKeys = __webpack_require__(211);
 	var toIObject = __webpack_require__(30);
 	var gOPD = __webpack_require__(28);
-	var createProperty = __webpack_require__(124);
+	var createProperty = __webpack_require__(126);
 	
 	$export($export.S, 'Object', {
 	  getOwnPropertyDescriptors: function getOwnPropertyDescriptors(object) {
@@ -22342,7 +22644,7 @@
 
 
 /***/ }),
-/* 461 */
+/* 462 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22353,7 +22655,7 @@
 	var getOwnPropertyDescriptor = __webpack_require__(28).f;
 	
 	// B.2.2.4 Object.prototype.__lookupGetter__(P)
-	__webpack_require__(14) && $export($export.P + __webpack_require__(97), 'Object', {
+	__webpack_require__(14) && $export($export.P + __webpack_require__(99), 'Object', {
 	  __lookupGetter__: function __lookupGetter__(P) {
 	    var O = toObject(this);
 	    var K = toPrimitive(P, true);
@@ -22366,7 +22668,7 @@
 
 
 /***/ }),
-/* 462 */
+/* 463 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22377,7 +22679,7 @@
 	var getOwnPropertyDescriptor = __webpack_require__(28).f;
 	
 	// B.2.2.5 Object.prototype.__lookupSetter__(P)
-	__webpack_require__(14) && $export($export.P + __webpack_require__(97), 'Object', {
+	__webpack_require__(14) && $export($export.P + __webpack_require__(99), 'Object', {
 	  __lookupSetter__: function __lookupSetter__(P) {
 	    var O = toObject(this);
 	    var K = toPrimitive(P, true);
@@ -22390,7 +22692,7 @@
 
 
 /***/ }),
-/* 463 */
+/* 464 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/tc39/proposal-object-values-entries
@@ -22405,7 +22707,7 @@
 
 
 /***/ }),
-/* 464 */
+/* 465 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22413,7 +22715,7 @@
 	var $export = __webpack_require__(1);
 	var global = __webpack_require__(6);
 	var core = __webpack_require__(37);
-	var microtask = __webpack_require__(135)();
+	var microtask = __webpack_require__(137)();
 	var OBSERVABLE = __webpack_require__(12)('observable');
 	var aFunction = __webpack_require__(22);
 	var anObject = __webpack_require__(4);
@@ -22610,7 +22912,7 @@
 
 
 /***/ }),
-/* 465 */
+/* 466 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/tc39/proposal-promise-finally
@@ -22618,7 +22920,7 @@
 	var $export = __webpack_require__(1);
 	var core = __webpack_require__(37);
 	var global = __webpack_require__(6);
-	var speciesConstructor = __webpack_require__(102);
+	var speciesConstructor = __webpack_require__(104);
 	var promiseResolve = __webpack_require__(215);
 	
 	$export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
@@ -22636,13 +22938,13 @@
 
 
 /***/ }),
-/* 466 */
+/* 467 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// https://github.com/tc39/proposal-promise-try
 	var $export = __webpack_require__(1);
-	var newPromiseCapability = __webpack_require__(136);
+	var newPromiseCapability = __webpack_require__(138);
 	var perform = __webpack_require__(214);
 	
 	$export($export.S, 'Promise', { 'try': function (callbackfn) {
@@ -22654,10 +22956,10 @@
 
 
 /***/ }),
-/* 467 */
+/* 468 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var metadata = __webpack_require__(43);
+	var metadata = __webpack_require__(46);
 	var anObject = __webpack_require__(4);
 	var toMetaKey = metadata.key;
 	var ordinaryDefineOwnMetadata = metadata.set;
@@ -22668,10 +22970,10 @@
 
 
 /***/ }),
-/* 468 */
+/* 469 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var metadata = __webpack_require__(43);
+	var metadata = __webpack_require__(46);
 	var anObject = __webpack_require__(4);
 	var toMetaKey = metadata.key;
 	var getOrCreateMetadataMap = metadata.map;
@@ -22689,12 +22991,12 @@
 
 
 /***/ }),
-/* 469 */
+/* 470 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var Set = __webpack_require__(221);
 	var from = __webpack_require__(191);
-	var metadata = __webpack_require__(43);
+	var metadata = __webpack_require__(46);
 	var anObject = __webpack_require__(4);
 	var getPrototypeOf = __webpack_require__(29);
 	var ordinaryOwnMetadataKeys = metadata.keys;
@@ -22714,10 +23016,10 @@
 
 
 /***/ }),
-/* 470 */
+/* 471 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var metadata = __webpack_require__(43);
+	var metadata = __webpack_require__(46);
 	var anObject = __webpack_require__(4);
 	var getPrototypeOf = __webpack_require__(29);
 	var ordinaryHasOwnMetadata = metadata.has;
@@ -22737,10 +23039,10 @@
 
 
 /***/ }),
-/* 471 */
+/* 472 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var metadata = __webpack_require__(43);
+	var metadata = __webpack_require__(46);
 	var anObject = __webpack_require__(4);
 	var ordinaryOwnMetadataKeys = metadata.keys;
 	var toMetaKey = metadata.key;
@@ -22751,10 +23053,10 @@
 
 
 /***/ }),
-/* 472 */
+/* 473 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var metadata = __webpack_require__(43);
+	var metadata = __webpack_require__(46);
 	var anObject = __webpack_require__(4);
 	var ordinaryGetOwnMetadata = metadata.get;
 	var toMetaKey = metadata.key;
@@ -22766,10 +23068,10 @@
 
 
 /***/ }),
-/* 473 */
+/* 474 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var metadata = __webpack_require__(43);
+	var metadata = __webpack_require__(46);
 	var anObject = __webpack_require__(4);
 	var getPrototypeOf = __webpack_require__(29);
 	var ordinaryHasOwnMetadata = metadata.has;
@@ -22788,10 +23090,10 @@
 
 
 /***/ }),
-/* 474 */
+/* 475 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var metadata = __webpack_require__(43);
+	var metadata = __webpack_require__(46);
 	var anObject = __webpack_require__(4);
 	var ordinaryHasOwnMetadata = metadata.has;
 	var toMetaKey = metadata.key;
@@ -22803,10 +23105,10 @@
 
 
 /***/ }),
-/* 475 */
+/* 476 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var $metadata = __webpack_require__(43);
+	var $metadata = __webpack_require__(46);
 	var anObject = __webpack_require__(4);
 	var aFunction = __webpack_require__(22);
 	var toMetaKey = $metadata.key;
@@ -22824,23 +23126,23 @@
 
 
 /***/ }),
-/* 476 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// https://tc39.github.io/proposal-setmap-offrom/#sec-set.from
-	__webpack_require__(99)('Set');
-
-
-/***/ }),
 /* 477 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	// https://tc39.github.io/proposal-setmap-offrom/#sec-set.of
-	__webpack_require__(100)('Set');
+	// https://tc39.github.io/proposal-setmap-offrom/#sec-set.from
+	__webpack_require__(101)('Set');
 
 
 /***/ }),
 /* 478 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// https://tc39.github.io/proposal-setmap-offrom/#sec-set.of
+	__webpack_require__(102)('Set');
+
+
+/***/ }),
+/* 479 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/DavidBruant/Map-Set.prototype.toJSON
@@ -22850,13 +23152,13 @@
 
 
 /***/ }),
-/* 479 */
+/* 480 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// https://github.com/mathiasbynens/String.prototype.at
 	var $export = __webpack_require__(1);
-	var $at = __webpack_require__(139)(true);
+	var $at = __webpack_require__(141)(true);
 	
 	$export($export.P, 'String', {
 	  at: function at(pos) {
@@ -22866,7 +23168,7 @@
 
 
 /***/ }),
-/* 480 */
+/* 481 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22874,8 +23176,8 @@
 	var $export = __webpack_require__(1);
 	var defined = __webpack_require__(38);
 	var toLength = __webpack_require__(16);
-	var isRegExp = __webpack_require__(95);
-	var getFlags = __webpack_require__(93);
+	var isRegExp = __webpack_require__(97);
+	var getFlags = __webpack_require__(95);
 	var RegExpProto = RegExp.prototype;
 	
 	var $RegExpStringIterator = function (regexp, string) {
@@ -22883,7 +23185,7 @@
 	  this._s = string;
 	};
 	
-	__webpack_require__(131)($RegExpStringIterator, 'RegExp String', function next() {
+	__webpack_require__(133)($RegExpStringIterator, 'RegExp String', function next() {
 	  var match = this._r.exec(this._s);
 	  return { value: match, done: match === null };
 	});
@@ -22902,14 +23204,14 @@
 
 
 /***/ }),
-/* 481 */
+/* 482 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// https://github.com/tc39/proposal-string-pad-start-end
 	var $export = __webpack_require__(1);
 	var $pad = __webpack_require__(216);
-	var userAgent = __webpack_require__(145);
+	var userAgent = __webpack_require__(147);
 	
 	// https://github.com/zloirock/core-js/issues/280
 	$export($export.P + $export.F * /Version\/10\.\d+(\.\d+)? Safari\//.test(userAgent), 'String', {
@@ -22920,14 +23222,14 @@
 
 
 /***/ }),
-/* 482 */
+/* 483 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// https://github.com/tc39/proposal-string-pad-start-end
 	var $export = __webpack_require__(1);
 	var $pad = __webpack_require__(216);
-	var userAgent = __webpack_require__(145);
+	var userAgent = __webpack_require__(147);
 	
 	// https://github.com/zloirock/core-js/issues/280
 	$export($export.P + $export.F * /Version\/10\.\d+(\.\d+)? Safari\//.test(userAgent), 'String', {
@@ -22938,12 +23240,12 @@
 
 
 /***/ }),
-/* 483 */
+/* 484 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// https://github.com/sebmarkbage/ecmascript-string-left-right-trim
-	__webpack_require__(74)('trimLeft', function ($trim) {
+	__webpack_require__(75)('trimLeft', function ($trim) {
 	  return function trimLeft() {
 	    return $trim(this, 1);
 	  };
@@ -22951,12 +23253,12 @@
 
 
 /***/ }),
-/* 484 */
+/* 485 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// https://github.com/sebmarkbage/ecmascript-string-left-right-trim
-	__webpack_require__(74)('trimRight', function ($trim) {
+	__webpack_require__(75)('trimRight', function ($trim) {
 	  return function trimRight() {
 	    return $trim(this, 2);
 	  };
@@ -22964,21 +23266,21 @@
 
 
 /***/ }),
-/* 485 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	__webpack_require__(146)('asyncIterator');
-
-
-/***/ }),
 /* 486 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(146)('observable');
+	__webpack_require__(148)('asyncIterator');
 
 
 /***/ }),
 /* 487 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	__webpack_require__(148)('observable');
+
+
+/***/ }),
+/* 488 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// https://github.com/tc39/proposal-global
@@ -22988,47 +23290,47 @@
 
 
 /***/ }),
-/* 488 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// https://tc39.github.io/proposal-setmap-offrom/#sec-weakmap.from
-	__webpack_require__(99)('WeakMap');
-
-
-/***/ }),
 /* 489 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	// https://tc39.github.io/proposal-setmap-offrom/#sec-weakmap.of
-	__webpack_require__(100)('WeakMap');
+	// https://tc39.github.io/proposal-setmap-offrom/#sec-weakmap.from
+	__webpack_require__(101)('WeakMap');
 
 
 /***/ }),
 /* 490 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	// https://tc39.github.io/proposal-setmap-offrom/#sec-weakset.from
-	__webpack_require__(99)('WeakSet');
+	// https://tc39.github.io/proposal-setmap-offrom/#sec-weakmap.of
+	__webpack_require__(102)('WeakMap');
 
 
 /***/ }),
 /* 491 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	// https://tc39.github.io/proposal-setmap-offrom/#sec-weakset.of
-	__webpack_require__(100)('WeakSet');
+	// https://tc39.github.io/proposal-setmap-offrom/#sec-weakset.from
+	__webpack_require__(101)('WeakSet');
 
 
 /***/ }),
 /* 492 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var $iterators = __webpack_require__(148);
+	// https://tc39.github.io/proposal-setmap-offrom/#sec-weakset.of
+	__webpack_require__(102)('WeakSet');
+
+
+/***/ }),
+/* 493 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var $iterators = __webpack_require__(150);
 	var getKeys = __webpack_require__(61);
 	var redefine = __webpack_require__(25);
 	var global = __webpack_require__(6);
 	var hide = __webpack_require__(24);
-	var Iterators = __webpack_require__(72);
+	var Iterators = __webpack_require__(73);
 	var wks = __webpack_require__(12);
 	var ITERATOR = wks('iterator');
 	var TO_STRING_TAG = wks('toStringTag');
@@ -23084,11 +23386,11 @@
 
 
 /***/ }),
-/* 493 */
+/* 494 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(1);
-	var $task = __webpack_require__(143);
+	var $task = __webpack_require__(145);
 	$export($export.G + $export.B, {
 	  setImmediate: $task.set,
 	  clearImmediate: $task.clear
@@ -23096,13 +23398,13 @@
 
 
 /***/ }),
-/* 494 */
+/* 495 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// ie9- setTimeout & setInterval additional parameters fix
 	var global = __webpack_require__(6);
 	var $export = __webpack_require__(1);
-	var userAgent = __webpack_require__(145);
+	var userAgent = __webpack_require__(147);
 	var slice = [].slice;
 	var MSIE = /MSIE .\./.test(userAgent); // <- dirty ie9- check
 	var wrap = function (set) {
@@ -23122,36 +23424,35 @@
 
 
 /***/ }),
-/* 495 */
+/* 496 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(423);
-	__webpack_require__(362);
-	__webpack_require__(364);
+	__webpack_require__(424);
 	__webpack_require__(363);
-	__webpack_require__(366);
-	__webpack_require__(368);
-	__webpack_require__(373);
-	__webpack_require__(367);
 	__webpack_require__(365);
-	__webpack_require__(375);
-	__webpack_require__(374);
-	__webpack_require__(370);
-	__webpack_require__(371);
+	__webpack_require__(364);
+	__webpack_require__(367);
 	__webpack_require__(369);
-	__webpack_require__(361);
-	__webpack_require__(372);
+	__webpack_require__(374);
+	__webpack_require__(368);
+	__webpack_require__(366);
 	__webpack_require__(376);
+	__webpack_require__(375);
+	__webpack_require__(371);
+	__webpack_require__(372);
+	__webpack_require__(370);
+	__webpack_require__(362);
+	__webpack_require__(373);
 	__webpack_require__(377);
-	__webpack_require__(329);
-	__webpack_require__(331);
-	__webpack_require__(330);
-	__webpack_require__(379);
 	__webpack_require__(378);
-	__webpack_require__(349);
-	__webpack_require__(359);
-	__webpack_require__(360);
+	__webpack_require__(330);
+	__webpack_require__(332);
+	__webpack_require__(331);
+	__webpack_require__(380);
+	__webpack_require__(379);
 	__webpack_require__(350);
+	__webpack_require__(360);
+	__webpack_require__(361);
 	__webpack_require__(351);
 	__webpack_require__(352);
 	__webpack_require__(353);
@@ -23160,7 +23461,7 @@
 	__webpack_require__(356);
 	__webpack_require__(357);
 	__webpack_require__(358);
-	__webpack_require__(332);
+	__webpack_require__(359);
 	__webpack_require__(333);
 	__webpack_require__(334);
 	__webpack_require__(335);
@@ -23177,155 +23478,156 @@
 	__webpack_require__(346);
 	__webpack_require__(347);
 	__webpack_require__(348);
-	__webpack_require__(410);
-	__webpack_require__(415);
-	__webpack_require__(422);
-	__webpack_require__(413);
-	__webpack_require__(405);
-	__webpack_require__(406);
+	__webpack_require__(349);
 	__webpack_require__(411);
 	__webpack_require__(416);
-	__webpack_require__(418);
-	__webpack_require__(401);
+	__webpack_require__(423);
+	__webpack_require__(414);
+	__webpack_require__(406);
+	__webpack_require__(407);
+	__webpack_require__(412);
+	__webpack_require__(417);
+	__webpack_require__(419);
 	__webpack_require__(402);
 	__webpack_require__(403);
 	__webpack_require__(404);
-	__webpack_require__(407);
+	__webpack_require__(405);
 	__webpack_require__(408);
 	__webpack_require__(409);
-	__webpack_require__(412);
-	__webpack_require__(414);
-	__webpack_require__(417);
-	__webpack_require__(419);
+	__webpack_require__(410);
+	__webpack_require__(413);
+	__webpack_require__(415);
+	__webpack_require__(418);
 	__webpack_require__(420);
 	__webpack_require__(421);
-	__webpack_require__(324);
-	__webpack_require__(326);
+	__webpack_require__(422);
 	__webpack_require__(325);
-	__webpack_require__(328);
 	__webpack_require__(327);
-	__webpack_require__(313);
+	__webpack_require__(326);
+	__webpack_require__(329);
+	__webpack_require__(328);
+	__webpack_require__(314);
+	__webpack_require__(312);
+	__webpack_require__(318);
+	__webpack_require__(315);
+	__webpack_require__(321);
+	__webpack_require__(323);
 	__webpack_require__(311);
 	__webpack_require__(317);
-	__webpack_require__(314);
-	__webpack_require__(320);
-	__webpack_require__(322);
-	__webpack_require__(310);
-	__webpack_require__(316);
-	__webpack_require__(307);
-	__webpack_require__(321);
-	__webpack_require__(305);
-	__webpack_require__(319);
-	__webpack_require__(318);
-	__webpack_require__(312);
-	__webpack_require__(315);
-	__webpack_require__(304);
-	__webpack_require__(306);
-	__webpack_require__(309);
 	__webpack_require__(308);
-	__webpack_require__(323);
-	__webpack_require__(148);
-	__webpack_require__(395);
-	__webpack_require__(400);
-	__webpack_require__(220);
+	__webpack_require__(322);
+	__webpack_require__(306);
+	__webpack_require__(320);
+	__webpack_require__(319);
+	__webpack_require__(313);
+	__webpack_require__(316);
+	__webpack_require__(305);
+	__webpack_require__(307);
+	__webpack_require__(310);
+	__webpack_require__(309);
+	__webpack_require__(324);
+	__webpack_require__(150);
 	__webpack_require__(396);
+	__webpack_require__(401);
+	__webpack_require__(220);
 	__webpack_require__(397);
 	__webpack_require__(398);
 	__webpack_require__(399);
-	__webpack_require__(380);
+	__webpack_require__(400);
+	__webpack_require__(381);
 	__webpack_require__(219);
 	__webpack_require__(221);
 	__webpack_require__(222);
-	__webpack_require__(435);
-	__webpack_require__(424);
+	__webpack_require__(436);
 	__webpack_require__(425);
-	__webpack_require__(430);
-	__webpack_require__(433);
-	__webpack_require__(434);
-	__webpack_require__(428);
+	__webpack_require__(426);
 	__webpack_require__(431);
+	__webpack_require__(434);
+	__webpack_require__(435);
 	__webpack_require__(429);
 	__webpack_require__(432);
-	__webpack_require__(426);
+	__webpack_require__(430);
+	__webpack_require__(433);
 	__webpack_require__(427);
-	__webpack_require__(381);
+	__webpack_require__(428);
 	__webpack_require__(382);
 	__webpack_require__(383);
 	__webpack_require__(384);
 	__webpack_require__(385);
-	__webpack_require__(388);
 	__webpack_require__(386);
-	__webpack_require__(387);
 	__webpack_require__(389);
+	__webpack_require__(387);
+	__webpack_require__(388);
 	__webpack_require__(390);
 	__webpack_require__(391);
 	__webpack_require__(392);
-	__webpack_require__(394);
 	__webpack_require__(393);
-	__webpack_require__(438);
-	__webpack_require__(436);
+	__webpack_require__(395);
+	__webpack_require__(394);
+	__webpack_require__(439);
 	__webpack_require__(437);
-	__webpack_require__(479);
-	__webpack_require__(482);
-	__webpack_require__(481);
-	__webpack_require__(483);
-	__webpack_require__(484);
+	__webpack_require__(438);
 	__webpack_require__(480);
+	__webpack_require__(483);
+	__webpack_require__(482);
+	__webpack_require__(484);
 	__webpack_require__(485);
+	__webpack_require__(481);
 	__webpack_require__(486);
-	__webpack_require__(460);
-	__webpack_require__(463);
-	__webpack_require__(459);
-	__webpack_require__(457);
-	__webpack_require__(458);
+	__webpack_require__(487);
 	__webpack_require__(461);
+	__webpack_require__(464);
+	__webpack_require__(460);
+	__webpack_require__(458);
+	__webpack_require__(459);
 	__webpack_require__(462);
+	__webpack_require__(463);
+	__webpack_require__(445);
+	__webpack_require__(479);
 	__webpack_require__(444);
 	__webpack_require__(478);
+	__webpack_require__(490);
+	__webpack_require__(492);
 	__webpack_require__(443);
 	__webpack_require__(477);
 	__webpack_require__(489);
 	__webpack_require__(491);
 	__webpack_require__(442);
-	__webpack_require__(476);
 	__webpack_require__(488);
-	__webpack_require__(490);
 	__webpack_require__(441);
-	__webpack_require__(487);
-	__webpack_require__(440);
-	__webpack_require__(445);
 	__webpack_require__(446);
 	__webpack_require__(447);
 	__webpack_require__(448);
 	__webpack_require__(449);
-	__webpack_require__(451);
 	__webpack_require__(450);
 	__webpack_require__(452);
+	__webpack_require__(451);
 	__webpack_require__(453);
 	__webpack_require__(454);
-	__webpack_require__(456);
 	__webpack_require__(455);
-	__webpack_require__(465);
+	__webpack_require__(457);
+	__webpack_require__(456);
 	__webpack_require__(466);
 	__webpack_require__(467);
 	__webpack_require__(468);
-	__webpack_require__(470);
 	__webpack_require__(469);
-	__webpack_require__(472);
 	__webpack_require__(471);
+	__webpack_require__(470);
 	__webpack_require__(473);
+	__webpack_require__(472);
 	__webpack_require__(474);
 	__webpack_require__(475);
-	__webpack_require__(439);
-	__webpack_require__(464);
+	__webpack_require__(476);
+	__webpack_require__(440);
+	__webpack_require__(465);
+	__webpack_require__(495);
 	__webpack_require__(494);
 	__webpack_require__(493);
-	__webpack_require__(492);
 	module.exports = __webpack_require__(37);
 
 
 /***/ }),
-/* 496 */
+/* 497 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -23754,7 +24056,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 497 */
+/* 498 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(root, factory) {
@@ -23977,7 +24279,7 @@
 
 
 /***/ }),
-/* 498 */
+/* 499 */
 /***/ (function(module, exports) {
 
 	/**
@@ -24014,7 +24316,7 @@
 	module.exports = camelize;
 
 /***/ }),
-/* 499 */
+/* 500 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -24031,7 +24333,7 @@
 	
 	'use strict';
 	
-	var camelize = __webpack_require__(498);
+	var camelize = __webpack_require__(499);
 	
 	var msPattern = /^-ms-/;
 	
@@ -24059,7 +24361,7 @@
 	module.exports = camelizeStyleName;
 
 /***/ }),
-/* 500 */
+/* 501 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -24076,7 +24378,7 @@
 	
 	'use strict';
 	
-	var toArray = __webpack_require__(511);
+	var toArray = __webpack_require__(512);
 	
 	/**
 	 * Perform a heuristic test to determine if an object is "array-like".
@@ -24149,7 +24451,7 @@
 	module.exports = createArrayFromMixed;
 
 /***/ }),
-/* 501 */
+/* 502 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -24170,7 +24472,7 @@
 	
 	var ExecutionEnvironment = __webpack_require__(21);
 	
-	var createArrayFromMixed = __webpack_require__(500);
+	var createArrayFromMixed = __webpack_require__(501);
 	var getMarkupWrap = __webpack_require__(227);
 	var invariant = __webpack_require__(5);
 	
@@ -24239,7 +24541,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 502 */
+/* 503 */
 /***/ (function(module, exports) {
 
 	/**
@@ -24282,7 +24584,7 @@
 	module.exports = getUnboundedScrollPosition;
 
 /***/ }),
-/* 503 */
+/* 504 */
 /***/ (function(module, exports) {
 
 	/**
@@ -24320,7 +24622,7 @@
 	module.exports = hyphenate;
 
 /***/ }),
-/* 504 */
+/* 505 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -24337,7 +24639,7 @@
 	
 	'use strict';
 	
-	var hyphenate = __webpack_require__(503);
+	var hyphenate = __webpack_require__(504);
 	
 	var msPattern = /^ms-/;
 	
@@ -24364,7 +24666,7 @@
 	module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 505 */
+/* 506 */
 /***/ (function(module, exports) {
 
 	/**
@@ -24392,7 +24694,7 @@
 	module.exports = isNode;
 
 /***/ }),
-/* 506 */
+/* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -24409,7 +24711,7 @@
 	
 	'use strict';
 	
-	var isNode = __webpack_require__(505);
+	var isNode = __webpack_require__(506);
 	
 	/**
 	 * @param {*} object The object to check.
@@ -24422,7 +24724,7 @@
 	module.exports = isTextNode;
 
 /***/ }),
-/* 507 */
+/* 508 */
 /***/ (function(module, exports) {
 
 	/**
@@ -24478,7 +24780,7 @@
 	module.exports = mapObject;
 
 /***/ }),
-/* 508 */
+/* 509 */
 /***/ (function(module, exports) {
 
 	/**
@@ -24514,7 +24816,7 @@
 	module.exports = memoizeStringOnly;
 
 /***/ }),
-/* 509 */
+/* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -24542,7 +24844,7 @@
 	module.exports = performance || {};
 
 /***/ }),
-/* 510 */
+/* 511 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -24559,7 +24861,7 @@
 	
 	'use strict';
 	
-	var performance = __webpack_require__(509);
+	var performance = __webpack_require__(510);
 	
 	var performanceNow;
 	
@@ -24581,7 +24883,7 @@
 	module.exports = performanceNow;
 
 /***/ }),
-/* 511 */
+/* 512 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -24644,7 +24946,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 512 */
+/* 513 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {var win;
@@ -24664,7 +24966,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 513 */
+/* 514 */
 /***/ (function(module, exports) {
 
 	/**
@@ -24720,7 +25022,7 @@
 
 
 /***/ }),
-/* 514 */
+/* 515 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -24778,29 +25080,29 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 515 */
-/***/ (function(module, exports) {
-
-	module.exports = [{"name":"千代城","class":"刀","rarity":"2","plain":"山","hpF":"0.91","atF":"1.05","dfF":"0.94","totF":"2.90"},{"name":"千代城[改壱]","class":"刀","rarity":"3","plain":"山","hpF":"0.94","atF":"1.08","dfF":"0.97","totF":"2.99"},{"name":"仙台城","class":"刀","rarity":"5","plain":"平山","hpF":"1.19","atF":"1.11","dfF":"1.00","totF":"3.30"},{"name":"仙台城[改壱]","class":"刀","rarity":"6","plain":"平山","hpF":"1.23","atF":"1.15","dfF":"1.07","totF":"3.45"},{"name":"東黒川館","class":"刀","rarity":"1","plain":"平山","hpF":"0.96","atF":"0.90","dfF":"0.94","totF":"2.80"},{"name":"東黒川館[改壱]","class":"刀","rarity":"2","plain":"平山","hpF":"0.99","atF":"0.93","dfF":"0.97","totF":"2.89"},{"name":"黒川城","class":"刀","rarity":"2","plain":"平山","hpF":"0.98","atF":"0.97","dfF":"0.95","totF":"2.90"},{"name":"黒川城[改壱]","class":"刀","rarity":"3","plain":"平山","hpF":"1.01","atF":"1.00","dfF":"0.98","totF":"2.99"},{"name":"山形城","class":"刀","rarity":"4","plain":"平","hpF":"1.05","atF":"1.00","dfF":"1.10","totF":"3.15"},{"name":"山形城[改壱]","class":"刀","rarity":"5","plain":"平","hpF":"1.09","atF":"1.07","dfF":"1.14","totF":"3.30"},{"name":"馬場城","class":"刀","rarity":"1","plain":"平山","hpF":"0.95","atF":"0.95","dfF":"0.90","totF":"2.80"},{"name":"馬場城[改壱]","class":"刀","rarity":"2","plain":"平山","hpF":"0.98","atF":"0.98","dfF":"0.93","totF":"2.89"},{"name":"忍城","class":"刀","rarity":"4","plain":"平","hpF":"1.06","atF":"1.04","dfF":"1.05","totF":"3.15"},{"name":"忍城[改壱]","class":"刀","rarity":"5","plain":"平","hpF":"1.11","atF":"1.09","dfF":"1.10","totF":"3.30"},{"name":"本莊城","class":"刀","rarity":"1","plain":"平","hpF":"0.94","atF":"0.93","dfF":"0.93","totF":"2.80"},{"name":"本莊城[改壱]","class":"刀","rarity":"2","plain":"平","hpF":"0.97","atF":"0.96","dfF":"0.96","totF":"2.89"},{"name":"柳之丸","class":"刀","rarity":"1","plain":"平","hpF":"0.90","atF":"0.98","dfF":"0.92","totF":"2.80"},{"name":"那古野城","class":"刀","rarity":"2","plain":"平","hpF":"0.97","atF":"0.95","dfF":"0.98","totF":"2.90"},{"name":"稲葉山城","class":"刀","rarity":"3","plain":"山","hpF":"0.99","atF":"0.98","dfF":"1.03","totF":"3.00"},{"name":"苗木城","class":"刀","rarity":"3","plain":"山","hpF":"0.93","atF":"0.98","dfF":"1.09","totF":"3.00"},{"name":"阪戸城","class":"刀","rarity":"2","plain":"山","hpF":"0.93","atF":"0.98","dfF":"0.99","totF":"2.90"},{"name":"阪戸城[改壱]","class":"刀","rarity":"3","plain":"山","hpF":"0.96","atF":"1.01","dfF":"1.02","totF":"2.99"},{"name":"津留賀城","class":"刀","rarity":"1","plain":"山水","hpF":"0.85","atF":"0.96","dfF":"0.99","totF":"2.80"},{"name":"金ヶ崎城","class":"刀","rarity":"2","plain":"山水","hpF":"0.93","atF":"1.01","dfF":"0.96","totF":"2.90"},{"name":"水口城","class":"刀","rarity":"1","plain":"平","hpF":"0.92","atF":"0.93","dfF":"0.95","totF":"2.80"},{"name":"仁木館","class":"刀","rarity":"2","plain":"平山","hpF":"1.00","atF":"0.99","dfF":"0.91","totF":"2.90"},{"name":"伊賀上野城","class":"刀","rarity":"4","plain":"平山","hpF":"1.08","atF":"1.07","dfF":"1.00","totF":"3.15"},{"name":"伊賀上野城[改壱]","class":"刀","rarity":"5","plain":"平山","hpF":"1.12","atF":"1.14","dfF":"1.04","totF":"3.30"},{"name":"岡山城","class":"刀","rarity":"4","plain":"平山","hpF":"1.05","atF":"1.05","dfF":"1.05","totF":"3.15"},{"name":"岡山城[改壱]","class":"刀","rarity":"5","plain":"平山","hpF":"1.10","atF":"1.10","dfF":"1.10","totF":"3.30"},{"name":"備中高松城","class":"刀","rarity":"3","plain":"平","hpF":"1.00","atF":"1.00","dfF":"1.00","totF":"3.00"},{"name":"備中高松城[改壱]","class":"刀","rarity":"4","plain":"平","hpF":"1.07","atF":"1.04","dfF":"1.04","totF":"3.15"},{"name":"村中城","class":"刀","rarity":"1","plain":"平","hpF":"0.88","atF":"0.94","dfF":"0.98","totF":"2.80"},{"name":"佐賀城","class":"刀","rarity":"3","plain":"平","hpF":"1.02","atF":"0.97","dfF":"1.01","totF":"3.00"},{"name":"首裡城","class":"刀","rarity":"6","plain":"平山","hpF":"1.18","atF":"1.12","dfF":"1.15","totF":"3.45"},{"name":"首裡城[改壱]","class":"刀","rarity":"7","plain":"平山","hpF":"1.23","atF":"1.17","dfF":"1.20","totF":"3.60"},{"name":"一乗谷城","class":"刀","rarity":"4","plain":"山","hpF":"1.05","atF":"1.08","dfF":"1.02","totF":"3.15"},{"name":"一乗谷城[改壱]","class":"刀","rarity":"5","plain":"山","hpF":"1.09","atF":"1.15","dfF":"1.06","totF":"3.30"},{"name":"福山城","class":"刀","rarity":"5","plain":"平山","hpF":"1.17","atF":"1.06","dfF":"1.07","totF":"3.30"},{"name":"福山城[改壱]","class":"刀","rarity":"6","plain":"平山","hpF":"1.22","atF":"1.11","dfF":"1.12","totF":"3.45"},{"name":"志自岐原城","class":"刀","rarity":"1","plain":"平山","hpF":"1.02","atF":"0.91","dfF":"0.87","totF":"2.80"},{"name":"春日山城","class":"刀","rarity":"5","plain":"山","hpF":"1.07","atF":"1.10","dfF":"1.13","totF":"3.30"},{"name":"春日山城[改壱]","class":"刀","rarity":"6","plain":"山","hpF":"1.12","atF":"1.15","dfF":"1.18","totF":"3.45"},{"name":"松倉城","class":"刀","rarity":"2","plain":"山","hpF":"0.93","atF":"1.02","dfF":"0.95","totF":"2.90"},{"name":"與板城","class":"刀","rarity":"3","plain":"山","hpF":"1.01","atF":"1.07","dfF":"0.92","totF":"3.00"},{"name":"與板城[改壱]","class":"刀","rarity":"4","plain":"山","hpF":"1.05","atF":"1.11","dfF":"0.99","totF":"3.15"},{"name":"和歌山城","class":"刀","rarity":"6","plain":"平山","hpF":"1.19","atF":"1.15","dfF":"1.11","totF":"3.45"},{"name":"和歌山城[改壱]","class":"刀","rarity":"7","plain":"平山","hpF":"1.26","atF":"1.19","dfF":"1.15","totF":"3.60"},{"name":"久慈城","class":"刀","rarity":"2","plain":"平山","hpF":"0.99","atF":"0.97","dfF":"0.94","totF":"2.90"},{"name":"ブラン城","class":"刀","rarity":"6","plain":"山","hpF":"1.06","atF":"1.20","dfF":"1.19","totF":"3.45"},{"name":"相馬中村城","class":"刀","rarity":"4","plain":"平山","hpF":"1.07","atF":"1.09","dfF":"0.99","totF":"3.15"},{"name":"吉野ヶ裡","class":"刀","rarity":"6","plain":"平","hpF":"1.20","atF":"1.18","dfF":"1.07","totF":"3.45"},{"name":"吉野ヶ裡[改壱]","class":"刀","rarity":"7","plain":"平","hpF":"1.27","atF":"1.22","dfF":"1.11","totF":"3.60"},{"name":"前田金沢城","class":"刀","rarity":"6","plain":"平山","hpF":"1.19","atF":"1.17","dfF":"1.09","totF":"3.45"},{"name":"前田金沢城[改壱]","class":"刀","rarity":"7","plain":"平山","hpF":"1.23","atF":"1.21","dfF":"1.16","totF":"3.60"},{"name":"帰雲城","class":"刀","rarity":"5","plain":"山","hpF":"1.11","atF":"1.08","dfF":"1.11","totF":"3.30"},{"name":"帰雲城[改壱]","class":"刀","rarity":"6","plain":"山","hpF":"1.15","atF":"1.15","dfF":"1.15","totF":"3.45"},{"name":"清洲城","class":"刀","rarity":"5","plain":"平","hpF":"1.09","atF":"1.13","dfF":"1.08","totF":"3.30"},{"name":"清洲城[改壱]","class":"刀","rarity":"6","plain":"平","hpF":"1.13","atF":"1.20","dfF":"1.12","totF":"3.45"},{"name":"伊丹城","class":"刀","rarity":"3","plain":"平","hpF":"0.99","atF":"1.02","dfF":"0.99","totF":"3.00"},{"name":"丸山城","class":"刀","rarity":"3","plain":"平水","hpF":"1.00","atF":"1.04","dfF":"0.96","totF":"3.00"},{"name":"丸山城[改壱]","class":"刀","rarity":"4","plain":"平水","hpF":"1.05","atF":"1.09","dfF":"1.01","totF":"3.15"},{"name":"濱松城","class":"刀","rarity":"6","plain":"平山","hpF":"1.19","atF":"1.13","dfF":"1.13","totF":"3.45"},{"name":"徳島城","class":"刀","rarity":"5","plain":"平山","hpF":"1.10","atF":"1.08","dfF":"1.12","totF":"3.30"},{"name":"徳島城[改壱]","class":"刀","rarity":"6","plain":"平山","hpF":"1.15","atF":"1.13","dfF":"1.17","totF":"3.45"},{"name":"肥後千葉城","class":"刀","rarity":"3","plain":"平山","hpF":"1.03","atF":"0.98","dfF":"0.99","totF":"3.00"},{"name":"隈本城","class":"刀","rarity":"5","plain":"平山","hpF":"1.14","atF":"1.07","dfF":"1.09","totF":"3.30"},{"name":"熊本城","class":"刀","rarity":"7","plain":"平山","hpF":"1.16","atF":"1.22","dfF":"1.27","totF":"3.65"},{"name":"丹波亀山城","class":"刀","rarity":"5","plain":"平山","hpF":"1.10","atF":"1.06","dfF":"1.14","totF":"3.30"},{"name":"岩國城","class":"刀","rarity":"5","plain":"山","hpF":"1.15","atF":"1.09","dfF":"1.06","totF":"3.30"},{"name":"亀田御役所土塁","class":"刀","rarity":"6","plain":"平","hpF":"1.14","atF":"1.13","dfF":"1.18","totF":"3.45"},{"name":"徳川大阪城","class":"刀","rarity":"7","plain":"平","hpF":"1.17","atF":"1.23","dfF":"1.20","totF":"3.60"},{"name":"柳生城","class":"刀","rarity":"5","plain":"山","hpF":"1.00","atF":"1.13","dfF":"1.17","totF":"3.30"},{"name":"ウィンザー城","class":"刀","rarity":"7","plain":"平山","hpF":"1.19","atF":"1.24","dfF":"1.17","totF":"3.60"},{"name":"根城","class":"槍","rarity":"2","plain":"平山","hpF":"0.92","atF":"0.98","dfF":"1.00","totF":"2.90"},{"name":"小田喜城","class":"槍","rarity":"1","plain":"平山","hpF":"0.91","atF":"0.94","dfF":"0.95","totF":"2.80"},{"name":"小田喜城[改壱]","class":"槍","rarity":"2","plain":"平山","hpF":"0.94","atF":"0.97","dfF":"0.98","totF":"2.89"},{"name":"大多喜城","class":"槍","rarity":"3","plain":"平山","hpF":"0.98","atF":"0.98","dfF":"1.04","totF":"3.00"},{"name":"大多喜城[改壱]","class":"槍","rarity":"4","plain":"平山","hpF":"1.02","atF":"1.02","dfF":"1.11","totF":"3.15"},{"name":"新府城","class":"槍","rarity":"2","plain":"平山","hpF":"0.95","atF":"0.97","dfF":"0.98","totF":"2.90"},{"name":"新府城[改壱]","class":"槍","rarity":"3","plain":"平山","hpF":"0.98","atF":"1.00","dfF":"1.01","totF":"2.99"},{"name":"小諸城","class":"槍","rarity":"4","plain":"平山","hpF":"1.04","atF":"1.04","dfF":"1.07","totF":"3.15"},{"name":"小諸城[改壱]","class":"槍","rarity":"5","plain":"平山","hpF":"1.08","atF":"1.08","dfF":"1.14","totF":"3.30"},{"name":"七尾城","class":"槍","rarity":"4","plain":"山","hpF":"1.00","atF":"1.08","dfF":"1.07","totF":"3.15"},{"name":"北ノ莊城","class":"槍","rarity":"3","plain":"平","hpF":"1.05","atF":"0.97","dfF":"0.98","totF":"3.00"},{"name":"福井城","class":"槍","rarity":"4","plain":"平","hpF":"1.05","atF":"1.02","dfF":"1.08","totF":"3.15"},{"name":"佐和山城","class":"槍","rarity":"6","plain":"山","hpF":"1.18","atF":"1.20","dfF":"1.07","totF":"3.45"},{"name":"佐和山城[改壱]","class":"槍","rarity":"7","plain":"山","hpF":"1.25","atF":"1.24","dfF":"1.11","totF":"3.60"},{"name":"鹿野城","class":"槍","rarity":"3","plain":"平山","hpF":"1.01","atF":"0.99","dfF":"1.00","totF":"3.00"},{"name":"鹿野城[改壱]","class":"槍","rarity":"4","plain":"平山","hpF":"1.08","atF":"1.03","dfF":"1.04","totF":"3.15"},{"name":"防己尾城","class":"槍","rarity":"1","plain":"平山水","hpF":"0.92","atF":"0.94","dfF":"0.94","totF":"2.80"},{"name":"高松城","class":"槍","rarity":"3","plain":"水","hpF":"1.00","atF":"1.01","dfF":"0.99","totF":"3.00"},{"name":"大高阪山城","class":"槍","rarity":"1","plain":"平山","hpF":"0.91","atF":"0.92","dfF":"0.97","totF":"2.80"},{"name":"日之嶽城","class":"槍","rarity":"1","plain":"平山水","hpF":"0.93","atF":"0.92","dfF":"0.95","totF":"2.80"},{"name":"丸亀城","class":"槍","rarity":"5","plain":"平山","hpF":"1.14","atF":"1.03","dfF":"1.13","totF":"3.30"},{"name":"丸亀城[改壱]","class":"槍","rarity":"6","plain":"平山","hpF":"1.18","atF":"1.10","dfF":"1.17","totF":"3.45"},{"name":"小谷城","class":"槍","rarity":"5","plain":"山","hpF":"1.11","atF":"1.10","dfF":"1.09","totF":"3.30"},{"name":"月山富田城","class":"槍","rarity":"3","plain":"山","hpF":"0.96","atF":"1.01","dfF":"1.03","totF":"3.00"},{"name":"月山富田城[改壱]","class":"槍","rarity":"4","plain":"山","hpF":"1.00","atF":"1.05","dfF":"1.10","totF":"3.15"},{"name":"脇本城","class":"槍","rarity":"2","plain":"山水","hpF":"0.91","atF":"1.05","dfF":"0.94","totF":"2.90"},{"name":"脇本城[改壱]","class":"槍","rarity":"3","plain":"山水","hpF":"0.94","atF":"1.08","dfF":"0.97","totF":"2.99"},{"name":"岩櫃城","class":"槍","rarity":"3","plain":"山","hpF":"0.93","atF":"1.04","dfF":"1.03","totF":"3.00"},{"name":"岩櫃城[改壱]","class":"槍","rarity":"4","plain":"山","hpF":"0.97","atF":"1.08","dfF":"1.10","totF":"3.15"},{"name":"八王子城","class":"槍","rarity":"3","plain":"山","hpF":"0.93","atF":"1.05","dfF":"1.02","totF":"3.00"},{"name":"八王子城[改壱]","class":"槍","rarity":"4","plain":"山","hpF":"0.97","atF":"1.09","dfF":"1.09","totF":"3.15"},{"name":"彥根城","class":"槍","rarity":"7","plain":"平山","hpF":"1.25","atF":"1.23","dfF":"1.12","totF":"3.60"},{"name":"石垣山城","class":"槍","rarity":"3","plain":"山","hpF":"0.94","atF":"1.06","dfF":"1.00","totF":"3.00"},{"name":"真田丸","class":"槍","rarity":"4","plain":"平","hpF":"1.04","atF":"1.03","dfF":"1.08","totF":"3.15"},{"name":"真田丸[改壱]","class":"槍","rarity":"5","plain":"平","hpF":"1.08","atF":"1.10","dfF":"1.12","totF":"3.30"},{"name":"佐久間金沢城","class":"槍","rarity":"4","plain":"平山","hpF":"1.06","atF":"1.09","dfF":"1.00","totF":"3.15"},{"name":"佐久間金沢城[改壱]","class":"槍","rarity":"5","plain":"平山","hpF":"1.13","atF":"1.13","dfF":"1.04","totF":"3.30"},{"name":"岩手山城","class":"槍","rarity":"2","plain":"山","hpF":"0.93","atF":"1.02","dfF":"0.95","totF":"2.90"},{"name":"尾山城","class":"槍","rarity":"5","plain":"平山","hpF":"1.05","atF":"1.18","dfF":"1.07","totF":"3.30"},{"name":"尾山城[改壱]","class":"槍","rarity":"6","plain":"平山","hpF":"1.12","atF":"1.22","dfF":"1.11","totF":"3.45"},{"name":"中村舘","class":"槍","rarity":"2","plain":"平山","hpF":"0.94","atF":"1.03","dfF":"0.93","totF":"2.90"},{"name":"大仏城","class":"槍","rarity":"1","plain":"平","hpF":"0.93","atF":"0.93","dfF":"0.94","totF":"2.80"},{"name":"伊予松山城","class":"槍","rarity":"6","plain":"平山","hpF":"1.09","atF":"1.21","dfF":"1.15","totF":"3.45"},{"name":"伊予松山城[改壱]","class":"槍","rarity":"7","plain":"平山","hpF":"1.13","atF":"1.25","dfF":"1.22","totF":"3.60"},{"name":"亀居城","class":"槍","rarity":"4","plain":"平山水","hpF":"1.09","atF":"1.01","dfF":"1.05","totF":"3.15"},{"name":"亀居城[改壱]","class":"槍","rarity":"5","plain":"平山水","hpF":"1.16","atF":"1.05","dfF":"1.09","totF":"3.30"},{"name":"上田城","class":"槍","rarity":"6","plain":"平","hpF":"1.20","atF":"1.17","dfF":"1.08","totF":"3.45"},{"name":"上田城[改壱]","class":"槍","rarity":"7","plain":"平","hpF":"1.27","atF":"1.21","dfF":"1.12","totF":"3.60"},{"name":"聚楽城","class":"槍","rarity":"6","plain":"平","hpF":"1.13","atF":"1.20","dfF":"1.12","totF":"3.45"},{"name":"曳馬城","class":"槍","rarity":"4","plain":"平山","hpF":"1.04","atF":"1.06","dfF":"1.05","totF":"3.15"},{"name":"松江城","class":"槍","rarity":"6","plain":"平山水","hpF":"1.16","atF":"1.19","dfF":"1.10","totF":"3.45"},{"name":"銀杏城","class":"槍","rarity":"6","plain":"平山","hpF":"1.13","atF":"1.14","dfF":"1.18","totF":"3.45"},{"name":"不來方城","class":"槌","rarity":"2","plain":"平山","hpF":"0.95","atF":"0.96","dfF":"0.99","totF":"2.90"},{"name":"不來方城[改壱]","class":"槌","rarity":"3","plain":"平山","hpF":"0.98","atF":"0.99","dfF":"1.02","totF":"2.99"},{"name":"盛岡城","class":"槌","rarity":"4","plain":"平山","hpF":"1.02","atF":"1.06","dfF":"1.07","totF":"3.15"},{"name":"盛岡城[改壱]","class":"槌","rarity":"5","plain":"平山","hpF":"1.06","atF":"1.10","dfF":"1.14","totF":"3.30"},{"name":"飛山城","class":"槌","rarity":"1","plain":"平山","hpF":"0.95","atF":"0.90","dfF":"0.95","totF":"2.80"},{"name":"名古屋城","class":"槌","rarity":"7","plain":"平","hpF":"1.22","atF":"1.23","dfF":"1.15","totF":"3.60"},{"name":"鬼ヶ城","class":"槌","rarity":"2","plain":"山水","hpF":"0.96","atF":"1.00","dfF":"0.94","totF":"2.90"},{"name":"鬼ヶ城[改壱]","class":"槌","rarity":"3","plain":"山水","hpF":"0.99","atF":"1.03","dfF":"0.97","totF":"2.99"},{"name":"三木城","class":"槌","rarity":"2","plain":"平山","hpF":"1.00","atF":"0.99","dfF":"0.91","totF":"2.90"},{"name":"三木城[改壱]","class":"槌","rarity":"3","plain":"平山","hpF":"1.03","atF":"1.02","dfF":"0.94","totF":"2.99"},{"name":"ﾌﾗﾝｹﾝｼｭﾀｲﾝ城","class":"槌","rarity":"5","plain":"山","hpF":"1.09","atF":"1.05","dfF":"1.16","totF":"3.30"},{"name":"ﾌﾗﾝｹﾝｼｭﾀｲﾝ城[改壱]","class":"槌","rarity":"6","plain":"山","hpF":"1.14","atF":"1.10","dfF":"1.21","totF":"3.45"},{"name":"躑躅ヶ崎館","class":"槌","rarity":"6","plain":"平","hpF":"1.12","atF":"1.20","dfF":"1.13","totF":"3.45"},{"name":"躑躅ヶ崎館[改壱]","class":"槌","rarity":"7","plain":"平","hpF":"1.16","atF":"1.27","dfF":"1.17","totF":"3.60"},{"name":"有岡城","class":"槌","rarity":"5","plain":"平","hpF":"1.06","atF":"1.14","dfF":"1.10","totF":"3.30"},{"name":"ユクエピラチャシ","class":"槌","rarity":"5","plain":"山","hpF":"1.11","atF":"1.11","dfF":"1.08","totF":"3.30"},{"name":"ユクエピラチャシ[改壱]","class":"槌","rarity":"6","plain":"山","hpF":"1.18","atF":"1.15","dfF":"1.12","totF":"3.45"},{"name":"淀城","class":"槌","rarity":"5","plain":"平水","hpF":"1.07","atF":"1.09","dfF":"1.14","totF":"3.30"},{"name":"津山城","class":"槌","rarity":"5","plain":"平山","hpF":"1.10","atF":"1.08","dfF":"1.12","totF":"3.30"},{"name":"山中城","class":"槌","rarity":"5","plain":"山","hpF":"1.06","atF":"1.12","dfF":"1.12","totF":"3.30"},{"name":"山中城[改壱]","class":"槌","rarity":"6","plain":"山","hpF":"1.10","atF":"1.16","dfF":"1.19","totF":"3.45"},{"name":"大垣城","class":"槌","rarity":"6","plain":"平水","hpF":"1.19","atF":"1.16","dfF":"1.10","totF":"3.45"},{"name":"カステル・デル・モンテ","class":"槌","rarity":"6","plain":"平山","hpF":"1.13","atF":"1.13","dfF":"1.19","totF":"3.45"},{"name":"[夏]名古屋城","class":"槌","rarity":"6","plain":"平","hpF":"1.22","atF":"1.18","dfF":"1.05","totF":"3.45"},{"name":"ﾉｲｼｭｳﾞｧﾝｼｭﾀｲﾝ城","class":"盾","rarity":"7","plain":"山","hpF":"1.20","atF":"1.20","dfF":"1.20","totF":"3.60"},{"name":"ｻﾝﾀﾝｼﾞｪﾛ城","class":"盾","rarity":"5","plain":"平","hpF":"1.07","atF":"1.11","dfF":"1.12","totF":"3.30"},{"name":"ｻﾝﾀﾝｼﾞｪﾛ城[改壱]","class":"盾","rarity":"6","plain":"平","hpF":"1.12","atF":"1.16","dfF":"1.17","totF":"3.45"},{"name":"ガイヤール城","class":"盾","rarity":"5","plain":"平山","hpF":"1.06","atF":"1.15","dfF":"1.09","totF":"3.30"},{"name":"ガイヤール城[改壱]","class":"盾","rarity":"6","plain":"平山","hpF":"1.11","atF":"1.20","dfF":"1.14","totF":"3.45"},{"name":"コンウィ城","class":"盾","rarity":"2","plain":"平水","hpF":"1.00","atF":"0.93","dfF":"0.97","totF":"2.90"},{"name":"カーナーヴォン城","class":"盾","rarity":"4","plain":"平水","hpF":"1.05","atF":"1.04","dfF":"1.06","totF":"3.15"},{"name":"マルボルク城","class":"盾","rarity":"6","plain":"平水","hpF":"1.13","atF":"1.17","dfF":"1.15","totF":"3.45"},{"name":"マルボルク城[改壱]","class":"盾","rarity":"7","plain":"平水","hpF":"1.20","atF":"1.21","dfF":"1.19","totF":"3.60"},{"name":"シノン城","class":"盾","rarity":"5","plain":"平山","hpF":"1.08","atF":"1.18","dfF":"1.04","totF":"3.30"},{"name":"城塞都市ｶﾙｶｿﾝﾇ","class":"盾","rarity":"7","plain":"平山","hpF":"1.21","atF":"1.17","dfF":"1.22","totF":"3.60"},{"name":"ｳﾞｧﾙﾄﾌﾞﾙｸ城","class":"盾","rarity":"6","plain":"山","hpF":"1.16","atF":"1.16","dfF":"1.13","totF":"3.45"},{"name":"紫禁城","class":"拳","rarity":"7","plain":"平","hpF":"1.23","atF":"1.23","dfF":"1.14","totF":"3.60"},{"name":"長安城","class":"拳","rarity":"6","plain":"平山","hpF":"1.18","atF":"1.15","dfF":"1.12","totF":"3.45"},{"name":"福山館[改壱]","class":"弓","rarity":"2","plain":"平山水","hpF":"0.97","atF":"0.99","dfF":"0.93","totF":"2.89"},{"name":"鍋蓋城","class":"弓","rarity":"1","plain":"平山","hpF":"0.96","atF":"0.91","dfF":"0.93","totF":"2.80"},{"name":"今川館","class":"弓","rarity":"1","plain":"平","hpF":"0.93","atF":"0.94","dfF":"0.93","totF":"2.80"},{"name":"駿府城","class":"弓","rarity":"5","plain":"平","hpF":"1.15","atF":"1.10","dfF":"1.05","totF":"3.30"},{"name":"駿府城[改壱]","class":"弓","rarity":"6","plain":"平","hpF":"1.19","atF":"1.17","dfF":"1.09","totF":"3.45"},{"name":"小牧山城","class":"弓","rarity":"4","plain":"平山","hpF":"1.03","atF":"1.08","dfF":"1.04","totF":"3.15"},{"name":"小牧山城[改壱]","class":"弓","rarity":"5","plain":"平山","hpF":"1.07","atF":"1.15","dfF":"1.08","totF":"3.30"},{"name":"多聞山城","class":"弓","rarity":"3","plain":"平山","hpF":"0.99","atF":"0.98","dfF":"1.03","totF":"3.00"},{"name":"多聞山城[改壱]","class":"弓","rarity":"4","plain":"平山","hpF":"1.04","atF":"1.03","dfF":"1.08","totF":"3.15"},{"name":"石山城","class":"弓","rarity":"1","plain":"平山","hpF":"0.99","atF":"0.89","dfF":"0.92","totF":"2.80"},{"name":"石山城[改壱]","class":"弓","rarity":"2","plain":"平山","hpF":"1.02","atF":"0.92","dfF":"0.95","totF":"2.89"},{"name":"桜尾城","class":"弓","rarity":"2","plain":"水","hpF":"1.00","atF":"0.96","dfF":"0.94","totF":"2.90"},{"name":"桜尾城[改壱]","class":"弓","rarity":"3","plain":"水","hpF":"1.03","atF":"0.99","dfF":"0.97","totF":"2.99"},{"name":"鳥取城","class":"弓","rarity":"4","plain":"山","hpF":"1.03","atF":"1.04","dfF":"1.08","totF":"3.15"},{"name":"島原城","class":"弓","rarity":"3","plain":"平水","hpF":"1.02","atF":"1.01","dfF":"0.97","totF":"3.00"},{"name":"島原城[改壱]","class":"弓","rarity":"4","plain":"平水","hpF":"1.07","atF":"1.06","dfF":"1.02","totF":"3.15"},{"name":"宇土古城","class":"弓","rarity":"2","plain":"平山","hpF":"0.98","atF":"1.00","dfF":"0.92","totF":"2.90"},{"name":"飫肥城","class":"弓","rarity":"2","plain":"平山","hpF":"0.95","atF":"0.95","dfF":"1.00","totF":"2.90"},{"name":"飫肥城[改壱]","class":"弓","rarity":"3","plain":"平山","hpF":"0.98","atF":"0.98","dfF":"1.03","totF":"2.99"},{"name":"浦添城","class":"弓","rarity":"2","plain":"山","hpF":"0.88","atF":"1.03","dfF":"0.99","totF":"2.90"},{"name":"浦添城[改壱]","class":"弓","rarity":"3","plain":"山","hpF":"0.91","atF":"1.06","dfF":"1.02","totF":"2.99"},{"name":"丹波橫山城","class":"弓","rarity":"2","plain":"平山","hpF":"0.98","atF":"0.93","dfF":"0.99","totF":"2.90"},{"name":"岡豊城","class":"弓","rarity":"5","plain":"山","hpF":"1.05","atF":"1.16","dfF":"1.09","totF":"3.30"},{"name":"岡豊城[改壱]","class":"弓","rarity":"6","plain":"山","hpF":"1.12","atF":"1.20","dfF":"1.13","totF":"3.45"},{"name":"深志城","class":"弓","rarity":"3","plain":"平","hpF":"1.00","atF":"1.03","dfF":"0.97","totF":"3.00"},{"name":"深志城[改壱]","class":"弓","rarity":"4","plain":"平","hpF":"1.07","atF":"1.07","dfF":"1.01","totF":"3.15"},{"name":"天神西舘","class":"弓","rarity":"1","plain":"平山","hpF":"0.98","atF":"0.93","dfF":"0.89","totF":"2.80"},{"name":"笹原城","class":"弓","rarity":"2","plain":"平山水","hpF":"0.97","atF":"0.95","dfF":"0.98","totF":"2.90"},{"name":"高岡城","class":"弓","rarity":"5","plain":"平山","hpF":"1.09","atF":"1.13","dfF":"1.08","totF":"3.30"},{"name":"高岡城[改壱]","class":"弓","rarity":"6","plain":"平山","hpF":"1.14","atF":"1.18","dfF":"1.13","totF":"3.45"},{"name":"吉田郡山城","class":"弓","rarity":"5","plain":"山","hpF":"1.08","atF":"1.12","dfF":"1.10","totF":"3.30"},{"name":"吉田郡山城[改壱]","class":"弓","rarity":"6","plain":"山","hpF":"1.13","atF":"1.17","dfF":"1.15","totF":"3.45"},{"name":"弘前城","class":"弓","rarity":"6","plain":"平山","hpF":"1.13","atF":"1.18","dfF":"1.14","totF":"3.45"},{"name":"聚楽第","class":"弓","rarity":"7","plain":"平","hpF":"1.18","atF":"1.25","dfF":"1.17","totF":"3.60"},{"name":"井伊谷城","class":"弓","rarity":"5","plain":"山","hpF":"1.11","atF":"1.07","dfF":"1.12","totF":"3.30"},{"name":"杵築城","class":"弓","rarity":"4","plain":"平山水","hpF":"1.08","atF":"1.04","dfF":"1.03","totF":"3.15"},{"name":"柳之御所","class":"弓","rarity":"6","plain":"平","hpF":"1.19","atF":"1.16","dfF":"1.10","totF":"3.45"},{"name":"水戸城","class":"石弓","rarity":"4","plain":"平山","hpF":"1.03","atF":"1.03","dfF":"1.09","totF":"3.15"},{"name":"滝山城","class":"石弓","rarity":"2","plain":"平山","hpF":"0.97","atF":"0.95","dfF":"0.98","totF":"2.90"},{"name":"滝山城[改壱]","class":"石弓","rarity":"3","plain":"平山","hpF":"1.00","atF":"0.98","dfF":"1.01","totF":"2.99"},{"name":"三原城","class":"石弓","rarity":"3","plain":"平山水","hpF":"0.97","atF":"1.07","dfF":"0.96","totF":"3.00"},{"name":"三原城[改壱]","class":"石弓","rarity":"4","plain":"平山水","hpF":"1.04","atF":"1.11","dfF":"1.00","totF":"3.15"},{"name":"三本松城","class":"石弓","rarity":"2","plain":"山","hpF":"0.96","atF":"1.00","dfF":"0.94","totF":"2.90"},{"name":"福岡城","class":"石弓","rarity":"4","plain":"平山水","hpF":"1.05","atF":"1.06","dfF":"1.04","totF":"3.15"},{"name":"福岡城[改壱]","class":"石弓","rarity":"5","plain":"平山水","hpF":"1.09","atF":"1.13","dfF":"1.08","totF":"3.30"},{"name":"多賀城","class":"石弓","rarity":"5","plain":"平山","hpF":"1.16","atF":"1.07","dfF":"1.07","totF":"3.30"},{"name":"多賀城[改壱]","class":"石弓","rarity":"6","plain":"平山","hpF":"1.21","atF":"1.12","dfF":"1.12","totF":"3.45"},{"name":"柳川城","class":"石弓","rarity":"3","plain":"平","hpF":"0.98","atF":"1.01","dfF":"1.01","totF":"3.00"},{"name":"柳川城[改壱]","class":"石弓","rarity":"4","plain":"平","hpF":"1.03","atF":"1.06","dfF":"1.06","totF":"3.15"},{"name":"観音寺城","class":"石弓","rarity":"5","plain":"山","hpF":"1.17","atF":"1.11","dfF":"1.02","totF":"3.30"},{"name":"観音寺城[改壱]","class":"石弓","rarity":"6","plain":"山","hpF":"1.24","atF":"1.15","dfF":"1.06","totF":"3.45"},{"name":"松本城","class":"石弓","rarity":"5","plain":"平","hpF":"1.21","atF":"1.04","dfF":"1.05","totF":"3.30"},{"name":"松本城[改壱]","class":"石弓","rarity":"6","plain":"平","hpF":"1.25","atF":"1.11","dfF":"1.09","totF":"3.45"},{"name":"広島城","class":"石弓","rarity":"6","plain":"平","hpF":"1.10","atF":"1.20","dfF":"1.15","totF":"3.45"},{"name":"広島城[改壱]","class":"石弓","rarity":"7","plain":"平","hpF":"1.15","atF":"1.25","dfF":"1.20","totF":"3.60"},{"name":"岡城","class":"石弓","rarity":"5","plain":"山","hpF":"1.05","atF":"1.08","dfF":"1.17","totF":"3.30"},{"name":"岡城[改壱]","class":"石弓","rarity":"6","plain":"山","hpF":"1.09","atF":"1.12","dfF":"1.24","totF":"3.45"},{"name":"內城","class":"石弓","rarity":"6","plain":"平","hpF":"1.15","atF":"1.18","dfF":"1.12","totF":"3.45"},{"name":"內城[改壱]","class":"石弓","rarity":"7","plain":"平","hpF":"1.19","atF":"1.25","dfF":"1.16","totF":"3.60"},{"name":"萬里の長城","class":"石弓","rarity":"7","plain":"平山","hpF":"1.25","atF":"1.10","dfF":"1.25","totF":"3.60"},{"name":"村尾城","class":"石弓","rarity":"4","plain":"山","hpF":"1.08","atF":"1.05","dfF":"1.02","totF":"3.15"},{"name":"白河小峰城","class":"石弓","rarity":"6","plain":"平山","hpF":"1.09","atF":"1.16","dfF":"1.20","totF":"3.45"},{"name":"白河小峰城[改壱]","class":"石弓","rarity":"7","plain":"平山","hpF":"1.13","atF":"1.23","dfF":"1.24","totF":"3.60"},{"name":"古河城","class":"石弓","rarity":"5","plain":"平水","hpF":"1.12","atF":"1.13","dfF":"1.05","totF":"3.30"},{"name":"松前城","class":"鉄砲","rarity":"4","plain":"平山水","hpF":"1.05","atF":"1.06","dfF":"1.04","totF":"3.15"},{"name":"會津若松城","class":"鉄砲","rarity":"4","plain":"平山","hpF":"1.05","atF":"1.06","dfF":"1.04","totF":"3.15"},{"name":"會津若松城[改壱]","class":"鉄砲","rarity":"5","plain":"平山","hpF":"1.09","atF":"1.13","dfF":"1.08","totF":"3.30"},{"name":"石倉城","class":"鉄砲","rarity":"1","plain":"平","hpF":"0.89","atF":"0.96","dfF":"0.95","totF":"2.80"},{"name":"廄橋城","class":"鉄砲","rarity":"2","plain":"平","hpF":"0.94","atF":"0.99","dfF":"0.97","totF":"2.90"},{"name":"前橋城","class":"鉄砲","rarity":"3","plain":"平","hpF":"1.03","atF":"0.99","dfF":"0.98","totF":"3.00"},{"name":"前橋城[改壱]","class":"鉄砲","rarity":"4","plain":"平","hpF":"1.08","atF":"1.04","dfF":"1.03","totF":"3.15"},{"name":"小田原城","class":"鉄砲","rarity":"6","plain":"平山水","hpF":"1.18","atF":"1.10","dfF":"1.17","totF":"3.45"},{"name":"小田原城[改壱]","class":"鉄砲","rarity":"7","plain":"平山水","hpF":"1.23","atF":"1.15","dfF":"1.22","totF":"3.60"},{"name":"三崎城","class":"鉄砲","rarity":"1","plain":"平山水","hpF":"0.89","atF":"0.93","dfF":"0.98","totF":"2.80"},{"name":"三崎城[改壱]","class":"鉄砲","rarity":"2","plain":"平山水","hpF":"0.92","atF":"0.96","dfF":"1.01","totF":"2.89"},{"name":"岐阜城","class":"鉄砲","rarity":"5","plain":"山","hpF":"1.07","atF":"1.11","dfF":"1.12","totF":"3.30"},{"name":"富山城","class":"鉄砲","rarity":"2","plain":"平","hpF":"1.00","atF":"1.01","dfF":"0.89","totF":"2.90"},{"name":"阪本城","class":"鉄砲","rarity":"5","plain":"平水","hpF":"1.13","atF":"1.14","dfF":"1.03","totF":"3.30"},{"name":"阪本城[改壱]","class":"鉄砲","rarity":"6","plain":"平水","hpF":"1.17","atF":"1.18","dfF":"1.10","totF":"3.45"},{"name":"二條城","class":"鉄砲","rarity":"5","plain":"平","hpF":"1.15","atF":"1.08","dfF":"1.07","totF":"3.30"},{"name":"雑賀城","class":"鉄砲","rarity":"3","plain":"平山水","hpF":"1.01","atF":"1.01","dfF":"0.98","totF":"3.00"},{"name":"雑賀城[改壱]","class":"鉄砲","rarity":"4","plain":"平山水","hpF":"1.05","atF":"1.08","dfF":"1.02","totF":"3.15"},{"name":"津和野城","class":"鉄砲","rarity":"3","plain":"山","hpF":"0.94","atF":"1.03","dfF":"1.03","totF":"3.00"},{"name":"上関城","class":"鉄砲","rarity":"2","plain":"水","hpF":"0.98","atF":"0.96","dfF":"0.96","totF":"2.90"},{"name":"勝瑞城","class":"鉄砲","rarity":"1","plain":"平","hpF":"0.93","atF":"0.94","dfF":"0.93","totF":"2.80"},{"name":"來島城","class":"鉄砲","rarity":"1","plain":"水","hpF":"0.90","atF":"0.95","dfF":"0.95","totF":"2.80"},{"name":"高知城","class":"鉄砲","rarity":"5","plain":"平山","hpF":"1.10","atF":"1.17","dfF":"1.03","totF":"3.30"},{"name":"高知城[改壱]","class":"鉄砲","rarity":"6","plain":"平山","hpF":"1.14","atF":"1.24","dfF":"1.07","totF":"3.45"},{"name":"鶴崎城","class":"鉄砲","rarity":"1","plain":"平","hpF":"0.92","atF":"0.91","dfF":"0.97","totF":"2.80"},{"name":"若松城","class":"鉄砲","rarity":"2","plain":"水","hpF":"0.91","atF":"1.00","dfF":"0.99","totF":"2.90"},{"name":"宇土城","class":"鉄砲","rarity":"4","plain":"平山","hpF":"1.08","atF":"1.00","dfF":"1.07","totF":"3.15"},{"name":"鹿児島城","class":"鉄砲","rarity":"2","plain":"平山水","hpF":"0.94","atF":"0.95","dfF":"1.01","totF":"2.90"},{"name":"鹿児島城[改壱]","class":"鉄砲","rarity":"3","plain":"平山水","hpF":"0.97","atF":"0.98","dfF":"1.04","totF":"2.99"},{"name":"能島城","class":"鉄砲","rarity":"3","plain":"水","hpF":"1.04","atF":"1.02","dfF":"0.94","totF":"3.00"},{"name":"能島城[改壱]","class":"鉄砲","rarity":"4","plain":"水","hpF":"1.11","atF":"1.06","dfF":"0.98","totF":"3.15"},{"name":"墨俁城","class":"鉄砲","rarity":"3","plain":"平","hpF":"1.02","atF":"0.97","dfF":"1.01","totF":"3.00"},{"name":"墨俁城[改壱]","class":"鉄砲","rarity":"4","plain":"平","hpF":"1.07","atF":"1.02","dfF":"1.06","totF":"3.15"},{"name":"原城","class":"鉄砲","rarity":"2","plain":"平山","hpF":"0.92","atF":"0.98","dfF":"1.00","totF":"2.90"},{"name":"原城[改壱]","class":"鉄砲","rarity":"3","plain":"平山","hpF":"0.95","atF":"1.01","dfF":"1.03","totF":"2.99"},{"name":"根來城","class":"鉄砲","rarity":"3","plain":"平山","hpF":"1.01","atF":"1.02","dfF":"0.97","totF":"3.00"},{"name":"鳥羽城","class":"鉄砲","rarity":"4","plain":"平山水","hpF":"1.05","atF":"1.05","dfF":"1.05","totF":"3.15"},{"name":"鳥羽城[改壱]","class":"鉄砲","rarity":"5","plain":"平山水","hpF":"1.10","atF":"1.10","dfF":"1.10","totF":"3.30"},{"name":"福知山城","class":"鉄砲","rarity":"6","plain":"平山","hpF":"1.15","atF":"1.14","dfF":"1.16","totF":"3.45"},{"name":"福知山城[改壱]","class":"鉄砲","rarity":"7","plain":"平山","hpF":"1.22","atF":"1.18","dfF":"1.20","totF":"3.60"},{"name":"長濱城","class":"鉄砲","rarity":"4","plain":"平水","hpF":"1.02","atF":"1.04","dfF":"1.09","totF":"3.15"},{"name":"今治城","class":"鉄砲","rarity":"4","plain":"水","hpF":"1.08","atF":"1.07","dfF":"1.15","totF":"3.30"},{"name":"今治城[改壱]","class":"鉄砲","rarity":"5","plain":"水","hpF":"1.13","atF":"1.12","dfF":"1.20","totF":"3.45"},{"name":"萩城","class":"鉄砲","rarity":"5","plain":"平山水","hpF":"1.05","atF":"1.15","dfF":"1.10","totF":"3.30"},{"name":"萩城[改壱]","class":"鉄砲","rarity":"6","plain":"平山水","hpF":"1.12","atF":"1.19","dfF":"1.14","totF":"3.45"},{"name":"四稜郭","class":"鉄砲","rarity":"3","plain":"平","hpF":"0.95","atF":"0.99","dfF":"1.06","totF":"3.00"},{"name":"オレンジ城","class":"鉄砲","rarity":"3","plain":"平水","hpF":"1.00","atF":"0.96","dfF":"1.04","totF":"3.00"},{"name":"ゼーランディア城","class":"鉄砲","rarity":"5","plain":"平水","hpF":"1.10","atF":"1.06","dfF":"1.14","totF":"3.30"},{"name":"久留米城","class":"鉄砲","rarity":"3","plain":"平山水","hpF":"0.96","atF":"1.02","dfF":"1.02","totF":"3.00"},{"name":"久留米城[改壱]","class":"鉄砲","rarity":"4","plain":"平山水","hpF":"1.03","atF":"1.06","dfF":"1.06","totF":"3.15"},{"name":"安平城","class":"鉄砲","rarity":"7","plain":"平水","hpF":"1.17","atF":"1.20","dfF":"1.23","totF":"3.60"},{"name":"安平城[改壱]","class":"鉄砲","rarity":"8","plain":"平水","hpF":"1.25","atF":"1.34","dfF":"1.31","totF":"3.90"},{"name":"備中松山城","class":"鉄砲","rarity":"5","plain":"山","hpF":"1.14","atF":"1.16","dfF":"1.15","totF":"3.45"},{"name":"備中松山城[改壱]","class":"鉄砲","rarity":"6","plain":"山","hpF":"1.18","atF":"1.20","dfF":"1.22","totF":"3.60"},{"name":"中津城","class":"鉄砲","rarity":"5","plain":"平水","hpF":"1.12","atF":"1.12","dfF":"1.06","totF":"3.30"},{"name":"中津城[改壱]","class":"鉄砲","rarity":"6","plain":"平水","hpF":"1.16","atF":"1.19","dfF":"1.10","totF":"3.45"},{"name":"姫路城","class":"鉄砲","rarity":"7","plain":"平山","hpF":"1.15","atF":"1.25","dfF":"1.20","totF":"3.60"},{"name":"高天神城","class":"鉄砲","rarity":"6","plain":"山","hpF":"1.10","atF":"1.15","dfF":"1.20","totF":"3.45"},{"name":"青葉城","class":"鉄砲","rarity":"6","plain":"平山","hpF":"1.16","atF":"1.16","dfF":"1.13","totF":"3.45"},{"name":"長篠城","class":"鉄砲","rarity":"6","plain":"平","hpF":"1.19","atF":"1.18","dfF":"1.08","totF":"3.45"},{"name":"五稜郭","class":"大砲","rarity":"7","plain":"平","hpF":"1.20","atF":"1.20","dfF":"1.20","totF":"3.60"},{"name":"五稜郭[改壱]","class":"大砲","rarity":"8","plain":"平","hpF":"1.30","atF":"1.30","dfF":"1.30","totF":"3.90"},{"name":"安平古堡","class":"大砲","rarity":"3","plain":"平水","hpF":"1.00","atF":"0.96","dfF":"1.04","totF":"3.00"},{"name":"安平古堡[改壱]","class":"大砲","rarity":"4","plain":"平水","hpF":"1.05","atF":"1.01","dfF":"1.09","totF":"3.15"},{"name":"信貴山城","class":"大砲","rarity":"5","plain":"山","hpF":"1.12","atF":"1.10","dfF":"1.08","totF":"3.30"},{"name":"信貴山城[改壱]","class":"大砲","rarity":"6","plain":"山","hpF":"1.16","atF":"1.17","dfF":"1.12","totF":"3.45"},{"name":"犬山城","class":"大砲","rarity":"6","plain":"平山","hpF":"1.11","atF":"1.13","dfF":"1.11","totF":"3.35"},{"name":"犬山城[改壱]","class":"大砲","rarity":"7","plain":"平山","hpF":"1.16","atF":"1.18","dfF":"1.16","totF":"3.50"},{"name":"板島丸串城","class":"大砲","rarity":"4","plain":"平山水","hpF":"1.06","atF":"1.02","dfF":"1.07","totF":"3.15"},{"name":"宇和島城","class":"大砲","rarity":"6","plain":"平山水","hpF":"1.15","atF":"1.15","dfF":"1.15","totF":"3.45"},{"name":"宇和島城[改壱]","class":"大砲","rarity":"7","plain":"平山水","hpF":"1.22","atF":"1.19","dfF":"1.19","totF":"3.60"},{"name":"臼杵城","class":"大砲","rarity":"5","plain":"平山水","hpF":"1.10","atF":"1.08","dfF":"1.12","totF":"3.30"},{"name":"臼杵城[改壱]","class":"大砲","rarity":"6","plain":"平山水","hpF":"1.14","atF":"1.12","dfF":"1.19","totF":"3.45"},{"name":"[夏]犬山城","class":"大砲","rarity":"6","plain":"平山","hpF":"1.19","atF":"1.20","dfF":"1.06","totF":"3.45"},{"name":"エディンバラ城","class":"大砲","rarity":"6","plain":"山","hpF":"1.18","atF":"1.14","dfF":"1.13","totF":"3.45"},{"name":"明石城","class":"大砲","rarity":"5","plain":"平山水","hpF":"1.08","atF":"1.12","dfF":"1.10","totF":"3.30"},{"name":"窪田城","class":"歌舞","rarity":"1","plain":"平山","hpF":"0.88","atF":"0.99","dfF":"0.93","totF":"2.80"},{"name":"久保田城","class":"歌舞","rarity":"2","plain":"平山","hpF":"0.90","atF":"1.05","dfF":"0.95","totF":"2.90"},{"name":"鶴ヶ岡城","class":"歌舞","rarity":"3","plain":"平","hpF":"1.02","atF":"0.97","dfF":"1.01","totF":"3.00"},{"name":"鶴ヶ岡城[改壱]","class":"歌舞","rarity":"4","plain":"平","hpF":"1.06","atF":"1.04","dfF":"1.05","totF":"3.15"},{"name":"石山御坊","class":"歌舞","rarity":"6","plain":"平","hpF":"1.17","atF":"1.12","dfF":"1.16","totF":"3.45"},{"name":"石山御坊[改壱]","class":"歌舞","rarity":"7","plain":"平","hpF":"1.21","atF":"1.16","dfF":"1.23","totF":"3.60"},{"name":"大阪城","class":"歌舞","rarity":"7","plain":"平","hpF":"1.23","atF":"1.16","dfF":"1.21","totF":"3.60"},{"name":"大阪城[改壱]","class":"歌舞","rarity":"8","plain":"平","hpF":"1.33","atF":"1.26","dfF":"1.31","totF":"3.90"},{"name":"尾山御坊","class":"歌舞","rarity":"2","plain":"平山","hpF":"1.00","atF":"0.93","dfF":"0.97","totF":"2.90"},{"name":"尾山御坊[改壱]","class":"歌舞","rarity":"3","plain":"平山","hpF":"1.03","atF":"0.96","dfF":"1.00","totF":"2.99"},{"name":"山科本願寺","class":"歌舞","rarity":"3","plain":"平","hpF":"1.00","atF":"1.04","dfF":"0.96","totF":"3.00"},{"name":"山科本願寺[改壱]","class":"歌舞","rarity":"4","plain":"平","hpF":"1.05","atF":"1.09","dfF":"1.01","totF":"3.15"},{"name":"矢留ノ城","class":"法術","rarity":"1","plain":"平山","hpF":"0.97","atF":"0.95","dfF":"0.88","totF":"2.80"},{"name":"大寶寺城","class":"法術","rarity":"2","plain":"平","hpF":"0.98","atF":"0.95","dfF":"0.97","totF":"2.90"},{"name":"大寶寺城[改壱]","class":"法術","rarity":"3","plain":"平","hpF":"1.01","atF":"0.98","dfF":"1.00","totF":"2.99"},{"name":"宇都宮城","class":"法術","rarity":"4","plain":"平","hpF":"1.08","atF":"1.04","dfF":"1.03","totF":"3.15"},{"name":"宇都宮城[改壱]","class":"法術","rarity":"5","plain":"平","hpF":"1.15","atF":"1.08","dfF":"1.07","totF":"3.30"},{"name":"大聖寺城","class":"法術","rarity":"2","plain":"平山","hpF":"0.95","atF":"0.95","dfF":"1.00","totF":"2.90"},{"name":"龍王山城","class":"法術","rarity":"2","plain":"山","hpF":"0.93","atF":"1.03","dfF":"0.94","totF":"2.90"},{"name":"龍王山城[改壱]","class":"法術","rarity":"3","plain":"山","hpF":"0.96","atF":"1.06","dfF":"0.97","totF":"2.99"},{"name":"飯盛山城","class":"法術","rarity":"2","plain":"山","hpF":"0.90","atF":"1.04","dfF":"0.96","totF":"2.90"},{"name":"引田城","class":"法術","rarity":"2","plain":"平山水","hpF":"1.01","atF":"0.94","dfF":"0.95","totF":"2.90"},{"name":"平戸城","class":"法術","rarity":"3","plain":"平山水","hpF":"0.99","atF":"1.06","dfF":"0.95","totF":"3.00"},{"name":"平戸城[改壱]","class":"法術","rarity":"4","plain":"平山水","hpF":"1.06","atF":"1.10","dfF":"0.99","totF":"3.15"},{"name":"今濱城","class":"法術","rarity":"1","plain":"平水","hpF":"0.99","atF":"0.91","dfF":"0.90","totF":"2.80"},{"name":"乙女城","class":"法術","rarity":"1","plain":"平山","hpF":"0.96","atF":"0.93","dfF":"0.91","totF":"2.80"},{"name":"菩提山城","class":"法術","rarity":"4","plain":"山","hpF":"1.00","atF":"1.10","dfF":"1.05","totF":"3.15"},{"name":"菩提山城[改壱]","class":"法術","rarity":"5","plain":"山","hpF":"1.05","atF":"1.15","dfF":"1.10","totF":"3.30"},{"name":"竹田城","class":"法術","rarity":"6","plain":"山","hpF":"1.13","atF":"1.17","dfF":"1.15","totF":"3.45"},{"name":"竹田城[改壱]","class":"法術","rarity":"7","plain":"山","hpF":"1.18","atF":"1.22","dfF":"1.20","totF":"3.60"},{"name":"杉目城","class":"法術","rarity":"2","plain":"平","hpF":"0.95","atF":"0.97","dfF":"0.98","totF":"2.90"},{"name":"福島城","class":"法術","rarity":"4","plain":"平","hpF":"1.03","atF":"1.06","dfF":"1.06","totF":"3.15"},{"name":"安土城","class":"法術","rarity":"7","plain":"平山水","hpF":"1.16","atF":"1.26","dfF":"1.18","totF":"3.60"},{"name":"丸岡城","class":"法術","rarity":"6","plain":"平山","hpF":"1.18","atF":"1.15","dfF":"1.12","totF":"3.45"},{"name":"丸岡城[改壱]","class":"法術","rarity":"7","plain":"平山","hpF":"1.25","atF":"1.19","dfF":"1.16","totF":"3.60"},{"name":"大和郡山城","class":"法術","rarity":"5","plain":"平山","hpF":"1.11","atF":"1.12","dfF":"1.07","totF":"3.30"},{"name":"大和郡山城[改壱]","class":"法術","rarity":"6","plain":"平山","hpF":"1.15","atF":"1.16","dfF":"1.14","totF":"3.45"},{"name":"岩殿山城","class":"法術","rarity":"5","plain":"山","hpF":"1.07","atF":"1.09","dfF":"1.14","totF":"3.30"},{"name":"岩殿山城[改壱]","class":"法術","rarity":"6","plain":"山","hpF":"1.11","atF":"1.13","dfF":"1.21","totF":"3.45"},{"name":"高遠城","class":"法術","rarity":"6","plain":"平山","hpF":"1.12","atF":"1.13","dfF":"1.20","totF":"3.45"},{"name":"指月伏見城","class":"鈴","rarity":"7","plain":"平山","hpF":"1.17","atF":"1.25","dfF":"1.18","totF":"3.60"},{"name":"濱田城","class":"鈴","rarity":"5","plain":"平山","hpF":"1.10","atF":"1.10","dfF":"1.10","totF":"3.30"},{"name":"アンボワーズ城","class":"鈴","rarity":"6","plain":"平水","hpF":"1.15","atF":"1.15","dfF":"1.15","totF":"3.45"},{"name":"アンボワーズ城[改壱]","class":"鈴","rarity":"7","plain":"平水","hpF":"1.22","atF":"1.19","dfF":"1.19","totF":"3.60"},{"name":"[夏]指月伏見城","class":"鈴","rarity":"6","plain":"平山","hpF":"1.17","atF":"1.20","dfF":"1.08","totF":"3.45"},{"name":"新田金山城","class":"鈴","rarity":"6","plain":"山","hpF":"1.10","atF":"1.10","dfF":"1.25","totF":"3.45"},{"name":"城塞都市ﾙｸｾﾝﾌﾞﾙｸ","class":"鈴","rarity":"6","plain":"平山","hpF":"1.18","atF":"1.11","dfF":"1.16","totF":"3.45"},{"name":"高島城","class":"鈴","rarity":"4","plain":"平水","hpF":"1.05","atF":"1.05","dfF":"1.05","totF":"3.15"},{"name":"ユッセ城","class":"杖","rarity":"6","plain":"平","hpF":"1.15","atF":"1.15","dfF":"1.15","totF":"3.45"},{"name":"シュノンソー城","class":"杖","rarity":"6","plain":"平水","hpF":"1.12","atF":"1.17","dfF":"1.16","totF":"3.45"},{"name":"シュノンソー城[改壱]","class":"杖","rarity":"7","plain":"平水","hpF":"1.19","atF":"1.21","dfF":"1.20","totF":"3.60"},{"name":"プラハ城","class":"杖","rarity":"7","plain":"平山","hpF":"1.17","atF":"1.23","dfF":"1.20","totF":"3.60"},{"name":"ﾎｰｴﾝｻﾞﾙﾂﾌﾞﾙｸ城","class":"杖","rarity":"6","plain":"平山","hpF":"1.20","atF":"1.12","dfF":"1.13","totF":"3.45"},{"name":"ｱｲﾘｰﾝ・ﾄﾞﾅﾝ城","class":"杖","rarity":"4","plain":"水","hpF":"1.07","atF":"1.01","dfF":"1.07","totF":"3.15"}]
-
-/***/ }),
 /* 516 */
 /***/ (function(module, exports) {
 
-	module.exports = [{"name":"sword","cname":"刀","frame1":19,"frame2":30,"range":140,"hp":1560,"atk":66,"def":65,"hpM":12072,"atkM":1626,"defM":1585},{"name":"lance","cname":"槍","frame1":23,"frame2":30,"range":200,"hp":1140,"atk":51,"def":48,"hpM":8820,"atkM":1267,"defM":1192},{"name":"hammer","cname":"槌","frame1":27,"frame2":30,"range":100,"hp":1680,"atk":90,"def":66,"hpM":15540,"atkM":2194,"defM":1742},{"name":"shield","cname":"盾","frame1":24,"frame2":30,"range":90,"hp":1800,"atk":61,"def":90,"hpM":15800,"atkM":1501,"defM":1890},{"name":"bow","cname":"弓","frame1":19,"frame2":18,"range":280,"hp":960,"atk":50,"def":39,"hpM":7432,"atkM":1234,"defM":959},{"name":"xbow","cname":"石弓","frame1":24,"frame2":30,"range":250,"hp":1080,"atk":72,"def":45,"hpM":8360,"atkM":1776,"defM":1117},{"name":"arqu","cname":"鉄砲","frame1":37,"frame2":30,"range":340,"hp":840,"atk":90,"def":36,"hpM":6505,"atkM":2226,"defM":892},{"name":"cannon","cname":"大砲","frame1":42,"frame2":45,"range":340,"hp":870,"atk":69,"def":39,"hpM":6734,"atkM":1701,"defM":959},{"name":"dance","cname":"歌舞","frame1":62,"frame2":60,"range":300,"hp":900,"atk":41,"def":37,"hpM":6972,"atkM":1037,"defM":933},{"name":"spell","cname":"法術","frame1":42,"frame2":30,"range":240,"hp":960,"atk":48,"def":34,"hpM":7432,"atkM":1192,"defM":858},{"name":"bell","cname":"鈴","frame1":60,"frame2":97,"range":320,"hp":1000,"atk":45,"def":36,"hpM":8000,"atkM":1197,"defM":932},{"name":"staff","cname":"杖","frame1":37,"frame2":30,"range":240,"hp":850,"atk":90,"def":34,"hpM":6350,"atkM":2194,"defM":858},{"name":"fist","cname":"拳","frame1":32,"frame2":19,"range":90,"hp":1900,"atk":48,"def":40,"hpM":16900,"atkM":1168,"defM":1240}]
+	module.exports = [{"name":"福山館","weapon":"弓","rarity":"1","plain":"平山水","hpF":"0.94","atF":"0.96","dfF":"0.90","totF":"2.80"},{"name":"福山館[改壱]","weapon":"弓","rarity":"2","plain":"平山水","hpF":"0.97","atF":"0.99","dfF":"0.93","totF":"2.89"},{"name":"松前城","weapon":"鉄砲","rarity":"4","plain":"平山水","hpF":"1.05","atF":"1.06","dfF":"1.04","totF":"3.15"},{"name":"根城","weapon":"槍","rarity":"2","plain":"平山","hpF":"0.92","atF":"0.98","dfF":"1.00","totF":"2.90"},{"name":"不来方城","weapon":"槌","rarity":"2","plain":"平山","hpF":"0.95","atF":"0.96","dfF":"0.99","totF":"2.90"},{"name":"不来方城[改壱]","weapon":"槌","rarity":"3","plain":"平山","hpF":"0.98","atF":"0.99","dfF":"1.02","totF":"2.99"},{"name":"盛岡城","weapon":"槌","rarity":"4","plain":"平山","hpF":"1.02","atF":"1.06","dfF":"1.07","totF":"3.15"},{"name":"盛岡城[改壱]","weapon":"槌","rarity":"5","plain":"平山","hpF":"1.06","atF":"1.10","dfF":"1.14","totF":"3.30"},{"name":"千代城","weapon":"刀","rarity":"2","plain":"山","hpF":"0.91","atF":"1.05","dfF":"0.94","totF":"2.90"},{"name":"千代城[改壱]","weapon":"刀","rarity":"3","plain":"山","hpF":"0.94","atF":"1.08","dfF":"0.97","totF":"2.99"},{"name":"仙台城","weapon":"刀","rarity":"5","plain":"平山","hpF":"1.19","atF":"1.11","dfF":"1.00","totF":"3.30"},{"name":"仙台城[改壱]","weapon":"刀","rarity":"6","plain":"平山","hpF":"1.23","atF":"1.15","dfF":"1.07","totF":"3.45"},{"name":"東黒川館","weapon":"刀","rarity":"1","plain":"平山","hpF":"0.96","atF":"0.90","dfF":"0.94","totF":"2.80"},{"name":"東黒川館[改壱]","weapon":"刀","rarity":"2","plain":"平山","hpF":"0.99","atF":"0.93","dfF":"0.97","totF":"2.89"},{"name":"黒川城","weapon":"刀","rarity":"2","plain":"平山","hpF":"0.98","atF":"0.97","dfF":"0.95","totF":"2.90"},{"name":"黒川城[改壱]","weapon":"刀","rarity":"3","plain":"平山","hpF":"1.01","atF":"1.00","dfF":"0.98","totF":"2.99"},{"name":"会津若松城","weapon":"鉄砲","rarity":"4","plain":"平山","hpF":"1.05","atF":"1.06","dfF":"1.04","totF":"3.15"},{"name":"会津若松城[改壱]","weapon":"鉄砲","rarity":"5","plain":"平山","hpF":"1.09","atF":"1.13","dfF":"1.08","totF":"3.30"},{"name":"山形城","weapon":"刀","rarity":"4","plain":"平","hpF":"1.05","atF":"1.00","dfF":"1.10","totF":"3.15"},{"name":"山形城[改壱]","weapon":"刀","rarity":"5","plain":"平","hpF":"1.09","atF":"1.07","dfF":"1.14","totF":"3.30"},{"name":"矢留ノ城","weapon":"法術","rarity":"1","plain":"平山","hpF":"0.97","atF":"0.95","dfF":"0.88","totF":"2.80"},{"name":"窪田城","weapon":"歌舞","rarity":"1","plain":"平山","hpF":"0.88","atF":"0.99","dfF":"0.93","totF":"2.80"},{"name":"久保田城","weapon":"歌舞","rarity":"2","plain":"平山","hpF":"0.90","atF":"1.05","dfF":"0.95","totF":"2.90"},{"name":"大宝寺城","weapon":"法術","rarity":"2","plain":"平","hpF":"0.98","atF":"0.95","dfF":"0.97","totF":"2.90"},{"name":"大宝寺城[改壱]","weapon":"法術","rarity":"3","plain":"平","hpF":"1.01","atF":"0.98","dfF":"1.00","totF":"2.99"},{"name":"鶴ヶ岡城","weapon":"歌舞","rarity":"3","plain":"平","hpF":"1.02","atF":"0.97","dfF":"1.01","totF":"3.00"},{"name":"鶴ヶ岡城[改壱]","weapon":"歌舞","rarity":"4","plain":"平","hpF":"1.06","atF":"1.04","dfF":"1.05","totF":"3.15"},{"name":"馬場城","weapon":"刀","rarity":"1","plain":"平山","hpF":"0.95","atF":"0.95","dfF":"0.90","totF":"2.80"},{"name":"馬場城[改壱]","weapon":"刀","rarity":"2","plain":"平山","hpF":"0.98","atF":"0.98","dfF":"0.93","totF":"2.89"},{"name":"水戸城","weapon":"石弓","rarity":"4","plain":"平山","hpF":"1.03","atF":"1.03","dfF":"1.09","totF":"3.15"},{"name":"石倉城","weapon":"鉄砲","rarity":"1","plain":"平","hpF":"0.89","atF":"0.96","dfF":"0.95","totF":"2.80"},{"name":"厩橋城","weapon":"鉄砲","rarity":"2","plain":"平","hpF":"0.94","atF":"0.99","dfF":"0.97","totF":"2.90"},{"name":"厩橋城[改壱]","weapon":"鉄砲","rarity":"3","plain":"平","hpF":"0.97","atF":"1.02","dfF":"1.00","totF":"2.99"},{"name":"前橋城","weapon":"鉄砲","rarity":"3","plain":"平","hpF":"1.03","atF":"0.99","dfF":"0.98","totF":"3.00"},{"name":"前橋城[改壱]","weapon":"鉄砲","rarity":"4","plain":"平","hpF":"1.08","atF":"1.04","dfF":"1.03","totF":"3.15"},{"name":"宇都宮城","weapon":"法術","rarity":"4","plain":"平","hpF":"1.08","atF":"1.04","dfF":"1.03","totF":"3.15"},{"name":"宇都宮城[改壱]","weapon":"法術","rarity":"5","plain":"平","hpF":"1.15","atF":"1.08","dfF":"1.07","totF":"3.30"},{"name":"飛山城","weapon":"槌","rarity":"1","plain":"平山","hpF":"0.95","atF":"0.90","dfF":"0.95","totF":"2.80"},{"name":"飛山城[改壱]","weapon":"槌","rarity":"2","plain":"平山","hpF":"0.98","atF":"0.93","dfF":"0.98","totF":"2.89"},{"name":"小田喜城","weapon":"槍","rarity":"1","plain":"平山","hpF":"0.91","atF":"0.94","dfF":"0.95","totF":"2.80"},{"name":"小田喜城[改壱]","weapon":"槍","rarity":"2","plain":"平山","hpF":"0.94","atF":"0.97","dfF":"0.98","totF":"2.89"},{"name":"大多喜城","weapon":"槍","rarity":"3","plain":"平山","hpF":"0.98","atF":"0.98","dfF":"1.04","totF":"3.00"},{"name":"大多喜城[改壱]","weapon":"槍","rarity":"4","plain":"平山","hpF":"1.02","atF":"1.02","dfF":"1.11","totF":"3.15"},{"name":"忍城","weapon":"刀","rarity":"4","plain":"平","hpF":"1.06","atF":"1.04","dfF":"1.05","totF":"3.15"},{"name":"忍城[改壱]","weapon":"刀","rarity":"5","plain":"平","hpF":"1.11","atF":"1.09","dfF":"1.10","totF":"3.30"},{"name":"本庄城","weapon":"刀","rarity":"1","plain":"平","hpF":"0.94","atF":"0.93","dfF":"0.93","totF":"2.80"},{"name":"本庄城[改壱]","weapon":"刀","rarity":"2","plain":"平","hpF":"0.97","atF":"0.96","dfF":"0.96","totF":"2.89"},{"name":"滝山城","weapon":"石弓","rarity":"2","plain":"平山","hpF":"0.97","atF":"0.95","dfF":"0.98","totF":"2.90"},{"name":"滝山城[改壱]","weapon":"石弓","rarity":"3","plain":"平山","hpF":"1.00","atF":"0.98","dfF":"1.01","totF":"2.99"},{"name":"小田原城","weapon":"鉄砲","rarity":"6","plain":"平山水","hpF":"1.18","atF":"1.10","dfF":"1.17","totF":"3.45"},{"name":"小田原城[改壱]","weapon":"鉄砲","rarity":"7","plain":"平山水","hpF":"1.23","atF":"1.15","dfF":"1.22","totF":"3.60"},{"name":"三崎城","weapon":"鉄砲","rarity":"1","plain":"平山水","hpF":"0.89","atF":"0.93","dfF":"0.98","totF":"2.80"},{"name":"三崎城[改壱]","weapon":"鉄砲","rarity":"2","plain":"平山水","hpF":"0.92","atF":"0.96","dfF":"1.01","totF":"2.89"},{"name":"新府城","weapon":"槍","rarity":"2","plain":"平山","hpF":"0.95","atF":"0.97","dfF":"0.98","totF":"2.90"},{"name":"新府城[改壱]","weapon":"槍","rarity":"3","plain":"平山","hpF":"0.98","atF":"1.00","dfF":"1.01","totF":"2.99"},{"name":"鍋蓋城","weapon":"弓","rarity":"1","plain":"平山","hpF":"0.96","atF":"0.91","dfF":"0.93","totF":"2.80"},{"name":"小諸城","weapon":"槍","rarity":"4","plain":"平山","hpF":"1.04","atF":"1.04","dfF":"1.07","totF":"3.15"},{"name":"小諸城[改壱]","weapon":"槍","rarity":"5","plain":"平山","hpF":"1.08","atF":"1.08","dfF":"1.14","totF":"3.30"},{"name":"今川館","weapon":"弓","rarity":"1","plain":"平","hpF":"0.93","atF":"0.94","dfF":"0.93","totF":"2.80"},{"name":"駿府城","weapon":"弓","rarity":"5","plain":"平","hpF":"1.15","atF":"1.10","dfF":"1.05","totF":"3.30"},{"name":"駿府城[改壱]","weapon":"弓","rarity":"6","plain":"平","hpF":"1.19","atF":"1.17","dfF":"1.09","totF":"3.45"},{"name":"小牧山城","weapon":"弓","rarity":"4","plain":"平山","hpF":"1.03","atF":"1.08","dfF":"1.04","totF":"3.15"},{"name":"小牧山城[改壱]","weapon":"弓","rarity":"5","plain":"平山","hpF":"1.07","atF":"1.15","dfF":"1.08","totF":"3.30"},{"name":"柳之丸","weapon":"刀","rarity":"1","plain":"平","hpF":"0.90","atF":"0.98","dfF":"0.92","totF":"2.80"},{"name":"那古野城","weapon":"刀","rarity":"2","plain":"平","hpF":"0.97","atF":"0.95","dfF":"0.98","totF":"2.90"},{"name":"名古屋城","weapon":"槌","rarity":"7","plain":"平","hpF":"1.22","atF":"1.23","dfF":"1.15","totF":"3.60"},{"name":"稲葉山城","weapon":"刀","rarity":"3","plain":"山","hpF":"0.99","atF":"0.98","dfF":"1.03","totF":"3.00"},{"name":"岐阜城","weapon":"鉄砲","rarity":"5","plain":"山","hpF":"1.07","atF":"1.11","dfF":"1.12","totF":"3.30"},{"name":"苗木城","weapon":"刀","rarity":"3","plain":"山","hpF":"0.93","atF":"0.98","dfF":"1.09","totF":"3.00"},{"name":"苗木城[改壱]","weapon":"刀","rarity":"4","plain":"山","hpF":"0.97","atF":"1.02","dfF":"1.16","totF":"3.15"},{"name":"坂戸城","weapon":"刀","rarity":"2","plain":"山","hpF":"0.93","atF":"0.98","dfF":"0.99","totF":"2.90"},{"name":"坂戸城[改壱]","weapon":"刀","rarity":"3","plain":"山","hpF":"0.96","atF":"1.01","dfF":"1.02","totF":"2.99"},{"name":"富山城","weapon":"鉄砲","rarity":"2","plain":"平","hpF":"1.00","atF":"1.01","dfF":"0.89","totF":"2.90"},{"name":"七尾城","weapon":"槍","rarity":"4","plain":"山","hpF":"1.00","atF":"1.08","dfF":"1.07","totF":"3.15"},{"name":"大聖寺城","weapon":"法術","rarity":"2","plain":"平山","hpF":"0.95","atF":"0.95","dfF":"1.00","totF":"2.90"},{"name":"北ノ庄城","weapon":"槍","rarity":"3","plain":"平","hpF":"1.05","atF":"0.97","dfF":"0.98","totF":"3.00"},{"name":"福井城","weapon":"槍","rarity":"4","plain":"平","hpF":"1.05","atF":"1.02","dfF":"1.08","totF":"3.15"},{"name":"津留賀城","weapon":"刀","rarity":"1","plain":"山水","hpF":"0.85","atF":"0.96","dfF":"0.99","totF":"2.80"},{"name":"金ヶ崎城","weapon":"刀","rarity":"2","plain":"山水","hpF":"0.93","atF":"1.01","dfF":"0.96","totF":"2.90"},{"name":"坂本城","weapon":"鉄砲","rarity":"5","plain":"平水","hpF":"1.13","atF":"1.14","dfF":"1.03","totF":"3.30"},{"name":"坂本城[改壱]","weapon":"鉄砲","rarity":"6","plain":"平水","hpF":"1.17","atF":"1.18","dfF":"1.10","totF":"3.45"},{"name":"佐和山城","weapon":"槍","rarity":"6","plain":"山","hpF":"1.18","atF":"1.20","dfF":"1.07","totF":"3.45"},{"name":"佐和山城[改壱]","weapon":"槍","rarity":"7","plain":"山","hpF":"1.25","atF":"1.24","dfF":"1.11","totF":"3.60"},{"name":"水口城","weapon":"刀","rarity":"1","plain":"平","hpF":"0.92","atF":"0.93","dfF":"0.95","totF":"2.80"},{"name":"仁木館","weapon":"刀","rarity":"2","plain":"平山","hpF":"1.00","atF":"0.99","dfF":"0.91","totF":"2.90"},{"name":"伊賀上野城","weapon":"刀","rarity":"4","plain":"平山","hpF":"1.08","atF":"1.07","dfF":"1.00","totF":"3.15"},{"name":"伊賀上野城[改壱]","weapon":"刀","rarity":"5","plain":"平山","hpF":"1.12","atF":"1.14","dfF":"1.04","totF":"3.30"},{"name":"二条城","weapon":"鉄砲","rarity":"5","plain":"平","hpF":"1.15","atF":"1.08","dfF":"1.07","totF":"3.30"},{"name":"二条城[改壱]","weapon":"鉄砲","rarity":"6","plain":"平","hpF":"1.19","atF":"1.15","dfF":"1.11","totF":"3.45"},{"name":"多聞山城","weapon":"弓","rarity":"3","plain":"平山","hpF":"0.99","atF":"0.98","dfF":"1.03","totF":"3.00"},{"name":"多聞山城[改壱]","weapon":"弓","rarity":"4","plain":"平山","hpF":"1.04","atF":"1.03","dfF":"1.08","totF":"3.15"},{"name":"龍王山城","weapon":"法術","rarity":"2","plain":"山","hpF":"0.93","atF":"1.03","dfF":"0.94","totF":"2.90"},{"name":"龍王山城[改壱]","weapon":"法術","rarity":"3","plain":"山","hpF":"0.96","atF":"1.06","dfF":"0.97","totF":"2.99"},{"name":"石山御坊","weapon":"歌舞","rarity":"6","plain":"平","hpF":"1.17","atF":"1.12","dfF":"1.16","totF":"3.45"},{"name":"石山御坊[改壱]","weapon":"歌舞","rarity":"7","plain":"平","hpF":"1.21","atF":"1.16","dfF":"1.23","totF":"3.60"},{"name":"大坂城","weapon":"歌舞","rarity":"7","plain":"平","hpF":"1.23","atF":"1.16","dfF":"1.21","totF":"3.60"},{"name":"大坂城[改壱]","weapon":"歌舞","rarity":"8","plain":"平","hpF":"1.33","atF":"1.26","dfF":"1.31","totF":"3.90"},{"name":"飯盛山城","weapon":"法術","rarity":"2","plain":"山","hpF":"0.90","atF":"1.04","dfF":"0.96","totF":"2.90"},{"name":"鬼ヶ城","weapon":"槌","rarity":"2","plain":"山水","hpF":"0.96","atF":"1.00","dfF":"0.94","totF":"2.90"},{"name":"鬼ヶ城[改壱]","weapon":"槌","rarity":"3","plain":"山水","hpF":"0.99","atF":"1.03","dfF":"0.97","totF":"2.99"},{"name":"雑賀城","weapon":"鉄砲","rarity":"3","plain":"平山水","hpF":"1.01","atF":"1.01","dfF":"0.98","totF":"3.00"},{"name":"雑賀城[改壱]","weapon":"鉄砲","rarity":"4","plain":"平山水","hpF":"1.05","atF":"1.08","dfF":"1.02","totF":"3.15"},{"name":"三木城","weapon":"槌","rarity":"2","plain":"平山","hpF":"1.00","atF":"0.99","dfF":"0.91","totF":"2.90"},{"name":"三木城[改壱]","weapon":"槌","rarity":"3","plain":"平山","hpF":"1.03","atF":"1.02","dfF":"0.94","totF":"2.99"},{"name":"石山城","weapon":"弓","rarity":"1","plain":"平山","hpF":"0.99","atF":"0.89","dfF":"0.92","totF":"2.80"},{"name":"石山城[改壱]","weapon":"弓","rarity":"2","plain":"平山","hpF":"1.02","atF":"0.92","dfF":"0.95","totF":"2.89"},{"name":"岡山城","weapon":"刀","rarity":"4","plain":"平山","hpF":"1.05","atF":"1.05","dfF":"1.05","totF":"3.15"},{"name":"岡山城[改壱]","weapon":"刀","rarity":"5","plain":"平山","hpF":"1.10","atF":"1.10","dfF":"1.10","totF":"3.30"},{"name":"備中高松城","weapon":"刀","rarity":"3","plain":"平","hpF":"1.00","atF":"1.00","dfF":"1.00","totF":"3.00"},{"name":"備中高松城[改壱]","weapon":"刀","rarity":"4","plain":"平","hpF":"1.07","atF":"1.04","dfF":"1.04","totF":"3.15"},{"name":"三原城","weapon":"石弓","rarity":"3","plain":"平山水","hpF":"0.97","atF":"1.07","dfF":"0.96","totF":"3.00"},{"name":"三原城[改壱]","weapon":"石弓","rarity":"4","plain":"平山水","hpF":"1.04","atF":"1.11","dfF":"1.00","totF":"3.15"},{"name":"桜尾城","weapon":"弓","rarity":"2","plain":"水","hpF":"1.00","atF":"0.96","dfF":"0.94","totF":"2.90"},{"name":"桜尾城[改壱]","weapon":"弓","rarity":"3","plain":"水","hpF":"1.03","atF":"0.99","dfF":"0.97","totF":"2.99"},{"name":"鹿野城","weapon":"槍","rarity":"3","plain":"平山","hpF":"1.01","atF":"0.99","dfF":"1.00","totF":"3.00"},{"name":"鹿野城[改壱]","weapon":"槍","rarity":"4","plain":"平山","hpF":"1.08","atF":"1.03","dfF":"1.04","totF":"3.15"},{"name":"鳥取城","weapon":"弓","rarity":"4","plain":"山","hpF":"1.03","atF":"1.04","dfF":"1.08","totF":"3.15"},{"name":"鳥取城[改壱]","weapon":"弓","rarity":"5","plain":"山","hpF":"1.07","atF":"1.11","dfF":"1.12","totF":"3.30"},{"name":"防己尾城","weapon":"槍","rarity":"1","plain":"平山水","hpF":"0.92","atF":"0.94","dfF":"0.94","totF":"2.80"},{"name":"三本松城","weapon":"石弓","rarity":"2","plain":"山","hpF":"0.96","atF":"1.00","dfF":"0.94","totF":"2.90"},{"name":"津和野城","weapon":"鉄砲","rarity":"3","plain":"山","hpF":"0.94","atF":"1.03","dfF":"1.03","totF":"3.00"},{"name":"上関城","weapon":"鉄砲","rarity":"2","plain":"水","hpF":"0.98","atF":"0.96","dfF":"0.96","totF":"2.90"},{"name":"高松城","weapon":"槍","rarity":"3","plain":"水","hpF":"1.00","atF":"1.01","dfF":"0.99","totF":"3.00"},{"name":"引田城","weapon":"法術","rarity":"2","plain":"平山水","hpF":"1.01","atF":"0.94","dfF":"0.95","totF":"2.90"},{"name":"勝瑞城","weapon":"鉄砲","rarity":"1","plain":"平","hpF":"0.93","atF":"0.94","dfF":"0.93","totF":"2.80"},{"name":"来島城","weapon":"鉄砲","rarity":"1","plain":"水","hpF":"0.90","atF":"0.95","dfF":"0.95","totF":"2.80"},{"name":"大高坂山城","weapon":"槍","rarity":"1","plain":"平山","hpF":"0.91","atF":"0.92","dfF":"0.97","totF":"2.80"},{"name":"高知城","weapon":"鉄砲","rarity":"5","plain":"平山","hpF":"1.10","atF":"1.17","dfF":"1.03","totF":"3.30"},{"name":"高知城[改壱]","weapon":"鉄砲","rarity":"6","plain":"平山","hpF":"1.14","atF":"1.24","dfF":"1.07","totF":"3.45"},{"name":"鶴崎城","weapon":"鉄砲","rarity":"1","plain":"平","hpF":"0.92","atF":"0.91","dfF":"0.97","totF":"2.80"},{"name":"福岡城","weapon":"石弓","rarity":"4","plain":"平山水","hpF":"1.05","atF":"1.06","dfF":"1.04","totF":"3.15"},{"name":"福岡城[改壱]","weapon":"石弓","rarity":"5","plain":"平山水","hpF":"1.09","atF":"1.13","dfF":"1.08","totF":"3.30"},{"name":"若松城","weapon":"鉄砲","rarity":"2","plain":"水","hpF":"0.91","atF":"1.00","dfF":"0.99","totF":"2.90"},{"name":"島原城","weapon":"弓","rarity":"3","plain":"平水","hpF":"1.02","atF":"1.01","dfF":"0.97","totF":"3.00"},{"name":"島原城[改壱]","weapon":"弓","rarity":"4","plain":"平水","hpF":"1.07","atF":"1.06","dfF":"1.02","totF":"3.15"},{"name":"村中城","weapon":"刀","rarity":"1","plain":"平","hpF":"0.88","atF":"0.94","dfF":"0.98","totF":"2.80"},{"name":"佐賀城","weapon":"刀","rarity":"3","plain":"平","hpF":"1.02","atF":"0.97","dfF":"1.01","totF":"3.00"},{"name":"佐賀城[改壱]","weapon":"刀","rarity":"4","plain":"平","hpF":"1.06","atF":"1.04","dfF":"1.05","totF":"3.15"},{"name":"日之嶽城","weapon":"槍","rarity":"1","plain":"平山水","hpF":"0.93","atF":"0.92","dfF":"0.95","totF":"2.80"},{"name":"平戸城","weapon":"法術","rarity":"3","plain":"平山水","hpF":"0.99","atF":"1.06","dfF":"0.95","totF":"3.00"},{"name":"平戸城[改壱]","weapon":"法術","rarity":"4","plain":"平山水","hpF":"1.06","atF":"1.10","dfF":"0.99","totF":"3.15"},{"name":"宇土古城","weapon":"弓","rarity":"2","plain":"平山","hpF":"0.98","atF":"1.00","dfF":"0.92","totF":"2.90"},{"name":"宇土城","weapon":"鉄砲","rarity":"4","plain":"平山","hpF":"1.08","atF":"1.00","dfF":"1.07","totF":"3.15"},{"name":"飫肥城","weapon":"弓","rarity":"2","plain":"平山","hpF":"0.95","atF":"0.95","dfF":"1.00","totF":"2.90"},{"name":"飫肥城[改壱]","weapon":"弓","rarity":"3","plain":"平山","hpF":"0.98","atF":"0.98","dfF":"1.03","totF":"2.99"},{"name":"鹿児島城","weapon":"鉄砲","rarity":"2","plain":"平山水","hpF":"0.94","atF":"0.95","dfF":"1.01","totF":"2.90"},{"name":"鹿児島城[改壱]","weapon":"鉄砲","rarity":"3","plain":"平山水","hpF":"0.97","atF":"0.98","dfF":"1.04","totF":"2.99"},{"name":"首里城","weapon":"刀","rarity":"6","plain":"平山","hpF":"1.18","atF":"1.12","dfF":"1.15","totF":"3.45"},{"name":"首里城[改壱]","weapon":"刀","rarity":"7","plain":"平山","hpF":"1.23","atF":"1.17","dfF":"1.20","totF":"3.60"},{"name":"浦添城","weapon":"弓","rarity":"2","plain":"山","hpF":"0.88","atF":"1.03","dfF":"0.99","totF":"2.90"},{"name":"浦添城[改壱]","weapon":"弓","rarity":"3","plain":"山","hpF":"0.91","atF":"1.06","dfF":"1.02","totF":"2.99"},{"name":"丸亀城","weapon":"槍","rarity":"5","plain":"平山","hpF":"1.14","atF":"1.03","dfF":"1.13","totF":"3.30"},{"name":"丸亀城[改壱]","weapon":"槍","rarity":"6","plain":"平山","hpF":"1.18","atF":"1.10","dfF":"1.17","totF":"3.45"},{"name":"小谷城","weapon":"槍","rarity":"5","plain":"山","hpF":"1.11","atF":"1.10","dfF":"1.09","totF":"3.30"},{"name":"能島城","weapon":"鉄砲","rarity":"3","plain":"水","hpF":"1.04","atF":"1.02","dfF":"0.94","totF":"3.00"},{"name":"能島城[改壱]","weapon":"鉄砲","rarity":"4","plain":"水","hpF":"1.11","atF":"1.06","dfF":"0.98","totF":"3.15"},{"name":"月山富田城","weapon":"槍","rarity":"3","plain":"山","hpF":"0.96","atF":"1.01","dfF":"1.03","totF":"3.00"},{"name":"月山富田城[改壱]","weapon":"槍","rarity":"4","plain":"山","hpF":"1.00","atF":"1.05","dfF":"1.10","totF":"3.15"},{"name":"脇本城","weapon":"槍","rarity":"2","plain":"山水","hpF":"0.91","atF":"1.05","dfF":"0.94","totF":"2.90"},{"name":"脇本城[改壱]","weapon":"槍","rarity":"3","plain":"山水","hpF":"0.94","atF":"1.08","dfF":"0.97","totF":"2.99"},{"name":"一乗谷城","weapon":"刀","rarity":"4","plain":"山","hpF":"1.05","atF":"1.08","dfF":"1.02","totF":"3.15"},{"name":"一乗谷城[改壱]","weapon":"刀","rarity":"5","plain":"山","hpF":"1.09","atF":"1.15","dfF":"1.06","totF":"3.30"},{"name":"墨俣城","weapon":"鉄砲","rarity":"3","plain":"平","hpF":"1.02","atF":"0.97","dfF":"1.01","totF":"3.00"},{"name":"墨俣城[改壱]","weapon":"鉄砲","rarity":"4","plain":"平","hpF":"1.07","atF":"1.02","dfF":"1.06","totF":"3.15"},{"name":"岩櫃城","weapon":"槍","rarity":"3","plain":"山","hpF":"0.93","atF":"1.04","dfF":"1.03","totF":"3.00"},{"name":"岩櫃城[改壱]","weapon":"槍","rarity":"4","plain":"山","hpF":"0.97","atF":"1.08","dfF":"1.10","totF":"3.15"},{"name":"福山城","weapon":"刀","rarity":"5","plain":"平山","hpF":"1.17","atF":"1.06","dfF":"1.07","totF":"3.30"},{"name":"福山城[改壱]","weapon":"刀","rarity":"6","plain":"平山","hpF":"1.22","atF":"1.11","dfF":"1.12","totF":"3.45"},{"name":"志自岐原城","weapon":"刀","rarity":"1","plain":"平山","hpF":"1.02","atF":"0.91","dfF":"0.87","totF":"2.80"},{"name":"原城","weapon":"鉄砲","rarity":"2","plain":"平山","hpF":"0.92","atF":"0.98","dfF":"1.00","totF":"2.90"},{"name":"原城[改壱]","weapon":"鉄砲","rarity":"3","plain":"平山","hpF":"0.95","atF":"1.01","dfF":"1.03","totF":"2.99"},{"name":"根来城","weapon":"鉄砲","rarity":"3","plain":"平山","hpF":"1.01","atF":"1.02","dfF":"0.97","totF":"3.00"},{"name":"鳥羽城","weapon":"鉄砲","rarity":"4","plain":"平山水","hpF":"1.05","atF":"1.05","dfF":"1.05","totF":"3.15"},{"name":"鳥羽城[改壱]","weapon":"鉄砲","rarity":"5","plain":"平山水","hpF":"1.10","atF":"1.10","dfF":"1.10","totF":"3.30"},{"name":"春日山城","weapon":"刀","rarity":"5","plain":"山","hpF":"1.07","atF":"1.10","dfF":"1.13","totF":"3.30"},{"name":"春日山城[改壱]","weapon":"刀","rarity":"6","plain":"山","hpF":"1.12","atF":"1.15","dfF":"1.18","totF":"3.45"},{"name":"丹波横山城","weapon":"弓","rarity":"2","plain":"平山","hpF":"0.98","atF":"0.93","dfF":"0.99","totF":"2.90"},{"name":"福知山城","weapon":"鉄砲","rarity":"6","plain":"平山","hpF":"1.15","atF":"1.14","dfF":"1.16","totF":"3.45"},{"name":"福知山城[改壱]","weapon":"鉄砲","rarity":"7","plain":"平山","hpF":"1.22","atF":"1.18","dfF":"1.20","totF":"3.60"},{"name":"今浜城","weapon":"法術","rarity":"1","plain":"平水","hpF":"0.99","atF":"0.91","dfF":"0.90","totF":"2.80"},{"name":"長浜城","weapon":"鉄砲","rarity":"4","plain":"平水","hpF":"1.02","atF":"1.04","dfF":"1.09","totF":"3.15"},{"name":"長浜城[改壱]","weapon":"鉄砲","rarity":"5","plain":"平水","hpF":"1.07","atF":"1.09","dfF":"1.14","totF":"3.30"},{"name":"八王子城","weapon":"槍","rarity":"3","plain":"山","hpF":"0.93","atF":"1.05","dfF":"1.02","totF":"3.00"},{"name":"八王子城[改壱]","weapon":"槍","rarity":"4","plain":"山","hpF":"0.97","atF":"1.09","dfF":"1.09","totF":"3.15"},{"name":"多賀城","weapon":"石弓","rarity":"5","plain":"平山","hpF":"1.16","atF":"1.07","dfF":"1.07","totF":"3.30"},{"name":"多賀城[改壱]","weapon":"石弓","rarity":"6","plain":"平山","hpF":"1.21","atF":"1.12","dfF":"1.12","totF":"3.45"},{"name":"松倉城","weapon":"刀","rarity":"2","plain":"山","hpF":"0.93","atF":"1.02","dfF":"0.95","totF":"2.90"},{"name":"ﾌﾗﾝｹﾝｼｭﾀｲﾝ城","weapon":"槌","rarity":"5","plain":"山","hpF":"1.09","atF":"1.05","dfF":"1.16","totF":"3.30"},{"name":"ﾌﾗﾝｹﾝｼｭﾀｲﾝ城[改壱]","weapon":"槌","rarity":"6","plain":"山","hpF":"1.14","atF":"1.10","dfF":"1.21","totF":"3.45"},{"name":"与板城","weapon":"刀","rarity":"3","plain":"山","hpF":"1.01","atF":"1.07","dfF":"0.92","totF":"3.00"},{"name":"与板城[改壱]","weapon":"刀","rarity":"4","plain":"山","hpF":"1.05","atF":"1.11","dfF":"0.99","totF":"3.15"},{"name":"和歌山城","weapon":"刀","rarity":"6","plain":"平山","hpF":"1.19","atF":"1.15","dfF":"1.11","totF":"3.45"},{"name":"和歌山城[改壱]","weapon":"刀","rarity":"7","plain":"平山","hpF":"1.26","atF":"1.19","dfF":"1.15","totF":"3.60"},{"name":"久慈城","weapon":"刀","rarity":"2","plain":"平山","hpF":"0.99","atF":"0.97","dfF":"0.94","totF":"2.90"},{"name":"彦根城","weapon":"槍","rarity":"7","plain":"平山","hpF":"1.25","atF":"1.23","dfF":"1.12","totF":"3.60"},{"name":"乙女城","weapon":"法術","rarity":"1","plain":"平山","hpF":"0.96","atF":"0.93","dfF":"0.91","totF":"2.80"},{"name":"柳川城","weapon":"石弓","rarity":"3","plain":"平","hpF":"0.98","atF":"1.01","dfF":"1.01","totF":"3.00"},{"name":"柳川城[改壱]","weapon":"石弓","rarity":"4","plain":"平","hpF":"1.03","atF":"1.06","dfF":"1.06","totF":"3.15"},{"name":"石垣山城","weapon":"槍","rarity":"3","plain":"山","hpF":"0.94","atF":"1.06","dfF":"1.00","totF":"3.00"},{"name":"石垣山城[改壱]","weapon":"槍","rarity":"4","plain":"山","hpF":"1.01","atF":"1.10","dfF":"1.04","totF":"3.15"},{"name":"今治城","weapon":"鉄砲","rarity":"4","plain":"水","hpF":"1.08","atF":"1.07","dfF":"1.15","totF":"3.30"},{"name":"今治城[改壱]","weapon":"鉄砲","rarity":"5","plain":"水","hpF":"1.13","atF":"1.12","dfF":"1.20","totF":"3.45"},{"name":"真田丸","weapon":"槍","rarity":"4","plain":"平","hpF":"1.04","atF":"1.03","dfF":"1.08","totF":"3.15"},{"name":"真田丸[改壱]","weapon":"槍","rarity":"5","plain":"平","hpF":"1.08","atF":"1.10","dfF":"1.12","totF":"3.30"},{"name":"観音寺城","weapon":"石弓","rarity":"5","plain":"山","hpF":"1.17","atF":"1.11","dfF":"1.02","totF":"3.30"},{"name":"観音寺城[改壱]","weapon":"石弓","rarity":"6","plain":"山","hpF":"1.24","atF":"1.15","dfF":"1.06","totF":"3.45"},{"name":"ブラン城","weapon":"刀","rarity":"6","plain":"山","hpF":"1.06","atF":"1.20","dfF":"1.19","totF":"3.45"},{"name":"ブラン城[改壱]","weapon":"刀","rarity":"7","plain":"山","hpF":"1.10","atF":"1.24","dfF":"1.26","totF":"3.60"},{"name":"萩城","weapon":"鉄砲","rarity":"5","plain":"平山水","hpF":"1.05","atF":"1.15","dfF":"1.10","totF":"3.30"},{"name":"萩城[改壱]","weapon":"鉄砲","rarity":"6","plain":"平山水","hpF":"1.12","atF":"1.19","dfF":"1.14","totF":"3.45"},{"name":"岡豊城","weapon":"弓","rarity":"5","plain":"山","hpF":"1.05","atF":"1.16","dfF":"1.09","totF":"3.30"},{"name":"岡豊城[改壱]","weapon":"弓","rarity":"6","plain":"山","hpF":"1.12","atF":"1.20","dfF":"1.13","totF":"3.45"},{"name":"尾山御坊","weapon":"歌舞","rarity":"2","plain":"平山","hpF":"1.00","atF":"0.93","dfF":"0.97","totF":"2.90"},{"name":"尾山御坊[改壱]","weapon":"歌舞","rarity":"3","plain":"平山","hpF":"1.03","atF":"0.96","dfF":"1.00","totF":"2.99"},{"name":"佐久間金沢城","weapon":"槍","rarity":"4","plain":"平山","hpF":"1.06","atF":"1.09","dfF":"1.00","totF":"3.15"},{"name":"佐久間金沢城[改壱]","weapon":"槍","rarity":"5","plain":"平山","hpF":"1.13","atF":"1.13","dfF":"1.04","totF":"3.30"},{"name":"菩提山城","weapon":"法術","rarity":"4","plain":"山","hpF":"1.00","atF":"1.10","dfF":"1.05","totF":"3.15"},{"name":"菩提山城[改壱]","weapon":"法術","rarity":"5","plain":"山","hpF":"1.05","atF":"1.15","dfF":"1.10","totF":"3.30"},{"name":"岩手山城","weapon":"槍","rarity":"2","plain":"山","hpF":"0.93","atF":"1.02","dfF":"0.95","totF":"2.90"},{"name":"岩手山城[改壱]","weapon":"槍","rarity":"3","plain":"山","hpF":"0.96","atF":"1.05","dfF":"0.98","totF":"2.99"},{"name":"山科本願寺","weapon":"歌舞","rarity":"3","plain":"平","hpF":"1.00","atF":"1.04","dfF":"0.96","totF":"3.00"},{"name":"山科本願寺[改壱]","weapon":"歌舞","rarity":"4","plain":"平","hpF":"1.05","atF":"1.09","dfF":"1.01","totF":"3.15"},{"name":"深志城","weapon":"弓","rarity":"3","plain":"平","hpF":"1.00","atF":"1.03","dfF":"0.97","totF":"3.00"},{"name":"深志城[改壱]","weapon":"弓","rarity":"4","plain":"平","hpF":"1.07","atF":"1.07","dfF":"1.01","totF":"3.15"},{"name":"松本城","weapon":"石弓","rarity":"5","plain":"平","hpF":"1.21","atF":"1.04","dfF":"1.05","totF":"3.30"},{"name":"松本城[改壱]","weapon":"石弓","rarity":"6","plain":"平","hpF":"1.25","atF":"1.11","dfF":"1.09","totF":"3.45"},{"name":"広島城","weapon":"石弓","rarity":"6","plain":"平","hpF":"1.10","atF":"1.20","dfF":"1.15","totF":"3.45"},{"name":"広島城[改壱]","weapon":"石弓","rarity":"7","plain":"平","hpF":"1.15","atF":"1.25","dfF":"1.20","totF":"3.60"},{"name":"尾山城","weapon":"槍","rarity":"5","plain":"平山","hpF":"1.05","atF":"1.18","dfF":"1.07","totF":"3.30"},{"name":"尾山城[改壱]","weapon":"槍","rarity":"6","plain":"平山","hpF":"1.12","atF":"1.22","dfF":"1.11","totF":"3.45"},{"name":"天神西舘","weapon":"弓","rarity":"1","plain":"平山","hpF":"0.98","atF":"0.93","dfF":"0.89","totF":"2.80"},{"name":"中村舘","weapon":"槍","rarity":"2","plain":"平山","hpF":"0.94","atF":"1.03","dfF":"0.93","totF":"2.90"},{"name":"相馬中村城","weapon":"刀","rarity":"4","plain":"平山","hpF":"1.07","atF":"1.09","dfF":"0.99","totF":"3.15"},{"name":"吉野ヶ里","weapon":"刀","rarity":"6","plain":"平","hpF":"1.20","atF":"1.18","dfF":"1.07","totF":"3.45"},{"name":"吉野ヶ里[改壱]","weapon":"刀","rarity":"7","plain":"平","hpF":"1.27","atF":"1.22","dfF":"1.11","totF":"3.60"},{"name":"四稜郭","weapon":"鉄砲","rarity":"3","plain":"平","hpF":"0.95","atF":"0.99","dfF":"1.06","totF":"3.00"},{"name":"五稜郭","weapon":"大砲","rarity":"7","plain":"平","hpF":"1.20","atF":"1.20","dfF":"1.20","totF":"3.60"},{"name":"五稜郭[改壱]","weapon":"大砲","rarity":"8","plain":"平","hpF":"1.30","atF":"1.30","dfF":"1.30","totF":"3.90"},{"name":"前田金沢城","weapon":"刀","rarity":"6","plain":"平山","hpF":"1.19","atF":"1.17","dfF":"1.09","totF":"3.45"},{"name":"前田金沢城[改壱]","weapon":"刀","rarity":"7","plain":"平山","hpF":"1.23","atF":"1.21","dfF":"1.16","totF":"3.60"},{"name":"安平古堡","weapon":"大砲","rarity":"3","plain":"平水","hpF":"1.00","atF":"0.96","dfF":"1.04","totF":"3.00"},{"name":"安平古堡[改壱]","weapon":"大砲","rarity":"4","plain":"平水","hpF":"1.05","atF":"1.01","dfF":"1.09","totF":"3.15"},{"name":"オレンジ城","weapon":"鉄砲","rarity":"3","plain":"平水","hpF":"1.00","atF":"0.96","dfF":"1.04","totF":"3.00"},{"name":"ゼーランディア城","weapon":"鉄砲","rarity":"5","plain":"平水","hpF":"1.10","atF":"1.06","dfF":"1.14","totF":"3.30"},{"name":"信貴山城","weapon":"大砲","rarity":"5","plain":"山","hpF":"1.12","atF":"1.10","dfF":"1.08","totF":"3.30"},{"name":"信貴山城[改壱]","weapon":"大砲","rarity":"6","plain":"山","hpF":"1.16","atF":"1.17","dfF":"1.12","totF":"3.45"},{"name":"笹原城","weapon":"弓","rarity":"2","plain":"平山水","hpF":"0.97","atF":"0.95","dfF":"0.98","totF":"2.90"},{"name":"久留米城","weapon":"鉄砲","rarity":"3","plain":"平山水","hpF":"0.96","atF":"1.02","dfF":"1.02","totF":"3.00"},{"name":"久留米城[改壱]","weapon":"鉄砲","rarity":"4","plain":"平山水","hpF":"1.03","atF":"1.06","dfF":"1.06","totF":"3.15"},{"name":"安平城","weapon":"鉄砲","rarity":"7","plain":"平水","hpF":"1.17","atF":"1.20","dfF":"1.23","totF":"3.60"},{"name":"安平城[改壱]","weapon":"鉄砲","rarity":"8","plain":"平水","hpF":"1.25","atF":"1.34","dfF":"1.31","totF":"3.90"},{"name":"高岡城","weapon":"弓","rarity":"5","plain":"平山","hpF":"1.09","atF":"1.13","dfF":"1.08","totF":"3.30"},{"name":"高岡城[改壱]","weapon":"弓","rarity":"6","plain":"平山","hpF":"1.14","atF":"1.18","dfF":"1.13","totF":"3.45"},{"name":"吉田郡山城","weapon":"弓","rarity":"5","plain":"山","hpF":"1.08","atF":"1.12","dfF":"1.10","totF":"3.30"},{"name":"吉田郡山城[改壱]","weapon":"弓","rarity":"6","plain":"山","hpF":"1.13","atF":"1.17","dfF":"1.15","totF":"3.45"},{"name":"竹田城","weapon":"法術","rarity":"6","plain":"山","hpF":"1.13","atF":"1.17","dfF":"1.15","totF":"3.45"},{"name":"竹田城[改壱]","weapon":"法術","rarity":"7","plain":"山","hpF":"1.18","atF":"1.22","dfF":"1.20","totF":"3.60"},{"name":"帰雲城","weapon":"刀","rarity":"5","plain":"山","hpF":"1.11","atF":"1.08","dfF":"1.11","totF":"3.30"},{"name":"帰雲城[改壱]","weapon":"刀","rarity":"6","plain":"山","hpF":"1.15","atF":"1.15","dfF":"1.15","totF":"3.45"},{"name":"ﾉｲｼｭｳﾞｧﾝｼｭﾀｲﾝ城","weapon":"盾","rarity":"7","plain":"山","hpF":"1.20","atF":"1.20","dfF":"1.20","totF":"3.60"},{"name":"ﾉｲｼｭｳﾞｧﾝｼｭﾀｲﾝ城[改壱]","weapon":"盾","rarity":"8","plain":"山","hpF":"1.28","atF":"1.34","dfF":"1.28","totF":"3.90"},{"name":"大仏城","weapon":"槍","rarity":"1","plain":"平","hpF":"0.93","atF":"0.93","dfF":"0.94","totF":"2.80"},{"name":"杉目城","weapon":"法術","rarity":"2","plain":"平","hpF":"0.95","atF":"0.97","dfF":"0.98","totF":"2.90"},{"name":"福島城","weapon":"法術","rarity":"4","plain":"平","hpF":"1.03","atF":"1.06","dfF":"1.06","totF":"3.15"},{"name":"躑躅ヶ崎館","weapon":"槌","rarity":"6","plain":"平","hpF":"1.12","atF":"1.20","dfF":"1.13","totF":"3.45"},{"name":"躑躅ヶ崎館[改壱]","weapon":"槌","rarity":"7","plain":"平","hpF":"1.16","atF":"1.27","dfF":"1.17","totF":"3.60"},{"name":"清洲城","weapon":"刀","rarity":"5","plain":"平","hpF":"1.09","atF":"1.13","dfF":"1.08","totF":"3.30"},{"name":"清洲城[改壱]","weapon":"刀","rarity":"6","plain":"平","hpF":"1.13","atF":"1.20","dfF":"1.12","totF":"3.45"},{"name":"伊丹城","weapon":"刀","rarity":"3","plain":"平","hpF":"0.99","atF":"1.02","dfF":"0.99","totF":"3.00"},{"name":"有岡城","weapon":"槌","rarity":"5","plain":"平","hpF":"1.06","atF":"1.14","dfF":"1.10","totF":"3.30"},{"name":"犬山城","weapon":"大砲","rarity":"6","plain":"平山","hpF":"1.11","atF":"1.13","dfF":"1.11","totF":"3.35"},{"name":"犬山城[改壱]","weapon":"大砲","rarity":"7","plain":"平山","hpF":"1.16","atF":"1.18","dfF":"1.16","totF":"3.50"},{"name":"ｻﾝﾀﾝｼﾞｪﾛ城","weapon":"盾","rarity":"5","plain":"平","hpF":"1.07","atF":"1.11","dfF":"1.12","totF":"3.30"},{"name":"ｻﾝﾀﾝｼﾞｪﾛ城[改壱]","weapon":"盾","rarity":"6","plain":"平","hpF":"1.12","atF":"1.16","dfF":"1.17","totF":"3.45"},{"name":"備中松山城","weapon":"鉄砲","rarity":"5","plain":"山","hpF":"1.14","atF":"1.16","dfF":"1.15","totF":"3.45"},{"name":"備中松山城[改壱]","weapon":"鉄砲","rarity":"6","plain":"山","hpF":"1.18","atF":"1.20","dfF":"1.22","totF":"3.60"},{"name":"板島丸串城","weapon":"大砲","rarity":"4","plain":"平山水","hpF":"1.06","atF":"1.02","dfF":"1.07","totF":"3.15"},{"name":"弘前城","weapon":"弓","rarity":"6","plain":"平山","hpF":"1.13","atF":"1.18","dfF":"1.14","totF":"3.45"},{"name":"伊予松山城","weapon":"槍","rarity":"6","plain":"平山","hpF":"1.09","atF":"1.21","dfF":"1.15","totF":"3.45"},{"name":"伊予松山城[改壱]","weapon":"槍","rarity":"7","plain":"平山","hpF":"1.13","atF":"1.25","dfF":"1.22","totF":"3.60"},{"name":"聚楽第","weapon":"弓","rarity":"7","plain":"平","hpF":"1.18","atF":"1.25","dfF":"1.17","totF":"3.60"},{"name":"岡城","weapon":"石弓","rarity":"5","plain":"山","hpF":"1.05","atF":"1.08","dfF":"1.17","totF":"3.30"},{"name":"岡城[改壱]","weapon":"石弓","rarity":"6","plain":"山","hpF":"1.09","atF":"1.12","dfF":"1.24","totF":"3.45"},{"name":"中津城","weapon":"鉄砲","rarity":"5","plain":"平水","hpF":"1.12","atF":"1.12","dfF":"1.06","totF":"3.30"},{"name":"中津城[改壱]","weapon":"鉄砲","rarity":"6","plain":"平水","hpF":"1.16","atF":"1.19","dfF":"1.10","totF":"3.45"},{"name":"丸山城","weapon":"刀","rarity":"3","plain":"平水","hpF":"1.00","atF":"1.04","dfF":"0.96","totF":"3.00"},{"name":"丸山城[改壱]","weapon":"刀","rarity":"4","plain":"平水","hpF":"1.05","atF":"1.09","dfF":"1.01","totF":"3.15"},{"name":"浜松城","weapon":"刀","rarity":"6","plain":"平山","hpF":"1.19","atF":"1.13","dfF":"1.13","totF":"3.45"},{"name":"ガイヤール城","weapon":"盾","rarity":"5","plain":"平山","hpF":"1.06","atF":"1.15","dfF":"1.09","totF":"3.30"},{"name":"ガイヤール城[改壱]","weapon":"盾","rarity":"6","plain":"平山","hpF":"1.11","atF":"1.20","dfF":"1.14","totF":"3.45"},{"name":"亀居城","weapon":"槍","rarity":"4","plain":"平山水","hpF":"1.09","atF":"1.01","dfF":"1.05","totF":"3.15"},{"name":"亀居城[改壱]","weapon":"槍","rarity":"5","plain":"平山水","hpF":"1.16","atF":"1.05","dfF":"1.09","totF":"3.30"},{"name":"安土城","weapon":"法術","rarity":"7","plain":"平山水","hpF":"1.16","atF":"1.26","dfF":"1.18","totF":"3.60"},{"name":"安土城[改壱]","weapon":"法術","rarity":"8","plain":"平山水","hpF":"1.24","atF":"1.34","dfF":"1.32","totF":"3.90"},{"name":"ユクエピラチャシ","weapon":"槌","rarity":"5","plain":"山","hpF":"1.11","atF":"1.11","dfF":"1.08","totF":"3.30"},{"name":"ユクエピラチャシ[改壱]","weapon":"槌","rarity":"6","plain":"山","hpF":"1.18","atF":"1.15","dfF":"1.12","totF":"3.45"},{"name":"宇和島城","weapon":"大砲","rarity":"6","plain":"平山水","hpF":"1.15","atF":"1.15","dfF":"1.15","totF":"3.45"},{"name":"宇和島城[改壱]","weapon":"大砲","rarity":"7","plain":"平山水","hpF":"1.22","atF":"1.19","dfF":"1.19","totF":"3.60"},{"name":"徳島城","weapon":"刀","rarity":"5","plain":"平山","hpF":"1.10","atF":"1.08","dfF":"1.12","totF":"3.30"},{"name":"徳島城[改壱]","weapon":"刀","rarity":"6","plain":"平山","hpF":"1.15","atF":"1.13","dfF":"1.17","totF":"3.45"},{"name":"肥後千葉城","weapon":"刀","rarity":"3","plain":"平山","hpF":"1.03","atF":"0.98","dfF":"0.99","totF":"3.00"},{"name":"隈本城","weapon":"刀","rarity":"5","plain":"平山","hpF":"1.14","atF":"1.07","dfF":"1.09","totF":"3.30"},{"name":"熊本城","weapon":"刀","rarity":"7","plain":"平山","hpF":"1.16","atF":"1.22","dfF":"1.27","totF":"3.65"},{"name":"丸岡城","weapon":"法術","rarity":"6","plain":"平山","hpF":"1.18","atF":"1.15","dfF":"1.12","totF":"3.45"},{"name":"丸岡城[改壱]","weapon":"法術","rarity":"7","plain":"平山","hpF":"1.25","atF":"1.19","dfF":"1.16","totF":"3.60"},{"name":"指月伏見城","weapon":"鈴","rarity":"7","plain":"平山","hpF":"1.17","atF":"1.25","dfF":"1.18","totF":"3.60"},{"name":"コンウィ城","weapon":"盾","rarity":"2","plain":"平水","hpF":"1.00","atF":"0.93","dfF":"0.97","totF":"2.90"},{"name":"カーナーヴォン城","weapon":"盾","rarity":"4","plain":"平水","hpF":"1.05","atF":"1.04","dfF":"1.06","totF":"3.15"},{"name":"淀城","weapon":"槌","rarity":"5","plain":"平水","hpF":"1.07","atF":"1.09","dfF":"1.14","totF":"3.30"},{"name":"淀城[改壱]","weapon":"槌","rarity":"6","plain":"平水","hpF":"1.11","atF":"1.16","dfF":"1.18","totF":"3.45"},{"name":"内城","weapon":"石弓","rarity":"6","plain":"平","hpF":"1.15","atF":"1.18","dfF":"1.12","totF":"3.45"},{"name":"内城[改壱]","weapon":"石弓","rarity":"7","plain":"平","hpF":"1.19","atF":"1.25","dfF":"1.16","totF":"3.60"},{"name":"万里の長城","weapon":"石弓","rarity":"7","plain":"平山","hpF":"1.25","atF":"1.10","dfF":"1.25","totF":"3.60"},{"name":"井伊谷城","weapon":"弓","rarity":"5","plain":"山","hpF":"1.11","atF":"1.07","dfF":"1.12","totF":"3.30"},{"name":"臼杵城","weapon":"大砲","rarity":"5","plain":"平山水","hpF":"1.10","atF":"1.08","dfF":"1.12","totF":"3.30"},{"name":"臼杵城[改壱]","weapon":"大砲","rarity":"6","plain":"平山水","hpF":"1.14","atF":"1.12","dfF":"1.19","totF":"3.45"},{"name":"津山城","weapon":"槌","rarity":"5","plain":"平山","hpF":"1.10","atF":"1.08","dfF":"1.12","totF":"3.30"},{"name":"マルボルク城","weapon":"盾","rarity":"6","plain":"平水","hpF":"1.13","atF":"1.17","dfF":"1.15","totF":"3.45"},{"name":"マルボルク城[改壱]","weapon":"盾","rarity":"7","plain":"平水","hpF":"1.20","atF":"1.21","dfF":"1.19","totF":"3.60"},{"name":"大和郡山城","weapon":"法術","rarity":"5","plain":"平山","hpF":"1.11","atF":"1.12","dfF":"1.07","totF":"3.30"},{"name":"大和郡山城[改壱]","weapon":"法術","rarity":"6","plain":"平山","hpF":"1.15","atF":"1.16","dfF":"1.14","totF":"3.45"},{"name":"ユッセ城","weapon":"杖","rarity":"6","plain":"平","hpF":"1.15","atF":"1.15","dfF":"1.15","totF":"3.45"},{"name":"村尾城","weapon":"石弓","rarity":"4","plain":"山","hpF":"1.08","atF":"1.05","dfF":"1.02","totF":"3.15"},{"name":"浜田城","weapon":"鈴","rarity":"5","plain":"平山","hpF":"1.10","atF":"1.10","dfF":"1.10","totF":"3.30"},{"name":"上田城","weapon":"槍","rarity":"6","plain":"平","hpF":"1.20","atF":"1.17","dfF":"1.08","totF":"3.45"},{"name":"上田城[改壱]","weapon":"槍","rarity":"7","plain":"平","hpF":"1.27","atF":"1.21","dfF":"1.12","totF":"3.60"},{"name":"聚楽城","weapon":"槍","rarity":"6","plain":"平","hpF":"1.13","atF":"1.20","dfF":"1.12","totF":"3.45"},{"name":"姫路城","weapon":"鉄砲","rarity":"7","plain":"平山","hpF":"1.15","atF":"1.25","dfF":"1.20","totF":"3.60"},{"name":"丹波亀山城","weapon":"刀","rarity":"5","plain":"平山","hpF":"1.10","atF":"1.06","dfF":"1.14","totF":"3.30"},{"name":"岩殿山城","weapon":"法術","rarity":"5","plain":"山","hpF":"1.07","atF":"1.09","dfF":"1.14","totF":"3.30"},{"name":"岩殿山城[改壱]","weapon":"法術","rarity":"6","plain":"山","hpF":"1.11","atF":"1.13","dfF":"1.21","totF":"3.45"},{"name":"シュノンソー城","weapon":"杖","rarity":"6","plain":"平水","hpF":"1.12","atF":"1.17","dfF":"1.16","totF":"3.45"},{"name":"シュノンソー城[改壱]","weapon":"杖","rarity":"7","plain":"平水","hpF":"1.19","atF":"1.21","dfF":"1.20","totF":"3.60"},{"name":"山中城","weapon":"槌","rarity":"5","plain":"山","hpF":"1.06","atF":"1.12","dfF":"1.12","totF":"3.30"},{"name":"山中城[改壱]","weapon":"槌","rarity":"6","plain":"山","hpF":"1.10","atF":"1.16","dfF":"1.19","totF":"3.45"},{"name":"曳馬城","weapon":"槍","rarity":"4","plain":"平山","hpF":"1.04","atF":"1.06","dfF":"1.05","totF":"3.15"},{"name":"プラハ城","weapon":"杖","rarity":"7","plain":"平山","hpF":"1.17","atF":"1.23","dfF":"1.20","totF":"3.60"},{"name":"白河小峰城","weapon":"石弓","rarity":"6","plain":"平山","hpF":"1.09","atF":"1.16","dfF":"1.20","totF":"3.45"},{"name":"白河小峰城[改壱]","weapon":"石弓","rarity":"7","plain":"平山","hpF":"1.13","atF":"1.23","dfF":"1.24","totF":"3.60"},{"name":"アンボワーズ城","weapon":"鈴","rarity":"6","plain":"平水","hpF":"1.15","atF":"1.15","dfF":"1.15","totF":"3.45"},{"name":"アンボワーズ城[改壱]","weapon":"鈴","rarity":"7","plain":"平水","hpF":"1.22","atF":"1.19","dfF":"1.19","totF":"3.60"},{"name":"岩国城","weapon":"刀","rarity":"5","plain":"山","hpF":"1.15","atF":"1.09","dfF":"1.06","totF":"3.30"},{"name":"亀田御役所土塁","weapon":"刀","rarity":"6","plain":"平","hpF":"1.14","atF":"1.13","dfF":"1.18","totF":"3.45"},{"name":"紫禁城","weapon":"拳","rarity":"7","plain":"平","hpF":"1.23","atF":"1.23","dfF":"1.14","totF":"3.60"},{"name":"大垣城","weapon":"槌","rarity":"6","plain":"平水","hpF":"1.19","atF":"1.16","dfF":"1.10","totF":"3.45"},{"name":"大垣城[改壱]","weapon":"槌","rarity":"7","plain":"平水","hpF":"1.26","atF":"1.20","dfF":"1.14","totF":"3.60"},{"name":"ﾎｰｴﾝｻﾞﾙﾂﾌﾞﾙｸ城","weapon":"杖","rarity":"6","plain":"平山","hpF":"1.20","atF":"1.12","dfF":"1.13","totF":"3.45"},{"name":"杵築城","weapon":"弓","rarity":"4","plain":"平山水","hpF":"1.08","atF":"1.04","dfF":"1.03","totF":"3.15"},{"name":"長安城","weapon":"拳","rarity":"6","plain":"平山","hpF":"1.18","atF":"1.15","dfF":"1.12","totF":"3.45"},{"name":"徳川大坂城","weapon":"刀","rarity":"7","plain":"平","hpF":"1.17","atF":"1.23","dfF":"1.20","totF":"3.60"},{"name":"古河城","weapon":"石弓","rarity":"5","plain":"平水","hpF":"1.12","atF":"1.13","dfF":"1.05","totF":"3.30"},{"name":"ｶｽﾃﾙ・ﾃﾞﾙ・ﾓﾝﾃ","weapon":"槌","rarity":"6","plain":"平山","hpF":"1.13","atF":"1.13","dfF":"1.19","totF":"3.45"},{"name":"松江城","weapon":"槍","rarity":"6","plain":"平山水","hpF":"1.16","atF":"1.19","dfF":"1.10","totF":"3.45"},{"name":"[夏]犬山城","weapon":"大砲","rarity":"6","plain":"平山","hpF":"1.19","atF":"1.20","dfF":"1.06","totF":"3.45"},{"name":"[夏]指月伏見城","weapon":"鈴","rarity":"6","plain":"平山","hpF":"1.17","atF":"1.20","dfF":"1.08","totF":"3.45"},{"name":"[夏]名古屋城","weapon":"槌","rarity":"6","plain":"平","hpF":"1.22","atF":"1.18","dfF":"1.05","totF":"3.45"},{"name":"高天神城","weapon":"鉄砲","rarity":"6","plain":"山","hpF":"1.10","atF":"1.15","dfF":"1.20","totF":"3.45"},{"name":"新田金山城","weapon":"鈴","rarity":"6","plain":"山","hpF":"1.10","atF":"1.10","dfF":"1.25","totF":"3.45"},{"name":"柳生城","weapon":"刀","rarity":"5","plain":"山","hpF":"1.00","atF":"1.13","dfF":"1.17","totF":"3.30"},{"name":"エディンバラ城","weapon":"大砲","rarity":"6","plain":"山","hpF":"1.18","atF":"1.14","dfF":"1.13","totF":"3.45"},{"name":"ウィンザー城","weapon":"刀","rarity":"7","plain":"平山","hpF":"1.19","atF":"1.24","dfF":"1.17","totF":"3.60"},{"name":"青葉城","weapon":"鉄砲","rarity":"6","plain":"平山","hpF":"1.16","atF":"1.16","dfF":"1.13","totF":"3.45"},{"name":"銀杏城","weapon":"槍","rarity":"6","plain":"平山","hpF":"1.13","atF":"1.14","dfF":"1.18","totF":"3.45"},{"name":"シノン城","weapon":"盾","rarity":"5","plain":"平山","hpF":"1.08","atF":"1.18","dfF":"1.04","totF":"3.30"},{"name":"ｱｲﾘｰﾝ・ﾄﾞﾅﾝ城","weapon":"杖","rarity":"4","plain":"水","hpF":"1.07","atF":"1.01","dfF":"1.07","totF":"3.15"},{"name":"高遠城","weapon":"法術","rarity":"6","plain":"平山","hpF":"1.12","atF":"1.13","dfF":"1.20","totF":"3.45"},{"name":"長篠城","weapon":"鉄砲","rarity":"6","plain":"平","hpF":"1.19","atF":"1.18","dfF":"1.08","totF":"3.45"},{"name":"城塞都市ｶﾙｶｿﾝﾇ","weapon":"盾","rarity":"7","plain":"平山","hpF":"1.21","atF":"1.17","dfF":"1.22","totF":"3.60"},{"name":"城塞都市ﾙｸｾﾝﾌﾞﾙｸ","weapon":"鈴","rarity":"6","plain":"平山","hpF":"1.18","atF":"1.11","dfF":"1.16","totF":"3.45"},{"name":"明石城","weapon":"大砲","rarity":"5","plain":"平山水","hpF":"1.08","atF":"1.12","dfF":"1.10","totF":"3.30"},{"name":"柳之御所","weapon":"弓","rarity":"6","plain":"平","hpF":"1.19","atF":"1.16","dfF":"1.10","totF":"3.45"},{"name":"ｳﾞｧﾙﾄﾌﾞﾙｸ城","weapon":"盾","rarity":"6","plain":"山","hpF":"1.16","atF":"1.16","dfF":"1.13","totF":"3.45"},{"name":"大洲城","weapon":"槌","rarity":"5","plain":"平山水","hpF":"1.10","atF":"1.10","dfF":"1.10","totF":"3.30"},{"name":"平遥古城","weapon":"拳","rarity":"5","plain":"平","hpF":"1.13","atF":"1.10","dfF":"1.07","totF":"3.30"},{"name":"ｼｪｰﾝﾌﾞﾙﾝ宮殿","weapon":"歌舞","rarity":"7","plain":"平山","hpF":"1.19","atF":"1.18","dfF":"1.23","totF":"3.60"},{"name":"[ﾊﾛｳｨﾝ]ユッセ城","weapon":"杖","rarity":"6","plain":"平","hpF":"1.16","atF":"1.16","dfF":"1.13","totF":"3.45"},{"name":"高島城","weapon":"鈴","rarity":"4","plain":"平水","hpF":"1.05","atF":"1.05","dfF":"1.05","totF":"3.15"},{"name":"クロンボー城","weapon":"鉄砲","rarity":"6","plain":"平水","hpF":"1.24","atF":"1.05","dfF":"1.16","totF":"3.45"},{"name":"小倉城","weapon":"大砲","rarity":"6","plain":"平水","hpF":"1.10","atF":"1.17","dfF":"1.18","totF":"3.45"},{"name":"ｾｺﾞﾋﾞｱのｱﾙｶｻﾙ","weapon":"杖","rarity":"6","plain":"山","hpF":"1.12","atF":"1.13","dfF":"1.20","totF":"3.45"},{"name":"津城","weapon":"槌","rarity":"5","plain":"平","hpF":"1.14","atF":"1.08","dfF":"1.08","totF":"3.30"},{"name":"長門指月城","weapon":"弓","rarity":"6","plain":"平山水","hpF":"1.10","atF":"1.20","dfF":"1.15","totF":"3.45"},{"name":"錦城","weapon":"法術","rarity":"7","plain":"平","hpF":"1.20","atF":"1.20","dfF":"1.20","totF":"3.60"},{"name":"新宮城","weapon":"法術","rarity":"5","plain":"平山","hpF":"1.08","atF":"1.14","dfF":"1.08","totF":"3.30"},{"name":"リーズ城","weapon":"弓","rarity":"6","plain":"平水","hpF":"1.17","atF":"1.17","dfF":"1.11","totF":"3.45"},{"name":"シャンボール城","weapon":"槍","rarity":"7","plain":"平水","hpF":"1.22","atF":"1.27","dfF":"1.11","totF":"3.60"},{"name":"ウォリック城","weapon":"盾","rarity":"6","plain":"平水","hpF":"1.15","atF":"1.15","dfF":"1.15","totF":"3.45"},{"name":"江戸氏館","weapon":"弓","rarity":"4","plain":"平","hpF":"1.05","atF":"1.05","dfF":"1.05","totF":"3.15"},{"name":"湊城","weapon":"鉄砲","rarity":"3","plain":"平","hpF":"0.98","atF":"0.94","dfF":"1.08","totF":"3.00"}]
 
 /***/ }),
 /* 517 */
 /***/ (function(module, exports) {
 
-	module.exports = [{"name":"脇差","type":"sword","atk":5,"hit":1,"f1":15,"f2":30,"range":140,"rare":1,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"兜割","type":"sword","atk":12,"hit":1,"f1":16,"f2":30,"range":140,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"太刀","type":"sword","atk":14,"hit":1,"f1":19,"f2":30,"range":145,"rare":1,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"打刀","type":"sword","atk":17,"hit":1,"f1":19,"f2":30,"range":140,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"鉄砲切り兼光","type":"sword","atk":20,"hit":1,"f1":16,"f2":30,"range":140,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"破魔の太刀","type":"sword","atk":22,"hit":1,"f1":19,"f2":30,"range":150,"rare":2,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"雷切","type":"sword","atk":31,"hit":1,"f1":17,"f2":30,"range":140,"rare":2,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"瓶割刀","type":"sword","atk":35,"hit":1,"f1":19,"f2":30,"range":140,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"清正の邪刀","type":"sword","atk":24,"hit":1,"f1":19,"f2":30,"range":140,"rare":3,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"虎徹","type":"sword","atk":30,"hit":1,"f1":15,"f2":30,"range":140,"rare":3,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"フルンティング","type":"sword","atk":37,"hit":1,"f1":19,"f2":30,"range":190,"rare":3,"text":"与ダメージの2%耐久が回復","ref":0,"refText":"+0"},{"name":"長巻","type":"sword","atk":42,"hit":1,"f1":19,"f2":30,"range":155,"rare":3,"text":"範囲+15","ref":0,"refText":"+0"},{"name":"古代刀","type":"sword","atk":45,"hit":1,"f1":17,"f2":30,"range":140,"rare":3,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"蛇刀","type":"sword","atk":48,"hit":1,"f1":19,"f2":30,"range":150,"rare":3,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"姫切","type":"sword","atk":52,"hit":1,"f1":19,"f2":30,"range":140,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"フラガラッハ","type":"sword","atk":54,"hit":1,"f1":19,"f2":30,"range":190,"rare":3,"text":"範囲+50 敵1體に攻撃","ref":0,"refText":"+0"},{"name":"亘理来国光","type":"sword","atk":30,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"防御+30","ref":0,"refText":"+0"},{"name":"真・清正の邪刀","type":"sword","atk":35,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"桜花爛漫刀","type":"sword","atk":43,"hit":1,"f1":16,"f2":30,"range":140,"rare":4,"text":"範囲+10 速度やや上昇","ref":0,"refText":"+0"},{"name":"妖刀村正","type":"sword","atk":48,"hit":1,"f1":16,"f2":30,"range":140,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"魔剣フルンティング","type":"sword","atk":48,"hit":1,"f1":19,"f2":30,"range":190,"rare":4,"text":"与ダメージの2%耐久が回復","ref":0,"refText":"+0"},{"name":"千代金丸","type":"sword","atk":50,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"回復+3","ref":0,"refText":"+0"},{"name":"同田貫","type":"sword","atk":52,"hit":1,"f1":19,"f2":30,"range":150,"rare":4,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"蜂須賀虎徹","type":"sword","atk":56,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"計略再使用-3秒","ref":0,"refText":"+0"},{"name":"明鏡止水","type":"sword","atk":57,"hit":1,"f1":19,"f2":30,"range":145,"rare":4,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"童子切安綱","type":"sword","atk":59,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"防禦+10","ref":0,"refText":"+0"},{"name":"飛天鳳凰丸","type":"sword","atk":61,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"耐久+100","ref":0,"refText":"+0"},{"name":"鬼丸國綱","type":"sword","atk":66,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"魔剣フラガラッハ","type":"sword","atk":72,"hit":1,"f1":19,"f2":30,"range":190,"rare":4,"text":"範囲+50 敵1體に攻撃","ref":0,"refText":"+0"},{"name":"竹槍","type":"lance","atk":5,"hit":1,"f1":19,"f2":30,"range":200,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"薙刀","type":"lance","atk":8,"hit":1,"f1":23,"f2":30,"range":200,"rare":1,"text":"防禦+5","ref":0,"refText":"+0"},{"name":"長柄鎌","type":"lance","atk":10,"hit":1,"f1":23,"f2":30,"range":210,"rare":1,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"直槍","type":"lance","atk":13,"hit":1,"f1":23,"f2":30,"range":200,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"裂空の真槍","type":"lance","atk":14,"hit":1,"f1":19,"f2":30,"range":200,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"陣中槍","type":"lance","atk":26,"hit":1,"f1":23,"f2":30,"range":200,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"名槍ロン","type":"lance","atk":13,"hit":1,"f1":23,"f2":30,"range":200,"rare":3,"text":"耐久+400","ref":0,"refText":"+0"},{"name":"雙龍槍","type":"lance","atk":26,"hit":1,"f1":19,"f2":30,"range":200,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"片鎌槍","type":"lance","atk":33,"hit":1,"f1":20,"f2":30,"range":200,"rare":3,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"極大長槍","type":"lance","atk":36,"hit":1,"f1":23,"f2":30,"range":205,"rare":3,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"岩融","type":"lance","atk":38,"hit":1,"f1":23,"f2":30,"range":200,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"利家の巨槍","type":"lance","atk":48,"hit":1,"f1":40,"f2":30,"range":200,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"聖槍ロンゴミニアド","type":"lance","atk":20,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"耐久+500","ref":0,"refText":"+0"},{"name":"両刃櫃槍","type":"lance","atk":20,"hit":2,"f1":57,"f2":30,"range":200,"rare":4,"text":"速度低下 2連攻撃","ref":0,"refText":"+0"},{"name":"門松寿槍","type":"lance","atk":22,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"防御+25","ref":0,"refText":"+0"},{"name":"とんぼきり","type":"lance","atk":31,"hit":1,"f1":23,"f2":30,"range":220,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"蜻蛉切","type":"lance","atk":35,"hit":1,"f1":19,"f2":30,"range":200,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"御手杵","type":"lance","atk":43,"hit":1,"f1":23,"f2":30,"range":205,"rare":4,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"夜叉彦槍","type":"lance","atk":44,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"計略再使用-3秒","ref":0,"refText":"+0"},{"name":"人間無骨","type":"lance","atk":45,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"回覆+3","ref":0,"refText":"+0"},{"name":"日本號","type":"lance","atk":47,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"防禦+5","ref":0,"refText":"+0"},{"name":"大千鳥十文字槍","type":"lance","atk":49,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"耐久+50","ref":0,"refText":"+0"},{"name":"山姥の槍","type":"lance","atk":51,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧利家の巨槍","type":"lance","atk":58,"hit":1,"f1":40,"f2":30,"range":200,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"木槌","type":"hammer","atk":6,"hit":1,"f1":18,"f2":30,"range":100,"rare":1,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"棍棒","type":"hammer","atk":28,"hit":1,"f1":27,"f2":30,"range":100,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"金棒","type":"hammer","atk":27,"hit":1,"f1":27,"f2":30,"range":110,"rare":2,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"戦鎚","type":"hammer","atk":41,"hit":1,"f1":27,"f2":30,"range":100,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"神木の槌","type":"hammer","atk":54,"hit":1,"f1":27,"f2":30,"range":100,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"義弘の暴槌","type":"hammer","atk":73,"hit":1,"f1":42,"f2":30,"range":100,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"打ち出の小槌","type":"hammer","atk":44,"hit":1,"f1":18,"f2":30,"range":100,"rare":4,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"軍配形天守槌","type":"hammer","atk":54,"hit":1,"f1":22,"f2":30,"range":100,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"鬼の金棒","type":"hammer","atk":60,"hit":1,"f1":27,"f2":30,"range":110,"rare":4,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"源翁鎚","type":"hammer","atk":74,"hit":1,"f1":27,"f2":30,"range":100,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真・義弘の暴槌","type":"hammer","atk":100,"hit":1,"f1":42,"f2":30,"range":100,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"ウッドシールド","type":"shield","atk":3,"hit":1,"f1":24,"f2":30,"range":90,"rare":1,"text":"防禦+10","ref":0,"refText":"+0"},{"name":"バックラー","type":"shield","atk":5,"hit":1,"f1":24,"f2":30,"range":90,"rare":1,"text":"防禦+12","ref":0,"refText":"+0"},{"name":"ブロンズシールド","type":"shield","atk":2,"hit":1,"f1":24,"f2":30,"range":90,"rare":1,"text":"防禦+15","ref":0,"refText":"+0"},{"name":"タワーシールド","type":"shield","atk":8,"hit":1,"f1":24,"f2":30,"range":90,"rare":2,"text":"防禦+29","ref":0,"refText":"+0"},{"name":"カイトシールド","type":"shield","atk":10,"hit":1,"f1":24,"f2":30,"range":90,"rare":2,"text":"防禦+27","ref":0,"refText":"+0"},{"name":"ラウンドシールド","type":"shield","atk":13,"hit":1,"f1":24,"f2":30,"range":90,"rare":2,"text":"防禦+23","ref":0,"refText":"+0"},{"name":"ｼｭﾃﾌｧﾝの闘盾","type":"shield","atk":10,"hit":1,"f1":24,"f2":30,"range":110,"rare":3,"text":"範囲+20 防禦+33","ref":0,"refText":"+0"},{"name":"プリトウェン","type":"shield","atk":15,"hit":1,"f1":24,"f2":30,"range":90,"rare":3,"text":"防禦+44","ref":0,"refText":"+0"},{"name":"アキレウスの盾","type":"shield","atk":20,"hit":1,"f1":24,"f2":30,"range":90,"rare":3,"text":"防禦+37","ref":0,"refText":"+0"},{"name":"真‧ｼｭﾃﾌｧﾝの闘盾","type":"shield","atk":15,"hit":1,"f1":24,"f2":30,"range":110,"rare":4,"text":"範囲+20 防禦+43","ref":0,"refText":"+0"},{"name":"ちょこしぃるど","type":"shield","atk":21,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"回復+3 防禦+30","ref":0,"refText":"+0"},{"name":"アイアースの盾","type":"shield","atk":23,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"耐久+300 防禦+48","ref":0,"refText":"+0"},{"name":"イージスの盾","type":"shield","atk":25,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"防禦+55","ref":0,"refText":"+0"},{"name":"スヴェル","type":"shield","atk":30,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"防禦+50","ref":0,"refText":"+0"},{"name":"鏑矢","type":"bow","atk":6,"hit":1,"f1":19,"f2":18,"range":290,"rare":1,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"柳葉","type":"bow","atk":9,"hit":1,"f1":17,"f2":18,"range":280,"rare":1,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"破壊の弓","type":"bow","atk":11,"hit":1,"f1":19,"f2":18,"range":280,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"重藤の弓","type":"bow","atk":14,"hit":1,"f1":16,"f2":18,"range":280,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"破魔弓","type":"bow","atk":15,"hit":1,"f1":19,"f2":18,"range":290,"rare":2,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"雷の弓","type":"bow","atk":20,"hit":1,"f1":17,"f2":18,"range":280,"rare":2,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"炎の弓","type":"bow","atk":23,"hit":1,"f1":19,"f2":18,"range":280,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"天鹿児弓","type":"bow","atk":24,"hit":1,"f1":16,"f2":18,"range":280,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"光義の弓","type":"bow","atk":26,"hit":1,"f1":19,"f2":18,"range":300,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"殲滅の猛弓","type":"bow","atk":32,"hit":1,"f1":19,"f2":18,"range":285,"rare":3,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"為朝の弓","type":"bow","atk":34,"hit":1,"f1":19,"f2":18,"range":280,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"元就の謀弓","type":"bow","atk":3,"hit":1,"f1":69,"f2":18,"range":280,"rare":3,"text":"速度低下 敵3体に攻撃","ref":0,"refText":"+0"},{"name":"天の羽々矢","type":"bow","atk":29,"hit":1,"f1":15,"f2":18,"range":280,"rare":4,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"聚楽の弓","type":"bow","atk":35,"hit":1,"f1":16,"f2":18,"range":280,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"雷上動","type":"bow","atk":40,"hit":1,"f1":17,"f2":18,"range":280,"rare":4,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"弓張月","type":"bow","atk":43,"hit":1,"f1":19,"f2":18,"range":290,"rare":4,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"梓弓","type":"bow","atk":45,"hit":1,"f1":19,"f2":18,"range":280,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧元就の謀弓","type":"bow","atk":8,"hit":1,"f1":69,"f2":18,"range":280,"rare":4,"text":"速度低下 敵3体に攻撃","ref":0,"refText":"+0"},{"name":"連弩","type":"xbow","atk":18,"hit":1,"f1":42,"f2":30,"range":250,"rare":2,"text":"敵2体に攻撃","ref":0,"refText":"+0"},{"name":"木弩","type":"xbow","atk":10,"hit":1,"f1":19,"f2":30,"range":250,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"石弩","type":"xbow","atk":28,"hit":1,"f1":24,"f2":30,"range":250,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"東方弩","type":"xbow","atk":54,"hit":1,"f1":24,"f2":30,"range":250,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"高虎の忠弩","type":"xbow","atk":35,"hit":1,"f1":24,"f2":30,"range":270,"rare":3,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"舞鶴","type":"xbow","atk":55,"hit":1,"f1":20,"f2":30,"range":250,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"近衛の弩","type":"xbow","atk":72,"hit":1,"f1":24,"f2":30,"range":270,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"正則の剛弩","type":"xbow","atk":84,"hit":1,"f1":38,"f2":30,"range":250,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"わたぬき千狐","type":"xbow","atk":5,"hit":1,"f1":24,"f2":30,"range":250,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"多賀柵弩","type":"xbow","atk":11,"hit":1,"f1":57,"f2":30,"range":270,"rare":4,"text":"敵3体に攻撃 範囲+20","ref":0,"refText":"+0"},{"name":"無雙弩","type":"xbow","atk":21,"hit":1,"f1":57,"f2":30,"range":250,"rare":4,"text":"敵3体に攻撃","ref":0,"refText":"+0"},{"name":"真‧高虎の忠弩","type":"xbow","atk":51,"hit":1,"f1":24,"f2":30,"range":270,"rare":4,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"龍髭の弩","type":"xbow","atk":83,"hit":1,"f1":24,"f2":30,"range":270,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"床子弩","type":"xbow","atk":96,"hit":1,"f1":24,"f2":30,"range":250,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧正則の剛弩","type":"xbow","atk":113,"hit":1,"f1":38,"f2":30,"range":250,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"手銃","type":"arqu","atk":4,"hit":1,"f1":31,"f2":30,"range":340,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"鉄砲","type":"arqu","atk":15,"hit":1,"f1":37,"f2":30,"range":360,"rare":1,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"木砲","type":"arqu","atk":19,"hit":1,"f1":37,"f2":30,"range":350,"rare":1,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"紅蓮の小筒","type":"arqu","atk":25,"hit":1,"f1":37,"f2":30,"range":340,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"連裝銃","type":"arqu","atk":8,"hit":1,"f1":82,"f2":30,"range":340,"rare":2,"text":"敵1體に2連続攻撃","ref":0,"refText":"+0"},{"name":"大筒","type":"arqu","atk":35,"hit":1,"f1":37,"f2":30,"range":360,"rare":2,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"回転砲","type":"arqu","atk":12,"hit":1,"f1":102,"f2":30,"range":340,"rare":3,"text":"敵1體に3連続攻撃","ref":0,"refText":"+0"},{"name":"墨縄","type":"arqu","atk":33,"hit":1,"f1":31,"f2":30,"range":340,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"氷結の大筒","type":"arqu","atk":54,"hit":1,"f1":37,"f2":30,"range":360,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"國友鉄砲","type":"arqu","atk":57,"hit":1,"f1":37,"f2":30,"range":350,"rare":3,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"雷光の中筒","type":"arqu","atk":50,"hit":1,"f1":32,"f2":30,"range":340,"rare":3,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"信玄砲","type":"arqu","atk":50,"hit":1,"f1":37,"f2":30,"range":340,"rare":3,"text":"後退距離若干上昇","ref":0,"refText":"+0"},{"name":"天海の鉄砲","type":"arqu","atk":65,"hit":1,"f1":37,"f2":30,"range":340,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"三成の烈砲","type":"arqu","atk":70,"hit":1,"f1":62,"f2":30,"range":340,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"滅‧ガトリング砲","type":"arqu","atk":18,"hit":1,"f1":102,"f2":30,"range":340,"rare":4,"text":"敵1體に3連続攻撃","ref":0,"refText":"+0"},{"name":"八咫烏","type":"arqu","atk":58,"hit":1,"f1":31,"f2":30,"range":340,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"雨夜手拍子","type":"arqu","atk":80,"hit":1,"f1":37,"f2":30,"range":340,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧三成の烈砲","type":"arqu","atk":96,"hit":1,"f1":62,"f2":30,"range":340,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"木製大砲","type":"cannon","atk":7,"hit":1,"f1":35,"f2":45,"range":340,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"設置式大筒","type":"cannon","atk":11,"hit":1,"f1":42,"f2":45,"range":340,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"芝辻砲","type":"cannon","atk":16,"hit":1,"f1":35,"f2":45,"range":340,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"セーカー砲","type":"cannon","atk":18,"hit":1,"f1":42,"f2":45,"range":360,"rare":2,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"國友の大砲","type":"cannon","atk":23,"hit":1,"f1":42,"f2":45,"range":340,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"カルバリン砲","type":"cannon","atk":29,"hit":1,"f1":42,"f2":45,"range":360,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"半加農砲","type":"cannon","atk":37,"hit":1,"f1":42,"f2":45,"range":340,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"兼続の愛砲","type":"cannon","atk":47,"hit":1,"f1":42,"f2":45,"range":340,"rare":3,"text":"爆風範囲低下","ref":0,"refText":"+0"},{"name":"長政の激砲","type":"cannon","atk":48,"hit":1,"f1":67,"f2":45,"range":340,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"車山形大砲-祭-","type":"cannon","atk":33,"hit":1,"f1":35,"f2":45,"range":340,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"古天明平蜘蛛砲","type":"cannon","atk":40,"hit":1,"f1":42,"f2":45,"range":340,"rare":4,"text":"爆風範囲やや拡大","ref":0,"refText":"+0"},{"name":"加農砲","type":"cannon","atk":40,"hit":1,"f1":42,"f2":45,"range":360,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"國崩し","type":"cannon","atk":45,"hit":1,"f1":36,"f2":45,"range":340,"rare":4,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"散星","type":"cannon","atk":50,"hit":1,"f1":42,"f2":45,"range":340,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧兼続の愛砲","type":"cannon","atk":60,"hit":1,"f1":42,"f2":45,"range":340,"rare":4,"text":"爆風範囲低下","ref":0,"refText":"+0"},{"name":"真‧長政の激砲","type":"cannon","atk":65,"hit":1,"f1":67,"f2":45,"range":340,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"錫杖","type":"spell","atk":6,"hit":1,"f1":42,"f2":30,"range":260,"rare":1,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"筆","type":"spell","atk":12,"hit":1,"f1":42,"f2":30,"range":240,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"金銅錫杖","type":"spell","atk":16,"hit":1,"f1":42,"f2":30,"range":260,"rare":2,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"弘法の筆","type":"spell","atk":24,"hit":1,"f1":42,"f2":30,"range":240,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"小十郎の響杖","type":"spell","atk":22,"hit":1,"f1":34,"f2":30,"range":240,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"三蔵法師の杖","type":"spell","atk":28,"hit":1,"f1":42,"f2":30,"range":260,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"閻魔の筆","type":"spell","atk":36,"hit":1,"f1":42,"f2":30,"range":240,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"真・小十郎の響杖","type":"spell","atk":31,"hit":1,"f1":34,"f2":30,"range":240,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"菩薩の杖","type":"spell","atk":37,"hit":1,"f1":42,"f2":30,"range":260,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"道風の筆","type":"spell","atk":42,"hit":1,"f1":36,"f2":30,"range":240,"rare":4,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"役小角の杖","type":"spell","atk":53,"hit":1,"f1":42,"f2":30,"range":240,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"青龍","type":"fist","atk":30,"hit":3,"f1":32,"f2":19,"range":90,"rare":5,"text":"平遙古城","ref":0,"refText":"+0"},{"name":"白虎","type":"fist","atk":35,"hit":3,"f1":32,"f2":19,"range":90,"rare":6,"text":"長安城","ref":0,"refText":"+0"},{"name":"黃龍","type":"fist","atk":45,"hit":3,"f1":32,"f2":19,"range":90,"rare":7,"text":"紫禁城","ref":0,"refText":"+0"},{"name":"扇","type":"dance","atk":5,"hit":1,"f1":62,"f2":60,"range":300,"rare":1,"text":"窪田城","ref":0,"refText":"+0"},{"name":"扇改","type":"dance","atk":11,"hit":1,"f1":62,"f2":60,"range":300,"rare":2,"text":"久保田城","ref":0,"refText":"+0"},{"name":"衝波扇","type":"dance","atk":14,"hit":1,"f1":62,"f2":60,"range":300,"rare":3,"text":"鶴ヶ岡城","ref":0,"refText":"+0"},{"name":"スマイルボイス","type":"dance","atk":13,"hit":1,"f1":62,"f2":60,"range":300,"rare":2,"text":"尾山御坊","ref":0,"refText":"+0"},{"name":"スイートボイス","type":"dance","atk":14,"hit":1,"f1":62,"f2":60,"range":300,"rare":3,"text":"山科本願寺","ref":0,"refText":"+0"},{"name":"ハッピーボイス","type":"dance","atk":25,"hit":1,"f1":62,"f2":60,"range":300,"rare":6,"text":"石山御坊","ref":0,"refText":"+0"},{"name":"ミラクルボイス","type":"dance","atk":35,"hit":1,"f1":62,"f2":60,"range":300,"rare":7,"text":"大阪城","ref":0,"refText":"+0"},{"name":"オベリスクタクト","type":"dance","atk":35,"hit":1,"f1":62,"f2":60,"range":300,"rare":7,"text":"シェーンブルン宮殿","ref":0,"refText":"+0"},{"name":"浮城の鈴","type":"bell","atk":20,"hit":1,"f1":97,"f2":60,"range":320,"rare":4,"text":"高島城","ref":0,"refText":"+0"},{"name":"真鍮の鈴","type":"bell","atk":20,"hit":1,"f1":97,"f2":60,"range":320,"rare":5,"text":"濱田城","ref":0,"refText":"+0"},{"name":"シルバーベル","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"アンボワーズ城","ref":0,"refText":"+0"},{"name":"シルバーベル","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"城塞都市ルクセンブルク","ref":0,"refText":"+0"},{"name":"海辺の風鈴","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"［夏］指月伏見城","ref":0,"refText":"+0"},{"name":"太平の鈴","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"新田金山城","ref":0,"refText":"+0"},{"name":"金の鈴","type":"bell","atk":35,"hit":1,"f1":97,"f2":60,"range":320,"rare":7,"text":"指月伏見城","ref":0,"refText":"+0"},{"name":"銀の杖","type":"staff","atk":25,"hit":1,"f1":37,"f2":30,"range":240,"rare":4,"text":"アイリーン・ドナン城","ref":0,"refText":"+0"},{"name":"荊棘の杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"ユッセ城","ref":0,"refText":"+0"},{"name":"荊棘の箒","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"［ハロウィン］ユッセ城","ref":0,"refText":"+0"},{"name":"クリスタルの杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"ホーエンザルツブルク城","ref":0,"refText":"+0"},{"name":"クリスタルの杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"シュノンソー城","ref":0,"refText":"+0"},{"name":"クリスタルの杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"セゴビアのアルカサ","ref":0,"refText":"+0"},{"name":"女神の杖","type":"staff","atk":35,"hit":1,"f1":37,"f2":30,"range":240,"rare":7,"text":"プラハ城","ref":0,"refText":"+0"}]
+	module.exports = [{"name":"sword","cname":"刀","frame1":19,"frame2":30,"range":140,"hp":1560,"atk":66,"def":65,"hpM":12072,"atkM":1626,"defM":1585},{"name":"lance","cname":"槍","frame1":23,"frame2":30,"range":200,"hp":1140,"atk":51,"def":48,"hpM":8820,"atkM":1267,"defM":1192},{"name":"hammer","cname":"槌","frame1":27,"frame2":30,"range":100,"hp":1680,"atk":90,"def":66,"hpM":15540,"atkM":2194,"defM":1742},{"name":"shield","cname":"盾","frame1":24,"frame2":30,"range":90,"hp":1800,"atk":61,"def":90,"hpM":15800,"atkM":1501,"defM":1890},{"name":"bow","cname":"弓","frame1":19,"frame2":18,"range":280,"hp":960,"atk":50,"def":39,"hpM":7432,"atkM":1234,"defM":959},{"name":"xbow","cname":"石弓","frame1":24,"frame2":30,"range":250,"hp":1080,"atk":72,"def":45,"hpM":8360,"atkM":1776,"defM":1117},{"name":"arqu","cname":"鉄砲","frame1":37,"frame2":30,"range":340,"hp":840,"atk":90,"def":36,"hpM":6505,"atkM":2226,"defM":892},{"name":"cannon","cname":"大砲","frame1":42,"frame2":45,"range":340,"hp":870,"atk":69,"def":39,"hpM":6734,"atkM":1701,"defM":959},{"name":"dance","cname":"歌舞","frame1":62,"frame2":60,"range":300,"hp":900,"atk":41,"def":37,"hpM":6972,"atkM":1037,"defM":933},{"name":"spell","cname":"法術","frame1":42,"frame2":30,"range":240,"hp":960,"atk":48,"def":34,"hpM":7432,"atkM":1192,"defM":858},{"name":"bell","cname":"鈴","frame1":60,"frame2":97,"range":320,"hp":1000,"atk":45,"def":36,"hpM":8000,"atkM":1197,"defM":932},{"name":"staff","cname":"杖","frame1":37,"frame2":30,"range":240,"hp":850,"atk":90,"def":34,"hpM":6350,"atkM":2194,"defM":858},{"name":"fist","cname":"拳","frame1":32,"frame2":19,"range":90,"hp":1900,"atk":48,"def":40,"hpM":16900,"atkM":1168,"defM":1240}]
 
 /***/ }),
 /* 518 */
+/***/ (function(module, exports) {
+
+	module.exports = [{"name":"脇差","type":"sword","atk":5,"hit":1,"f1":15,"f2":30,"range":140,"rare":1,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"兜割","type":"sword","atk":12,"hit":1,"f1":16,"f2":30,"range":140,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"太刀","type":"sword","atk":14,"hit":1,"f1":19,"f2":30,"range":145,"rare":1,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"打刀","type":"sword","atk":17,"hit":1,"f1":19,"f2":30,"range":140,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"鉄砲切り兼光","type":"sword","atk":20,"hit":1,"f1":16,"f2":30,"range":140,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"破魔の太刀","type":"sword","atk":22,"hit":1,"f1":19,"f2":30,"range":150,"rare":2,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"雷切","type":"sword","atk":31,"hit":1,"f1":17,"f2":30,"range":140,"rare":2,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"瓶割刀","type":"sword","atk":35,"hit":1,"f1":19,"f2":30,"range":140,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"清正の邪刀","type":"sword","atk":24,"hit":1,"f1":19,"f2":30,"range":140,"rare":3,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"虎徹","type":"sword","atk":30,"hit":1,"f1":15,"f2":30,"range":140,"rare":3,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"フルンティング","type":"sword","atk":37,"hit":1,"f1":19,"f2":30,"range":190,"rare":3,"text":"与ダメージの2%耐久が回復","ref":0,"refText":"+0"},{"name":"長巻","type":"sword","atk":42,"hit":1,"f1":19,"f2":30,"range":155,"rare":3,"text":"範囲+15","ref":0,"refText":"+0"},{"name":"古代刀","type":"sword","atk":45,"hit":1,"f1":17,"f2":30,"range":140,"rare":3,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"蛇刀","type":"sword","atk":48,"hit":1,"f1":19,"f2":30,"range":150,"rare":3,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"姫切","type":"sword","atk":52,"hit":1,"f1":19,"f2":30,"range":140,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"フラガラッハ","type":"sword","atk":54,"hit":1,"f1":19,"f2":30,"range":190,"rare":3,"text":"範囲+50 敵1體に攻撃","ref":0,"refText":"+0"},{"name":"亘理来国光","type":"sword","atk":30,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"防御+30","ref":0,"refText":"+0"},{"name":"真・清正の邪刀","type":"sword","atk":35,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"桜花爛漫刀","type":"sword","atk":43,"hit":1,"f1":16,"f2":30,"range":140,"rare":4,"text":"範囲+10 速度やや上昇","ref":0,"refText":"+0"},{"name":"妖刀村正","type":"sword","atk":48,"hit":1,"f1":16,"f2":30,"range":140,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"魔剣フルンティング","type":"sword","atk":48,"hit":1,"f1":19,"f2":30,"range":190,"rare":4,"text":"与ダメージの2%耐久が回復","ref":0,"refText":"+0"},{"name":"千代金丸","type":"sword","atk":50,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"回復+3","ref":0,"refText":"+0"},{"name":"同田貫","type":"sword","atk":52,"hit":1,"f1":19,"f2":30,"range":150,"rare":4,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"蜂須賀虎徹","type":"sword","atk":56,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"計略再使用-3秒","ref":0,"refText":"+0"},{"name":"明鏡止水","type":"sword","atk":57,"hit":1,"f1":19,"f2":30,"range":145,"rare":4,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"童子切安綱","type":"sword","atk":59,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"防禦+10","ref":0,"refText":"+0"},{"name":"飛天鳳凰丸","type":"sword","atk":61,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"耐久+100","ref":0,"refText":"+0"},{"name":"鬼丸國綱","type":"sword","atk":66,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"魔剣フラガラッハ","type":"sword","atk":72,"hit":1,"f1":19,"f2":30,"range":190,"rare":4,"text":"範囲+50 敵1體に攻撃","ref":0,"refText":"+0"},{"name":"竹槍","type":"lance","atk":5,"hit":1,"f1":19,"f2":30,"range":200,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"薙刀","type":"lance","atk":8,"hit":1,"f1":23,"f2":30,"range":200,"rare":1,"text":"防禦+5","ref":0,"refText":"+0"},{"name":"長柄鎌","type":"lance","atk":10,"hit":1,"f1":23,"f2":30,"range":210,"rare":1,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"直槍","type":"lance","atk":13,"hit":1,"f1":23,"f2":30,"range":200,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"裂空の真槍","type":"lance","atk":14,"hit":1,"f1":19,"f2":30,"range":200,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"陣中槍","type":"lance","atk":26,"hit":1,"f1":23,"f2":30,"range":200,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"名槍ロン","type":"lance","atk":13,"hit":1,"f1":23,"f2":30,"range":200,"rare":3,"text":"耐久+400","ref":0,"refText":"+0"},{"name":"雙龍槍","type":"lance","atk":26,"hit":1,"f1":19,"f2":30,"range":200,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"片鎌槍","type":"lance","atk":33,"hit":1,"f1":20,"f2":30,"range":200,"rare":3,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"極大長槍","type":"lance","atk":36,"hit":1,"f1":23,"f2":30,"range":205,"rare":3,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"岩融","type":"lance","atk":38,"hit":1,"f1":23,"f2":30,"range":200,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"利家の巨槍","type":"lance","atk":48,"hit":1,"f1":40,"f2":30,"range":200,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"聖槍ロンゴミニアド","type":"lance","atk":20,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"耐久+500","ref":0,"refText":"+0"},{"name":"両刃櫃槍","type":"lance","atk":20,"hit":2,"f1":57,"f2":30,"range":200,"rare":4,"text":"速度低下 2連攻撃","ref":0,"refText":"+0"},{"name":"門松寿槍","type":"lance","atk":22,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"防御+25","ref":0,"refText":"+0"},{"name":"とんぼきり","type":"lance","atk":31,"hit":1,"f1":23,"f2":30,"range":220,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"蜻蛉切","type":"lance","atk":35,"hit":1,"f1":19,"f2":30,"range":200,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"御手杵","type":"lance","atk":43,"hit":1,"f1":23,"f2":30,"range":205,"rare":4,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"夜叉彦槍","type":"lance","atk":44,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"計略再使用-3秒","ref":0,"refText":"+0"},{"name":"人間無骨","type":"lance","atk":45,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"回覆+3","ref":0,"refText":"+0"},{"name":"日本號","type":"lance","atk":47,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"防禦+5","ref":0,"refText":"+0"},{"name":"大千鳥十文字槍","type":"lance","atk":49,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"耐久+50","ref":0,"refText":"+0"},{"name":"山姥の槍","type":"lance","atk":51,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧利家の巨槍","type":"lance","atk":58,"hit":1,"f1":40,"f2":30,"range":200,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"木槌","type":"hammer","atk":6,"hit":1,"f1":18,"f2":30,"range":100,"rare":1,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"棍棒","type":"hammer","atk":28,"hit":1,"f1":27,"f2":30,"range":100,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"金棒","type":"hammer","atk":27,"hit":1,"f1":27,"f2":30,"range":110,"rare":2,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"戦鎚","type":"hammer","atk":41,"hit":1,"f1":27,"f2":30,"range":100,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"神木の槌","type":"hammer","atk":54,"hit":1,"f1":27,"f2":30,"range":100,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"義弘の暴槌","type":"hammer","atk":73,"hit":1,"f1":42,"f2":30,"range":100,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"打ち出の小槌","type":"hammer","atk":44,"hit":1,"f1":18,"f2":30,"range":100,"rare":4,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"軍配形天守槌","type":"hammer","atk":54,"hit":1,"f1":22,"f2":30,"range":100,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"鬼の金棒","type":"hammer","atk":60,"hit":1,"f1":27,"f2":30,"range":110,"rare":4,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"源翁鎚","type":"hammer","atk":74,"hit":1,"f1":27,"f2":30,"range":100,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真・義弘の暴槌","type":"hammer","atk":100,"hit":1,"f1":42,"f2":30,"range":100,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"ウッドシールド","type":"shield","atk":3,"hit":1,"f1":24,"f2":30,"range":90,"rare":1,"text":"防禦+10","ref":0,"refText":"+0"},{"name":"バックラー","type":"shield","atk":5,"hit":1,"f1":24,"f2":30,"range":90,"rare":1,"text":"防禦+12","ref":0,"refText":"+0"},{"name":"ブロンズシールド","type":"shield","atk":2,"hit":1,"f1":24,"f2":30,"range":90,"rare":1,"text":"防禦+15","ref":0,"refText":"+0"},{"name":"タワーシールド","type":"shield","atk":8,"hit":1,"f1":24,"f2":30,"range":90,"rare":2,"text":"防禦+29","ref":0,"refText":"+0"},{"name":"カイトシールド","type":"shield","atk":10,"hit":1,"f1":24,"f2":30,"range":90,"rare":2,"text":"防禦+27","ref":0,"refText":"+0"},{"name":"ラウンドシールド","type":"shield","atk":13,"hit":1,"f1":24,"f2":30,"range":90,"rare":2,"text":"防禦+23","ref":0,"refText":"+0"},{"name":"ｼｭﾃﾌｧﾝの闘盾","type":"shield","atk":10,"hit":1,"f1":24,"f2":30,"range":110,"rare":3,"text":"範囲+20 防禦+33","ref":0,"refText":"+0"},{"name":"プリトウェン","type":"shield","atk":15,"hit":1,"f1":24,"f2":30,"range":90,"rare":3,"text":"防禦+44","ref":0,"refText":"+0"},{"name":"アキレウスの盾","type":"shield","atk":20,"hit":1,"f1":24,"f2":30,"range":90,"rare":3,"text":"防禦+37","ref":0,"refText":"+0"},{"name":"真‧ｼｭﾃﾌｧﾝの闘盾","type":"shield","atk":15,"hit":1,"f1":24,"f2":30,"range":110,"rare":4,"text":"範囲+20 防禦+43","ref":0,"refText":"+0"},{"name":"ちょこしぃるど","type":"shield","atk":21,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"回復+3 防禦+30","ref":0,"refText":"+0"},{"name":"アイアースの盾","type":"shield","atk":23,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"耐久+300 防禦+48","ref":0,"refText":"+0"},{"name":"イージスの盾","type":"shield","atk":25,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"防禦+55","ref":0,"refText":"+0"},{"name":"スヴェル","type":"shield","atk":30,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"防禦+50","ref":0,"refText":"+0"},{"name":"鏑矢","type":"bow","atk":6,"hit":1,"f1":19,"f2":18,"range":290,"rare":1,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"柳葉","type":"bow","atk":9,"hit":1,"f1":17,"f2":18,"range":280,"rare":1,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"破壊の弓","type":"bow","atk":11,"hit":1,"f1":19,"f2":18,"range":280,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"重藤の弓","type":"bow","atk":14,"hit":1,"f1":16,"f2":18,"range":280,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"破魔弓","type":"bow","atk":15,"hit":1,"f1":19,"f2":18,"range":290,"rare":2,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"雷の弓","type":"bow","atk":20,"hit":1,"f1":17,"f2":18,"range":280,"rare":2,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"炎の弓","type":"bow","atk":23,"hit":1,"f1":19,"f2":18,"range":280,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"天鹿児弓","type":"bow","atk":24,"hit":1,"f1":16,"f2":18,"range":280,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"光義の弓","type":"bow","atk":26,"hit":1,"f1":19,"f2":18,"range":300,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"殲滅の猛弓","type":"bow","atk":32,"hit":1,"f1":19,"f2":18,"range":285,"rare":3,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"為朝の弓","type":"bow","atk":34,"hit":1,"f1":19,"f2":18,"range":280,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"元就の謀弓","type":"bow","atk":3,"hit":1,"f1":69,"f2":18,"range":280,"rare":3,"text":"速度低下 敵3体に攻撃","ref":0,"refText":"+0"},{"name":"天の羽々矢","type":"bow","atk":29,"hit":1,"f1":15,"f2":18,"range":280,"rare":4,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"聚楽の弓","type":"bow","atk":35,"hit":1,"f1":16,"f2":18,"range":280,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"雷上動","type":"bow","atk":40,"hit":1,"f1":17,"f2":18,"range":280,"rare":4,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"弓張月","type":"bow","atk":43,"hit":1,"f1":19,"f2":18,"range":290,"rare":4,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"梓弓","type":"bow","atk":45,"hit":1,"f1":19,"f2":18,"range":280,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧元就の謀弓","type":"bow","atk":8,"hit":1,"f1":69,"f2":18,"range":280,"rare":4,"text":"速度低下 敵3体に攻撃","ref":0,"refText":"+0"},{"name":"連弩","type":"xbow","atk":18,"hit":1,"f1":42,"f2":30,"range":250,"rare":2,"text":"敵2体に攻撃","ref":0,"refText":"+0"},{"name":"木弩","type":"xbow","atk":10,"hit":1,"f1":19,"f2":30,"range":250,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"石弩","type":"xbow","atk":28,"hit":1,"f1":24,"f2":30,"range":250,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"東方弩","type":"xbow","atk":54,"hit":1,"f1":24,"f2":30,"range":250,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"高虎の忠弩","type":"xbow","atk":35,"hit":1,"f1":24,"f2":30,"range":270,"rare":3,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"舞鶴","type":"xbow","atk":55,"hit":1,"f1":20,"f2":30,"range":250,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"近衛の弩","type":"xbow","atk":72,"hit":1,"f1":24,"f2":30,"range":270,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"正則の剛弩","type":"xbow","atk":84,"hit":1,"f1":38,"f2":30,"range":250,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"わたぬき千狐","type":"xbow","atk":5,"hit":1,"f1":24,"f2":30,"range":250,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"多賀柵弩","type":"xbow","atk":11,"hit":1,"f1":57,"f2":30,"range":270,"rare":4,"text":"敵3体に攻撃 範囲+20","ref":0,"refText":"+0"},{"name":"無雙弩","type":"xbow","atk":21,"hit":1,"f1":57,"f2":30,"range":250,"rare":4,"text":"敵3体に攻撃","ref":0,"refText":"+0"},{"name":"真‧高虎の忠弩","type":"xbow","atk":51,"hit":1,"f1":24,"f2":30,"range":270,"rare":4,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"龍髭の弩","type":"xbow","atk":83,"hit":1,"f1":24,"f2":30,"range":270,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"床子弩","type":"xbow","atk":96,"hit":1,"f1":24,"f2":30,"range":250,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧正則の剛弩","type":"xbow","atk":113,"hit":1,"f1":38,"f2":30,"range":250,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"手銃","type":"arqu","atk":4,"hit":1,"f1":31,"f2":30,"range":340,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"鉄砲","type":"arqu","atk":15,"hit":1,"f1":37,"f2":30,"range":360,"rare":1,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"木砲","type":"arqu","atk":19,"hit":1,"f1":37,"f2":30,"range":350,"rare":1,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"紅蓮の小筒","type":"arqu","atk":25,"hit":1,"f1":37,"f2":30,"range":340,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"連裝銃","type":"arqu","atk":8,"hit":1,"f1":82,"f2":30,"range":340,"rare":2,"text":"敵1體に2連続攻撃","ref":0,"refText":"+0"},{"name":"大筒","type":"arqu","atk":35,"hit":1,"f1":37,"f2":30,"range":360,"rare":2,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"回転砲","type":"arqu","atk":12,"hit":1,"f1":102,"f2":30,"range":340,"rare":3,"text":"敵1體に3連続攻撃","ref":0,"refText":"+0"},{"name":"墨縄","type":"arqu","atk":33,"hit":1,"f1":31,"f2":30,"range":340,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"氷結の大筒","type":"arqu","atk":54,"hit":1,"f1":37,"f2":30,"range":360,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"國友鉄砲","type":"arqu","atk":57,"hit":1,"f1":37,"f2":30,"range":350,"rare":3,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"雷光の中筒","type":"arqu","atk":50,"hit":1,"f1":32,"f2":30,"range":340,"rare":3,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"信玄砲","type":"arqu","atk":50,"hit":1,"f1":37,"f2":30,"range":340,"rare":3,"text":"後退距離若干上昇","ref":0,"refText":"+0"},{"name":"天海の鉄砲","type":"arqu","atk":65,"hit":1,"f1":37,"f2":30,"range":340,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"三成の烈砲","type":"arqu","atk":70,"hit":1,"f1":62,"f2":30,"range":340,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"滅‧ガトリング砲","type":"arqu","atk":18,"hit":1,"f1":102,"f2":30,"range":340,"rare":4,"text":"敵1體に3連続攻撃","ref":0,"refText":"+0"},{"name":"八咫烏","type":"arqu","atk":58,"hit":1,"f1":31,"f2":30,"range":340,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"雨夜手拍子","type":"arqu","atk":80,"hit":1,"f1":37,"f2":30,"range":340,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧三成の烈砲","type":"arqu","atk":96,"hit":1,"f1":62,"f2":30,"range":340,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"木製大砲","type":"cannon","atk":7,"hit":1,"f1":35,"f2":45,"range":340,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"設置式大筒","type":"cannon","atk":11,"hit":1,"f1":42,"f2":45,"range":340,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"芝辻砲","type":"cannon","atk":16,"hit":1,"f1":35,"f2":45,"range":340,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"セーカー砲","type":"cannon","atk":18,"hit":1,"f1":42,"f2":45,"range":360,"rare":2,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"國友の大砲","type":"cannon","atk":23,"hit":1,"f1":42,"f2":45,"range":340,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"カルバリン砲","type":"cannon","atk":29,"hit":1,"f1":42,"f2":45,"range":360,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"半加農砲","type":"cannon","atk":37,"hit":1,"f1":42,"f2":45,"range":340,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"兼続の愛砲","type":"cannon","atk":47,"hit":1,"f1":42,"f2":45,"range":340,"rare":3,"text":"爆風範囲低下","ref":0,"refText":"+0"},{"name":"長政の激砲","type":"cannon","atk":48,"hit":1,"f1":67,"f2":45,"range":340,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"門松平蜘蛛砲","type":"cannon","atk":31,"hit":1,"f1":42,"f2":45,"range":360,"rare":4,"text":"範囲+20 爆風範囲やや拡大","ref":0,"refText":"+0"},{"name":"車山形大砲-祭-","type":"cannon","atk":33,"hit":1,"f1":35,"f2":45,"range":340,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"古天明平蜘蛛砲","type":"cannon","atk":40,"hit":1,"f1":42,"f2":45,"range":340,"rare":4,"text":"爆風範囲やや拡大","ref":0,"refText":"+0"},{"name":"加農砲","type":"cannon","atk":40,"hit":1,"f1":42,"f2":45,"range":360,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"國崩し","type":"cannon","atk":45,"hit":1,"f1":36,"f2":45,"range":340,"rare":4,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"散星","type":"cannon","atk":50,"hit":1,"f1":42,"f2":45,"range":340,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧兼続の愛砲","type":"cannon","atk":60,"hit":1,"f1":42,"f2":45,"range":340,"rare":4,"text":"爆風範囲低下","ref":0,"refText":"+0"},{"name":"真‧長政の激砲","type":"cannon","atk":65,"hit":1,"f1":67,"f2":45,"range":340,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"錫杖","type":"spell","atk":6,"hit":1,"f1":42,"f2":30,"range":260,"rare":1,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"筆","type":"spell","atk":12,"hit":1,"f1":42,"f2":30,"range":240,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"金銅錫杖","type":"spell","atk":16,"hit":1,"f1":42,"f2":30,"range":260,"rare":2,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"弘法の筆","type":"spell","atk":24,"hit":1,"f1":42,"f2":30,"range":240,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"小十郎の響杖","type":"spell","atk":22,"hit":1,"f1":34,"f2":30,"range":240,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"三蔵法師の杖","type":"spell","atk":28,"hit":1,"f1":42,"f2":30,"range":260,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"閻魔の筆","type":"spell","atk":36,"hit":1,"f1":42,"f2":30,"range":240,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"真・小十郎の響杖","type":"spell","atk":31,"hit":1,"f1":34,"f2":30,"range":240,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"菩薩の杖","type":"spell","atk":37,"hit":1,"f1":42,"f2":30,"range":260,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"道風の筆","type":"spell","atk":42,"hit":1,"f1":36,"f2":30,"range":240,"rare":4,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"役小角の杖","type":"spell","atk":53,"hit":1,"f1":42,"f2":30,"range":240,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"青龍","type":"fist","atk":30,"hit":3,"f1":32,"f2":19,"range":90,"rare":5,"text":"平遙古城","ref":0,"refText":"+0"},{"name":"白虎","type":"fist","atk":35,"hit":3,"f1":32,"f2":19,"range":90,"rare":6,"text":"長安城","ref":0,"refText":"+0"},{"name":"黃龍","type":"fist","atk":45,"hit":3,"f1":32,"f2":19,"range":90,"rare":7,"text":"紫禁城","ref":0,"refText":"+0"},{"name":"扇","type":"dance","atk":5,"hit":1,"f1":62,"f2":60,"range":300,"rare":1,"text":"窪田城","ref":0,"refText":"+0"},{"name":"扇改","type":"dance","atk":11,"hit":1,"f1":62,"f2":60,"range":300,"rare":2,"text":"久保田城","ref":0,"refText":"+0"},{"name":"衝波扇","type":"dance","atk":14,"hit":1,"f1":62,"f2":60,"range":300,"rare":3,"text":"鶴ヶ岡城","ref":0,"refText":"+0"},{"name":"スマイルボイス","type":"dance","atk":13,"hit":1,"f1":62,"f2":60,"range":300,"rare":2,"text":"尾山御坊","ref":0,"refText":"+0"},{"name":"スイートボイス","type":"dance","atk":14,"hit":1,"f1":62,"f2":60,"range":300,"rare":3,"text":"山科本願寺","ref":0,"refText":"+0"},{"name":"ハッピーボイス","type":"dance","atk":25,"hit":1,"f1":62,"f2":60,"range":300,"rare":6,"text":"石山御坊","ref":0,"refText":"+0"},{"name":"ミラクルボイス","type":"dance","atk":35,"hit":1,"f1":62,"f2":60,"range":300,"rare":7,"text":"大阪城","ref":0,"refText":"+0"},{"name":"オベリスクタクト","type":"dance","atk":35,"hit":1,"f1":62,"f2":60,"range":300,"rare":7,"text":"シェーンブルン宮殿","ref":0,"refText":"+0"},{"name":"浮城の鈴","type":"bell","atk":20,"hit":1,"f1":97,"f2":60,"range":320,"rare":4,"text":"高島城","ref":0,"refText":"+0"},{"name":"真鍮の鈴","type":"bell","atk":20,"hit":1,"f1":97,"f2":60,"range":320,"rare":5,"text":"濱田城","ref":0,"refText":"+0"},{"name":"シルバーベル","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"アンボワーズ城","ref":0,"refText":"+0"},{"name":"シルバーベル","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"城塞都市ルクセンブルク","ref":0,"refText":"+0"},{"name":"海辺の風鈴","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"［夏］指月伏見城","ref":0,"refText":"+0"},{"name":"太平の鈴","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"新田金山城","ref":0,"refText":"+0"},{"name":"金の鈴","type":"bell","atk":35,"hit":1,"f1":97,"f2":60,"range":320,"rare":7,"text":"指月伏見城","ref":0,"refText":"+0"},{"name":"銀の杖","type":"staff","atk":25,"hit":1,"f1":37,"f2":30,"range":240,"rare":4,"text":"アイリーン・ドナン城","ref":0,"refText":"+0"},{"name":"荊棘の杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"ユッセ城","ref":0,"refText":"+0"},{"name":"荊棘の箒","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"［ハロウィン］ユッセ城","ref":0,"refText":"+0"},{"name":"クリスタルの杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"ホーエンザルツブルク城","ref":0,"refText":"+0"},{"name":"クリスタルの杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"シュノンソー城","ref":0,"refText":"+0"},{"name":"クリスタルの杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"セゴビアのアルカサ","ref":0,"refText":"+0"},{"name":"女神の杖","type":"staff","atk":35,"hit":1,"f1":37,"f2":30,"range":240,"rare":7,"text":"プラハ城","ref":0,"refText":"+0"}]
+
+/***/ }),
+/* 519 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var getNative = __webpack_require__(67),
-	    root = __webpack_require__(45);
+	    root = __webpack_require__(48);
 	
 	/* Built-in method references that are verified to be native. */
 	var DataView = getNative(root, 'DataView');
@@ -24809,14 +25111,14 @@
 
 
 /***/ }),
-/* 519 */
+/* 520 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var hashClear = __webpack_require__(563),
-	    hashDelete = __webpack_require__(564),
-	    hashGet = __webpack_require__(565),
-	    hashHas = __webpack_require__(566),
-	    hashSet = __webpack_require__(567);
+	var hashClear = __webpack_require__(564),
+	    hashDelete = __webpack_require__(565),
+	    hashGet = __webpack_require__(566),
+	    hashHas = __webpack_require__(567),
+	    hashSet = __webpack_require__(568);
 	
 	/**
 	 * Creates a hash object.
@@ -24847,11 +25149,11 @@
 
 
 /***/ }),
-/* 520 */
+/* 521 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var getNative = __webpack_require__(67),
-	    root = __webpack_require__(45);
+	    root = __webpack_require__(48);
 	
 	/* Built-in method references that are verified to be native. */
 	var Promise = getNative(root, 'Promise');
@@ -24860,11 +25162,11 @@
 
 
 /***/ }),
-/* 521 */
+/* 522 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var getNative = __webpack_require__(67),
-	    root = __webpack_require__(45);
+	    root = __webpack_require__(48);
 	
 	/* Built-in method references that are verified to be native. */
 	var Set = getNative(root, 'Set');
@@ -24873,10 +25175,10 @@
 
 
 /***/ }),
-/* 522 */
+/* 523 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(45);
+	var root = __webpack_require__(48);
 	
 	/** Built-in value references. */
 	var Uint8Array = root.Uint8Array;
@@ -24885,11 +25187,11 @@
 
 
 /***/ }),
-/* 523 */
+/* 524 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var getNative = __webpack_require__(67),
-	    root = __webpack_require__(45);
+	    root = __webpack_require__(48);
 	
 	/* Built-in method references that are verified to be native. */
 	var WeakMap = getNative(root, 'WeakMap');
@@ -24898,7 +25200,7 @@
 
 
 /***/ }),
-/* 524 */
+/* 525 */
 /***/ (function(module, exports) {
 
 	/**
@@ -24925,7 +25227,7 @@
 
 
 /***/ }),
-/* 525 */
+/* 526 */
 /***/ (function(module, exports) {
 
 	/**
@@ -24956,10 +25258,10 @@
 
 
 /***/ }),
-/* 526 */
+/* 527 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseIndexOf = __webpack_require__(534);
+	var baseIndexOf = __webpack_require__(535);
 	
 	/**
 	 * A specialized version of `_.includes` for arrays without support for
@@ -24979,7 +25281,7 @@
 
 
 /***/ }),
-/* 527 */
+/* 528 */
 /***/ (function(module, exports) {
 
 	/**
@@ -25007,14 +25309,14 @@
 
 
 /***/ }),
-/* 528 */
+/* 529 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseTimes = __webpack_require__(547),
-	    isArguments = __webpack_require__(158),
-	    isArray = __webpack_require__(46),
+	var baseTimes = __webpack_require__(548),
+	    isArguments = __webpack_require__(160),
+	    isArray = __webpack_require__(49),
 	    isBuffer = __webpack_require__(251),
-	    isIndex = __webpack_require__(155),
+	    isIndex = __webpack_require__(157),
 	    isTypedArray = __webpack_require__(253);
 	
 	/** Used for built-in method references. */
@@ -25062,7 +25364,7 @@
 
 
 /***/ }),
-/* 529 */
+/* 530 */
 /***/ (function(module, exports) {
 
 	/**
@@ -25091,12 +25393,12 @@
 
 
 /***/ }),
-/* 530 */
+/* 531 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var SetCache = __webpack_require__(229),
-	    arrayIncludes = __webpack_require__(526),
-	    arrayIncludesWith = __webpack_require__(527),
+	    arrayIncludes = __webpack_require__(527),
+	    arrayIncludesWith = __webpack_require__(528),
 	    arrayMap = __webpack_require__(231),
 	    baseUnary = __webpack_require__(240),
 	    cacheHas = __webpack_require__(241);
@@ -25164,11 +25466,11 @@
 
 
 /***/ }),
-/* 531 */
+/* 532 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var arrayPush = __webpack_require__(232),
-	    isFlattenable = __webpack_require__(568);
+	    isFlattenable = __webpack_require__(569);
 	
 	/**
 	 * The base implementation of `_.flatten` with support for restricting flattening.
@@ -25208,11 +25510,11 @@
 
 
 /***/ }),
-/* 532 */
+/* 533 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var arrayPush = __webpack_require__(232),
-	    isArray = __webpack_require__(46);
+	    isArray = __webpack_require__(49);
 	
 	/**
 	 * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
@@ -25234,7 +25536,7 @@
 
 
 /***/ }),
-/* 533 */
+/* 534 */
 /***/ (function(module, exports) {
 
 	/**
@@ -25253,12 +25555,12 @@
 
 
 /***/ }),
-/* 534 */
+/* 535 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var baseFindIndex = __webpack_require__(235),
-	    baseIsNaN = __webpack_require__(538),
-	    strictIndexOf = __webpack_require__(598);
+	    baseIsNaN = __webpack_require__(539),
+	    strictIndexOf = __webpack_require__(599);
 	
 	/**
 	 * The base implementation of `_.indexOf` without `fromIndex` bounds checks.
@@ -25279,10 +25581,10 @@
 
 
 /***/ }),
-/* 535 */
+/* 536 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseGetTag = __webpack_require__(76),
+	var baseGetTag = __webpack_require__(77),
 	    isObjectLike = __webpack_require__(68);
 	
 	/** `Object#toString` result references. */
@@ -25303,15 +25605,15 @@
 
 
 /***/ }),
-/* 536 */
+/* 537 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var Stack = __webpack_require__(230),
 	    equalArrays = __webpack_require__(244),
-	    equalByTag = __webpack_require__(553),
-	    equalObjects = __webpack_require__(554),
-	    getTag = __webpack_require__(560),
-	    isArray = __webpack_require__(46),
+	    equalByTag = __webpack_require__(554),
+	    equalObjects = __webpack_require__(555),
+	    getTag = __webpack_require__(561),
+	    isArray = __webpack_require__(49),
 	    isBuffer = __webpack_require__(251),
 	    isTypedArray = __webpack_require__(253);
 	
@@ -25392,7 +25694,7 @@
 
 
 /***/ }),
-/* 537 */
+/* 538 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var Stack = __webpack_require__(230),
@@ -25460,7 +25762,7 @@
 
 
 /***/ }),
-/* 538 */
+/* 539 */
 /***/ (function(module, exports) {
 
 	/**
@@ -25478,11 +25780,11 @@
 
 
 /***/ }),
-/* 539 */
+/* 540 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var isFunction = __webpack_require__(252),
-	    isMasked = __webpack_require__(571),
+	    isMasked = __webpack_require__(572),
 	    isObject = __webpack_require__(85),
 	    toSource = __webpack_require__(250);
 	
@@ -25531,11 +25833,11 @@
 
 
 /***/ }),
-/* 540 */
+/* 541 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseGetTag = __webpack_require__(76),
-	    isLength = __webpack_require__(159),
+	var baseGetTag = __webpack_require__(77),
+	    isLength = __webpack_require__(161),
 	    isObjectLike = __webpack_require__(68);
 	
 	/** `Object#toString` result references. */
@@ -25597,11 +25899,11 @@
 
 
 /***/ }),
-/* 541 */
+/* 542 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var isPrototype = __webpack_require__(246),
-	    nativeKeys = __webpack_require__(584);
+	    nativeKeys = __webpack_require__(585);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -25633,11 +25935,11 @@
 
 
 /***/ }),
-/* 542 */
+/* 543 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseIsMatch = __webpack_require__(537),
-	    getMatchData = __webpack_require__(556),
+	var baseIsMatch = __webpack_require__(538),
+	    getMatchData = __webpack_require__(557),
 	    matchesStrictComparable = __webpack_require__(248);
 	
 	/**
@@ -25661,16 +25963,16 @@
 
 
 /***/ }),
-/* 543 */
+/* 544 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var baseIsEqual = __webpack_require__(237),
-	    get = __webpack_require__(605),
-	    hasIn = __webpack_require__(606),
-	    isKey = __webpack_require__(156),
+	    get = __webpack_require__(606),
+	    hasIn = __webpack_require__(607),
+	    isKey = __webpack_require__(158),
 	    isStrictComparable = __webpack_require__(247),
 	    matchesStrictComparable = __webpack_require__(248),
-	    toKey = __webpack_require__(109);
+	    toKey = __webpack_require__(111);
 	
 	/** Used to compose bitmasks for value comparisons. */
 	var COMPARE_PARTIAL_FLAG = 1,
@@ -25700,7 +26002,7 @@
 
 
 /***/ }),
-/* 544 */
+/* 545 */
 /***/ (function(module, exports) {
 
 	/**
@@ -25720,7 +26022,7 @@
 
 
 /***/ }),
-/* 545 */
+/* 546 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var baseGet = __webpack_require__(236);
@@ -25742,12 +26044,12 @@
 
 
 /***/ }),
-/* 546 */
+/* 547 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var constant = __webpack_require__(601),
+	var constant = __webpack_require__(602),
 	    defineProperty = __webpack_require__(243),
-	    identity = __webpack_require__(157);
+	    identity = __webpack_require__(159);
 	
 	/**
 	 * The base implementation of `setToString` without support for hot loop shorting.
@@ -25770,7 +26072,7 @@
 
 
 /***/ }),
-/* 547 */
+/* 548 */
 /***/ (function(module, exports) {
 
 	/**
@@ -25796,13 +26098,13 @@
 
 
 /***/ }),
-/* 548 */
+/* 549 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var Symbol = __webpack_require__(83),
 	    arrayMap = __webpack_require__(231),
-	    isArray = __webpack_require__(46),
-	    isSymbol = __webpack_require__(111);
+	    isArray = __webpack_require__(49),
+	    isSymbol = __webpack_require__(113);
 	
 	/** Used as references for various `Number` constants. */
 	var INFINITY = 1 / 0;
@@ -25839,7 +26141,7 @@
 
 
 /***/ }),
-/* 549 */
+/* 550 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var assignValue = __webpack_require__(233),
@@ -25885,10 +26187,10 @@
 
 
 /***/ }),
-/* 550 */
+/* 551 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(45);
+	var root = __webpack_require__(48);
 	
 	/** Used to detect overreaching core-js shims. */
 	var coreJsData = root['__core-js_shared__'];
@@ -25897,11 +26199,11 @@
 
 
 /***/ }),
-/* 551 */
+/* 552 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var baseRest = __webpack_require__(239),
-	    isIterateeCall = __webpack_require__(569);
+	    isIterateeCall = __webpack_require__(570);
 	
 	/**
 	 * Creates a function like `_.assign`.
@@ -25940,12 +26242,12 @@
 
 
 /***/ }),
-/* 552 */
+/* 553 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var baseIteratee = __webpack_require__(238),
 	    isArrayLike = __webpack_require__(84),
-	    keys = __webpack_require__(112);
+	    keys = __webpack_require__(114);
 	
 	/**
 	 * Creates a `_.find` or `_.findLast` function.
@@ -25971,15 +26273,15 @@
 
 
 /***/ }),
-/* 553 */
+/* 554 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var Symbol = __webpack_require__(83),
-	    Uint8Array = __webpack_require__(522),
-	    eq = __webpack_require__(110),
+	    Uint8Array = __webpack_require__(523),
+	    eq = __webpack_require__(112),
 	    equalArrays = __webpack_require__(244),
-	    mapToArray = __webpack_require__(582),
-	    setToArray = __webpack_require__(590);
+	    mapToArray = __webpack_require__(583),
+	    setToArray = __webpack_require__(591);
 	
 	/** Used to compose bitmasks for value comparisons. */
 	var COMPARE_PARTIAL_FLAG = 1,
@@ -26089,10 +26391,10 @@
 
 
 /***/ }),
-/* 554 */
+/* 555 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var getAllKeys = __webpack_require__(555);
+	var getAllKeys = __webpack_require__(556);
 	
 	/** Used to compose bitmasks for value comparisons. */
 	var COMPARE_PARTIAL_FLAG = 1;
@@ -26184,12 +26486,12 @@
 
 
 /***/ }),
-/* 555 */
+/* 556 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseGetAllKeys = __webpack_require__(532),
-	    getSymbols = __webpack_require__(559),
-	    keys = __webpack_require__(112);
+	var baseGetAllKeys = __webpack_require__(533),
+	    getSymbols = __webpack_require__(560),
+	    keys = __webpack_require__(114);
 	
 	/**
 	 * Creates an array of own enumerable property names and symbols of `object`.
@@ -26206,11 +26508,11 @@
 
 
 /***/ }),
-/* 556 */
+/* 557 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var isStrictComparable = __webpack_require__(247),
-	    keys = __webpack_require__(112);
+	    keys = __webpack_require__(114);
 	
 	/**
 	 * Gets the property names, values, and compare flags of `object`.
@@ -26236,7 +26538,7 @@
 
 
 /***/ }),
-/* 557 */
+/* 558 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var overArg = __webpack_require__(249);
@@ -26248,7 +26550,7 @@
 
 
 /***/ }),
-/* 558 */
+/* 559 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var Symbol = __webpack_require__(83);
@@ -26300,11 +26602,11 @@
 
 
 /***/ }),
-/* 559 */
+/* 560 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var arrayFilter = __webpack_require__(525),
-	    stubArray = __webpack_require__(610);
+	var arrayFilter = __webpack_require__(526),
+	    stubArray = __webpack_require__(611);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -26336,15 +26638,15 @@
 
 
 /***/ }),
-/* 560 */
+/* 561 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var DataView = __webpack_require__(518),
-	    Map = __webpack_require__(153),
-	    Promise = __webpack_require__(520),
-	    Set = __webpack_require__(521),
-	    WeakMap = __webpack_require__(523),
-	    baseGetTag = __webpack_require__(76),
+	var DataView = __webpack_require__(519),
+	    Map = __webpack_require__(155),
+	    Promise = __webpack_require__(521),
+	    Set = __webpack_require__(522),
+	    WeakMap = __webpack_require__(524),
+	    baseGetTag = __webpack_require__(77),
 	    toSource = __webpack_require__(250);
 	
 	/** `Object#toString` result references. */
@@ -26400,7 +26702,7 @@
 
 
 /***/ }),
-/* 561 */
+/* 562 */
 /***/ (function(module, exports) {
 
 	/**
@@ -26419,15 +26721,15 @@
 
 
 /***/ }),
-/* 562 */
+/* 563 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var castPath = __webpack_require__(242),
-	    isArguments = __webpack_require__(158),
-	    isArray = __webpack_require__(46),
-	    isIndex = __webpack_require__(155),
-	    isLength = __webpack_require__(159),
-	    toKey = __webpack_require__(109);
+	    isArguments = __webpack_require__(160),
+	    isArray = __webpack_require__(49),
+	    isIndex = __webpack_require__(157),
+	    isLength = __webpack_require__(161),
+	    toKey = __webpack_require__(111);
 	
 	/**
 	 * Checks if `path` exists on `object`.
@@ -26464,10 +26766,10 @@
 
 
 /***/ }),
-/* 563 */
+/* 564 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var nativeCreate = __webpack_require__(108);
+	var nativeCreate = __webpack_require__(110);
 	
 	/**
 	 * Removes all key-value entries from the hash.
@@ -26485,7 +26787,7 @@
 
 
 /***/ }),
-/* 564 */
+/* 565 */
 /***/ (function(module, exports) {
 
 	/**
@@ -26508,10 +26810,10 @@
 
 
 /***/ }),
-/* 565 */
+/* 566 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var nativeCreate = __webpack_require__(108);
+	var nativeCreate = __webpack_require__(110);
 	
 	/** Used to stand-in for `undefined` hash values. */
 	var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -26544,10 +26846,10 @@
 
 
 /***/ }),
-/* 566 */
+/* 567 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var nativeCreate = __webpack_require__(108);
+	var nativeCreate = __webpack_require__(110);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -26573,10 +26875,10 @@
 
 
 /***/ }),
-/* 567 */
+/* 568 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var nativeCreate = __webpack_require__(108);
+	var nativeCreate = __webpack_require__(110);
 	
 	/** Used to stand-in for `undefined` hash values. */
 	var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -26602,12 +26904,12 @@
 
 
 /***/ }),
-/* 568 */
+/* 569 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var Symbol = __webpack_require__(83),
-	    isArguments = __webpack_require__(158),
-	    isArray = __webpack_require__(46);
+	    isArguments = __webpack_require__(160),
+	    isArray = __webpack_require__(49);
 	
 	/** Built-in value references. */
 	var spreadableSymbol = Symbol ? Symbol.isConcatSpreadable : undefined;
@@ -26628,12 +26930,12 @@
 
 
 /***/ }),
-/* 569 */
+/* 570 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var eq = __webpack_require__(110),
+	var eq = __webpack_require__(112),
 	    isArrayLike = __webpack_require__(84),
-	    isIndex = __webpack_require__(155),
+	    isIndex = __webpack_require__(157),
 	    isObject = __webpack_require__(85);
 	
 	/**
@@ -26664,7 +26966,7 @@
 
 
 /***/ }),
-/* 570 */
+/* 571 */
 /***/ (function(module, exports) {
 
 	/**
@@ -26685,10 +26987,10 @@
 
 
 /***/ }),
-/* 571 */
+/* 572 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var coreJsData = __webpack_require__(550);
+	var coreJsData = __webpack_require__(551);
 	
 	/** Used to detect methods masquerading as native. */
 	var maskSrcKey = (function() {
@@ -26711,7 +27013,7 @@
 
 
 /***/ }),
-/* 572 */
+/* 573 */
 /***/ (function(module, exports) {
 
 	/**
@@ -26730,10 +27032,10 @@
 
 
 /***/ }),
-/* 573 */
+/* 574 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var assocIndexOf = __webpack_require__(106);
+	var assocIndexOf = __webpack_require__(108);
 	
 	/** Used for built-in method references. */
 	var arrayProto = Array.prototype;
@@ -26771,10 +27073,10 @@
 
 
 /***/ }),
-/* 574 */
+/* 575 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var assocIndexOf = __webpack_require__(106);
+	var assocIndexOf = __webpack_require__(108);
 	
 	/**
 	 * Gets the list cache value for `key`.
@@ -26796,10 +27098,10 @@
 
 
 /***/ }),
-/* 575 */
+/* 576 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var assocIndexOf = __webpack_require__(106);
+	var assocIndexOf = __webpack_require__(108);
 	
 	/**
 	 * Checks if a list cache value for `key` exists.
@@ -26818,10 +27120,10 @@
 
 
 /***/ }),
-/* 576 */
+/* 577 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var assocIndexOf = __webpack_require__(106);
+	var assocIndexOf = __webpack_require__(108);
 	
 	/**
 	 * Sets the list cache `key` to `value`.
@@ -26850,12 +27152,12 @@
 
 
 /***/ }),
-/* 577 */
+/* 578 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var Hash = __webpack_require__(519),
-	    ListCache = __webpack_require__(105),
-	    Map = __webpack_require__(153);
+	var Hash = __webpack_require__(520),
+	    ListCache = __webpack_require__(107),
+	    Map = __webpack_require__(155);
 	
 	/**
 	 * Removes all key-value entries from the map.
@@ -26877,10 +27179,10 @@
 
 
 /***/ }),
-/* 578 */
+/* 579 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var getMapData = __webpack_require__(107);
+	var getMapData = __webpack_require__(109);
 	
 	/**
 	 * Removes `key` and its value from the map.
@@ -26901,10 +27203,10 @@
 
 
 /***/ }),
-/* 579 */
+/* 580 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var getMapData = __webpack_require__(107);
+	var getMapData = __webpack_require__(109);
 	
 	/**
 	 * Gets the map value for `key`.
@@ -26923,10 +27225,10 @@
 
 
 /***/ }),
-/* 580 */
+/* 581 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var getMapData = __webpack_require__(107);
+	var getMapData = __webpack_require__(109);
 	
 	/**
 	 * Checks if a map value for `key` exists.
@@ -26945,10 +27247,10 @@
 
 
 /***/ }),
-/* 581 */
+/* 582 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var getMapData = __webpack_require__(107);
+	var getMapData = __webpack_require__(109);
 	
 	/**
 	 * Sets the map `key` to `value`.
@@ -26973,7 +27275,7 @@
 
 
 /***/ }),
-/* 582 */
+/* 583 */
 /***/ (function(module, exports) {
 
 	/**
@@ -26997,10 +27299,10 @@
 
 
 /***/ }),
-/* 583 */
+/* 584 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var memoize = __webpack_require__(608);
+	var memoize = __webpack_require__(609);
 	
 	/** Used as the maximum memoize cache size. */
 	var MAX_MEMOIZE_SIZE = 500;
@@ -27029,7 +27331,7 @@
 
 
 /***/ }),
-/* 584 */
+/* 585 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var overArg = __webpack_require__(249);
@@ -27041,7 +27343,7 @@
 
 
 /***/ }),
-/* 585 */
+/* 586 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(245);
@@ -27070,7 +27372,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
 /***/ }),
-/* 586 */
+/* 587 */
 /***/ (function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -27098,10 +27400,10 @@
 
 
 /***/ }),
-/* 587 */
+/* 588 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var apply = __webpack_require__(524);
+	var apply = __webpack_require__(525);
 	
 	/* Built-in method references for those with the same name as other `lodash` methods. */
 	var nativeMax = Math.max;
@@ -27140,7 +27442,7 @@
 
 
 /***/ }),
-/* 588 */
+/* 589 */
 /***/ (function(module, exports) {
 
 	/** Used to stand-in for `undefined` hash values. */
@@ -27165,7 +27467,7 @@
 
 
 /***/ }),
-/* 589 */
+/* 590 */
 /***/ (function(module, exports) {
 
 	/**
@@ -27185,7 +27487,7 @@
 
 
 /***/ }),
-/* 590 */
+/* 591 */
 /***/ (function(module, exports) {
 
 	/**
@@ -27209,11 +27511,11 @@
 
 
 /***/ }),
-/* 591 */
+/* 592 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseSetToString = __webpack_require__(546),
-	    shortOut = __webpack_require__(592);
+	var baseSetToString = __webpack_require__(547),
+	    shortOut = __webpack_require__(593);
 	
 	/**
 	 * Sets the `toString` method of `func` to return `string`.
@@ -27229,7 +27531,7 @@
 
 
 /***/ }),
-/* 592 */
+/* 593 */
 /***/ (function(module, exports) {
 
 	/** Used to detect hot functions by number of calls within a span of milliseconds. */
@@ -27272,10 +27574,10 @@
 
 
 /***/ }),
-/* 593 */
+/* 594 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var ListCache = __webpack_require__(105);
+	var ListCache = __webpack_require__(107);
 	
 	/**
 	 * Removes all key-value entries from the stack.
@@ -27293,7 +27595,7 @@
 
 
 /***/ }),
-/* 594 */
+/* 595 */
 /***/ (function(module, exports) {
 
 	/**
@@ -27317,7 +27619,7 @@
 
 
 /***/ }),
-/* 595 */
+/* 596 */
 /***/ (function(module, exports) {
 
 	/**
@@ -27337,7 +27639,7 @@
 
 
 /***/ }),
-/* 596 */
+/* 597 */
 /***/ (function(module, exports) {
 
 	/**
@@ -27357,12 +27659,12 @@
 
 
 /***/ }),
-/* 597 */
+/* 598 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var ListCache = __webpack_require__(105),
-	    Map = __webpack_require__(153),
-	    MapCache = __webpack_require__(154);
+	var ListCache = __webpack_require__(107),
+	    Map = __webpack_require__(155),
+	    MapCache = __webpack_require__(156);
 	
 	/** Used as the size to enable large array optimizations. */
 	var LARGE_ARRAY_SIZE = 200;
@@ -27397,7 +27699,7 @@
 
 
 /***/ }),
-/* 598 */
+/* 599 */
 /***/ (function(module, exports) {
 
 	/**
@@ -27426,10 +27728,10 @@
 
 
 /***/ }),
-/* 599 */
+/* 600 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var memoizeCapped = __webpack_require__(583);
+	var memoizeCapped = __webpack_require__(584);
 	
 	/** Used to match property names within property paths. */
 	var reLeadingDot = /^\./,
@@ -27460,15 +27762,15 @@
 
 
 /***/ }),
-/* 600 */
+/* 601 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var assignValue = __webpack_require__(233),
-	    copyObject = __webpack_require__(549),
-	    createAssigner = __webpack_require__(551),
+	    copyObject = __webpack_require__(550),
+	    createAssigner = __webpack_require__(552),
 	    isArrayLike = __webpack_require__(84),
 	    isPrototype = __webpack_require__(246),
-	    keys = __webpack_require__(112);
+	    keys = __webpack_require__(114);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -27524,7 +27826,7 @@
 
 
 /***/ }),
-/* 601 */
+/* 602 */
 /***/ (function(module, exports) {
 
 	/**
@@ -27556,13 +27858,13 @@
 
 
 /***/ }),
-/* 602 */
+/* 603 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseDifference = __webpack_require__(530),
-	    baseFlatten = __webpack_require__(531),
+	var baseDifference = __webpack_require__(531),
+	    baseFlatten = __webpack_require__(532),
 	    baseRest = __webpack_require__(239),
-	    isArrayLikeObject = __webpack_require__(607);
+	    isArrayLikeObject = __webpack_require__(608);
 	
 	/**
 	 * Creates an array of `array` values not included in the other given arrays
@@ -27595,11 +27897,11 @@
 
 
 /***/ }),
-/* 603 */
+/* 604 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var createFind = __webpack_require__(552),
-	    findIndex = __webpack_require__(604);
+	var createFind = __webpack_require__(553),
+	    findIndex = __webpack_require__(605);
 	
 	/**
 	 * Iterates over elements of `collection`, returning the first element
@@ -27643,12 +27945,12 @@
 
 
 /***/ }),
-/* 604 */
+/* 605 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var baseFindIndex = __webpack_require__(235),
 	    baseIteratee = __webpack_require__(238),
-	    toInteger = __webpack_require__(613);
+	    toInteger = __webpack_require__(614);
 	
 	/* Built-in method references for those with the same name as other `lodash` methods. */
 	var nativeMax = Math.max;
@@ -27704,7 +28006,7 @@
 
 
 /***/ }),
-/* 605 */
+/* 606 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var baseGet = __webpack_require__(236);
@@ -27743,11 +28045,11 @@
 
 
 /***/ }),
-/* 606 */
+/* 607 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseHasIn = __webpack_require__(533),
-	    hasPath = __webpack_require__(562);
+	var baseHasIn = __webpack_require__(534),
+	    hasPath = __webpack_require__(563);
 	
 	/**
 	 * Checks if `path` is a direct or inherited property of `object`.
@@ -27783,7 +28085,7 @@
 
 
 /***/ }),
-/* 607 */
+/* 608 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var isArrayLike = __webpack_require__(84),
@@ -27822,10 +28124,10 @@
 
 
 /***/ }),
-/* 608 */
+/* 609 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var MapCache = __webpack_require__(154);
+	var MapCache = __webpack_require__(156);
 	
 	/** Error message constants. */
 	var FUNC_ERROR_TEXT = 'Expected a function';
@@ -27901,13 +28203,13 @@
 
 
 /***/ }),
-/* 609 */
+/* 610 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseProperty = __webpack_require__(544),
-	    basePropertyDeep = __webpack_require__(545),
-	    isKey = __webpack_require__(156),
-	    toKey = __webpack_require__(109);
+	var baseProperty = __webpack_require__(545),
+	    basePropertyDeep = __webpack_require__(546),
+	    isKey = __webpack_require__(158),
+	    toKey = __webpack_require__(111);
 	
 	/**
 	 * Creates a function that returns the value at `path` of a given object.
@@ -27939,7 +28241,7 @@
 
 
 /***/ }),
-/* 610 */
+/* 611 */
 /***/ (function(module, exports) {
 
 	/**
@@ -27968,7 +28270,7 @@
 
 
 /***/ }),
-/* 611 */
+/* 612 */
 /***/ (function(module, exports) {
 
 	/**
@@ -27992,10 +28294,10 @@
 
 
 /***/ }),
-/* 612 */
+/* 613 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var toNumber = __webpack_require__(614);
+	var toNumber = __webpack_require__(615);
 	
 	/** Used as references for various `Number` constants. */
 	var INFINITY = 1 / 0,
@@ -28040,10 +28342,10 @@
 
 
 /***/ }),
-/* 613 */
+/* 614 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var toFinite = __webpack_require__(612);
+	var toFinite = __webpack_require__(613);
 	
 	/**
 	 * Converts `value` to an integer.
@@ -28082,11 +28384,11 @@
 
 
 /***/ }),
-/* 614 */
+/* 615 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(85),
-	    isSymbol = __webpack_require__(111);
+	    isSymbol = __webpack_require__(113);
 	
 	/** Used as references for various `Number` constants. */
 	var NAN = 0 / 0;
@@ -28154,10 +28456,10 @@
 
 
 /***/ }),
-/* 615 */
+/* 616 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseToString = __webpack_require__(548);
+	var baseToString = __webpack_require__(549);
 	
 	/**
 	 * Converts `value` to a string. An empty string is returned for `null`
@@ -28188,7 +28490,7 @@
 
 
 /***/ }),
-/* 616 */
+/* 617 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -28811,7 +29113,7 @@
 
 
 /***/ }),
-/* 617 */
+/* 618 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -29652,7 +29954,7 @@
 	      var adapter;
 	
 	      if (true) {
-	        adapter = __webpack_require__(616);
+	        adapter = __webpack_require__(617);
 	      }
 	
 	      return adapter;
@@ -31000,7 +31302,7 @@
 	     * @constructor LokiFsAdapter
 	     */
 	    function LokiFsAdapter() {
-	      this.fs = __webpack_require__(618);
+	      this.fs = __webpack_require__(619);
 	    }
 	
 	    /**
@@ -35559,13 +35861,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 618 */
+/* 619 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 619 */
+/* 620 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -35578,9 +35880,9 @@
 	'use strict';
 	
 	if (process.env.NODE_ENV !== 'production') {
-	  var invariant = __webpack_require__(164);
+	  var invariant = __webpack_require__(166);
 	  var warning = __webpack_require__(255);
-	  var ReactPropTypesSecret = __webpack_require__(162);
+	  var ReactPropTypesSecret = __webpack_require__(164);
 	  var loggedTypeFailures = {};
 	}
 	
@@ -35631,7 +35933,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 620 */
+/* 621 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -35643,9 +35945,9 @@
 	
 	'use strict';
 	
-	var emptyFunction = __webpack_require__(163);
-	var invariant = __webpack_require__(164);
-	var ReactPropTypesSecret = __webpack_require__(162);
+	var emptyFunction = __webpack_require__(165);
+	var invariant = __webpack_require__(166);
+	var ReactPropTypesSecret = __webpack_require__(164);
 	
 	module.exports = function() {
 	  function shim(props, propName, componentName, location, propFullName, secret) {
@@ -35695,7 +35997,7 @@
 
 
 /***/ }),
-/* 621 */
+/* 622 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -35707,13 +36009,13 @@
 	
 	'use strict';
 	
-	var emptyFunction = __webpack_require__(163);
-	var invariant = __webpack_require__(164);
+	var emptyFunction = __webpack_require__(165);
+	var invariant = __webpack_require__(166);
 	var warning = __webpack_require__(255);
 	var assign = __webpack_require__(254);
 	
-	var ReactPropTypesSecret = __webpack_require__(162);
-	var checkPropTypes = __webpack_require__(619);
+	var ReactPropTypesSecret = __webpack_require__(164);
+	var checkPropTypes = __webpack_require__(620);
 	
 	module.exports = function(isValidElement, throwOnDirectAccess) {
 	  /* global Symbol */
@@ -36244,7 +36546,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 622 */
+/* 623 */
 /***/ (function(module, exports) {
 
 	
@@ -36336,7 +36638,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 623 */
+/* 624 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -36410,13 +36712,13 @@
 	};
 
 /***/ }),
-/* 624 */
+/* 625 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var bindAutoBindMethods = __webpack_require__(623);
-	var traverseRenderedChildren = __webpack_require__(629);
+	var bindAutoBindMethods = __webpack_require__(624);
+	var traverseRenderedChildren = __webpack_require__(630);
 	
 	function setPendingForceUpdate(internalInstance) {
 	  if (internalInstance._pendingForceUpdate === false) {
@@ -36452,7 +36754,7 @@
 
 
 /***/ }),
-/* 625 */
+/* 626 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -36523,12 +36825,12 @@
 	};
 
 /***/ }),
-/* 626 */
+/* 627 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var makePatchReactClass = __webpack_require__(627);
+	var makePatchReactClass = __webpack_require__(628);
 	
 	/**
 	 * Returns a function that, when invoked, patches a React class with a new
@@ -36563,13 +36865,13 @@
 	};
 
 /***/ }),
-/* 627 */
+/* 628 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var makeAssimilatePrototype = __webpack_require__(625),
-	    requestForceUpdateAll = __webpack_require__(628);
+	var makeAssimilatePrototype = __webpack_require__(626),
+	    requestForceUpdateAll = __webpack_require__(629);
 	
 	function hasNonStubTypeProperty(ReactClass) {
 	  if (!ReactClass.hasOwnProperty('type')) {
@@ -36616,10 +36918,10 @@
 	};
 
 /***/ }),
-/* 628 */
+/* 629 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var deepForceUpdate = __webpack_require__(624);
+	var deepForceUpdate = __webpack_require__(625);
 	
 	var isRequestPending = false;
 	
@@ -36655,7 +36957,7 @@
 
 
 /***/ }),
-/* 629 */
+/* 630 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -36684,7 +36986,7 @@
 
 
 /***/ }),
-/* 630 */
+/* 631 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -36696,7 +36998,7 @@
 	module.exports = getRootInstancesFromReactMount;
 
 /***/ }),
-/* 631 */
+/* 632 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(17), RootInstanceProvider = __webpack_require__(18), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -36707,11 +37009,11 @@
 		value: true
 	});
 	
-	var _index = __webpack_require__(51);
+	var _index = __webpack_require__(45);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _index3 = __webpack_require__(47);
+	var _index3 = __webpack_require__(43);
 	
 	var _index4 = _interopRequireDefault(_index3);
 	
@@ -36719,7 +37021,7 @@
 	
 	var _react3 = _interopRequireDefault(_react2);
 	
-	var _index5 = __webpack_require__(48);
+	var _index5 = __webpack_require__(44);
 	
 	var _index6 = _interopRequireDefault(_index5);
 	
@@ -36865,305 +37167,6 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
 /***/ }),
-/* 632 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(17), RootInstanceProvider = __webpack_require__(18), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _index = __webpack_require__(51);
-	
-	var _index2 = _interopRequireDefault(_index);
-	
-	var _index3 = __webpack_require__(47);
-	
-	var _index4 = _interopRequireDefault(_index3);
-	
-	var _react2 = __webpack_require__(3);
-	
-	var _react3 = _interopRequireDefault(_react2);
-	
-	var _index5 = __webpack_require__(48);
-	
-	var _index6 = _interopRequireDefault(_index5);
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var _components = {
-		MdlTableClass: {
-			displayName: 'MdlTableClass'
-		}
-	};
-	
-	var _DGithubPileBunkerNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
-		filename: 'D:/Github/PileBunker/src/components/MdlTableClass.jsx',
-		components: _components,
-		locals: [module],
-		imports: [_react3.default]
-	});
-	
-	var _DGithubPileBunkerNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
-		filename: 'D:/Github/PileBunker/src/components/MdlTableClass.jsx',
-		components: _components,
-		locals: [],
-		imports: [_react3.default, _index2.default]
-	});
-	
-	function _wrapComponent(id) {
-		return function (Component) {
-			return _DGithubPileBunkerNode_modulesReactTransformHmrLibIndexJs2(_DGithubPileBunkerNode_modulesReactTransformCatchErrorsLibIndexJs2(Component, id), id);
-		};
-	}
-	
-	var MdlTableClass = _wrapComponent('MdlTableClass')(function (_Component) {
-		_inherits(MdlTableClass, _Component);
-	
-		function MdlTableClass(props, context) {
-			_classCallCheck(this, MdlTableClass);
-	
-			var _this = _possibleConstructorReturn(this, (MdlTableClass.__proto__ || Object.getPrototypeOf(MdlTableClass)).call(this, props, context));
-	
-			var tempData = _this.props.tableData;
-			tempData.sort(function (a, b) {
-				return b.dps - a.dps;
-			});
-	
-			_this.state = {
-				tableBody: tempData,
-				sortKey: 'dps',
-				sortDir: 1
-			};
-			return _this;
-		}
-	
-		_createClass(MdlTableClass, [{
-			key: 'componentWillReceiveProps',
-			value: function componentWillReceiveProps(nextProps) {
-				var _state = this.state,
-				    sortDir = _state.sortDir,
-				    sortKey = _state.sortKey;
-	
-				var tempData = nextProps.tableData;
-	
-				if (sortDir) {
-					tempData.sort(function (a, b) {
-						return b[sortKey] - a[sortKey];
-					});
-				} else {
-					tempData.sort(function (a, b) {
-						return a[sortKey] - b[sortKey];
-					});
-				}
-	
-				this.setState({
-					tableBody: tempData
-				});
-			}
-		}, {
-			key: 'componentDidUpdate',
-			value: function componentDidUpdate() {
-				componentHandler.upgradeDom();
-			}
-		}, {
-			key: 'handleChange',
-			value: function handleChange(event) {
-				var trId = event.target.id + 'tr';
-				if (event.target.checked) {
-					document.getElementById(trId).style.backgroundColor = '#f5f5f5';
-				} else {
-					document.getElementById(trId).style.backgroundColor = 'transparent';
-				}
-			}
-		}, {
-			key: 'handleSort',
-			value: function handleSort(event) {
-				var _state2 = this.state,
-				    sortDir = _state2.sortDir,
-				    sortKey = _state2.sortKey,
-				    tableBody = _state2.tableBody;
-	
-				var newKey = event.target.id;
-				var tempData = tableBody;
-				var newDir = sortDir;
-	
-				if (newKey === sortKey) {
-					if (sortDir) {
-						newDir = 0;
-					} else {
-						newDir = 1;
-					}
-				}
-	
-				if (newDir) {
-					tempData.sort(function (a, b) {
-						return b[newKey] - a[newKey];
-					});
-				} else {
-					tempData.sort(function (a, b) {
-						return a[newKey] - b[newKey];
-					});
-				}
-	
-				this.setState({
-					tableBody: tempData,
-					sortKey: newKey,
-					sortDir: newDir
-				});
-			}
-		}, {
-			key: 'generateTableHead',
-			value: function generateTableHead() {
-				var _props = this.props,
-				    tableHead = _props.tableHead,
-				    tableId = _props.tableId,
-				    tableInd = _props.tableInd;
-				var _state3 = this.state,
-				    sortDir = _state3.sortDir,
-				    sortKey = _state3.sortKey;
-	
-	
-				var theadOut = void 0;
-				var theadTemp = void 0;
-				var theadTempOut = [];
-				var theadClass = '';
-				for (var i = 0; i < tableHead.length; i += 1) {
-					if (tableInd[i] === sortKey) {
-						if (sortDir === 1) {
-							theadClass = 'theadOver';
-						} else {
-							theadClass = 'theadUnder';
-						}
-					} else {
-						theadClass = '';
-					}
-	
-					theadTemp = _react3.default.createElement(
-						'th',
-						{ className: theadClass, id: tableInd[i], key: tableId + ' th' + i.toString(), onClick: this.handleSort.bind(this) },
-						tableHead[i]
-					);
-					theadTempOut.push(theadTemp);
-				}
-				theadOut = _react3.default.createElement(
-					'thead',
-					null,
-					_react3.default.createElement(
-						'tr',
-						null,
-						theadTempOut
-					)
-				);
-	
-				return theadOut;
-			}
-		}, {
-			key: 'generateTableBody',
-			value: function generateTableBody() {
-				var _props2 = this.props,
-				    tableId = _props2.tableId,
-				    tableInd = _props2.tableInd,
-				    tableFunction = _props2.tableFunction;
-				var tableBody = this.state.tableBody;
-	
-	
-				var tbodyOut = void 0;
-				var tbodyTemp = void 0;
-				var tbodyTempOut = [];
-				var tdTemp = void 0;
-				var tdTempOut = [];
-	
-				for (var i = 0; i < tableBody.length; i += 1) {
-					tdTempOut = [];
-					for (var j = 0; j < tableInd.length; j += 1) {
-						if (j === 0) {
-							tdTemp = _react3.default.createElement(
-								'td',
-								{ key: tableId + ' td' + i.toString() + j.toString() },
-								_react3.default.createElement(
-									'label',
-									{ className: 'mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect', htmlFor: tableId + i.toString() },
-									_react3.default.createElement('input', { type: 'checkbox', id: tableId + i.toString(), className: 'mdl-checkbox__input', onChange: this.handleChange.bind(this) })
-								)
-							);
-							tdTempOut.push(tdTemp);
-						} else {
-							tdTemp = _react3.default.createElement(
-								'td',
-								{ key: tableId + ' td' + i.toString() + j.toString(), onClick: tableFunction.bind(null, tableBody[i].name) },
-								tableBody[i][tableInd[j]]
-							);
-							tdTempOut.push(tdTemp);
-						}
-					}
-					tbodyTemp = _react3.default.createElement(
-						'tr',
-						{ key: tableId + ' th' + i.toString(), id: tableId + i.toString() + 'tr' },
-						tdTempOut
-					);
-					tbodyTempOut.push(tbodyTemp);
-				}
-				tbodyOut = _react3.default.createElement(
-					'tbody',
-					null,
-					tbodyTempOut
-				);
-	
-				return tbodyOut;
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				var _props3 = this.props,
-				    tableClass = _props3.tableClass,
-				    tableId = _props3.tableId;
-	
-	
-				return _react3.default.createElement(
-					'table',
-					{ className: tableClass, id: tableId },
-					this.generateTableHead(),
-					this.generateTableBody()
-				);
-			}
-		}]);
-	
-		return MdlTableClass;
-	}(_react2.Component));
-	
-	exports.default = MdlTableClass;
-	
-	
-	MdlTableClass.propTypes = {
-		tableId: _react2.PropTypes.string,
-		tableInd: _react2.PropTypes.array,
-		tableHead: _react2.PropTypes.array,
-		tableData: _react2.PropTypes.array,
-		tableClass: _react2.PropTypes.string,
-		tableFunction: _react2.PropTypes.func
-	};
-	
-	MdlTableClass.defaultProps = {
-		tableId: 'tableId',
-		tableClass: 'tableClass'
-	};
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "MdlTableClass.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
-
-/***/ }),
 /* 633 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -37175,11 +37178,11 @@
 		value: true
 	});
 	
-	var _index = __webpack_require__(51);
+	var _index = __webpack_require__(45);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _index3 = __webpack_require__(47);
+	var _index3 = __webpack_require__(43);
 	
 	var _index4 = _interopRequireDefault(_index3);
 	
@@ -37187,7 +37190,7 @@
 	
 	var _react3 = _interopRequireDefault(_react2);
 	
-	var _index5 = __webpack_require__(48);
+	var _index5 = __webpack_require__(44);
 	
 	var _index6 = _interopRequireDefault(_index5);
 	
@@ -37312,11 +37315,11 @@
 		value: true
 	});
 	
-	var _index = __webpack_require__(51);
+	var _index = __webpack_require__(45);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _index3 = __webpack_require__(47);
+	var _index3 = __webpack_require__(43);
 	
 	var _index4 = _interopRequireDefault(_index3);
 	
@@ -37324,7 +37327,7 @@
 	
 	var _react3 = _interopRequireDefault(_react2);
 	
-	var _index5 = __webpack_require__(48);
+	var _index5 = __webpack_require__(44);
 	
 	var _index6 = _interopRequireDefault(_index5);
 	
@@ -37463,11 +37466,11 @@
 		value: true
 	});
 	
-	var _index = __webpack_require__(51);
+	var _index = __webpack_require__(45);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _index3 = __webpack_require__(47);
+	var _index3 = __webpack_require__(43);
 	
 	var _index4 = _interopRequireDefault(_index3);
 	
@@ -37475,31 +37478,31 @@
 	
 	var _react3 = _interopRequireDefault(_react2);
 	
-	var _index5 = __webpack_require__(48);
+	var _index5 = __webpack_require__(44);
 	
 	var _index6 = _interopRequireDefault(_index5);
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _redux = __webpack_require__(78);
+	var _redux = __webpack_require__(72);
 	
-	var _reactRedux = __webpack_require__(113);
+	var _reactRedux = __webpack_require__(87);
 	
-	var _actions = __webpack_require__(165);
+	var _actions = __webpack_require__(115);
 	
-	var _ToggleButton = __webpack_require__(257);
+	var _ToggleButton = __webpack_require__(167);
 	
 	var _ToggleButton2 = _interopRequireDefault(_ToggleButton);
 	
-	var _InputBoxValue = __webpack_require__(631);
+	var _InputBoxValue = __webpack_require__(632);
 	
 	var _InputBoxValue2 = _interopRequireDefault(_InputBoxValue);
 	
-	var _OutputTable = __webpack_require__(638);
+	var _OutputTable = __webpack_require__(639);
 	
 	var _OutputTable2 = _interopRequireDefault(_OutputTable);
 	
-	var _ConstList = __webpack_require__(167);
+	var _ConstList = __webpack_require__(86);
 	
 	__webpack_require__(725);
 	
@@ -37548,20 +37551,6 @@
 	
 		_createClass(Content, [{
 			key: 'generateType',
-	
-			//generateButton() {
-			//	const butOut = (
-			//	<button className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary" onClick={modelOpen}>
-			//		城娘選擇
-			//	</button>
-			//	<button className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary" onClick={modelOpen}>
-			//		兜選擇
-			//	</button>
-			//	)
-	
-			//	return butOut
-			//}
-	
 			value: function generateType() {
 				var _props = this.props,
 				    type = _props.type,
@@ -37752,6 +37741,21 @@
 								'div',
 								null,
 								this.generateType()
+							),
+							_react3.default.createElement(
+								'div',
+								null,
+								_react3.default.createElement(_ToggleButton2.default, {
+									key: 'button char',
+									display: '1',
+									title: '城娘選擇',
+									onClickFunc: function onClickFunc(modelId) {
+										modelOpen(modelId);
+									},
+									modelId: '1',
+									Cactive: 'mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary',
+									Cinactive: 'mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent'
+								})
 							),
 							_react3.default.createElement(
 								'div',
@@ -37971,11 +37975,11 @@
 		value: true
 	});
 	
-	var _index = __webpack_require__(51);
+	var _index = __webpack_require__(45);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _index3 = __webpack_require__(47);
+	var _index3 = __webpack_require__(43);
 	
 	var _index4 = _interopRequireDefault(_index3);
 	
@@ -37983,7 +37987,7 @@
 	
 	var _react3 = _interopRequireDefault(_react2);
 	
-	var _index5 = __webpack_require__(48);
+	var _index5 = __webpack_require__(44);
 	
 	var _index6 = _interopRequireDefault(_index5);
 	
@@ -38099,11 +38103,11 @@
 		value: true
 	});
 	
-	var _index = __webpack_require__(51);
+	var _index = __webpack_require__(45);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _index3 = __webpack_require__(47);
+	var _index3 = __webpack_require__(43);
 	
 	var _index4 = _interopRequireDefault(_index3);
 	
@@ -38111,17 +38115,21 @@
 	
 	var _react3 = _interopRequireDefault(_react2);
 	
-	var _index5 = __webpack_require__(48);
+	var _index5 = __webpack_require__(44);
 	
 	var _index6 = _interopRequireDefault(_index5);
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _redux = __webpack_require__(78);
+	var _redux = __webpack_require__(72);
 	
-	var _reactRedux = __webpack_require__(113);
+	var _reactRedux = __webpack_require__(87);
 	
-	var _actions = __webpack_require__(165);
+	var _actions = __webpack_require__(115);
+	
+	var _IndexTable = __webpack_require__(638);
+	
+	var _IndexTable2 = _interopRequireDefault(_IndexTable);
 	
 	var _TextModel = __webpack_require__(633);
 	
@@ -38178,19 +38186,12 @@
 				var _props = this.props,
 				    modelStatus = _props.modelStatus,
 				    modelOpen = _props.modelOpen,
-				    _modelClose = _props.modelClose,
-				    textOutput = _props.textOutput;
+				    modelClose = _props.modelClose;
 	
 				return _react3.default.createElement(
 					'header',
 					{ className: 'demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-800' },
-					_react3.default.createElement(_TextModel2.default, {
-						display: modelStatus,
-						input: textOutput,
-						modelClose: function modelClose() {
-							return _modelClose(0);
-						}
-					}),
+					_react3.default.createElement(_IndexTable2.default, null),
 					_react3.default.createElement(
 						'div',
 						{ className: 'mdl-layout__header-row mdl-shadow--4dp' },
@@ -38232,16 +38233,14 @@
 	}(_react2.Component));
 	
 	Header.propTypes = {
-		modelStatus: _react2.PropTypes.bool.isRequired,
-		textOutput: _react2.PropTypes.array.isRequired,
+		modelStatus: _react2.PropTypes.string.isRequired,
 		modelOpen: _react2.PropTypes.func.isRequired,
 		modelClose: _react2.PropTypes.func.isRequired
 	};
 	
 	var mapStateToProps = function mapStateToProps(state) {
 		return {
-			modelStatus: state.reducerPage.modelStatus,
-			textOutput: state.reducerPage.textOutput
+			modelStatus: state.reducerCalc.modelStatus
 		};
 	};
 	
@@ -38269,11 +38268,11 @@
 		value: true
 	});
 	
-	var _index = __webpack_require__(51);
+	var _index = __webpack_require__(45);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _index3 = __webpack_require__(47);
+	var _index3 = __webpack_require__(43);
 	
 	var _index4 = _interopRequireDefault(_index3);
 	
@@ -38281,27 +38280,232 @@
 	
 	var _react3 = _interopRequireDefault(_react2);
 	
-	var _index5 = __webpack_require__(48);
+	var _index5 = __webpack_require__(44);
 	
 	var _index6 = _interopRequireDefault(_index5);
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _redux = __webpack_require__(78);
+	var _redux = __webpack_require__(72);
 	
-	var _reactRedux = __webpack_require__(113);
+	var _reactRedux = __webpack_require__(87);
 	
-	var _actions = __webpack_require__(165);
+	var _actions = __webpack_require__(115);
 	
-	var _MdlTableClass = __webpack_require__(632);
-	
-	var _MdlTableClass2 = _interopRequireDefault(_MdlTableClass);
-	
-	var _ToggleButton = __webpack_require__(257);
+	var _ToggleButton = __webpack_require__(167);
 	
 	var _ToggleButton2 = _interopRequireDefault(_ToggleButton);
 	
-	var _ConstList = __webpack_require__(167);
+	var _MdlTableClass = __webpack_require__(257);
+	
+	var _MdlTableClass2 = _interopRequireDefault(_MdlTableClass);
+	
+	var _ConstList = __webpack_require__(86);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var _components = {
+		IndexTable: {
+			displayName: 'IndexTable'
+		}
+	};
+	
+	var _DGithubPileBunkerNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
+		filename: 'D:/Github/PileBunker/src/containers/IndexTable.jsx',
+		components: _components,
+		locals: [module],
+		imports: [_react3.default]
+	});
+	
+	var _DGithubPileBunkerNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
+		filename: 'D:/Github/PileBunker/src/containers/IndexTable.jsx',
+		components: _components,
+		locals: [],
+		imports: [_react3.default, _index2.default]
+	});
+	
+	function _wrapComponent(id) {
+		return function (Component) {
+			return _DGithubPileBunkerNode_modulesReactTransformHmrLibIndexJs2(_DGithubPileBunkerNode_modulesReactTransformCatchErrorsLibIndexJs2(Component, id), id);
+		};
+	}
+	
+	var IndexTable = _wrapComponent('IndexTable')(function (_Component) {
+		_inherits(IndexTable, _Component);
+	
+		function IndexTable() {
+			_classCallCheck(this, IndexTable);
+	
+			return _possibleConstructorReturn(this, (IndexTable.__proto__ || Object.getPrototypeOf(IndexTable)).apply(this, arguments));
+		}
+	
+		_createClass(IndexTable, [{
+			key: 'generateType',
+			value: function generateType() {
+				var _props = this.props,
+				    type = _props.type,
+				    typeChange = _props.typeChange;
+	
+				var typeTemp = _react3.default.createElement(
+					'label',
+					{ htmlFor: 'weaponType' },
+					'\u6B66\u5668\u7A2E\uFF1A'
+				);
+				var typeOut = [];
+				typeOut.push(typeTemp);
+	
+				for (var i = 0; i < _ConstList.listType.length; i += 1) {
+					typeTemp = _react3.default.createElement(_ToggleButton2.default, {
+						key: 'indexType' + i.toString(),
+						display: type,
+						title: _ConstList.listType[i],
+						onClickFunc: function onClickFunc(modelId) {
+							typeChange(modelId);
+						},
+						modelId: _ConstList.listTypeS[i],
+						Cactive: 'type-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary',
+						Cinactive: 'type-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent'
+					});
+					typeOut.push(typeTemp);
+				}
+				return typeOut;
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var _props2 = this.props,
+				    modelStatus = _props2.modelStatus,
+				    modelClose = _props2.modelClose,
+				    outputChar = _props2.outputChar,
+				    charSelect = _props2.charSelect;
+	
+	
+				if (modelStatus === '1') {
+					return _react3.default.createElement(
+						'div',
+						{ className: 'modal' },
+						_react3.default.createElement(
+							'button',
+							{ className: 'close mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect', onClick: modelClose },
+							_react3.default.createElement(
+								'div',
+								{ className: 'material-icons' },
+								'clear'
+							)
+						),
+						_react3.default.createElement(
+							'div',
+							{ className: 'index-content modal-content mdl-color--white mdl-color-text--grey-800 ' },
+							_react3.default.createElement(
+								'div',
+								{ className: 'char-type-button' },
+								this.generateType()
+							),
+							_react3.default.createElement(
+								'div',
+								null,
+								_react3.default.createElement(_MdlTableClass2.default, {
+									tableId: 'charTable',
+									tableInd: _ConstList.tableCharInd,
+									tableHead: _ConstList.tableCharHead,
+									tableData: outputChar,
+									tableClass: 'charTable mdl-data-table mdl-js-data-table mdl-shadow--2dp',
+									tableFunction: function tableFunction(modelId) {
+										charSelect(modelId);
+									}
+								})
+							)
+						)
+					);
+				}
+				return null;
+			}
+		}]);
+	
+		return IndexTable;
+	}(_react2.Component));
+	
+	IndexTable.propTypes = {
+		type: _react2.PropTypes.string.isRequired,
+		typeChange: _react2.PropTypes.func.isRequired,
+		charSelect: _react2.PropTypes.func.isRequired,
+		outputChar: _react2.PropTypes.array.isRequired,
+		modelStatus: _react2.PropTypes.string.isRequired,
+		modelClose: _react2.PropTypes.func.isRequired
+	};
+	
+	var mapStateToProps = function mapStateToProps(state) {
+		return {
+			type: state.reducerCalc.type,
+			modelStatus: state.reducerCalc.modelStatus,
+			outputChar: state.reducerCalc.outputChar
+		};
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			typeChange: (0, _redux.bindActionCreators)(_actions.typeChange, dispatch),
+			charSelect: (0, _redux.bindActionCreators)(_actions.charSelect, dispatch),
+			modelClose: (0, _redux.bindActionCreators)(_actions.modelClose, dispatch)
+		};
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(IndexTable);
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "IndexTable.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
+
+/***/ }),
+/* 639 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(17), RootInstanceProvider = __webpack_require__(18), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _index = __webpack_require__(45);
+	
+	var _index2 = _interopRequireDefault(_index);
+	
+	var _index3 = __webpack_require__(43);
+	
+	var _index4 = _interopRequireDefault(_index3);
+	
+	var _react2 = __webpack_require__(3);
+	
+	var _react3 = _interopRequireDefault(_react2);
+	
+	var _index5 = __webpack_require__(44);
+	
+	var _index6 = _interopRequireDefault(_index5);
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _redux = __webpack_require__(72);
+	
+	var _reactRedux = __webpack_require__(87);
+	
+	var _actions = __webpack_require__(115);
+	
+	var _MdlTableClass = __webpack_require__(257);
+	
+	var _MdlTableClass2 = _interopRequireDefault(_MdlTableClass);
+	
+	var _ToggleButton = __webpack_require__(167);
+	
+	var _ToggleButton2 = _interopRequireDefault(_ToggleButton);
+	
+	var _ConstList = __webpack_require__(86);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -38427,14 +38631,14 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
 /***/ }),
-/* 639 */
+/* 640 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module, process) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(17), RootInstanceProvider = __webpack_require__(18), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
 	'use strict';
 	
-	__webpack_require__(295);
+	__webpack_require__(296);
 	
 	var _react = __webpack_require__(3);
 	
@@ -38442,9 +38646,9 @@
 	
 	var _reactDom = __webpack_require__(256);
 	
-	var _redux = __webpack_require__(78);
+	var _redux = __webpack_require__(72);
 	
-	var _reactRedux = __webpack_require__(113);
+	var _reactRedux = __webpack_require__(87);
 	
 	var _reduxLogger = __webpack_require__(716);
 	
@@ -38454,7 +38658,7 @@
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _reducers = __webpack_require__(641);
+	var _reducers = __webpack_require__(642);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
@@ -38478,7 +38682,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module), __webpack_require__(2)))
 
 /***/ }),
-/* 640 */
+/* 641 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(17), RootInstanceProvider = __webpack_require__(18), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -38491,9 +38695,9 @@
 	exports.calcAtk = calcAtk;
 	exports.calcOutput = calcOutput;
 	
-	var _database = __webpack_require__(258);
+	var _database = __webpack_require__(259);
 	
-	var _ConstList = __webpack_require__(167);
+	var _ConstList = __webpack_require__(86);
 	
 	var _ConstParameters = __webpack_require__(168);
 	
@@ -38645,7 +38849,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
 /***/ }),
-/* 641 */
+/* 642 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(17), RootInstanceProvider = __webpack_require__(18), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -38656,28 +38860,23 @@
 		value: true
 	});
 	
-	var _redux = __webpack_require__(78);
+	var _redux = __webpack_require__(72);
 	
-	var _reducerCalc = __webpack_require__(642);
+	var _reducerCalc = __webpack_require__(643);
 	
 	var _reducerCalc2 = _interopRequireDefault(_reducerCalc);
-	
-	var _reducerPage = __webpack_require__(643);
-	
-	var _reducerPage2 = _interopRequireDefault(_reducerPage);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = (0, _redux.combineReducers)({
-		reducerCalc: _reducerCalc2.default,
-		reducerPage: _reducerPage2.default
+		reducerCalc: _reducerCalc2.default
 	});
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
 /***/ }),
-/* 642 */
+/* 643 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(17), RootInstanceProvider = __webpack_require__(18), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -38689,15 +38888,17 @@
 	});
 	exports.default = reducerCalc;
 	
-	var _ConstActionTypes = __webpack_require__(166);
+	var _ConstActionTypes = __webpack_require__(258);
 	
-	var _database = __webpack_require__(258);
+	var _database = __webpack_require__(259);
 	
 	var _ConstParameters = __webpack_require__(168);
 	
 	var parameters = _interopRequireWildcard(_ConstParameters);
 	
-	var _calcOutput = __webpack_require__(640);
+	var _calcOutput = __webpack_require__(641);
+	
+	var _ConstList = __webpack_require__(86);
 	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
@@ -38725,7 +38926,9 @@
 		aspdSpell: 0,
 		atkSkillInt: 0,
 		defSkillInt: 0,
-		output: []
+		output: [],
+		outputChar: _database.dbChar.chain().find({ weapon: '刀' }).data(),
+		modelStatus: '0'
 	
 		// ===============================================================================
 		// reducer main function
@@ -38737,18 +38940,34 @@
 	
 		var calcTemp = {};
 		var weaponSelected = [];
+		var charTemp = [];
 	
 		switch (action.type) {
+			case _ConstActionTypes.MODEL_OPEN:
+				return Object.assign({}, state, {
+					modelStatus: action.modelId
+				});
+			case _ConstActionTypes.MODEL_CLOSE:
+				return Object.assign({}, state, {
+					modelStatus: '0'
+				});
 			// ===============================================================================
 			// weapon types change
 			// ===============================================================================
 			case _ConstActionTypes.TYPE_CHANGE:
 				calcTemp = state;
 				calcTemp.type = action.modelId;
+				for (var i = 0; i < _ConstList.listTypeS.length; i += 1) {
+					if (action.modelId === _ConstList.listTypeS[i]) {
+						charTemp = _database.dbChar.chain().find({ weapon: _ConstList.listType[i] }).data();
+						break;
+					}
+				}
 				return Object.assign({}, state, {
 					type: action.modelId,
 					output: (0, _calcOutput.calcOutput)(calcTemp),
-					atk: (0, _calcOutput.calcAtk)(calcTemp)
+					atk: (0, _calcOutput.calcAtk)(calcTemp),
+					outputChar: charTemp
 				});
 			// ===============================================================================
 			// plain bonus switch
@@ -38827,10 +39046,10 @@
 				switch (action.modelId) {
 					case 'ref0':
 						weaponSelected = _database.dbWeapon.chain().data();
-						for (var i = 0; i < weaponSelected.length; i += 1) {
-							weaponSelected[i].atk -= weaponSelected[i].ref;
-							weaponSelected[i].ref = 0;
-							weaponSelected[i].refText = '+0';
+						for (var _i = 0; _i < weaponSelected.length; _i += 1) {
+							weaponSelected[_i].atk -= weaponSelected[_i].ref;
+							weaponSelected[_i].ref = 0;
+							weaponSelected[_i].refText = '+0';
 						}
 						_database.dbWeapon.update(weaponSelected);
 						calcTemp = state;
@@ -38839,19 +39058,6 @@
 						});
 					case 'refAll':
 						weaponSelected = _database.dbWeapon.chain().data();
-						for (var _i = 0; _i < weaponSelected.length; _i += 1) {
-							weaponSelected[_i].atk -= weaponSelected[_i].ref;
-							weaponSelected[_i].atk += parameters.valueMaxRef;
-							weaponSelected[_i].ref = parameters.valueMaxRef;
-							weaponSelected[_i].refText = '+' + parameters.valueMaxRef.toString();
-						}
-						_database.dbWeapon.update(weaponSelected);
-						calcTemp = state;
-						return Object.assign({}, state, {
-							output: (0, _calcOutput.calcOutput)(calcTemp)
-						});
-					case 'ref4':
-						weaponSelected = _database.dbWeapon.chain().find({ rare: 4 }).data();
 						for (var _i2 = 0; _i2 < weaponSelected.length; _i2 += 1) {
 							weaponSelected[_i2].atk -= weaponSelected[_i2].ref;
 							weaponSelected[_i2].atk += parameters.valueMaxRef;
@@ -38863,8 +39069,8 @@
 						return Object.assign({}, state, {
 							output: (0, _calcOutput.calcOutput)(calcTemp)
 						});
-					case 'ref3':
-						weaponSelected = _database.dbWeapon.chain().find({ rare: 3 }).data();
+					case 'ref4':
+						weaponSelected = _database.dbWeapon.chain().find({ rare: 4 }).data();
 						for (var _i3 = 0; _i3 < weaponSelected.length; _i3 += 1) {
 							weaponSelected[_i3].atk -= weaponSelected[_i3].ref;
 							weaponSelected[_i3].atk += parameters.valueMaxRef;
@@ -38876,8 +39082,8 @@
 						return Object.assign({}, state, {
 							output: (0, _calcOutput.calcOutput)(calcTemp)
 						});
-					case 'ref2':
-						weaponSelected = _database.dbWeapon.chain().find({ rare: 2 }).data();
+					case 'ref3':
+						weaponSelected = _database.dbWeapon.chain().find({ rare: 3 }).data();
 						for (var _i4 = 0; _i4 < weaponSelected.length; _i4 += 1) {
 							weaponSelected[_i4].atk -= weaponSelected[_i4].ref;
 							weaponSelected[_i4].atk += parameters.valueMaxRef;
@@ -38889,13 +39095,26 @@
 						return Object.assign({}, state, {
 							output: (0, _calcOutput.calcOutput)(calcTemp)
 						});
-					case 'ref1':
-						weaponSelected = _database.dbWeapon.chain().find({ rare: 1 }).data();
+					case 'ref2':
+						weaponSelected = _database.dbWeapon.chain().find({ rare: 2 }).data();
 						for (var _i5 = 0; _i5 < weaponSelected.length; _i5 += 1) {
 							weaponSelected[_i5].atk -= weaponSelected[_i5].ref;
 							weaponSelected[_i5].atk += parameters.valueMaxRef;
 							weaponSelected[_i5].ref = parameters.valueMaxRef;
 							weaponSelected[_i5].refText = '+' + parameters.valueMaxRef.toString();
+						}
+						_database.dbWeapon.update(weaponSelected);
+						calcTemp = state;
+						return Object.assign({}, state, {
+							output: (0, _calcOutput.calcOutput)(calcTemp)
+						});
+					case 'ref1':
+						weaponSelected = _database.dbWeapon.chain().find({ rare: 1 }).data();
+						for (var _i6 = 0; _i6 < weaponSelected.length; _i6 += 1) {
+							weaponSelected[_i6].atk -= weaponSelected[_i6].ref;
+							weaponSelected[_i6].atk += parameters.valueMaxRef;
+							weaponSelected[_i6].ref = parameters.valueMaxRef;
+							weaponSelected[_i6].refText = '+' + parameters.valueMaxRef.toString();
 						}
 						_database.dbWeapon.update(weaponSelected);
 						calcTemp = state;
@@ -39021,15 +39240,17 @@
 						return state;
 				}
 			// ===============================================================================
-			// weapon types change
+			// character select change
 			// ===============================================================================
 			case _ConstActionTypes.CHAR_SELECT:
 				calcTemp = state;
-				calcTemp.AtkParm = action.modelId;
+				charTemp = _database.dbChar.findOne({ name: action.modelId });
+				calcTemp.AtkParm = Math.round(parseFloat(charTemp.atF, 10) * 100);
 				return Object.assign({}, state, {
-					AtkParm: action.modelId,
+					AtkParm: Math.round(parseFloat(charTemp.atF, 10) * 100),
 					output: (0, _calcOutput.calcOutput)(calcTemp),
-					atk: (0, _calcOutput.calcAtk)(calcTemp)
+					atk: (0, _calcOutput.calcAtk)(calcTemp),
+					modelStatus: '0'
 				});
 			// ===============================================================================
 			// default status
@@ -39047,50 +39268,10 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
 /***/ }),
-/* 643 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(17), RootInstanceProvider = __webpack_require__(18), ReactMount = __webpack_require__(7), React = __webpack_require__(3); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = reducerPage;
-	
-	var _ConstActionTypes = __webpack_require__(166);
-	
-	var initialState = {
-		modelStatus: 0
-	};
-	
-	function reducerPage() {
-		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-		var action = arguments[1];
-	
-		switch (action.type) {
-			case _ConstActionTypes.MODEL_OPEN:
-				return Object.assign({}, state, {
-					modelStatus: action.modelId
-				});
-			case _ConstActionTypes.MODEL_CLOSE:
-				return Object.assign({}, state, {
-					modelStatus: 0
-				});
-			default:
-				return state;
-		}
-	}
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "reducerPage.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
-
-/***/ }),
 /* 644 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	var isReactClassish = __webpack_require__(259);
+	var isReactClassish = __webpack_require__(260);
 	
 	function isReactElementish(obj, React) {
 	  if (!obj) {
@@ -39218,7 +39399,7 @@
 	exports.default = proxyClass;
 	exports.default = createClassProxy;
 	
-	var _find = __webpack_require__(603);
+	var _find = __webpack_require__(604);
 	
 	var _find2 = _interopRequireDefault(_find);
 	
@@ -39234,7 +39415,7 @@
 	
 	var _deleteUnknownAutoBindMethods2 = _interopRequireDefault(_deleteUnknownAutoBindMethods);
 	
-	var _supportsProtoAssignment = __webpack_require__(260);
+	var _supportsProtoAssignment = __webpack_require__(261);
 	
 	var _supportsProtoAssignment2 = _interopRequireDefault(_supportsProtoAssignment);
 	
@@ -39462,11 +39643,11 @@
 	});
 	exports.default = createPrototypeProxy;
 	
-	var _assign = __webpack_require__(600);
+	var _assign = __webpack_require__(601);
 	
 	var _assign2 = _interopRequireDefault(_assign);
 	
-	var _difference = __webpack_require__(602);
+	var _difference = __webpack_require__(603);
 	
 	var _difference2 = _interopRequireDefault(_difference);
 	
@@ -39757,7 +39938,7 @@
 	});
 	exports.getForceUpdate = exports.createProxy = undefined;
 	
-	var _supportsProtoAssignment = __webpack_require__(260);
+	var _supportsProtoAssignment = __webpack_require__(261);
 	
 	var _supportsProtoAssignment2 = _interopRequireDefault(_supportsProtoAssignment);
 	
@@ -39765,7 +39946,7 @@
 	
 	var _createClassProxy2 = _interopRequireDefault(_createClassProxy);
 	
-	var _reactDeepForceUpdate = __webpack_require__(622);
+	var _reactDeepForceUpdate = __webpack_require__(623);
 	
 	var _reactDeepForceUpdate2 = _interopRequireDefault(_reactDeepForceUpdate);
 	
@@ -39789,15 +39970,15 @@
 	
 	var _react = __webpack_require__(3);
 	
-	var _propTypes = __webpack_require__(161);
+	var _propTypes = __webpack_require__(163);
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _storeShape = __webpack_require__(261);
+	var _storeShape = __webpack_require__(262);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
-	var _warning = __webpack_require__(262);
+	var _warning = __webpack_require__(263);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -39880,7 +40061,7 @@
 	
 	var _react = __webpack_require__(3);
 	
-	var _storeShape = __webpack_require__(261);
+	var _storeShape = __webpack_require__(262);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
@@ -39892,19 +40073,19 @@
 	
 	var _wrapActionCreators2 = _interopRequireDefault(_wrapActionCreators);
 	
-	var _warning = __webpack_require__(262);
+	var _warning = __webpack_require__(263);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	var _isPlainObject = __webpack_require__(160);
+	var _isPlainObject = __webpack_require__(162);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
-	var _hoistNonReactStatics = __webpack_require__(513);
+	var _hoistNonReactStatics = __webpack_require__(514);
 	
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 	
-	var _invariant = __webpack_require__(514);
+	var _invariant = __webpack_require__(515);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
@@ -40307,7 +40488,7 @@
 	exports.__esModule = true;
 	exports["default"] = wrapActionCreators;
 	
-	var _redux = __webpack_require__(78);
+	var _redux = __webpack_require__(72);
 	
 	function wrapActionCreators(actionCreators) {
 	  return function (dispatch) {
@@ -40374,8 +40555,8 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(49);
-	var EventPropagators = __webpack_require__(87);
+	var EventConstants = __webpack_require__(50);
+	var EventPropagators = __webpack_require__(89);
 	var ExecutionEnvironment = __webpack_require__(21);
 	var FallbackCompositionState = __webpack_require__(663);
 	var SyntheticCompositionEvent = __webpack_require__(695);
@@ -40784,14 +40965,14 @@
 	
 	'use strict';
 	
-	var CSSProperty = __webpack_require__(263);
+	var CSSProperty = __webpack_require__(264);
 	var ExecutionEnvironment = __webpack_require__(21);
 	var ReactPerf = __webpack_require__(31);
 	
-	var camelizeStyleName = __webpack_require__(499);
+	var camelizeStyleName = __webpack_require__(500);
 	var dangerousStyleValue = __webpack_require__(703);
-	var hyphenateStyleName = __webpack_require__(504);
-	var memoizeStringOnly = __webpack_require__(508);
+	var hyphenateStyleName = __webpack_require__(505);
+	var memoizeStringOnly = __webpack_require__(509);
 	var warning = __webpack_require__(11);
 	
 	var processStyleName = memoizeStringOnly(function (styleName) {
@@ -40964,16 +41145,16 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(49);
-	var EventPluginHub = __webpack_require__(86);
-	var EventPropagators = __webpack_require__(87);
+	var EventConstants = __webpack_require__(50);
+	var EventPluginHub = __webpack_require__(88);
+	var EventPropagators = __webpack_require__(89);
 	var ExecutionEnvironment = __webpack_require__(21);
 	var ReactUpdates = __webpack_require__(35);
 	var SyntheticEvent = __webpack_require__(71);
 	
 	var getEventTarget = __webpack_require__(180);
 	var isEventSupported = __webpack_require__(183);
-	var isTextInputElement = __webpack_require__(290);
+	var isTextInputElement = __webpack_require__(291);
 	var keyOf = __webpack_require__(54);
 	
 	var topLevelTypes = EventConstants.topLevelTypes;
@@ -41321,7 +41502,7 @@
 	
 	var ExecutionEnvironment = __webpack_require__(21);
 	
-	var createNodesFromMarkup = __webpack_require__(501);
+	var createNodesFromMarkup = __webpack_require__(502);
 	var emptyFunction = __webpack_require__(42);
 	var getMarkupWrap = __webpack_require__(227);
 	var invariant = __webpack_require__(5);
@@ -41502,9 +41683,9 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(49);
-	var EventPropagators = __webpack_require__(87);
-	var SyntheticMouseEvent = __webpack_require__(117);
+	var EventConstants = __webpack_require__(50);
+	var EventPropagators = __webpack_require__(89);
+	var SyntheticMouseEvent = __webpack_require__(119);
 	
 	var ReactMount = __webpack_require__(7);
 	var keyOf = __webpack_require__(54);
@@ -41630,8 +41811,8 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(49);
-	var ReactErrorUtils = __webpack_require__(278);
+	var EventConstants = __webpack_require__(50);
+	var ReactErrorUtils = __webpack_require__(279);
 	
 	var invariant = __webpack_require__(5);
 	var warning = __webpack_require__(11);
@@ -41842,7 +42023,7 @@
 	var PooledClass = __webpack_require__(55);
 	
 	var assign = __webpack_require__(10);
-	var getTextContentAccessor = __webpack_require__(289);
+	var getTextContentAccessor = __webpack_require__(290);
 	
 	/**
 	 * This helper class stores information about text content of a target node,
@@ -42173,7 +42354,7 @@
 	
 	'use strict';
 	
-	var ReactDOM = __webpack_require__(269);
+	var ReactDOM = __webpack_require__(270);
 	var ReactDOMServer = __webpack_require__(675);
 	var ReactIsomorphic = __webpack_require__(682);
 	
@@ -42218,7 +42399,7 @@
 	
 	'use strict';
 	
-	var ReactInstanceMap = __webpack_require__(88);
+	var ReactInstanceMap = __webpack_require__(90);
 	
 	var findDOMNode = __webpack_require__(177);
 	var warning = __webpack_require__(11);
@@ -42389,12 +42570,12 @@
 	'use strict';
 	
 	var ReactComponentEnvironment = __webpack_require__(173);
-	var ReactCurrentOwner = __webpack_require__(50);
+	var ReactCurrentOwner = __webpack_require__(51);
 	var ReactElement = __webpack_require__(27);
-	var ReactInstanceMap = __webpack_require__(88);
+	var ReactInstanceMap = __webpack_require__(90);
 	var ReactPerf = __webpack_require__(31);
-	var ReactPropTypeLocations = __webpack_require__(116);
-	var ReactPropTypeLocationNames = __webpack_require__(115);
+	var ReactPropTypeLocations = __webpack_require__(118);
+	var ReactPropTypeLocationNames = __webpack_require__(117);
 	var ReactReconciler = __webpack_require__(70);
 	var ReactUpdateQueue = __webpack_require__(175);
 	
@@ -43150,13 +43331,13 @@
 	var CSSPropertyOperations = __webpack_require__(656);
 	var DOMProperty = __webpack_require__(69);
 	var DOMPropertyOperations = __webpack_require__(170);
-	var EventConstants = __webpack_require__(49);
-	var ReactBrowserEventEmitter = __webpack_require__(114);
+	var EventConstants = __webpack_require__(50);
+	var ReactBrowserEventEmitter = __webpack_require__(116);
 	var ReactComponentBrowserEnvironment = __webpack_require__(172);
 	var ReactDOMButton = __webpack_require__(669);
 	var ReactDOMInput = __webpack_require__(672);
 	var ReactDOMOption = __webpack_require__(673);
-	var ReactDOMSelect = __webpack_require__(271);
+	var ReactDOMSelect = __webpack_require__(272);
 	var ReactDOMTextarea = __webpack_require__(676);
 	var ReactMount = __webpack_require__(7);
 	var ReactMultiChild = __webpack_require__(683);
@@ -43164,12 +43345,12 @@
 	var ReactUpdateQueue = __webpack_require__(175);
 	
 	var assign = __webpack_require__(10);
-	var canDefineProperty = __webpack_require__(119);
-	var escapeTextContentForBrowser = __webpack_require__(120);
+	var canDefineProperty = __webpack_require__(121);
+	var escapeTextContentForBrowser = __webpack_require__(122);
 	var invariant = __webpack_require__(5);
 	var isEventSupported = __webpack_require__(183);
 	var keyOf = __webpack_require__(54);
-	var setInnerHTML = __webpack_require__(121);
+	var setInnerHTML = __webpack_require__(123);
 	var setTextContent = __webpack_require__(184);
 	var shallowEqual = __webpack_require__(228);
 	var validateDOMNesting = __webpack_require__(187);
@@ -44113,9 +44294,9 @@
 	'use strict';
 	
 	var ReactElement = __webpack_require__(27);
-	var ReactElementValidator = __webpack_require__(275);
+	var ReactElementValidator = __webpack_require__(276);
 	
-	var mapObject = __webpack_require__(507);
+	var mapObject = __webpack_require__(508);
 	
 	/**
 	 * Create a factory that creates HTML tag elements.
@@ -44453,8 +44634,8 @@
 	
 	'use strict';
 	
-	var ReactChildren = __webpack_require__(266);
-	var ReactDOMSelect = __webpack_require__(271);
+	var ReactChildren = __webpack_require__(267);
+	var ReactDOMSelect = __webpack_require__(272);
 	
 	var assign = __webpack_require__(10);
 	var warning = __webpack_require__(11);
@@ -44551,7 +44732,7 @@
 	var ExecutionEnvironment = __webpack_require__(21);
 	
 	var getNodeForCharacterOffset = __webpack_require__(707);
-	var getTextContentAccessor = __webpack_require__(289);
+	var getTextContentAccessor = __webpack_require__(290);
 	
 	/**
 	 * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -44765,7 +44946,7 @@
 	
 	'use strict';
 	
-	var ReactDefaultInjection = __webpack_require__(274);
+	var ReactDefaultInjection = __webpack_require__(275);
 	var ReactServerRendering = __webpack_require__(688);
 	var ReactVersion = __webpack_require__(176);
 	
@@ -44921,7 +45102,7 @@
 	var ReactMount = __webpack_require__(7);
 	var ReactPerf = __webpack_require__(31);
 	
-	var performanceNow = __webpack_require__(510);
+	var performanceNow = __webpack_require__(511);
 	
 	function roundFloat(val) {
 	  return Math.floor(val * 100) / 100;
@@ -45363,7 +45544,7 @@
 	
 	'use strict';
 	
-	var EventPluginHub = __webpack_require__(86);
+	var EventPluginHub = __webpack_require__(88);
 	
 	function runEventQueueInBatch(events) {
 	  EventPluginHub.enqueueEvents(events);
@@ -45410,13 +45591,13 @@
 	var EventListener = __webpack_require__(223);
 	var ExecutionEnvironment = __webpack_require__(21);
 	var PooledClass = __webpack_require__(55);
-	var ReactInstanceHandles = __webpack_require__(77);
+	var ReactInstanceHandles = __webpack_require__(78);
 	var ReactMount = __webpack_require__(7);
 	var ReactUpdates = __webpack_require__(35);
 	
 	var assign = __webpack_require__(10);
 	var getEventTarget = __webpack_require__(180);
-	var getUnboundedScrollPosition = __webpack_require__(502);
+	var getUnboundedScrollPosition = __webpack_require__(503);
 	
 	var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
 	
@@ -45623,14 +45804,14 @@
 	'use strict';
 	
 	var DOMProperty = __webpack_require__(69);
-	var EventPluginHub = __webpack_require__(86);
+	var EventPluginHub = __webpack_require__(88);
 	var ReactComponentEnvironment = __webpack_require__(173);
-	var ReactClass = __webpack_require__(267);
-	var ReactEmptyComponent = __webpack_require__(276);
-	var ReactBrowserEventEmitter = __webpack_require__(114);
-	var ReactNativeComponent = __webpack_require__(282);
+	var ReactClass = __webpack_require__(268);
+	var ReactEmptyComponent = __webpack_require__(277);
+	var ReactBrowserEventEmitter = __webpack_require__(116);
+	var ReactNativeComponent = __webpack_require__(283);
 	var ReactPerf = __webpack_require__(31);
-	var ReactRootIndex = __webpack_require__(285);
+	var ReactRootIndex = __webpack_require__(286);
 	var ReactUpdates = __webpack_require__(35);
 	
 	var ReactInjection = {
@@ -45665,13 +45846,13 @@
 	
 	'use strict';
 	
-	var ReactChildren = __webpack_require__(266);
-	var ReactComponent = __webpack_require__(268);
-	var ReactClass = __webpack_require__(267);
+	var ReactChildren = __webpack_require__(267);
+	var ReactComponent = __webpack_require__(269);
+	var ReactClass = __webpack_require__(268);
 	var ReactDOMFactories = __webpack_require__(671);
 	var ReactElement = __webpack_require__(27);
-	var ReactElementValidator = __webpack_require__(275);
-	var ReactPropTypes = __webpack_require__(284);
+	var ReactElementValidator = __webpack_require__(276);
+	var ReactPropTypes = __webpack_require__(285);
 	var ReactVersion = __webpack_require__(176);
 	
 	var assign = __webpack_require__(10);
@@ -45747,9 +45928,9 @@
 	'use strict';
 	
 	var ReactComponentEnvironment = __webpack_require__(173);
-	var ReactMultiChildUpdateTypes = __webpack_require__(281);
+	var ReactMultiChildUpdateTypes = __webpack_require__(282);
 	
-	var ReactCurrentOwner = __webpack_require__(50);
+	var ReactCurrentOwner = __webpack_require__(51);
 	var ReactReconciler = __webpack_require__(70);
 	var ReactChildReconciler = __webpack_require__(667);
 	
@@ -46347,10 +46528,10 @@
 	
 	var CallbackQueue = __webpack_require__(169);
 	var PooledClass = __webpack_require__(55);
-	var ReactBrowserEventEmitter = __webpack_require__(114);
-	var ReactDOMFeatureFlags = __webpack_require__(270);
-	var ReactInputSelection = __webpack_require__(279);
-	var Transaction = __webpack_require__(118);
+	var ReactBrowserEventEmitter = __webpack_require__(116);
+	var ReactDOMFeatureFlags = __webpack_require__(271);
+	var ReactInputSelection = __webpack_require__(280);
+	var Transaction = __webpack_require__(120);
 	
 	var assign = __webpack_require__(10);
 	
@@ -46611,10 +46792,10 @@
 	 */
 	'use strict';
 	
-	var ReactDefaultBatchingStrategy = __webpack_require__(273);
+	var ReactDefaultBatchingStrategy = __webpack_require__(274);
 	var ReactElement = __webpack_require__(27);
-	var ReactInstanceHandles = __webpack_require__(77);
-	var ReactMarkupChecksum = __webpack_require__(280);
+	var ReactInstanceHandles = __webpack_require__(78);
+	var ReactMarkupChecksum = __webpack_require__(281);
 	var ReactServerBatchingStrategy = __webpack_require__(687);
 	var ReactServerRenderingTransaction = __webpack_require__(689);
 	var ReactUpdates = __webpack_require__(35);
@@ -46703,7 +46884,7 @@
 	
 	var PooledClass = __webpack_require__(55);
 	var CallbackQueue = __webpack_require__(169);
-	var Transaction = __webpack_require__(118);
+	var Transaction = __webpack_require__(120);
 	
 	var assign = __webpack_require__(10);
 	var emptyFunction = __webpack_require__(42);
@@ -46924,14 +47105,14 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(49);
-	var EventPropagators = __webpack_require__(87);
+	var EventConstants = __webpack_require__(50);
+	var EventPropagators = __webpack_require__(89);
 	var ExecutionEnvironment = __webpack_require__(21);
-	var ReactInputSelection = __webpack_require__(279);
+	var ReactInputSelection = __webpack_require__(280);
 	var SyntheticEvent = __webpack_require__(71);
 	
 	var getActiveElement = __webpack_require__(226);
-	var isTextInputElement = __webpack_require__(290);
+	var isTextInputElement = __webpack_require__(291);
 	var keyOf = __webpack_require__(54);
 	var shallowEqual = __webpack_require__(228);
 	
@@ -47164,18 +47345,18 @@
 	
 	'use strict';
 	
-	var EventConstants = __webpack_require__(49);
+	var EventConstants = __webpack_require__(50);
 	var EventListener = __webpack_require__(223);
-	var EventPropagators = __webpack_require__(87);
+	var EventPropagators = __webpack_require__(89);
 	var ReactMount = __webpack_require__(7);
 	var SyntheticClipboardEvent = __webpack_require__(694);
 	var SyntheticEvent = __webpack_require__(71);
 	var SyntheticFocusEvent = __webpack_require__(697);
 	var SyntheticKeyboardEvent = __webpack_require__(699);
-	var SyntheticMouseEvent = __webpack_require__(117);
+	var SyntheticMouseEvent = __webpack_require__(119);
 	var SyntheticDragEvent = __webpack_require__(696);
 	var SyntheticTouchEvent = __webpack_require__(700);
-	var SyntheticUIEvent = __webpack_require__(89);
+	var SyntheticUIEvent = __webpack_require__(91);
 	var SyntheticWheelEvent = __webpack_require__(701);
 	
 	var emptyFunction = __webpack_require__(42);
@@ -47844,7 +48025,7 @@
 	
 	'use strict';
 	
-	var SyntheticMouseEvent = __webpack_require__(117);
+	var SyntheticMouseEvent = __webpack_require__(119);
 	
 	/**
 	 * @interface DragEvent
@@ -47886,7 +48067,7 @@
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(89);
+	var SyntheticUIEvent = __webpack_require__(91);
 	
 	/**
 	 * @interface FocusEvent
@@ -47971,7 +48152,7 @@
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(89);
+	var SyntheticUIEvent = __webpack_require__(91);
 	
 	var getEventCharCode = __webpack_require__(178);
 	var getEventKey = __webpack_require__(706);
@@ -48061,7 +48242,7 @@
 	
 	'use strict';
 	
-	var SyntheticUIEvent = __webpack_require__(89);
+	var SyntheticUIEvent = __webpack_require__(91);
 	
 	var getEventModifierState = __webpack_require__(179);
 	
@@ -48112,7 +48293,7 @@
 	
 	'use strict';
 	
-	var SyntheticMouseEvent = __webpack_require__(117);
+	var SyntheticMouseEvent = __webpack_require__(119);
 	
 	/**
 	 * @interface WheelEvent
@@ -48219,7 +48400,7 @@
 	
 	'use strict';
 	
-	var CSSProperty = __webpack_require__(263);
+	var CSSProperty = __webpack_require__(264);
 	
 	var isUnitlessNumber = CSSProperty.isUnitlessNumber;
 	
@@ -48611,7 +48792,7 @@
 	
 	'use strict';
 	
-	var escapeTextContentForBrowser = __webpack_require__(120);
+	var escapeTextContentForBrowser = __webpack_require__(122);
 	
 	/**
 	 * Escapes attribute value to prevent scripting attacks.
@@ -48918,7 +49099,7 @@
 	
 	exports.printBuffer = printBuffer;
 	
-	var _helpers = __webpack_require__(291);
+	var _helpers = __webpack_require__(292);
 	
 	var _diff = __webpack_require__(715);
 	
@@ -49112,7 +49293,7 @@
 	});
 	exports.default = diffLogger;
 	
-	var _deepDiff = __webpack_require__(496);
+	var _deepDiff = __webpack_require__(497);
 	
 	var _deepDiff2 = _interopRequireDefault(_deepDiff);
 	
@@ -49215,7 +49396,7 @@
 	
 	var _core = __webpack_require__(713);
 	
-	var _helpers = __webpack_require__(291);
+	var _helpers = __webpack_require__(292);
 	
 	var _defaults = __webpack_require__(714);
 	
@@ -49378,7 +49559,7 @@
 	
 	exports['default'] = applyMiddleware;
 	
-	var _compose = __webpack_require__(292);
+	var _compose = __webpack_require__(293);
 	
 	var _compose2 = _interopRequireDefault(_compose);
 	
@@ -49494,13 +49675,13 @@
 	exports.__esModule = true;
 	exports['default'] = combineReducers;
 	
-	var _createStore = __webpack_require__(293);
+	var _createStore = __webpack_require__(294);
 	
-	var _isPlainObject = __webpack_require__(160);
+	var _isPlainObject = __webpack_require__(162);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
-	var _warning = __webpack_require__(294);
+	var _warning = __webpack_require__(295);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -52904,7 +53085,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(149);
+	var content = __webpack_require__(151);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(188)(content, {});
@@ -52913,8 +53094,8 @@
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(149, function() {
-				var newContent = __webpack_require__(149);
+			module.hot.accept(151, function() {
+				var newContent = __webpack_require__(151);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -52930,7 +53111,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(150);
+	var content = __webpack_require__(152);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(188)(content, {});
@@ -52939,8 +53120,8 @@
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(150, function() {
-				var newContent = __webpack_require__(150);
+			module.hot.accept(152, function() {
+				var newContent = __webpack_require__(152);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -52956,7 +53137,7 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(151);
+	var content = __webpack_require__(153);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(188)(content, {});
@@ -52965,8 +53146,8 @@
 	if(true) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept(151, function() {
-				var newContent = __webpack_require__(151);
+			module.hot.accept(153, function() {
+				var newContent = __webpack_require__(153);
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
