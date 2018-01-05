@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "972a995eeb4b94ca6d1f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9f5bf1b4e262c7aa9e42"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -6169,6 +6169,25 @@
 	var listMagic = exports.listMagic = ['spell', 'staff', 'dance', 'bell'];
 	var listPhys = exports.listPhys = ['sword', 'lance', 'hammer', 'fist', 'shield', 'bow', 'xbow', 'arqu', 'cannon'];
 	
+	var listPlain = exports.listPlain = ['平', '平山', '山', '水'];
+	var listPlainS = exports.listPlainS = [1, 2, 4, 8];
+	var listPlainQ1 = ['平'];
+	var listPlainQ2 = ['平山'];
+	var listPlainQ3 = ['平', '平山'];
+	var listPlainQ4 = ['山'];
+	var listPlainQ5 = ['平', '山'];
+	var listPlainQ6 = ['平山', '山'];
+	var listPlainQ7 = ['平', '平山', '山'];
+	var listPlainQ8 = ['水'];
+	var listPlainQ9 = ['平', '平水'];
+	var listPlainQ10 = ['平山', '平山水'];
+	var listPlainQ11 = ['平', '平山', '平水', '平山水'];
+	var listPlainQ12 = ['山', '山水'];
+	var listPlainQ13 = ['平', '山', '平水', '山水'];
+	var listPlainQ14 = ['平山', '山', '平山水', '山水'];
+	var listPlainQ15 = ['平', '平山', '山', '平水', '平山水', '山水'];
+	var listPlainQ = exports.listPlainQ = [listPlainQ1, listPlainQ2, listPlainQ3, listPlainQ4, listPlainQ5, listPlainQ6, listPlainQ7, listPlainQ8, listPlainQ9, listPlainQ10, listPlainQ11, listPlainQ12, listPlainQ13, listPlainQ14, listPlainQ15];
+	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ConstList.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
@@ -7424,6 +7443,7 @@
 	exports.modelOpen = modelOpen;
 	exports.modelClose = modelClose;
 	exports.charSelect = charSelect;
+	exports.plainSelect = plainSelect;
 	
 	var _ConstActionTypes = __webpack_require__(258);
 	
@@ -7508,6 +7528,13 @@
 	function charSelect(modelId) {
 		return {
 			type: types.CHAR_SELECT,
+			modelId: modelId
+		};
+	}
+	
+	function plainSelect(modelId) {
+		return {
+			type: types.PLAIN_SELECT,
 			modelId: modelId
 		};
 	}
@@ -9308,7 +9335,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".type-button {\n  width: 10px; }\n\n.text-input {\n  width: 180px;\n  margin-right: 10px; }\n\n.outputTable {\n  width: 100%; }\n\n.theadOver {\n  text-decoration: overline; }\n\n.theadUnder {\n  text-decoration: underline; }\n\n.char-type-button,\n.refine-button {\n  margin-bottom: 10px; }\n", ""]);
+	exports.push([module.id, ".type-button {\n  width: 10px; }\n\n.text-input {\n  width: 180px;\n  margin-right: 10px; }\n\n.outputTable {\n  width: 100%; }\n\n.theadOver {\n  text-decoration: overline; }\n\n.theadUnder {\n  text-decoration: underline; }\n\n.char-plain-button,\n.refine-button {\n  margin-bottom: 10px; }\n", ""]);
 	
 	// exports
 
@@ -9944,7 +9971,7 @@
 	};
 	
 	ToggleButton.defaultProps = {
-		display: 0,
+		display: '0',
 		title: 'ToggleButton',
 		modelId: 'ToggleButton',
 		Cactive: 'type-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary',
@@ -14841,6 +14868,7 @@
 	var MODEL_OPEN = exports.MODEL_OPEN = 'MODEL_OPEN';
 	var MODEL_CLOSE = exports.MODEL_CLOSE = 'MODEL_CLOSE';
 	var CHAR_SELECT = exports.CHAR_SELECT = 'CHAR_SELECT';
+	var PLAIN_SELECT = exports.PLAIN_SELECT = 'PLAIN_SELECT';
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(19); if (makeExportsHot(module, __webpack_require__(3))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ConstActionTypes.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
@@ -38377,13 +38405,44 @@
 				return typeOut;
 			}
 		}, {
+			key: 'generatePlain',
+			value: function generatePlain() {
+				var _props2 = this.props,
+				    plainStatus = _props2.plainStatus,
+				    plainSelect = _props2.plainSelect;
+	
+				var plainTemp = _react3.default.createElement(
+					'label',
+					{ htmlFor: 'indexPlain' },
+					'\u5C6C\u6027\uFF1A'
+				);
+				var plainOut = [];
+				plainOut.push(plainTemp);
+	
+				for (var i = 0; i < _ConstList.listPlain.length; i += 1) {
+					plainTemp = _react3.default.createElement(_ToggleButton2.default, {
+						key: 'indexPlain' + i.toString(),
+						display: (plainStatus & _ConstList.listPlainS[i]).toString(),
+						title: _ConstList.listPlain[i],
+						onClickFunc: function onClickFunc(modelId) {
+							plainSelect(modelId);
+						},
+						modelId: _ConstList.listPlainS[i].toString(),
+						Cactive: 'type-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary',
+						Cinactive: 'type-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent'
+					});
+					plainOut.push(plainTemp);
+				}
+				return plainOut;
+			}
+		}, {
 			key: 'render',
 			value: function render() {
-				var _props2 = this.props,
-				    modelStatus = _props2.modelStatus,
-				    modelClose = _props2.modelClose,
-				    outputChar = _props2.outputChar,
-				    charSelect = _props2.charSelect;
+				var _props3 = this.props,
+				    modelStatus = _props3.modelStatus,
+				    modelClose = _props3.modelClose,
+				    outputChar = _props3.outputChar,
+				    charSelect = _props3.charSelect;
 	
 	
 				if (modelStatus === '1') {
@@ -38406,6 +38465,11 @@
 								'div',
 								{ className: 'char-type-button' },
 								this.generateType()
+							),
+							_react3.default.createElement(
+								'div',
+								{ className: 'char-plain-button' },
+								this.generatePlain()
 							),
 							_react3.default.createElement(
 								'div',
@@ -38437,14 +38501,17 @@
 		charSelect: _react2.PropTypes.func.isRequired,
 		outputChar: _react2.PropTypes.array.isRequired,
 		modelStatus: _react2.PropTypes.string.isRequired,
-		modelClose: _react2.PropTypes.func.isRequired
+		modelClose: _react2.PropTypes.func.isRequired,
+		plainStatus: _react2.PropTypes.number.isRequired,
+		plainSelect: _react2.PropTypes.func.isRequired
 	};
 	
 	var mapStateToProps = function mapStateToProps(state) {
 		return {
 			type: state.reducerCalc.type,
 			modelStatus: state.reducerCalc.modelStatus,
-			outputChar: state.reducerCalc.outputChar
+			outputChar: state.reducerCalc.outputChar,
+			plainStatus: state.reducerCalc.plainStatus
 		};
 	};
 	
@@ -38452,7 +38519,8 @@
 		return {
 			typeChange: (0, _redux.bindActionCreators)(_actions.typeChange, dispatch),
 			charSelect: (0, _redux.bindActionCreators)(_actions.charSelect, dispatch),
-			modelClose: (0, _redux.bindActionCreators)(_actions.modelClose, dispatch)
+			modelClose: (0, _redux.bindActionCreators)(_actions.modelClose, dispatch),
+			plainSelect: (0, _redux.bindActionCreators)(_actions.plainSelect, dispatch)
 		};
 	};
 	
@@ -38928,7 +38996,8 @@
 		defSkillInt: 0,
 		output: [],
 		outputChar: _database.dbChar.chain().find({ weapon: '刀' }).data(),
-		modelStatus: '0'
+		modelStatus: '0',
+		plainStatus: 1 | 2 | 4 | 8
 	
 		// ===============================================================================
 		// reducer main function
@@ -38941,6 +39010,7 @@
 		var calcTemp = {};
 		var weaponSelected = [];
 		var charTemp = [];
+		var plainTemp = void 0;
 	
 		switch (action.type) {
 			case _ConstActionTypes.MODEL_OPEN:
@@ -38959,7 +39029,7 @@
 				calcTemp.type = action.modelId;
 				for (var i = 0; i < _ConstList.listTypeS.length; i += 1) {
 					if (action.modelId === _ConstList.listTypeS[i]) {
-						charTemp = _database.dbChar.chain().find({ weapon: _ConstList.listType[i] }).data();
+						charTemp = _database.dbChar.chain().find({ $and: [{ weapon: _ConstList.listType[i] }, { plain: { '$in': _ConstList.listPlainQ[state.plainStatus - 1] } }] }).data();
 						break;
 					}
 				}
@@ -39251,6 +39321,27 @@
 					output: (0, _calcOutput.calcOutput)(calcTemp),
 					atk: (0, _calcOutput.calcAtk)(calcTemp),
 					modelStatus: '0'
+				});
+			// ===============================================================================
+			// character plain select change
+			// ===============================================================================
+			case _ConstActionTypes.PLAIN_SELECT:
+				plainTemp = state.plainStatus;
+				if (plainTemp & action.modelId) {
+					plainTemp ^= action.modelId;
+				} else {
+					plainTemp |= action.modelId;
+				}
+	
+				for (var _i7 = 0; _i7 < _ConstList.listTypeS.length; _i7 += 1) {
+					if (state.type === _ConstList.listTypeS[_i7]) {
+						charTemp = _database.dbChar.chain().find({ $and: [{ weapon: _ConstList.listType[_i7] }, { plain: { '$in': _ConstList.listPlainQ[plainTemp - 1] } }] }).data();
+						break;
+					}
+				}
+				return Object.assign({}, state, {
+					plainStatus: plainTemp,
+					outputChar: charTemp
 				});
 			// ===============================================================================
 			// default status
