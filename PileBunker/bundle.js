@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d6d7a5a6539593e13d72"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9013dc79dbdc1fce036a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -37740,7 +37740,9 @@
 				    HPParm = _props4.HPParm,
 				    AtkParm = _props4.AtkParm,
 				    DefParm = _props4.DefParm,
-				    com = _props4.com;
+				    com = _props4.com,
+				    damUp = _props4.damUp,
+				    damUp2 = _props4.damUp2;
 				var _props5 = this.props,
 				    atk = _props5.atk,
 				    def = _props5.def,
@@ -37906,6 +37908,28 @@
 									defaultValue: defSkillInt
 								})
 							),
+							_react3.default.createElement(
+								'div',
+								null,
+								_react3.default.createElement(_InputBoxValue2.default, {
+									classes: 'text-input',
+									title: '与えるダメージが上昇(%)',
+									modelId: 'damUp',
+									inputFunc: function inputFunc(modelId, modelValue) {
+										inputChange(modelId, modelValue);
+									},
+									defaultValue: damUp
+								}),
+								_react3.default.createElement(_InputBoxValue2.default, {
+									classes: 'text-input',
+									title: '兜の被ダメージが上昇(%)',
+									modelId: 'damUp2',
+									inputFunc: function inputFunc(modelId, modelValue) {
+										inputChange(modelId, modelValue);
+									},
+									defaultValue: damUp2
+								})
+							),
 							_react3.default.createElement(_OutputTable2.default, null)
 						)
 					)
@@ -37936,6 +37960,8 @@
 		defSkillInt: _react2.PropTypes.number.isRequired,
 		aspdSkill: _react2.PropTypes.number.isRequired,
 		aspdSpell: _react2.PropTypes.number.isRequired,
+		damUp: _react2.PropTypes.number.isRequired,
+		damUp2: _react2.PropTypes.number.isRequired,
 		typeChange: _react2.PropTypes.func.isRequired,
 		plainChange: _react2.PropTypes.func.isRequired,
 		maxChange: _react2.PropTypes.func.isRequired,
@@ -37964,6 +37990,8 @@
 			def: state.reducerCalc.def,
 			atkSkill: state.reducerCalc.atkSkill,
 			defSkill: state.reducerCalc.defSkill,
+			damUp: state.reducerCalc.damUp,
+			damUp2: state.reducerCalc.damUp2,
 			atkSkillInt: state.reducerCalc.atkSkillInt,
 			defSkillInt: state.reducerCalc.defSkillInt,
 			aspdSkill: state.reducerCalc.aspdSkill,
@@ -38899,9 +38927,9 @@
 			totalAtk = (charAtk + weaponSelected[_i3].atk) * maxMux * (1 + input.atkSkill / 100) + input.atkSkillInt;
 			totalAtk *= paraMux;
 			if (totalAtk - parameters.valueProDam >= totalDef) {
-				weaponSelected[_i3].damage = Math.floor(totalAtk - totalDef);
+				weaponSelected[_i3].damage = Math.floor(Math.floor(totalAtk - totalDef) * (1 + (input.damUp + input.damUp2) / 100));
 			} else {
-				weaponSelected[_i3].damage = parameters.valueProDam;
+				weaponSelected[_i3].damage = Math.floor(parameters.valueProDam * (1 + (input.damUp + input.damUp2) / 100));
 			}
 			weaponSelected[_i3].frame1 = Math.ceil(weaponSelected[_i3].f1 * (1 - input.aspdSkill / 100));
 			weaponSelected[_i3].frame2 = Math.ceil(weaponSelected[_i3].f2 * (1 - input.aspdSpell / 100));
@@ -38994,6 +39022,8 @@
 		aspdSpell: 0,
 		atkSkillInt: 0,
 		defSkillInt: 0,
+		damUp: 0,
+		damUp2: 0,
 		output: [],
 		outputChar: _database.dbChar.chain().find({ weapon: '刀' }).data(),
 		modelStatus: '0',
@@ -39304,6 +39334,20 @@
 						}
 						return Object.assign({}, state, {
 							aspdSpell: calcTemp.aspdSpell,
+							output: (0, _calcOutput.calcOutput)(calcTemp)
+						});
+					case 'damUp':
+						calcTemp = state;
+						calcTemp.damUp = action.modelValue;
+						return Object.assign({}, state, {
+							damUp: action.modelValue,
+							output: (0, _calcOutput.calcOutput)(calcTemp)
+						});
+					case 'damUp2':
+						calcTemp = state;
+						calcTemp.damUp2 = action.modelValue;
+						return Object.assign({}, state, {
+							damUp2: action.modelValue,
 							output: (0, _calcOutput.calcOutput)(calcTemp)
 						});
 					default:
