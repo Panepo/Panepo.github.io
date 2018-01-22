@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "31c1ec6fec29b43d5f82"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "5083e0cc4013cc125b4b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -10004,7 +10004,7 @@
 	var muxFlyBow = exports.muxFlyBow = 1.5; // define the multiplier when bow attack a flying enemy
 	var muxFlyMelee = exports.muxFlyMelee = 0.5; // define the multiplier when melee attack a flying enemy
 	var muxMonsMelee = exports.muxMonsMelee = 0.5; // define the multiplier when physical attack a monster
-	var muxCanDirect = exports.muxCanDirect = 1.5; // define the multiplier when cannon direct hit
+	var muxCanDirect = exports.muxCanDirect = 0.5; // define the multiplier when cannon direct hit
 	
 	var muxMax = exports.muxMax = [1.16, 1.32, 1.48, 1.64, 1.8];
 	// define the multiplier for each maximum step
@@ -25123,7 +25123,7 @@
 /* 518 */
 /***/ (function(module, exports) {
 
-	module.exports = [{"name":"脇差","type":"sword","atk":5,"hit":1,"f1":15,"f2":30,"range":140,"rare":1,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"兜割","type":"sword","atk":12,"hit":1,"f1":16,"f2":30,"range":140,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"太刀","type":"sword","atk":14,"hit":1,"f1":19,"f2":30,"range":145,"rare":1,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"打刀","type":"sword","atk":17,"hit":1,"f1":19,"f2":30,"range":140,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"鉄砲切り兼光","type":"sword","atk":20,"hit":1,"f1":16,"f2":30,"range":140,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"破魔の太刀","type":"sword","atk":22,"hit":1,"f1":19,"f2":30,"range":150,"rare":2,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"雷切","type":"sword","atk":31,"hit":1,"f1":17,"f2":30,"range":140,"rare":2,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"瓶割刀","type":"sword","atk":35,"hit":1,"f1":19,"f2":30,"range":140,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"清正の邪刀","type":"sword","atk":24,"hit":1,"f1":19,"f2":30,"range":140,"rare":3,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"虎徹","type":"sword","atk":30,"hit":1,"f1":15,"f2":30,"range":140,"rare":3,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"フルンティング","type":"sword","atk":37,"hit":1,"f1":19,"f2":30,"range":190,"rare":3,"text":"与ダメージの2%耐久が回復","ref":0,"refText":"+0"},{"name":"長巻","type":"sword","atk":42,"hit":1,"f1":19,"f2":30,"range":155,"rare":3,"text":"範囲+15","ref":0,"refText":"+0"},{"name":"古代刀","type":"sword","atk":45,"hit":1,"f1":17,"f2":30,"range":140,"rare":3,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"蛇刀","type":"sword","atk":48,"hit":1,"f1":19,"f2":30,"range":150,"rare":3,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"姫切","type":"sword","atk":52,"hit":1,"f1":19,"f2":30,"range":140,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"フラガラッハ","type":"sword","atk":54,"hit":1,"f1":19,"f2":30,"range":190,"rare":3,"text":"範囲+50 敵1體に攻撃","ref":0,"refText":"+0"},{"name":"亘理来国光","type":"sword","atk":30,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"防御+30","ref":0,"refText":"+0"},{"name":"真・清正の邪刀","type":"sword","atk":35,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"桜花爛漫刀","type":"sword","atk":43,"hit":1,"f1":16,"f2":30,"range":140,"rare":4,"text":"範囲+10 速度やや上昇","ref":0,"refText":"+0"},{"name":"妖刀村正","type":"sword","atk":48,"hit":1,"f1":16,"f2":30,"range":140,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"魔剣フルンティング","type":"sword","atk":48,"hit":1,"f1":19,"f2":30,"range":190,"rare":4,"text":"与ダメージの2%耐久が回復","ref":0,"refText":"+0"},{"name":"千代金丸","type":"sword","atk":50,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"回復+3","ref":0,"refText":"+0"},{"name":"同田貫","type":"sword","atk":52,"hit":1,"f1":19,"f2":30,"range":150,"rare":4,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"蜂須賀虎徹","type":"sword","atk":56,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"計略再使用-3秒","ref":0,"refText":"+0"},{"name":"明鏡止水","type":"sword","atk":57,"hit":1,"f1":19,"f2":30,"range":145,"rare":4,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"童子切安綱","type":"sword","atk":59,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"防禦+10","ref":0,"refText":"+0"},{"name":"飛天鳳凰丸","type":"sword","atk":61,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"耐久+100","ref":0,"refText":"+0"},{"name":"鬼丸國綱","type":"sword","atk":66,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"魔剣フラガラッハ","type":"sword","atk":72,"hit":1,"f1":19,"f2":30,"range":190,"rare":4,"text":"範囲+50 敵1體に攻撃","ref":0,"refText":"+0"},{"name":"竹槍","type":"lance","atk":5,"hit":1,"f1":19,"f2":30,"range":200,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"薙刀","type":"lance","atk":8,"hit":1,"f1":23,"f2":30,"range":200,"rare":1,"text":"防禦+5","ref":0,"refText":"+0"},{"name":"長柄鎌","type":"lance","atk":10,"hit":1,"f1":23,"f2":30,"range":210,"rare":1,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"直槍","type":"lance","atk":13,"hit":1,"f1":23,"f2":30,"range":200,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"裂空の真槍","type":"lance","atk":14,"hit":1,"f1":19,"f2":30,"range":200,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"陣中槍","type":"lance","atk":26,"hit":1,"f1":23,"f2":30,"range":200,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"名槍ロン","type":"lance","atk":13,"hit":1,"f1":23,"f2":30,"range":200,"rare":3,"text":"耐久+400","ref":0,"refText":"+0"},{"name":"雙龍槍","type":"lance","atk":26,"hit":1,"f1":19,"f2":30,"range":200,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"片鎌槍","type":"lance","atk":33,"hit":1,"f1":20,"f2":30,"range":200,"rare":3,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"極大長槍","type":"lance","atk":36,"hit":1,"f1":23,"f2":30,"range":205,"rare":3,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"岩融","type":"lance","atk":38,"hit":1,"f1":23,"f2":30,"range":200,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"利家の巨槍","type":"lance","atk":48,"hit":1,"f1":40,"f2":30,"range":200,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"聖槍ロンゴミニアド","type":"lance","atk":20,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"耐久+500","ref":0,"refText":"+0"},{"name":"両刃櫃槍","type":"lance","atk":20,"hit":2,"f1":57,"f2":30,"range":200,"rare":4,"text":"速度低下 2連攻撃","ref":0,"refText":"+0"},{"name":"門松寿槍","type":"lance","atk":22,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"防御+25","ref":0,"refText":"+0"},{"name":"桜花爛漫槍","type":"lance","atk":30,"hit":1,"f1":19,"f2":30,"range":210,"rare":4,"text":"範囲+10 速度やや上昇","ref":0,"refText":"+0"},{"name":"とんぼきり","type":"lance","atk":31,"hit":1,"f1":23,"f2":30,"range":220,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"蜻蛉切","type":"lance","atk":35,"hit":1,"f1":19,"f2":30,"range":200,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"御手杵","type":"lance","atk":43,"hit":1,"f1":23,"f2":30,"range":205,"rare":4,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"夜叉彦槍","type":"lance","atk":44,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"計略再使用-3秒","ref":0,"refText":"+0"},{"name":"人間無骨","type":"lance","atk":45,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"回覆+3","ref":0,"refText":"+0"},{"name":"日本號","type":"lance","atk":47,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"防禦+5","ref":0,"refText":"+0"},{"name":"大千鳥十文字槍","type":"lance","atk":49,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"耐久+50","ref":0,"refText":"+0"},{"name":"山姥の槍","type":"lance","atk":51,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧利家の巨槍","type":"lance","atk":58,"hit":1,"f1":40,"f2":30,"range":200,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"木槌","type":"hammer","atk":6,"hit":1,"f1":18,"f2":30,"range":100,"rare":1,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"棍棒","type":"hammer","atk":28,"hit":1,"f1":27,"f2":30,"range":100,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"金棒","type":"hammer","atk":27,"hit":1,"f1":27,"f2":30,"range":110,"rare":2,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"戦鎚","type":"hammer","atk":41,"hit":1,"f1":27,"f2":30,"range":100,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"神木の槌","type":"hammer","atk":54,"hit":1,"f1":27,"f2":30,"range":100,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"義弘の暴槌","type":"hammer","atk":73,"hit":1,"f1":42,"f2":30,"range":100,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"打ち出の小槌","type":"hammer","atk":44,"hit":1,"f1":18,"f2":30,"range":100,"rare":4,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"軍配形天守槌","type":"hammer","atk":54,"hit":1,"f1":22,"f2":30,"range":100,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"鬼の金棒","type":"hammer","atk":60,"hit":1,"f1":27,"f2":30,"range":110,"rare":4,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"源翁鎚","type":"hammer","atk":74,"hit":1,"f1":27,"f2":30,"range":100,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真・義弘の暴槌","type":"hammer","atk":100,"hit":1,"f1":42,"f2":30,"range":100,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"ウッドシールド","type":"shield","atk":3,"hit":1,"f1":24,"f2":30,"range":90,"rare":1,"text":"防禦+10","ref":0,"refText":"+0"},{"name":"バックラー","type":"shield","atk":5,"hit":1,"f1":24,"f2":30,"range":90,"rare":1,"text":"防禦+12","ref":0,"refText":"+0"},{"name":"ブロンズシールド","type":"shield","atk":2,"hit":1,"f1":24,"f2":30,"range":90,"rare":1,"text":"防禦+15","ref":0,"refText":"+0"},{"name":"タワーシールド","type":"shield","atk":8,"hit":1,"f1":24,"f2":30,"range":90,"rare":2,"text":"防禦+29","ref":0,"refText":"+0"},{"name":"カイトシールド","type":"shield","atk":10,"hit":1,"f1":24,"f2":30,"range":90,"rare":2,"text":"防禦+27","ref":0,"refText":"+0"},{"name":"ラウンドシールド","type":"shield","atk":13,"hit":1,"f1":24,"f2":30,"range":90,"rare":2,"text":"防禦+23","ref":0,"refText":"+0"},{"name":"ｼｭﾃﾌｧﾝの闘盾","type":"shield","atk":10,"hit":1,"f1":24,"f2":30,"range":110,"rare":3,"text":"範囲+20 防禦+33","ref":0,"refText":"+0"},{"name":"プリトウェン","type":"shield","atk":15,"hit":1,"f1":24,"f2":30,"range":90,"rare":3,"text":"防禦+44","ref":0,"refText":"+0"},{"name":"アキレウスの盾","type":"shield","atk":20,"hit":1,"f1":24,"f2":30,"range":90,"rare":3,"text":"防禦+37","ref":0,"refText":"+0"},{"name":"真‧ｼｭﾃﾌｧﾝの闘盾","type":"shield","atk":15,"hit":1,"f1":24,"f2":30,"range":110,"rare":4,"text":"範囲+20 防禦+43","ref":0,"refText":"+0"},{"name":"ちょこしぃるど","type":"shield","atk":21,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"回復+3 防禦+30","ref":0,"refText":"+0"},{"name":"アイアースの盾","type":"shield","atk":23,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"耐久+300 防禦+48","ref":0,"refText":"+0"},{"name":"イージスの盾","type":"shield","atk":25,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"防禦+55","ref":0,"refText":"+0"},{"name":"スヴェル","type":"shield","atk":30,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"防禦+50","ref":0,"refText":"+0"},{"name":"鏑矢","type":"bow","atk":6,"hit":1,"f1":19,"f2":18,"range":290,"rare":1,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"柳葉","type":"bow","atk":9,"hit":1,"f1":17,"f2":18,"range":280,"rare":1,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"破壊の弓","type":"bow","atk":11,"hit":1,"f1":19,"f2":18,"range":280,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"重藤の弓","type":"bow","atk":14,"hit":1,"f1":16,"f2":18,"range":280,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"破魔弓","type":"bow","atk":15,"hit":1,"f1":19,"f2":18,"range":290,"rare":2,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"雷の弓","type":"bow","atk":20,"hit":1,"f1":17,"f2":18,"range":280,"rare":2,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"炎の弓","type":"bow","atk":23,"hit":1,"f1":19,"f2":18,"range":280,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"天鹿児弓","type":"bow","atk":24,"hit":1,"f1":16,"f2":18,"range":280,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"光義の弓","type":"bow","atk":26,"hit":1,"f1":19,"f2":18,"range":300,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"殲滅の猛弓","type":"bow","atk":32,"hit":1,"f1":19,"f2":18,"range":285,"rare":3,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"為朝の弓","type":"bow","atk":34,"hit":1,"f1":19,"f2":18,"range":280,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"元就の謀弓","type":"bow","atk":3,"hit":1,"f1":69,"f2":18,"range":280,"rare":3,"text":"速度低下 敵3体に攻撃","ref":0,"refText":"+0"},{"name":"天の羽々矢","type":"bow","atk":29,"hit":1,"f1":15,"f2":18,"range":280,"rare":4,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"桜花爛漫弓","type":"bow","atk":31,"hit":1,"f1":16,"f2":18,"range":290,"rare":4,"text":"範囲+10 速度やや上昇","ref":0,"refText":"+0"},{"name":"聚楽の弓","type":"bow","atk":35,"hit":1,"f1":16,"f2":18,"range":280,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"雷上動","type":"bow","atk":40,"hit":1,"f1":17,"f2":18,"range":280,"rare":4,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"弓張月","type":"bow","atk":43,"hit":1,"f1":19,"f2":18,"range":290,"rare":4,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"梓弓","type":"bow","atk":45,"hit":1,"f1":19,"f2":18,"range":280,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧元就の謀弓","type":"bow","atk":12,"hit":1,"f1":69,"f2":18,"range":280,"rare":4,"text":"速度低下 敵3体に攻撃","ref":0,"refText":"+0"},{"name":"連弩","type":"xbow","atk":18,"hit":1,"f1":42,"f2":30,"range":250,"rare":2,"text":"敵2体に攻撃","ref":0,"refText":"+0"},{"name":"木弩","type":"xbow","atk":10,"hit":1,"f1":19,"f2":30,"range":250,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"石弩","type":"xbow","atk":28,"hit":1,"f1":24,"f2":30,"range":250,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"東方弩","type":"xbow","atk":54,"hit":1,"f1":24,"f2":30,"range":250,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"高虎の忠弩","type":"xbow","atk":35,"hit":1,"f1":24,"f2":30,"range":270,"rare":3,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"舞鶴","type":"xbow","atk":55,"hit":1,"f1":20,"f2":30,"range":250,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"近衛の弩","type":"xbow","atk":72,"hit":1,"f1":24,"f2":30,"range":270,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"正則の剛弩","type":"xbow","atk":84,"hit":1,"f1":38,"f2":30,"range":250,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"わたぬき千狐","type":"xbow","atk":5,"hit":1,"f1":24,"f2":30,"range":250,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"多賀柵弩","type":"xbow","atk":14,"hit":1,"f1":57,"f2":30,"range":270,"rare":4,"text":"敵3体に攻撃 範囲+20","ref":0,"refText":"+0"},{"name":"無雙弩","type":"xbow","atk":27,"hit":1,"f1":57,"f2":30,"range":250,"rare":4,"text":"敵3体に攻撃","ref":0,"refText":"+0"},{"name":"真‧高虎の忠弩","type":"xbow","atk":51,"hit":1,"f1":24,"f2":30,"range":270,"rare":4,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"龍髭の弩","type":"xbow","atk":83,"hit":1,"f1":24,"f2":30,"range":270,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"床子弩","type":"xbow","atk":96,"hit":1,"f1":24,"f2":30,"range":250,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧正則の剛弩","type":"xbow","atk":113,"hit":1,"f1":38,"f2":30,"range":250,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"手銃","type":"arqu","atk":4,"hit":1,"f1":31,"f2":30,"range":340,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"鉄砲","type":"arqu","atk":15,"hit":1,"f1":37,"f2":30,"range":360,"rare":1,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"木砲","type":"arqu","atk":19,"hit":1,"f1":37,"f2":30,"range":350,"rare":1,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"紅蓮の小筒","type":"arqu","atk":25,"hit":1,"f1":37,"f2":30,"range":340,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"連裝銃","type":"arqu","atk":8,"hit":2,"f1":82,"f2":30,"range":340,"rare":2,"text":"敵1體に2連続攻撃","ref":0,"refText":"+0"},{"name":"大筒","type":"arqu","atk":35,"hit":1,"f1":37,"f2":30,"range":360,"rare":2,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"回転砲","type":"arqu","atk":12,"hit":3,"f1":102,"f2":30,"range":340,"rare":3,"text":"敵1體に3連続攻撃","ref":0,"refText":"+0"},{"name":"墨縄","type":"arqu","atk":33,"hit":1,"f1":31,"f2":30,"range":340,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"氷結の大筒","type":"arqu","atk":54,"hit":1,"f1":37,"f2":30,"range":360,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"國友鉄砲","type":"arqu","atk":57,"hit":1,"f1":37,"f2":30,"range":350,"rare":3,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"雷光の中筒","type":"arqu","atk":50,"hit":1,"f1":32,"f2":30,"range":340,"rare":3,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"信玄砲","type":"arqu","atk":50,"hit":1,"f1":37,"f2":30,"range":340,"rare":3,"text":"後退距離若干上昇","ref":0,"refText":"+0"},{"name":"天海の鉄砲","type":"arqu","atk":65,"hit":1,"f1":37,"f2":30,"range":340,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"三成の烈砲","type":"arqu","atk":70,"hit":1,"f1":62,"f2":30,"range":340,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"滅‧ガトリング砲","type":"arqu","atk":21,"hit":3,"f1":102,"f2":30,"range":340,"rare":4,"text":"敵1體に3連続攻撃","ref":0,"refText":"+0"},{"name":"桜花爛漫銃","type":"arqu","atk":52,"hit":1,"f1":31,"f2":30,"range":350,"rare":4,"text":"範囲+10 速度やや上昇","ref":0,"refText":"+0"},{"name":"八咫烏","type":"arqu","atk":58,"hit":1,"f1":31,"f2":30,"range":340,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"雨夜手拍子","type":"arqu","atk":80,"hit":1,"f1":37,"f2":30,"range":340,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧三成の烈砲","type":"arqu","atk":96,"hit":1,"f1":62,"f2":30,"range":340,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"木製大砲","type":"cannon","atk":7,"hit":1,"f1":35,"f2":45,"range":340,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"設置式大筒","type":"cannon","atk":11,"hit":1,"f1":42,"f2":45,"range":340,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"芝辻砲","type":"cannon","atk":16,"hit":1,"f1":35,"f2":45,"range":340,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"セーカー砲","type":"cannon","atk":18,"hit":1,"f1":42,"f2":45,"range":360,"rare":2,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"國友の大砲","type":"cannon","atk":23,"hit":1,"f1":42,"f2":45,"range":340,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"カルバリン砲","type":"cannon","atk":29,"hit":1,"f1":42,"f2":45,"range":360,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"半加農砲","type":"cannon","atk":37,"hit":1,"f1":42,"f2":45,"range":340,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"兼続の愛砲","type":"cannon","atk":47,"hit":1,"f1":42,"f2":45,"range":340,"rare":3,"text":"爆風範囲低下","ref":0,"refText":"+0"},{"name":"長政の激砲","type":"cannon","atk":48,"hit":1,"f1":67,"f2":45,"range":340,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"門松平蜘蛛砲","type":"cannon","atk":31,"hit":1,"f1":42,"f2":45,"range":360,"rare":4,"text":"範囲+20 爆風範囲やや拡大","ref":0,"refText":"+0"},{"name":"車山形大砲-祭-","type":"cannon","atk":33,"hit":1,"f1":35,"f2":45,"range":340,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"古天明平蜘蛛砲","type":"cannon","atk":40,"hit":1,"f1":42,"f2":45,"range":340,"rare":4,"text":"爆風範囲やや拡大","ref":0,"refText":"+0"},{"name":"加農砲","type":"cannon","atk":40,"hit":1,"f1":42,"f2":45,"range":360,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"國崩し","type":"cannon","atk":45,"hit":1,"f1":36,"f2":45,"range":340,"rare":4,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"散星","type":"cannon","atk":50,"hit":1,"f1":42,"f2":45,"range":340,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧兼続の愛砲","type":"cannon","atk":60,"hit":1,"f1":42,"f2":45,"range":340,"rare":4,"text":"爆風範囲低下","ref":0,"refText":"+0"},{"name":"真‧長政の激砲","type":"cannon","atk":65,"hit":1,"f1":67,"f2":45,"range":340,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"錫杖","type":"spell","atk":6,"hit":1,"f1":42,"f2":30,"range":260,"rare":1,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"筆","type":"spell","atk":12,"hit":1,"f1":42,"f2":30,"range":240,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"金銅錫杖","type":"spell","atk":16,"hit":1,"f1":42,"f2":30,"range":260,"rare":2,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"弘法の筆","type":"spell","atk":24,"hit":1,"f1":42,"f2":30,"range":240,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"小十郎の響杖","type":"spell","atk":22,"hit":1,"f1":34,"f2":30,"range":240,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"三蔵法師の杖","type":"spell","atk":28,"hit":1,"f1":42,"f2":30,"range":260,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"閻魔の筆","type":"spell","atk":36,"hit":1,"f1":42,"f2":30,"range":240,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"真・小十郎の響杖","type":"spell","atk":31,"hit":1,"f1":34,"f2":30,"range":240,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"菩薩の杖","type":"spell","atk":37,"hit":1,"f1":42,"f2":30,"range":260,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"道風の筆","type":"spell","atk":42,"hit":1,"f1":36,"f2":30,"range":240,"rare":4,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"役小角の杖","type":"spell","atk":53,"hit":1,"f1":42,"f2":30,"range":240,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"青龍","type":"fist","atk":30,"hit":3,"f1":32,"f2":19,"range":90,"rare":5,"text":"平遙古城","ref":0,"refText":"+0"},{"name":"白虎","type":"fist","atk":35,"hit":3,"f1":32,"f2":19,"range":90,"rare":6,"text":"長安城","ref":0,"refText":"+0"},{"name":"黃龍","type":"fist","atk":45,"hit":3,"f1":32,"f2":19,"range":90,"rare":7,"text":"紫禁城","ref":0,"refText":"+0"},{"name":"扇","type":"dance","atk":5,"hit":1,"f1":62,"f2":60,"range":300,"rare":1,"text":"窪田城","ref":0,"refText":"+0"},{"name":"扇改","type":"dance","atk":11,"hit":1,"f1":62,"f2":60,"range":300,"rare":2,"text":"久保田城","ref":0,"refText":"+0"},{"name":"衝波扇","type":"dance","atk":14,"hit":1,"f1":62,"f2":60,"range":300,"rare":3,"text":"鶴ヶ岡城","ref":0,"refText":"+0"},{"name":"スマイルボイス","type":"dance","atk":13,"hit":1,"f1":62,"f2":60,"range":300,"rare":2,"text":"尾山御坊","ref":0,"refText":"+0"},{"name":"スイートボイス","type":"dance","atk":14,"hit":1,"f1":62,"f2":60,"range":300,"rare":3,"text":"山科本願寺","ref":0,"refText":"+0"},{"name":"ハッピーボイス","type":"dance","atk":25,"hit":1,"f1":62,"f2":60,"range":300,"rare":6,"text":"石山御坊","ref":0,"refText":"+0"},{"name":"ミラクルボイス","type":"dance","atk":35,"hit":1,"f1":62,"f2":60,"range":300,"rare":7,"text":"大阪城","ref":0,"refText":"+0"},{"name":"オベリスクタクト","type":"dance","atk":35,"hit":1,"f1":62,"f2":60,"range":300,"rare":7,"text":"シェーンブルン宮殿","ref":0,"refText":"+0"},{"name":"浮城の鈴","type":"bell","atk":20,"hit":1,"f1":97,"f2":60,"range":320,"rare":4,"text":"高島城","ref":0,"refText":"+0"},{"name":"真鍮の鈴","type":"bell","atk":20,"hit":1,"f1":97,"f2":60,"range":320,"rare":5,"text":"濱田城","ref":0,"refText":"+0"},{"name":"シルバーベル","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"アンボワーズ城","ref":0,"refText":"+0"},{"name":"シルバーベル","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"城塞都市ルクセンブルク","ref":0,"refText":"+0"},{"name":"海辺の風鈴","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"［夏］指月伏見城","ref":0,"refText":"+0"},{"name":"太平の鈴","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"新田金山城","ref":0,"refText":"+0"},{"name":"金の鈴","type":"bell","atk":35,"hit":1,"f1":97,"f2":60,"range":320,"rare":7,"text":"指月伏見城","ref":0,"refText":"+0"},{"name":"銀の杖","type":"staff","atk":25,"hit":1,"f1":37,"f2":30,"range":240,"rare":4,"text":"アイリーン・ドナン城","ref":0,"refText":"+0"},{"name":"荊棘の杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"ユッセ城","ref":0,"refText":"+0"},{"name":"荊棘の箒","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"［ハロウィン］ユッセ城","ref":0,"refText":"+0"},{"name":"クリスタルの杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"ホーエンザルツブルク城","ref":0,"refText":"+0"},{"name":"クリスタルの杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"シュノンソー城","ref":0,"refText":"+0"},{"name":"クリスタルの杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"セゴビアのアルカサ","ref":0,"refText":"+0"},{"name":"女神の杖","type":"staff","atk":35,"hit":1,"f1":37,"f2":30,"range":240,"rare":7,"text":"プラハ城","ref":0,"refText":"+0"}]
+	module.exports = [{"name":"脇差","type":"sword","atk":5,"hit":1,"f1":15,"f2":30,"range":140,"rare":1,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"兜割","type":"sword","atk":12,"hit":1,"f1":16,"f2":30,"range":140,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"太刀","type":"sword","atk":14,"hit":1,"f1":19,"f2":30,"range":145,"rare":1,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"打刀","type":"sword","atk":17,"hit":1,"f1":19,"f2":30,"range":140,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"鉄砲切り兼光","type":"sword","atk":20,"hit":1,"f1":16,"f2":30,"range":140,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"破魔の太刀","type":"sword","atk":22,"hit":1,"f1":19,"f2":30,"range":150,"rare":2,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"雷切","type":"sword","atk":31,"hit":1,"f1":17,"f2":30,"range":140,"rare":2,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"瓶割刀","type":"sword","atk":35,"hit":1,"f1":19,"f2":30,"range":140,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"清正の邪刀","type":"sword","atk":24,"hit":1,"f1":19,"f2":30,"range":140,"rare":3,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"虎徹","type":"sword","atk":30,"hit":1,"f1":15,"f2":30,"range":140,"rare":3,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"フルンティング","type":"sword","atk":37,"hit":1,"f1":19,"f2":30,"range":190,"rare":3,"text":"与ダメージの2%耐久が回復","ref":0,"refText":"+0"},{"name":"長巻","type":"sword","atk":42,"hit":1,"f1":19,"f2":30,"range":155,"rare":3,"text":"範囲+15","ref":0,"refText":"+0"},{"name":"古代刀","type":"sword","atk":45,"hit":1,"f1":17,"f2":30,"range":140,"rare":3,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"蛇刀","type":"sword","atk":48,"hit":1,"f1":19,"f2":30,"range":150,"rare":3,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"姫切","type":"sword","atk":52,"hit":1,"f1":19,"f2":30,"range":140,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"フラガラッハ","type":"sword","atk":54,"hit":1,"f1":19,"f2":30,"range":190,"rare":3,"text":"範囲+50 敵1體に攻撃","ref":0,"refText":"+0"},{"name":"亘理来国光","type":"sword","atk":30,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"防御+30","ref":0,"refText":"+0"},{"name":"真・清正の邪刀","type":"sword","atk":35,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"桜花爛漫刀","type":"sword","atk":43,"hit":1,"f1":16,"f2":30,"range":140,"rare":4,"text":"範囲+10 速度やや上昇","ref":0,"refText":"+0"},{"name":"妖刀村正","type":"sword","atk":48,"hit":1,"f1":16,"f2":30,"range":140,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"魔剣フルンティング","type":"sword","atk":48,"hit":1,"f1":19,"f2":30,"range":190,"rare":4,"text":"与ダメージの2%耐久が回復","ref":0,"refText":"+0"},{"name":"千代金丸","type":"sword","atk":50,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"回復+3","ref":0,"refText":"+0"},{"name":"同田貫","type":"sword","atk":52,"hit":1,"f1":19,"f2":30,"range":150,"rare":4,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"蜂須賀虎徹","type":"sword","atk":56,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"計略再使用-3秒","ref":0,"refText":"+0"},{"name":"明鏡止水","type":"sword","atk":57,"hit":1,"f1":19,"f2":30,"range":145,"rare":4,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"童子切安綱","type":"sword","atk":59,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"防禦+10","ref":0,"refText":"+0"},{"name":"飛天鳳凰丸","type":"sword","atk":61,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"耐久+100","ref":0,"refText":"+0"},{"name":"鬼丸國綱","type":"sword","atk":66,"hit":1,"f1":19,"f2":30,"range":140,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"魔剣フラガラッハ","type":"sword","atk":72,"hit":1,"f1":19,"f2":30,"range":190,"rare":4,"text":"範囲+50 敵1體に攻撃","ref":0,"refText":"+0"},{"name":"竹槍","type":"lance","atk":5,"hit":1,"f1":19,"f2":30,"range":200,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"薙刀","type":"lance","atk":8,"hit":1,"f1":23,"f2":30,"range":200,"rare":1,"text":"防禦+5","ref":0,"refText":"+0"},{"name":"長柄鎌","type":"lance","atk":10,"hit":1,"f1":23,"f2":30,"range":210,"rare":1,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"直槍","type":"lance","atk":13,"hit":1,"f1":23,"f2":30,"range":200,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"裂空の真槍","type":"lance","atk":14,"hit":1,"f1":19,"f2":30,"range":200,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"陣中槍","type":"lance","atk":26,"hit":1,"f1":23,"f2":30,"range":200,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"名槍ロン","type":"lance","atk":13,"hit":1,"f1":23,"f2":30,"range":200,"rare":3,"text":"耐久+400","ref":0,"refText":"+0"},{"name":"雙龍槍","type":"lance","atk":26,"hit":1,"f1":19,"f2":30,"range":200,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"片鎌槍","type":"lance","atk":33,"hit":1,"f1":20,"f2":30,"range":200,"rare":3,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"極大長槍","type":"lance","atk":36,"hit":1,"f1":23,"f2":30,"range":205,"rare":3,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"岩融","type":"lance","atk":38,"hit":1,"f1":23,"f2":30,"range":200,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"利家の巨槍","type":"lance","atk":48,"hit":1,"f1":40,"f2":30,"range":200,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"聖槍ロンゴミニアド","type":"lance","atk":20,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"耐久+500","ref":0,"refText":"+0"},{"name":"両刃櫃槍","type":"lance","atk":20,"hit":2,"f1":57,"f2":30,"range":200,"rare":4,"text":"速度低下 2連攻撃","ref":0,"refText":"+0"},{"name":"門松寿槍","type":"lance","atk":22,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"防御+25","ref":0,"refText":"+0"},{"name":"桜花爛漫槍","type":"lance","atk":30,"hit":1,"f1":19,"f2":30,"range":210,"rare":4,"text":"範囲+10 速度やや上昇","ref":0,"refText":"+0"},{"name":"とんぼきり","type":"lance","atk":31,"hit":1,"f1":23,"f2":30,"range":220,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"蜻蛉切","type":"lance","atk":35,"hit":1,"f1":19,"f2":30,"range":200,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"御手杵","type":"lance","atk":43,"hit":1,"f1":23,"f2":30,"range":205,"rare":4,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"夜叉彦槍","type":"lance","atk":44,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"計略再使用-3秒","ref":0,"refText":"+0"},{"name":"人間無骨","type":"lance","atk":45,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"回覆+3","ref":0,"refText":"+0"},{"name":"日本號","type":"lance","atk":47,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"防禦+5","ref":0,"refText":"+0"},{"name":"大千鳥十文字槍","type":"lance","atk":49,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"耐久+50","ref":0,"refText":"+0"},{"name":"山姥の槍","type":"lance","atk":51,"hit":1,"f1":23,"f2":30,"range":200,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧利家の巨槍","type":"lance","atk":58,"hit":1,"f1":40,"f2":30,"range":200,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"木槌","type":"hammer","atk":6,"hit":1,"f1":18,"f2":30,"range":100,"rare":1,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"棍棒","type":"hammer","atk":28,"hit":1,"f1":27,"f2":30,"range":100,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"金棒","type":"hammer","atk":27,"hit":1,"f1":27,"f2":30,"range":110,"rare":2,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"戦鎚","type":"hammer","atk":41,"hit":1,"f1":27,"f2":30,"range":100,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"神木の槌","type":"hammer","atk":54,"hit":1,"f1":27,"f2":30,"range":100,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"義弘の暴槌","type":"hammer","atk":73,"hit":1,"f1":42,"f2":30,"range":100,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"打ち出の小槌","type":"hammer","atk":44,"hit":1,"f1":18,"f2":30,"range":100,"rare":4,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"軍配形天守槌","type":"hammer","atk":54,"hit":1,"f1":22,"f2":30,"range":100,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"鬼の金棒","type":"hammer","atk":60,"hit":1,"f1":27,"f2":30,"range":110,"rare":4,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"源翁鎚","type":"hammer","atk":74,"hit":1,"f1":27,"f2":30,"range":100,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真・義弘の暴槌","type":"hammer","atk":100,"hit":1,"f1":42,"f2":30,"range":100,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"ウッドシールド","type":"shield","atk":3,"hit":1,"f1":24,"f2":30,"range":90,"rare":1,"text":"防禦+10","ref":0,"refText":"+0"},{"name":"バックラー","type":"shield","atk":5,"hit":1,"f1":24,"f2":30,"range":90,"rare":1,"text":"防禦+12","ref":0,"refText":"+0"},{"name":"ブロンズシールド","type":"shield","atk":2,"hit":1,"f1":24,"f2":30,"range":90,"rare":1,"text":"防禦+15","ref":0,"refText":"+0"},{"name":"タワーシールド","type":"shield","atk":8,"hit":1,"f1":24,"f2":30,"range":90,"rare":2,"text":"防禦+29","ref":0,"refText":"+0"},{"name":"カイトシールド","type":"shield","atk":10,"hit":1,"f1":24,"f2":30,"range":90,"rare":2,"text":"防禦+27","ref":0,"refText":"+0"},{"name":"ラウンドシールド","type":"shield","atk":13,"hit":1,"f1":24,"f2":30,"range":90,"rare":2,"text":"防禦+23","ref":0,"refText":"+0"},{"name":"ｼｭﾃﾌｧﾝの闘盾","type":"shield","atk":10,"hit":1,"f1":24,"f2":30,"range":110,"rare":3,"text":"範囲+20 防禦+33","ref":0,"refText":"+0"},{"name":"プリトウェン","type":"shield","atk":15,"hit":1,"f1":24,"f2":30,"range":90,"rare":3,"text":"防禦+44","ref":0,"refText":"+0"},{"name":"アキレウスの盾","type":"shield","atk":20,"hit":1,"f1":24,"f2":30,"range":90,"rare":3,"text":"防禦+37","ref":0,"refText":"+0"},{"name":"真‧ｼｭﾃﾌｧﾝの闘盾","type":"shield","atk":15,"hit":1,"f1":24,"f2":30,"range":110,"rare":4,"text":"範囲+20 防禦+43","ref":0,"refText":"+0"},{"name":"ちょこしぃるど","type":"shield","atk":21,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"回復+3 防禦+30","ref":0,"refText":"+0"},{"name":"アイアースの盾","type":"shield","atk":23,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"耐久+300 防禦+48","ref":0,"refText":"+0"},{"name":"イージスの盾","type":"shield","atk":25,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"防禦+55","ref":0,"refText":"+0"},{"name":"スヴェル","type":"shield","atk":30,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"防禦+50","ref":0,"refText":"+0"},{"name":"幻想聖盾","type":"shield","atk":52,"hit":1,"f1":24,"f2":30,"range":90,"rare":4,"text":"防禦+36","ref":0,"refText":"+0"},{"name":"鏑矢","type":"bow","atk":6,"hit":1,"f1":19,"f2":18,"range":290,"rare":1,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"柳葉","type":"bow","atk":9,"hit":1,"f1":17,"f2":18,"range":280,"rare":1,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"破壊の弓","type":"bow","atk":11,"hit":1,"f1":19,"f2":18,"range":280,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"重藤の弓","type":"bow","atk":14,"hit":1,"f1":16,"f2":18,"range":280,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"破魔弓","type":"bow","atk":15,"hit":1,"f1":19,"f2":18,"range":290,"rare":2,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"雷の弓","type":"bow","atk":20,"hit":1,"f1":17,"f2":18,"range":280,"rare":2,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"炎の弓","type":"bow","atk":23,"hit":1,"f1":19,"f2":18,"range":280,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"天鹿児弓","type":"bow","atk":24,"hit":1,"f1":16,"f2":18,"range":280,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"光義の弓","type":"bow","atk":26,"hit":1,"f1":19,"f2":18,"range":300,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"殲滅の猛弓","type":"bow","atk":32,"hit":1,"f1":19,"f2":18,"range":285,"rare":3,"text":"範囲+5","ref":0,"refText":"+0"},{"name":"為朝の弓","type":"bow","atk":34,"hit":1,"f1":19,"f2":18,"range":280,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"元就の謀弓","type":"bow","atk":3,"hit":1,"f1":69,"f2":18,"range":280,"rare":3,"text":"速度低下 敵3体に攻撃","ref":0,"refText":"+0"},{"name":"天の羽々矢","type":"bow","atk":29,"hit":1,"f1":15,"f2":18,"range":280,"rare":4,"text":"速度上昇","ref":0,"refText":"+0"},{"name":"桜花爛漫弓","type":"bow","atk":31,"hit":1,"f1":16,"f2":18,"range":290,"rare":4,"text":"範囲+10 速度やや上昇","ref":0,"refText":"+0"},{"name":"聚楽の弓","type":"bow","atk":35,"hit":1,"f1":16,"f2":18,"range":280,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"雷上動","type":"bow","atk":40,"hit":1,"f1":17,"f2":18,"range":280,"rare":4,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"弓張月","type":"bow","atk":43,"hit":1,"f1":19,"f2":18,"range":290,"rare":4,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"梓弓","type":"bow","atk":45,"hit":1,"f1":19,"f2":18,"range":280,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧元就の謀弓","type":"bow","atk":12,"hit":1,"f1":69,"f2":18,"range":280,"rare":4,"text":"速度低下 敵3体に攻撃","ref":0,"refText":"+0"},{"name":"連弩","type":"xbow","atk":18,"hit":1,"f1":42,"f2":30,"range":250,"rare":2,"text":"敵2体に攻撃","ref":0,"refText":"+0"},{"name":"木弩","type":"xbow","atk":10,"hit":1,"f1":19,"f2":30,"range":250,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"石弩","type":"xbow","atk":28,"hit":1,"f1":24,"f2":30,"range":250,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"東方弩","type":"xbow","atk":54,"hit":1,"f1":24,"f2":30,"range":250,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"高虎の忠弩","type":"xbow","atk":35,"hit":1,"f1":24,"f2":30,"range":270,"rare":3,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"舞鶴","type":"xbow","atk":55,"hit":1,"f1":20,"f2":30,"range":250,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"近衛の弩","type":"xbow","atk":72,"hit":1,"f1":24,"f2":30,"range":270,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"正則の剛弩","type":"xbow","atk":84,"hit":1,"f1":38,"f2":30,"range":250,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"わたぬき千狐","type":"xbow","atk":5,"hit":1,"f1":24,"f2":30,"range":250,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"多賀柵弩","type":"xbow","atk":14,"hit":1,"f1":57,"f2":30,"range":270,"rare":4,"text":"敵3体に攻撃 範囲+20","ref":0,"refText":"+0"},{"name":"無雙弩","type":"xbow","atk":27,"hit":1,"f1":57,"f2":30,"range":250,"rare":4,"text":"敵3体に攻撃","ref":0,"refText":"+0"},{"name":"真‧高虎の忠弩","type":"xbow","atk":51,"hit":1,"f1":24,"f2":30,"range":270,"rare":4,"text":"敵の移動速度を少し下げる","ref":0,"refText":"+0"},{"name":"龍髭の弩","type":"xbow","atk":83,"hit":1,"f1":24,"f2":30,"range":270,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"床子弩","type":"xbow","atk":96,"hit":1,"f1":24,"f2":30,"range":250,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧正則の剛弩","type":"xbow","atk":113,"hit":1,"f1":38,"f2":30,"range":250,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"手銃","type":"arqu","atk":4,"hit":1,"f1":31,"f2":30,"range":340,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"鉄砲","type":"arqu","atk":15,"hit":1,"f1":37,"f2":30,"range":360,"rare":1,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"木砲","type":"arqu","atk":19,"hit":1,"f1":37,"f2":30,"range":350,"rare":1,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"紅蓮の小筒","type":"arqu","atk":25,"hit":1,"f1":37,"f2":30,"range":340,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"連裝銃","type":"arqu","atk":8,"hit":2,"f1":82,"f2":30,"range":340,"rare":2,"text":"敵1體に2連続攻撃","ref":0,"refText":"+0"},{"name":"大筒","type":"arqu","atk":35,"hit":1,"f1":37,"f2":30,"range":360,"rare":2,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"回転砲","type":"arqu","atk":12,"hit":3,"f1":102,"f2":30,"range":340,"rare":3,"text":"敵1體に3連続攻撃","ref":0,"refText":"+0"},{"name":"墨縄","type":"arqu","atk":33,"hit":1,"f1":31,"f2":30,"range":340,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"氷結の大筒","type":"arqu","atk":54,"hit":1,"f1":37,"f2":30,"range":360,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"國友鉄砲","type":"arqu","atk":57,"hit":1,"f1":37,"f2":30,"range":350,"rare":3,"text":"範囲+10","ref":0,"refText":"+0"},{"name":"雷光の中筒","type":"arqu","atk":50,"hit":1,"f1":32,"f2":30,"range":340,"rare":3,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"信玄砲","type":"arqu","atk":50,"hit":1,"f1":37,"f2":30,"range":340,"rare":3,"text":"後退距離若干上昇","ref":0,"refText":"+0"},{"name":"天海の鉄砲","type":"arqu","atk":65,"hit":1,"f1":37,"f2":30,"range":340,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"三成の烈砲","type":"arqu","atk":70,"hit":1,"f1":62,"f2":30,"range":340,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"滅‧ガトリング砲","type":"arqu","atk":21,"hit":3,"f1":102,"f2":30,"range":340,"rare":4,"text":"敵1體に3連続攻撃","ref":0,"refText":"+0"},{"name":"桜花爛漫銃","type":"arqu","atk":52,"hit":1,"f1":31,"f2":30,"range":350,"rare":4,"text":"範囲+10 速度やや上昇","ref":0,"refText":"+0"},{"name":"八咫烏","type":"arqu","atk":58,"hit":1,"f1":31,"f2":30,"range":340,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"雨夜手拍子","type":"arqu","atk":80,"hit":1,"f1":37,"f2":30,"range":340,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧三成の烈砲","type":"arqu","atk":96,"hit":1,"f1":62,"f2":30,"range":340,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"木製大砲","type":"cannon","atk":7,"hit":1,"f1":35,"f2":45,"range":340,"rare":1,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"設置式大筒","type":"cannon","atk":11,"hit":1,"f1":42,"f2":45,"range":340,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"芝辻砲","type":"cannon","atk":16,"hit":1,"f1":35,"f2":45,"range":340,"rare":2,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"セーカー砲","type":"cannon","atk":18,"hit":1,"f1":42,"f2":45,"range":360,"rare":2,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"國友の大砲","type":"cannon","atk":23,"hit":1,"f1":42,"f2":45,"range":340,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"カルバリン砲","type":"cannon","atk":29,"hit":1,"f1":42,"f2":45,"range":360,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"半加農砲","type":"cannon","atk":37,"hit":1,"f1":42,"f2":45,"range":340,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"兼続の愛砲","type":"cannon","atk":47,"hit":1,"f1":42,"f2":45,"range":340,"rare":3,"text":"爆風範囲低下","ref":0,"refText":"+0"},{"name":"長政の激砲","type":"cannon","atk":48,"hit":1,"f1":67,"f2":45,"range":340,"rare":3,"text":"速度低下","ref":0,"refText":"+0"},{"name":"門松平蜘蛛砲","type":"cannon","atk":31,"hit":1,"f1":42,"f2":45,"range":360,"rare":4,"text":"範囲+20 爆風範囲やや拡大","ref":0,"refText":"+0"},{"name":"車山形大砲-祭-","type":"cannon","atk":33,"hit":1,"f1":35,"f2":45,"range":340,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"古天明平蜘蛛砲","type":"cannon","atk":40,"hit":1,"f1":42,"f2":45,"range":340,"rare":4,"text":"爆風範囲やや拡大","ref":0,"refText":"+0"},{"name":"加農砲","type":"cannon","atk":40,"hit":1,"f1":42,"f2":45,"range":360,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"國崩し","type":"cannon","atk":45,"hit":1,"f1":36,"f2":45,"range":340,"rare":4,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"散星","type":"cannon","atk":50,"hit":1,"f1":42,"f2":45,"range":340,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"真‧兼続の愛砲","type":"cannon","atk":60,"hit":1,"f1":42,"f2":45,"range":340,"rare":4,"text":"爆風範囲低下","ref":0,"refText":"+0"},{"name":"真‧長政の激砲","type":"cannon","atk":65,"hit":1,"f1":67,"f2":45,"range":340,"rare":4,"text":"速度低下","ref":0,"refText":"+0"},{"name":"錫杖","type":"spell","atk":6,"hit":1,"f1":42,"f2":30,"range":260,"rare":1,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"筆","type":"spell","atk":12,"hit":1,"f1":42,"f2":30,"range":240,"rare":1,"text":"","ref":0,"refText":"+0"},{"name":"金銅錫杖","type":"spell","atk":16,"hit":1,"f1":42,"f2":30,"range":260,"rare":2,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"弘法の筆","type":"spell","atk":24,"hit":1,"f1":42,"f2":30,"range":240,"rare":2,"text":"","ref":0,"refText":"+0"},{"name":"小十郎の響杖","type":"spell","atk":22,"hit":1,"f1":34,"f2":30,"range":240,"rare":3,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"三蔵法師の杖","type":"spell","atk":28,"hit":1,"f1":42,"f2":30,"range":260,"rare":3,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"閻魔の筆","type":"spell","atk":36,"hit":1,"f1":42,"f2":30,"range":240,"rare":3,"text":"","ref":0,"refText":"+0"},{"name":"真・小十郎の響杖","type":"spell","atk":31,"hit":1,"f1":34,"f2":30,"range":240,"rare":4,"text":"速度やや上昇","ref":0,"refText":"+0"},{"name":"菩薩の杖","type":"spell","atk":37,"hit":1,"f1":42,"f2":30,"range":260,"rare":4,"text":"範囲+20","ref":0,"refText":"+0"},{"name":"道風の筆","type":"spell","atk":42,"hit":1,"f1":36,"f2":30,"range":240,"rare":4,"text":"速度若干上昇","ref":0,"refText":"+0"},{"name":"役小角の杖","type":"spell","atk":53,"hit":1,"f1":42,"f2":30,"range":240,"rare":4,"text":"","ref":0,"refText":"+0"},{"name":"青龍","type":"fist","atk":30,"hit":3,"f1":32,"f2":19,"range":90,"rare":5,"text":"平遙古城","ref":0,"refText":"+0"},{"name":"白虎","type":"fist","atk":35,"hit":3,"f1":32,"f2":19,"range":90,"rare":6,"text":"長安城","ref":0,"refText":"+0"},{"name":"黃龍","type":"fist","atk":45,"hit":3,"f1":32,"f2":19,"range":90,"rare":7,"text":"紫禁城","ref":0,"refText":"+0"},{"name":"扇","type":"dance","atk":5,"hit":1,"f1":62,"f2":60,"range":300,"rare":1,"text":"窪田城","ref":0,"refText":"+0"},{"name":"扇改","type":"dance","atk":11,"hit":1,"f1":62,"f2":60,"range":300,"rare":2,"text":"久保田城","ref":0,"refText":"+0"},{"name":"衝波扇","type":"dance","atk":14,"hit":1,"f1":62,"f2":60,"range":300,"rare":3,"text":"鶴ヶ岡城","ref":0,"refText":"+0"},{"name":"スマイルボイス","type":"dance","atk":13,"hit":1,"f1":62,"f2":60,"range":300,"rare":2,"text":"尾山御坊","ref":0,"refText":"+0"},{"name":"スイートボイス","type":"dance","atk":14,"hit":1,"f1":62,"f2":60,"range":300,"rare":3,"text":"山科本願寺","ref":0,"refText":"+0"},{"name":"ハッピーボイス","type":"dance","atk":25,"hit":1,"f1":62,"f2":60,"range":300,"rare":6,"text":"石山御坊","ref":0,"refText":"+0"},{"name":"ミラクルボイス","type":"dance","atk":35,"hit":1,"f1":62,"f2":60,"range":300,"rare":7,"text":"大阪城","ref":0,"refText":"+0"},{"name":"オベリスクタクト","type":"dance","atk":35,"hit":1,"f1":62,"f2":60,"range":300,"rare":7,"text":"シェーンブルン宮殿","ref":0,"refText":"+0"},{"name":"浮城の鈴","type":"bell","atk":20,"hit":1,"f1":97,"f2":60,"range":320,"rare":4,"text":"高島城","ref":0,"refText":"+0"},{"name":"真鍮の鈴","type":"bell","atk":20,"hit":1,"f1":97,"f2":60,"range":320,"rare":5,"text":"濱田城","ref":0,"refText":"+0"},{"name":"シルバーベル","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"アンボワーズ城","ref":0,"refText":"+0"},{"name":"シルバーベル","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"城塞都市ルクセンブルク","ref":0,"refText":"+0"},{"name":"海辺の風鈴","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"［夏］指月伏見城","ref":0,"refText":"+0"},{"name":"太平の鈴","type":"bell","atk":28,"hit":1,"f1":97,"f2":60,"range":320,"rare":6,"text":"新田金山城","ref":0,"refText":"+0"},{"name":"金の鈴","type":"bell","atk":35,"hit":1,"f1":97,"f2":60,"range":320,"rare":7,"text":"指月伏見城","ref":0,"refText":"+0"},{"name":"銀の杖","type":"staff","atk":25,"hit":1,"f1":37,"f2":30,"range":240,"rare":4,"text":"アイリーン・ドナン城","ref":0,"refText":"+0"},{"name":"荊棘の杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"ユッセ城","ref":0,"refText":"+0"},{"name":"荊棘の箒","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"［ハロウィン］ユッセ城","ref":0,"refText":"+0"},{"name":"クリスタルの杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"ホーエンザルツブルク城","ref":0,"refText":"+0"},{"name":"クリスタルの杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"シュノンソー城","ref":0,"refText":"+0"},{"name":"クリスタルの杖","type":"staff","atk":28,"hit":1,"f1":37,"f2":30,"range":240,"rare":6,"text":"セゴビアのアルカサ","ref":0,"refText":"+0"},{"name":"女神の杖","type":"staff","atk":35,"hit":1,"f1":37,"f2":30,"range":240,"rare":7,"text":"プラハ城","ref":0,"refText":"+0"}]
 
 /***/ }),
 /* 519 */
@@ -37733,29 +37733,52 @@
 				return butOut;
 			}
 		}, {
+			key: 'generateCannonDirect',
+			value: function generateCannonDirect() {
+				var _props4 = this.props,
+				    type = _props4.type,
+				    cannonD = _props4.cannonD,
+				    inputChange = _props4.inputChange;
+	
+				if (type === 'cannon') {
+					return _react3.default.createElement(_InputBoxValue2.default, {
+						key: 'button cannon',
+						classes: 'text-input',
+						title: '砲撃直撃時の攻撃ボーナス上昇(%)',
+						modelId: 'cannonD',
+						inputFunc: function inputFunc(modelId, modelValue) {
+							inputChange(modelId, modelValue);
+						},
+						defaultValue: cannonD
+					});
+				}
+				return null;
+			}
+		}, {
 			key: 'render',
 			value: function render() {
-				var _props4 = this.props,
-				    level = _props4.level,
-				    HPParm = _props4.HPParm,
-				    AtkParm = _props4.AtkParm,
-				    DefParm = _props4.DefParm,
-				    com = _props4.com,
-				    damUp = _props4.damUp,
-				    damUp2 = _props4.damUp2;
 				var _props5 = this.props,
-				    atk = _props5.atk,
-				    def = _props5.def,
-				    atkSkill = _props5.atkSkill,
-				    defSkill = _props5.defSkill,
-				    aspdSkill = _props5.aspdSkill,
-				    aspdSpell = _props5.aspdSpell,
-				    inputChange = _props5.inputChange,
-				    atkSkillInt = _props5.atkSkillInt,
-				    defSkillInt = _props5.defSkillInt;
+				    level = _props5.level,
+				    HPParm = _props5.HPParm,
+				    AtkParm = _props5.AtkParm,
+				    DefParm = _props5.DefParm,
+				    com = _props5.com,
+				    damUp = _props5.damUp,
+				    damUp2 = _props5.damUp2,
+				    struAtk = _props5.struAtk;
 				var _props6 = this.props,
-				    modelOpen = _props6.modelOpen,
-				    modelClose = _props6.modelClose;
+				    atk = _props6.atk,
+				    def = _props6.def,
+				    atkSkill = _props6.atkSkill,
+				    defSkill = _props6.defSkill,
+				    aspdSkill = _props6.aspdSkill,
+				    aspdSpell = _props6.aspdSpell,
+				    inputChange = _props6.inputChange,
+				    atkSkillInt = _props6.atkSkillInt,
+				    defSkillInt = _props6.defSkillInt;
+				var _props7 = this.props,
+				    modelOpen = _props7.modelOpen,
+				    modelClose = _props7.modelClose;
 	
 				return _react3.default.createElement(
 					'main',
@@ -37791,6 +37814,7 @@
 								'div',
 								null,
 								_react3.default.createElement(_InputBoxValue2.default, {
+									key: 'button level',
 									classes: 'text-input',
 									title: '城娘等級',
 									modelId: 'level',
@@ -37800,6 +37824,7 @@
 									defaultValue: level
 								}),
 								_react3.default.createElement(_InputBoxValue2.default, {
+									key: 'button AtkParm',
 									classes: 'text-input',
 									title: '攻擊成長係數(%)',
 									modelId: 'AtkParm',
@@ -37809,6 +37834,7 @@
 									defaultValue: AtkParm
 								}),
 								_react3.default.createElement(_InputBoxValue2.default, {
+									key: 'button com',
 									classes: 'text-input',
 									title: '絆',
 									modelId: 'com',
@@ -37832,6 +37858,7 @@
 								'div',
 								null,
 								_react3.default.createElement(_InputBoxValue2.default, {
+									key: 'button atk',
 									classes: 'text-input',
 									title: '城娘素身攻擊力',
 									modelId: 'atk',
@@ -37841,6 +37868,7 @@
 									defaultValue: atk
 								}),
 								_react3.default.createElement(_InputBoxValue2.default, {
+									key: 'button def',
 									classes: 'text-input',
 									title: '兜防禦力',
 									modelId: 'def',
@@ -37850,6 +37878,7 @@
 									defaultValue: def
 								}),
 								_react3.default.createElement(_InputBoxValue2.default, {
+									key: 'button aspdSkill',
 									classes: 'text-input',
 									title: '攻撃速度上昇(%)',
 									modelId: 'aspdSkill',
@@ -37859,6 +37888,7 @@
 									defaultValue: aspdSkill
 								}),
 								_react3.default.createElement(_InputBoxValue2.default, {
+									key: 'button aspdSpell',
 									classes: 'text-input',
 									title: '攻撃後の隙短縮(%)',
 									modelId: 'aspdSpell',
@@ -37872,6 +37902,7 @@
 								'div',
 								null,
 								_react3.default.createElement(_InputBoxValue2.default, {
+									key: 'button atkSkill',
 									classes: 'text-input',
 									title: '攻擊力增加(%)',
 									modelId: 'atkSkill',
@@ -37881,6 +37912,7 @@
 									defaultValue: atkSkill
 								}),
 								_react3.default.createElement(_InputBoxValue2.default, {
+									key: 'button atkSkillInt',
 									classes: 'text-input',
 									title: '攻擊力增加',
 									modelId: 'atkSkillInt',
@@ -37890,6 +37922,7 @@
 									defaultValue: atkSkillInt
 								}),
 								_react3.default.createElement(_InputBoxValue2.default, {
+									key: 'button defSkill',
 									classes: 'text-input',
 									title: '兜防禦力減少(%)',
 									modelId: 'defSkill',
@@ -37899,6 +37932,7 @@
 									defaultValue: defSkill
 								}),
 								_react3.default.createElement(_InputBoxValue2.default, {
+									key: 'button defSkillInt',
 									classes: 'text-input',
 									title: '兜防禦力減少',
 									modelId: 'defSkillInt',
@@ -37912,6 +37946,7 @@
 								'div',
 								null,
 								_react3.default.createElement(_InputBoxValue2.default, {
+									key: 'button damUp',
 									classes: 'text-input',
 									title: '与えるダメージが上昇(%)',
 									modelId: 'damUp',
@@ -37921,6 +37956,7 @@
 									defaultValue: damUp
 								}),
 								_react3.default.createElement(_InputBoxValue2.default, {
+									key: 'button damUp2',
 									classes: 'text-input',
 									title: '兜の被ダメージが上昇(%)',
 									modelId: 'damUp2',
@@ -37928,7 +37964,18 @@
 										inputChange(modelId, modelValue);
 									},
 									defaultValue: damUp2
-								})
+								}),
+								_react3.default.createElement(_InputBoxValue2.default, {
+									key: 'button struAtk',
+									classes: 'text-input',
+									title: '設施攻擊',
+									modelId: 'struAtk',
+									inputFunc: function inputFunc(modelId, modelValue) {
+										inputChange(modelId, modelValue);
+									},
+									defaultValue: struAtk
+								}),
+								this.generateCannonDirect()
 							),
 							_react3.default.createElement(_OutputTable2.default, null)
 						)
@@ -37962,6 +38009,8 @@
 		aspdSpell: _react2.PropTypes.number.isRequired,
 		damUp: _react2.PropTypes.number.isRequired,
 		damUp2: _react2.PropTypes.number.isRequired,
+		struAtk: _react2.PropTypes.number.isRequired,
+		cannonD: _react2.PropTypes.number.isRequired,
 		typeChange: _react2.PropTypes.func.isRequired,
 		plainChange: _react2.PropTypes.func.isRequired,
 		maxChange: _react2.PropTypes.func.isRequired,
@@ -37992,6 +38041,8 @@
 			defSkill: state.reducerCalc.defSkill,
 			damUp: state.reducerCalc.damUp,
 			damUp2: state.reducerCalc.damUp2,
+			struAtk: state.reducerCalc.struAtk,
+			cannonD: state.reducerCalc.cannonD,
 			atkSkillInt: state.reducerCalc.atkSkillInt,
 			defSkillInt: state.reducerCalc.defSkillInt,
 			aspdSkill: state.reducerCalc.aspdSkill,
@@ -38882,7 +38933,7 @@
 		// ===============================================================
 		// 砲弾が敵に直撃した場合、攻撃力が50%アップ。
 		if (input.type === 'cannon' && input.cannon === 'cannon') {
-			paraMux *= parameters.muxCanDirect;
+			paraMux *= 1 + parameters.muxCanDirect * (100 + input.cannonD) / 100;
 		}
 	
 		// ===============================================================
@@ -38920,6 +38971,10 @@
 				}
 			}
 		}
+	
+		// ===============================================================
+		// 設施攻擊力計算
+		charAtk += input.struAtk;
 	
 		// ===============================================================
 		// ダメージ計算
@@ -39024,6 +39079,8 @@
 		defSkillInt: 0,
 		damUp: 0,
 		damUp2: 0,
+		struAtk: 0,
+		cannonD: 0,
 		output: [],
 		outputChar: _database.dbChar.chain().find({ weapon: '刀' }).data(),
 		modelStatus: '0',
@@ -39348,6 +39405,20 @@
 						calcTemp.damUp2 = action.modelValue;
 						return Object.assign({}, state, {
 							damUp2: action.modelValue,
+							output: (0, _calcOutput.calcOutput)(calcTemp)
+						});
+					case 'struAtk':
+						calcTemp = state;
+						calcTemp.struAtk = action.modelValue;
+						return Object.assign({}, state, {
+							struAtk: action.modelValue,
+							output: (0, _calcOutput.calcOutput)(calcTemp)
+						});
+					case 'cannonD':
+						calcTemp = state;
+						calcTemp.cannonD = action.modelValue;
+						return Object.assign({}, state, {
+							cannonD: action.modelValue,
 							output: (0, _calcOutput.calcOutput)(calcTemp)
 						});
 					default:
